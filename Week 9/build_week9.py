@@ -193,7 +193,7 @@ SL1_BODY = """
 
     <div class="card">
       <h3>Anthropic &mdash; Claude Mythos (Preview)</h3>
-      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. Available to a limited group of partners and open-source defenders via Project Glasswing.</p>
+      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. As of early May 2026, the UK AI Security Institute reported GPT-5.5 reaching rough parity with Mythos on offensive-cyber evaluations (GPT-5.5 71.4% vs Mythos 68.6% on multi-step attack simulations) &mdash; so Anthropic&#39;s earlier unique lead in this domain has narrowed. Available to limited partners via Project Glasswing.</p>
     </div>
 
     <div class="card">
@@ -246,12 +246,12 @@ SL1_BODY = """
 
     <div class="card">
       <h3>Qwen 3.6 (Alibaba) &amp; Gemma 4 (Google DeepMind)</h3>
-      <p>Both released in 2026 and both implement <strong>Multi-Token Prediction (MTP)</strong> &mdash; predicting several future tokens per forward pass for substantial inference speed-ups. MTP is emerging as a cross-model technique. Qwen 3.6 is a hybrid thinking model that can toggle chain-of-thought on or off; reaches frontier on AIME 2026 (~91%). Gemma 4 (open-weights from DeepMind) pairs with their broader push on agentic reasoning systems (see 9.3).</p>
+      <p>Qwen 3.6 27B (April 2026): Apache 2.0, 262K context window, native multimodal input, BF16 weights small enough to fit on a single H100. Top of Artificial Analysis&#39;s Intelligence Index for open-weights models under 150B parameters at 46. Hybrid thinking model (toggle chain-of-thought on/off). Reaches frontier on AIME 2026 (~91%). Both Qwen 3.6 and Gemma 4 implement <strong>Multi-Token Prediction (MTP)</strong> &mdash; predicting several future tokens per forward pass for substantial inference speed-ups, an emerging cross-model technique.</p>
     </div>
 
     <div class="card">
       <h3>Other open-weights players</h3>
-      <p>The Mistral and Falcon families remain strong on European-deployment grounds. Llama 4 (Meta&#39;s last open-weights model before Muse Spark) is still in wide use though no longer frontier. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is notable as a non-standard transformer architecture with hybrid attention &mdash; a data point that architectural innovation hasn&#39;t stopped.</p>
+      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> targets cost-efficiency at $95-per-benchmark-run but reports a 92% hallucination rate on AA-Omniscience &mdash; a useful warning that not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention &mdash; an architectural-innovation data point.</p>
     </div>
 
   </div>
@@ -358,6 +358,13 @@ SL1_BODY = """
     <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested &mdash; including Opus 4.7, GPT-5.4, Gemini 3.1 Pro &mdash; not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
     <p>The same models, the same general task family (software engineering), wildly different scores. SWE-bench measures &ldquo;can the model solve well-scoped patches to existing code given the issue description.&rdquo; It does not measure &ldquo;can the model architect and build a real piece of software.&rdquo; The benchmark you cite determines the capability claim you can make.</p>
     <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.03546" target="_blank" rel="noopener">ProgramBench: Can Language Models Rebuild Programs From Scratch? (arXiv:2605.03546, May 2026)</a></p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; The Hidden Variable: Harness Engineering</h4>
+    <p>A second Goodhart-adjacent finding has been hardening across 2026: a model&#39;s benchmark score conflates two things &mdash; the model&#39;s underlying capability, and the engineering work done around the model (system prompt, tools, middleware, decomposition strategy, retrieval scaffolding). The community has started calling this latter component the <em>harness</em>, and the harness now often dominates.</p>
+    <p>The Agentic Harness Engineering paper documents the effect: the same model on Terminal-Bench 2 went from <strong>69.7% to 77.0%</strong> over ten iterations of pure harness improvement &mdash; beating a human-designed Codex-CLI baseline of 71.9% &mdash; while reducing token use on SWE-bench Verified by 12%. Other reports converge on the same observation: 10&ndash;20 point swings on tau2-bench depending on prompts and middleware, while the underlying model is identical.</p>
+    <p>The implication for reading announcements: a 90% score on a benchmark may reflect a 75% model with a great harness, or an 85% model with a mediocre harness. When a lab announces SOTA on benchmark X, you cannot disentangle the harness contribution from the model contribution. For your own work, the corollary is that switching to the latest frontier model is often less impactful than improving the harness around the model you already use.</p>
   </div>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">2. Benchmark Contamination &mdash; Training-Data Leakage</h3>
@@ -513,6 +520,8 @@ SL2_BODY = """
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">In 2026 these rates have dropped further on common topics but the long-tail problem persists: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
 
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A vivid current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong>. The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
+
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong &mdash; a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
@@ -525,7 +534,13 @@ SL2_BODY = """
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models &mdash; but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
 
-  <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
+  <div class="case-study" style="margin-top: 20px;">
+    <h4>&#128221; A May 2026 anecdote: model overconfidence on a maths disagreement</h4>
+    <p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both &mdash; reconciled the formulas and explained why the apparent disagreement dissolved.</p>
+    <p>Anecdotal, single-case, not a benchmark. But it&#39;s a useful illustration that overconfident defence of wrong reasoning &mdash; the sycophancy/calibration failure mode &mdash; is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
+  </div>
+
+  <p style="font-size: 0.9em; color: #003A70; font-weight: 600; margin-top: 15px;">Original sycophancy paper: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Calibration</h3>
 

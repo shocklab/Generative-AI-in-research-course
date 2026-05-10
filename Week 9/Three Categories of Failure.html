@@ -138,6 +138,8 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">In 2026 these rates have dropped further on common topics but the long-tail problem persists: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
 
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A vivid current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong>. The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
+
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong &mdash; a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
@@ -150,7 +152,13 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models &mdash; but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
 
-  <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
+  <div class="case-study" style="margin-top: 20px;">
+    <h4>&#128221; A May 2026 anecdote: model overconfidence on a maths disagreement</h4>
+    <p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both &mdash; reconciled the formulas and explained why the apparent disagreement dissolved.</p>
+    <p>Anecdotal, single-case, not a benchmark. But it&#39;s a useful illustration that overconfident defence of wrong reasoning &mdash; the sycophancy/calibration failure mode &mdash; is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
+  </div>
+
+  <p style="font-size: 0.9em; color: #003A70; font-weight: 600; margin-top: 15px;">Original sycophancy paper: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Calibration</h3>
 
