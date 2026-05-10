@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9.1 - The Trajectory of LLM Capabilities</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.intro-text p:last-child { margin-bottom: 0; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.highlight-box p:last-child { margin-bottom: 0; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.info-box p:last-child { margin-bottom: 0; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.case-study p { color: #444; line-height: 1.75; margin-bottom: 12px; }
+.case-study p:last-child { margin-bottom: 0; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; font-size: 0.95em; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; font-size: 0.95em; line-height: 1.5; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.resource-placeholder p:last-child { margin-bottom: 0; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 9 &bull; Sub-Lesson 1</div>
+  <h1>&#128200; <span style="color: #ffffff;">The Trajectory of LLM Capabilities</span></h1>
+  <p>From GPT-2 to the May 2026 frontier &mdash; why every claim about &ldquo;what AI can do&rdquo; carries a hidden date stamp</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>The way researchers talk about &ldquo;what AI can&#39;t do&rdquo; goes stale faster than almost any other technical claim in the literature. A paper from 2023 documenting that ChatGPT failed at undergraduate mathematics is, by 2026, a historical artefact rather than a current diagnosis. A claim from 2024 that AI can&#39;t do scientific writing well no longer matches what frontier models produce today. The artefact under study has changed. The literature about it has not always kept up.</p>
+    <p>This sub-lesson does two things. First, it lays out the trajectory of LLM capabilities from 2019 to May 2026, so you have a calibrated sense of where the frontier sits right now. Second, it makes the central pedagogical move of the whole week explicit: every claim about AI limitations carries an implicit &ldquo;as of [date]&rdquo;. Reading the AI literature critically means asking which model, which date, and whether anyone has retested.</p>
+    <p>The week&#39;s centrepiece reading lives at the end of this sub-lesson: a May 2026 blog post by the Fields-medallist Tim Gowers reporting on his experience using ChatGPT 5.5 Pro to extend bounds on an open problem in additive number theory. Read it before moving on to the next sub-lesson.</p>
+  </div>
+
+  <h2 class="section-title">&#128200; A Seven-Year Sweep</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The pace of capability change over the last seven years is worth pausing on. Below is a deliberately compressed history. Each row marks a moment when the answer to &ldquo;what can these systems do?&rdquo; shifted enough that the previous answer became wrong.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Frontier model(s)</th>
+          <th>What was new</th>
+          <th>What still failed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>2019</strong></td>
+          <td>GPT-2 (1.5B)</td>
+          <td>OpenAI initially declined to release weights citing misuse risk; sparked first wave of policy debate.</td>
+          <td>Output became incoherent past a few paragraphs; no real reasoning; minimal factual reliability.</td>
+        </tr>
+        <tr>
+          <td><strong>2020</strong></td>
+          <td>GPT-3 (175B)</td>
+          <td>Few-shot in-context learning &mdash; the system could do tasks it had never been trained on if given examples in the prompt.</td>
+          <td>Confidently fabricated facts; couldn&#39;t reliably do basic arithmetic; no instruction-following beyond pattern matching.</td>
+        </tr>
+        <tr>
+          <td><strong>2022&ndash;23</strong></td>
+          <td>ChatGPT, GPT-4, Claude 2</td>
+          <td>Instruction-following via RLHF; emergent reasoning on graduate-level tasks; mass adoption.</td>
+          <td>Hallucinated citations at high rates (Week 5); the &ldquo;reversal curse&rdquo;; failed graduate-level mathematics; limited tool use.</td>
+        </tr>
+        <tr>
+          <td><strong>2024</strong></td>
+          <td>GPT-4o, Claude 3.5 Sonnet, Gemini 1.5</td>
+          <td>First generation with measurable drops in basic-failure rates; multimodal inputs (Week 8); early agentic capability.</td>
+          <td>Still unreliable on niche-topic citations; sycophancy persisted; long-context performance degraded mid-document.</td>
+        </tr>
+        <tr>
+          <td><strong>2025</strong></td>
+          <td>Claude 4 / Opus 4.6, GPT-5, Gemini 2.5 / Deep Think</td>
+          <td>IMO 2025 gold-medal performance (35/42, end-to-end natural language, within the 4.5-hour competition window). FrontierMath at ~50%. Frontier coding capability.</td>
+          <td>Domain-specific brittleness remained; cross-disciplinary verification still required human expertise; calibration still imperfect.</td>
+        </tr>
+        <tr>
+          <td><strong>May 2026</strong></td>
+          <td>Claude Mythos, Opus 4.7, GPT-5.5 Pro, Gemini 3.1 Pro, DeepSeek V4 Pro&hellip;</td>
+          <td>Research-grade contributions in mathematics (Erd&#337;s problems) and theoretical physics (gluon and graviton amplitudes). Open-weights frontier (DeepSeek) competitive with closed.</td>
+          <td>The structural failures &mdash; long-tail brittleness, compositional errors, illusions of understanding &mdash; persist (see 9.2 and 9.4).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128161; Why This Matters Now</h4>
+    <p>If you arrived in this course with a calibration of AI based on news coverage from 2023, you are in roughly the position of someone reading 2010 reviews of smartphone cameras. Some core observations still apply &mdash; cameras have lenses, smartphones have batteries &mdash; but the specifics are out of date.</p>
+    <p>The recalibration matters in two directions. Some things you might think AI can&#39;t do, it now can. Some things you might think AI can do reliably, it cannot. Both errors are common in published research right now. This sub-lesson and the next two address them in turn.</p>
+  </div>
+
+  <!-- SECTION: MAY 2026 LANDSCAPE -->
+  <h2 class="section-title">&#128300; The May 2026 Frontier &mdash; Closed-Weights Models</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of mid-May 2026, the closed-weights frontier comprises six families of models, all from large well-resourced labs. Each has slightly different strengths, and the leaderboards shuffle every few weeks. The numbers below are accurate at time of writing and will be wrong within months &mdash; that itself is a teaching point.</p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>Anthropic &mdash; Claude Mythos (Preview)</h3>
+      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. Available to a limited group of partners and open-source defenders via Project Glasswing.</p>
+    </div>
+
+    <div class="card">
+      <h3>Anthropic &mdash; Claude Opus 4.7</h3>
+      <p>Generally available since 16 April 2026. SWE-bench Verified <strong>87.6%</strong> (up from 80.8% on Opus 4.6). MCP-Atlas (multi-tool agentic) <strong>77.3%</strong>. Coding lift of 13% over Opus 4.6. Vision resolution roughly tripled. The current default for production-grade research workflows.</p>
+    </div>
+
+    <div class="card">
+      <h3>OpenAI &mdash; GPT-5.5 Pro &amp; GPT-5.5</h3>
+      <p>Top of the FrontierMath leaderboard. GPT-5.5 Pro at <strong>52.4%</strong>; GPT-5.5 at 51.7%. The GPT-5.4 Pro variant (50%) is the model behind the Erd&#337;s problem solutions discussed in 9.3. The GPT-5.2 Pro variant produced the gluon-amplitude result with the Strominger group.</p>
+    </div>
+
+    <div class="card">
+      <h3>Google DeepMind &mdash; Gemini 3.1 Pro / Deep Think</h3>
+      <p>Achieved IMO 2025 gold medal: 5/6 problems solved, 35/42 points, end-to-end natural language within the competition&#39;s 4.5-hour window &mdash; up from a silver in 2024. Long context, multimodal, and the Deep Think variant powers the cosmic-string radiation result discussed in 9.3.</p>
+    </div>
+
+    <div class="card">
+      <h3>Meta &mdash; Muse Spark</h3>
+      <p>Released 8 April 2026. Meta&#39;s first frontier model since Llama 4, and notably their first <em>not</em> released as open weights. Scores 52 on the Artificial Analysis Intelligence Index. Natively multimodal with text, image and voice input. Includes a parallel-reasoning &ldquo;Contemplating mode&rdquo;. Powers Meta AI inside WhatsApp, Instagram, Facebook, Messenger and Ray-Ban smart glasses.</p>
+    </div>
+
+    <div class="card">
+      <h3>Other major closed labs</h3>
+      <p>xAI&#39;s Grok 4, Mistral&#39;s Large 3, Cohere&#39;s Command R+ generation, and Inflection-acquired models from Microsoft also sit in the broad frontier band. A new OpenAI model (codename &ldquo;Spud&rdquo;) is reportedly imminent at time of writing. Track <a href="https://llm-stats.com/" target="_blank" rel="noopener">llm-stats.com</a> or <a href="https://benchlm.ai/" target="_blank" rel="noopener">benchlm.ai</a> for current state.</p>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">&#128274; The May 2026 Frontier &mdash; Open-Weights Models</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A meaningful part of the 2026 story is that open-weights models have closed most of the gap. This wasn&#39;t true in 2023&ndash;24, where closed labs had a clear lead on every important capability. As of May 2026, an open-weights model leads the world on competitive programming, and matches the closed frontier on most agentic and coding benchmarks at substantially lower cost.</p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>DeepSeek V4 Pro</h3>
+      <p>Released 24 April 2026 under the MIT licence. Mixture-of-experts architecture: <strong>1.6 trillion total parameters with 49 billion active</strong> per token. <strong>1 million token context window</strong>. Codeforces rating <strong>3206</strong> &mdash; the highest competitive-programming score of any model, surpassing GPT-5.4&#39;s 3168. SWE-bench Verified 80.6%. Roughly 10&ndash;13&times; cheaper per output token than the closed frontier on most agentic benchmarks.</p>
+    </div>
+
+    <div class="card">
+      <h3>DeepSeek V4 Flash</h3>
+      <p>The efficiency variant: 284B total parameters, 13B active. Designed for high-throughput deployment where Pro&#39;s scale is unnecessary.</p>
+    </div>
+
+    <div class="card">
+      <h3>Other open-weights players</h3>
+      <p>The Qwen series (Alibaba) reaches frontier on AIME 2026 (Qwen3.5-plus at 91.3%). The Mistral and Falcon families remain strong on European-deployment grounds. Llama 4 (Meta&#39;s last open-weights model) still in wide use though no longer frontier.</p>
+    </div>
+
+  </div>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; The Pace of Change</h4>
+    <p>Every model and number above will be wrong within months. By the time you sit this course, several of these systems will have been replaced or substantially upgraded; new entrants will have appeared; some leaderboards will have saturated. Treat the table as a snapshot and use the <a href="https://llm-stats.com/" target="_blank" rel="noopener">llm-stats.com</a> and <a href="https://benchlm.ai/" target="_blank" rel="noopener">benchlm.ai</a> leaderboards as living references.</p>
+  </div>
+
+  <!-- SECTION: BENCHMARKS -->
+  <h2 class="section-title">&#129518; What These Benchmarks Actually Measure</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmark scores are now the standard currency of AI capability claims. They are useful, but only if you know what each one tests. A 90% on AIME and a 50% on FrontierMath sound very different but might describe the same model on tasks of very different difficulty.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Benchmark</th>
+          <th>What it measures</th>
+          <th>Current SOTA (May 2026)</th>
+          <th>Created by / source</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>FrontierMath</strong></td>
+          <td>350 expert-level mathematics problems (300 Tier 1&ndash;3 + 50 Tier 4 unpublished). Evaluated with Python tools.</td>
+          <td>GPT-5.5 Pro 52.4%</td>
+          <td><a href="https://epoch.ai/frontiermath" target="_blank" rel="noopener">Epoch AI</a>; problems set by IMO gold medallists and Fields Medal recipients.</td>
+        </tr>
+        <tr>
+          <td><strong>GPQA Diamond</strong></td>
+          <td>Graduate-level physics, biology and chemistry reasoning. Designed to be Google-proof.</td>
+          <td>Claude Mythos 94.6%</td>
+          <td>Frontier reasoning benchmark; widely used to discriminate among frontier models.</td>
+        </tr>
+        <tr>
+          <td><strong>SWE-bench Verified</strong></td>
+          <td>Real-world software engineering: GitHub issues with verified human-validated solutions.</td>
+          <td>Opus 4.7 87.6%</td>
+          <td>Princeton/Anthropic-validated subset of the original SWE-bench.</td>
+        </tr>
+        <tr>
+          <td><strong>AIME 2026</strong></td>
+          <td>American Invitational Mathematics Examination &mdash; high-school olympiad level.</td>
+          <td>Qwen3.5-plus 91.3%</td>
+          <td>Closing in on saturation; useful but no longer discriminating at the top.</td>
+        </tr>
+        <tr>
+          <td><strong>MCP-Atlas</strong></td>
+          <td>Multi-tool agentic workflows using the Model Context Protocol.</td>
+          <td>Opus 4.7 77.3%</td>
+          <td>Anthropic; tracks performance on real agentic deployments.</td>
+        </tr>
+        <tr>
+          <td><strong>HLE</strong></td>
+          <td>Human Language Evaluation &mdash; broad reasoning across domains.</td>
+          <td>Claude Mythos 64.7</td>
+          <td>Composite reasoning measure.</td>
+        </tr>
+        <tr>
+          <td><strong>Codeforces (Elo)</strong></td>
+          <td>Competitive programming rating against human contestants.</td>
+          <td>DeepSeek V4 Pro 3206</td>
+          <td>Notable: an open-weights model leads here, ahead of GPT-5.4&#39;s 3168.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128270; Reading Benchmark Scores Critically</h4>
+    <p>Three pitfalls to watch for in announcements:</p>
+    <p>(1) <strong>Benchmark mismatch.</strong> A 90% on AIME 2024 does not predict a 90% on FrontierMath. The benchmarks measure different things at different levels of difficulty.</p>
+    <p>(2) <strong>Saturation.</strong> When the SOTA on a benchmark exceeds about 90%, the benchmark has stopped discriminating and the remaining gap is largely noise.</p>
+    <p>(3) <strong>Selection.</strong> Labs cherry-pick benchmarks favourable to their model. Always check whether the announcement reports performance on benchmarks where competitors lead.</p>
+  </div>
+
+  <!-- SECTION: GOWERS -->
+  <h2 class="section-title">&#128218; Centrepiece Reading: Gowers on ChatGPT 5.5 Pro</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Tim Gowers is a Fields medallist and a long-time chronicler of mathematical practice. In May 2026 he posted an account of an experiment in which he used ChatGPT 5.5 Pro to attack open problems from a paper by Mel Nathanson on additive number theory.</p>
+
+  <div class="case-study">
+    <h4>&#128221; What Gowers reports</h4>
+    <p>Over roughly two hours of interaction, ChatGPT 5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel &mdash; not retrieved from training data &mdash; and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
+    <p>Gowers&#39; broader claim is striking: <em>&ldquo;The lower bound for contributing to mathematics will now be to prove something that LLMs can&#39;t prove.&rdquo;</em></p>
+    <p>He pairs this with a defence of human work: <em>&ldquo;by solving hard problems you get an insight&hellip;that you simply don&#39;t if all you do is read other people&#39;s solutions.&rdquo;</em></p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128214; Required Reading</h4>
+    <p><strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers, T. (8 May 2026). <em>A recent experience with ChatGPT 5.5 Pro.</em></a></strong></p>
+    <p>Read this before moving to the next sub-lesson. The full post is short, accessible without specialist additive-number-theory background, and lays the groundwork for the trajectory frame that runs through the rest of the week.</p>
+  </div>
+
+  <!-- SECTION: WHAT TO TAKE FROM 9.1 -->
+  <h2 class="section-title">&#127919; The Move This Sub-Lesson Makes</h2>
+
+  <div class="highlight-box">
+    <h3>Date-stamp every claim about AI capability</h3>
+    <p>From here on, when you encounter a claim about what AI can or cannot do &mdash; in this course, in published papers, in news articles, anywhere &mdash; reflexively check three things. <strong>Which model</strong> was tested? <strong>When</strong> was it tested? <strong>Has anyone retested</strong> with current frontier models?</p>
+    <p>Without these three pieces of information, an AI capability claim has the same evidentiary status as a 2010 review of smartphone cameras. The category is right; the specifics are stale.</p>
+    <p>Sub-lesson 9.2 takes this trajectory framing and applies it to specific failure modes. Some have been patched. Some have been reduced. Some are structural and likely permanent. Distinguishing them is the skill we are building.</p>
+  </div>
+
+  <div class="intro-text" style="margin-top: 50px;">
+    <h2>&#128073; What Comes Next</h2>
+    <p><strong>Sub-Lesson 9.2 &mdash; Three Categories of Failure: Patched, Reduced, Structural.</strong> A taxonomy of AI failures that survives the next model release. We use the trajectory frame from this sub-lesson to separate failures that have been fixed from failures that are inherent to how language models work.</p>
+  </div>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>

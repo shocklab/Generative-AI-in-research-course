@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9.3 - Where AI Is Now Genuinely Strong</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.intro-text p:last-child { margin-bottom: 0; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.highlight-box p:last-child { margin-bottom: 0; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.info-box p:last-child { margin-bottom: 0; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.case-study p { color: #444; line-height: 1.75; margin-bottom: 12px; }
+.case-study p:last-child { margin-bottom: 0; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; font-size: 0.95em; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; font-size: 0.95em; line-height: 1.5; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.resource-placeholder p:last-child { margin-bottom: 0; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 9 &bull; Sub-Lesson 3</div>
+  <h1>&#128640; <span style="color: #ffffff;">Where AI Is Now Genuinely Strong</span></h1>
+  <p>Concrete cases from 2026 in mathematics and theoretical physics &mdash; with the caveats that prevent miscalibration</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>The trajectory frame from 9.1 cuts both ways. If you arrive thinking AI is more capable than it is, you over-rely on it. If you arrive thinking AI is less capable than it is, you miss things you could be doing. Both errors are common. This sub-lesson focuses on the second.</p>
+    <p>We look at concrete cases from 2025&ndash;26 where AI played a pivotal role in research-grade work in mathematics, theoretical physics, and beyond. The examples are deliberately drawn from fields where, two years ago, the consensus was that AI couldn&#39;t contribute meaningfully. The point is not that AI replaces researchers in these fields &mdash; in every case, human collaboration was essential and human verification was mandatory &mdash; but that the ceiling has moved.</p>
+    <p>A pedagogical caveat to flag now: these are <strong>selection-biased examples</strong>. They are the cases where AI worked. The ratio of attempts-to-successes is unknown. We close the sub-lesson with the caveats; read them.</p>
+  </div>
+
+  <!-- MATHEMATICS -->
+  <h2 class="section-title">&#10135; Mathematics</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If there is one field where 2026 has decisively shifted, it is mathematics. The combination of frontier reasoning models (GPT-5.4 Pro, GPT-5.5 Pro, Gemini Deep Think) and tools that connect them to formal verification (AlphaProof, AlphaEvolve) has produced a stream of contributions to research-level problems.</p>
+
+  <div class="case-study">
+    <h4>&#128221; Erd&#337;s Problems Solved with Frontier Models</h4>
+    <p>Since January 2026, <strong>15 Erd&#337;s problems have moved from &ldquo;open&rdquo; to &ldquo;solved&rdquo;</strong> on the canonical Erd&#337;s problem database, with <strong>11 of those crediting AI models</strong> as part of the process. The contributions are tracked at <a href="https://github.com/teorth/erdosproblems/wiki/AI-contributions-to-Erd%C5%91s-problems" target="_blank" rel="noopener">github.com/teorth/erdosproblems</a>.</p>
+    <p><strong>Erd&#337;s Problem #1196.</strong> A 1968 conjecture from Erd&#337;s, S&aacute;rk&ouml;zy and Szemer&eacute;di on primitive sets. Solved by GPT-5.4 Pro on 13 April 2026, with a solution that includes a Lean formalisation. A peer-reviewed-track follow-up paper extends the result substantially: <strong><a href="https://arxiv.org/abs/2605.00301" target="_blank" rel="noopener">Alexeev, B., Barreto, K., Li, Y., Lichtman, J. D., Price, L., Shah, J. I., Tang, Q., &amp; Tao, T. (3 May 2026). <em>Primitive sets and von Mangoldt chains: Erd&#337;s Problem #1196 and beyond.</em> arXiv:2605.00301</a></strong>.</p>
+    <p><strong>Erd&#337;s Problem #728.</strong> Solved by GPT-5.4 Pro in approximately 80 minutes from a single prompt. Tao&#39;s commentary: <em>&ldquo;the proof reveals a previously undescribed connection between the anatomy of integers and Markov process theory.&rdquo;</em> A meaningful contribution to the field that goes well beyond the specific problem.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; Mathematical Exploration at Scale</h4>
+    <p><strong><a href="https://arxiv.org/abs/2511.02864" target="_blank" rel="noopener">Georgiev, B., G&oacute;mez-Serrano, J., Tao, T., &amp; Wagner, A. Z. (3 November 2025). <em>Mathematical exploration and discovery at scale.</em> arXiv:2511.02864</a></strong></p>
+    <p>Tao and collaborators tested Google&#39;s AlphaEvolve &mdash; an evolutionary coding agent that combines an LLM with automated evaluation &mdash; on 67 mathematical problems across analysis, combinatorics, geometry, and number theory. The system rediscovered established solutions in most cases and identified <strong>improved solutions on several</strong>. The authors integrated AlphaEvolve with Deep Think and AlphaProof for proof generation. Tao&#39;s blog post on the paper at <a href="https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/" target="_blank" rel="noopener">terrytao.wordpress.com</a> is a useful accessible summary.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; IMO 2025 &mdash; Gold Medal in Natural Language</h4>
+    <p>An advanced version of <strong>Gemini with Deep Think</strong> achieved gold-medal performance at the 2025 International Mathematical Olympiad: <strong>5 out of 6 problems perfect, 35/42 points</strong>, end-to-end natural-language proofs (not formal Lean), within the official 4.5-hour competition window. This is up from 2024, when AlphaProof + AlphaGeometry 2 took silver requiring expert formalisation into Lean and 2&ndash;3 days of computation. One year, formalisation overhead removed, time pressure met.</p>
+  </div>
+
+  <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Centrepiece reading (revisited)</h3>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you have not yet read it, return to <strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers (May 2026), <em>A recent experience with ChatGPT 5.5 Pro</em></a></strong>. The Gowers post is the single most useful piece of writing I know on the current state of frontier-model mathematics, partly because Gowers is one of the few people who can credibly assess the quality of the work himself.</p>
+
+  <!-- THEORETICAL PHYSICS -->
+  <h2 class="section-title">&#9883; Theoretical Physics</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The theoretical physics cases are particularly notable because they involve named senior physicists collaborating directly with AI on amplitude calculations. The work has appeared as preprints with credentialed authors, not as AI-lab demonstrations.</p>
+
+  <div class="case-study">
+    <h4>&#128221; Single-Minus Gluon Amplitudes &mdash; OpenAI &times; Strominger Group</h4>
+    <p><strong><a href="https://arxiv.org/abs/2602.12176" target="_blank" rel="noopener">Guevara, A., Lupsasca, A., Skinner, D., Strominger, A., &amp; Weil, K. (12 February 2026). <em>Single-minus gluon tree amplitudes are nonzero.</em> arXiv:2602.12176</a></strong></p>
+    <p>The paper&#39;s own abstract is explicit about the AI contribution:</p>
+    <p style="font-style: italic; color: #444; margin: 15px 0; padding: 12px 18px; border-left: 3px solid #003A70; background: #f9f9f9;">&ldquo;The key formula was first conjectured by GPT-5.2 Pro and then proved by a new internal OpenAI model.&rdquo;</p>
+    <p>Human verification was mandatory: the proof was checked by hand using the Berends&ndash;Giele recursion and tested against multiple consistency conditions including Weinberg&#39;s soft theorem. The author list includes Andrew Strominger (Harvard) &mdash; among the most distinguished living theoretical physicists &mdash; and Kevin Weil on behalf of OpenAI. This is not an AI-lab demonstration; it is a real preprint with a real result.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; Graviton Extension</h4>
+    <p>The same group extended the gluon result to <em>gravitons</em> in March 2026. Currently hosted at <a href="https://openai.com/index/extending-single-minus-amplitudes-to-gravitons/" target="_blank" rel="noopener">openai.com/index/extending-single-minus-amplitudes-to-gravitons/</a> (PDF at <a href="https://cdn.openai.com/pdf/graviton.pdf" target="_blank" rel="noopener">cdn.openai.com/pdf/graviton.pdf</a>); arXiv version not yet posted at time of writing. The extension used the gluon results as context plus some guidance from the human physicists; GPT-5.2 Pro constructed the analogous single-minus scattering amplitudes for gravitons.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; Cosmic-String Gravitational Radiation</h4>
+    <p><strong><a href="https://arxiv.org/abs/2603.04735" target="_blank" rel="noopener">Brenner, M. P., Cohen-Addad, V., &amp; Woodruff, D. (5 March 2026). <em>Solving an Open Problem in Theoretical Physics using AI-Assisted Discovery.</em> arXiv:2603.04735</a></strong></p>
+    <p>A neuro-symbolic system &mdash; Gemini Deep Think combined with a tree-search framework and automated numerical feedback &mdash; computed the power spectrum of gravitational radiation emitted by cosmic strings. The system discovered <strong>six different analytical methods</strong>; the most elegant uses Gegenbauer-polynomial expansions and is exact and efficient. Of growing relevance given recent Pulsar Timing Array observations of the stochastic gravitational background.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; Quantum Many-Body Calculations</h4>
+    <p><strong><a href="https://www.nature.com/articles/s42005-025-01956-y" target="_blank" rel="noopener">Pan, H., Mudur, N., Taranto, W., Tikhanovskaya, M., Venugopalan, S., Bahri, Y., Brenner, M. P., &amp; Kim, E.-A. (2025). <em>Quantum many-body physics calculations with large language models.</em> Communications Physics. DOI:10.1038/s42005-025-01956-y</a></strong></p>
+    <p>Tested GPT-4 on 15 quantum many-body papers from the past decade. With multi-step prompt templates, the model correctly derived the final Hartree&ndash;Fock Hamiltonian in <strong>13 of 15</strong> cases. The first systematic evaluation of LLMs on research-level physics calculations &mdash; and a result obtained even before the GPT-5 generation. Pre-registered prompt templates and step-by-step verification matter as much as model capability.</p>
+  </div>
+
+  <!-- OTHER PARADIGMS -->
+  <h2 class="section-title">&#129504; Adjacent Paradigms (Not LLM-based)</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Not all of the AI-in-science story is LLMs. Two notable 2025 results use different machine-learning paradigms entirely. They are worth knowing because the limits of LLMs are not the limits of AI.</p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>AI-Newton (Symbolic Discovery)</h3>
+      <p>Fang, Y.-L., Jian, D.-S., Li, X., &amp; Ma, Y.-Q. (April 2025). <em>AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge</em>. <a href="https://arxiv.org/abs/2504.01538" target="_blank" rel="noopener">arXiv:2504.01538</a>. From Peking University. Symbolic regression that, given experimental data, autonomously rediscovers Newton&#39;s second law, energy conservation, and the law of gravitation &mdash; without prior physics knowledge built in.</p>
+    </div>
+
+    <div class="card">
+      <h3>Physics-Tailored ML in Dusty Plasmas</h3>
+      <p>Yu, W., Abdelaleem, E., Nemenman, I., &amp; Burton, J. C. (2025). <em>Physics-tailored machine learning reveals unexpected physics in dusty plasmas.</em> <em>PNAS</em> 122(31), e2505725122. <a href="https://www.pnas.org/doi/10.1073/pnas.2505725122" target="_blank" rel="noopener">DOI:10.1073/pnas.2505725122</a>. Custom neural network trained on dusty-plasma trajectory data infers non-reciprocal forces with R&sup2; &asymp; 0.99. From Emory University. Demonstrates that physics-aware ML can rediscover laws and even reveal new ones from carefully-designed experiments.</p>
+    </div>
+
+  </div>
+
+  <!-- AGENTIC RESEARCH -->
+  <h2 class="section-title">&#129302; Autonomous Research Pipelines</h2>
+
+  <div class="case-study">
+    <h4>&#128221; The AI Scientist v2 &mdash; First AI-Authored Peer-Reviewed Paper</h4>
+    <p><strong><a href="https://www.nature.com/articles/s41586-026-10265-5" target="_blank" rel="noopener">Lu, C., Lu, C., Lange, R. T., et al. (26 March 2026). <em>Towards end-to-end automation of AI research.</em> Nature 651, 914&ndash;919. DOI:10.1038/s41586-026-10265-5</a></strong></p>
+    <p>Sakana AI&#39;s second-generation AI Scientist &mdash; agentic tree search, no human-authored code templates &mdash; produced three manuscripts that were submitted to a peer-reviewed workshop at ICLR 2025. <strong>One manuscript passed peer review with an average reviewer score of 6.33</strong>, placing it in roughly the top 45% of submissions. Sakana withdrew the paper before final publication, but the milestone &mdash; first fully AI-generated paper to pass rigorous human peer review &mdash; is real. Includes important caveats about generality and replicability.</p>
+  </div>
+
+  <!-- CODE AND OTHER DOMAINS -->
+  <h2 class="section-title">&#128187; Code, Writing, and Other Domains</h2>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>Code at the Frontier</h3>
+      <p><strong>Claude Opus 4.7</strong> at SWE-bench Verified 87.6%; <strong>DeepSeek V4 Pro</strong> at Codeforces 3206 (top of any model); <strong>GPT-5.5 Pro</strong> at MCP-Atlas 77.3%. Frontier models in 2026 are research-grade for many programming tasks. The Week 7 caveat applies: code that runs is not code that&#39;s correct. Verification and known-answer testing are still mandatory.</p>
+    </div>
+
+    <div class="card">
+      <h3>Scientific Writing</h3>
+      <p>Capability has improved substantially. Frontier models produce drafts that read like academic prose without obvious AI tells. The Week 6 caveats apply: AI suggestions homogenise writing toward Western styles (Agarwal, Naaman &amp; Vashistha, CHI 2025); citation hallucination rates remain non-zero; the &ldquo;writing as thinking&rdquo; concern is more important now, not less.</p>
+    </div>
+
+    <div class="card">
+      <h3>Multimodal</h3>
+      <p>Pointer to Week 8. Frontier models in 2026 can describe scientific figures, transcribe audio (with hallucination caveats), parse complex documents, and process video. The capability is real; the verification overhead remains substantial.</p>
+    </div>
+
+  </div>
+
+  <!-- THE CAVEATS -->
+  <h2 class="section-title">&#9888;&#65039; Essential Caveats</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Read these. Without them, the cases above can be miscalibrated as &ldquo;AI now does mathematics and physics autonomously&rdquo;. That is not the claim being made.</p>
+
+  <div class="warning-box">
+    <h4>1. Selection Bias</h4>
+    <p>Every case above is one where AI worked. The ratio of attempts-to-successes is unknown. For every Erd&#337;s problem solved, dozens may have been attempted with no result. For every gluon-amplitude formula correctly conjectured, an unknown number of incorrect ones were rejected. The Gowers post itself is honest about this: ChatGPT&#39;s initial outputs were &ldquo;rambling&rdquo; and required multiple iterations.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>2. Human Collaboration Was Essential in Every Single Case</h4>
+    <p>The gluon-amplitude paper required Strominger and colleagues to feed GPT-5.2 specific human-computed cases as a starting point. The Erd&#337;s solutions required follow-up work to formalise and extend. The IMO gold required problem-statements to be presented in their canonical form. The Gowers experiment required Gowers&#39; expertise to evaluate what the model had produced. These are all <em>collaborations</em>, not autonomous discovery. Reading them as &ldquo;AI did mathematics&rdquo; misses the structure.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>3. Human Verification Was Always Required</h4>
+    <p>Even when the AI&#39;s contribution was substantial, the proof was checked by humans. The Lean formalisations of the Erd&#337;s solutions provided machine-checkable verification. The Berends&ndash;Giele recursion check on the gluon formula was done by hand. The cosmic-string-radiation result was tested numerically against existing partial solutions. <em>Hallucination remains a real risk in any AI mathematical or physical output.</em> The verification step is not optional.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>4. Several of These Are Preprints, Not Yet Peer-Reviewed</h4>
+    <p>The gluon and graviton papers are arXiv (and OpenAI-hosted) preprints. Several of the Erd&#337;s solutions are documented in forum posts and follow-up arXiv papers but have not all completed formal peer review. Some may not survive review unchanged. The status as of May 2026 is provisional, not consensus.</p>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="highlight-box">
+    <h3>What this sub-lesson asks of you</h3>
+    <p>Update your calibration. If your prior on &ldquo;AI in mathematics&rdquo; was based on Frieder et al. (2023), look at Gowers (2026), Erd&#337;s #1196, and the IMO 2025 gold. If your prior on &ldquo;AI in theoretical physics&rdquo; was &ldquo;not really&rdquo;, look at the gluon paper.</p>
+    <p>And: hold the calibration loosely. The structural failures from 9.2 are still operative in every case above. The ceiling has moved; the floor of verification has not.</p>
+    <p>In your own field: test current frontier models on tasks you assumed they couldn&#39;t do. The activities in 9.6 ask you to do exactly this.</p>
+  </div>
+
+  <div class="intro-text" style="margin-top: 50px;">
+    <h2>&#128073; What Comes Next</h2>
+    <p><strong>Sub-Lesson 9.4 &mdash; Illusions of Understanding.</strong> Having now seen both what AI fails at (9.2) and what it&#39;s now genuinely good at (9.3), we turn to a deeper question: when AI is right, do <em>you</em> understand the result? The Messeri &amp; Crockett (2024, <em>Nature</em>) framework is the centrepiece.</p>
+  </div>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>

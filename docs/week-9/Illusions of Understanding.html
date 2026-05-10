@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9.4 - Illusions of Understanding</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.intro-text p:last-child { margin-bottom: 0; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.highlight-box p:last-child { margin-bottom: 0; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.info-box p:last-child { margin-bottom: 0; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.case-study p { color: #444; line-height: 1.75; margin-bottom: 12px; }
+.case-study p:last-child { margin-bottom: 0; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; font-size: 0.95em; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; font-size: 0.95em; line-height: 1.5; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.resource-placeholder p:last-child { margin-bottom: 0; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 9 &bull; Sub-Lesson 4</div>
+  <h1>&#128302; <span style="color: #ffffff;">Illusions of Understanding</span></h1>
+  <p>Messeri &amp; Crockett&#39;s four illusions: durable epistemic concerns that get worse, not better, as AI gets more capable</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>Versions of AI come and go. The capabilities listed in 9.1 will date within months. The patched failures in 9.2(a) will be replaced by new patched failures. The strong cases in 9.3 will be joined by new strong cases.</p>
+    <p>What does <em>not</em> date as fast is the deeper question of what happens to <em>your own understanding</em> when AI is doing more of the cognitive work in your research. That question is the subject of this sub-lesson, and its centrepiece is Messeri &amp; Crockett&#39;s 2024 <em>Nature</em> paper, which lays out four distinct illusions of understanding that AI use can produce.</p>
+    <p>The argument is durable because it is about epistemics, not about specific model behaviour. A frontier 2030 model that&#39;s right 99% of the time will produce these illusions <em>more</em> easily, not less.</p>
+  </div>
+
+  <!-- THE PAPER -->
+  <h2 class="section-title">&#128218; Messeri &amp; Crockett: The Four Illusions</h2>
+
+  <div class="resource-placeholder">
+    <h4>&#128214; Required Reading (Centrepiece)</h4>
+    <p><strong><a href="https://www.nature.com/articles/s41586-024-07146-0" target="_blank" rel="noopener">Messeri, L. &amp; Crockett, M. J. (2024). <em>Artificial intelligence and illusions of understanding in scientific research.</em> Nature 627, 49&ndash;58.</a></strong> DOI:10.1038/s41586-024-07146-0.</p>
+    <p>A 10-page <em>Nature</em> Perspective. Read in full before working through the sub-lesson; the four illusions below summarise but do not replace the original argument.</p>
+  </div>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Messeri (Yale, anthropology) and Crockett (Princeton, neuroscience) argue that AI use in research generates four specific illusions of understanding. Each looks like progress; each can mask a real loss of epistemic ground.</p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>1. Illusion of Explanatory Breadth</h3>
+      <p>Researchers using AI to summarise a literature feel they&#39;ve covered the field comprehensively. They haven&#39;t. The AI summary reflects which sources are well-represented in training data, which papers attracted attention, which arguments propagate easily. Marginal voices, dissenting views, and recent work all systematically under-appear. The feeling of breadth is real; the breadth is not.</p>
+    </div>
+
+    <div class="card">
+      <h3>2. Illusion of Exploratory Objectivity</h3>
+      <p>AI outputs feel neutral &mdash; they don&#39;t come with a visible agenda. But they inherit the biases of training data, the values encoded by RLHF, the framings the model finds most natural. The neutrality is performative, not actual. A researcher using AI to generate hypotheses thinks they are exploring without prejudice; they are exploring the priors of the model.</p>
+    </div>
+
+    <div class="card">
+      <h3>3. Monocultures of Knowing</h3>
+      <p>If everyone in a field uses the same frontier models, ideas and framings homogenise. Different researchers asking similar questions of the same model get convergent answers. The field becomes <em>narrower</em> in its diversity of approaches, even as it produces more output. Connect to the &ldquo;scientific monoculture&rdquo; finding in Week 6 (Traberg, Roozenbeek &amp; van der Linden, <em>Communications Psychology</em>, 2026): AI use by researchers is measurably narrowing the diversity of ideas in circulation.</p>
+    </div>
+
+    <div class="card">
+      <h3>4. Doing More But Understanding Less</h3>
+      <p>AI accelerates output. More papers can be written, more analyses run, more literature reviewed. But the cognitive work that produces deep understanding &mdash; the slow grappling with a problem, the dead-ends that turn out to matter, the synthesis that emerges from struggle &mdash; can be skipped. Output rises; depth falls. Connect to Week 6&#39;s &ldquo;writing as thinking&rdquo; argument and Kosmyna et al. (2025)&#39;s MIT Media Lab study showing reduced neural engagement in AI-assisted essay writing.</p>
+    </div>
+
+  </div>
+
+  <!-- WHY THIS MATTERS NOW -->
+  <h2 class="section-title">&#128302; Why This Argument is More Important in 2026, Not Less</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A natural response to the 2024 paper is: well, that was when AI was unreliable. Now that frontier models are good at maths and physics (9.3), surely the illusions are less of a problem &mdash; the AI is more often right.</p>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The argument is precisely backwards. The illusions are <em>more</em> dangerous when the AI is more often right, because the surface fluency of AI outputs masks the remaining gaps more effectively. A model that&#39;s right 60% of the time is obviously to-be-checked. A model that&#39;s right 95% of the time looks trustworthy &mdash; and the 5% wrong is harder to spot because it doesn&#39;t come surrounded by other obvious errors.</p>
+
+  <div class="info-box">
+    <h4>&#9889; The Calibration Trap</h4>
+    <p>If your overall experience with a model is that it&#39;s usually right, you start trusting it more. Trust calibrated to overall accuracy is then mis-calibrated for the specific cases where the model fails &mdash; which by structural argument (9.2c) cluster in the long tail, exactly where novel research happens.</p>
+    <p>This is the AI version of the Dunning&ndash;Kruger trap: the less you know about a topic, the harder it is to spot the AI&#39;s errors in that topic, but the more useful the AI feels precisely <em>because</em> you couldn&#39;t do the work yourself. Both cuts of the knife point the same way.</p>
+  </div>
+
+  <!-- CONNECTING WEEKS -->
+  <h2 class="section-title">&#128279; How This Connects to Earlier Weeks</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Several earlier weeks have touched on pieces of the illusions argument. The Messeri &amp; Crockett framework gives you a way of seeing them together.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Earlier week</th>
+          <th>Concrete instance of an illusion</th>
+          <th>Which Messeri &amp; Crockett illusion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Week 5 (Literature reviews)</td>
+          <td>AI literature summaries miss niche work; over-represent canonical papers</td>
+          <td>Explanatory breadth</td>
+        </tr>
+        <tr>
+          <td>Week 6 (Writing &amp; ideation)</td>
+          <td>Si et al. (2024): LLM-generated research ideas more novel-seeming but less diverse than human-generated</td>
+          <td>Monoculture; exploratory objectivity</td>
+        </tr>
+        <tr>
+          <td>Week 6 (Writing as thinking)</td>
+          <td>Kosmyna et al. (2025): EEG study showing reduced neural engagement during AI-assisted writing</td>
+          <td>Doing more but understanding less</td>
+        </tr>
+        <tr>
+          <td>Week 6 (Homogenisation)</td>
+          <td>Agarwal, Naaman &amp; Vashistha (CHI 2025): AI writing tools homogenise text toward Western norms</td>
+          <td>Monoculture</td>
+        </tr>
+        <tr>
+          <td>Week 6 (Scientific monoculture)</td>
+          <td>Traberg, Roozenbeek &amp; van der Linden (<em>Comms Psych</em>, 2026): heavy AI use narrows scientific diversity</td>
+          <td>Monoculture</td>
+        </tr>
+        <tr>
+          <td>Week 7 (Silent errors)</td>
+          <td>AI-generated code that runs but produces wrong results &mdash; researcher feels they&#39;ve done analysis but hasn&#39;t verified meaning</td>
+          <td>Doing more but understanding less</td>
+        </tr>
+        <tr>
+          <td>Week 8 (Multimodal)</td>
+          <td>Jin et al. (2024): GPT-4V medical image accuracy 81.6% but 35.5% of correct answers via flawed reasoning</td>
+          <td>Exploratory objectivity (apparent precision masking flawed process)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="color: #555; font-size: 1.05em; margin-top: 20px; line-height: 1.8;">Each week of this course has been giving you fragments. Messeri &amp; Crockett is the unifying frame &mdash; and the reason the previous fragments matter even as the specific models change.</p>
+
+  <!-- WHAT TO DO -->
+  <h2 class="section-title">&#129534; What to Do About It</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The Messeri &amp; Crockett argument is not a counsel of despair. They explicitly argue that AI can be a useful tool in research <em>provided</em> researchers maintain practices that resist the four illusions. Their suggested practices, paraphrased and operationalised:</p>
+
+  <ul class="styled-list">
+    <li><strong>For explanatory breadth:</strong> deliberately seek out sources that AI summaries miss. Use AI for first-pass familiarisation; then read primary sources, dissenting views, recent work that may post-date training cutoffs.</li>
+    <li><strong>For exploratory objectivity:</strong> ask the same question of multiple models with different training. When they agree, ask: is this a property of the world or a property of overlapping training data? When they disagree, that disagreement is evidence.</li>
+    <li><strong>For monoculture:</strong> consciously vary your prompts and your problem framings. Talk to colleagues who don&#39;t use the same tools. Read literature outside your immediate field. Treat AI ideas as one input among several, not the privileged starting point.</li>
+    <li><strong>For doing-more-but-understanding-less:</strong> impose deliberate slowness on parts of the work. Read papers manually before asking AI to summarise them. Write paragraphs without AI before refining with it. Run analyses by hand on small datasets to check intuitions before scaling.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <h3>The argument that doesn&#39;t go stale</h3>
+    <p>Note what the Messeri &amp; Crockett argument is <em>not</em>. It is not &ldquo;current AI is unreliable, so don&#39;t use it.&rdquo; It is not &ldquo;AI is overhyped.&rdquo; It is not anti-AI. The argument is strictly about <em>what happens to human understanding when AI does more of the cognitive work</em>, regardless of how good the AI is.</p>
+    <p>That is why the argument doesn&#39;t go stale when the next model releases. A better model produces more output; the question of whether the researcher understands that output more or less than they would have without AI assistance is unchanged.</p>
+    <p>This is the durable epistemic concern. Sub-Lesson 9.5 takes it into practical verification protocols.</p>
+  </div>
+
+  <div class="intro-text" style="margin-top: 50px;">
+    <h2>&#128073; What Comes Next</h2>
+    <p><strong>Sub-Lesson 9.5 &mdash; Verification Protocols for a Moving Target.</strong> Practical techniques for verifying AI output in your own research, including the meta-skill of how to read AI capability claims critically when the artefact under study changes every six months.</p>
+  </div>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>
