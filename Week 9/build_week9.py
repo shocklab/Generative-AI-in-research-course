@@ -10,10 +10,32 @@ Re-run after any content change.
 """
 
 import os
+import re
 
 ROOT = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 SRC_DIR = os.path.join(ROOT, "Week 9")
 DOCS_DIR = os.path.join(ROOT, "docs", "week-9")
+
+
+def pretty_print_css(css: str) -> str:
+    """Convert single-line CSS rules to multi-line format (each property on its own line).
+    Brightspace's TinyMCE strips compact <style> blocks but preserves pretty-printed ones
+    that match the format of Weeks 1-8."""
+    out_lines = []
+    for line in css.splitlines():
+        # Match a CSS rule like `selector { prop: val; prop: val; }` on a single line.
+        m = re.match(r"^(\s*)(.+?)\s*\{\s*(.+?)\s*\}\s*$", line)
+        if m and ";" in m.group(3):
+            indent, selector, props = m.group(1), m.group(2), m.group(3)
+            # Split by `;` but keep declarations intact
+            decls = [d.strip() for d in props.split(";") if d.strip()]
+            out_lines.append(f"{indent}{selector} {{")
+            for d in decls:
+                out_lines.append(f"{indent}    {d};")
+            out_lines.append(f"{indent}}}")
+        else:
+            out_lines.append(line)
+    return "\n".join(out_lines)
 
 CSS = """* { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
@@ -1306,7 +1328,7 @@ SUBLESSONS = [
 def render_sublesson(sl):
     return PAGE_SHELL.format(
         title=sl["title"],
-        css=CSS,
+        css=pretty_print_css(CSS),
         badge=sl["badge"],
         header_emoji=sl["header_emoji"],
         header_title=sl["header_title"],
