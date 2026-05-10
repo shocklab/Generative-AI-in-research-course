@@ -235,13 +235,23 @@ SL1_BODY = """
     </div>
 
     <div class="card">
+      <h3>Kimi K2.6 (Moonshot AI)</h3>
+      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 85.4 %</strong> &mdash; effectively ties GPT-5.5 (85.1%) at roughly 80% lower cost per token. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue). A second open-weights model now matching closed-frontier coding capability is a notable trajectory data point.</p>
+    </div>
+
+    <div class="card">
       <h3>DeepSeek V4 Flash</h3>
       <p>The efficiency variant: 284B total parameters, 13B active. Designed for high-throughput deployment where Pro&#39;s scale is unnecessary.</p>
     </div>
 
     <div class="card">
+      <h3>Qwen 3.6 (Alibaba) &amp; Gemma 4 (Google DeepMind)</h3>
+      <p>Both released in 2026 and both implement <strong>Multi-Token Prediction (MTP)</strong> &mdash; predicting several future tokens per forward pass for substantial inference speed-ups. MTP is emerging as a cross-model technique. Qwen 3.6 is a hybrid thinking model that can toggle chain-of-thought on or off; reaches frontier on AIME 2026 (~91%). Gemma 4 (open-weights from DeepMind) pairs with their broader push on agentic reasoning systems (see 9.3).</p>
+    </div>
+
+    <div class="card">
       <h3>Other open-weights players</h3>
-      <p>The Qwen series (Alibaba) reaches frontier on AIME 2026 (Qwen3.5-plus at 91.3%). The Mistral and Falcon families remain strong on European-deployment grounds. Llama 4 (Meta&#39;s last open-weights model) still in wide use though no longer frontier.</p>
+      <p>The Mistral and Falcon families remain strong on European-deployment grounds. Llama 4 (Meta&#39;s last open-weights model before Muse Spark) is still in wide use though no longer frontier. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is notable as a non-standard transformer architecture with hybrid attention &mdash; a data point that architectural innovation hasn&#39;t stopped.</p>
     </div>
 
   </div>
@@ -339,7 +349,16 @@ SL1_BODY = """
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A concrete consequence: a model that scores 87.6% on SWE-bench Verified is genuinely good at GitHub-issue-style coding tasks. It may or may not be good at the coding work <em>you</em> need to do. A model that scores 52.4% on FrontierMath is genuinely capable on Fields-medal-curated mathematics problems. It may or may not be useful for the specific mathematical questions in <em>your</em> field. The benchmark measures performance on the benchmark; that&#39;s all it can measure.</p>
 
-  <p style="color: #555; line-height: 1.75;">This is why Sub-Lesson 9.6 asks you to test current frontier models on tasks from your own field, rather than rely on published benchmark scores. The benchmarks tell you what the labs have optimised for. They tell you very little about whether the model will work for what <em>you</em> need.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This is why Sub-Lesson 9.6 asks you to test current frontier models on tasks from your own field, rather than rely on published benchmark scores. The benchmarks tell you what the labs have optimised for. They tell you very little about whether the model will work for what <em>you</em> need.</p>
+
+  <div class="case-study">
+    <h4>&#128221; A Concrete Goodhart Illustration: SWE-Bench &rarr; ProgramBench</h4>
+    <p>Frontier models score above 87% on SWE-bench Verified (Opus 4.7) and 85% on it (Kimi K2.6, GPT-5.5). The benchmark is approaching saturation. If you read those scores as a measure of &ldquo;the model is now good at software engineering,&rdquo; you would be making the Goodhart error.</p>
+    <p>ProgramBench (May 2026) tests something different: given <em>only</em> a program and its documentation, can the model architect and implement a codebase from scratch that matches the reference behaviour? No method signatures to fill in, no class skeletons, no natural-language descriptions of file layout. 200 tasks sourced from real-world open-source GitHub repositories, with more than 248,000 behavioural tests.</p>
+    <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested &mdash; including Opus 4.7, GPT-5.4, Gemini 3.1 Pro &mdash; not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
+    <p>The same models, the same general task family (software engineering), wildly different scores. SWE-bench measures &ldquo;can the model solve well-scoped patches to existing code given the issue description.&rdquo; It does not measure &ldquo;can the model architect and build a real piece of software.&rdquo; The benchmark you cite determines the capability claim you can make.</p>
+    <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.03546" target="_blank" rel="noopener">ProgramBench: Can Language Models Rebuild Programs From Scratch? (arXiv:2605.03546, May 2026)</a></p>
+  </div>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">2. Benchmark Contamination &mdash; Training-Data Leakage</h3>
 
@@ -539,6 +558,7 @@ SL2_BODY = """
     <div class="card">
       <h3>Compositional Brittleness</h3>
       <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. This is not solved by making each step more accurate, because compositional errors compound multiplicatively. Long agentic chains amplify the problem.</p>
+      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro &mdash; competitive with the closed frontier on most single-step benchmarks &mdash; struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This is the failure mode that scales worst as agentic systems get longer.</p>
     </div>
 
     <div class="card">
@@ -649,6 +669,14 @@ SL3_BODY = """
     <h4>&#128221; Mathematical Exploration at Scale</h4>
     <p><strong><a href="https://arxiv.org/abs/2511.02864" target="_blank" rel="noopener">Georgiev, B., G&oacute;mez-Serrano, J., Tao, T., &amp; Wagner, A. Z. (3 November 2025). <em>Mathematical exploration and discovery at scale.</em> arXiv:2511.02864</a></strong></p>
     <p>Tao and collaborators tested Google&#39;s AlphaEvolve &mdash; an evolutionary coding agent that combines an LLM with automated evaluation &mdash; on 67 mathematical problems across analysis, combinatorics, geometry, and number theory. The system rediscovered established solutions in most cases and identified <strong>improved solutions on several</strong>. The authors integrated AlphaEvolve with Deep Think and AlphaProof for proof generation. Tao&#39;s blog post on the paper at <a href="https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/" target="_blank" rel="noopener">terrytao.wordpress.com</a> is a useful accessible summary.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; DeepMind&#39;s AI Co-Mathematician (May 2026)</h4>
+    <p>Announced on 8 May 2026 by Pushmeet Kohli&#39;s team at Google DeepMind, the AI Co-Mathematician is a multi-agent system built on Gemini 3.1 Pro that actively collaborates with human mathematicians on open research problems.</p>
+    <p>On <strong>FrontierMath Tier 4</strong> &mdash; the hardest 50 problems in the benchmark, designed to take expert mathematicians hours or days &mdash; the system <strong>solved 23 of 48 non-public problems, a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark; the entire jump came from agentic scaffolding with parallel agents reviewing each other&#39;s work.</p>
+    <p>And it has already been used to close a real open problem: topologist Marc Lackenby used the system to close <strong>problem 21.10 from the Kourovka Notebook</strong>, an open compendium of group theory problems maintained continuously since 1965 in Novosibirsk.</p>
+    <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.06651" target="_blank" rel="noopener">AI Co-Mathematician: Accelerating Mathematicians with Agentic AI (arXiv:2605.06651, 7 May 2026)</a></p>
   </div>
 
   <div class="case-study">
@@ -825,6 +853,14 @@ SL4_BODY = """
       <p>AI accelerates output. More papers can be written, more analyses run, more literature reviewed. But the cognitive work that produces deep understanding &mdash; the slow grappling with a problem, the dead-ends that turn out to matter, the synthesis that emerges from struggle &mdash; can be skipped. Output rises; depth falls. Connect to Week 6&#39;s &ldquo;writing as thinking&rdquo; argument and Kosmyna et al. (2025)&#39;s MIT Media Lab study showing reduced neural engagement in AI-assisted essay writing.</p>
     </div>
 
+  </div>
+
+  <div class="case-study">
+    <h4>&#128221; A 2026 Concrete Example: &ldquo;Vibe Coding&rdquo;</h4>
+    <p>The term &ldquo;vibe coding&rdquo; has emerged in 2025&ndash;26 to describe a development style in which programmers describe what they want to an AI assistant in plain English and accept the output without deeply reading the resulting code. The AI handles the syntax; the human handles the intent.</p>
+    <p>For straightforward tasks &mdash; quick scripts, well-trodden patterns &mdash; this is genuinely productive. For research code, it produces exactly the illusion Messeri &amp; Crockett describe: <em>output rises (more analyses run, more pipelines built), depth falls (the developer&#39;s actual understanding of what the code is doing in detail is shallower than it would have been if they had written it themselves)</em>.</p>
+    <p>This connects directly to the &ldquo;silent error&rdquo; problem from Week 7: code that runs without errors but produces wrong results is precisely the failure mode that vibe coding amplifies. If you don&#39;t read the code closely, you don&#39;t catch the silent errors. The illusion of doing analysis is real; the analysis itself may not be.</p>
+    <p>The pedagogical point: vibe coding is not <em>wrong</em>. It is a real productivity gain for many tasks. But applying it without verification (Sub-Lesson 9.5) to research-grade work is the contemporary face of doing-more-understanding-less.</p>
   </div>
 
   <!-- WHY THIS MATTERS NOW -->
@@ -1031,6 +1067,12 @@ SL5_BODY = """
   </ul>
 
   <p style="color: #555; font-size: 1.05em; margin-top: 20px; margin-bottom: 20px; line-height: 1.8;">All caught by the verification process. Some had been in place across multiple weeks. The lesson: even careful AI-assisted writing produces these errors at non-trivial rates. Verification catches them; without verification, they persist.</p>
+
+  <div class="info-box">
+    <h4>&#129504; A 2026 Open Question: &ldquo;Teaching Claude Why&rdquo;</h4>
+    <p>In May 2026 Anthropic published research on training models not just to follow safety rules but to understand the <em>reasons</em> behind those rules. The thinking: a model that understands why a rule exists can navigate novel situations the rule-makers didn&#39;t anticipate, and can articulate trade-offs when rules conflict.</p>
+    <p>This raises a verification question that doesn&#39;t have a settled answer yet. <strong>If a model is being trained to understand <em>why</em> it should behave certain ways, does that change how we verify its outputs?</strong> Does understanding motivation make verification easier (the model can explain its reasoning) or harder (the model can construct plausible justifications for almost anything)? It is too early to say definitively. Worth tracking as the research develops &mdash; and worth thinking about for your own discipline: when AI systems can articulate <em>why</em> they reached a conclusion, what new verification opportunities and pitfalls emerge?</p>
+  </div>
 
   <div class="highlight-box">
     <h3>The verification stance</h3>
