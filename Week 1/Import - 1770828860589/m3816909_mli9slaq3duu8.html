@@ -396,9 +396,9 @@
 <p><strong>1. Tokenization:</strong> Text is broken into small units called "tokens" (roughly words or word fragments). The sentence "The volcano erupted" might become tokens: ["The", "vol", "cano", "erupt", "ed"].</p>
 <p style="margin-top: 12px;"><strong>2. Embedding:</strong> Each token is converted into a high-dimensional vector—essentially a point in a space with hundreds or thousands of dimensions. Similar concepts end up close together in this space (e.g., "magma" and "lava" would be near each other).</p>
 <p style="margin-top: 12px;"><strong>3. Attention:</strong> The model calculates how much each token should "attend to" every other token. When processing "erupted," it pays strong attention to "volcano" but less to "The."</p>
-<p style="margin-top: 12px;"><strong>3. Attention again, and again:</strong> This process happens again and again, iteratively to create a much more abstract (rather than symbolically in words) idea of the content.&nbsp;</p>
-<p style="margin-top: 12px;"><strong>4. Prediction:</strong> Based on all these weighted relationships, the model predicts the most likely next token. It doesn't just memorize phrases—it understands patterns of how words relate.</p>
-<p style="margin-top: 12px;"><strong>5. Iteration:</strong> This happens recursively: predict one token, add it to the sequence, predict the next, and so on, until a complete response is generated.</p>
+<p style="margin-top: 12px;"><strong>4. Attention again, and again:</strong> The attention step happens iteratively across many layers, with each pass building a more abstract (rather than symbolically word-by-word) representation of the content.</p>
+<p style="margin-top: 12px;"><strong>5. Prediction:</strong> Based on all these weighted relationships, the model predicts the most likely next token. It doesn't just memorize phrases—it understands patterns of how words relate.</p>
+<p style="margin-top: 12px;"><strong>6. Iteration:</strong> This happens recursively: predict one token, add it to the sequence, predict the next, and so on, until a complete response is generated.</p>
 </div>
 <div class="key-concepts">
 <h4>Key Concepts</h4>
@@ -426,7 +426,7 @@
 <div class="analogy-box">
 <h4>Scientific Analogy</h4>
 <p>Think of crystallization from a supersaturated solution. Initially, you have a chaotic mix of dissolved particles with no structure—pure randomness. As crystallization proceeds, ordered patterns emerge: first rough shapes, then increasingly refined crystal structures with specific orientations and faces.</p>
-<p style="margin-top: 10px;">Diffusion models work similarly but in reverse. Training teaches them the "crystallization process" for images. When generating, they start with randomness (like dissolved particles) and progressively add structure, guided by learned patterns about what images look like and constrained by your text prompt.</p>
+<p style="margin-top: 10px;">Diffusion models work in exactly this way at generation time: they start with randomness (like dissolved particles) and progressively add structure, guided by learned patterns about what images look like and constrained by your text prompt. (The clever part is in training, which runs the opposite direction — taking a clean image and progressively adding noise until it is pure randomness, so the model can learn how to undo each noise step.)</p>
 </div>
 <div class="how-it-works">
 <h4>How It Works</h4>
