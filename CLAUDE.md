@@ -27,7 +27,7 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 | 7 | AI for Data, Code & Computation | Built |
 | 8 | Multimodal AI for Research | Built; uploaded to Amathuba; Assignment 4 live |
 | 9 | Critical Evaluation & Limitations of AI | Built |
-| 10 | Agentic AI, RAG & Advanced Research Tools | Not started |
+| 10 | Agentic AI, RAG & Advanced Research Tools | Built |
 | 11 | Future of AI in Research & Africa's Sovereign AI Capacity | Not started |
 | 12 | Integrative Workshop & Student Presentations | Not started |
 
@@ -107,6 +107,27 @@ Week 8/          (Multimodal AI for Research)
   Transcription and Audio Analysis.html
   Video and Multimodal Workflows.html
   Hands-On Activities and Assessment.html
+
+Week 9/          (Critical Evaluation & Limitations of AI)
+  Table of Contents.html
+  The Trajectory of LLM Capabilities.html
+  Three Categories of Failure.html
+  Where AI Is Now Genuinely Strong.html
+  Illusions of Understanding.html
+  Verification Protocols for a Moving Target.html
+  Hands-On Activities and Assessment.html
+  build_week9.py    (Python generator — style in <head>, pretty-printed CSS)
+
+Week 10/         (Agentic AI, RAG & Advanced Research Tools)
+  Table of Contents.html
+  What Agents Are and Whats New in 2026.html
+  Failure Modes for Long-Horizon Tasks.html
+  The Current Tool Landscape and MCP.html
+  RAG in 2026.html
+  Advanced Research Tools - A Curated Tour.html
+  Hands-On Activities and Assessment.html
+  build_week10.py    (Python generator, mirrors build_week9.py)
+  OUTLINE.md         (research/discovery outline used to draft the week)
 
 From Amathuba/           (Amathuba/Brightspace export — the live/edited versions of all lessons)
 
