@@ -391,6 +391,156 @@
 <p style="margin-top: 8px;">For context: 944 Wh is roughly what an average South African household uses in an entire day of electricity consumption.</p>
 </div>
 
+<!-- SECTION 2b: THE AGENTIC MULTIPLIER -->
+<h2 class="section-title">🤖 The Agentic Multiplier: Tools Like Claude Code</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The figures above describe a single prompt: you ask, the model answers once. But the way many researchers now use AI is very different. Agentic tools — Claude Code, Codex, Cursor's agent mode, Gemini CLI — do not answer once. They run a <em>loop</em>: read files, call tools, run code, read the output, reason about it, and call the model again, often dozens of times to complete one task. Energy use scales roughly with the total number of tokens the model processes, so an agentic task can cost many times more than a single chat prompt. This section tries to put bounds on "how much more" — and, as with everything in this lesson, the honest answer is a wide range.</p>
+<div class="warning-box">
+<h4>⚠️ This is an estimate built on other estimates</h4>
+<p>Every figure in this section is derived by chaining together numbers from earlier in the lesson with practitioner reports and vendor documentation. None of it is a direct measurement of a research workflow. We present each input with its source and give a <strong>central estimate with lower and upper bounds</strong> so you can see exactly where the uncertainty enters. Treat the final numbers as order-of-magnitude guides, not precise figures.</p>
+</div>
+<div class="technical-detail">
+<h4>🎚️ What "effort" Means in Claude Code</h4>
+<p style="margin-bottom: 15px;">Claude's API exposes an <strong>effort</strong> setting that controls how many tokens the model is willing to spend on a task. Anthropic's documentation describes it as <em>"a behavioral signal, not a strict token budget"</em> — so it does not map onto a fixed energy figure, but it does directly change token use, and therefore energy. Crucially, effort affects <strong>all tokens</strong> in a response, including tool calls: lower effort means the model makes fewer tool calls and writes less; higher effort means more exploration, more tool calls, and deeper reasoning.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Effort level</th>
+<th>What Anthropic's docs say it is for</th>
+<th>Illustrative energy multiplier<br><small>(relative to <code>high</code> = 1×)</small></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>low</strong></td>
+<td>Simplest tasks, fastest, lowest cost; "scopes its work to what was asked"</td>
+<td>~0.3–0.5×</td>
+</tr>
+<tr>
+<td><strong>medium</strong></td>
+<td>Balanced; the "drop-in for the average workflow" where you want to reduce cost</td>
+<td>~0.6–0.8×</td>
+</tr>
+<tr>
+<td><strong>high</strong> (API default)</td>
+<td>Complex reasoning and agentic tasks; the "sweet spot" balancing quality and tokens</td>
+<td>1× (reference)</td>
+</tr>
+<tr>
+<td><strong>xhigh</strong> (Opus 4.7)</td>
+<td>Long-running agentic/coding tasks over 30 minutes; "token budgets in the millions"; "meaningfully higher token usage than high"</td>
+<td>~2–5×</td>
+</tr>
+<tr>
+<td><strong>max</strong></td>
+<td>"No constraints on token spending"; reserve for frontier problems — "significant cost for relatively small quality gains" and can "overthink"</td>
+<td>~3–10×</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 12px; color: #666;"><strong>Important:</strong> The "multiplier" column is <strong>our own illustrative estimate</strong>, inferred from the qualitative descriptions in Anthropic's documentation. Anthropic does <em>not</em> publish numeric energy or token multipliers for the effort levels. The short quoted phrases describing each level come directly from <a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener">Anthropic's Effort documentation</a>; the numbers attached to them do not. We include the multipliers only to make the rest of the calculation concrete — they could easily be off by a factor of two.</p>
+</div>
+<div class="technical-detail">
+<h4>🔢 The Calculation Ledger: Every Input and Its Source</h4>
+<p style="margin-bottom: 15px;">To estimate the footprint of a working day with an agentic tool, we chain four quantities together. Here is each one, with a central value and a range, and where it comes from.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Input</th>
+<th>Lower</th>
+<th>Central</th>
+<th>Upper</th>
+<th>Source &amp; reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Energy per model call</strong></td>
+<td>~1 Wh</td>
+<td>~3 Wh</td>
+<td>~8 Wh</td>
+<td>This lesson's table: 0.34 Wh (OpenAI, reported best-case) up to 8 Wh (MIT Tech Review 2025, large open-weight model). Agentic calls carry long contexts (file contents, tool outputs, accumulated reasoning), so they sit toward the upper end — we centre on ~3 Wh.</td>
+</tr>
+<tr>
+<td><strong>B. Compute per task</strong><br><small>(simple-prompt-equivalents)</small></td>
+<td>~10×</td>
+<td>~30×</td>
+<td>~100×</td>
+<td>An agentic task is many model calls on large contexts. Analyses converge on roughly 5–30× the tokens of a single chat interaction for typical agents, rising to 100× or more for complex coding workflows (the <a href="https://digitaleconomy.stanford.edu/news/how-are-ai-agents-spending-your-tokens/" target="_blank" rel="noopener">Stanford Digital Economy Lab</a>; SWE-bench-style coding tasks average 1–3.5M tokens/task). We take 10–100× as a central band — possibly conservative at the top. Anthropic's docs confirm the direction ("token budgets in the millions" at xhigh) but give no number.</td>
+</tr>
+<tr>
+<td><strong>C. Tasks per 8-hour day</strong></td>
+<td>50</td>
+<td>50</td>
+<td>50</td>
+<td>The scenario we were asked to model: a researcher running ~50 agentic tasks across a working day on <code>high</code> effort. Held fixed so the uncertainty lives in A and B.</td>
+</tr>
+<tr>
+<td><strong>D. Grid carbon intensity</strong></td>
+<td colspan="3">0.386 kg CO₂/kWh (US grid average) &nbsp;|&nbsp; ~0.9 kg CO₂/kWh (South Africa)</td>
+<td>US figure as used elsewhere in this lesson; SA figure from the <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">2022 Grid Emission Factors Report</a> (~0.87–1.01 kg/kWh depending on methodology — SA's grid is ~80% coal).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="technical-detail">
+<h4>📊 Putting the Inputs Together: A Day on <code>high</code> Effort</h4>
+<p style="margin-bottom: 15px;">Multiplying A × B gives the energy of one task; multiplying by C gives the day. We hold the per-call energy near its ~3 Wh midpoint and let the multiplier (B) drive the range. (Letting A vary across its full 1–8 Wh band as well would widen these numbers further in both directions.)</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Lower</th>
+<th>Central estimate</th>
+<th>Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Energy per agentic task</strong> (A × B)</td>
+<td>~30 Wh</td>
+<td><strong>~100 Wh</strong></td>
+<td>~300 Wh</td>
+</tr>
+<tr>
+<td><strong>Energy for a 50-task day</strong> (× C)</td>
+<td>~1.5 kWh</td>
+<td><strong>~5 kWh</strong></td>
+<td>~15 kWh</td>
+</tr>
+<tr>
+<td><strong>CO₂ — US grid</strong> (× 0.386)</td>
+<td>~0.6 kg</td>
+<td><strong>~1.9 kg</strong></td>
+<td>~5.8 kg</td>
+</tr>
+<tr>
+<td><strong>CO₂ — South African grid</strong> (× 0.9)</td>
+<td>~1.4 kg</td>
+<td><strong>~4.5 kg</strong></td>
+<td>~13.5 kg</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 12px; color: #666;">For perspective, the central ~5 kWh for a full day of agentic coding is roughly five times the 944 Wh of a single 5-second AI video, and more than ten thousand times a single reported text prompt — but it is still a modest fraction of a household's daily electricity use. The footprint of <em>this kind</em> of AI use comes from the <strong>loop</strong>, not from any one prompt.</p>
+</div>
+<div class="info-box">
+<h4>🚗 How Does This Compare to Driving a Car?</h4>
+<p>A "typical passenger vehicle" emits about <strong>400 g CO₂ per mile ≈ 0.25 kg CO₂ per km</strong> (<a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle" target="_blank" rel="noopener">US EPA</a>). Dividing the day's emissions by that figure gives an equivalent driving distance:</p>
+<ul class="styled-list" style="margin-top: 12px;">
+<li><strong>On the US grid:</strong> a full day ≈ <strong>~8 km</strong> of driving (range ~2–23 km)</li>
+<li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~18 km</strong> of driving (range ~5–54 km)</li>
+</ul>
+<p style="margin-top: 12px;">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a short commute. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances — the car comparison is itself a range.)</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h4>
+<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> — which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains" — could multiply token use a further ~3–10× (our illustrative figure). That would put a heavy day in the region of <strong>15–50 kWh</strong>, or roughly <strong>tens to over 150 km</strong> of equivalent driving on the SA grid. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">What This Means for You as a Researcher</span></h3>
+<p>The per-prompt footprint of AI is genuinely small. The footprint of <em>agentic</em> AI is larger — not because any single step is expensive, but because there are so many steps. The same property that makes these tools powerful for research (they keep working autonomously) is what drives their energy use.</p>
+<p style="margin-top: 15px;">This connects directly to the rebound problem we examine in the next session: as agentic tools make each task cheaper and easier, we tend to run far more of them. The individual cost falls; the total can still rise. The responsible move is not to avoid these tools, but to use the right effort level for the job, and to be honest — as we have tried to be here — about how uncertain the numbers really are.</p>
+</div>
 <!-- SECTION 3: THE FLIGHT COMPARISON -->
 <h2 class="section-title">✈️ A Worked Example: The Flight Comparison</h2>
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A common comparison in media coverage: how does using AI compare to taking a transatlantic flight? Let's work through this carefully — because how you do the calculation matters enormously.</p>
@@ -549,6 +699,7 @@
 <li><strong>Water is underreported:</strong> Both direct cooling and indirect electricity generation consume significant water, with geographic implications</li>
 <li><strong>Scale is what matters:</strong> Individual query costs are small; billions of queries per day is not</li>
 <li><strong>Inference, not just training:</strong> The ongoing cost of running models at scale quickly exceeds one-time training costs</li>
+<li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~5 kWh — central estimate ~1.9 kg CO₂ (US grid) / ~4.5 kg (SA grid), comparable to driving ~8–18 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
 </ul>
 <p style="margin-top: 20px;"><strong>Next session (Week 3.2):</strong> We zoom out from individual queries to the infrastructure level — where does the electricity come from, how does manufacturing hardware fit in, and why do efficiency gains so often fail to reduce total energy use?</p>
 </div>
