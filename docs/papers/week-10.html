@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10 Papers &mdash; Agentic AI, RAG & Advanced Research Tools</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    .back-bar {
+        background: #f0f4f8;
+        padding: 12px 30px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .back-bar a {
+        color: #003A70;
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+    .back-bar a:hover { text-decoration: underline; }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 10px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 10px auto 0;
+    }
+    .week-pill {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+    .content { padding: 50px 40px; }
+    .intro-text {
+        background: #f9f9f9;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+    .intro-text p { color: #444; line-height: 1.8; margin-bottom: 10px; }
+    .intro-text p:last-child { margin-bottom: 0; }
+    .section { margin-bottom: 45px; }
+    .section-title {
+        color: #2a5298;
+        font-size: 1.4em;
+        font-weight: 600;
+        margin-bottom: 6px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #003A70;
+    }
+    .section-subtitle { color: #888; font-size: 0.9em; margin-bottom: 18px; font-style: italic; }
+    .section p { color: #444; line-height: 1.8; margin-bottom: 14px; }
+    .section a { color: #003A70; font-weight: 600; }
+    .paper-card {
+        background: white;
+        border: 1px solid #e0e6ed;
+        border-left: 5px solid #003A70;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-bottom: 16px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .paper-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 58, 112, 0.08);
+    }
+    .paper-title { color: #2a5298; font-weight: 600; font-size: 1.05em; margin-bottom: 4px; line-height: 1.4; }
+    .paper-meta { color: #666; font-size: 0.9em; margin-bottom: 10px; }
+    .paper-meta em { color: #555; }
+    .paper-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+    .download-btn {
+        display: inline-block;
+        background: #003A70;
+        color: white !important;
+        padding: 7px 16px;
+        border-radius: 6px;
+        text-decoration: none !important;
+        font-size: 0.88em;
+        font-weight: 600;
+        transition: background 0.15s ease;
+    }
+    .download-btn:hover { background: #002550; }
+    .source-link {
+        color: #003A70 !important;
+        font-size: 0.88em;
+        text-decoration: none !important;
+        font-weight: 600;
+        padding: 7px 14px;
+        border: 1px solid #003A70;
+        border-radius: 6px;
+    }
+    .source-link:hover { background: #f0f4f8; }
+    .empty-note {
+        color: #888;
+        font-style: italic;
+        margin: 8px 0 4px;
+    }
+    .styled-list { list-style: none; padding-left: 0; margin: 12px 0 14px; }
+    .styled-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 8px;
+        color: #444;
+        line-height: 1.7;
+    }
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: 700;
+    }
+    .paywalled-section {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+    .paywalled-section h3 {
+        color: #b86400;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+    .paywalled-item {
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #f0e0b0;
+    }
+    .paywalled-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .paywalled-item .citation { color: #444; font-size: 0.95em; line-height: 1.6; }
+    .paywalled-item .access { color: #777; font-size: 0.85em; line-height: 1.6; margin-top: 6px; }
+    .paywalled-item .access a { color: #003A70; }
+    .paywalled-item .sublesson-tag {
+        display: inline-block;
+        background: rgba(0, 58, 112, 0.08);
+        color: #003A70;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.78em;
+        margin-left: 6px;
+        font-weight: 600;
+    }
+    /* Index page */
+    .week-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+    }
+    .week-card {
+        background: white;
+        border: 1px solid #e0e6ed;
+        border-radius: 12px;
+        padding: 22px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        display: block;
+    }
+    .week-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(0, 58, 112, 0.12);
+        border-color: #003A70;
+    }
+    .week-card.empty { opacity: 0.7; }
+    .week-card .num {
+        display: inline-block;
+        background: #003A70;
+        color: white;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: 700;
+        margin-right: 12px;
+    }
+    .week-card .topic {
+        color: #2a5298;
+        font-weight: 600;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
+    .week-card .count {
+        background: #003A70;
+        color: white;
+        font-size: 0.78em;
+        padding: 2px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+    .week-card.empty .count { background: #aaa; }
+    .week-card p { color: #555; font-size: 0.9em; line-height: 1.55; margin-top: 10px; }
+    footer {
+        background: #f9f9f9;
+        padding: 22px 30px;
+        text-align: center;
+        color: #888;
+        font-size: 0.85em;
+        border-top: 1px solid #eee;
+        font-family: 'Lato', sans-serif;
+    }
+    footer a { color: #003A70; }
+    @media (max-width: 768px) {
+        header h1 { font-size: 1.6em; }
+        .content { padding: 30px 20px; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="back-bar"><a href="../index.html">&larr; Back to Course Contents</a> &middot; <a href="index.html">&larr; All Papers</a></div>
+
+    <header>
+        <div class="week-pill">Week 10</div>
+        <h1><span style="color:#fff;">Agentic AI, RAG & Advanced Research Tools</span></h1>
+        <p>Harnesses, long-horizon reliability, MCP, agentic RAG, and the 2026 tool landscape</p>
+    </header>
+    <div class="content">
+        <div class="intro-text">
+            <p>12 papers covering harness optimisation, agent benchmarks, the reliability-vs-accuracy distinction, long-horizon planning collapse, agentic RAG, and RAG evaluation.</p>
+            <p style="margin-top:8px; color:#666; font-size:0.92em;">Each entry links to the canonical version of the paper &mdash; on arXiv, the journal, or the publisher. Where a paper is paywalled, the DOI is given for UCT-library access.</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">10.1 &middot; What Agents Are and What's New in 2026</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">Meta-Harness: End-to-End Optimization of Model Harnesses</div>
+        <div class="paper-meta">Lee, Y., et al. (2026)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2603.28052" target="_blank" rel="noopener">View source &middot; arXiv:2603.28052</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command-Line Interfaces</div>
+        <div class="paper-meta">(2026)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2601.11868" target="_blank" rel="noopener">View source &middot; arXiv:2601.11868</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">10.2 &middot; Failure Modes for Long-Horizon Tasks</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">Towards a Science of AI Agent Reliability</div>
+        <div class="paper-meta">Rabanser, S., Kapoor, S., Kirgis, P., Liu, K., Utpala, S., &amp; Narayanan, A. (2026) &mdash; <em>Princeton CITP</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2602.16666" target="_blank" rel="noopener">View source &middot; arXiv:2602.16666</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents</div>
+        <div class="paper-meta">Wang, Z., et al. (2026)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2601.22311" target="_blank" rel="noopener">View source &middot; arXiv:2601.22311</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">YC-Bench: Benchmarking AI Agents for Long-Term Planning and Consistent Execution</div>
+        <div class="paper-meta">(2026)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2604.01212" target="_blank" rel="noopener">View source &middot; arXiv:2604.01212</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents</div>
+        <div class="paper-meta">(2026)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2603.29231" target="_blank" rel="noopener">View source &middot; arXiv:2603.29231</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Why Language Models Hallucinate</div>
+        <div class="paper-meta">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (2025) &mdash; <em>also cited in Week 9</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">View source &middot; arXiv:2509.04664</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">10.3 &middot; The Current Tool Landscape and MCP</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search</div>
+        <div class="paper-meta">Sakana AI (2025)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2504.08066" target="_blank" rel="noopener">View source &middot; arXiv:2504.08066</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">10.4 &middot; RAG in 2026</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG</div>
+        <div class="paper-meta">Singh, A., Ehtesham, A., Kumar, S., Talaei Khoei, T., &amp; Vasilakos, A. V. (2025)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2501.09136" target="_blank" rel="noopener">View source &middot; arXiv:2501.09136</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach</div>
+        <div class="paper-meta">Li, Z., Li, C., Zhang, M., Mei, Q., &amp; Bendersky, M. (2024) &mdash; <em>Google; EMNLP 2024</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2407.16833" target="_blank" rel="noopener">View source &middot; arXiv:2407.16833</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">RAGAS: Automated Evaluation of Retrieval Augmented Generation</div>
+        <div class="paper-meta">Es, S., James, J., Espinosa-Anke, L., &amp; Schockaert, S. (2023)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">View source &middot; arXiv:2309.15217</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">10.5 &middot; Advanced Research Tools &mdash; A Curated Tour</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">The Esethu Framework: Reimagining Sustainable Dataset Governance and Curation for Low-Resource Languages</div>
+        <div class="paper-meta">Rajab, J., Aremu, A., Chimoto, E. A., et al. (2025) &mdash; <em>also cited in Week 4</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">View source &middot; arXiv:2502.15916</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">10.6 &middot; Hands-On Activities and Assessment</h2>
+            <p class="empty-note">Assessment design (the &ldquo;Same Task, Three Ways&rdquo; activity).</p>
+        </div>
+        
+        
+    </div>
+    <footer>
+        &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>
+        <p style="margin-top: 8px;">Each reference links to its canonical source. The papers themselves remain under their original licences and copyright holders.</p>
+    </footer>
+</div>
+</body>
+</html>

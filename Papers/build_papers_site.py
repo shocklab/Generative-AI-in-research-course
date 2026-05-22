@@ -4,13 +4,13 @@ Generate the styled HTML 'Papers' section of the GitHub Pages site
 from a single embedded data structure.
 
 Outputs:
-  docs/papers/index.html             - landing page listing the 8 weeks
-  docs/papers/week-N.html            - one page per week with download links
+  docs/papers/index.html             - landing page listing the weeks
+  docs/papers/week-N.html            - one page per week, link-only
 
-PDF download URLs point at raw.githubusercontent.com so the PDFs stay
-in the repo's Papers/ tree (outside docs/) and aren't duplicated.
+Each reference links to its canonical source (arXiv abstract, journal DOI,
+or publisher page). PDFs are NOT redistributed from this repo.
 
-Re-run this script whenever a MANIFEST.md changes.
+Re-run this script whenever the data below changes.
 """
 
 import os
@@ -19,8 +19,6 @@ from html import escape
 
 REPO = os.path.dirname(os.path.abspath(__file__))
 DOCS_PAPERS = os.path.normpath(os.path.join(REPO, "..", "docs", "papers"))
-
-RAW_BASE = "https://github.com/shocklab/Generative-AI-in-research-course/raw/main/Papers"
 
 # ---------------------------------------------------------------------------
 # Data
@@ -141,8 +139,8 @@ WEEKS = {
     3: {
         "topic": "Environmental Implications of AI",
         "tagline": "Energy, water, hardware lifecycle, and the rebound problem",
-        "summary": "8 arXiv papers covering AI energy and water consumption, embodied carbon, the Jevons rebound, and sustainable AI practice. The OECD policy report is link-only.",
-        "paper_count": 8,
+        "summary": "9 papers covering AI energy and water consumption, embodied carbon, the Jevons rebound, sustainable AI practice, and the token cost of agentic coding. The OECD policy report and several agentic-energy references are link-only.",
+        "paper_count": 9,
         "sublessons": [
             {
                 "id": "3.1", "title": "What Does AI Actually Consume?",
@@ -156,6 +154,10 @@ WEEKS = {
                      "title": "Power Hungry Processing: Watts Driving the Cost of AI Deployment?",
                      "venue": "FAccT &rsquo;24",
                      "src_label": "arXiv:2311.16863", "src_url": "https://arxiv.org/abs/2311.16863"},
+                    {"authors": "Stanford Digital Economy Lab &amp; Microsoft Research", "year": "2026",
+                     "title": "How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks",
+                     "venue": "supports the agentic-multiplier estimate in 3.1",
+                     "src_label": "arXiv:2604.22750", "src_url": "https://arxiv.org/abs/2604.22750"},
                 ],
             },
             {
@@ -206,6 +208,15 @@ WEEKS = {
              "sublesson": "3.4",
              "note": "Open-access on the OECD library &mdash; included as a link rather than a downloaded copy because the OECD URL changes occasionally."},
         ],
+        "extra_html": """
+            <p>The agentic-energy estimate in Sub-Lesson 3.1 also draws on these non-paper sources (reports and documentation rather than academic papers):</p>
+            <ul class="styled-list">
+                <li>Stanford Digital Economy Lab (2026). <em>How are AI agents spending your tokens?</em> &mdash; <a href="https://digitaleconomy.stanford.edu/news/how-are-ai-agents-spending-your-tokens/" target="_blank" rel="noopener">analysis</a> of the token-consumption study above.</li>
+                <li>Anthropic (2026). <em>Effort</em> documentation (Claude effort levels: low / medium / high / xhigh / max) &mdash; <a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener">platform.claude.com</a></li>
+                <li>US EPA. <em>Greenhouse Gas Emissions from a Typical Passenger Vehicle</em> (~0.25&nbsp;kg&nbsp;CO&#8322;/km) &mdash; <a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle" target="_blank" rel="noopener">epa.gov</a></li>
+                <li>Republic of South Africa (2024). <em>2022 Grid Emission Factors Report</em> (~0.9&nbsp;kg&nbsp;CO&#8322;/kWh) &mdash; <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">gov.za PDF</a></li>
+            </ul>
+        """,
     },
     4: {
         "topic": "Ethical Frameworks for AI in Research",
@@ -581,6 +592,163 @@ WEEKS = {
              "sublesson": "8.4", "note": "SSRN bot-protected."},
         ],
     },
+    9: {
+        "topic": "Critical Evaluation & Limitations of AI",
+        "tagline": "Benchmarks, failure categories, and where AI is now genuinely strong",
+        "summary": "15 papers spanning benchmark contamination, structural failure modes (the reversal curse, sycophancy, hallucination), and recent cases of AI contributing to genuine mathematical and physical discovery.",
+        "paper_count": 15,
+        "sublessons": [
+            {
+                "id": "9.1", "title": "The Trajectory of LLM Capabilities",
+                "papers": [
+                    {"authors": "Deng, C., Zhao, Y., Tang, X., Gerstein, M., & Cohan, A.", "year": "2023",
+                     "title": "Investigating Data Contamination in Modern Benchmarks for Large Language Models",
+                     "venue": "NAACL 2024",
+                     "src_label": "arXiv:2311.09783", "src_url": "https://arxiv.org/abs/2311.09783"},
+                    {"authors": "", "year": "2023",
+                     "title": "LatestEval &mdash; dynamic test construction to avoid data contamination",
+                     "venue": "AAAI 2024",
+                     "src_label": "arXiv:2312.12343", "src_url": "https://arxiv.org/abs/2312.12343"},
+                    {"authors": "Alhanai, T., Kasumovic, M., Ghassemi, M., Zitzelberger, R., Lundin, E., &amp; Chabot-Couture, G.", "year": "2024",
+                     "title": "Bridging the Gap &mdash; measuring the real-world capability gap",
+                     "venue": "AAAI 2025",
+                     "src_label": "arXiv:2412.12417", "src_url": "https://arxiv.org/abs/2412.12417"},
+                    {"authors": "", "year": "2024",
+                     "title": "IrokoBench: a benchmark for African languages",
+                     "src_label": "arXiv:2406.03368", "src_url": "https://arxiv.org/abs/2406.03368"},
+                    {"authors": "", "year": "2026",
+                     "title": "ProgramBench: Can Language Models Rebuild Programs From Scratch?",
+                     "venue": "arXiv, May 2026",
+                     "src_label": "arXiv:2605.03546", "src_url": "https://arxiv.org/abs/2605.03546"},
+                ],
+            },
+            {
+                "id": "9.2", "title": "Three Categories of Failure",
+                "papers": [
+                    {"authors": "Berglund, L., Tong, M., Kaufmann, M., et al.", "year": "2023",
+                     "title": "The Reversal Curse: LLMs Trained on &ldquo;A is B&rdquo; Fail to Learn &ldquo;B is A&rdquo;",
+                     "src_label": "arXiv:2309.12288", "src_url": "https://arxiv.org/abs/2309.12288"},
+                    {"authors": "Frieder, S., Pinchetti, L., et al.", "year": "2023",
+                     "title": "Mathematical Capabilities of ChatGPT",
+                     "venue": "NeurIPS 2023",
+                     "src_label": "arXiv:2301.13867", "src_url": "https://arxiv.org/abs/2301.13867"},
+                    {"authors": "Sharma, M., Tong, M., Korbak, T., et al.", "year": "2023",
+                     "title": "Towards Understanding Sycophancy in Language Models",
+                     "venue": "ICLR 2024",
+                     "src_label": "arXiv:2310.13548", "src_url": "https://arxiv.org/abs/2310.13548"},
+                    {"authors": "Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E.", "year": "2025",
+                     "title": "Why Language Models Hallucinate",
+                     "src_label": "arXiv:2509.04664", "src_url": "https://arxiv.org/abs/2509.04664"},
+                ],
+            },
+            {
+                "id": "9.3", "title": "Where AI Is Now Genuinely Strong",
+                "papers": [
+                    {"authors": "Fang, Y.-L., Jian, D.-S., Li, X., &amp; Ma, Y.-Q.", "year": "2025",
+                     "title": "AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge",
+                     "src_label": "arXiv:2504.01538", "src_url": "https://arxiv.org/abs/2504.01538"},
+                    {"authors": "Georgiev, B., G&oacute;mez-Serrano, J., Tao, T., &amp; Wagner, A. Z.", "year": "2025",
+                     "title": "Mathematical exploration and discovery at scale",
+                     "src_label": "arXiv:2511.02864", "src_url": "https://arxiv.org/abs/2511.02864"},
+                    {"authors": "Guevara, A., Lupsasca, A., Skinner, D., Strominger, A., &amp; Weil, K.", "year": "2026",
+                     "title": "Single-minus gluon tree amplitudes",
+                     "venue": "AI-assisted amplitude calculation",
+                     "src_label": "arXiv:2602.12176", "src_url": "https://arxiv.org/abs/2602.12176"},
+                    {"authors": "Brenner, M. P., Cohen-Addad, V., &amp; Woodruff, D.", "year": "2026",
+                     "title": "Solving an Open Problem in Theoretical Physics using AI",
+                     "src_label": "arXiv:2603.04735", "src_url": "https://arxiv.org/abs/2603.04735"},
+                    {"authors": "Alexeev, B., Barreto, K., Li, Y., Lichtman, J. D., Price, L., Shah, J. I., Tang, Q., &amp; Tao, T.", "year": "2026",
+                     "title": "Primitive sets &mdash; a number-theory problem solved with AI assistance",
+                     "src_label": "arXiv:2605.00301", "src_url": "https://arxiv.org/abs/2605.00301"},
+                    {"authors": "", "year": "2026",
+                     "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
+                     "venue": "arXiv, May 2026",
+                     "src_label": "arXiv:2605.06651", "src_url": "https://arxiv.org/abs/2605.06651"},
+                ],
+            },
+            {"id": "9.4", "title": "Illusions of Understanding", "papers": [],
+             "note": "Conceptual sub-lesson &mdash; draws on the failure-mode papers above rather than introducing new primary literature."},
+            {"id": "9.5", "title": "Verification Protocols for a Moving Target", "papers": [],
+             "note": "Original protocol/workflow content."},
+            {"id": "9.6", "title": "Hands-On Activities and Assessment", "papers": [], "note": "Assessment design."},
+        ],
+        "paywalled": [],
+    },
+    10: {
+        "topic": "Agentic AI, RAG & Advanced Research Tools",
+        "tagline": "Harnesses, long-horizon reliability, MCP, agentic RAG, and the 2026 tool landscape",
+        "summary": "12 papers covering harness optimisation, agent benchmarks, the reliability-vs-accuracy distinction, long-horizon planning collapse, agentic RAG, and RAG evaluation.",
+        "paper_count": 12,
+        "sublessons": [
+            {
+                "id": "10.1", "title": "What Agents Are and What's New in 2026",
+                "papers": [
+                    {"authors": "Lee, Y., et al.", "year": "2026",
+                     "title": "Meta-Harness: End-to-End Optimization of Model Harnesses",
+                     "src_label": "arXiv:2603.28052", "src_url": "https://arxiv.org/abs/2603.28052"},
+                    {"authors": "", "year": "2026",
+                     "title": "Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command-Line Interfaces",
+                     "src_label": "arXiv:2601.11868", "src_url": "https://arxiv.org/abs/2601.11868"},
+                ],
+            },
+            {
+                "id": "10.2", "title": "Failure Modes for Long-Horizon Tasks",
+                "papers": [
+                    {"authors": "Rabanser, S., Kapoor, S., Kirgis, P., Liu, K., Utpala, S., &amp; Narayanan, A.", "year": "2026",
+                     "title": "Towards a Science of AI Agent Reliability",
+                     "venue": "Princeton CITP",
+                     "src_label": "arXiv:2602.16666", "src_url": "https://arxiv.org/abs/2602.16666"},
+                    {"authors": "Wang, Z., et al.", "year": "2026",
+                     "title": "Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents",
+                     "src_label": "arXiv:2601.22311", "src_url": "https://arxiv.org/abs/2601.22311"},
+                    {"authors": "", "year": "2026",
+                     "title": "YC-Bench: Benchmarking AI Agents for Long-Term Planning and Consistent Execution",
+                     "src_label": "arXiv:2604.01212", "src_url": "https://arxiv.org/abs/2604.01212"},
+                    {"authors": "", "year": "2026",
+                     "title": "Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents",
+                     "src_label": "arXiv:2603.29231", "src_url": "https://arxiv.org/abs/2603.29231"},
+                    {"authors": "Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E.", "year": "2025",
+                     "title": "Why Language Models Hallucinate",
+                     "venue": "also cited in Week 9",
+                     "src_label": "arXiv:2509.04664", "src_url": "https://arxiv.org/abs/2509.04664"},
+                ],
+            },
+            {
+                "id": "10.3", "title": "The Current Tool Landscape and MCP",
+                "papers": [
+                    {"authors": "Sakana AI", "year": "2025",
+                     "title": "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search",
+                     "src_label": "arXiv:2504.08066", "src_url": "https://arxiv.org/abs/2504.08066"},
+                ],
+            },
+            {
+                "id": "10.4", "title": "RAG in 2026",
+                "papers": [
+                    {"authors": "Singh, A., Ehtesham, A., Kumar, S., Talaei Khoei, T., &amp; Vasilakos, A. V.", "year": "2025",
+                     "title": "Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG",
+                     "src_label": "arXiv:2501.09136", "src_url": "https://arxiv.org/abs/2501.09136"},
+                    {"authors": "Li, Z., Li, C., Zhang, M., Mei, Q., &amp; Bendersky, M.", "year": "2024",
+                     "title": "Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach",
+                     "venue": "Google; EMNLP 2024",
+                     "src_label": "arXiv:2407.16833", "src_url": "https://arxiv.org/abs/2407.16833"},
+                    {"authors": "Es, S., James, J., Espinosa-Anke, L., &amp; Schockaert, S.", "year": "2023",
+                     "title": "RAGAS: Automated Evaluation of Retrieval Augmented Generation",
+                     "src_label": "arXiv:2309.15217", "src_url": "https://arxiv.org/abs/2309.15217"},
+                ],
+            },
+            {
+                "id": "10.5", "title": "Advanced Research Tools &mdash; A Curated Tour",
+                "papers": [
+                    {"authors": "Rajab, J., Aremu, A., Chimoto, E. A., et al.", "year": "2025",
+                     "title": "The Esethu Framework: Reimagining Sustainable Dataset Governance and Curation for Low-Resource Languages",
+                     "venue": "also cited in Week 4",
+                     "src_label": "arXiv:2502.15916", "src_url": "https://arxiv.org/abs/2502.15916"},
+                ],
+            },
+            {"id": "10.6", "title": "Hands-On Activities and Assessment", "papers": [], "note": "Assessment design (the &ldquo;Same Task, Three Ways&rdquo; activity)."},
+        ],
+        "paywalled": [],
+    },
 }
 
 # ---------------------------------------------------------------------------
@@ -842,7 +1010,7 @@ PAGE_HEAD = """<!DOCTYPE html>
 
 PAGE_FOOT = """    <footer>
         &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>
-        <p style="margin-top: 8px;">PDFs hosted on this page are redistributed under their original licences (typically CC-BY for arXiv preprints and open-access journals).</p>
+        <p style="margin-top: 8px;">Each reference links to its canonical source. The papers themselves remain under their original licences and copyright holders.</p>
     </footer>
 </div>
 </body>
@@ -850,17 +1018,16 @@ PAGE_FOOT = """    <footer>
 """
 
 
-def render_paper_card(p, week_num):
-    """Render a single paper card."""
-    download_url = f"{RAW_BASE}/Week-{week_num}/{p['file']}"
+def render_paper_card(p, week_num=None):
+    """Render a single paper card (link-only — points to the canonical source)."""
     venue = f" &mdash; <em>{p['venue']}</em>" if p.get("venue") else ""
+    meta = f"{p['authors']} ({p['year']})" if p.get("authors") else f"({p['year']})"
     return f"""
     <div class="paper-card">
         <div class="paper-title">{p['title']}</div>
-        <div class="paper-meta">{p['authors']} ({p['year']}){venue}</div>
+        <div class="paper-meta">{meta}{venue}</div>
         <div class="paper-actions">
-            <a class="download-btn" href="{download_url}" target="_blank" rel="noopener">&darr; Download PDF</a>
-            <a class="source-link" href="{p['src_url']}" target="_blank" rel="noopener">{p['src_label']}</a>
+            <a class="source-link" href="{p['src_url']}" target="_blank" rel="noopener">View source &middot; {p['src_label']}</a>
         </div>
     </div>"""
 
@@ -922,7 +1089,7 @@ def render_week_page(num, w):
     <div class="content">
         <div class="intro-text">
             <p>{w['summary']}</p>
-            <p style="margin-top:8px; color:#666; font-size:0.92em;">All PDFs link to <code>raw.githubusercontent.com</code>; clicking will download the file directly. Source links go to the canonical version on arXiv, the journal, or the publisher.</p>
+            <p style="margin-top:8px; color:#666; font-size:0.92em;">Each entry links to the canonical version of the paper &mdash; on arXiv, the journal, or the publisher. Where a paper is paywalled, the DOI is given for UCT-library access.</p>
         </div>
         {''.join(sublessons_html)}
         {extra_html}
@@ -962,13 +1129,12 @@ def render_index_page():
     body = f"""
     <header>
         <h1><span style="color:#fff;">Course Papers</span></h1>
-        <p>Every academic paper cited across the 12-week course, grouped by week. Open-access PDFs are downloadable here; paywalled items are listed with publisher links.</p>
+        <p>Every academic paper cited across the 12-week course, grouped by week. Each entry links to the canonical source &mdash; arXiv, journal DOI, or publisher.</p>
     </header>
     <div class="content">
         <div class="intro-text">
-            <p>This collection mirrors the <code>Papers/</code> folder in the <a href="https://github.com/shocklab/Generative-AI-in-research-course/tree/main/Papers" target="_blank" rel="noopener">course repository</a>, with one downloadable card per paper plus links to the canonical source (arXiv, journal DOI, etc.).</p>
-            <p style="margin-top:8px;">Of 54 PDFs in total, all are openly redistributable. A handful of references are not redistributable (Cell Press journal items, Nature comments, ACM proceedings, Wiley/SAGE journals, SSRN bot-protected) &mdash; those appear on each week&rsquo;s page as link-only entries with the DOI for UCT-library access.</p>
-            <p style="margin-top:8px; color:#666; font-size:0.92em;">PDFs in this collection are redistributed under their original licences. The course materials themselves (lesson HTML and the rest of this site) are <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>; that licence does not extend to the third-party PDFs collected here.</p>
+            <p>One card per paper, each linking to the canonical source (arXiv, journal DOI, or publisher). Where a paper is paywalled, the DOI is given so you can reach it through the UCT library.</p>
+            <p style="margin-top:8px; color:#666; font-size:0.92em;">We link to papers rather than hosting copies, so each one stays at its authoritative version. The course materials themselves (lesson HTML and the rest of this site) are <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>; that licence does not extend to the linked third-party papers.</p>
         </div>
         <div class="week-grid">
             {''.join(cards)}
