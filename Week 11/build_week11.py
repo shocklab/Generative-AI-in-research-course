@@ -1517,6 +1517,221 @@ SL6_BODY = """
 
 
 # ---------------------------------------------------------------------------
+# Sub-Lesson 11.7 — Synthesis and the Week-12 Capstone
+# ---------------------------------------------------------------------------
+
+SL7_BODY = """
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>This is the final sub-lesson of the course. It does two things at once. First it pulls the threads of Week 11 (and, behind that, the whole course) into a single integrative reading. Second, it sets out the Week-12 capstone &mdash; a 3-hour solo activity in which you write a structured research pitch about how <em>you</em> are going to use, refuse to use, and verify AI in your own research, with an honest self-critique to follow.</p>
+    <p>The capstone is deliberately compact. You are a busy postgraduate science researcher in your own discipline; the course has asked enough of your time already; the right test of whether the course has done its job is whether you can produce a useful 600-word document about your own work in three honest hours. If you can, the disposition we have been trying to build has landed.</p>
+    <p>The brief for the capstone lives inside this sub-lesson rather than as a separate document. The six prompts, the two worked examples, the self-critique structure, and the assessment rubric are all below. Re-read this page when you start the capstone in Week 12; you will not need anything else.</p>
+  </div>
+
+  <h2 class="section-title">&#129488; The Course in One Disposition</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If there is a single thing this course has been trying to build, it is a disposition rather than a set of facts. The specific tools, capabilities, models, and benchmarks we have looked at will look different in two years, and considerably different in five. The disposition we have been trying to build outlasts all of that, because it is about how you read the field rather than about what is currently in it.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The disposition has four moves. You have been practising them, in different forms, across all twelve weeks.</p>
+
+  <ul class="styled-list">
+    <li><strong>Pull the primary source.</strong> Press releases overclaim, secondary coverage rounds up, search summaries quietly hallucinate. The strongest single habit in this course is to find the paper, read its limitations section, and form your view from there.</li>
+    <li><strong>Read for the limitations as much as the claim.</strong> The peer-reviewed work we have looked at &mdash; from <em>AlphaFold 3</em> through DeepMind&#39;s AI Co-Scientist to the Sakana AI Scientist paper &mdash; is consistently more honest about its bounds than the framing built around it. Letting the paper speak in its own voice produces a different reading from letting the institutional context speak for it.</li>
+    <li><strong>Calibrate before you cite.</strong> The Real / Overclaimed / Aspirational frame from 11.1 is not specific to the AI literature. It is the calibration habit applied somewhere it currently matters more than usual. Use it on everything.</li>
+    <li><strong>Choose where you stand before you choose your tools.</strong> The African strand of the course &mdash; the relational sovereignty reading from 11.4, the Esethu and Kaitiakitanga lineage from 11.5, the policy-as-governance critique from 11.6 &mdash; is not a separable add-on to the global AI story. It is the home base from which the global picture should be read if you are doing your work from here.</li>
+  </ul>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The fifth move is what the Week-12 capstone makes you do: <em>apply all of this to your own work, in writing, in a way you would be willing to defend.</em> That is the integrative question the course has been quietly pointing at for twelve weeks. What does the disposition look like when it touches your research, not someone else&#39;s?</p>
+
+  <h2 class="section-title">&#128218; Week 11, Pulled Together</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Each of the six prior sub-lessons in this week handed you a specific input. Read together, they amount to a complete map of the territory the capstone is asking you to position yourself in.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Sub-lesson</th>
+          <th>What it gave you</th>
+          <th>How it feeds the pitch</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>11.1</strong></td>
+          <td>The Real / Overclaimed / Aspirational frame applied to claims about AI in research over the next 2&ndash;5 years</td>
+          <td>Calibrates which AI tools to take seriously when planning your project</td>
+        </tr>
+        <tr>
+          <td><strong>11.2</strong></td>
+          <td>A reading guide to the genuinely speculative AI-in-research literature, with the same calibration habit applied harder</td>
+          <td>Stops you from planning a project on a 2027 superintelligence assumption</td>
+        </tr>
+        <tr>
+          <td><strong>11.3</strong></td>
+          <td>The current journal, funder, and peer-review policy landscape on AI use, and the He &amp; Bu finding that policy &ne; practice</td>
+          <td>Tells you which AI use you will need to disclose and what your default disclosure practice should be</td>
+        </tr>
+        <tr>
+          <td><strong>11.4</strong></td>
+          <td>A relational reading of AI sovereignty, with the compute layer in honest detail</td>
+          <td>Names the infrastructure you can actually use and the sovereignty register you are working in</td>
+        </tr>
+        <tr>
+          <td><strong>11.5</strong></td>
+          <td>The African data, models, and benchmarks landscape, and six concrete thesis-shaped gaps</td>
+          <td>Identifies the African-language, African-domain, or African-data dimensions of your work</td>
+        </tr>
+        <tr>
+          <td><strong>11.6</strong></td>
+          <td>The policy, institutions, and talent picture, with the SA AI Policy withdrawal as the local case study</td>
+          <td>Locates your work inside the South African and continental institutional landscape</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Behind these six sub-lessons, the rest of the course is doing work too. Week 1 and 2 grounded you in how the models actually function. Week 3 made the energy and water costs concrete; Week 4 gave you the ethical frameworks (the four lenses, the Just AI framework, the relational reading from Mhlambi) you will draw on for prompt #6 below. Weeks 5 through 8 worked through the specific research-stage applications &mdash; literature review, writing, ideation, data analysis, code, multimodal &mdash; that prompt #2 will ask about. Weeks 9 and 10 gave you the verification protocols and the calibrated reading of agentic tools that will inform prompts #3 and #5.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you have done the weekly exercises, you have already generated most of the raw material the capstone is asking you to compress into 300 words. The work in the capstone is not collecting the material. It is choosing.</p>
+
+  <h2 class="section-title">&#127919; The Week-12 Capstone</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The capstone is a single 3-hour solo activity, completed in Week 12 in your own time. You will produce a 600-word document in two parts: a 300-word structured research pitch, and a 300-word honest self-critique of that pitch. Submission is via Amathuba (details on the Week-12 page). Assessment counts toward the 40% Research Enhancement Project component of your overall course grade.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This format is honest about the constraints of being a postgraduate science researcher. There is no live workshop, no peer review, no presentation. You will write the document alone, in three hours, drawing on the cumulative work of the course. It is the lightest meaningful capstone we could design that still does the integrative job; if you have engaged seriously with the course, three hours is enough.</p>
+
+  <h2 class="section-title">&#9999;&#65039; Part 1 &mdash; The Structured Pitch (300 words)</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Six prompts, in order. Roughly 50 words each. Write them as numbered paragraphs; the structure is itself the integration. The whole pitch should fit on a single page.</p>
+
+  <ol class="step-list">
+    <li><strong>One-sentence research question.</strong> The question your project is trying to answer, in plain language a colleague in a different sub-field could follow. Not a topic, not a method &mdash; a question.</li>
+    <li><strong>AI tools you will use, at which research stages, and why.</strong> Be specific. Name the family of tool (chat assistants, agentic systems, RAG-based literature tools, domain-specific models such as AlphaFold or speech models, code-generation agents). Name the stage of your work each one will touch (literature review, ideation, data analysis, code, writing, evaluation). Give your honest reason for the choice in each case.</li>
+    <li><strong>What you will NOT delegate to AI, and why.</strong> The honest counter-claim. The places where, in your own discipline and on your own project, the work has to remain yours. Be specific about the boundary &mdash; what is the difference between an AI-assisted step you will take and an AI-delegated step you will not? This is the integrity move from Weeks 6 and 9.</li>
+    <li><strong>One local-context choice you are making.</strong> A single concrete decision that locates your work in the African (or specifically South African) context: a language choice, a dataset choice, a hosting choice, a collaboration partner, a community-licensing decision, a decision about whom the work is for. One choice; named specifically; with a sentence on why.</li>
+    <li><strong>One verification protocol you commit to.</strong> A specific, defensible procedure that catches AI errors in your particular workflow before they reach publication. Not &ldquo;I will be careful&rdquo;; an actual protocol &mdash; cross-validation against independent data, pre-registration, replication with a different model family, an explicit human-in-the-loop checkpoint, peer audit, or similar.</li>
+    <li><strong>One ethical commitment from your Week 4 framework that this pitch operationalises.</strong> Pick one principle from the ethical framework you developed in Week 4 (the four lenses, the Just AI framework, the relational/ubuntu reading, or whatever combination you settled on). Identify the single concrete thing in your project that puts that principle into practice. The principle and the practice should be specific to each other; abstract restatements of Week 4 do not count.</li>
+  </ol>
+
+  <h2 class="section-title">&#128194; Two Worked Examples</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Two example pitches, one from the Earth Sciences and one from Computational Biology. Neither pitch is perfect; both pass the bar. Use them as a calibration of what a strong response looks like, not as a template to copy.</p>
+
+  <div class="case-study">
+    <h4>&#127757; Example 1 &mdash; Climate / Earth Sciences postgraduate</h4>
+    <p><strong>1.</strong> Can multimodal AI digitisation of pre-1980 hydrometeorological records improve drought-onset prediction for Western Cape catchments by combining historical observations with current satellite data?</p>
+    <p><strong>2.</strong> Multimodal vision-language models for digitising hand-written rainfall records (Week 8); Python data-analysis assistants for time-series cleaning (Week 7); Deep Research for the catchment-hydrology literature (Week 10); chat assistants for first-draft writing (Week 6). Each tool is paired with a specific stage and a specific accuracy-checking step.</p>
+    <p><strong>3.</strong> I will not delegate the choice of which catchments to study, the interpretation of statistical-significance thresholds, or the engagement with farming communities for ground-truth on what &ldquo;drought&rdquo; means locally. The first two are research-judgement calls that determine what the work means; the third requires a human relationship that AI cannot stand in for.</p>
+    <p><strong>4.</strong> Local-context choice: I will work specifically with rain-gauge station records from the Western Cape&#39;s wheat-belt rather than fitting models to a globally averaged climatology, in partnership with the Stellenbosch Centre for Sustainability Transitions.</p>
+    <p><strong>5.</strong> Verification protocol: every model-predicted drought-onset window is cross-validated against a held-out set of rain-gauge records from stations not used in training, and a 12-month look-ahead is pre-registered with my supervisor before model evaluation.</p>
+    <p><strong>6.</strong> Ethical commitment: from the Just AI Framework (Week 4) &mdash; the principle of <em>recipient relevance</em>. The outputs of this work are to be co-interpreted with farming-community representatives before any publication, and any predictive tool released is to remain free at the point of use for South African agricultural extension services.</p>
+  </div>
+
+  <div class="case-study">
+    <h4>&#129516; Example 2 &mdash; Computational Biology / Bioinformatics postgraduate</h4>
+    <p><strong>1.</strong> Can AI protein-structure prediction identify previously unstudied allosteric binding sites on <em>Plasmodium falciparum</em>&#39;s haemoglobin-degradation enzymes that might support novel antimalarial drug design?</p>
+    <p><strong>2.</strong> AlphaFold 3 for predicted complex structures (Week 11.1); code-generation agents for binding-affinity calculations in Python and PyMOL (Week 7); RAG-based literature tools for the medicinal-chemistry context (Week 5); calibrated reading of vendor benchmark claims about predicted binding affinities (Week 9).</p>
+    <p><strong>3.</strong> I will not delegate the biological interpretation of the predicted structures (the structures are starting points, not answers), the choice of which candidates to take into wet-lab validation, or the writing of the discussion section. The wet-lab call is the one with downstream cost and risk; the discussion is where the interpretation lives.</p>
+    <p><strong>4.</strong> Local-context choice: I will prioritise <em>P. falciparum</em> strains endemic to Southern Africa for benchmark verification, in collaboration with the H3D Drug Discovery Centre at UCT, and will commit any leads identified to publication under terms that allow generic-manufacturing partners on the continent to use them.</p>
+    <p><strong>5.</strong> Verification protocol: every novel binding-site prediction is independently re-run on at least two protein-structure model families before consideration, with positive predictions confirmed against published crystallographic data where available, and a pre-registered decision rule for which candidates advance to wet-lab.</p>
+    <p><strong>6.</strong> Ethical commitment: from the relational reading of Week 4 &mdash; equitable benefit. Any compounds identified will be published in open-access venues with the model output and the wet-lab data both made available; no patent will be filed on any lead by the research team without prior agreement on accessibility for African public-health systems.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Both pitches are around 300 words. Both follow the six-prompt structure tightly. Both name specific tools, specific local choices, specific verification protocols, and a specific ethical commitment. Neither pitch is a template &mdash; your own pitch will look different because your research is different &mdash; but the level of specificity is the bar.</p>
+
+  <h2 class="section-title">&#128221; Part 2 &mdash; The Solo Self-Critique (300 words)</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">After the pitch, you write a 300-word self-critique. This is the part of the capstone that requires the most intellectual honesty, because there is no peer reviewer in the room to do it for you. Two prompts, roughly 150 words each.</p>
+
+  <div class="technical-detail">
+    <h4>&#129504; A. The strongest objection to your pitch (~150 words)</h4>
+    <p style="color: #444; line-height: 1.75;">Identify the strongest specific objection an experienced researcher in your field &mdash; your most demanding supervisor on a bad day, or an external examiner who has read carefully &mdash; would raise to your pitch. Not a generic worry. A specific one. Then write how you would address it. You can address it by changing the pitch, by accepting the limitation honestly, or by explaining why the objection does not in fact bite. What you cannot do is ignore it. The self-critique fails as a self-critique if the objection it raises is one your pitch already obviously answers.</p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#129488; B. The calibrated-reading habit you most need to keep practising (~150 words)</h4>
+    <p style="color: #444; line-height: 1.75;">Of the four moves of the calibrated-reading disposition above &mdash; pulling primary sources, reading for limitations, calibrating before citing, choosing where you stand &mdash; which one are you, honestly, weakest at? Where in the last twelve weeks did you catch yourself short on the move? What practical habit will you adopt after the course to keep practising it? This is the only part of the capstone the course will not see you do over the rest of your career, so it is the part where being honest with yourself matters most.</p>
+  </div>
+
+  <h2 class="section-title">&#128202; Assessment Rubric</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The capstone will be graded against the six pitch prompts and the two self-critique prompts. Your work does not need to be brilliant on every dimension; it does need to be substantive on each.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>What we are looking for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Research question</strong></td>
+          <td>A clear, answerable question rather than a topic or method. A colleague in an adjacent sub-field could read it and understand what you are asking.</td>
+        </tr>
+        <tr>
+          <td><strong>AI tool selection</strong></td>
+          <td>Specific tool families paired with specific research stages and specific reasons. Not a list of every tool the course mentioned.</td>
+        </tr>
+        <tr>
+          <td><strong>What you will not delegate</strong></td>
+          <td>An honest, specific position. The boundary is defensible: an experienced researcher in your field would recognise it as a real distinction.</td>
+        </tr>
+        <tr>
+          <td><strong>Local-context choice</strong></td>
+          <td>A single concrete decision, named specifically, with a one-sentence justification. Not a general aspiration to be locally relevant.</td>
+        </tr>
+        <tr>
+          <td><strong>Verification protocol</strong></td>
+          <td>An actual procedure rather than an attitude. We should be able to imagine the procedure being applied.</td>
+        </tr>
+        <tr>
+          <td><strong>Ethical commitment</strong></td>
+          <td>A principle from your Week-4 framework paired with the specific thing in your project that puts it into practice. Not an abstract restatement.</td>
+        </tr>
+        <tr>
+          <td><strong>Self-critique &mdash; objection</strong></td>
+          <td>A specific objection the pitch does not already obviously answer, addressed substantively.</td>
+        </tr>
+        <tr>
+          <td><strong>Self-critique &mdash; calibrated reading</strong></td>
+          <td>Honest identification of one weak habit and a concrete next-step practice.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">&#9201;&#65039; Timing the Capstone Honestly</h2>
+
+  <div class="technical-detail">
+    <h4>A three-hour outline</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">If you have done the weekly exercises, three hours is comfortable. If you have not, three hours is tight. The outline below is a recommendation, not a prescription.</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>0&ndash;30 minutes:</strong> Re-read this sub-lesson (the six prompts, the two worked examples, the rubric). Open a blank document. Re-read the activity outputs you generated for the Week 11 sub-lessons.</li>
+      <li><strong>30&ndash;120 minutes:</strong> Draft the six pitch paragraphs in order. Do not stop to polish until all six are on the page. The first draft will overshoot 300 words; that is fine.</li>
+      <li><strong>120&ndash;165 minutes:</strong> Draft the two self-critique paragraphs. The objection one is the harder one and is worth dwelling on.</li>
+      <li><strong>165&ndash;180 minutes:</strong> Polish both parts to fit the word counts. Submit.</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">&#128587; A Closing Note</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the last thing the course asks of you. It is intentionally smaller than a course at this level might typically ask, because the value of the disposition we have been trying to build is what you carry into the next five years of your research, not what you produce for assessment in the next three hours.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If the course has done its work, you will have started writing the pitch already in your head while reading the worked examples. The Week-12 capstone is then largely a transcription exercise. If the course has not done its work &mdash; or if the work it has done has been overtaken by how quickly the field has moved &mdash; the disposition is still the right thing to keep practising. The specific tools and policies and benchmarks in the course will change. The habit of pulling the primary source, reading for the limitations, calibrating before citing, and choosing where you stand will not.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Good luck with your research.</p>
+
+  <div class="highlight-box">
+    <h3>&#128218; <span style="color: #ffffff;">For the capstone, you need only re-read this page</span></h3>
+    <p>The brief, the prompts, the worked examples, the self-critique structure, and the rubric all live here. Submission instructions are on the Week-12 Amathuba page. There is no separate document to download and no further reading required. Use the time on the work.</p>
+  </div>
+"""
+
+
+# ---------------------------------------------------------------------------
 # SUBLESSONS list — grows as sub-lessons are drafted
 # ---------------------------------------------------------------------------
 
@@ -1575,12 +1790,21 @@ SUBLESSONS = [
         "header_subtitle": "The strategy-as-governance picture, the South African policy withdrawal as the local case study, the funding flows that actually move, and the institutions that train and retain African AI researchers",
         "body": SL6_BODY,
     },
+    {
+        "filename": "Synthesis and the Week-12 Capstone.html",
+        "title": "Week 11.7 - Synthesis and the Week-12 Capstone",
+        "badge": "Week 11 &bull; Sub-Lesson 7",
+        "header_emoji": "&#127919;",  # bullseye (synthesis/target)
+        "header_title": "Synthesis and the Week-12 Capstone",
+        "header_subtitle": "The course in one disposition; how Week 11 pulls together; and the brief for the 3-hour solo capstone activity in Week 12",
+        "body": SL7_BODY,
+    },
 ]
 
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Policy Institutions and Talent.html" />6. Policy, Institutions and Talent</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Policy Institutions and Talent.html" />6. Policy, Institutions and Talent</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Synthesis and the Week-12 Capstone.html" />7. Synthesis and the Week-12 Capstone</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
