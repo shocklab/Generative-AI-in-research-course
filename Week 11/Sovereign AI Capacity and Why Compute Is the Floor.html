@@ -543,11 +543,6 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="card-grid">
     <div class="card">
-      <h3>UCT African Compute Initiative (ACI)</h3>
-      <p>Announced in March 2026 and led from UCT, the African Compute Initiative is the most directly relevant near-term option for postgraduate AI work on the continent &mdash; <strong>the ACI is planned to be operational towards the end of 2026</strong>, and when it is, access will not be open to everyone. The first cohort will focus on <strong>UCT researchers and AI4D-affiliated labs</strong>. The plan is to scale to roughly 100 users in the first year and around 300 users across at least five partner institutions by year three. The initiative is positioned explicitly as African higher-education-dedicated AI compute &mdash; the missing piece in the picture above. Interim Director: A/Prof Jonathan Shock, UCT (the instructor of this course).</p>
-      <p style="color: #888; font-size: 0.9em;"><a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">UCT AI ACI announcement</a></p>
-    </div>
-    <div class="card">
       <h3>CHPC allocations</h3>
       <p>South-Africa-affiliated PhD students are entitled to free allocations on Lengau (CPU) and the V100 GPU pool. Allocations are requested via <a href="https://wiki.chpc.ac.za" target="_blank" rel="noopener">wiki.chpc.ac.za</a>. The V100 pool is small and heavily oversubscribed; it is a usable resource for individual experiments but should not be treated as a frontier-model training facility.</p>
       <p style="color: #888; font-size: 0.9em;"><a href="https://www.chpc.ac.za/" target="_blank" rel="noopener">chpc.ac.za</a></p>
@@ -570,7 +565,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="highlight-box">
     <h3>&#128161; <span style="color: #ffffff;">The honest position, summarised</span></h3>
-    <p>As of May 2026, an African postgraduate researcher still primarily depends on US free-tier cloud for day-to-day AI compute work. Dedicated national and continental compute capacity is announced and partly procured but not yet broadly available. DataSpires is the most concrete individual-user-facing change to this picture, although still in early access; the UCT African Compute Initiative is the most concrete institutional change and is planned to be operational towards the end of 2026. CHPC remains the SA fallback for institutional academic use.</p>
+    <p>As of May 2026, an African postgraduate researcher still primarily depends on US free-tier cloud for day-to-day AI compute work. Dedicated national and continental compute capacity is announced and partly procured but not yet broadly available. DataSpires is the most concrete individual-user-facing change to this picture, although still in early access. CHPC remains the SA fallback for South-Africa-affiliated institutional academic use, and several university-led continental initiatives are at various stages of standing-up but are not yet broadly available to individual researchers.</p>
     <p style="margin-top: 15px;">Sovereign compute, in the sense of physical infrastructure on African soil that African researchers can use, is real and growing &mdash; but in May 2026 it is still smaller than the foreign cloud capacity most of us actually run on.</p>
   </div>
 
@@ -579,7 +574,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <ul class="styled-list">
     <li><strong>Design for the compute you can actually access.</strong> A research project that requires training a 70B-parameter model from scratch is not feasible from an African university institution in May 2026, with or without free-tier cloud. A research project that requires fine-tuning a 7B-parameter model, or running inference on a hosted frontier model, is feasible. The sovereign-compute story above should inform the <em>scope</em> of your project, not just your politics.</li>
     <li><strong>Resource efficiency is a sovereignty practice.</strong> The Lelapa argument &mdash; that building smaller, more efficient models on accessible infrastructure is itself a sovereignty move &mdash; is operationally honest about the current picture. InkubaLM, MzansiLM, and the other African foundation models we covered in Week 10 are examples of this strategy in practice.</li>
-    <li><strong>Apply to the UCT ACI once it opens if it fits your work.</strong> The ACI is planned to be operational towards the end of 2026, and the first cohort is being scoped around UCT researchers and AI4D labs. Postgraduates in this course at UCT are part of the audience the initiative is being designed for; the application process is being set up during 2026.</li>
+    <li><strong>Watch the continental-compute landscape, but plan around what you can use now.</strong> Several African higher-education-led compute initiatives are at various stages of standing-up &mdash; some institution-specific, some pan-continental &mdash; but as of May 2026 none of them are broadly available at the individual-researcher tier. The honest default for the next 12&ndash;18 months is the combination of DataSpires (Africa-located, individual-tier) plus the existing free-tier cloud options below, with CHPC as the South-Africa-specific fallback for academic use.</li>
     <li><strong>Think of compute as one of five layers, not as the whole picture.</strong> The Worldcoin case is the reminder. Even if every GPU you used was hosted in Africa under African ownership, that on its own would not guarantee that the rights of the people whose data the model was trained on were protected. The other layers &mdash; data governance, model evaluation, policy, and talent &mdash; are where the African sovereignty conversation is doing some of its most distinctive work. We cover them in 11.5 and 11.6.</li>
   </ul>
 
@@ -617,7 +612,6 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="resource-placeholder">
     <h4>&#128196; Compute facilities &amp; practical access</h4>
-    <p><strong>UCT African Compute Initiative.</strong> <a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">ai.uct.ac.za</a>.</p>
     <p><strong>CHPC.</strong> <a href="https://www.chpc.ac.za/" target="_blank" rel="noopener">chpc.ac.za</a>. Allocation requests via <a href="https://wiki.chpc.ac.za" target="_blank" rel="noopener">wiki.chpc.ac.za</a>.</p>
     <p><strong>Cassava Technologies.</strong> <a href="https://www.cassavatechnologies.com/cassava-scales-african-ai-infrastructure-with-nvidia-powered-ai-factories-to-accelerate-sovereign-data-capabilities/" target="_blank" rel="noopener">cassavatechnologies.com</a> (March 2025 partnership announcement).</p>
     <p><strong>DataSpires.</strong> <a href="https://dataspires.com" target="_blank" rel="noopener">dataspires.com</a>. Marketplace platform aggregating GPU clusters across more than 25 African data-centre sites; individual-user access via notebooks, AfriLink SDK, cloud VS Code, and inference endpoints. Early access with public waitlist as of May 2026.</p>
