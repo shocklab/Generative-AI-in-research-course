@@ -307,7 +307,7 @@ SL1_BODY = """
     <p><strong>FutureHouse Robin</strong> &mdash; <a href="https://arxiv.org/abs/2505.13400" target="_blank" rel="noopener">arXiv:2505.13400</a> (May 2025); see also FutureHouse&#39;s research announcement at <a href="https://www.futurehouse.org/research-announcements/demonstrating-end-to-end-scientific-discovery-with-robin-a-multi-agent-system" target="_blank" rel="noopener">futurehouse.org</a>.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.2:</strong> the institutional response to all of this &mdash; journal policies, funder rules on AI in grant applications, peer-review guidance &mdash; and one large recent study showing that, despite ~70% of journals now having AI-disclosure policies, only about 0.1% of post-2023 papers actually disclose AI use. The gap between policy and practice is the central feature of the institutional landscape we will look at next.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.2:</strong> a reading guide for the genuinely <em>speculative</em> end of the AI-in-research literature &mdash; frameworks (Krenn, Wang, Morris), falsifiable forecasts (METR), institutional visioning (Royal Society, Africa Declaration), and wild speculation (Clune, <em>AI 2027</em>, Russell) &mdash; with the same calibration habit applied throughout. 11.3 then turns from speculation to the institutional present: what journals and funders have actually <em>done</em> in response to AI in research, and the surprising gap between policy and practice.</p>
 """
 
 
@@ -317,10 +317,10 @@ SL1_BODY = """
 
 SL_SUPP_BODY = """
   <div class="intro-text">
-    <h2>&#127919; What This Page Is For</h2>
-    <p>Sub-Lesson 11.1 deliberately stayed inside the next 2&ndash;5 years and inside well-documented results. This supplementary page is for students who want to read further into the genuinely <em>speculative</em> end of the AI-in-research literature &mdash; the work that asks not &ldquo;what does AI do for science now?&rdquo; but &ldquo;what could AI do for science, eventually, and what would that change?&rdquo;</p>
-    <p>The same calibration habit from 11.1 still applies &mdash; only more strongly. Confident sentences about 2030 are rarely better-grounded than confident sentences about 2026. Several of the works on this page are serious academic frameworks; a couple are essentially structured science fiction with a confident tone. The page is organised so you can tell them apart.</p>
-    <p>None of this is examinable. It is a reading guide for after the course finishes, when the question &ldquo;what kind of researcher do I want to be in a world where this stuff keeps moving?&rdquo; is going to be the one you actually have to answer.</p>
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>Sub-Lesson 11.1 deliberately stayed inside the next 2&ndash;5 years and inside well-documented results. This sub-lesson takes the same calibrated reading habit and applies it to the genuinely <em>speculative</em> end of the AI-in-research literature &mdash; the work that asks not &ldquo;what does AI do for science now?&rdquo; but &ldquo;what could AI do for science, eventually, and what would that change?&rdquo;</p>
+    <p>The calibration habit from 11.1 still applies here &mdash; only more strongly. Confident sentences about 2030 are rarely better-grounded than confident sentences about 2026. Several of the works in this guide are serious academic frameworks; a couple are essentially structured science fiction with a confident tone. The lesson is organised so you can tell them apart.</p>
+    <p>The goal is not to make you a forecaster. It is to give you a working reading guide for the question &ldquo;what kind of researcher do I want to be in a world where this stuff keeps moving?&rdquo; &mdash; which is the question that quietly underlies everything else in this week.</p>
   </div>
 
   <h2 class="section-title">&#129516; A. Frameworks for Thinking About AI in Science</h2>
@@ -461,6 +461,8 @@ SL_SUPP_BODY = """
     <p><strong>Nyabola, N. (2026).</strong> Foundations for African feminism as an ethics for artificial intelligence. <em>Science and Public Policy</em> 53(2), 277&ndash;288. <a href="https://academic.oup.com/spp/article/53/2/277/8654723" target="_blank" rel="noopener">DOI 10.1093/scipol/scag009</a>.</p>
     <p><strong>Mhlambi, S. (2020).</strong> <em>From Rationality to Relationality: Ubuntu as an Ethical and Human Rights Framework for Artificial Intelligence Governance</em>. Carr Center for Human Rights Policy, Harvard Kennedy School.</p>
   </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.3:</strong> we turn from speculative futures to the institutional present &mdash; what journals, funders, and peer-review systems have actually <em>done</em> in response to AI in research over the last 18 months, and one large recent study showing that, despite ~70% of journals now having AI-disclosure policies, only about 0.1% of post-2023 papers actually disclose AI use. The gap between policy and practice is the central feature of the landscape we will look at next.</p>
 """
 
 
@@ -480,8 +482,8 @@ SUBLESSONS = [
     },
     {
         "filename": "Speculative Futures - A Reading Guide.html",
-        "title": "Week 11 Supplementary - Speculative Futures: A Reading Guide",
-        "badge": "Week 11 &bull; Supplementary",
+        "title": "Week 11.2 - Speculative Futures: A Reading Guide",
+        "badge": "Week 11 &bull; Sub-Lesson 2",
         "header_emoji": "&#128302;",  # crystal ball
         "header_title": "Speculative Futures: A Reading Guide",
         "header_subtitle": "Reading further into the genuinely speculative end of the AI-in-research literature &mdash; frameworks, forecasts, institutional visioning, and wild speculation, with calibration",
@@ -492,7 +494,7 @@ SUBLESSONS = [
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>2. The Shifting Research Landscape (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>3. Sovereign AI Capacity, and Why Compute Is the Floor (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>4. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />Supplementary: Speculative Futures &mdash; A Reading Guide</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>3. The Shifting Research Landscape (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>4. Sovereign AI Capacity, and Why Compute Is the Floor (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 

@@ -21,14 +21,17 @@ This is the last content week before the Week 12 capstone. It pulls forward the 
 
 ## Sub-lesson map
 
+Week 11 has **7 sub-lessons** (vs 6 in Weeks 9 / 10) because the speculative-futures reading guide was promoted from supplementary into a numbered sub-lesson.
+
 | # | Title | Half | Anchor question |
 |---|-------|------|-----------------|
-| 11.1 | What the Future of AI in Research Actually Looks Like | Futures | Which 2–5 year trajectories are real, overclaimed, or speculation? |
-| 11.2 | The Shifting Research Landscape: Policy, Peer Review, Integrity | Futures | What rules have changed for authors, reviewers, and grant applicants? |
-| 11.3 | Sovereign AI Capacity — and Why Compute Is the Floor | Africa | What does "sovereignty" mean, and what compute does Africa actually have? |
-| 11.4 | Data, Languages and African Model-Building | Africa | What models, datasets, and benchmarks for African research exist now? |
-| 11.5 | Policy, Institutions, and Talent | Africa | Where does the AU strategy meet country strategies meet research communities? |
-| 11.6 | Where This Leaves Your Research + Hands-On Activity | Both | How does a researcher position their work given everything in Weeks 1–11? |
+| 11.1 | What the Future of AI in Research Might Look Like | Futures | Which 2–5 year trajectories are real, overclaimed, or speculation? |
+| 11.2 | Speculative Futures: A Reading Guide | Futures | How do we read the genuinely speculative end of the AI-in-research literature? |
+| 11.3 | The Shifting Research Landscape: Policy, Peer Review, Integrity | Futures | What rules have changed for authors, reviewers, and grant applicants? |
+| 11.4 | Sovereign AI Capacity — and Why Compute Is the Floor | Africa | What does "sovereignty" mean, and what compute does Africa actually have? |
+| 11.5 | Data, Languages and African Model-Building | Africa | What models, datasets, and benchmarks for African research exist now? |
+| 11.6 | Policy, Institutions, and Talent | Africa | Where does the AU strategy meet country strategies meet research communities? |
+| 11.7 | Where This Leaves Your Research + Hands-On Activity | Both | How does a researcher position their work given everything in Weeks 1–11? |
 
 ---
 
