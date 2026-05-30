@@ -467,6 +467,212 @@ SL_SUPP_BODY = """
 
 
 # ---------------------------------------------------------------------------
+# Sub-Lesson 11.3 — The Shifting Research Landscape
+# ---------------------------------------------------------------------------
+
+SL3_BODY = """
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>In the eighteen months between January 2024 and mid-2026, the institutions that govern academic research &mdash; journals, learned societies, public funders, conference organisers &mdash; have pushed out more new rules about AI use than in any comparable period in their history. By August 2025, around <strong>83% of high-impact journals</strong> had a policy on AI use in peer review (up from 77% in March); around <strong>70% of journals across all impact tiers</strong> had a policy on AI use by authors. The institutional response, by any standard, has been fast.</p>
+    <p>And yet, in the same period, the practice gap has stayed almost flat. Of more than 75,000 papers published since 2023 that a recent <em>PNAS</em> study examined in full text, only <strong>about 0.1% explicitly disclosed AI use</strong>. Journals with and without AI policies show statistically indistinguishable growth in detectable AI-written content. The rules have moved; researcher behaviour has not.</p>
+    <p>This sub-lesson maps the new institutional landscape in the form a postgraduate researcher actually has to navigate it. We look in turn at the policies that bind <em>authors</em>, those that bind <em>reviewers</em>, those that bind <em>grant applicants</em> &mdash; with a particular note on where the South African NRF sits, which is &ldquo;nowhere yet&rdquo; &mdash; and then at the detection-and-integrity layer that has emerged in parallel. We close with a short exercise that connects the two halves of the picture: by the time you submit your first paper, you should already know what each of the institutions you are submitting to will require of you.</p>
+  </div>
+
+  <h2 class="section-title">&#127963;&#65039; The Eighteen-Month Policy Surge</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The clearest empirical picture of how journal policies have evolved comes from a March 2026 study by Wang and Gong (<em>Learned Publishing</em>) which examined the AI policies of 439 high-impact-factor journals and 363 middle-impact-factor journals across 21 disciplines, collected at two time points five months apart. The headline finding is that 24.5% of high-impact journals revised their AI peer-review policies in those five months alone; the rate of policy change is roughly an order of magnitude faster than the rate of change in other publication-ethics areas.</p>
+
+  <div class="technical-detail">
+    <h4>&#128214; Five typical policy types, tied to major publishers</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Wang and Gong identify five distinct policy templates that account for the bulk of high-impact-journal AI rules. They differ in <em>what</em> they permit, but agree on one principle.</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>OUP (Oxford University Press) &mdash;</strong> defers to the broader publication-ethics consensus (COPE guidelines) and does not yet have a journal-specific generative-AI policy. Authors are expected to disclose; the editorial stance on use is permissive.</li>
+      <li><strong>Elsevier &mdash;</strong> the most prohibitive of the five. Bans generative AI from all stages of peer review and editorial decision-making; bans uploading manuscripts to AI platforms.</li>
+      <li><strong>Springer Nature &mdash;</strong> emphasises confidentiality. Does not ban AI use outright, but prohibits uploading manuscript content (including figures and tables) to generative-AI services, on the grounds that such uploads breach the confidentiality of peer review.</li>
+      <li><strong>Wiley &mdash;</strong> structurally similar to Springer Nature: limited use permitted; no manuscript upload to AI platforms.</li>
+      <li><strong>ACM (Association for Computing Machinery) &mdash;</strong> the most permissive of the five. Editors and reviewers may use generative AI to support their work, provided confidential information (author identities, manuscript content) is first removed.</li>
+    </ul>
+    <p style="color: #444; line-height: 1.75; margin-top: 12px;"><strong>The one principle all five share:</strong> AI cannot replace human judgement on a manuscript&#39;s scientific innovation or professional standing. That is the consensus the entire field has settled on, however it is operationalised.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There is also a clear disciplinary stratification, visible in the same study. Materials science, chemistry, and agricultural science journals are the strictest: more than half of high-impact journals in those fields explicitly prohibit AI use in peer review. Arts &amp; humanities, computer science, and mathematics journals are the most permissive &mdash; partly because the publication culture in those fields was already more comfortable with computational tools, partly because the empirical risks (fabricated experimental data, fabricated chemical structures) are less acute than in the lab sciences. If you are a postgraduate working in a less-tightly-policed field, the lesson is not that the rules do not apply &mdash; the broader publishing consensus still does &mdash; but that you should expect the formal policy to lag where the actual practice already is.</p>
+
+  <div class="info-box">
+    <h4>&#128221; The international authorship consensus, in one paragraph</h4>
+    <p>Across the journal-policy landscape, three things are universal as of mid-2026: <em>AI cannot be listed as an author</em>, on the grounds that authorship implies responsibility and AI cannot take responsibility; <em>AI use that materially shaped the paper must be disclosed</em>, typically in the Methods and/or Acknowledgements; and <em>the human authors remain accountable for everything in the manuscript</em>, including any text or figures the AI produced. This is the position of the International Committee of Medical Journal Editors, of the Committee on Publication Ethics, of Nature, of Science, and of essentially every major learned society. If you remember nothing else from this sub-lesson, remember the three rules.</p>
+  </div>
+
+  <h2 class="section-title">&#128270; Reviewers: Where the Rules Are Most Prohibitive</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The reviewer side of the picture is the one where the institutions have moved most firmly. The reason is that reviewer use of AI raises a structural problem the author side does not: a reviewer uploading a confidential manuscript to a public AI service has breached the confidentiality of peer review, regardless of how good the resulting review is.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The clearest examples are the major public funders and the top conferences. The picture, as of mid-2026, is roughly as follows:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>NIH (United States)</h3>
+      <p>Notice NOT-OD-23-149, issued 23 June 2023 and still in force, prohibits reviewers of NIH grant proposals from using generative AI to analyse or critique applications. The stated rationale is confidentiality. NIH followed up in 2025 with an applicant-side policy too (see below).</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://grants.nih.gov/grants/guide/notice-files/NOT-OD-23-149.html" target="_blank" rel="noopener">grants.nih.gov</a></p>
+    </div>
+    <div class="card">
+      <h3>NSF (United States)</h3>
+      <p>NSF&#39;s policy notice of 14 December 2023 prohibits reviewers from uploading proposal content to non-approved AI tools, on the same confidentiality grounds. The proposer-side stance is more permissive: AI use is permitted but transparency is encouraged.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://new.nsf.gov/news/notice-to-the-research-community-on-ai" target="_blank" rel="noopener">nsf.gov</a></p>
+    </div>
+    <div class="card">
+      <h3>UKRI (United Kingdom)</h3>
+      <p>UKRI&#39;s policy on generative AI in application and assessment, published 20 September 2024 and updated 3 December 2024, requires applicant transparency and prohibits reviewers from using generative AI to assess proposals.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://www.ukri.org/publications/generative-artificial-intelligence-in-application-and-assessment-policy/" target="_blank" rel="noopener">ukri.org</a></p>
+    </div>
+    <div class="card">
+      <h3>NeurIPS (Conference)</h3>
+      <p>The NeurIPS 2025 LLM policy is the cleanest top-conference statement. Authors must document any non-trivial use of LLMs in their submission; reviewers must not share submitted papers or code with any LLM, hosted or otherwise. The reviewer-side ban is absolute.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://neurips.cc/Conferences/2025/LLM" target="_blank" rel="noopener">neurips.cc</a></p>
+    </div>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A less-noticed pattern in Wang and Gong&#39;s data is worth flagging here, because it bears on whether the rules are actually being implemented. The proportion of high-impact journals with AI policies <em>specifically for editors</em> &mdash; the people inside the publishing system, as distinct from the external reviewers &mdash; rose from <strong>41% in March 2025 to 64.3% in August 2025</strong>. In other words, a 23-percentage-point jump in five months in the segment of policy that addresses what the publishing infrastructure itself is allowed to do. This is the bit of the institutional response that has been moving fastest, and the bit that gets the least public coverage.</p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; What the rules do not change</h4>
+    <p>Liang et al. (arXiv:2410.03019, 2024) ran a content analysis of recent peer-review reports and estimated that approximately <strong>20% of reviews at a top computer-science conference</strong> and approximately <strong>12% of reviews at <em>Nature Communications</em></strong> exhibited textual signatures consistent with significant LLM contribution. The reviewer-side ban is on the books at most major venues; a measurable fraction of reviews are nonetheless being written with AI help. As with the author-side picture, the policy is not the practice.</p>
+  </div>
+
+  <h2 class="section-title">&#128190; Grant Applicants: What&#39;s Required, and the South African Gap</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Funder rules for what applicants can do with AI in proposal writing have lagged the reviewer-side rules by about a year, but have caught up sharply during 2025. The major Northern funders now all have an applicant-side policy of some kind.</p>
+
+  <ul class="styled-list">
+    <li><strong>NIH (United States), applicant side &mdash;</strong> from the receipt date of 25 September 2025, applications &ldquo;substantially developed by AI&rdquo; will not be considered to constitute original ideas of the applicant. NIH also imposed a cap of six applications per principal investigator per year, in part to slow the AI-enabled production of large numbers of low-effort applications.</li>
+    <li><strong>UKRI &mdash;</strong> applicants are required to be transparent about generative-AI use in their proposals; the responsibility for accuracy and integrity remains with the applicant.</li>
+    <li><strong>NSF &mdash;</strong> applicant-side disclosure is &ldquo;encouraged&rdquo;, but not yet required in the same binding way as the reviewer-side prohibition.</li>
+    <li><strong>Wellcome Trust, ERC, and most European funders &mdash;</strong> have adopted positions broadly similar to UKRI: transparency required, no outright prohibition, accountability sits with the applicant.</li>
+  </ul>
+
+  <div class="case-study">
+    <h4>&#127489;&#127462; The NRF (South Africa) gap</h4>
+    <p>The South African National Research Foundation, the principal public funder for the research most postgraduate students in this course will eventually apply to, has <strong>no policy</strong> on generative AI use in grant applications as of May 2026. The NRF General Application Guide for 2025&ndash;2026, the binding document that sets the rules every applicant must comply with, does not mention generative AI, ChatGPT, or large language models anywhere in its text. The NRF does not prohibit AI use in applications, nor does it require disclosure, nor does it offer guidance.</p>
+    <p>This is a fact, not a judgement. Many national funders in the Global South are in the same position. But it has two practical implications for you. <em>First,</em> if you are applying to the NRF directly, you are operating in a policy vacuum. There are no formal rules. <em>Second &mdash; and more important &mdash; the international norms still apply to you.</em> If you publish work supported by an NRF grant in an Elsevier or Wiley or Nature journal, the journal&#39;s AI policy binds you. If you collaborate with a NIH-funded research group on a paper, NIH&#39;s rules will apply to the proposal you submit jointly. The NRF gap is a gap in domestic policy, not in the international rules that will actually govern most of your published work.</p>
+    <p>If you want to do something useful for the local research community before you finish your PhD, drafting an NRF AI-disclosure policy proposal &mdash; even a one-page version &mdash; is the kind of contribution that would be genuinely valuable.</p>
+    <p style="color: #888; font-size: 0.9em;"><a href="https://www.nrf.ac.za/wp-content/uploads/2025/02/General-Application-Guide-2025-2026.pdf" target="_blank" rel="noopener">NRF General Application Guide 2025&ndash;2026 (PDF)</a></p>
+  </div>
+
+  <h2 class="section-title">&#128202; Policy &ne; Practice: The He &amp; Bu Centre</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The single most important recent study on whether any of this institutional response is actually changing researcher behaviour is He and Bu (2026), <em>Academic Journals&#39; AI Policies Fail to Curb the Surge in AI-Assisted Academic Writing</em> &mdash; published in <em>PNAS</em> in March 2026 (DOI 10.1073/pnas.2526734123). It is the largest study of its kind to date, and the answer it gives is bracing.</p>
+
+  <div class="technical-detail">
+    <h4>&#128202; The He &amp; Bu numbers</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The study examines <strong>5,114 journals</strong> in the Journal Citation Report Q1 category and <strong>5,235,012 papers</strong> they published between January 2021 and June 2025. Journal AI policies are collected at two time points (January 2025 and October 2025). The disclosure analysis uses a sub-sample of 164,579 full-text papers, of which 75,172 were published after January 2023 (the post-ChatGPT period).</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The headline findings:</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>~70% of journals have AI policies.</strong> Of the 5,114 journals, 3,556 require disclosure, 1,529 do not mention AI at all, 27 strictly prohibit AI use, and 2 have explicitly open policies. Between January and October 2025, roughly 800 more journals moved into the &ldquo;disclosure required&rdquo; category.</li>
+      <li><strong>~0.1% of papers actually disclose.</strong> Of the 75,172 post-2023 full-text papers, only <strong>76 papers</strong> explicitly disclosed AI use in the methods or acknowledgements. The disclosure rate rose from 0.01% in early 2023 to 0.43% in Q1 2025 &mdash; growth, but from a vanishing base.</li>
+      <li><strong>Q1 2025 underreporting ratio: ~40:1.</strong> For every paper that formally disclosed AI use, roughly 40 papers showed statistical evidence of AI-generated content (measured by maximum-likelihood estimation on text patterns, cross-validated by three other detection methods).</li>
+      <li><strong>The decisive finding: parallel growth curves.</strong> AI-content levels grow at <em>statistically the same rate</em> in journals that have AI policies and in journals that do not (Mann-Whitney U tests; no significant difference). The presence of a policy is not slowing the adoption of AI writing.</li>
+    </ul>
+    <p style="color: #444; line-height: 1.75; margin-top: 12px;">The pattern is uneven across groups: physical sciences grow fastest, non-English-speaking countries (with China most prominent) grow faster than English-speaking ones, and high-open-access publishers (MDPI, Frontiers) show higher AI-content levels than low-OA ones (Elsevier, Springer Nature, Wiley). On the disclosed tools: <em>ChatGPT</em> dominates the 76 disclosures (62 instances), with Grammarly, Claude, and DeepL trailing.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The He &amp; Bu finding is not that policies are pointless. The authors are explicit that the modest rise in disclosures, even from 0.01% to 0.43%, suggests policies are slowly shifting a small subset of researchers toward transparency. What policies are <em>not</em> doing &mdash; clearly &mdash; is curbing the underlying use. The gap between policy and practice, in their data, is roughly an order of magnitude wider than the policy-revision activity has been able to close.</p>
+
+  <div class="info-box">
+    <h4>&#128221; A meta-touch worth noting</h4>
+    <p>He &amp; Bu themselves explicitly declare their own AI use in the methods section: they used ChatGPT-4o-mini and Gemini 2.5 Flash via API for large-scale data processing and Claude (the conversational interface) for qualitative auditing and logic checks. The paper that catalogues how few researchers disclose AI use models good practice itself. It is the easiest pedagogical example you will find in this literature of what the disclosure norm looks like in actual operation.</p>
+  </div>
+
+  <h2 class="section-title">&#128270; The Detection-and-Integrity Layer</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In parallel with the policy surge, a small industry of AI-content detection tools and academic-integrity research has grown up to try to enforce, or at least measure, what the policies require. The most useful thing to know about this layer is that <em>detection does not work reliably enough to be the front line of integrity</em>. The institutional rules will continue to depend, in the end, on disclosure by authors and on the social norms in research communities. Detection plays a supporting role; it is not a substitute.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Three concrete results give the shape of the current picture.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Tortured-phrase detection (Cabanac et al.)</h3>
+      <p>The <em>Problematic Paper Screener</em> (Cabanac, Labb&eacute;, Magazinov) maintains a database of more than 5,000 &ldquo;tortured phrases&rdquo; &mdash; oddly translated or rephrased technical terms (e.g. &ldquo;haze figuring&rdquo; for &ldquo;cloud computing&rdquo;) that are characteristic of paper-mill output and machine-paraphrased writing.</p>
+      <p>Useful: catches a specific kind of fraud cheaply. Limited: addresses paper-mill style, not careful GenAI use.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://arxiv.org/abs/2402.03370" target="_blank" rel="noopener">arXiv:2402.03370</a></p>
+    </div>
+    <div class="card">
+      <h3>JBJS estimate (Callanan et al., 2025)</h3>
+      <p>An analysis of a single orthopaedic journal estimated that approximately <strong>38% of papers</strong> recently published in the <em>Journal of Bone &amp; Joint Surgery</em> may contain AI-generated content. The figure is contested and method-dependent, but it is one of the highest credible field-specific estimates in print.</p>
+      <p>Useful: gives a sense of upper-bound prevalence. Limited: single-journal, methodologically contestable.</p>
+      <p style="color: #888; font-size: 0.9em;">Callanan et al., 2025.</p>
+    </div>
+    <div class="card">
+      <h3>Retraction Watch ChatGPT tracker</h3>
+      <p>The <em>Retraction Watch</em> blog maintains a running list of papers and peer-review reports containing telltale LLM phrases (e.g. &ldquo;As an AI language model, I cannot&hellip;&rdquo;) that survived to publication or to a posted review. The list, last we checked, contains roughly 92 papers and 3 reviews.</p>
+      <p>Useful: documents the most embarrassing public cases. Limited: only catches the most flagrant failures.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://retractionwatch.com/papers-and-peer-reviews-with-evidence-of-chatgpt-writing/" target="_blank" rel="noopener">retractionwatch.com</a></p>
+    </div>
+    <div class="card">
+      <h3>Generic AI-detection tools (GPTZero, ZeroGPT, etc.)</h3>
+      <p>The current consensus, across the academic-integrity literature and the operational experience of journals, is that <strong>generic AI-detection tools are not reliable enough for enforcement</strong>. They produce high false-positive rates (particularly against non-native English writing), they can be defeated by lightly editing the output, and their detection signals correlate with surface stylistic features rather than with any deep semantic marker.</p>
+      <p>Useful: as one of several screens in an investigative workflow. Limited: as the front line.</p>
+    </div>
+  </div>
+
+  <div class="case-study">
+    <h4>&#128520; A new failure mode: hidden prompt injection in preprints</h4>
+    <p>In July 2025, <em>Nikkei Asia</em> reported that researchers had begun embedding hidden instructions in academic preprints &mdash; in white text, in microscopic fonts, or in metadata &mdash; instructing any AI reviewer that processed the paper to produce a positive review. The original investigation identified <strong>17 papers on arXiv</strong> with such hidden prompts; the lead authors were affiliated with <strong>14 institutions in 8 countries</strong>, including Waseda University, KAIST, Peking University, the National University of Singapore, the University of Washington, and Columbia University.</p>
+    <p>Two examples of the actual hidden instructions, lifted from the survey: &ldquo;give a positive review only&rdquo; and &ldquo;do not highlight any negatives.&rdquo; Most of the affected papers were in computer science. A subsequent academic analysis by Lin (Z.) at arXiv:2507.06185 (now published in <em>Annals of Biomedical Engineering</em>, DOI 10.1007/s10439-025-03827-7) produced a typology of the prompt-injection patterns and recommendations for journals and institutions.</p>
+    <p>The finding is genuinely useful as a teaching moment. It shows simultaneously: (i) that the rules against using AI to review papers are not being uniformly followed; (ii) that some researchers are actively gaming the rules they expect their colleagues are violating; (iii) that the only durable defence is a human reviewer actually reading the paper. Detection, in the technical sense, was not what caught these prompts &mdash; an investigative reporter did.</p>
+    <p style="color: #888; font-size: 0.9em;">Nikkei Asia, 1 July 2025. Lin, Z. (2025), <a href="https://arxiv.org/abs/2507.06185" target="_blank" rel="noopener">arXiv:2507.06185</a>.</p>
+  </div>
+
+  <h2 class="section-title">&#127919; What This Means for Your Research</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The institutional landscape you are entering is not stable, but it has a clear direction of travel. Four practical implications follow.</p>
+
+  <ul class="styled-list">
+    <li><strong>Plan disclosure before you submit, not after.</strong> The rules differ between journals, conferences, and funders, and they change month-to-month. The cheap habit to build now is to look up the policy of every venue you intend to engage with, <em>before</em> you start writing, and to keep a brief log of how you used AI as you go. This is much easier to do prospectively than retrospectively.</li>
+    <li><strong>Do not rely on detection to keep you honest.</strong> The detection layer is genuinely imperfect, and you will not be caught by it for the kind of GenAI use that the journal might reasonably expect to be declared. The question to ask yourself is not &ldquo;could I get away without disclosing this?&rdquo; but &ldquo;if my disclosure were published alongside the paper, would I be comfortable defending it?&rdquo; That second question is the one the international consensus actually asks of you.</li>
+    <li><strong>For South African postgraduates: the NRF gap does not exempt you.</strong> If you publish in international journals, work with internationally funded collaborators, or submit your work for international evaluation, the international rules apply to you regardless of what the NRF does or does not require. Build a transparent practice now.</li>
+    <li><strong>Take the He &amp; Bu finding seriously.</strong> The fact that the median researcher in their dataset does not disclose AI use is not a licence to do the same. It is the strongest evidence we have that the policy environment will continue to tighten until practice catches up. The researchers who will be best positioned in five years are those whose practice was already at the standard the policies eventually enforce.</li>
+  </ul>
+
+  <div class="highlight-box">
+    <h3>&#128161; <span style="color: #ffffff;">The one habit to build</span></h3>
+    <p>Pick your most likely target journal in your discipline. Pick your most likely target funder. Find each one&#39;s current AI policy. Read it once. Decide, in writing, what your default disclosure practice will be when you submit. Revisit annually.</p>
+    <p>That single 20-minute exercise puts you ahead of about 99% of researchers globally, on the He &amp; Bu numbers.</p>
+  </div>
+
+  <h2 class="section-title">&#9999;&#65039; A Short Exercise</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.8;">For the in-class session:</p>
+
+  <ol class="step-list">
+    <li><strong>Pick the journal you would most realistically submit your first research paper to,</strong> based on your field and stage. Find its current AI policy. Write a paragraph: what does it require? What does it leave unaddressed?</li>
+    <li><strong>Pick the funder you would most realistically apply to</strong> in the next three years &mdash; NRF, NIH, Wellcome, a foundation, an industry partner. Find its current policy on AI in applications. Write a paragraph: what does it require? What does it leave unaddressed?</li>
+    <li><strong>Write one further paragraph</strong> describing, in concrete terms, how you intend to handle AI use in your own work as a result. Are there things you will not delegate? Things you will always disclose? Things you will log? This becomes one input to the Week-12 capstone pitch.</li>
+    <li><strong>Bring all three paragraphs to class.</strong> We will pool them and look at the disciplinary patterns across the cohort.</li>
+  </ol>
+
+  <h2 class="section-title">&#128218; Sources &amp; Further Reading</h2>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Primary sources used in this sub-lesson</h4>
+    <p><strong>He, Y. &amp; Bu, Y. (2026).</strong> Academic journals&#39; AI policies fail to curb the surge in AI-assisted academic writing. <em>PNAS</em>. <a href="https://www.pnas.org/doi/10.1073/pnas.2526734123" target="_blank" rel="noopener">DOI 10.1073/pnas.2526734123</a>. Preprint at <a href="https://arxiv.org/abs/2512.06705" target="_blank" rel="noopener">arXiv:2512.06705</a>.</p>
+    <p><strong>Wang, Z. &amp; Gong, M. (2026).</strong> A Cross-Disciplinary Analysis of AI Policies in Academic Peer Review. <em>Learned Publishing</em> 39:e2035. <a href="https://doi.org/10.1002/leap.2035" target="_blank" rel="noopener">DOI 10.1002/leap.2035</a>. CC&nbsp;BY-NC.</p>
+    <p><strong>Liang, W. et al. (2024).</strong> Mapping the Increasing Use of LLMs in Scientific Papers. <a href="https://arxiv.org/abs/2410.03019" target="_blank" rel="noopener">arXiv:2410.03019</a>.</p>
+    <p><strong>Lin, Z. (2025).</strong> Hidden Prompts in Manuscripts Threaten the Integrity of Peer Review and Research. <a href="https://arxiv.org/abs/2507.06185" target="_blank" rel="noopener">arXiv:2507.06185</a>. Published version in <em>Annals of Biomedical Engineering</em>, <a href="https://doi.org/10.1007/s10439-025-03827-7" target="_blank" rel="noopener">DOI 10.1007/s10439-025-03827-7</a>.</p>
+    <p><strong>Nikkei Asia (1 July 2025).</strong> &ldquo;Positive review only&rdquo;: Researchers hide AI prompts in papers. (Original investigative report.)</p>
+    <p><strong>Cabanac, G., Labb&eacute;, C., Magazinov, A. (2024).</strong> Problematic Paper Screener. <a href="https://arxiv.org/abs/2402.03370" target="_blank" rel="noopener">arXiv:2402.03370</a>.</p>
+    <p><strong>Retraction Watch ChatGPT tracker.</strong> <a href="https://retractionwatch.com/papers-and-peer-reviews-with-evidence-of-chatgpt-writing/" target="_blank" rel="noopener">retractionwatch.com</a> (running list).</p>
+    <p><strong>NIH Notice NOT-OD-23-149 (23 June 2023).</strong> <a href="https://grants.nih.gov/grants/guide/notice-files/NOT-OD-23-149.html" target="_blank" rel="noopener">grants.nih.gov</a>.</p>
+    <p><strong>NSF Notice (14 December 2023).</strong> <a href="https://new.nsf.gov/news/notice-to-the-research-community-on-ai" target="_blank" rel="noopener">nsf.gov</a>.</p>
+    <p><strong>UKRI policy (20 September 2024; updated 3 December 2024).</strong> <a href="https://www.ukri.org/publications/generative-artificial-intelligence-in-application-and-assessment-policy/" target="_blank" rel="noopener">ukri.org</a>.</p>
+    <p><strong>ICMJE recommendations on AI use by authors.</strong> <a href="https://www.icmje.org/recommendations/browse/artificial-intelligence/ai-use-by-authors.html" target="_blank" rel="noopener">icmje.org</a>.</p>
+    <p><strong>NeurIPS 2025 LLM policy.</strong> <a href="https://neurips.cc/Conferences/2025/LLM" target="_blank" rel="noopener">neurips.cc</a>.</p>
+    <p><strong>NRF General Application Guide 2025&ndash;2026.</strong> <a href="https://www.nrf.ac.za/wp-content/uploads/2025/02/General-Application-Guide-2025-2026.pdf" target="_blank" rel="noopener">nrf.ac.za PDF</a>. (Notable for the absence of any reference to AI.)</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.4:</strong> we turn from the institutional landscape to the structural foundations of African AI sovereignty &mdash; defining what &ldquo;sovereign AI capacity&rdquo; means across five layers, and then going deep on the one that everything else depends on: compute. The South African CHPC, the Cassava&ndash;NVIDIA AI Factory, the stalled Microsoft&ndash;G42 Kenya deal, and the gap between what has been announced and what is actually built.</p>
+"""
+
+
+# ---------------------------------------------------------------------------
 # SUBLESSONS list — grows as sub-lessons are drafted
 # ---------------------------------------------------------------------------
 
@@ -489,12 +695,21 @@ SUBLESSONS = [
         "header_subtitle": "Reading further into the genuinely speculative end of the AI-in-research literature &mdash; frameworks, forecasts, institutional visioning, and wild speculation, with calibration",
         "body": SL_SUPP_BODY,
     },
+    {
+        "filename": "The Shifting Research Landscape.html",
+        "title": "Week 11.3 - The Shifting Research Landscape: Policy, Peer Review, Integrity",
+        "badge": "Week 11 &bull; Sub-Lesson 3",
+        "header_emoji": "&#127963;&#65039;",  # classical building / institution
+        "header_title": "The Shifting Research Landscape",
+        "header_subtitle": "How journal policies, funder rules, and peer-review norms have moved in the last 18 months &mdash; and why researcher practice has not kept pace",
+        "body": SL3_BODY,
+    },
 ]
 
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>3. The Shifting Research Landscape (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>4. Sovereign AI Capacity, and Why Compute Is the Floor (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>4. Sovereign AI Capacity, and Why Compute Is the Floor (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
