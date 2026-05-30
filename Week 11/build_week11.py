@@ -726,7 +726,7 @@ SL4_BODY = """
     <div class="card">
       <h3>The Esethu Framework (Rajab et al., 2025) &mdash; community-grounded data governance</h3>
       <p>The Esethu Framework, developed by a South-Africa-led team at ACL 2025, proposes community-centric licensing for African-language datasets: communities retain rights over how their language data is used, benefit-sharing is required, and the licence itself is structured to keep agency with the community rather than with the downstream model developer. The Vuk&#39;uzenzele isiXhosa corpus is the first published dataset under the framework.</p>
-      <p style="color: #888; font-size: 0.9em;">Rajab, J., Aremu, A., Chimoto, E. A., et al. (2025). arXiv:2502.15916.</p>
+      <p style="color: #888; font-size: 0.9em;">Rajab, J., Aremu, A., Chimoto, E. A., et al. (2025). <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>.</p>
     </div>
     <div class="card">
       <h3>Mutung&#39;u et al. (2026) &mdash; individual digital sovereignty</h3>
@@ -739,7 +739,7 @@ SL4_BODY = """
 
   <div class="info-box">
     <h4>&#128587;&#127998;&#8205;&#9794;&#65039; Two practitioners worth naming</h4>
-    <p><strong>Pelonomi Moiloa</strong>, CEO of Lelapa AI, has built much of her company&#39;s public positioning around the idea of <em>Resource-Efficient AI</em>: that African sovereign AI capacity is not best pursued by trying to replicate the compute footprint of Silicon Valley labs but by building models small enough and efficient enough that the available infrastructure can actually support them. InkubaLM, the 0.4 billion-parameter African-language model we covered in Week 10, is the engineering expression of that argument.</p>
+    <p><strong>Pelonomi Moiloa</strong>, CEO of Lelapa AI, has built much of her company&#39;s public positioning around the idea of <em>Resource-Efficient AI</em>: that African sovereign AI capacity is not best pursued by trying to replicate the compute footprint of Silicon Valley labs but by building models small enough and efficient enough that the available infrastructure can actually support them. Moiloa has made the case publicly in a number of places &mdash; most directly in the Lelapa AI blog piece <em>The Future of AI is Resource-Efficient and We&#39;re Building It</em> (8 January 2026, Shikwambane, with Moiloa quoted at length in the &ldquo;Designing for constraint, not abundance&rdquo; section: <em>&ldquo;design for efficiency from the start&rdquo;</em>; <em>&ldquo;performance does not depend on scale alone&rdquo;</em>) &mdash; and in her 2024 <em>Rest of World</em> interview <em>The CEO who believes Africans must make their own AI tools</em> (27 February 2024), where she puts the argument in democratisation terms: <em>&ldquo;Creating models that require fewer resources to train democratizes access for users and developers, which allows the benefits of the technology to be shared more broadly, rather than only being available to a select few who can afford the exorbitant costs.&rdquo;</em> InkubaLM, the 0.4 billion-parameter African-language model we covered in Week 10, is the engineering expression of that argument. <a href="https://lelapa.ai/blog/the-future-of-ai-is-resource-efficient" target="_blank" rel="noopener">Lelapa blog</a> &middot; <a href="https://restofworld.org/2024/3-minutes-with-pelonomi-moiloa/" target="_blank" rel="noopener">Rest of World</a>.</p>
     <p><strong>Vukosi Marivate</strong>, ABSA Chair of Data Science at the University of Pretoria and a co-founder of Lelapa AI, Deep Learning Indaba, and Masakhane, was awarded the Order of Mapungubwe (Silver) in 2024 for contributions to AI, computer science, and natural-language processing. He was subsequently seated on the UN Independent International Scientific Panel on AI (12 February 2026, 40 members), as the most prominent African member of that panel. Together, Moiloa and Marivate represent the operational and institutional arms of the African sovereignty conversation &mdash; the people building the infrastructure that the philosophical and policy positions are arguing about.</p>
   </div>
 
@@ -756,7 +756,7 @@ SL4_BODY = """
     <p>The pedagogical point: when an African government talks about &ldquo;sovereign AI&rdquo;, the most useful first question is not &ldquo;do we have our own compute?&rdquo; but &ldquo;<em>whose rights is the AI infrastructure we depend on bound to respect?</em>&rdquo;</p>
   </div>
 
-  <h2 class="section-title">&#127465;&#127466; How Northern Framings Differ</h2>
+  <h2 class="section-title">&#129517; How Northern Framings Differ</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Two non-African framings of sovereign AI dominate the public discussion: a <em>vendor</em> framing led by NVIDIA, and an <em>analytical-policy</em> framing led by think tanks and academic policy centres. They differ from each other almost as much as they differ from the African strand, and they are worth holding distinct. The pedagogical point of this section is not to dismiss either &mdash; the policy strand in particular has substantial analytical value &mdash; but to be clear about what each is doing and to read it from the African home base rather than the other way around.</p>
 
@@ -892,7 +892,7 @@ SL4_BODY = """
   <div class="card-grid">
     <div class="card">
       <h3>UCT African Compute Initiative (ACI)</h3>
-      <p>Announced in March 2026 and led from UCT, the African Compute Initiative is the most directly relevant near-term option for postgraduate AI work on the continent. The plan is for an operational cluster within twelve months, scaling to roughly 100 users in the first year and around 300 users across at least five partner institutions by year three. The initiative is positioned explicitly as African higher-education-dedicated AI compute &mdash; the missing piece in the picture above. Interim Director: A/Prof Jonathan Shock, UCT (the instructor of this course).</p>
+      <p>Announced in March 2026 and led from UCT, the African Compute Initiative is the most directly relevant near-term option for postgraduate AI work on the continent &mdash; <strong>but it is not yet operational as of May 2026</strong>, and when it is, access will not be open to everyone. The first cohort will focus on <strong>UCT researchers and AI4D-affiliated labs</strong>. The plan is for an operational cluster within twelve months, scaling to roughly 100 users in the first year and around 300 users across at least five partner institutions by year three. The initiative is positioned explicitly as African higher-education-dedicated AI compute &mdash; the missing piece in the picture above. Interim Director: A/Prof Jonathan Shock, UCT (the instructor of this course).</p>
       <p style="color: #888; font-size: 0.9em;"><a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">UCT AI ACI announcement</a></p>
     </div>
     <div class="card">
@@ -906,6 +906,11 @@ SL4_BODY = """
       <p style="color: #888; font-size: 0.9em;"><a href="https://www.cassavatechnologies.com/" target="_blank" rel="noopener">cassavatechnologies.com</a></p>
     </div>
     <div class="card">
+      <h3>DataSpires</h3>
+      <p>A marketplace platform that aggregates verified GPU clusters and compute resources across more than 25 African data-centre sites (Lagos, Nairobi, Cairo, Johannesburg, Accra, Casablanca and others) and exposes them to individual researchers and developers via Colab-style notebooks, a programmatic SDK (AfriLink), a cloud VS Code IDE, and on-demand inference endpoints. The framing is explicitly &ldquo;democratise access to AI infrastructure in Africa&rdquo;: Africa-located compute, self-service rather than institutional contract. As of May 2026 it is in early access with a public waitlist; for postgraduate researchers wanting an Africa-hosted alternative to the US free-tier cloud, it is the closest thing that currently exists at the individual-user tier, and worth joining the waitlist for if your project would benefit from running on African soil.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://dataspires.com" target="_blank" rel="noopener">dataspires.com</a></p>
+    </div>
+    <div class="card">
       <h3>Free-tier cloud (the honest default)</h3>
       <p>For day-to-day individual experiments, the practical default for most African postgraduate researchers in May 2026 remains the US free-tier cloud: Google Colab&#39;s free T4 GPU (15&ndash;30 hours per week, depending on usage history), Kaggle&#39;s free T4 and P100 access (30+ hours per week), and Hugging Face Spaces (shared CPU and limited GPU). These are imperfect, foreign, and depend on the continued generosity of US platforms &mdash; but they are what is actually usable today by most students.</p>
     </div>
@@ -913,7 +918,7 @@ SL4_BODY = """
 
   <div class="highlight-box">
     <h3>&#128161; <span style="color: #ffffff;">The honest position, summarised</span></h3>
-    <p>As of May 2026, an African postgraduate researcher still primarily depends on US free-tier cloud for day-to-day AI compute work. Dedicated national and continental compute capacity is announced and partly procured but not yet broadly available. The UCT African Compute Initiative is the most concrete near-term change to this picture and is worth applying to early. CHPC remains the SA fallback for institutional academic use.</p>
+    <p>As of May 2026, an African postgraduate researcher still primarily depends on US free-tier cloud for day-to-day AI compute work. Dedicated national and continental compute capacity is announced and partly procured but not yet broadly available. DataSpires is the most concrete individual-user-facing change to this picture, although still in early access; the UCT African Compute Initiative is the most concrete institutional change but is not yet operational. CHPC remains the SA fallback for institutional academic use.</p>
     <p style="margin-top: 15px;">Sovereign compute, in the sense of physical infrastructure on African soil that African researchers can use, is real and growing &mdash; but in May 2026 it is still smaller than the foreign cloud capacity most of us actually run on.</p>
   </div>
 
@@ -922,7 +927,7 @@ SL4_BODY = """
   <ul class="styled-list">
     <li><strong>Design for the compute you can actually access.</strong> A research project that requires training a 70B-parameter model from scratch is not feasible from an African university institution in May 2026, with or without free-tier cloud. A research project that requires fine-tuning a 7B-parameter model, or running inference on a hosted frontier model, is feasible. The sovereign-compute story above should inform the <em>scope</em> of your project, not just your politics.</li>
     <li><strong>Resource efficiency is a sovereignty practice.</strong> The Lelapa argument &mdash; that building smaller, more efficient models on accessible infrastructure is itself a sovereignty move &mdash; is operationally honest about the current picture. InkubaLM, MzansiLM, and the other African foundation models we covered in Week 10 are examples of this strategy in practice.</li>
-    <li><strong>Apply to the UCT ACI now if it fits your work.</strong> The initiative&#39;s first-year cohort is small (~100 users) and the application process is being set up during 2026. Postgraduates in this course are exactly the audience the initiative is for.</li>
+    <li><strong>Apply to the UCT ACI once it opens if it fits your work.</strong> The initiative is not yet operational, and the first cohort is being scoped around UCT researchers and AI4D labs. Postgraduates in this course at UCT are part of the audience the initiative is being designed for; the application process is being set up during 2026.</li>
     <li><strong>Think of compute as one of five layers, not as the whole picture.</strong> The Worldcoin case is the reminder. Even if every GPU you used was hosted in Africa under African ownership, that on its own would not guarantee that the rights of the people whose data the model was trained on were protected. The other layers &mdash; data governance, model evaluation, policy, and talent &mdash; are where the African sovereignty conversation is doing some of its most distinctive work. We cover them in 11.5 and 11.6.</li>
   </ul>
 
@@ -946,6 +951,8 @@ SL4_BODY = """
     <p><strong>Mutung&#39;u, G., Martin, A. &amp; Brewczy&#324;ska, M. (2026).</strong> Regulatory entrepreneurship&#39;s threat to digital sovereignty: the case of Worldcoin in Kenya. <em>Science and Public Policy</em> 53(2), 289&ndash;299. <a href="https://academic.oup.com/spp/article/53/2/289/8654728" target="_blank" rel="noopener">academic.oup.com</a>.</p>
     <p><strong>Carroll, S. R., Garba, I., Figueroa-Rodr&iacute;guez, O. L., Holbrook, J., Lovett, R., Materechera, S., Parsons, M., Raseroka, K., Rodriguez-Lonebear, D., Rowe, R., Sara, R., Walker, J. D., Anderson, J. &amp; Hudson, M. (2020).</strong> The CARE Principles for Indigenous Data Governance. <em>Data Science Journal</em> 19(1): 43. Drafted at Gaborone in 2018. <a href="https://www.gida-global.org/care" target="_blank" rel="noopener">GIDA</a>.</p>
     <p><strong>African Union (2024).</strong> Continental Artificial Intelligence Strategy. Endorsed by the 45th Executive Council, Accra. <a href="https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy" target="_blank" rel="noopener">au.int</a>.</p>
+    <p><strong>Moiloa, P. (interviewed, 27 February 2024).</strong> <em>The CEO who believes Africans must make their own AI tools.</em> Rest of World. <a href="https://restofworld.org/2024/3-minutes-with-pelonomi-moiloa/" target="_blank" rel="noopener">restofworld.org</a>. The clearest single statement of Moiloa&#39;s case for resource-efficient African AI.</p>
+    <p><strong>Shikwambane, N. (8 January 2026).</strong> <em>The Future of AI is Resource-Efficient and We&#39;re Building It.</em> Lelapa AI blog. <a href="https://lelapa.ai/blog/the-future-of-ai-is-resource-efficient" target="_blank" rel="noopener">lelapa.ai</a>. Moiloa quoted at length on &ldquo;designing for constraint, not abundance&rdquo;.</p>
   </div>
 
   <div class="resource-placeholder">
@@ -961,6 +968,7 @@ SL4_BODY = """
     <p><strong>UCT African Compute Initiative.</strong> <a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">ai.uct.ac.za</a>.</p>
     <p><strong>CHPC.</strong> <a href="https://www.chpc.ac.za/" target="_blank" rel="noopener">chpc.ac.za</a>. Allocation requests via <a href="https://wiki.chpc.ac.za" target="_blank" rel="noopener">wiki.chpc.ac.za</a>.</p>
     <p><strong>Cassava Technologies.</strong> <a href="https://www.cassavatechnologies.com/cassava-scales-african-ai-infrastructure-with-nvidia-powered-ai-factories-to-accelerate-sovereign-data-capabilities/" target="_blank" rel="noopener">cassavatechnologies.com</a> (March 2025 partnership announcement).</p>
+    <p><strong>DataSpires.</strong> <a href="https://dataspires.com" target="_blank" rel="noopener">dataspires.com</a>. Marketplace platform aggregating GPU clusters across more than 25 African data-centre sites; individual-user access via notebooks, AfriLink SDK, cloud VS Code, and inference endpoints. Early access with public waitlist as of May 2026.</p>
     <p><strong>Tom&#39;s Hardware (May 2026).</strong> Microsoft&#39;s $1 billion Kenya data center stalls over disagreements on power capacity. <a href="https://www.tomshardware.com/tech-industry/microsofts-1-billion-kenya-data-center-stalls-over-disagreements-on-power-capacity" target="_blank" rel="noopener">tomshardware.com</a>.</p>
   </div>
 
