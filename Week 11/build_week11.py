@@ -312,6 +312,165 @@ SL1_BODY = """
 
 
 # ---------------------------------------------------------------------------
+# Supplementary — Speculative Futures: A Reading Guide
+# ---------------------------------------------------------------------------
+
+SL_SUPP_BODY = """
+  <div class="intro-text">
+    <h2>&#127919; What This Page Is For</h2>
+    <p>Sub-Lesson 11.1 deliberately stayed inside the next 2&ndash;5 years and inside well-documented results. This supplementary page is for students who want to read further into the genuinely <em>speculative</em> end of the AI-in-research literature &mdash; the work that asks not &ldquo;what does AI do for science now?&rdquo; but &ldquo;what could AI do for science, eventually, and what would that change?&rdquo;</p>
+    <p>The same calibration habit from 11.1 still applies &mdash; only more strongly. Confident sentences about 2030 are rarely better-grounded than confident sentences about 2026. Several of the works on this page are serious academic frameworks; a couple are essentially structured science fiction with a confident tone. The page is organised so you can tell them apart.</p>
+    <p>None of this is examinable. It is a reading guide for after the course finishes, when the question &ldquo;what kind of researcher do I want to be in a world where this stuff keeps moving?&rdquo; is going to be the one you actually have to answer.</p>
+  </div>
+
+  <h2 class="section-title">&#129516; A. Frameworks for Thinking About AI in Science</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If you only read one piece of speculative-futures work, make it one of these three. They are the conceptual scaffolding most subsequent debates are arguing inside.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>The three dimensions of AI in understanding (Krenn et al., 2022)</h3>
+      <p>Krenn and colleagues, writing in <em>Nature Reviews Physics</em>, set out a three-part framework for how AI can contribute to scientific understanding: as a <strong>computational microscope</strong> (observing things humans cannot), as a <strong>resource of inspiration</strong> (a muse for hypotheses), and as an <strong>agent of understanding</strong> &mdash; an AI that itself <em>understands</em> what it has found.</p>
+      <p>The paper itself classifies the third dimension as &ldquo;the ultimate, not yet existent&rdquo; capability. Read it for the calibrated framing as much as for the framework: this is what a serious speculative paper sounds like.</p>
+      <p style="color: #888; font-size: 0.9em;">Krenn, M. et al. (2022). On scientific understanding with artificial intelligence. <em>Nature Reviews Physics</em> 4, 761&ndash;769. arXiv:2204.01467.</p>
+    </div>
+    <div class="card">
+      <h3>The AI-in-discovery landscape (Wang et al., 2023)</h3>
+      <p>Wang and colleagues, in <em>Nature</em>, map AI&#39;s emerging role across every stage of the scientific process: hypothesis generation, experiment design, data collection, analysis, interpretation. The paper is a landscape, not a manifesto &mdash; useful for orienting yourself before reading any of the more polemical speculative work.</p>
+      <p>Notable for being honest that &ldquo;AI in science&rdquo; is not one thing: protein structure prediction, materials discovery, automated chemistry, and LLM-assisted writing all sit at different levels of maturity and need to be evaluated separately.</p>
+      <p style="color: #888; font-size: 0.9em;">Wang, H., Fu, T., Du, Y. et al. (2023). Scientific discovery in the age of artificial intelligence. <em>Nature</em> 620, 47&ndash;60. DOI 10.1038/s41586-023-06221-2.</p>
+    </div>
+    <div class="card">
+      <h3>Levels of AGI (Morris et al., 2023)</h3>
+      <p>A DeepMind team led by Meredith Ringel Morris &mdash; with Shane Legg among the authors &mdash; proposes a six-level framework for AGI capability, indexed jointly by performance (depth) and generality (breadth), explicitly analogous to the SAE levels of autonomous driving. The framework deliberately avoids putting a date on any level.</p>
+      <p>Useful precisely because it refuses to commit to a timeline. When you read confident claims about &ldquo;AGI by 2027&rdquo;, this paper is what such claims are pretending to be.</p>
+      <p style="color: #888; font-size: 0.9em;">Morris, M. R. et al. (2023). Levels of AGI: Operationalizing Progress on the Path to AGI. arXiv:2311.02462.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">&#128202; B. Concrete, Falsifiable Forecasts</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A useful filter for speculative work: does the author commit to a number, on a defined timescale, that someone could check? Most speculative writing about AI does not. The few works that do are worth reading carefully, because they are the parts of the discourse that can actually be wrong in the ordinary scientific sense.</p>
+
+  <div class="technical-detail">
+    <h4>&#9201;&#65039; The METR &ldquo;doubling-every-seven-months&rdquo; study</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">In March 2025, the AI-evaluation lab METR published a paper introducing a deceptively simple metric: the <em>50% time horizon</em>, defined as the length of a software task an AI system can complete with at least 50% success. Over the six years from 2019 to 2025, the 50% horizon has doubled approximately every seven months.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The historical data points are striking:</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li>GPT-2 (2019) &mdash; ~2 seconds.</li>
+      <li>Claude 3.7 Sonnet (early 2025) &mdash; ~50 minutes.</li>
+      <li>OpenAI o3 (mid 2025) &mdash; ~2 hours.</li>
+      <li>Claude Opus 4.6 (late 2025 measurement) &mdash; ~12 hours.</li>
+    </ul>
+    <p style="color: #444; line-height: 1.75; margin-top: 12px;">Extrapolated naively, the curve says that within a decade AI systems will be able to autonomously complete the kind of software work that today takes a person days or weeks. The honest caveat the METR team itself flags is that exponential curves bend &mdash; nothing in nature stays exponential forever &mdash; and they are deliberately not predicting <em>when</em> the bend will happen.</p>
+    <p style="color: #444; line-height: 1.75;">Why read it: this is the cleanest example of a falsifiable forecast in the speculative-futures literature. By 2028 we will know whether the 7-month doubling held; that is more than can be said for most predictions in this area. <em>METR (March 2025). Measuring AI Ability to Complete Long Software Tasks. arXiv:2503.14499.</em></p>
+  </div>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; What an extrapolation can&#39;t tell you</h4>
+    <p>A doubling time is not the same thing as a model of <em>why</em> the doubling happens. The METR paper documents the curve; it does not explain it. The curve could continue. It could also bend tomorrow if, say, the reliability ceiling on long-horizon agents (Week 10.2) turns out to be the real bottleneck. Treat extrapolation curves the way you would treat any time-series forecast in your own field: useful as a starting estimate, dangerous as a basis for confident predictions about specific dates.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Adjacent to METR is the body of work from <strong>Epoch AI</strong> &mdash; an organisation focused on training-compute scaling, dataset-size trends, and the economics of frontier model training. Their forecasts share METR&#39;s strength (quantitative and refutable) and weakness (extrapolation without a mechanism). Worth reading if you want the technical version of &ldquo;how big might AI training get?&rdquo;</p>
+
+  <h2 class="section-title">&#127960;&#65039; C. Institutional Visioning</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This category contains some of the most quietly important speculative-futures work, because it is what the bodies that <em>set rules</em> &mdash; learned societies, national academies, intergovernmental panels &mdash; think research is going to look like. These documents move slowly and read carefully, but they are the speculative pieces that translate most directly into actual policy.</p>
+
+  <div class="technical-detail">
+    <h4>&#128218; <em>Science in the age of AI</em> (Royal Society, October 2024)</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The Royal Society&#39;s 2024 working-group report (ISBN 978-1-78252-712-1) draws on interviews with more than 100 scientists across disciplines plus a working group of experts. It frames AI as transforming the nature, method, and integrity of scientific research, and is unusually careful in its scepticism: a central recommendation is that overdependence on &ldquo;opaque&rdquo; AI systems could undermine the reliability of scientific findings and the public&#39;s trust in them.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Read it for its tone. This is what speculative-futures discourse sounds like when written by a body that takes responsibility for science as an institution rather than as a market.</p>
+    <p style="color: #444; line-height: 1.75;"><a href="https://royalsociety.org/news-resources/projects/science-in-the-age-of-ai/" target="_blank" rel="noopener">royalsociety.org/.../science-in-the-age-of-ai</a></p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In a similar register is the <strong>Africa Declaration on AI</strong> (April 2025), signed at the conclusion of the Global AI Summit on Africa by almost every AU member state. Its institutional speculation is the proposal for an <strong>African AI Scientific Panel</strong> &mdash; a regional body of researchers from Africa and the diaspora to provide evidence-based research on AI risks and opportunities. Whether the panel materialises in the form proposed will be a useful early test of how much of the continental-strategy rhetoric (covered in 11.5) translates into operational reality.</p>
+
+  <h2 class="section-title">&#128640; D. Wild Speculation</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This bucket contains the most ambitious and least-grounded work in the field. The works listed below range from serious academic research that is openly speculative to documents that are essentially structured science fiction with a confident tone. They are listed not because we endorse them but because they are influential enough that you will encounter them, and being able to read them critically is part of the disposition this week is asking you to build.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Open-endedness and AI-Generating Algorithms (Clune, 2019)</h3>
+      <p>Jeff Clune &mdash; one of the co-authors of the Sakana <em>AI Scientist</em> paper covered in 11.1 &mdash; proposes that the most plausible route to general-purpose AI is to build systems that <em>invent</em> better AI systems, in an open-ended evolutionary process. The 2019 paper (arXiv:1905.10985) is the foundational reference for the lineage of automated-science work, of which the Sakana AI Scientist is a recent product.</p>
+      <p>This is serious academic research that is honest about its speculative character. Useful to read for the intellectual history alone.</p>
+      <p style="color: #888; font-size: 0.9em;">Clune, J. (2019). AI-Generating Algorithms: an Alternate Paradigm for Producing General Artificial Intelligence. arXiv:1905.10985.</p>
+    </div>
+    <div class="card">
+      <h3><em>AI 2027</em> scenario (Kokotajlo et al., April 2025)</h3>
+      <p>A 71-page month-by-month scenario, written by Daniel Kokotajlo&#39;s AI Futures Project, of how the period 2025&ndash;2027 might play out in capabilities and geopolitics. The scenario predicts &ldquo;superhuman coders&rdquo; by March 2027 and &ldquo;superhuman AI researchers&rdquo; by June 2027.</p>
+      <p>Two honest notes. The authors themselves estimate roughly 50% probability that the superhuman-coder milestone is missed on the 2027 timeline, and Kokotajlo&#39;s own median forecast has since shifted to &ldquo;around 2030, lots of uncertainty though&rdquo;. Critics describe parts of the scenario as closer to science fiction than forecasting. Worth reading as the cleanest specimen of confident-tone speculation in the field &mdash; the kind of document the reading habit from 11.1 is most useful against.</p>
+      <p style="color: #888; font-size: 0.9em;">AI Futures Project, <em>AI 2027</em>, April 2025.</p>
+    </div>
+    <div class="card">
+      <h3><em>Human Compatible</em> and the alignment literature (Russell, 2019)</h3>
+      <p>Stuart Russell&#39;s book lays out the speculative-but-serious case that controlling capable AI systems &mdash; getting them to do what humans actually want, rather than what we literally asked &mdash; is a research problem in its own right. The book has become foundational reading for the AI safety / alignment literature, which now has its own academic conferences and a growing presence in policy discussions.</p>
+      <p>Worth reading because the alignment conversation is one of the few places where speculative AI futures translate directly into institutional and regulatory action.</p>
+      <p style="color: #888; font-size: 0.9em;">Russell, S. (2019). <em>Human Compatible: Artificial Intelligence and the Problem of Control</em>. Viking.</p>
+    </div>
+    <div class="card">
+      <h3>The frontier-vendor speculation lane</h3>
+      <p>Senior figures at the major AI labs publish their own speculative-futures pieces with some regularity: Sam Altman&#39;s essays, Dario Amodei&#39;s &ldquo;Machines of Loving Grace&rdquo; (October 2024), Demis Hassabis&#39;s interviews. These are not academic work; they are speculative essays by people with strong commercial interests in particular futures coming true. They are also genuinely influential on policy and public understanding.</p>
+      <p>Read them as primary sources for &ldquo;what frontier labs publicly believe (or wish to be seen believing) about the future&rdquo;, not as predictions.</p>
+      <p style="color: #888; font-size: 0.9em;">Various vendor essays, 2024&ndash;2026.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">&#127757; A Note on the African Gap</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The serious speculative-futures literature is, by and large, written from a small number of institutions in the Global North. Of the works in this guide, none are authored from an African research institution; the institutional visioning that comes closest is the Africa Declaration on AI, which is a political document rather than a research one.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This is itself a research opportunity. The closest existing African work in this register sits in the literature we covered in Weeks 4 and 11.5:</p>
+
+  <ul class="styled-list">
+    <li><strong>Mhlambi (2020), <em>From Rationality to Relationality</em></strong> &mdash; argues for ubuntu as a foundation for AI ethics, with implications for what a non-Western AI research culture would look like.</li>
+    <li><strong>Effoduh (2026), &ldquo;Decolonizing the governance of artificial intelligence in Africa&rdquo;</strong> (<em>Science and Public Policy</em> 53(2), 245&ndash;257) &mdash; develops the concept of <em>epistemic sovereignty</em> as a speculative-normative goal for African AI work.</li>
+    <li><strong>Nyabola (2026), &ldquo;Foundations for African feminism as an ethics for artificial intelligence&rdquo;</strong> (<em>Science and Public Policy</em> 53(2), 277&ndash;288) &mdash; makes the case that a genuinely African AI research tradition would need to start from different onto-epistemological commitments, not just import Northern AI tools and add an &ldquo;African values&rdquo; layer on top.</li>
+  </ul>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you find the speculative-futures conversation interesting, one of the most useful contributions you could make as an African postgraduate researcher is to add to this side of the literature. The frame the Effoduh and Nyabola papers develop is genuinely under-applied to questions about AI <em>research</em> as opposed to AI <em>governance</em>, and there is room for serious work that explores what an African vision of AI in science would look like, beyond importing the Northern speculative literature wholesale.</p>
+
+  <div class="highlight-box">
+    <h3>&#128161; <span style="color: #ffffff;">The reading habit, restated for speculative work</span></h3>
+    <p>When you read a speculative-futures piece &mdash; in this guide or elsewhere &mdash; the questions worth asking are not so different from the ones 11.1 set out. <em>Is there a number the author commits to that someone could check?</em> Is the speculation grounded in a mechanism or in a graph of past trends? Does the author take responsibility for being wrong, or do they reserve the right to retrofit their predictions?</p>
+    <p>If a piece of futures work would not change anything its author does if it turned out to be wrong, it is closer to fiction than forecasting. That is not a reason to ignore it &mdash; serious fiction can be useful &mdash; but it is a reason to read it differently from a piece of work the author would defend on the same terms as their other research.</p>
+  </div>
+
+  <h2 class="section-title">&#9999;&#65039; An Optional Exercise</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.8;">If you want to put the calibration habit through its paces:</p>
+
+  <ol class="step-list">
+    <li><strong>Pick one work from buckets A, B, C, or D above</strong> that you have not previously read.</li>
+    <li><strong>Read it,</strong> with particular attention to where in the text the author signals the limits of their own claim. (Look for words like &ldquo;might&rdquo;, &ldquo;could&rdquo;, &ldquo;under the assumption that&rdquo;, and for hedged probability language.)</li>
+    <li><strong>Locate one specific claim in the work that you could imagine checking in 2030</strong> &mdash; a date, a number, a milestone, a behaviour. Write it down in a sentence.</li>
+    <li><strong>Write a second sentence describing what evidence would persuade you the claim was wrong.</strong></li>
+  </ol>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">That second sentence &mdash; what would change your mind &mdash; is the centre of the calibrated reading habit. A speculative work that gives you no way to check it later is a work you should hold loosely. One that does is a work you can engage with on the same terms as any other piece of research.</p>
+
+  <h2 class="section-title">&#128218; Full Reference List</h2>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Primary sources used in this guide</h4>
+    <p><strong>Krenn, M. et al. (2022).</strong> On scientific understanding with artificial intelligence. <em>Nature Reviews Physics</em> 4, 761&ndash;769. <a href="https://arxiv.org/abs/2204.01467" target="_blank" rel="noopener">arXiv:2204.01467</a> &middot; <a href="https://www.nature.com/articles/s42254-022-00518-3" target="_blank" rel="noopener">Nature page</a>.</p>
+    <p><strong>Wang, H. et al. (2023).</strong> Scientific discovery in the age of artificial intelligence. <em>Nature</em> 620, 47&ndash;60. <a href="https://www.nature.com/articles/s41586-023-06221-2" target="_blank" rel="noopener">DOI 10.1038/s41586-023-06221-2</a>.</p>
+    <p><strong>Morris, M. R. et al. (2023).</strong> Levels of AGI: Operationalizing Progress on the Path to AGI. <a href="https://arxiv.org/abs/2311.02462" target="_blank" rel="noopener">arXiv:2311.02462</a>.</p>
+    <p><strong>METR (March 2025).</strong> Measuring AI Ability to Complete Long Software Tasks. <a href="https://arxiv.org/abs/2503.14499" target="_blank" rel="noopener">arXiv:2503.14499</a>. Blog post: <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" target="_blank" rel="noopener">metr.org</a>.</p>
+    <p><strong>Royal Society (October 2024).</strong> <em>Science in the age of AI</em>. ISBN 978-1-78252-712-1. <a href="https://royalsociety.org/news-resources/projects/science-in-the-age-of-ai/" target="_blank" rel="noopener">Project page</a>.</p>
+    <p><strong>Africa Declaration on AI (April 2025).</strong> Adopted at the Global AI Summit on Africa. (Covered in detail in 11.5.)</p>
+    <p><strong>Clune, J. (2019).</strong> AI-Generating Algorithms: an Alternate Paradigm for Producing General Artificial Intelligence. <a href="https://arxiv.org/abs/1905.10985" target="_blank" rel="noopener">arXiv:1905.10985</a>.</p>
+    <p><strong>Kokotajlo, D. et al. (April 2025).</strong> <em>AI 2027</em> scenario. AI Futures Project. (Available via the project&#39;s website; treat as the prominent specimen of structured speculative-futures scenario planning, not as forecast.)</p>
+    <p><strong>Russell, S. (2019).</strong> <em>Human Compatible: Artificial Intelligence and the Problem of Control</em>. Viking.</p>
+    <p><strong>Effoduh, J. O. (2026).</strong> Decolonizing the governance of artificial intelligence in Africa. <em>Science and Public Policy</em> 53(2), 245&ndash;257. <a href="https://academic.oup.com/spp/article/53/2/245/8654721" target="_blank" rel="noopener">DOI 10.1093/scipol/scag005</a>.</p>
+    <p><strong>Nyabola, N. (2026).</strong> Foundations for African feminism as an ethics for artificial intelligence. <em>Science and Public Policy</em> 53(2), 277&ndash;288. <a href="https://academic.oup.com/spp/article/53/2/277/8654723" target="_blank" rel="noopener">DOI 10.1093/scipol/scag009</a>.</p>
+    <p><strong>Mhlambi, S. (2020).</strong> <em>From Rationality to Relationality: Ubuntu as an Ethical and Human Rights Framework for Artificial Intelligence Governance</em>. Carr Center for Human Rights Policy, Harvard Kennedy School.</p>
+  </div>
+"""
+
+
+# ---------------------------------------------------------------------------
 # SUBLESSONS list — grows as sub-lessons are drafted
 # ---------------------------------------------------------------------------
 
@@ -325,12 +484,21 @@ SUBLESSONS = [
         "header_subtitle": "A calibrated reading of what is shipping, what is overclaimed, and what is purely aspirational &mdash; with three worked cases",
         "body": SL1_BODY,
     },
+    {
+        "filename": "Speculative Futures - A Reading Guide.html",
+        "title": "Week 11 Supplementary - Speculative Futures: A Reading Guide",
+        "badge": "Week 11 &bull; Supplementary",
+        "header_emoji": "&#128302;",  # crystal ball
+        "header_title": "Speculative Futures: A Reading Guide",
+        "header_subtitle": "Reading further into the genuinely speculative end of the AI-in-research literature &mdash; frameworks, forecasts, institutional visioning, and wild speculation, with calibration",
+        "body": SL_SUPP_BODY,
+    },
 ]
 
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>2. The Shifting Research Landscape (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>3. Sovereign AI Capacity, and Why Compute Is the Floor (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>4. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>2. The Shifting Research Landscape (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>3. Sovereign AI Capacity, and Why Compute Is the Floor (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>4. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />Supplementary: Speculative Futures &mdash; A Reading Guide</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
