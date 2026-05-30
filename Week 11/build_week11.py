@@ -716,7 +716,7 @@ SL4_BODY = """
   <div class="info-box">
     <h4>&#128587;&#127998;&#8205;&#9794;&#65039; Two practitioners worth naming</h4>
     <p><strong>Pelonomi Moiloa</strong>, CEO of Lelapa AI, has built much of her company&#39;s public positioning around the idea of <em>Resource-Efficient AI</em>: that African sovereign AI capacity is not best pursued by trying to replicate the compute footprint of Silicon Valley labs but by building models small enough and efficient enough that the available infrastructure can actually support them. InkubaLM, the 0.4 billion-parameter African-language model we covered in Week 10, is the engineering expression of that argument.</p>
-    <p><strong>Vukosi Marivate</strong>, professor at the University of Pretoria and Lelapa co-founder, was awarded the Order of Mapungubwe (Silver) in 2024 for contributions to AI, computer science, and natural-language processing, and now serves on a sovereign-AI initiative as Chief Information Officer. Together, Moiloa and Marivate represent the operational arm of the African sovereignty conversation &mdash; the people building the infrastructure that the philosophical and policy positions are arguing about.</p>
+    <p><strong>Vukosi Marivate</strong>, ABSA Chair of Data Science at the University of Pretoria and a co-founder of Lelapa AI, Deep Learning Indaba, and Masakhane, was awarded the Order of Mapungubwe (Silver) in 2024 for contributions to AI, computer science, and natural-language processing. He was subsequently seated on the UN Independent International Scientific Panel on AI (12 February 2026, 40 members), as the most prominent African member of that panel. Together, Moiloa and Marivate represent the operational and institutional arms of the African sovereignty conversation &mdash; the people building the infrastructure that the philosophical and policy positions are arguing about.</p>
   </div>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">What emerges, reading these strands together, is a <strong>relational conception of AI sovereignty</strong>: sovereignty as agency exercised by and for communities, grounded in relational personhood, mediated by licences and governance more than by walls and hardware, and located at the intersection of individual rights, community authority, and institutional capacity. The word &ldquo;sovereignty&rdquo; is doing serious analytical work here, and its content is recognisably continuous with the longer Ubuntu tradition rather than borrowed from Westphalian state-autonomy.</p>
@@ -868,7 +868,7 @@ SL4_BODY = """
   <div class="card-grid">
     <div class="card">
       <h3>UCT African Compute Initiative (ACI)</h3>
-      <p>Announced in March 2026 and led from UCT, the African Compute Initiative is the most directly relevant near-term option for postgraduate AI work on the continent. The plan is for an operational cluster within twelve months, scaling to roughly 100 users in the first year and around 300 users across at least five partner institutions by year three. The initiative is positioned explicitly as African higher-education-dedicated AI compute &mdash; the missing piece in the picture above.</p>
+      <p>Announced in March 2026 and led from UCT, the African Compute Initiative is the most directly relevant near-term option for postgraduate AI work on the continent. The plan is for an operational cluster within twelve months, scaling to roughly 100 users in the first year and around 300 users across at least five partner institutions by year three. The initiative is positioned explicitly as African higher-education-dedicated AI compute &mdash; the missing piece in the picture above. Interim Director: A/Prof Jonathan Shock, UCT (the instructor of this course).</p>
       <p style="color: #888; font-size: 0.9em;"><a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">UCT AI ACI announcement</a></p>
     </div>
     <div class="card">
@@ -1159,8 +1159,8 @@ SL5_BODY = """
   <div class="card-grid">
     <div class="card">
       <h3>The sovereign / frontier-aspirant position</h3>
-      <p>The argument: African AI sovereignty requires <em>African frontier-scale models</em>, trained on African data, owned by African institutions, hosted on African compute. Without that, the continent will remain technologically dependent regardless of how much application-layer work happens locally. The clearest current expression is Nigeria&#39;s <strong>N-ATLAS</strong>, a national open-source LLM being built by <strong>Awarri</strong> (Silas Adekunle and Eniola Edun) in partnership with the Nigerian Federal Ministry of Communications, Innovation and Digital Economy. Funded with $3.5M seed from UNDP, UNESCO, Meta, Google, and Microsoft; positioned publicly by Minister Bosun Tijani at UNGA80 in September 2025. Languages: Yoruba, Hausa, Igbo, Nigerian Pidgin. Cassava&#39;s compute work (11.4) and the Tanzania&ndash;Almawave Kiswahili partnership are adjacent expressions of the same strategic position.</p>
-      <p style="color: #888; font-size: 0.95em; margin-top: 12px;">Status: real, partly built, not yet a publicly downloadable model.</p>
+      <p>The argument: African AI sovereignty requires <em>African frontier-scale models</em>, trained on African data, owned by African institutions, hosted on African compute. Without that, the continent will remain technologically dependent regardless of how much application-layer work happens locally. The clearest current expression is Nigeria&#39;s <strong>N-ATLAS</strong>, a national open-source LLM built by <strong>Awarri Technologies</strong> (Silas Adekunle and Eniola Edun) in partnership with the Nigerian Federal Ministry of Communications, Innovation and Digital Economy and published by NCAIR. Funded with $3.5M seed from UNDP, UNESCO, Meta, Google, and Microsoft. Launched by Minister Bosun Tijani at UNGA80 sidelines on 25 September 2025. Now publicly available on Hugging Face as <a href="https://huggingface.co/NCAIR1/N-ATLaS" target="_blank" rel="noopener">NCAIR1/N-ATLaS</a>: 8B parameters, Llama-3-8B base, fine-tuned across English, Hausa, Igbo, and Yoruba; subject to a 1,000-user licence cap, with commercial use requiring explicit licensing from Awarri and the Federal Ministry. Cassava&#39;s compute work (11.4) and the Tanzania&ndash;Almawave Kiswahili partnership are adjacent expressions of the same strategic position.</p>
+      <p style="color: #888; font-size: 0.95em; margin-top: 12px;">Status: operational. Shipped September 2025, weights public on Hugging Face under a capped non-commercial-by-default licence.</p>
     </div>
     <div class="card">
       <h3>The resource-efficient / pragmatic position</h3>
@@ -1254,6 +1254,269 @@ SL5_BODY = """
 
 
 # ---------------------------------------------------------------------------
+# Sub-Lesson 11.6 — Policy, Institutions, and Talent
+# ---------------------------------------------------------------------------
+
+SL6_BODY = """
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>The last sub-lesson of the African half of Week 11 looks at the layer of the picture where the gap between announcement and reality is widest: <em>policy, institutions, and talent</em>. The peer-reviewed spine for this conversation is Yilma &amp; Wodajo&#39;s 2026 <em>Strategy as Governance</em> (<em>Science and Public Policy</em> 53(2), 236&ndash;244), which argues that African AI governance has so far been performed primarily through strategy documents rather than through legislation, institutions, or enforcement &mdash; and that this matters more than it might look at first glance.</p>
+    <p>We test the claim against the operational state of things in May 2026. A close reading of the strategy landscape (with one extraordinary recent South African case at its centre); the funding flows that are actually moving money for African AI work; the institutional infrastructure that trains and retains researchers (and where it is leaking); and an honest account of where the gaps are. We close the African half of the week on the question that opens 11.7: <em>given everything in Weeks 1&ndash;11, what is the most useful thing a postgraduate in this room can actually do?</em></p>
+  </div>
+
+  <h2 class="section-title">&#128217; The Strategy Landscape, Calibrated</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">By July 2025, sixteen African countries had published national AI strategies, with several more in draft. The continental layer is anchored by the AU Continental AI Strategy (July 2024) and the AUDA-NEPAD Continental AI Roadmap (February 2025). Reading these as a single landscape rather than as separate national documents, the most useful empirical observation is that the policy-to-legislation pipeline is almost entirely broken. <em>Only Ethiopia has drafted AI legislation</em>; that draft has not been enacted. South Africa&#39;s policy was withdrawn before it could take effect (see the next section). Every other major African economy regulates AI use, where it regulates it at all, through adjacent data-protection statutes inherited from the GDPR family.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This is the operational form of the Yilma &amp; Wodajo critique. The argument is not that the strategies are insincere or empty &mdash; many are detailed, ambitious, and explicitly grounded in African political-economic positions &mdash; but that strategy is not the same thing as governance. Governance requires binding instruments. The strategies, with extremely limited exceptions, do not yet have any.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Country</th>
+          <th>Status (May 2026)</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>South Africa</strong></td>
+          <td>Draft policy <em>withdrawn</em> April 2026</td>
+          <td>See full case study in the next section.</td>
+        </tr>
+        <tr>
+          <td><strong>Nigeria</strong></td>
+          <td>Strategy revised Sept 2025; N-ATLAS shipped</td>
+          <td>Revised National AI Strategy 19 September 2025. N-ATLAS launched by Minister Bosun Tijani at UNGA80, 25 September 2025; public on Hugging Face (see 11.5).</td>
+        </tr>
+        <tr>
+          <td><strong>Rwanda</strong></td>
+          <td>Policy operational; implementation partial</td>
+          <td>Cabinet-approved 20 April 2023. Costed at US$76.5M; Responsible AI Office in MINICT. C4IR Rwanda (WEF affiliate) operationally active. Rwanda AI Scaling Hub with Gates Foundation (US$7.5M, MoU April 2025).</td>
+        </tr>
+        <tr>
+          <td><strong>Kenya</strong></td>
+          <td>Strategy launched 27 March 2025; early implementation</td>
+          <td>Six pillars; no separate AI Act; governance leans on the 2019 Data Protection Act.</td>
+        </tr>
+        <tr>
+          <td><strong>Egypt</strong></td>
+          <td>2nd-edition strategy launched January 2025</td>
+          <td>KPIs: US$42.7bn annual AI value by 2030, 30,000 AI professionals, 250+ AI companies, 6,000 publications/yr. KPI dashboard not publicly visible.</td>
+        </tr>
+        <tr>
+          <td><strong>Ethiopia</strong></td>
+          <td>Policy approved June 2024; institute active; draft AI Proclamation pre-legislative</td>
+          <td>Ethiopian AI Institute (EAII, established by Regulation 510/2022) is the implementing body. The draft AI Development and Regulation Proclamation has not been enacted.</td>
+        </tr>
+        <tr>
+          <td><strong>Morocco</strong></td>
+          <td>No standalone AI Strategy; Digital X.0 Framework Law pre-parliamentary</td>
+          <td>&ldquo;Morocco AI 2030&rdquo; roadmap and a National AI Hub announced January 2026 within the Digital Morocco 2030 envelope.</td>
+        </tr>
+        <tr>
+          <td><strong>Senegal, Ghana, Benin, Algeria, Mauritius, C&ocirc;te d&#39;Ivoire</strong></td>
+          <td>National strategies adopted 2018&ndash;2024</td>
+          <td>Mauritius (2018) was the first African national AI strategy; the others followed between 2022 and 2024.</td>
+        </tr>
+        <tr>
+          <td><strong>Tanzania, Mozambique</strong></td>
+          <td>Drafts in consultation</td>
+          <td>Mozambique&#39;s INTIC public consultation was open until 4 June 2026.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">A consolidating analytical resource: Munga &amp; Quansah&#39;s September 2025 Carnegie piece <em>Understanding Africa&#39;s AI Governance Landscape</em> compares 15 national + 2 continental strategies and offers the cleanest single map of the policy stack. Engida Abdella &amp; Alayande&#39;s April 2025 piece for the Global Center on AI Governance, <em>African Countries Are Racing to Create AI Strategies &mdash; But Are They Putting the Cart Before the Horse?</em>, provides the calibrated counterweight: many strategies skip foundational infrastructure questions, lack realistic implementation timelines, and rely on benefit-sharing rhetoric without operational mechanisms. CIPESA&#39;s 2025 SIFA report (<em>Navigating the Implications of AI on Digital Democracy in Africa</em>) draws on empirical research across 14 countries and is the strongest single empirical complement to the analytical work.</p>
+
+  <h2 class="section-title">&#127479;&#127462; The South African AI Policy Withdrawal</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The most consequential recent event in African AI governance happened in South Africa in April 2026, and it deserves treatment in detail because it is simultaneously a perfect example of the Yilma &amp; Wodajo critique and a worked instance of the policy-and-practice problem we covered in 11.3. It also &mdash; for the students reading this from a UCT vantage point &mdash; happened in your own jurisdiction.</p>
+
+  <div class="case-study">
+    <h4>&#128221; What happened</h4>
+    <p>The Department of Communications and Digital Technologies (DCDT) had been working on a national AI policy since at least August 2024. After a lengthy consultative process, the resulting Draft National AI Policy was Cabinet-approved on 25 March / 1 April 2026 and gazetted on 10 April 2026 (Gazette 54477) for public comment.</p>
+    <p>Within days, the journalist Christopher Logan at News24 began checking the academic citations in the draft. He found that at least <strong>six of the sixty-seven academic references in the document could not be located in any database, with the cited authors confirming that they had not written the papers attributed to them</strong>. The most plausible explanation, by some distance, was that the citations had been produced by a generative AI system used somewhere in the drafting workflow and had not been independently verified before publication.</p>
+    <p>On <strong>27 April 2026</strong> &mdash; less than three weeks after publication &mdash; Minister of Communications and Digital Technologies Solly Malatsi withdrew the draft policy. The withdrawal statement acknowledged the citation problem and undertook to re-draft. As of this writing, no replacement document has been published. The Year 1 implementation timeline (2025&ndash;26) that the original policy committed to has consequently slipped without a fallback.</p>
+    <p style="color: #888; font-size: 0.9em;">Sources: Original gazette PDF on <a href="https://www.gov.za/sites/default/files/gcis_document/202604/54477gen3880.pdf" target="_blank" rel="noopener">gov.za</a>. Coverage of the withdrawal: <a href="https://www.dlapiper.com/en-us/insights/publications/2026/05/withdrawal-of-south-africa-draft-ai-policy" target="_blank" rel="noopener">DLA Piper analysis</a>.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There are three reasons this case is worth a careful read.</p>
+
+  <ul class="styled-list">
+    <li><strong>It is the exact failure mode Week 11.3 covered, at policy-document scale.</strong> The He &amp; Bu finding was that policies don&#39;t curb the surge in AI use because researchers don&#39;t disclose. Here, an entire government ministry submitted an AI-drafted policy document without disclosure or citation verification, and the failure was caught not by the ministry&#39;s internal processes but by a journalist with thirty minutes to spare. The policy that was meant to govern AI use in South Africa was itself an instance of the problem it was meant to address.</li>
+    <li><strong>It is the strongest available South African instance of the Yilma &amp; Wodajo critique.</strong> The argument is that strategy is not governance. Here, even the strategy document collapsed before it could attempt governance. The country is not currently between strategies; it is in a documented policy vacuum, with the previous draft withdrawn and no successor published.</li>
+    <li><strong>It is unusually concrete material for a postgraduate course.</strong> The full gazetted PDF is publicly available. The withdrawn citations are documented. The methodology that produced the problem is the methodology this entire course is asking you to be cautious about. If you want a single piece of evidence for why the calibrated-reading habit matters, this case is it.</li>
+  </ul>
+
+  <div class="warning-box">
+    <h4>&#128221; The honest comparison to Ethiopia</h4>
+    <p>Ethiopia is the only African state with a draft AI legislative instrument under serious consideration (the AI Development and Regulation Proclamation, drafted by the Ethiopian AI Institute). It is not enacted, but it exists. South Africa, between April 2026 and at least the autumn of 2026, will have no comparable document at all. Whatever your view of the merits of strategy-as-governance, the empirical situation as of May 2026 is that the largest economy on the continent currently has no AI policy framework at all, while the second-largest has a draft legislative instrument under review. That ordering is not the one the policy-positioning rhetoric would lead you to expect.</p>
+  </div>
+
+  <h2 class="section-title">&#127963;&#65039; Continental Bodies, and What They&#39;ve Actually Done</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Three pan-African or African-adjacent bodies are worth knowing about, and one obvious confusion to head off at the outset.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>The AU Continental AI Strategy and AUDA-NEPAD Roadmap</h3>
+      <p>The strategy was endorsed by the AU Executive Council in Accra in July 2024 (covered in 11.5). The AUDA-NEPAD Continental AI Roadmap, released February 2025 on the sidelines of the AU Summit, is the operational complement: it proposes a <strong>US$100M AU AI Grant</strong> and a <strong>US$200M AU AI Investment</strong> mechanism. <em>Neither has been capitalised on the public record.</em></p>
+    </div>
+    <div class="card">
+      <h3>The Smart Africa Africa AI Council</h3>
+      <p>Inaugurated by the Smart Africa Board in Conakry on <strong>17 November 2025</strong>. Fifteen-member body comprising ICT ministers (Algeria, Chad, Kenya, Nigeria, Rwanda, Togo, Zimbabwe) and independent members (Microsoft, Google, InstaDeep, the Gates Foundation, the University of Pretoria). Six workstreams (Infrastructure, Data, Market, Talent, Investment, Governance). As of May 2026: <em>just constituted; no published deliverables yet.</em></p>
+    </div>
+    <div class="card">
+      <h3>The (still-proposed) African AI Scientific Panel</h3>
+      <p>Endorsed in the Africa Declaration on AI at the Global AI Summit on Africa in April 2025. As of May 2026 it has <em>not been constituted</em> with a named, public membership. The closest currently operating body with overlapping remit is Smart Africa&#39;s Africa AI Council (above), but the two are not formally the same and should not be elided.</p>
+    </div>
+    <div class="card">
+      <h3>The UN Independent International Scientific Panel on AI</h3>
+      <p>Seated <strong>12 February 2026</strong> with 40 global members. The most prominent African member is <strong>Prof. Vukosi Marivate</strong> (University of Pretoria), already named in 11.4. This is a UN body, not an African one &mdash; but worth surfacing because it is the international scientific body where African expertise is currently most concretely represented, and because it is where the AU&#39;s own announced Scientific Panel <em>has not yet caught up</em>.</p>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; The &ldquo;US$60 billion Africa AI Fund&rdquo; question</h4>
+    <p>At the Kigali Global AI Summit on Africa in April 2025, a <em>US$60 billion Africa AI Fund</em> was announced as a pledge envelope. As of May 2026 there is no binding funding formula, no public timetable for disbursement, no announced audit mechanism, and no third-party verification of any disbursement to date. Independent reporting (Rest of World, Impact Newswire) treats it as a pledge rather than a fund. When you read continental funding figures for African AI, distinguish carefully between announced envelopes and capitalised facilities; the gap between them, as of May 2026, is essentially the gap between US$60 billion and zero.</p>
+  </div>
+
+  <h2 class="section-title">&#128176; Who Is Actually Paying for African AI?</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The honest answer in May 2026 is: <em>Big Tech capex and Northern foundations</em>. The sovereign and continental instruments are largely announced; the operational funding flows are largely commercial. This is the central empirical observation underpinning everything in the second half of this sub-lesson.</p>
+
+  <div class="technical-detail">
+    <h4>&#128202; Verified funding flows for African AI work</h4>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>Microsoft &mdash;</strong> US$330M South Africa cloud/AI capex by end-2027; 1M-each AI skilling targets announced for South Africa, Kenya, and Nigeria.</li>
+      <li><strong>Google.org &mdash;</strong> US$37M Africa AI package announced in July 2025: US$25M to a Food Security collaborative, <strong>US$3M to Masakhane</strong>, US$1M each to <strong>AfriDSAI (University of Pretoria)</strong> and <strong>Wits MIND Institute</strong>, US$2.25M to UNECA / UNDESA / PARIS21.</li>
+      <li><strong>OpenAI &times; Gates Foundation &mdash;</strong> <em>Horizon 1000</em>, US$50M to deploy AI tools across 1,000 clinics by 2028; Rwanda pilot announced January 2026.</li>
+      <li><strong>IDRC AI4D Africa &mdash;</strong> original CAD$20M programme (IDRC + Sida) succeeded in 2024 by <em>Responsible AI, Empowering People</em> with FCDO, now operating at over CAD$100M across Africa and Asia. This is what underwrites the UCT African Compute Initiative.</li>
+      <li><strong>Lacuna Fund &mdash;</strong> cumulative ~US$7.7M across 42 projects, more than 75 ML datasets produced. <em>In July 2025, Lacuna handed management to African and Latin-American partners</em>: ACTS (Kenya), University of Pretoria DSFSI, Masakhane, and CENIA. This is one of the cleanest examples of a Northern-funded African-AI vehicle being transitioned into African leadership.</li>
+      <li><strong>Mozilla Foundation Africa Mradi &mdash;</strong> small grants in the US$5&ndash;10k range; Responsible AI Challenge expanding into South African schools in 2025.</li>
+      <li><strong>Patrick J. McGovern Foundation &mdash;</strong> US$75.8M committed globally in 2025, with African line items including iCog-ACC (Ethiopia), HELINA FHIR Africa, and TIP Global Health (East Africa).</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h3>&#128161; <span style="color: #ffffff;">The framing for the funding picture</span></h3>
+    <p>The single most honest sentence about African AI funding in May 2026 is this: African AI capacity is currently being underwritten by Big Tech capital expenditure (Microsoft, Google, OpenAI / Gates) and Northern public-funder programmes (IDRC, FCDO via AI4D), not by sovereign or continental instruments. This is the Yilma &amp; Wodajo critique landing at the material level: the strategy-and-governance architecture announces intent; the cheques are signed by the firms and foundations whose dependencies the strategy is supposed to manage.</p>
+    <p style="margin-top: 15px;">There are very good African-led organisations doing important work with these funds &mdash; Masakhane, Lelapa, AfriDSAI, the UCT ACI, ACTS, the Lacuna successor partnership &mdash; and noting where the money comes from is not a criticism of any of them. It is the honest empirical picture against which the policy positions in the rest of this sub-lesson should be read.</p>
+  </div>
+
+  <h2 class="section-title">&#127979; The Institutional Landscape</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Beneath the policy layer, the institutional infrastructure that trains and retains African AI researchers is genuinely substantial. It is also concentrated, and where it isn&#39;t concentrated the gap is large. Six institutions or programmes do the disproportionate share of the work.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Deep Learning Indaba</h3>
+      <p>Founded 2017 by Shakir Mohamed (Google DeepMind), Stephan Gouws (Google Brain), and Vukosi Marivate (then CSIR, now UP). The continent&#39;s most important annual AI gathering. 2025 in Kigali (17&ndash;22 August): <strong>1,294 participants, 40% women, 390 travel grants, 297 posters, 19 papers, 18 startups</strong> showcased. DLI 2026 announced for Nigeria. The IndabaX regional spin-offs ran in roughly 47 African countries in 2024.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://deeplearningindaba.com/2025/" target="_blank" rel="noopener">deeplearningindaba.com/2025</a></p>
+    </div>
+    <div class="card">
+      <h3>AIMS &amp; AMMI</h3>
+      <p>The African Institute for Mathematical Sciences (AIMS) Next Einstein Initiative runs six centres: South Africa (2003), Senegal (2011), Ghana (2012), Cameroon (2013), Tanzania (2014), and Rwanda (2016). AIMS South Africa runs an AI-for-Science Master&#39;s. The African Master&#39;s in Machine Intelligence (AMMI) at AIMS Senegal, founded 2018 by <strong>Moustapha Cissé</strong> under Google sponsorship, remains the most-cited African AI training programme. Cissé left Google in 2022/23 to found <strong>KERA Health</strong> in Senegal, which closed a US$10M IFC investment in June 2025; AMMI continues at AIMS Senegal under different leadership.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://nexteinstein.org/" target="_blank" rel="noopener">nexteinstein.org</a> &middot; <a href="https://aimsammi.org/" target="_blank" rel="noopener">aimsammi.org</a></p>
+    </div>
+    <div class="card">
+      <h3>The substantive PhD quadrilateral</h3>
+      <p>For postgraduate AI research on the continent in May 2026, the clearest concentration of substantive activity sits in four South African institutions: <strong>Wits</strong> (the MIND Institute and the RAIL lab), <strong>University of Pretoria</strong> (AfriDSAI, launched 2024 out of DSFSI; recipient of a US$1M Google donation in August 2025), <strong>UCT</strong> (the AI Initiative and the forthcoming ACI), and <strong>AIMS South Africa</strong> (the AI-for-Science Master&#39;s as a feeder to PhD). Outside this quadrilateral, supervision is highly individual-dependent, and you should vet the named supervisor rather than the institution.</p>
+    </div>
+    <div class="card">
+      <h3>ARIN, Lelapa, Zindi, Black in AI</h3>
+      <p><strong>ARIN</strong> (Africa Research and Impact Network): 200+ researchers, focal points in 36 African countries, broad sustainability remit with an AI workstream operationalised through the 2025 AI for Climate Resilience Fellowship. <strong>Lelapa AI</strong>: Pelonomi Moiloa (CEO), Jade Abbott (co-founder), Vukosi Marivate (co-founder); the operational arm of the resource-efficient African sovereign-AI position. <strong>Zindi</strong> (Nairobi): 92,000+ registered data practitioners, 460+ challenges run, ~US$1M cumulative prize pool. <strong>Black in AI</strong>: founded 2017 by Timnit Gebru and Rediet Abebe; Africa-specific work largely channelled through Gebru&#39;s DAIR (founded December 2021).</p>
+    </div>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A note on national AI institutes. <em>NCAIR</em> (Nigeria, commissioned November 2020) is the most-cited national institute, though as we noted in 11.4 it does not have substantial dedicated AI compute. The <em>Ethiopian AI Institute</em> (EAII, inaugurated November 2025 under Director-General Dr Worku Gachena) is the implementing body for the National AI Policy and is the strongest example of a national institute moving toward operational delivery. <em>C4IR Rwanda</em> is operational and co-designed Rwanda&#39;s AI policy; the Rwanda AI Scaling Hub (with Gates Foundation, US$7.5M MoU April 2025) sits there.</p>
+
+  <h2 class="section-title">&#128395;&#65039; The Talent &amp; Brain-Drain Question</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The talent pipeline is the layer of the African AI picture where the data are weakest and the rhetorical claims are strongest. The honest position is that no rigorous AI-specific quantitative study of the African brain-drain problem exists yet. What exists is general migration data (Africa loses around US$2 billion per year in skilled migration; UK granted 78,000+ work visas to Nigerians by September 2023) which does not disaggregate AI researchers from the broader skilled-worker population. When you see specific figures for &ldquo;African AI talent loss&rdquo;, treat them with the same calibration the rest of this week has been asking for.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">What we can say more confidently:</p>
+
+  <ul class="styled-list">
+    <li><strong>The pipeline is top-heavy.</strong> Indaba and AMMI feed a substantial pool of MSc-level talent into the system. The PhD bottleneck is where the system leaks hardest &mdash; both because African PhD positions in AI are scarce and because the relative value of doing a PhD at, say, MIT or Mila is large for the individual researcher even when the African opportunity cost is also large.</li>
+    <li><strong>Diaspora is the unstated default.</strong> The Africa Declaration on AI explicitly bundles &ldquo;Africa and diaspora&rdquo; in its proposed AI Scientific Panel composition. The 2025 Qhala / CMU / C4IR AI Research Colloquium drew 100+ researchers &ldquo;from continent and diaspora&rdquo;. The proportional split between Africans on the continent and Africans in diaspora is not publicly quantified, but the rhetorical and policy framing treats them as a single research community.</li>
+    <li><strong>Some retention levers are working.</strong> Sovereign compute access (the UCT ACI, the Rwanda AI Scaling Hub) is explicitly framed as anti-brain-drain. Named chairs (Marivate&#39;s ABSA Chair of Data Science at UP), substantial corporate grants (Google PhD Fellowships at Wits, the US$1M to AfriDSAI), and partnerships with industry (Lelapa &times; Microsoft) all provide structural alternatives to leaving. Salary parity with US or UK industry positions is impossible; competitive intellectual conditions are not.</li>
+    <li><strong>Some notable returns happen.</strong> Moustapha Cissé returned to Senegal to start KERA Health. Vukosi Marivate did a US PhD at Rutgers and returned to UP. Raesetje Sefala, DAIR&#39;s first fellow, is based in Johannesburg. These are not statistically significant; they are existence-proof signals that the flow is not one-way.</li>
+  </ul>
+
+  <h2 class="section-title">&#128269; Where the Gaps Are</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Five gaps stand out from the policy-and-institutions picture. Some are obvious. Others are easy to miss precisely because they map onto where the existing infrastructure is.</p>
+
+  <ol class="step-list">
+    <li><strong>Geographic concentration.</strong> The substantive PhD quadrilateral is in <em>South Africa</em>. The strongest national-institute work is in Ethiopia, Nigeria, and Rwanda. Beyond this small set, dedicated AI research infrastructure is sparse to absent. <em>Francophone West Africa outside Senegal and Rwanda, Central Africa (DRC, CAR, Chad), the Horn of Africa outside Ethiopia, and Lusophone Africa (Angola, Mozambique)</em> have near-zero structural AI research capacity as of May 2026.</li>
+    <li><strong>The policy-to-legislation gap.</strong> Already noted: only Ethiopia has draft AI legislation; only one African economy is actively legislating; the rest is strategy. If you are interested in AI law and policy as a research area, this is a wide-open field.</li>
+    <li><strong>Operational continental funding.</strong> The AU AI Grant (US$100M) and Investment (US$200M) mechanisms are uncapitalised. The Africa AI Fund (US$60bn) is a pledge envelope. The IDRC, Lacuna, and Google.org flows are all operationally important but are not <em>sovereign</em> in any of the senses 11.4 set out.</li>
+    <li><strong>Audited KPI tracking.</strong> Strategies announce headline targets (Egypt: 30,000 AI professionals by 2030; Rwanda: US$76.5M policy implementation; Nigeria: 70% AI literacy in 16&ndash;35-year-olds by 2030). Publicly auditable tracking dashboards against these targets are largely absent. This is true across the continent, not just for African countries; it is also the gap that distinguishes a strategy from a programme.</li>
+    <li><strong>The brain-drain data itself.</strong> The single most important talent-related research opportunity for an African postgraduate is an actual, rigorous quantitative study of African AI researcher migration. The work has not been done. The general migration figures circulating are insufficient.</li>
+  </ol>
+
+  <h2 class="section-title">&#127919; What This Means for Your Research</h2>
+
+  <ul class="styled-list">
+    <li><strong>Vet supervisors, not institutions.</strong> Outside the substantive PhD quadrilateral, African AI supervision is highly individual-dependent. If you are choosing where to do your PhD, the named supervisor matters more than the institution&#39;s overall reputation.</li>
+    <li><strong>The compute story is now the talent story.</strong> The UCT African Compute Initiative is, in part, an explicit retention lever for African AI talent. Applying to it (or to the Rwanda AI Scaling Hub) is not just about compute access; it is about choosing to be part of the infrastructure that the next decade of African AI work will run on.</li>
+    <li><strong>Read the strategies. Read them critically.</strong> The Yilma &amp; Wodajo paper is the single best entry point to the analytical literature on the strategy landscape. The Carnegie and Global Center pieces are the complementary practical reads. The SA AI Policy case is the worked example of why this matters at the policy-document level.</li>
+    <li><strong>Brain-drain framing is the wrong default.</strong> The honest pattern is not &ldquo;Africa loses its AI talent to the North&rdquo;; it is &ldquo;African AI work is distributed across continent and diaspora&rdquo;. If you are an African postgraduate researcher, your collaborative network is plausibly larger and more international than the brain-drain rhetoric implies. Build it accordingly.</li>
+    <li><strong>The work matters.</strong> An institutional landscape with this many gaps means that a postgraduate who chooses to work on one of them can plausibly produce a contribution that the field will recognise. The next sub-lesson (11.7) closes the week and the African half of the course by asking what you would actually do with that opportunity.</li>
+  </ul>
+
+  <h2 class="section-title">&#9999;&#65039; A Short Exercise</h2>
+
+  <ol class="step-list">
+    <li><strong>Pick the African country you would most likely engage with</strong> in your current or planned research project (this may be South Africa by default, but does not have to be).</li>
+    <li><strong>Find its current AI strategy or policy document.</strong> If it has been withdrawn, find that fact. If none exists, note that as your answer.</li>
+    <li><strong>Read the document&#39;s preamble and pillars.</strong> Identify the strategy&#39;s stated goals and the timeline to which they are committed.</li>
+    <li><strong>Identify one specific commitment</strong> in the document that a postgraduate researcher could imaginably contribute to. It could be a dataset, a benchmark, a piece of empirical research, an institutional contribution, anything concrete.</li>
+    <li><strong>Bring it to class.</strong> Together with the data-and-models exercise from 11.5 and the disclosure-policy exercise from 11.3, you will have the raw material for the Week 12 capstone pitch.</li>
+  </ol>
+
+  <h2 class="section-title">&#128218; Sources &amp; Further Reading</h2>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Strategy landscape &amp; analytical reviews</h4>
+    <p><strong>Yilma, K. &amp; Wodajo, K. (2026).</strong> Strategy as Governance: The Governance of AI in Africa. <em>Science and Public Policy</em> 53(2), 236&ndash;244. <a href="https://academic.oup.com/spp/article/53/2/236/8654722" target="_blank" rel="noopener">academic.oup.com</a>. CC&nbsp;BY 4.0 open access.</p>
+    <p><strong>Munga, J. &amp; Quansah, S. (September 2025).</strong> Understanding Africa&#39;s AI Governance Landscape: Insights From Policy Practice and Dialogue. Carnegie Endowment. <a href="https://carnegieendowment.org/posts/2025/09/understanding-africas-ai-governance-landscape-insights-from-policy-practice-and-dialogue" target="_blank" rel="noopener">carnegieendowment.org</a>.</p>
+    <p><strong>Engida Abdella, S. &amp; Alayande, A. (April 2025).</strong> African Countries Are Racing to Create AI Strategies &mdash; But Are They Putting the Cart Before the Horse? Global Center on AI Governance. <a href="https://www.globalcenter.ai/research/african-countries-are-racing-to-create-ai-strategies-but-are-they-putting-the-cart-before-the-horse" target="_blank" rel="noopener">globalcenter.ai</a>.</p>
+    <p><strong>CIPESA (2025).</strong> State of Internet Freedom in Africa 2025: Navigating the Implications of AI on Digital Democracy in Africa. <a href="https://cipesa.org/2025/09/state-of-internet-freedom-in-africa-report/" target="_blank" rel="noopener">cipesa.org</a>.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; National and continental documents</h4>
+    <p><strong>South Africa Draft AI Policy</strong> (Gazette 54477, 10 April 2026; withdrawn 27 April 2026). <a href="https://www.gov.za/sites/default/files/gcis_document/202604/54477gen3880.pdf" target="_blank" rel="noopener">gov.za PDF</a>.</p>
+    <p><strong>Withdrawal analysis.</strong> <a href="https://www.dlapiper.com/en-us/insights/publications/2026/05/withdrawal-of-south-africa-draft-ai-policy" target="_blank" rel="noopener">DLA Piper</a>.</p>
+    <p><strong>AU Continental AI Strategy</strong> (July 2024). <a href="https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy" target="_blank" rel="noopener">au.int</a>.</p>
+    <p><strong>AUDA-NEPAD Continental AI Roadmap</strong> (February 2025).</p>
+    <p><strong>Smart Africa Africa AI Council launch</strong> (17 November 2025, Conakry). <a href="https://smartafrica.org/the-smart-africas-board-unveils-the-inaugural-africa-ai-council-to-lead-the-continents-ai-transformation/" target="_blank" rel="noopener">smartafrica.org</a>.</p>
+    <p><strong>National strategies</strong>: SA (gov.za) &middot; <a href="https://www.minict.gov.rw/ai-policy" target="_blank" rel="noopener">Rwanda</a> &middot; <a href="https://www.africadataprotection.org/Kenya_AI_Strategy_2025_2030.pdf" target="_blank" rel="noopener">Kenya</a> &middot; <a href="https://ncair.nitda.gov.ng/wp-content/uploads/2025/09/National-Artificial-Intelligence-Strategy-19092025.pdf" target="_blank" rel="noopener">Nigeria</a> &middot; <a href="https://ai.gov.eg/SynchedFiles/en/Resources/AIstrategy%20English%2016-1-2025-1.pdf" target="_blank" rel="noopener">Egypt</a> &middot; <a href="https://aii.et/the-council-of-ministers-unanimously-decide-to-implement-the-national-artificial-intelligence-policy/" target="_blank" rel="noopener">Ethiopia</a>.</p>
+    <p><strong>The SPP 53(2) special section</strong> &mdash; the five companion papers (Effoduh, Ogoh et al., Nyabola, Mutung&#39;u et al., Ibrahim et al., Jimoh) covered in 11.4 are the deepest peer-reviewed African-led analysis available, and are worth re-reading as a set with 11.6&#39;s empirical picture in hand.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Institutions and funding</h4>
+    <p><strong>Deep Learning Indaba 2025 press release.</strong> <a href="https://deeplearningindaba.com/blog/2025/07/press-release-dli-2025/" target="_blank" rel="noopener">deeplearningindaba.com</a>.</p>
+    <p><strong>AIMS Next Einstein Initiative.</strong> <a href="https://nexteinstein.org/" target="_blank" rel="noopener">nexteinstein.org</a>. AMMI: <a href="https://aimsammi.org/" target="_blank" rel="noopener">aimsammi.org</a>.</p>
+    <p><strong>UCT African Compute Initiative.</strong> <a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">ai.uct.ac.za</a>.</p>
+    <p><strong>Wits MIND Institute</strong>; <strong>University of Pretoria AfriDSAI</strong> (<a href="https://www.up.ac.za/afridsai" target="_blank" rel="noopener">up.ac.za/afridsai</a>); <strong>AIMS South Africa AI-for-Science</strong> (<a href="https://ai.aims.ac.za/" target="_blank" rel="noopener">ai.aims.ac.za</a>).</p>
+    <p><strong>ARIN.</strong> <a href="https://arin-africa.org/" target="_blank" rel="noopener">arin-africa.org</a>. <strong>Zindi.</strong> <a href="https://zindi.africa/" target="_blank" rel="noopener">zindi.africa</a>. <strong>Lelapa AI.</strong> <a href="https://lelapa.ai/" target="_blank" rel="noopener">lelapa.ai</a>.</p>
+    <p><strong>Lacuna Fund.</strong> <a href="https://lacunafund.org/" target="_blank" rel="noopener">lacunafund.org</a>. <strong>IDRC AI4D Africa.</strong> <a href="https://idrc-crdi.ca/en/initiative/artificial-intelligence-development" target="_blank" rel="noopener">idrc-crdi.ca</a>.</p>
+    <p><strong>Google.org Africa AI announcement</strong> (July 2025). <a href="https://blog.google/intl/en-africa/company-news/outreach-and-initiatives/a-new-blueprint-to-empower-africas-next-generation-of-ai-builders/" target="_blank" rel="noopener">blog.google</a>.</p>
+    <p><strong>OpenAI / Gates Foundation Horizon 1000</strong> (January 2026). <a href="https://www.gatesnotes.com/expanding-access-to-health-care-through-ai" target="_blank" rel="noopener">gatesnotes.com</a>.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.7:</strong> the closing sub-lesson of the week, and of the African half of the course. We synthesise the futures half (11.1, 11.2) and the African-capacity half (11.4&ndash;11.6) and ask the question that has been quietly underlying everything in the second half of the course: <em>what is the most useful thing a postgraduate in this room can actually do?</em> The output is the seed of your Week 12 capstone pitch.</p>
+"""
+
+
+# ---------------------------------------------------------------------------
 # SUBLESSONS list — grows as sub-lessons are drafted
 # ---------------------------------------------------------------------------
 
@@ -1303,12 +1566,21 @@ SUBLESSONS = [
         "header_subtitle": "The global Indigenous data-sovereignty arc, the African foundation-model inventory, the benchmark stack, and where the gaps are",
         "body": SL5_BODY,
     },
+    {
+        "filename": "Policy Institutions and Talent.html",
+        "title": "Week 11.6 - Policy, Institutions, and Talent",
+        "badge": "Week 11 &bull; Sub-Lesson 6",
+        "header_emoji": "&#127963;&#65039;",  # classical building (policy/institutions)
+        "header_title": "Policy, Institutions, and Talent",
+        "header_subtitle": "The strategy-as-governance picture, the South African policy withdrawal as the local case study, the funding flows that actually move, and the institutions that train and retain African AI researchers",
+        "body": SL6_BODY,
+    },
 ]
 
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Policy Institutions and Talent.html" />6. Policy, Institutions and Talent</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
