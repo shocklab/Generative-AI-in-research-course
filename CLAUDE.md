@@ -28,8 +28,8 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 | 8 | Multimodal AI for Research | Built; uploaded to Amathuba; Assignment 4 live |
 | 9 | Critical Evaluation & Limitations of AI | Built |
 | 10 | Agentic AI, RAG & Advanced Research Tools | Built |
-| 11 | Future of AI in Research & Africa's Sovereign AI Capacity | Built (7 sub-lessons) |
-| 12 | Integrative Capstone (3-hour solo activity, brief inside 11.7) | Built |
+| 11 | Future of AI in Research & Africa's Sovereign AI Capacity | Built (6 sub-lessons) |
+| 12 | Integrative Capstone (3-hour solo activity, brief inside the Week 12 page) | Built |
 
 **Note on restructured schedule (Weeks 7-12):** The original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) were merged into Week 7 because they overlap heavily — data analysis IS coding for most researchers. Original Week 9 (Domain-Specific Applications) content is woven into other weeks as case studies. Original Week 10 (Critical Evaluation/Limitations) was moved to Week 9. This freed a slot for a Multimodal AI week (Week 8) and a Flexible/TBD week. See the plan file at `.claude/plans/goofy-whistling-journal.md` for full rationale.
 
@@ -137,9 +137,13 @@ Week 11/         (Future of AI in Research & Africa's Sovereign AI Capacity)
   Sovereign AI Capacity and Why Compute Is the Floor.html
   Data Languages and African Model-Building.html
   Policy Institutions and Talent.html
-  Synthesis and the Week-12 Capstone.html    (contains the Week 12 brief inline)
   build_week11.py    (Python generator, mirrors build_week9/10.py)
   OUTLINE.md         (research/discovery outline used to draft the week)
+
+Week 12/         (Integrative Capstone)
+  Table of Contents.html
+  Synthesis and the Integrative Capstone.html    (contains the full capstone brief)
+  build_week12.py    (Python generator, mirrors build_week11.py)
 
 From Amathuba/           (Amathuba/Brightspace export — the live/edited versions of all lessons)
 
@@ -259,7 +263,7 @@ Key conventions that apply across weeks:
 - **Model-version genericisation (from Week 8 onward):** capability discussions use family names — `Claude (family)`, `GPT (family)`, `Gemini (family)`. Specific model names kept ONLY in historical citations. Open-source models named for their version (Whisper large-v3) keep it.
 - **Week 9 build pattern:** Python generator script (`Week 9/build_week9.py`) — faster for content-heavy weeks. Replicated successfully for Week 10 and Week 11.
 - **Week 11 strong African emphasis:** the four sub-lessons 11.4–11.7 treat the African intellectual tradition as the analytical home base, with Northern voices treated as foils. African voices include Mhlambi, Effoduh, Esethu Framework, Mutung'u et al., CARE Principles (Gaborone 2018), Pelonomi Moiloa (Lelapa), Vukosi Marivate (UP/Lelapa/Indaba/Masakhane), Anri Lombard (UCT, MzansiLM lead).
-- **Week 12 is a 3-hour solo capstone** with the brief living entirely inside Sub-Lesson 11.7 (six-prompt structured pitch + solo self-critique = 600 words). No separate document.
+- **Week 12 is a 3-hour solo capstone** with the brief living entirely inside the Week 12 page (six-prompt structured pitch + solo self-critique = 600 words). No separate document, no live session.
 
 ## GitHub Pages Site
 
