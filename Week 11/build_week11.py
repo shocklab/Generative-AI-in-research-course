@@ -136,6 +136,9 @@ PAGE_SHELL = """<!DOCTYPE html>
 # ---------------------------------------------------------------------------
 
 SL1_BODY = """
+  <div style="background: #003A70; color: white; padding: 14px 22px; border-radius: 10px; margin-bottom: 25px; font-size: 0.95em;">
+    <strong>Week 11 is organised in two parts.</strong> Sub-lessons 11.1&ndash;11.3 (<em>Part A</em>) examine the future of AI in research and the institutional response to it. Sub-lessons 11.4&ndash;11.6 (<em>Part B</em>) turn to the parallel question of Africa&#39;s sovereign AI capacity. The two parts can be read independently &mdash; though by the end of the week the connection between them is where the Week 12 capstone lives.
+  </div>
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>Most public commentary about &ldquo;the future of AI in research&rdquo; is a mixture of three very different claims: things that are demonstrably happening; things that are technically real but loudly oversold; and things that are not happening at all but are presented as imminent. The most useful thing a postgraduate researcher can take away from a futures discussion is not a list of predictions but a habit: <strong>before you accept a claim about what AI is doing for science, ask which of those three buckets it falls into.</strong></p>
@@ -503,11 +506,11 @@ SL3_BODY = """
     <h4>&#128214; Five typical policy types, tied to major publishers</h4>
     <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Wang and Gong identify five distinct policy templates that account for the bulk of high-impact-journal AI rules. They differ in <em>what</em> they permit, but agree on one principle.</p>
     <ul class="styled-list" style="margin-top: 0;">
-      <li><strong>OUP (Oxford University Press) &mdash;</strong> defers to the broader publication-ethics consensus (COPE guidelines) and does not yet have a journal-specific generative-AI policy. Authors are expected to disclose; the editorial stance on use is permissive.</li>
-      <li><strong>Elsevier &mdash;</strong> the most prohibitive of the five. Bans generative AI from all stages of peer review and editorial decision-making; bans uploading manuscripts to AI platforms.</li>
-      <li><strong>Springer Nature &mdash;</strong> emphasises confidentiality. Does not ban AI use outright, but prohibits uploading manuscript content (including figures and tables) to generative-AI services, on the grounds that such uploads breach the confidentiality of peer review.</li>
-      <li><strong>Wiley &mdash;</strong> structurally similar to Springer Nature: limited use permitted; no manuscript upload to AI platforms.</li>
-      <li><strong>ACM (Association for Computing Machinery) &mdash;</strong> the most permissive of the five. Editors and reviewers may use generative AI to support their work, provided confidential information (author identities, manuscript content) is first removed.</li>
+      <li><strong>OUP (Oxford University Press) &mdash;</strong> defers to the broader publication-ethics consensus (COPE guidelines) and does not yet have a journal-specific generative-AI policy. Authors are expected to disclose; the editorial stance on use is permissive. <a href="https://academic.oup.com/pages/for-authors/books/author-use-of-artificial-intelligence" target="_blank" rel="noopener">OUP author-AI policy</a>.</li>
+      <li><strong>Elsevier &mdash;</strong> the most prohibitive of the five. Bans generative AI from all stages of peer review and editorial decision-making; bans uploading manuscripts to AI platforms. <a href="https://www.elsevier.com/about/policies-and-standards/the-use-of-generative-ai-and-ai-assisted-technologies-in-the-review-process" target="_blank" rel="noopener">Elsevier review-process policy</a> &middot; <a href="https://www.elsevier.com/about/policies-and-standards/the-use-of-generative-ai-and-ai-assisted-technologies-in-writing-for-elsevier" target="_blank" rel="noopener">Elsevier author policy</a>.</li>
+      <li><strong>Springer Nature &mdash;</strong> emphasises confidentiality. Does not ban AI use outright, but prohibits uploading manuscript content (including figures and tables) to generative-AI services, on the grounds that such uploads breach the confidentiality of peer review. <a href="https://www.springer.com/gp/editorial-policies/artificial-intelligence--ai-/25428500" target="_blank" rel="noopener">Springer Nature AI policy</a>.</li>
+      <li><strong>Wiley &mdash;</strong> structurally similar to Springer Nature: limited use permitted; no manuscript upload to AI platforms. <a href="https://www.wiley.com/en-us/publish/book/resources/ai-guidelines/" target="_blank" rel="noopener">Wiley AI guidelines</a>.</li>
+      <li><strong>ACM (Association for Computing Machinery) &mdash;</strong> the most permissive of the five. Editors and reviewers may use generative AI to support their work, provided confidential information (author identities, manuscript content) is first removed. <a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener">ACM authorship policy</a>.</li>
     </ul>
     <p style="color: #444; line-height: 1.75; margin-top: 12px;"><strong>The one principle all five share:</strong> AI cannot replace human judgement on a manuscript&#39;s scientific innovation or professional standing. That is the consensus the entire field has settled on, however it is operationalised.</p>
   </div>
@@ -568,7 +571,7 @@ SL3_BODY = """
 
   <div class="case-study">
     <h4>&#127489;&#127462; The NRF (South Africa) gap</h4>
-    <p>The South African National Research Foundation, the principal public funder for the research most postgraduate students in this course will eventually apply to, has <strong>no policy</strong> on generative AI use in grant applications as of May 2026. The NRF General Application Guide for 2025&ndash;2026, the binding document that sets the rules every applicant must comply with, does not mention generative AI, ChatGPT, or large language models anywhere in its text. The NRF does not prohibit AI use in applications, nor does it require disclosure, nor does it offer guidance.</p>
+    <p>The South African National Research Foundation has <strong>no policy</strong> on generative AI use in grant applications as of May 2026. The NRF General Application Guide for 2025&ndash;2026, the binding document that sets the rules every applicant must comply with, does not mention generative AI, ChatGPT, or large language models anywhere in its text. The NRF does not prohibit AI use in applications, nor does it require disclosure, nor does it offer guidance.</p>
     <p>This is a fact, not a judgement. Many national funders in the Global South are in the same position. But it has two practical implications for you. <em>First,</em> if you are applying to the NRF directly, you are operating in a policy vacuum. There are no formal rules. <em>Second &mdash; and more important &mdash; the international norms still apply to you.</em> If you publish work supported by an NRF grant in an Elsevier or Wiley or Nature journal, the journal&#39;s AI policy binds you. If you collaborate with a NIH-funded research group on a paper, NIH&#39;s rules will apply to the proposal you submit jointly. The NRF gap is a gap in domestic policy, not in the international rules that will actually govern most of your published work.</p>
     <p>If you want to do something useful for the local research community before you finish your PhD, drafting an NRF AI-disclosure policy proposal &mdash; even a one-page version &mdash; is the kind of contribution that would be genuinely valuable.</p>
     <p style="color: #888; font-size: 0.9em;"><a href="https://www.nrf.ac.za/wp-content/uploads/2025/02/General-Application-Guide-2025-2026.pdf" target="_blank" rel="noopener">NRF General Application Guide 2025&ndash;2026 (PDF)</a></p>
@@ -695,6 +698,9 @@ SL3_BODY = """
 # ---------------------------------------------------------------------------
 
 SL4_BODY = """
+  <div style="background: #003A70; color: white; padding: 14px 22px; border-radius: 10px; margin-bottom: 25px; font-size: 0.95em;">
+    <strong>This is the opening of Part B of Week 11.</strong> Sub-lessons 11.1&ndash;11.3 (<em>Part A</em>) examined the future of AI in research and the institutional response to it. Sub-lessons 11.4&ndash;11.6 (<em>Part B</em>, starting here) turn to the parallel question of Africa&#39;s sovereign AI capacity, read from an African intellectual tradition first. The two parts can be read independently &mdash; though the Week 12 capstone draws on both.
+  </div>
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>&ldquo;Sovereign AI&rdquo; is one of the most actively contested terms in technology policy right now. National governments are setting up Sovereign AI Units (the United Kingdom did so in 2025); chip vendors are signing &ldquo;AI factory&rdquo; partnerships with national governments; African researchers are developing distinct conceptions of what sovereignty means when the question is asked from the relational personhood traditions of African philosophy rather than from the geopolitical autonomy traditions of European international law. The word does enormous work, and it does that work very differently depending on who is using it.</p>
@@ -710,7 +716,7 @@ SL4_BODY = """
     <div class="card">
       <h3>Mhlambi (2020) &mdash; the philosophical substrate</h3>
       <p>Sabelo Mhlambi&#39;s Carr Center discussion paper <em>From Rationality to Relationality</em> argues that contemporary AI was built on a Western philosophical view of personhood as rationality, and that this view&#39;s contradictions are reproduced as the harms AI causes. Mhlambi proposes Ubuntu&#39;s relational personhood &mdash; personhood as a property of the relations between people rather than of an individual&#39;s capacity to reason &mdash; as an alternative substrate for AI ethics.</p>
-      <p style="color: #888; font-size: 0.9em;">Mhlambi, S. (2020). Carr Center for Human Rights Policy, Harvard Kennedy School. <a href="https://carrcenter.hks.harvard.edu/publications/rationality-relationality-ubuntu-ethical-and-human-rights-framework-artificial" target="_blank" rel="noopener">carrcenter.hks.harvard.edu</a></p>
+      <p style="color: #888; font-size: 0.9em;">Mhlambi, S. (2020). Carr Center for Human Rights Policy, Harvard Kennedy School. <a href="https://perma.cc/Q5ZL-TTD8" target="_blank" rel="noopener">perma.cc/Q5ZL-TTD8</a></p>
     </div>
     <div class="card">
       <h3>Effoduh (2026) &mdash; epistemic sovereignty</h3>
@@ -934,7 +940,7 @@ SL4_BODY = """
 
   <div class="resource-placeholder">
     <h4>&#128196; African voices on sovereignty</h4>
-    <p><strong>Mhlambi, S. (2020).</strong> <em>From Rationality to Relationality: Ubuntu as an Ethical and Human Rights Framework for Artificial Intelligence Governance.</em> Carr Center Discussion Paper 2020-009, Harvard Kennedy School. <a href="https://carrcenter.hks.harvard.edu/publications/rationality-relationality-ubuntu-ethical-and-human-rights-framework-artificial" target="_blank" rel="noopener">Carr Center</a>.</p>
+    <p><strong>Mhlambi, S. (2020).</strong> <em>From Rationality to Relationality: Ubuntu as an Ethical and Human Rights Framework for Artificial Intelligence Governance.</em> Carr Center Discussion Paper 2020-009, Harvard Kennedy School. <a href="https://perma.cc/Q5ZL-TTD8" target="_blank" rel="noopener">perma.cc/Q5ZL-TTD8</a>.</p>
     <p><strong>Effoduh, J. O. (2026).</strong> Decolonizing the governance of artificial intelligence in Africa: from normative mimicry to epistemic sovereignty. <em>Science and Public Policy</em> 53(2), 245&ndash;257. <a href="https://academic.oup.com/spp/article/53/2/245/8654721" target="_blank" rel="noopener">academic.oup.com</a>.</p>
     <p><strong>Rajab, J., Aremu, A., Chimoto, E. A. et al. (2025).</strong> The Esethu Framework. <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>.</p>
     <p><strong>Mutung&#39;u, G., Martin, A. &amp; Brewczy&#324;ska, M. (2026).</strong> Regulatory entrepreneurship&#39;s threat to digital sovereignty: the case of Worldcoin in Kenya. <em>Science and Public Policy</em> 53(2), 289&ndash;299. <a href="https://academic.oup.com/spp/article/53/2/289/8654728" target="_blank" rel="noopener">academic.oup.com</a>.</p>
@@ -1542,7 +1548,7 @@ SUBLESSONS = [
     {
         "filename": "What the Future of AI in Research Might Look Like.html",
         "title": "Week 11.1 - What the Future of AI in Research Might Look Like",
-        "badge": "Week 11 &bull; Sub-Lesson 1",
+        "badge": "Week 11 &bull; Part A &bull; Sub-Lesson 1",
         "header_emoji": "&#128302;",  # crystal ball
         "header_title": "What the Future of AI in Research Might Look Like",
         "header_subtitle": "A calibrated reading of what is shipping, what is overclaimed, and what is purely aspirational &mdash; with three worked cases",
@@ -1551,7 +1557,7 @@ SUBLESSONS = [
     {
         "filename": "Speculative Futures - A Reading Guide.html",
         "title": "Week 11.2 - Speculative Futures: A Reading Guide",
-        "badge": "Week 11 &bull; Sub-Lesson 2",
+        "badge": "Week 11 &bull; Part A &bull; Sub-Lesson 2",
         "header_emoji": "&#128302;",  # crystal ball
         "header_title": "Speculative Futures: A Reading Guide",
         "header_subtitle": "Reading further into the genuinely speculative end of the AI-in-research literature &mdash; frameworks, forecasts, institutional visioning, and wild speculation, with calibration",
@@ -1560,7 +1566,7 @@ SUBLESSONS = [
     {
         "filename": "The Shifting Research Landscape.html",
         "title": "Week 11.3 - The Shifting Research Landscape: Policy, Peer Review, Integrity",
-        "badge": "Week 11 &bull; Sub-Lesson 3",
+        "badge": "Week 11 &bull; Part A &bull; Sub-Lesson 3",
         "header_emoji": "&#127963;&#65039;",  # classical building / institution
         "header_title": "The Shifting Research Landscape",
         "header_subtitle": "How journal policies, funder rules, and peer-review norms have moved in the last 18 months &mdash; and why researcher practice has not kept pace",
@@ -1569,7 +1575,7 @@ SUBLESSONS = [
     {
         "filename": "Sovereign AI Capacity and Why Compute Is the Floor.html",
         "title": "Week 11.4 - Sovereign AI Capacity, and Why Compute Is the Floor",
-        "badge": "Week 11 &bull; Sub-Lesson 4",
+        "badge": "Week 11 &bull; Part B &bull; Sub-Lesson 4",
         "header_emoji": "&#127757;",  # earth globe Africa
         "header_title": "Sovereign AI Capacity, and Why Compute Is the Floor",
         "header_subtitle": "What sovereignty means when read from an African intellectual tradition &mdash; and where the actual African compute is, isn&#39;t, and might be",
@@ -1578,7 +1584,7 @@ SUBLESSONS = [
     {
         "filename": "Data Languages and African Model-Building.html",
         "title": "Week 11.5 - Data, Languages and African Model-Building",
-        "badge": "Week 11 &bull; Sub-Lesson 5",
+        "badge": "Week 11 &bull; Part B &bull; Sub-Lesson 5",
         "header_emoji": "&#128488;&#65039;",  # speech balloon (languages)
         "header_title": "Data, Languages and African Model-Building",
         "header_subtitle": "The global Indigenous data-sovereignty arc, the African foundation-model inventory, the benchmark stack, and where the gaps are",
@@ -1587,7 +1593,7 @@ SUBLESSONS = [
     {
         "filename": "Policy Institutions and Talent.html",
         "title": "Week 11.6 - Policy, Institutions, and Talent",
-        "badge": "Week 11 &bull; Sub-Lesson 6",
+        "badge": "Week 11 &bull; Part B &bull; Sub-Lesson 6",
         "header_emoji": "&#127963;&#65039;",  # classical building (policy/institutions)
         "header_title": "Policy, Institutions, and Talent",
         "header_subtitle": "The strategy-as-governance picture, the South African policy withdrawal as the local case study, the funding flows that actually move, and the institutions that train and retain African AI researchers",
@@ -1598,7 +1604,7 @@ SUBLESSONS = [
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Policy Institutions and Talent.html" />6. Policy, Institutions and Talent</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p style='margin-left: 25px; margin-top: 20px; color: #003A70; font-weight: bold; font-size: 1.1em;'>Part A &mdash; The Future of AI in Research (11.1&ndash;11.3)</p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p style='margin-left: 25px; margin-top: 24px; color: #003A70; font-weight: bold; font-size: 1.1em;'>Part B &mdash; Africa&#39;s Sovereign AI Capacity (11.4&ndash;11.6)</p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Policy Institutions and Talent.html" />6. Policy, Institutions and Talent</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
