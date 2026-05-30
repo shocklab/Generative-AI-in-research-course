@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 11.4 - Sovereign AI Capacity, and Why Compute Is the Floor</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 11 &bull; Sub-Lesson 4</div>
+  <h1>&#127757; <span style="color: #ffffff;">Sovereign AI Capacity, and Why Compute Is the Floor</span></h1>
+  <p>What sovereignty means when read from an African intellectual tradition &mdash; and where the actual African compute is, isn&#39;t, and might be</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>&ldquo;Sovereign AI&rdquo; is one of the most actively contested terms in technology policy right now. National governments are setting up Sovereign AI Units (the United Kingdom did so in 2025); chip vendors are signing &ldquo;AI factory&rdquo; partnerships with national governments; African researchers are developing distinct conceptions of what sovereignty means when the question is asked from the relational personhood traditions of African philosophy rather than from the geopolitical autonomy traditions of European international law. The word does enormous work, and it does that work very differently depending on who is using it.</p>
+    <p>This sub-lesson reads sovereign AI from an African intellectual tradition first &mdash; from Mhlambi, Effoduh, the Esethu Framework, Mutung&#39;u and colleagues, and the AU&#39;s own strategy &mdash; and then evaluates the better-known vendor and Northern-analytical framings against that home base. The pedagogical claim is not that the African tradition is correct and the others are wrong, but that the relational conception of sovereignty that runs through African scholarship gives postgraduate researchers in this part of the world the sharpest analytical tool for thinking about the AI infrastructure they are about to live with.</p>
+    <p>We then go deep on the layer of the picture that everything material depends on: <em>compute</em>. South Africa&#39;s CHPC, the Cassava&ndash;NVIDIA AI Factory, the Microsoft&ndash;G42 Kenya deal, the AU&#39;s &ldquo;AI Factory&rdquo; concept, and the gap between what has been announced and what is actually operational as of May 2026. We close with the question that matters most for the person reading this: <em>what compute can you, a postgraduate researcher at a South African university in 2026, actually use for your work?</em></p>
+  </div>
+
+  <h2 class="section-title">&#127757; An African Conception of AI Sovereignty</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Five strands of African scholarship and one African continental policy document together build something that is best described as a <em>relational</em> conception of AI sovereignty. They do not all use the same vocabulary, and not all of them use the word &ldquo;sovereignty&rdquo; explicitly, but reading them together produces an analytical position that is genuinely distinct from both the vendor framing and the Northern policy framing we look at below.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Mhlambi (2020) &mdash; the philosophical substrate</h3>
+      <p>Sabelo Mhlambi&#39;s Carr Center discussion paper <em>From Rationality to Relationality</em> argues that contemporary AI was built on a Western philosophical view of personhood as rationality, and that this view&#39;s contradictions are reproduced as the harms AI causes. Mhlambi proposes Ubuntu&#39;s relational personhood &mdash; personhood as a property of the relations between people rather than of an individual&#39;s capacity to reason &mdash; as an alternative substrate for AI ethics.</p>
+      <p style="color: #888; font-size: 0.9em;">Mhlambi, S. (2020). Carr Center for Human Rights Policy, Harvard Kennedy School. <a href="https://carrcenter.hks.harvard.edu/publications/rationality-relationality-ubuntu-ethical-and-human-rights-framework-artificial" target="_blank" rel="noopener">carrcenter.hks.harvard.edu</a></p>
+    </div>
+    <div class="card">
+      <h3>Effoduh (2026) &mdash; epistemic sovereignty</h3>
+      <p>Writing in <em>Science and Public Policy</em>, Jake Effoduh proposes <strong>epistemic sovereignty</strong> as the explicit goal for African AI governance &mdash; the right to <em>frame</em> AI questions on African terms, not just to apply African answers to imported questions. Effoduh critiques what he calls <em>normative mimicry</em>: the tendency of African AI governance to import its concepts and frameworks wholesale from EU or US contexts, retaining the structure and substituting only the geography.</p>
+      <p style="color: #888; font-size: 0.9em;">Effoduh, J. O. (2026). <em>Science and Public Policy</em> 53(2), 245&ndash;257. <a href="https://academic.oup.com/spp/article/53/2/245/8654721" target="_blank" rel="noopener">academic.oup.com</a></p>
+    </div>
+    <div class="card">
+      <h3>The Esethu Framework (Rajab et al., 2025) &mdash; community-grounded data governance</h3>
+      <p>The Esethu Framework, developed by a South-Africa-led team at ACL 2025, proposes community-centric licensing for African-language datasets: communities retain rights over how their language data is used, benefit-sharing is required, and the licence itself is structured to keep agency with the community rather than with the downstream model developer. The Vuk&#39;uzenzele isiXhosa corpus is the first published dataset under the framework.</p>
+      <p style="color: #888; font-size: 0.9em;">Rajab, J., Aremu, A., Chimoto, E. A., et al. (2025). arXiv:2502.15916.</p>
+    </div>
+    <div class="card">
+      <h3>Mutung&#39;u et al. (2026) &mdash; individual digital sovereignty</h3>
+      <p>Grace Mutung&#39;u, Aaron Martin, and Magdalena Brewczy&#324;ska examine Worldcoin&#39;s Kenya operation as a case study in regulatory entrepreneurship. Their analytical move is to root <em>national</em> digital sovereignty in the prior duty of states to protect <em>individual</em> digital rights. Sovereignty, in this reading, is not primarily about who owns the infrastructure but about whose rights the infrastructure is bound to respect. We return to this case as a worked example in the next section.</p>
+      <p style="color: #888; font-size: 0.9em;">Mutung&#39;u, G. et al. (2026). <em>Science and Public Policy</em> 53(2), 289&ndash;299. <a href="https://academic.oup.com/spp/article/53/2/289/8654728" target="_blank" rel="noopener">academic.oup.com</a></p>
+    </div>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two more strands sit alongside these. <strong>The CARE Principles</strong> &mdash; Collective Benefit, Authority to Control, Responsibility, Ethics &mdash; were drafted in Gaborone in 2018 at International Data Week, by the Global Indigenous Data Alliance, and have become the most-cited framework worldwide for Indigenous data sovereignty. The CARE Principles deliberately complement rather than replace the more familiar FAIR Principles (findable, accessible, interoperable, reusable): FAIR governs the data; CARE governs the relations between the data and the communities the data come from. The geographic anchor of the framework in Africa, and its conceptual closeness to the relational reading of sovereignty in Mhlambi and Esethu, makes CARE a natural companion to the African strand. <strong>The African Union Continental AI Strategy</strong> (July 2024), for its part, talks about sovereignty in its policy-document register &mdash; less analytically sharp than the academic papers above, but nonetheless committed to the principle that African AI capacity should be developed under African terms.</p>
+
+  <div class="info-box">
+    <h4>&#128587;&#127998;&#8205;&#9794;&#65039; Two practitioners worth naming</h4>
+    <p><strong>Pelonomi Moiloa</strong>, CEO of Lelapa AI, has built much of her company&#39;s public positioning around the idea of <em>Resource-Efficient AI</em>: that African sovereign AI capacity is not best pursued by trying to replicate the compute footprint of Silicon Valley labs but by building models small enough and efficient enough that the available infrastructure can actually support them. InkubaLM, the 0.4 billion-parameter African-language model we covered in Week 10, is the engineering expression of that argument.</p>
+    <p><strong>Vukosi Marivate</strong>, professor at the University of Pretoria and Lelapa co-founder, was awarded the Order of Mapungubwe (Silver) in 2024 for contributions to AI, computer science, and natural-language processing, and now serves on a sovereign-AI initiative as Chief Information Officer. Together, Moiloa and Marivate represent the operational arm of the African sovereignty conversation &mdash; the people building the infrastructure that the philosophical and policy positions are arguing about.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">What emerges, reading these strands together, is a <strong>relational conception of AI sovereignty</strong>: sovereignty as agency exercised by and for communities, grounded in relational personhood, mediated by licences and governance more than by walls and hardware, and located at the intersection of individual rights, community authority, and institutional capacity. The word &ldquo;sovereignty&rdquo; is doing serious analytical work here, and its content is recognisably continuous with the longer Ubuntu tradition rather than borrowed from Westphalian state-autonomy.</p>
+
+  <h2 class="section-title">&#129494; The Worldcoin Kenya Case</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The sharpest single test of the relational conception of sovereignty is a case the Mutung&#39;u, Martin, and Brewczy&#324;ska paper treats in detail. It is worth narrating briefly here because it shows the analytical move the African strand is making, more clearly than any general statement could.</p>
+
+  <div class="case-study">
+    <h4>&#128481; Worldcoin in Kenya: a sovereignty case</h4>
+    <p>In 2022 and 2023, Worldcoin (Sam Altman&#39;s biometric-identity venture, now operating as the World Network) signed up around 350,000 Kenyans by scanning their irises in exchange for a cryptocurrency token. The Kenyan Data Protection Commissioner suspended Worldcoin&#39;s operations in August 2023 and subsequently found multiple breaches of Kenya&#39;s 2019 Data Protection Act, including the absence of any lawful basis for the iris-data processing.</p>
+    <p>The Mutung&#39;u et al. paper&#39;s analytical move is the one that matters here. The Worldcoin violation was <em>not</em> caused by an absence of African GPUs, African foundation models, or African data centres. It was caused by a foreign company extracting biometric data from Kenyan individuals under terms those individuals were not in a position to evaluate, and by a regulator that did not have the institutional capacity to enforce its rules before the harm had already occurred at scale. A &ldquo;sovereign AI&rdquo; agenda framed primarily around <em>infrastructure ownership</em> &mdash; the version we will look at below in the vendor framing &mdash; would not have prevented this. A sovereignty agenda framed around <em>the prior duty of the state to protect individual digital rights</em> &mdash; which is the framing Mutung&#39;u and colleagues argue for &mdash; goes directly to where the violation actually occurred.</p>
+    <p>The pedagogical point: when an African government talks about &ldquo;sovereign AI&rdquo;, the most useful first question is not &ldquo;do we have our own compute?&rdquo; but &ldquo;<em>whose rights is the AI infrastructure we depend on bound to respect?</em>&rdquo;</p>
+  </div>
+
+  <h2 class="section-title">&#127465;&#127466; How Northern Framings Differ</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Two non-African framings of sovereign AI dominate the public discussion: a <em>vendor</em> framing led by NVIDIA, and an <em>analytical-policy</em> framing led by think tanks and academic policy centres. They differ from each other almost as much as they differ from the African strand, and they are worth holding distinct. The pedagogical point of this section is not to dismiss either &mdash; the policy strand in particular has substantial analytical value &mdash; but to be clear about what each is doing and to read it from the African home base rather than the other way around.</p>
+
+  <div class="technical-detail">
+    <h4>&#128184; The vendor framing: NVIDIA&#39;s &ldquo;sovereign AI&rdquo;</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">In a widely-quoted appearance at the World Governments Summit in Dubai in February 2024, NVIDIA CEO Jensen Huang told national leaders that they should each build their own large language models, on their own infrastructure, in their own languages, because (in his framing) AI &ldquo;codifies your culture, your society&#39;s intelligence, your common sense, your history&rdquo;. NVIDIA&#39;s formal definition followed in a company blog post the same month: sovereign AI as a nation&#39;s capacity to produce AI using its own infrastructure, data, workforce, and business networks.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">There is a real cultural-preservation argument inside this framing, and we should not pretend otherwise. The trouble is that every operational component the NVIDIA framing names &mdash; the GPUs, the data-centre buildouts, the AI factories, the national-scale model training &mdash; requires hardware NVIDIA sells. The company has subsequently announced &ldquo;AI factory&rdquo; partnerships with France, Italy, Japan, India, Saudi Arabia, the United Arab Emirates, and (covered below) South Africa via Cassava. The framing converts sovereignty anxiety into procurement urgency.</p>
+    <p style="color: #444; line-height: 1.75;">Read from the relational sovereignty home base, the NVIDIA framing answers a different question than the African strand is asking. It addresses &ldquo;how does the nation acquire AI capacity?&rdquo; and is largely silent on &ldquo;whose rights does the resulting capacity protect?&rdquo;</p>
+    <p style="color: #888; font-size: 0.9em;"><a href="https://blogs.nvidia.com/blog/what-is-sovereign-ai/" target="_blank" rel="noopener">NVIDIA blog, 28 February 2024</a>; <a href="https://blogs.nvidia.com/blog/world-governments-summit/" target="_blank" rel="noopener">Huang at World Governments Summit, 12 February 2024</a>.</p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#128218; The analytical-policy framing: Stanford HAI, Brookings, WEF</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">A second strand &mdash; substantially different from the vendor framing &mdash; is the work emerging from policy-oriented academic centres and think tanks since late 2025. The clearest recent example is the Stanford HAI piece <em>AI Sovereignty&#39;s Definitional Dilemma</em> (Pava, Meinhardt, Cryst &amp; Landay), which argues that the concept is <em>&ldquo;systematically underspecified&rdquo;</em> and proposes a (why &times; where) matrix as a clearer analytical tool: <em>why</em> a government wants to reduce AI dependencies (cultural autonomy, national security, economic competitiveness, regulatory oversight) and <em>where</em> in the AI technology stack it wants to exercise that agency (infrastructure, data, models, applications, talent). The Stanford piece concludes that &ldquo;true AI sovereignty&rdquo; is best understood as the capacity to <strong>choose and reconfigure</strong> dependencies, not as full autonomy &mdash; what they call <em>strategic interdependence</em>.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The Brookings Institution&#39;s February 2026 paper <em>Is AI sovereignty possible? Balancing autonomy and interdependence</em> reaches a similar conclusion via a seven-layer stack analysis (minerals, energy, compute, networks, data, models, applications) and proposes &ldquo;managed interdependence&rdquo; as the policy goal. A World Economic Forum piece from April 2026, &ldquo;The myth of AI sovereignty&rdquo;, treats full-stack sovereignty as a &ldquo;high-cost proxy&rdquo; for the real underlying demand &mdash; resilience and autonomous control over deployment.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Two things are worth noting. First, the analytical-policy strand is largely <em>compatible</em> with the African relational reading. The Stanford piece itself explicitly cites M&#257;ori data governance &mdash; community consent and guardianship &mdash; as an example of how data sovereignty can be understood as a collective cultural asset rather than a market commodity, and notes that this contrasts with both market-driven and state-centric regimes. The CARE Principles drafted in Gaborone in 2018 sit in the same global Indigenous-data-sovereignty arc.</p>
+    <p style="color: #444; line-height: 1.75;">Second, the framework the Stanford and Brookings teams propose is recognisably the same shape as the five-layer pedagogical synthesis we use below: <em>compute, data, models, policy, talent</em>. We make no claim that this synthesis is original. It is our teaching simplification of a layered analysis that has now been published in several converging forms.</p>
+    <p style="color: #888; font-size: 0.9em;">Pava, J. N., Meinhardt, C., Cryst, E. &amp; Landay, J. A. <em>AI Sovereignty&#39;s Definitional Dilemma</em>, Stanford HAI, 2025. <a href="https://hai.stanford.edu/news/ai-sovereigntys-definitional-dilemma" target="_blank" rel="noopener">hai.stanford.edu</a>. Brookings Institution, February 2026. World Economic Forum, April 2026.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The takeaway: there is a serious analytical literature on sovereign AI that is largely orthogonal to the vendor framing, and it converges substantially with the African relational reading without explicitly arriving from it. The pedagogically useful position is the relational one, treated as home base, with the Stanford / Brookings analytical strand picked up where it provides additional tools (the (why &times; where) matrix; the layered stack; the &ldquo;strategic interdependence&rdquo; framing). The vendor strand is best read as a marketing position to evaluate against the others, not as analysis.</p>
+
+  <h2 class="section-title">&#129520; A Five-Layer Pedagogical Synthesis</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">For the rest of this week, we use a deliberately simple five-layer breakdown of what &ldquo;AI capacity&rdquo; consists of. It is not original analysis; it is a teaching compression of the converging stack analyses just above. The five layers map onto the rest of the African half of the week: this sub-lesson (11.4) goes deep on the first, and 11.5 and 11.6 cover the others.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Layer</th>
+          <th>What it is</th>
+          <th>African landscape (covered in...)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Compute</strong></td>
+          <td>GPUs, data centres, power, networking. The physical floor.</td>
+          <td>11.4 (the rest of this sub-lesson)</td>
+        </tr>
+        <tr>
+          <td><strong>Data</strong></td>
+          <td>Language corpora, domain data, governance.</td>
+          <td>11.5</td>
+        </tr>
+        <tr>
+          <td><strong>Models</strong></td>
+          <td>Foundation models trained from scratch or adapted; benchmarks; evaluation.</td>
+          <td>11.5</td>
+        </tr>
+        <tr>
+          <td><strong>Policy</strong></td>
+          <td>Continental and national AI strategies; regulatory frameworks; institutional capacity.</td>
+          <td>11.6</td>
+        </tr>
+        <tr>
+          <td><strong>Talent</strong></td>
+          <td>Researcher pipelines; community infrastructure (Masakhane, Lanfrica, Indaba, AIMS).</td>
+          <td>11.6</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">We treat compute first because everything else in the stack ultimately depends on having physical hardware somewhere in the loop. We treat it last in pedagogical importance, because (as the Worldcoin case made clear) compute ownership without rights protection does not get you the sovereignty most worth having. Both are true at once.</p>
+
+  <h2 class="section-title">&#9889; Why Compute Is the Floor</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Four flagship African compute initiatives anchor the public discussion about &ldquo;sovereign AI compute&rdquo;. As of May 2026, exactly one of the four is actually moving from announcement to operation. Reading the four together gives a sober picture of where the African compute landscape really is.</p>
+
+  <div class="technical-detail">
+    <h4>&#127481;&#127462; CHPC South Africa &mdash; the established baseline</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The Centre for High Performance Computing in Cape Town operates South Africa&#39;s public HPC service, anchored on the <em>Lengau</em> Dell/Intel cluster: roughly 1 PFLOPS peak, around 30,000 CPU cores, online since 2016. Lengau is still the production HPC nine years on. CHPC&#39;s GPU presence is a modest pool of 30 NVIDIA V100 nodes added in 2018 &mdash; useful for postgraduate work, heavily oversubscribed, and small by 2026 standards.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">A roughly 4 PFLOPS direct-water-cooled successor cluster has been procured under the NICIS 2026&ndash;2030 business plan presented at the 2025 CHPC conference; it is described in the planning documents as the upgrade path. As of May 2026 it is not yet shown on the CHPC site as user-accessible.</p>
+    <p style="color: #444; line-height: 1.75;"><strong>Honest reading:</strong> CHPC is real, operational, and free at the point of use for South African postgraduate researchers. It is not, and is not designed as, a dedicated national AI compute facility. The upgrade is in procurement.</p>
+    <p style="color: #888; font-size: 0.9em;"><a href="https://www.chpc.ac.za/" target="_blank" rel="noopener">chpc.ac.za</a></p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#127922; Cassava Technologies + NVIDIA AI Factory &mdash; the operational case</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">In March 2025 Cassava Technologies and NVIDIA announced a partnership to build &ldquo;AI Factories&rdquo; across Africa, with an ambitious initial South African deployment target. The South African AI Factory deployment was announced in March 2026, the Cape Town CPT1 expansion went live in May 2026 with full operation targeted within weeks of that announcement, and a 20 MW Johannesburg AI Factory was publicly announced in May 2026.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;"><strong>Honest reading:</strong> of the four flagship sovereign-AI-compute initiatives examined in this sub-lesson, Cassava&ndash;NVIDIA is the one actually moving from announcement to operation in 2026. The South African deployment is on track. The continental rollout beyond South Africa is at the announcement stage.</p>
+    <p style="color: #444; line-height: 1.75;">For an African researcher, the practical implication is dual: the most operationally serious sovereign-compute capacity coming online on the continent is being built by a private African data-centre company in partnership with the dominant foreign GPU vendor. Whether one calls that &ldquo;sovereign&rdquo;, in the relational sense developed above, depends on whose rights the resulting capacity is bound to protect &mdash; a question that goes beyond the engineering.</p>
+    <p style="color: #888; font-size: 0.9em;"><a href="https://www.cassavatechnologies.com/cassava-scales-african-ai-infrastructure-with-nvidia-powered-ai-factories-to-accelerate-sovereign-data-capabilities/" target="_blank" rel="noopener">Cassava Technologies announcement</a></p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#127472;&#127466; Microsoft&ndash;G42 Kenya &mdash; the stalled case</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">In May 2024, during a Kenyan state visit to Washington, Microsoft and G42 announced a $1 billion data-centre project at KenGen&#39;s Olkaria geothermal site. The plan: Phase 1 of 100 MW, scaling toward 1 GW long term. The deal was framed as the largest single Western technology investment in Africa to date.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">As of May 2026 the project is stalled. The Kenyan Treasury declined to underwrite the load via Power Purchase Agreements. Kenyan officials publicly observed that the 1 GW figure would represent approximately one-third of Kenya&#39;s peak national generation capacity (~2.3 GW), and that meeting peak national demand at full build would &ldquo;require switching off half the country&rdquo;. The Ministry of Information has stated that the project is not withdrawn and that talks continue, but that the scale requires restructuring. No operational portion exists on site.</p>
+    <p style="color: #444; line-height: 1.75;"><strong>Honest reading:</strong> the binding constraint here is not GPUs and not capital; it is grid capacity. This is the most important point in the entire compute deep-dive. We return to it below.</p>
+    <p style="color: #888; font-size: 0.9em;"><a href="https://www.tomshardware.com/tech-industry/microsofts-1-billion-kenya-data-center-stalls-over-disagreements-on-power-capacity" target="_blank" rel="noopener">Tom&#39;s Hardware, May 2026</a></p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#127464;&#127481; AU &ldquo;AI Factory&rdquo; &mdash; the aspirational case</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The African Union Continental AI Strategy adopted at the 45th Executive Council in Accra in July 2024 refers to building African AI compute capacity. The Smart Africa Alliance&#39;s Africa AI Council, formally established in November 2025, was set up in part to pool continental resources for this. At the Kigali Global AI Summit on Africa in April 2025 a &ldquo;$60 billion Africa AI Fund&rdquo; was announced as a pledge envelope.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;"><strong>Honest reading:</strong> the AU &ldquo;AI Factory&rdquo; concept exists, is endorsed, and is repeatedly cited in continental policy documents. There is no funded, operational, continental-scale AI compute facility tied to it. The $60 billion figure is a pledge envelope from multiple sources, not an audited fund with a known dispersal mechanism. The 12,000-GPU figure that sometimes appears in Africa-AI press coverage is from the Cassava&ndash;NVIDIA commercial deal, not from an AU-funded facility.</p>
+    <p style="color: #444; line-height: 1.75;">For a postgraduate researcher trying to plan three years out, this matters: announcements at the continental policy level should be read carefully, and the timeline between announcement and operation in this domain is typically multiple years.</p>
+    <p style="color: #888; font-size: 0.9em;"><a href="https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy" target="_blank" rel="noopener">AU Continental AI Strategy, July 2024</a></p>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128205; Brief on the other major facilities</h4>
+    <p><strong>Konza National Data Centre (Kenya)</strong> &mdash; Tier-III, operational since 2021, around 120 customers across more than 70 city services. Not an AI-specialised facility; Kenya&#39;s &ldquo;first GPU-powered AI infrastructure&rdquo; claim refers to Atlancis (private), not Konza.</p>
+    <p><strong>Egypt</strong> &mdash; the Ain Sokhna national data hub was inaugurated in April 2024 (general government workload, not a published AI/GPU cluster). The National AI Strategy 2025&ndash;2030 was launched in January 2025 and frames further state-owned data-centre construction.</p>
+    <p><strong>Nigeria</strong> &mdash; the National Centre for AI and Robotics (NCAIR) has no publicly listed GPU cluster as of May 2026. The National AI Strategy was published 19 September 2025. A private Airtel facility in Lagos with GPUs delivered in late 2025 is a commercial buildout, not a national one.</p>
+    <p><strong>Morocco</strong> &mdash; a $1.2 bn &ldquo;Nexus AI Factory&rdquo; in Casablanca was announced at GITEX Africa 2026. Not yet built.</p>
+    <p><strong>Rwanda</strong> &mdash; National AI Policy adopted; hosted the April 2025 Kigali summit. No operational national AI compute yet beyond strategy.</p>
+  </div>
+
+  <h2 class="section-title">&#128268; The Grid Bottleneck, Made Concrete</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The single most important empirical point in the African compute picture is that the binding constraint, almost everywhere, is grid capacity rather than GPU supply. The Microsoft&ndash;G42 Kenya stall is the cleanest demonstration. Here is the arithmetic that makes the point unavoidable.</p>
+
+  <div class="technical-detail">
+    <h4>&#128202; The numbers, roughly</h4>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li>A single NVIDIA H100 GPU server (eight H100s plus host) draws roughly <strong>10 kW</strong> under load.</li>
+      <li>3,000 H100s &mdash; the kind of cluster the Cassava South African site is designed for &mdash; therefore draws roughly <strong>30 MW</strong> of IT load, with a further 5&ndash;10 MW for cooling. Cassava&#39;s 20 MW Johannesburg AI Factory site is sized to host roughly this scale.</li>
+      <li>The original Microsoft&ndash;G42 Kenya target of 1 GW would draw <strong>about a third of Kenya&#39;s peak national generation capacity</strong> (Kenya&#39;s peak demand is around 2.3 GW). Underwriting that load via PPAs is the politically and financially impossible thing the project ran into.</li>
+      <li>South Africa has, briefly, the comparative advantage of <em>recovered Eskom capacity</em> after the worst years of load-shedding. The Cassava deployments in Cape Town and Johannesburg are sized within what that recovered capacity can carry. This is part of the operational case for why the South African AI Factory deployment is the one moving.</li>
+    </ul>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The practical implication is that &ldquo;Africa needs more GPUs&rdquo; is the wrong slogan. <em>Africa needs the grid capacity to power the GPUs it can already procure.</em> Renewable build-out, transmission infrastructure, and (in South Africa&#39;s case) the recovery of existing thermal capacity are the binding constraints. This is why Microsoft&ndash;G42 chose Olkaria geothermal in the first place; it is also why the project has stalled. The energy story we covered in Week 3 connects directly to the sovereignty story here.</p>
+
+  <h2 class="section-title">&#128105;&#127997;&#8205;&#127979; Practical Compute Access for You, Today</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">All of the above sets the policy and infrastructure context. The question that matters more for a postgraduate researcher at UCT or any African institution in May 2026 is narrower and more immediate: <em>what compute can I actually use this week?</em></p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>UCT African Compute Initiative (ACI)</h3>
+      <p>Announced in March 2026 and led from UCT, the African Compute Initiative is the most directly relevant near-term option for postgraduate AI work on the continent. The plan is for an operational cluster within twelve months, scaling to roughly 100 users in the first year and around 300 users across at least five partner institutions by year three. The initiative is positioned explicitly as African higher-education-dedicated AI compute &mdash; the missing piece in the picture above.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">UCT AI ACI announcement</a></p>
+    </div>
+    <div class="card">
+      <h3>CHPC allocations</h3>
+      <p>South-Africa-affiliated PhD students are entitled to free allocations on Lengau (CPU) and the V100 GPU pool. Allocations are requested via <a href="https://wiki.chpc.ac.za" target="_blank" rel="noopener">wiki.chpc.ac.za</a>. The V100 pool is small and heavily oversubscribed; it is a usable resource for individual experiments but should not be treated as a frontier-model training facility.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://www.chpc.ac.za/" target="_blank" rel="noopener">chpc.ac.za</a></p>
+    </div>
+    <div class="card">
+      <h3>Cassava GPUaaS</h3>
+      <p>The Cassava AI Factory deployments will be commercially available as GPU-as-a-Service. Coverage during 2026 will be largely via institutional contracts and pre-reservation agreements with universities, banks, and start-ups rather than via an individual-researcher self-service tier.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://www.cassavatechnologies.com/" target="_blank" rel="noopener">cassavatechnologies.com</a></p>
+    </div>
+    <div class="card">
+      <h3>Free-tier cloud (the honest default)</h3>
+      <p>For day-to-day individual experiments, the practical default for most African postgraduate researchers in May 2026 remains the US free-tier cloud: Google Colab&#39;s free T4 GPU (15&ndash;30 hours per week, depending on usage history), Kaggle&#39;s free T4 and P100 access (30+ hours per week), and Hugging Face Spaces (shared CPU and limited GPU). These are imperfect, foreign, and depend on the continued generosity of US platforms &mdash; but they are what is actually usable today by most students.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>&#128161; <span style="color: #ffffff;">The honest position, summarised</span></h3>
+    <p>As of May 2026, an African postgraduate researcher still primarily depends on US free-tier cloud for day-to-day AI compute work. Dedicated national and continental compute capacity is announced and partly procured but not yet broadly available. The UCT African Compute Initiative is the most concrete near-term change to this picture and is worth applying to early. CHPC remains the SA fallback for institutional academic use.</p>
+    <p style="margin-top: 15px;">Sovereign compute, in the sense of physical infrastructure on African soil that African researchers can use, is real and growing &mdash; but in May 2026 it is still smaller than the foreign cloud capacity most of us actually run on.</p>
+  </div>
+
+  <h2 class="section-title">&#127919; What This Means for Your Research</h2>
+
+  <ul class="styled-list">
+    <li><strong>Design for the compute you can actually access.</strong> A research project that requires training a 70B-parameter model from scratch is not feasible from an African university institution in May 2026, with or without free-tier cloud. A research project that requires fine-tuning a 7B-parameter model, or running inference on a hosted frontier model, is feasible. The sovereign-compute story above should inform the <em>scope</em> of your project, not just your politics.</li>
+    <li><strong>Resource efficiency is a sovereignty practice.</strong> The Lelapa argument &mdash; that building smaller, more efficient models on accessible infrastructure is itself a sovereignty move &mdash; is operationally honest about the current picture. InkubaLM, MzansiLM, and the other African foundation models we covered in Week 10 are examples of this strategy in practice.</li>
+    <li><strong>Apply to the UCT ACI now if it fits your work.</strong> The initiative&#39;s first-year cohort is small (~100 users) and the application process is being set up during 2026. Postgraduates in this course are exactly the audience the initiative is for.</li>
+    <li><strong>Think of compute as one of five layers, not as the whole picture.</strong> The Worldcoin case is the reminder. Even if every GPU you used was hosted in Africa under African ownership, that on its own would not guarantee that the rights of the people whose data the model was trained on were protected. The other layers &mdash; data governance, model evaluation, policy, and talent &mdash; are where the African sovereignty conversation is doing some of its most distinctive work. We cover them in 11.5 and 11.6.</li>
+  </ul>
+
+  <h2 class="section-title">&#9999;&#65039; A Short Exercise</h2>
+
+  <ol class="step-list">
+    <li><strong>Identify the compute you would realistically need</strong> for the AI component of your current or planned research project. Order of magnitude is fine &mdash; tens of GPU-hours, hundreds, thousands, more.</li>
+    <li><strong>Map what you actually have access to.</strong> Free-tier cloud? CHPC? A departmental cluster? A collaborator&#39;s allocation? An institutional pre-reservation on the Cassava AI Factory? Be honest.</li>
+    <li><strong>If there is a mismatch between (1) and (2),</strong> describe in one paragraph how you would rescope the project so the compute is actually feasible. The rescoping might mean smaller models, fewer experiments, a different research question, or a different collaboration structure.</li>
+    <li><strong>Find one piece of African-authored work on AI sovereignty</strong> from the sources listed below, read it, and write one further paragraph on whether the sovereignty position it takes changes how you think about the compute you depend on.</li>
+    <li><strong>Bring all four to class.</strong> We will pool them and look at the patterns across the cohort.</li>
+  </ol>
+
+  <h2 class="section-title">&#128218; Sources &amp; Further Reading</h2>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; African voices on sovereignty</h4>
+    <p><strong>Mhlambi, S. (2020).</strong> <em>From Rationality to Relationality: Ubuntu as an Ethical and Human Rights Framework for Artificial Intelligence Governance.</em> Carr Center Discussion Paper 2020-009, Harvard Kennedy School. <a href="https://carrcenter.hks.harvard.edu/publications/rationality-relationality-ubuntu-ethical-and-human-rights-framework-artificial" target="_blank" rel="noopener">Carr Center</a>.</p>
+    <p><strong>Effoduh, J. O. (2026).</strong> Decolonizing the governance of artificial intelligence in Africa: from normative mimicry to epistemic sovereignty. <em>Science and Public Policy</em> 53(2), 245&ndash;257. <a href="https://academic.oup.com/spp/article/53/2/245/8654721" target="_blank" rel="noopener">academic.oup.com</a>.</p>
+    <p><strong>Rajab, J., Aremu, A., Chimoto, E. A. et al. (2025).</strong> The Esethu Framework. <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>.</p>
+    <p><strong>Mutung&#39;u, G., Martin, A. &amp; Brewczy&#324;ska, M. (2026).</strong> Regulatory entrepreneurship&#39;s threat to digital sovereignty: the case of Worldcoin in Kenya. <em>Science and Public Policy</em> 53(2), 289&ndash;299. <a href="https://academic.oup.com/spp/article/53/2/289/8654728" target="_blank" rel="noopener">academic.oup.com</a>.</p>
+    <p><strong>Carroll, S. R., Garba, I., Figueroa-Rodr&iacute;guez, O. L., Holbrook, J., Lovett, R., Materechera, S., Parsons, M., Raseroka, K., Rodriguez-Lonebear, D., Rowe, R., Sara, R., Walker, J. D., Anderson, J. &amp; Hudson, M. (2020).</strong> The CARE Principles for Indigenous Data Governance. <em>Data Science Journal</em> 19(1): 43. Drafted at Gaborone in 2018. <a href="https://www.gida-global.org/care" target="_blank" rel="noopener">GIDA</a>.</p>
+    <p><strong>African Union (2024).</strong> Continental Artificial Intelligence Strategy. Endorsed by the 45th Executive Council, Accra. <a href="https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy" target="_blank" rel="noopener">au.int</a>.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Northern framings</h4>
+    <p><strong>NVIDIA (28 February 2024).</strong> What Is Sovereign AI? Company blog. <a href="https://blogs.nvidia.com/blog/what-is-sovereign-ai/" target="_blank" rel="noopener">blogs.nvidia.com</a>. With Jensen Huang&#39;s World Governments Summit appearance, 12 February 2024.</p>
+    <p><strong>Pava, J. N., Meinhardt, C., Cryst, E. &amp; Landay, J. A. (2025).</strong> <em>AI Sovereignty&#39;s Definitional Dilemma</em>. Stanford HAI. <a href="https://hai.stanford.edu/news/ai-sovereigntys-definitional-dilemma" target="_blank" rel="noopener">hai.stanford.edu</a>.</p>
+    <p><strong>Brookings Institution (February 2026).</strong> <em>Is AI sovereignty possible? Balancing autonomy and interdependence</em>. <a href="https://www.brookings.edu/articles/is-ai-sovereignty-possible-balancing-autonomy-and-interdependence/" target="_blank" rel="noopener">brookings.edu</a>.</p>
+    <p><strong>World Economic Forum (April 2026).</strong> The myth of AI sovereignty. <a href="https://www.weforum.org/stories/2026/04/the-myth-of-ai-sovereignty/" target="_blank" rel="noopener">weforum.org</a>.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Compute facilities &amp; practical access</h4>
+    <p><strong>UCT African Compute Initiative.</strong> <a href="https://ai.uct.ac.za/articles/2026-03-26-uct-lead-africas-first-higher-education-dedicated-ai-compute-initiative" target="_blank" rel="noopener">ai.uct.ac.za</a>.</p>
+    <p><strong>CHPC.</strong> <a href="https://www.chpc.ac.za/" target="_blank" rel="noopener">chpc.ac.za</a>. Allocation requests via <a href="https://wiki.chpc.ac.za" target="_blank" rel="noopener">wiki.chpc.ac.za</a>.</p>
+    <p><strong>Cassava Technologies.</strong> <a href="https://www.cassavatechnologies.com/cassava-scales-african-ai-infrastructure-with-nvidia-powered-ai-factories-to-accelerate-sovereign-data-capabilities/" target="_blank" rel="noopener">cassavatechnologies.com</a> (March 2025 partnership announcement).</p>
+    <p><strong>Tom&#39;s Hardware (May 2026).</strong> Microsoft&#39;s $1 billion Kenya data center stalls over disagreements on power capacity. <a href="https://www.tomshardware.com/tech-industry/microsofts-1-billion-kenya-data-center-stalls-over-disagreements-on-power-capacity" target="_blank" rel="noopener">tomshardware.com</a>.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.5:</strong> we leave the compute layer and turn to the African landscape of <em>data</em> and <em>models</em>. The Masakhane&ndash;Lanfrica&ndash;Lelapa lineage; from-scratch African foundation models including UCT&#39;s own MzansiLM; the African benchmark stack (AfroBench, IrokoBench, AfriMTEB, AfriSpeech-200); and the global Indigenous-data-sovereignty arc that connects CARE Principles, M&#257;ori data governance, and the Esethu Framework.</p>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>
