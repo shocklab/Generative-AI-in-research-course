@@ -945,6 +945,315 @@ SL4_BODY = """
 
 
 # ---------------------------------------------------------------------------
+# Sub-Lesson 11.5 — Data, Languages and African Model-Building
+# ---------------------------------------------------------------------------
+
+SL5_BODY = """
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>Sub-Lesson 11.4 closed on the compute layer. We turn now to the other three layers in the stack that African researchers have actually <em>built</em> over the last few years: the data they govern, the models they train, and the benchmarks they use to measure progress. This is the most concretely positive part of the African AI story. The infrastructure conversation in 11.4 was substantially aspirational; the data-and-models conversation in 11.5 is substantially shipping.</p>
+    <p>This sub-lesson is structured around three pillars and one survey paper. The survey is Alabi, Hedderich, Adelani &amp; Klakow&#39;s 2025 <em>Charting the Landscape of African NLP</em>, which mapped 884 papers over five years and is the most comprehensive recent overview of the field. The three pillars are: a <em>global Indigenous data-sovereignty arc</em> that runs from Te Hiku Media&#39;s Kaitiakitanga License through the CARE Principles to the Esethu Framework; an <em>African foundation-model inventory</em> that is genuinely substantial, structured by family and led by <strong>InkubaLM</strong> (Lelapa) and <strong>MzansiLM</strong> (UCT); and an <em>African benchmark stack</em> with new 2026 additions worth foregrounding.</p>
+    <p>We close on the pedagogically most useful split in the current literature &mdash; sovereign/frontier-aspirant projects (Awarri&#39;s N-ATLAS in Nigeria) versus resource-efficient/pragmatic projects (Lelapa&#39;s InkubaLM family) &mdash; and a section on where the <em>gaps</em> are: the thesis-shaped opportunities that postgraduate researchers in this course are well placed to close.</p>
+  </div>
+
+  <h2 class="section-title">&#128205; The Map: Charting the Landscape of African NLP</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If you read only one survey paper before going further into the African NLP literature, make it this one.</p>
+
+  <div class="technical-detail">
+    <h4>&#128218; Alabi, Hedderich, Adelani &amp; Klakow (2025) &mdash; Charting the Landscape of African NLP</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Jesujoba O. Alabi, Michael A. Hedderich, David Ifeoluwa Adelani &amp; Dietrich Klakow. <em>Charting the Landscape of African NLP.</em> EMNLP 2025 main, pp. 27807&ndash;27841. <a href="https://arxiv.org/abs/2505.21315" target="_blank" rel="noopener">arXiv:2505.21315</a>.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The paper systematically surveys 884 African-NLP papers over a five-year window and produces a map that is genuinely useful for navigation. It documents which languages have been worked on (and how unevenly), which tasks dominate the literature (MT, NER, sentiment, and ASR are the largest), which institutions are most active, and where the cross-cultural and cross-linguistic blind spots lie. If you are starting a project on African NLP and you do not know the lay of the land, this is where to begin.</p>
+    <p style="color: #444; line-height: 1.75;">A complement worth noting: Belay, Azime, Adelani et al.&#39;s <em>The Rise of AfricaNLP</em> (<a href="https://arxiv.org/abs/2509.25477" target="_blank" rel="noopener">arXiv:2509.25477</a>, September 2025, updated April 2026) provides the bibliometric companion &mdash; 2,200 papers analysed for community impact and contributor patterns.</p>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128202; The single most useful number from the recent literature</h4>
+    <p>A June 2025 quantitative survey, <em>The State of LLMs for African Languages: Progress and Challenges</em> (<a href="https://arxiv.org/abs/2506.02280" target="_blank" rel="noopener">arXiv:2506.02280</a>), measured what current LLM families actually cover. The headline finding: across six large LLMs, eight small LMs, and six smaller models, just <strong>42 African languages</strong> receive meaningful support. Africa has roughly two thousand languages. <strong>~98% of African languages remain unsupported</strong> by current foundation-model infrastructure. The script picture is similar: current LLM tokenisers handle Latin, Arabic, and Ge&#39;ez but not the roughly 20 active African scripts (Tifinagh, N&#39;Ko, Vai, Adlam and others).</p>
+    <p>This is the single most useful framing number for the whole African-model conversation. The space is vastly under-served; the work that exists is significant precisely because of how much more there is to do.</p>
+  </div>
+
+  <h2 class="section-title">&#127757; The Global Indigenous Data-Sovereignty Arc</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Before we look at the models, we look at the framework under which African researchers are choosing to release the data the models are built on. This conversation does not start with African scholarship; it sits inside a longer, global Indigenous data-sovereignty tradition. Naming that lineage matters, because the African work is part of a wider movement that has been theorising community-grounded data governance for considerably longer than the current AI moment has been running.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Te Hiku Media &amp; the Kaitiakitanga License</h3>
+      <p>Te Hiku Media (<a href="https://tehiku.nz" target="_blank" rel="noopener">tehiku.nz</a>), a M&#257;ori-language community media organisation founded in 1990, built the foundational ASR work for te reo M&#257;ori, reporting around 92% accuracy for monolingual M&#257;ori speech. To govern the speech data the community contributed, Te Hiku developed the <strong>Kaitiakitanga License</strong>, which treats the organisation as <em>kaitiaki</em> &mdash; guardian, not owner &mdash; of the data, and explicitly prohibits uses that would surveil, discriminate against, or harm M&#257;ori people. This is the most-cited Indigenous-data-license precedent in the African NLP literature.</p>
+      <p style="color: #888; font-size: 0.9em;">Jones, K. &amp; Mahelona, K. <em>Data Sovereignty and the Kaitiakitanga License</em> (Te Hiku Media, 2022, updated 2023). <a href="https://tehiku.nz/te-hiku-tech/te-hiku-dev-korero/25141/data-sovereignty-and-the-kaitiakitanga-license" target="_blank" rel="noopener">tehiku.nz</a>.</p>
+    </div>
+    <div class="card">
+      <h3>The CARE Principles</h3>
+      <p>The <strong>CARE Principles for Indigenous Data Governance</strong> (Carroll, Garba, Figueroa-Rodr&iacute;guez, Holbrook, Lovett, Materechera, Parsons, Raseroka, Rodriguez-Lonebear, Rowe, Sara, Walker, Anderson &amp; Hudson, 2020) generalise the Te Hiku-style position into a four-principle framework: <strong>Collective Benefit</strong>, <strong>Authority to Control</strong>, <strong>Responsibility</strong>, and <strong>Ethics</strong>. The principles were drafted at International Data Week in <em>Gaborone, in November 2018</em>, by the RDA International Indigenous Data Sovereignty Interest Group. By 2026 CARE has been adopted by the Research Data Alliance, the Global Indigenous Data Alliance (GIDA), the Australian Research Data Commons, and the US NIH&#39;s genomic-data policy.</p>
+      <p style="color: #888; font-size: 0.9em;">Carroll, S. R. et al. (2020). <em>Data Science Journal</em> 19(1): 43. <a href="https://datascience.codata.org/articles/10.5334/dsj-2020-043" target="_blank" rel="noopener">DOI 10.5334/dsj-2020-043</a>. GIDA: <a href="https://www.gida-global.org/whoweare" target="_blank" rel="noopener">gida-global.org</a>.</p>
+    </div>
+    <div class="card">
+      <h3>The Esethu Framework</h3>
+      <p>The Esethu Framework (Rajab, Aremu, Chimoto, Dunbar, Morrissey, Thior, Potgieter, Ojo, Tonja, Chetty, Nekoto, Moiloa, Abbott, Marivate &amp; Rosman, 2025) is the African strand&#39;s most developed published proposal. It introduces a community-centric <em>Esethu License</em> under which commercial users &mdash; especially non-African ones &mdash; pay a fee that is reinvested into dataset expansion via local partners. The proof-of-concept dataset is the <strong>Vuk&#39;uzenzele isiXhosa Speech Dataset (ViXSD)</strong>. The author team draws across Wits, Lelapa AI, and Masakhane; the lineage is explicit about citing Kaitiakitanga as a precedent.</p>
+      <p style="color: #888; font-size: 0.9em;">Rajab, J. et al. (2025). <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>; <a href="https://aclanthology.org/2025.acl-long.1487/" target="_blank" rel="noopener">ACL 2025</a>.</p>
+    </div>
+    <div class="card">
+      <h3>The wider tradition</h3>
+      <p>Two more strands belong in the global arc. <strong>OCAP</strong> (Ownership, Control, Access, Possession), developed by the First Nations Information Governance Centre in Canada since 1998, is the oldest of the institutional frameworks. <strong>S&aacute;pmi data governance</strong>, articulated by the S&aacute;mi Council and discussed at the first S&aacute;mi Research Data Governance conference in Troms&oslash; in January 2023, articulates a parallel European-Indigenous tradition. These traditions are not interchangeable, but reading them alongside the African strand makes clear that the relational conception of data governance is genuinely global.</p>
+      <p style="color: #888; font-size: 0.9em;">OCAP: <a href="https://fnigc.ca/ocap-training/" target="_blank" rel="noopener">FNIGC</a>. Eriksen et al. (2024), <em>Nordic Journal of Library and Information Studies</em>.</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>&#129496; The lineage in one sentence</h4>
+    <p>Kaitiakitanga (Te Hiku, M&#257;ori, since the early 2010s in the AI context) &rarr; CARE Principles (drafted in <em>Gaborone</em> in 2018, published 2020) &rarr; Esethu Framework (Rajab et al., ACL 2025). The African work is the most recent expression of a global Indigenous tradition that explicitly traces its own intellectual lineage back through M&#257;ori and First Nations scholarship.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For policy context at the African continental level: the <strong>AU Data Policy Framework</strong> (adopted February 2022, published 28 July 2022) sets the stated continental orientation toward transparency, accountability, inclusion, and equity, aimed at an African Digital Single Market by 2030. The <strong>AU Continental AI Strategy</strong> (July 2024) explicitly invokes data sovereignty across its five focus areas. Both documents are real and worth reading; both, as we noted in 11.4, are policy positions rather than enforced regulatory mechanisms.</p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; An honest gap to flag</h4>
+    <p>There is, as of May 2026, <em>no peer-reviewed African critique-and-adaptation of the CARE Principles</em>: a paper arguing what would need to change for CARE to be made specifically African rather than imported with adjustments. Adam Birhane and Rediet Abebe&#39;s work orbits this question; the AfricaNLP licensing conversation (Marivate, Adelani, Rajab et al.) is making constructive moves in practice. But the central critical paper has not been written yet. We return to this in the gaps section at the end of the sub-lesson, because it is one of the most concrete thesis opportunities the literature currently offers.</p>
+    <p>A related practical gap: <em>most African datasets released in 2024 and 2025 still go up under CC-BY or research-only licences</em>, not under Kaitiakitanga- or Esethu-style community licences. The rhetorical commitment to community licensing is genuinely there; the operational uptake is not yet matching it. ViXSD is so far the proof of concept, not the beginning of a wave.</p>
+  </div>
+
+  <h2 class="section-title">&#129309; Community Infrastructure: Masakhane, Lanfrica, AfricaNLP, Indaba</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Before the foundation models, before the benchmarks, before the licensed datasets &mdash; there is the community infrastructure that makes everything else possible. Four organisations or venues are doing the disproportionate share of the work.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Masakhane</h3>
+      <p>Founded around 2019 out of an ICLR Africa workshop, Masakhane is the grassroots research community that has anchored modern African NLP. The flagship projects are <strong>MasakhaNER</strong> (named-entity recognition across African languages), <strong>MAFAND-MT</strong> / <strong>LAFAND-MT</strong> (machine translation), <strong>MasakhaNEWS</strong> (16 languages, news topic classification, arXiv:2304.09972), and <strong>MasakhaPOS</strong> (20 languages, part-of-speech tagging, arXiv:2305.13989). Masakhane&#39;s public-facing website at <a href="https://www.masakhane.io/" target="_blank" rel="noopener">masakhane.io</a> displays older figures, but the organisation is very much active &mdash; the GitHub and HuggingFace organisations (<a href="https://huggingface.co/masakhane" target="_blank" rel="noopener">huggingface.co/masakhane</a>) show dataset and code updates well into 2025, and Masakhane members are the substantial author overlap on InkubaLM, Esethu, and most of the AfricaNLP 2025 proceedings.</p>
+    </div>
+    <div class="card">
+      <h3>Lanfrica</h3>
+      <p>Founded by Chris C. Emezue and Bonaventure F. P. Dossou, Lanfrica (<a href="https://lanfrica.com" target="_blank" rel="noopener">lanfrica.com</a>) is the pan-African resource catalogue that indexes datasets, papers, models, and projects across roughly <strong>2,199 African languages</strong> (including extinct languages). In 2025 Lanfrica ran the NaijaVoices Language Heritage Micro-Grants programme, supporting six community-led Nigerian-language projects, and Emezue presented &ldquo;Data Farming and the QRUE Frameworks&rdquo; at LT4ALL 2025. If you are looking for whether a resource exists in a specific African language, Lanfrica is the right first stop.</p>
+    </div>
+    <div class="card">
+      <h3>AfricaNLP 2025 (ACL Vienna)</h3>
+      <p>The Sixth AfricaNLP Workshop, co-located with ACL 2025 in Vienna on <strong>31 July 2025</strong>, was the <em>first archival edition</em> of the workshop &mdash; 28 archival and 7 non-archival papers under the theme &ldquo;Multilingual and Multicultural-aware LLMs&rdquo;. Editors: Constantine Lignos (Brandeis), Idris Abdulmumin, and David Ifeoluwa Adelani. Proceedings: <a href="https://aclanthology.org/2025.africanlp-1.0/" target="_blank" rel="noopener">aclanthology.org/2025.africanlp-1.0/</a>. The archival status is a small but consequential change: AfricaNLP papers now carry the full bibliographic weight of an ACL workshop proceedings.</p>
+    </div>
+    <div class="card">
+      <h3>Deep Learning Indaba 2025</h3>
+      <p>The seventh Deep Learning Indaba was held in <strong>Kigali, Rwanda, 17&ndash;22 August 2025</strong>, hosted by the University of Rwanda under the theme <em>Urunana &mdash; Hand in Hand for AI in Africa</em>. Over 1,000 participants, 12 workshops, and the by-now-standard mix of mentoring, research showcases, and the African AI community&#39;s most important annual gathering. Indaba does not produce an archival proceedings volume; the research output sits on OpenReview and at the contributing labs.</p>
+      <p style="color: #888; font-size: 0.9em;"><a href="https://deeplearningindaba.com/2025/" target="_blank" rel="noopener">deeplearningindaba.com/2025</a></p>
+    </div>
+  </div>
+
+  <h2 class="section-title">&#129504; The African Foundation-Model Inventory</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">What follows is a verified inventory of the foundation models &mdash; encoder, from-scratch decoder, adapted decoder, and named-language &mdash; that are actually shipping for African languages as of May 2026. Two centrepieces matter most for this course: <strong>InkubaLM</strong> (the first sovereign African small language model, from Lelapa AI) and <strong>MzansiLM</strong> (the UCT-built decoder covering all eleven official South African written languages).</p>
+
+  <div class="technical-detail">
+    <h4>&#127759; Encoder-family foundations</h4>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>AfriBERTa</strong> (Ogueji, Zhu, Lin, Waterloo, MRL 2021). The early demonstration that high-quality language modelling for low-resource African languages is possible with less than 1 GB of text. 11 African languages.</li>
+      <li><strong>AfroXLMR</strong> (Alabi et al., <a href="https://arxiv.org/abs/2204.06487" target="_blank" rel="noopener">arXiv:2204.06487</a>, 2022). Multilingual adaptive fine-tuning (MAFT) of XLM-R for African languages. Updated variant <strong>AfroXLMR-Social</strong> (<a href="https://arxiv.org/abs/2503.18247" target="_blank" rel="noopener">arXiv:2503.18247</a>, March 2025) by Belay, Azime, Adelani et al.</li>
+      <li><strong>AfroLM</strong> (Dossou, Tonja, Yousuf, Osei et al., <a href="https://arxiv.org/abs/2211.03263" target="_blank" rel="noopener">arXiv:2211.03263</a>, SustainNLP 2022). 23 African languages, active-learning-based.</li>
+      <li><strong>Serengeti</strong> (Adebara, Elmadany, Abdul-Mageed &amp; Inciarte, UBC NLP, <a href="https://arxiv.org/abs/2212.10785" target="_blank" rel="noopener">arXiv:2212.10785</a>, Findings of ACL 2023). Massively multilingual: 517 African languages and varieties. The widest-coverage encoder model published to date.</li>
+    </ul>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#129666; From-scratch decoder models &mdash; the African sovereign small-LM lineage</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;"><strong>InkubaLM</strong> (Lelapa AI; <a href="https://arxiv.org/abs/2408.17024" target="_blank" rel="noopener">arXiv:2408.17024</a>, August 2024). Authors: Atnafu Lambebo Tonja, Bonaventure F. P. Dossou, Jessica Ojo, Jenalea Rajab, Fadel Thior, Eric Peter Wairagala, Anuoluwapo Aremu, Pelonomi Moiloa, Jade Abbott, Vukosi Marivate, Benjamin Rosman. 0.4B parameters (422M), trained on 2.4B tokens of which 1.9B are African-language tokens. Languages: isiZulu, Yoruba, Swahili, isiXhosa, Hausa, English, French. CC&nbsp;BY-NC 4.0. Model card: <a href="https://huggingface.co/lelapa/InkubaLM-0.4B" target="_blank" rel="noopener">huggingface.co/lelapa/InkubaLM-0.4B</a>. The first published <em>from-scratch</em> African sovereign small language model and a serious benchmark for what is achievable on accessible compute.</p>
+    <p style="color: #444; line-height: 1.75;"><strong>MzansiLM</strong> (UCT NLP group; <a href="https://arxiv.org/abs/2603.20732" target="_blank" rel="noopener">arXiv:2603.20732</a>, March 2026; accepted at LREC 2026). Authors: Anri Lombard (lead), Simbarashe Mawere, Temi Aina, Ethan Wolff, Sbonelo Gumede, Elan Novick, Francois Meyer, Jan Buys. 125M-parameter decoder-only model trained from scratch alongside the accompanying <strong>MzansiText</strong> corpus. Covers all <em>eleven</em> official South African written languages: Sepedi, Sesotho, Setswana, siSwati, Tshivenda, Xitsonga, Afrikaans, English, isiNdebele, isiXhosa, and isiZulu. Reports 20.65 BLEU on isiXhosa data-to-text generation. This is the UCT contribution to the African sovereign-LM lineage and is exactly the kind of work this course&#39;s students may go on to do.</p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#128683; Adapted-from-Llama decoder models</h4>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>AfroLlama_V1</strong> (Jacaranda Health, <a href="https://huggingface.co/Jacaranda/AfroLlama_V1" target="_blank" rel="noopener">HF model card</a>). 8B parameters, fine-tuned for Swahili, Xhosa, Zulu, Yoruba, Hausa, and English. Jacaranda&#39;s companion model <strong>UlizaLlama</strong> (7B, Llama-2-based, 321M Swahili tokens) was selected into the 2025 AI for Global Development Accelerator.</li>
+      <li><strong>Lugha-Llama</strong> (Buzaaba, Wettig, Adelani &amp; Fellbaum, Princeton, <a href="https://arxiv.org/abs/2504.06536" target="_blank" rel="noopener">arXiv:2504.06536</a>, April 2025). Mixed-data adaptation of Llama for African languages. Reports state-of-the-art results on IrokoBench and a 10-point improvement on AfriQA.</li>
+      <li><strong>Toucan</strong> (Elmadany, Adebara, Abdul-Mageed, UBC, <a href="https://arxiv.org/abs/2407.04796" target="_blank" rel="noopener">arXiv:2407.04796</a>, July 2024). Many-to-many translation for 150 African language pairs. Not technically Llama-based but sits in the same adapted-model family.</li>
+    </ul>
+  </div>
+
+  <div class="technical-detail">
+    <h4>&#128227; Named-language models</h4>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">A handful of African languages now have dedicated foundation-model resources. The Amharic ecosystem is the most developed.</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li><strong>KinyaBERT</strong> (Nzeyimana &amp; Niyongabo Rubungo, <a href="https://arxiv.org/abs/2203.08459" target="_blank" rel="noopener">arXiv:2203.08459</a>, ACL 2022). Encoder model with explicit morphological analysis for Kinyarwanda.</li>
+      <li><strong>Amharic-LLaMA / Amharic-LLaVA</strong> (Andersland, <a href="https://arxiv.org/abs/2403.06354" target="_blank" rel="noopener">arXiv:2403.06354</a>, March 2024). The first published Amharic-adapted LLaMA with multimodal capability.</li>
+      <li><strong>Walia-LLM</strong> (<a href="https://arxiv.org/abs/2402.08015" target="_blank" rel="noopener">arXiv:2402.08015</a>, February 2024). Enhanced Amharic-adapted LLaMA.</li>
+      <li><strong>SwahBERT</strong> (2022). Swahili encoder model.</li>
+    </ul>
+    <p style="color: #444; line-height: 1.75; margin-top: 12px;">The dataset substrate worth naming: <strong>WURA</strong> (Oladipo et al., EMNLP 2023) is a high-quality multilingual pre-training corpus covering 16 African languages, and underpins the AfriTeVa model family.</p>
+  </div>
+
+  <h2 class="section-title">&#127919; The African Benchmark Stack</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmarks are how a field measures progress. The African benchmark stack has expanded substantially in 2024 and 2025, with several important 2026 additions. What follows is the verified inventory you can actually use to evaluate African-language work.</p>
+
+  <div style="overflow-x: auto;">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Benchmark</th>
+          <th>Coverage</th>
+          <th>Venue / arXiv</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>AfroBench</strong></td>
+          <td>64 languages, 15 tasks (NLU, generation, knowledge/QA, math), 22 datasets</td>
+          <td>Ojo et al. ACL 2025 Findings; <a href="https://arxiv.org/abs/2311.07978" target="_blank" rel="noopener">arXiv:2311.07978</a></td>
+        </tr>
+        <tr>
+          <td><strong>IrokoBench</strong></td>
+          <td>17 typologically diverse languages; AfriXNLI (NLI), AfriMGSM (grade-school math), AfriMMLU (multi-choice knowledge)</td>
+          <td>Adelani et al. NAACL 2025 main; <a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">arXiv:2406.03368</a></td>
+        </tr>
+        <tr>
+          <td><strong>AfriSenti</strong></td>
+          <td>14 sentiment datasets, 14 African languages, >110,000 tweets</td>
+          <td>Muhammad et al. EMNLP 2023 + SemEval-2023 Task 12; <a href="https://arxiv.org/abs/2302.08956" target="_blank" rel="noopener">arXiv:2302.08956</a></td>
+        </tr>
+        <tr>
+          <td><strong>AfriHate</strong></td>
+          <td>Hate-speech, 15 languages (Algerian/Moroccan Arabic, Amharic, Igbo, Kinyarwanda, Hausa, Nigerian Pidgin, Oromo, Somali, Swahili, Tigrinya, Twi, Xhosa, Yoruba, Zulu)</td>
+          <td>Muhammad et al. NAACL 2025 long; <a href="https://arxiv.org/abs/2501.08284" target="_blank" rel="noopener">arXiv:2501.08284</a></td>
+        </tr>
+        <tr>
+          <td><strong>AfriQA</strong></td>
+          <td>Cross-lingual open-retrieval QA, 10 African languages, ~12,000 examples</td>
+          <td>Ogundepo, Gwadabe et al. EMNLP 2023 Findings; <a href="https://arxiv.org/abs/2305.06897" target="_blank" rel="noopener">arXiv:2305.06897</a></td>
+        </tr>
+        <tr>
+          <td><strong>AfriSpeech-200</strong></td>
+          <td>200 hours Pan-African accented English ASR, 67,577 clips, 2,463 speakers, 120 accents, 13 countries; clinical + general</td>
+          <td>Olatunji et al. TACL 2023, 11:1669&ndash;1685</td>
+        </tr>
+        <tr>
+          <td><strong>African ASR systematic review</strong></td>
+          <td>PRISMA review: 2,062 &rarr; 71 studies; 74 datasets, 111 languages, ~11,206 hours; &lt;15% reproducible</td>
+          <td>Imam et al. October 2025; <a href="https://arxiv.org/abs/2510.01145" target="_blank" rel="noopener">arXiv:2510.01145</a></td>
+        </tr>
+        <tr>
+          <td><strong>African ASR benchmarking</strong></td>
+          <td>Whisper, XLS-R, MMS, W2v-BERT on 13 languages at 1&ndash;400 hour scales</td>
+          <td>Nahabwe et al. November 2025; <a href="https://arxiv.org/abs/2512.10968" target="_blank" rel="noopener">arXiv:2512.10968</a></td>
+        </tr>
+        <tr>
+          <td><strong>AfriMTEB / AfriE5</strong></td>
+          <td>Text-embedding benchmark: 59 African languages, 14 tasks, 38 datasets. AfriE5 (contrastive-distilled adaptation) outperforms Gemini-Embeddings on this benchmark.</td>
+          <td>Uemura, Zhang, Adelani EACL 2026 main; <a href="https://arxiv.org/abs/2510.23896" target="_blank" rel="noopener">arXiv:2510.23896</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128640; The 2026 additions worth foregrounding</h4>
+    <p>Four 2026 (and late-2025) benchmark releases are particularly worth knowing about, because they expand the stack into areas it did not previously cover.</p>
+    <ul class="styled-list" style="margin-top: 8px;">
+      <li><strong>Afri-MCQA</strong> (Multimodal Cultural QA, <a href="https://arxiv.org/abs/2601.05699" target="_blank" rel="noopener">arXiv:2601.05699</a>, January 2026). The freshest African QA/reasoning benchmark, and the first to take cultural context seriously as an evaluation axis. If you are building anything that involves cultural reasoning on African content, start here.</li>
+      <li><strong>NaijaVoices</strong> (AfricaNLP 2025). 1,867 hours of multi-speaker Hausa, Igbo, and Yoruba speech &mdash; one of the largest African ASR datasets to date.</li>
+      <li><strong>Yankari</strong> (AfricaNLP 2025). 30 million-token monolingual Yoruba corpus.</li>
+      <li><strong>AfroCS-xs</strong>. The first dedicated <em>code-switched</em> agricultural dataset, covering Afrikaans, Sesotho, Yoruba, isiZulu, and English. Code-switching is the dominant register of African urban speech; benchmarks that take it seriously are overdue.</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">&#9878;&#65039; Two Strategic Positions</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">There is a real and currently unresolved disagreement inside the African AI community about what the right strategic move is. The argument is worth understanding clearly because it shapes which kinds of project a postgraduate researcher might join.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>The sovereign / frontier-aspirant position</h3>
+      <p>The argument: African AI sovereignty requires <em>African frontier-scale models</em>, trained on African data, owned by African institutions, hosted on African compute. Without that, the continent will remain technologically dependent regardless of how much application-layer work happens locally. The clearest current expression is Nigeria&#39;s <strong>N-ATLAS</strong>, a national open-source LLM being built by <strong>Awarri</strong> (Silas Adekunle and Eniola Edun) in partnership with the Nigerian Federal Ministry of Communications, Innovation and Digital Economy. Funded with $3.5M seed from UNDP, UNESCO, Meta, Google, and Microsoft; positioned publicly by Minister Bosun Tijani at UNGA80 in September 2025. Languages: Yoruba, Hausa, Igbo, Nigerian Pidgin. Cassava&#39;s compute work (11.4) and the Tanzania&ndash;Almawave Kiswahili partnership are adjacent expressions of the same strategic position.</p>
+      <p style="color: #888; font-size: 0.95em; margin-top: 12px;">Status: real, partly built, not yet a publicly downloadable model.</p>
+    </div>
+    <div class="card">
+      <h3>The resource-efficient / pragmatic position</h3>
+      <p>The argument made most explicitly by Pelonomi Moiloa at Lelapa AI: African sovereign AI capacity is best pursued by building <em>smaller, more efficient models</em> that the available infrastructure can actually support and that solve the problems African users actually have. The InkubaLM family, MzansiLM&#39;s 125M parameters covering all eleven SA languages, the Masakhane lineage&#39;s benchmark and dataset work, and Jacaranda&#39;s vertical-health deployment of UlizaLlama all sit in this strand. The argument is that engineering for the real constraints &mdash; compute, energy, end-user devices &mdash; is itself a sovereignty practice.</p>
+      <p style="color: #888; font-size: 0.95em; margin-top: 12px;">Status: shipping, used by real African users, smaller in headline numbers but more operationally honest.</p>
+    </div>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The pedagogical point of putting these two positions side by side is not to declare a winner. Both are sovereignty practices in different registers; both have honest arguments behind them; the right answer for a particular project depends on what the project is for. The useful exercise is to be able to read a piece of African-AI work and identify clearly which strand it sits in, because the success criteria for the two are quite different. A 125M-parameter community-licensed model that runs on a feature-phone-class device is a success in the resource-efficient register; it is a partial step in the frontier-aspirant register. A nation-state frontier-scale model that is announced but not yet running is a partial step in the sovereign register; it is mostly absent from the resource-efficient one.</p>
+
+  <h2 class="section-title">&#128269; Where the Gaps Are</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The single most useful thing this sub-lesson can do for the postgraduate audience is identify, concretely, what is missing in the current African data-and-models landscape. Six gaps are particularly thesis-shaped: each one is a genuine research opening that could be pursued from a UCT or comparable position.</p>
+
+  <ol class="step-list">
+    <li><strong>No African-language LegalBench equivalent.</strong> Legal NLP benchmarks exist for English; the equivalent for any African language does not. Africa has substantial bodies of customary law, statutory law, and judicial decisions in many of its languages. A LegalBench-for-Swahili or LegalBench-for-isiXhosa would be a benchmark contribution and a step toward AI-supported access to law for people who do not work in English.</li>
+    <li><strong>No African clinical QA benchmark grounded in local guidelines.</strong> MedQA exists; an African equivalent that takes local clinical guidelines, local epidemiology, and local pharmacological reality seriously does not. This is the kind of benchmark that would let African researchers <em>evaluate foreign frontier models against local clinical reality</em> before deploying them in healthcare settings.</li>
+    <li><strong>No PRISMA-style reproducibility audit of African NLP.</strong> Imam et al.&#39;s 2025 ASR review is the closest equivalent, and found &lt;15% of African ASR studies reproducible. A wider study covering the full African NLP literature would surface the actual size of the reproducibility gap and would, by itself, be a publishable contribution.</li>
+    <li><strong>No published Africa-specific critique-and-adaptation of CARE.</strong> A paper arguing what CARE would need to look like as a genuinely African framework rather than a wholesale Indigenous import is missing. The constructive work (Esethu) is there; the critical-theoretical companion is not.</li>
+    <li><strong>No continent-level inventory of endangered-language ML resources.</strong> N|uu (Khoisan), Khwedam, and several Cushitic, Nilotic, and Khoisan languages are at risk; the inventory of which of them have any ML data at all does not exist. SADiLaR&#39;s University of Pretoria node and the Wits DSFSI lab hold parts of the picture; a unified continental inventory would let endangered-language documentation and AI work coordinate more effectively.</li>
+    <li><strong>Operational uptake of community licensing remains low.</strong> Despite Esethu, despite Kaitiakitanga, despite CARE, most African datasets in 2024 and 2025 still ship under CC-BY or research-only licences. There is room for both empirical research on <em>why</em>, and for practical work helping projects move to community-grounded licences when it is appropriate.</li>
+  </ol>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you are a postgraduate looking for a thesis topic in this part of the AI landscape, any of these gaps is a real opening &mdash; not in the sense that they are easy, but in the sense that the field will recognise the contribution.</p>
+
+  <h2 class="section-title">&#127919; What This Means for Your Research</h2>
+
+  <ul class="styled-list">
+    <li><strong>Use the benchmarks.</strong> The African benchmark stack is real and broad enough to evaluate work in most of the major NLU and ASR areas. If your project involves African-language NLP and you are not evaluating against at least one of AfroBench / IrokoBench / AfriMTEB / Afri-MCQA / AfriHate / AfriSenti / AfriSpeech-200, you are working blind.</li>
+    <li><strong>Use the models that exist.</strong> For inference and adaptation work on the languages they cover, InkubaLM, MzansiLM, AfroXLMR, Serengeti, and the named-language models are usable starting points. The frontier-aspirant N-ATLAS-style projects are not yet downloadable; the resource-efficient ones are.</li>
+    <li><strong>Consider community licensing when releasing data.</strong> If you collect or curate a dataset, especially one with significant cultural or linguistic content, look at Esethu and Kaitiakitanga before defaulting to CC-BY. The community-licensing track is genuinely more aligned with the African sovereignty conversation; defaulting away from it without considering it is a missed opportunity.</li>
+    <li><strong>Pick the gaps deliberately.</strong> The six gaps above are not the only ones, but they are concrete and verifiable. If you are starting a project, choosing one of them by intention is more likely to produce a publishable contribution than choosing a topic only because foundation-model work is currently fashionable.</li>
+    <li><strong>Resource-efficient is a sovereignty practice.</strong> The Lelapa argument generalises: matching your work to the compute and data you actually have access to, rather than to the headline numbers of foreign labs, is the operationally honest version of the sovereignty position covered in 11.4.</li>
+  </ul>
+
+  <h2 class="section-title">&#9999;&#65039; A Short Exercise</h2>
+
+  <ol class="step-list">
+    <li><strong>Pick a language and a domain</strong> relevant to your current or planned research project. The domain might be medicine, agriculture, law, climate science, education, the humanities, or another.</li>
+    <li><strong>Check what benchmarks and datasets exist</strong> for that language &times; domain combination. Use the table above; check Lanfrica; check the AfricaNLP 2025 proceedings.</li>
+    <li><strong>Identify what is missing.</strong> Is there a benchmark? Is there a dataset of the right size and quality? Is there a model that handles the language?</li>
+    <li><strong>Write a one-paragraph proposal</strong> for what you would build first if you were going to fill that gap. Be honest about scope &mdash; would this be a year of work, a thesis, a community collaboration?</li>
+    <li><strong>Bring it to class.</strong> We will pool the proposals across the cohort and look at which gaps the group together could imaginably address.</li>
+  </ol>
+
+  <h2 class="section-title">&#128218; Sources &amp; Further Reading</h2>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Sovereignty &amp; data governance</h4>
+    <p><strong>Carroll, S. R. et al. (2020).</strong> The CARE Principles for Indigenous Data Governance. <em>Data Science Journal</em> 19(1): 43. <a href="https://datascience.codata.org/articles/10.5334/dsj-2020-043" target="_blank" rel="noopener">DOI 10.5334/dsj-2020-043</a>.</p>
+    <p><strong>Jones, K. &amp; Mahelona, K. (2022/2023).</strong> <em>Data Sovereignty and the Kaitiakitanga License</em>. Te Hiku Media. <a href="https://tehiku.nz/te-hiku-tech/te-hiku-dev-korero/25141/data-sovereignty-and-the-kaitiakitanga-license" target="_blank" rel="noopener">tehiku.nz</a>.</p>
+    <p><strong>Rajab, J. et al. (2025).</strong> The Esethu Framework. <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>; ACL 2025.</p>
+    <p><strong>African Union (2022).</strong> AU Data Policy Framework. <a href="https://au.int/" target="_blank" rel="noopener">au.int</a>.</p>
+    <p><strong>African Union (2024).</strong> Continental Artificial Intelligence Strategy. <a href="https://au.int/en/documents/20240809/continental-artificial-intelligence-strategy" target="_blank" rel="noopener">au.int</a>.</p>
+    <p><strong>First Nations Information Governance Centre.</strong> OCAP Principles. <a href="https://fnigc.ca/ocap-training/" target="_blank" rel="noopener">fnigc.ca</a>.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Models &amp; community infrastructure</h4>
+    <p><strong>Alabi, J. O., Hedderich, M. A., Adelani, D. I. &amp; Klakow, D. (2025).</strong> Charting the Landscape of African NLP. EMNLP 2025 main, pp. 27807&ndash;27841. <a href="https://arxiv.org/abs/2505.21315" target="_blank" rel="noopener">arXiv:2505.21315</a>.</p>
+    <p><strong>Belay, T. D., Azime, I. A., Adelani, D. I. et al. (2025).</strong> The Rise of AfricaNLP: A Survey of Contributions, Contributors, Community Impact, and Bibliometric Analysis. <a href="https://arxiv.org/abs/2509.25477" target="_blank" rel="noopener">arXiv:2509.25477</a>.</p>
+    <p><strong>The State of LLMs for African Languages: Progress and Challenges (June 2025).</strong> <a href="https://arxiv.org/abs/2506.02280" target="_blank" rel="noopener">arXiv:2506.02280</a>.</p>
+    <p><strong>Tonja, A. L. et al. (2024).</strong> InkubaLM: A small language model for low-resource African languages. <a href="https://arxiv.org/abs/2408.17024" target="_blank" rel="noopener">arXiv:2408.17024</a>. Model: <a href="https://huggingface.co/lelapa/InkubaLM-0.4B" target="_blank" rel="noopener">huggingface.co/lelapa/InkubaLM-0.4B</a>.</p>
+    <p><strong>Lombard, A. et al. (2026).</strong> MzansiText and MzansiLM: An Open Corpus and Decoder-Only Language Model for South African Languages. <a href="https://arxiv.org/abs/2603.20732" target="_blank" rel="noopener">arXiv:2603.20732</a>; LREC 2026.</p>
+    <p><strong>Buzaaba, H., Wettig, A., Adelani, D. I. &amp; Fellbaum, C. (2025).</strong> Lugha-Llama. <a href="https://arxiv.org/abs/2504.06536" target="_blank" rel="noopener">arXiv:2504.06536</a>.</p>
+    <p><strong>Elmadany, A., Adebara, I. &amp; Abdul-Mageed, M. (2024).</strong> Toucan. <a href="https://arxiv.org/abs/2407.04796" target="_blank" rel="noopener">arXiv:2407.04796</a>.</p>
+    <p><strong>Adebara, I., Elmadany, A., Abdul-Mageed, M. &amp; Inciarte, A. A. (2023).</strong> SERENGETI. <a href="https://arxiv.org/abs/2212.10785" target="_blank" rel="noopener">arXiv:2212.10785</a>; Findings of ACL 2023.</p>
+    <p><strong>AfricaNLP 2025 proceedings.</strong> Lignos, C., Abdulmumin, I. &amp; Adelani, D. I. (eds.). <a href="https://aclanthology.org/2025.africanlp-1.0/" target="_blank" rel="noopener">aclanthology.org</a>.</p>
+    <p><strong>Masakhane.</strong> <a href="https://www.masakhane.io/" target="_blank" rel="noopener">masakhane.io</a>; <a href="https://huggingface.co/masakhane" target="_blank" rel="noopener">huggingface.co/masakhane</a>.</p>
+    <p><strong>Lanfrica.</strong> <a href="https://lanfrica.com" target="_blank" rel="noopener">lanfrica.com</a>.</p>
+    <p><strong>Deep Learning Indaba 2025 (Kigali).</strong> <a href="https://deeplearningindaba.com/2025/" target="_blank" rel="noopener">deeplearningindaba.com/2025</a>.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128196; Benchmarks</h4>
+    <p><strong>AfroBench</strong> &mdash; Ojo et al., ACL 2025 Findings. <a href="https://arxiv.org/abs/2311.07978" target="_blank" rel="noopener">arXiv:2311.07978</a>.</p>
+    <p><strong>IrokoBench</strong> &mdash; Adelani et al., NAACL 2025 main. <a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">arXiv:2406.03368</a>.</p>
+    <p><strong>AfriSenti</strong> &mdash; Muhammad et al., EMNLP 2023. <a href="https://arxiv.org/abs/2302.08956" target="_blank" rel="noopener">arXiv:2302.08956</a>.</p>
+    <p><strong>AfriHate</strong> &mdash; Muhammad et al., NAACL 2025 long. <a href="https://arxiv.org/abs/2501.08284" target="_blank" rel="noopener">arXiv:2501.08284</a>.</p>
+    <p><strong>AfriQA</strong> &mdash; Ogundepo, Gwadabe et al., EMNLP 2023 Findings. <a href="https://arxiv.org/abs/2305.06897" target="_blank" rel="noopener">arXiv:2305.06897</a>.</p>
+    <p><strong>AfriSpeech-200</strong> &mdash; Olatunji et al., TACL 2023.</p>
+    <p><strong>African ASR systematic review</strong> &mdash; Imam et al. (October 2025). <a href="https://arxiv.org/abs/2510.01145" target="_blank" rel="noopener">arXiv:2510.01145</a>.</p>
+    <p><strong>African ASR benchmarking</strong> &mdash; Nahabwe et al. (November 2025). <a href="https://arxiv.org/abs/2512.10968" target="_blank" rel="noopener">arXiv:2512.10968</a>.</p>
+    <p><strong>AfriMTEB &amp; AfriE5</strong> &mdash; Uemura, Zhang &amp; Adelani, EACL 2026. <a href="https://arxiv.org/abs/2510.23896" target="_blank" rel="noopener">arXiv:2510.23896</a>.</p>
+    <p><strong>Afri-MCQA</strong> &mdash; Multimodal Cultural QA, January 2026. <a href="https://arxiv.org/abs/2601.05699" target="_blank" rel="noopener">arXiv:2601.05699</a>.</p>
+    <p><strong>NaijaVoices, Yankari, AfroCS-xs</strong> &mdash; AfricaNLP 2025 proceedings (see ACL Anthology link above).</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.6:</strong> we turn from data and models to the remaining two layers of the stack &mdash; policy and talent. The African Union Continental AI Strategy in its operational detail, the national strategies of South Africa / Kenya / Rwanda / Nigeria / Egypt (and the peer-reviewed comparative analysis in Yilma &amp; Wodajo&#39;s <em>Science and Public Policy</em> special section), and the institutional landscape of Deep Learning Indaba, AIMS, ARIN, and Lelapa as the talent pipeline. We close 11.6 with the question that will set up 11.7 (synthesis): given everything we now know about African AI capacity, what is the most useful thing a postgraduate in this room can actually do?</p>
+"""
+
+
+# ---------------------------------------------------------------------------
 # SUBLESSONS list — grows as sub-lessons are drafted
 # ---------------------------------------------------------------------------
 
@@ -985,12 +1294,21 @@ SUBLESSONS = [
         "header_subtitle": "What sovereignty means when read from an African intellectual tradition &mdash; and where the actual African compute is, isn&#39;t, and might be",
         "body": SL4_BODY,
     },
+    {
+        "filename": "Data Languages and African Model-Building.html",
+        "title": "Week 11.5 - Data, Languages and African Model-Building",
+        "badge": "Week 11 &bull; Sub-Lesson 5",
+        "header_emoji": "&#128488;&#65039;",  # speech balloon (languages)
+        "header_title": "Data, Languages and African Model-Building",
+        "header_subtitle": "The global Indigenous data-sovereignty arc, the African foundation-model inventory, the benchmark stack, and where the gaps are",
+        "body": SL5_BODY,
+    },
 ]
 
 
 # Table of Contents (just 11.1 for now; will grow as sub-lessons are added)
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa's Sovereign AI Capacity</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>5. Data, Languages and African Model-Building (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>MAM5020F 2026 | Gen AI for Research - Week 11: Future of AI in Research &amp; Africa&#39;s Sovereign AI Capacity</strong></font><br><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="What the Future of AI in Research Might Look Like.html" />1. What the Future of AI in Research Might Look Like</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Speculative Futures - A Reading Guide.html" />2. Speculative Futures &mdash; A Reading Guide</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Shifting Research Landscape.html" />3. The Shifting Research Landscape: Policy, Peer Review, Integrity</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Sovereign AI Capacity and Why Compute Is the Floor.html" />4. Sovereign AI Capacity, and Why Compute Is the Floor</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Data Languages and African Model-Building.html" />5. Data, Languages and African Model-Building</a></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>6. Policy, Institutions and Talent (to be drafted)</em></p><p class='d2l' style=' margin-left: 40px; color: #888;'><em>7. Where This Leaves Your Research + Hands-On Activity (to be drafted)</em></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
