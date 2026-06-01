@@ -187,7 +187,7 @@ SL1_BODY = """
     </div>
     <div class="card">
       <h3>Biomedical hypothesis-and-validation</h3>
-      <p>DeepMind&#39;s AI Co-Scientist (Gottweis et al., <em>Nature</em>, May 2026) is the most carefully validated recent example. It paired computational hypothesis generation with three wet-lab biomedical validations carried out by named academic collaborators. We treat this case in detail below.</p>
+      <p>Google&#39;s AI Co-Scientist (Gottweis et al., <em>Nature</em>, May 2026) is the most carefully validated recent example. It paired computational hypothesis generation with three wet-lab biomedical validations carried out by named academic collaborators. We treat this case in detail below.</p>
       <p style="color: #888; font-size: 0.95em;">Real-bucket marker: AI-generated hypotheses tested in physical experiments by humans, with the negatives reported alongside the positives.</p>
     </div>
     <div class="card">
@@ -198,7 +198,7 @@ SL1_BODY = """
   </div>
 
   <div class="technical-detail">
-    <h4>&#129516; A worked example: DeepMind&#39;s AI Co-Scientist, primary-source version</h4>
+    <h4>&#129516; A worked example: Google&#39;s AI Co-Scientist, primary-source version</h4>
     <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The peer-reviewed <em>Nature</em> paper (Gottweis et al., DOI 10.1038/s41586-026-10644-y) describes a multi-agent system built on Gemini, evaluated against OpenAI o1, o3-mini-high, DeepSeek R1, and Gemini 2.0 Pro Experimental on 203 research goals. On an 11-goal expert-evaluated subset, Co-Scientist outputs received a mean preference rank of 2.36 and ratings of 3.64/5 for novelty and 3.09/5 for impact. So far, so benchmark.</p>
     <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The interesting part is the three wet-lab biomedical validations published alongside:</p>
     <ul class="styled-list" style="margin-top: 0;">
@@ -375,7 +375,7 @@ SL_SUPP_BODY = """
   <div class="technical-detail">
     <h4>&#9201;&#65039; The METR &ldquo;doubling-every-seven-months&rdquo; study</h4>
     <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">In March 2025, the AI-evaluation lab METR published a paper introducing a deceptively simple metric: the <em>50% time horizon</em>, defined as the length of a software task an AI system can complete with at least 50% success. Over the six years from 2019 to 2025, the 50% horizon has doubled approximately every seven months.</p>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The endpoints of the curve in the March 2025 paper are striking: from GPT-2 in 2019 (a 50% horizon of seconds) up to Claude 3.7 Sonnet in early 2025 (approximately one hour). METR maintains an updated &ldquo;Time Horizon 1.1&rdquo; dataset with newer models and a larger task suite, but the specific later-2025 figures circulating in secondary coverage (including ones I had originally cited here for o3 and Opus 4.6) need to be checked directly against METR&#39;s own tracker, not against synthesised news summaries.</p>
+    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The endpoints of the curve in the March 2025 paper are striking: from GPT-2 in 2019 (a 50% horizon of seconds) up to Claude 3.7 Sonnet in early 2025 (around 50 minutes). METR maintains an updated &ldquo;Time Horizon&rdquo; dataset with newer models and a larger task suite; for current figures, check METR&#39;s own tracker directly rather than the often-inflated numbers that circulate in secondary news coverage &mdash; a small live demonstration of this lesson&#39;s central habit.</p>
     <p style="color: #444; line-height: 1.75; margin-top: 12px;">Extrapolated naively, the curve says that within a decade AI systems will be able to autonomously complete the kind of software work that today takes a person days or weeks. The honest caveat the METR team itself flags is that exponential curves bend &mdash; nothing in nature stays exponential forever &mdash; and they are deliberately not predicting <em>when</em> the bend will happen.</p>
     <p style="color: #444; line-height: 1.75;">Why read it: this is the cleanest example of a falsifiable forecast in the speculative-futures literature. By 2028 we will know whether the 7-month doubling held; that is more than can be said for most predictions in this area. <em>METR (March 2025). Measuring AI Ability to Complete Long Software Tasks. arXiv:2503.14499.</em></p>
   </div>
@@ -422,6 +422,12 @@ SL_SUPP_BODY = """
       <p>Stuart Russell&#39;s book lays out the speculative-but-serious case that controlling capable AI systems &mdash; getting them to do what humans actually want, rather than what we literally asked &mdash; is a research problem in its own right. The book has become foundational reading for the AI safety / alignment literature, which now has its own academic conferences and a growing presence in policy discussions.</p>
       <p>Worth reading because the alignment conversation is one of the few places where speculative AI futures translate directly into institutional and regulatory action.</p>
       <p style="color: #888; font-size: 0.9em;">Russell, S. (2019). <em>Human Compatible: Artificial Intelligence and the Problem of Control</em>. Viking.</p>
+    </div>
+    <div class="card">
+      <h3>The counter-position: AI as &ldquo;normal technology&rdquo; (Narayanan &amp; Kapoor, 2025)</h3>
+      <p>Almost everything else in this bucket argues, in one register or another, that AI is on a steep trajectory toward transformative or general capability. The most prominent serious work arguing the <em>opposite</em> is Arvind Narayanan and Sayash Kapoor&#39;s essay &ldquo;AI as Normal Technology&rdquo; &mdash; the authors of the <em>AI Snake Oil</em> book and newsletter (whom you met in Week 7). They argue that AI is best understood like electricity or the internet: genuinely transformative over decades, but diffusing through the economy at the ordinary, friction-bound pace of any general-purpose technology &mdash; not as an imminent &ldquo;superintelligence&rdquo; discontinuity.</p>
+      <p>It is included here deliberately as the calibration counterweight: a reading guide that only lists escalating-capability speculation is itself miscalibrated. Read it against <em>AI 2027</em> in particular &mdash; same near-future, opposite priors &mdash; and notice which of the two gives you more ways to check it later.</p>
+      <p style="color: #888; font-size: 0.9em;">Narayanan, A. &amp; Kapoor, S. (2025). AI as Normal Technology. <em>Knight First Amendment Institute</em>, 15 April 2025.</p>
     </div>
     <div class="card">
       <h3>The frontier-vendor speculation lane</h3>
@@ -472,10 +478,11 @@ SL_SUPP_BODY = """
     <p><strong>Wang, H. et al. (2023).</strong> Scientific discovery in the age of artificial intelligence. <em>Nature</em> 620, 47&ndash;60. <a href="https://www.nature.com/articles/s41586-023-06221-2" target="_blank" rel="noopener">DOI 10.1038/s41586-023-06221-2</a>.</p>
     <p><strong>Morris, M. R. et al. (2023).</strong> Levels of AGI: Operationalizing Progress on the Path to AGI. <a href="https://arxiv.org/abs/2311.02462" target="_blank" rel="noopener">arXiv:2311.02462</a>.</p>
     <p><strong>METR (March 2025).</strong> Measuring AI Ability to Complete Long Software Tasks. <a href="https://arxiv.org/abs/2503.14499" target="_blank" rel="noopener">arXiv:2503.14499</a>. Blog post: <a href="https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/" target="_blank" rel="noopener">metr.org</a>.</p>
-    <p><strong>Royal Society (October 2024).</strong> <em>Science in the age of AI</em>. ISBN 978-1-78252-712-1. <a href="https://royalsociety.org/news-resources/projects/science-in-the-age-of-ai/" target="_blank" rel="noopener">Project page</a>.</p>
+    <p><strong>Royal Society (May 2024).</strong> <em>Science in the age of AI</em>. ISBN 978-1-78252-712-1. <a href="https://royalsociety.org/news-resources/projects/science-in-the-age-of-ai/" target="_blank" rel="noopener">Project page</a>.</p>
     <p><strong>Africa Declaration on AI (April 2025).</strong> Adopted at the Global AI Summit on Africa. (Covered in detail in 11.5.)</p>
     <p><strong>Clune, J. (2019).</strong> AI-GAs: AI-generating algorithms, an alternate paradigm for producing general artificial intelligence. <a href="https://arxiv.org/abs/1905.10985" target="_blank" rel="noopener">arXiv:1905.10985</a>.</p>
     <p><strong>Kokotajlo, D. et al. (April 2025).</strong> <em>AI 2027</em> scenario. AI Futures Project. (Available via the project&#39;s website; treat as the prominent specimen of structured speculative-futures scenario planning, not as forecast.)</p>
+    <p><strong>Narayanan, A. &amp; Kapoor, S. (2025).</strong> AI as Normal Technology. <em>Knight First Amendment Institute</em>, 15 April 2025. <a href="https://knightcolumbia.org/content/ai-as-normal-technology" target="_blank" rel="noopener">knightcolumbia.org</a>.</p>
     <p><strong>Russell, S. (2019).</strong> <em>Human Compatible: Artificial Intelligence and the Problem of Control</em>. Viking.</p>
     <p><strong>Effoduh, J. O. (2026).</strong> Decolonizing the governance of artificial intelligence in Africa. <em>Science and Public Policy</em> 53(2), 245&ndash;257. <a href="https://academic.oup.com/spp/article/53/2/245/8654721" target="_blank" rel="noopener">DOI 10.1093/scipol/scag005</a>.</p>
     <p><strong>Nyabola, N. (2026).</strong> Foundations for African feminism as an ethics for artificial intelligence. <em>Science and Public Policy</em> 53(2), 277&ndash;288. <a href="https://academic.oup.com/spp/article/53/2/277/8654723" target="_blank" rel="noopener">DOI 10.1093/scipol/scag009</a>.</p>
