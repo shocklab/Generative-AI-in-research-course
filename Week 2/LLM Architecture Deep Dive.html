@@ -330,7 +330,7 @@
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Let's revisit the transformer architecture with more technical depth. While Week 1 gave us the intuition, here we'll understand the actual mechanisms.</p>
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">This video is in addition to the videos from last week and is also a little technical, but it does give a slightly different description of the 3blue1brown explanations.</p>
 <div class="resource-placeholder">
-<h4>📹 Take a look at the 3brown1blue videos before this one, but here is a lecture series on the transformer architecture.</h4>
+<h4>📹 Take a look at the 3Blue1Brown videos before this one, but here is a lecture series on the transformer architecture.</h4>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ub3GoFaUcds" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
 <div class="card-grid">
 <div class="card">
@@ -379,7 +379,7 @@
 </ol>
 </div>
 <div class="resource-placeholder">
-<p style="margin-top: 10px; font-size: 0.9em;">Here is the original paper itself, in case you are feeling particularly brave: "<a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://arxiv.org/pdf/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>" (Vaswani et al., 2017)&nbsp;</p>
+<p style="margin-top: 10px; font-size: 0.9em;">Here is the original paper itself, in case you are feeling particularly brave: "<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>" (Vaswani et al., 2017)&nbsp;</p>
 </div>
 <!-- SECTION 2: ATTENTION MECHANISMS -->
 <h2 class="section-title">👁️ Attention Mechanisms in Detail</h2>
@@ -426,7 +426,7 @@
 </div>
 </div>
 <div class="resource-placeholder">
-<h4>📹 I don't think that you can do much better than 3brown1blue to understand attention</h4>
+<h4>📹 I don't think that you can do much better than 3Blue1Brown to understand attention</h4>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eMlx5fFNoYc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
 <div class="technical-detail">
 <h4>⚡ Modern Attention Variants</h4>
@@ -559,7 +559,7 @@
 </div>
 <!-- SECTION 5: MODEL SCALE -->
 <h2 class="section-title">📏 Understanding Model Scale</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When we say "GPT-4 has 1.76 trillion parameters" or "LLaMA 3 70B," what do these numbers actually mean? And is bigger always better?</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When we say "GPT-4 has 1.76 trillion parameters" (a widely-circulated but unconfirmed third-party estimate, never officially disclosed by OpenAI) or "LLaMA 3 70B," what do these numbers actually mean? And is bigger always better?</p>
 <div class="card-grid">
 <div class="card">
 <h3>Parameter Count Breakdown</h3>
@@ -643,10 +643,13 @@
 </div>
 <div class="highlight-box">
 <h3>🔮<span style="color: #202122;"> <span style="color: #ffffff;">The Current Frontier (Feb 2026)</span></span></h3>
-<p><strong>Dense models:</strong> Have been largely superseded by MoE models. However ChatGPT 4o seems to have been a dense model with around 1T parameters</p>
-<p style="margin-top: 15px;"><strong>MoE models:</strong> Many 200B-700B total parameters with 30B-50B active (DeepSeek-V3, Mixtral variants). Claude 4.6 may be an MoE model with around 700B parameters. ChatGPT 5.2 may have over 10T parameters, with fewer active parameters.</p>
-<p style="margin-top: 15px;"><strong>Small models:</strong> 7B-13B models (LLaMA 3, Mistral 7B) remain popular for local deployment, fine-tuning, and research experimentation</p>
-<p style="margin-top: 15px;"><strong>Trend:</strong> Architectural efficiency improvements (MoE, GQA, better training) matter more than raw parameter count</p>
+<p><strong>A caveat first:</strong> The sizes and architectures of proprietary frontier models are <em>not</em> officially disclosed by their makers. Every parameter figure below for a closed model is a third-party <em>estimate</em> &mdash; informed guesses, not facts.</p>
+<p style="margin-top: 15px;"><strong>Claude Opus (4.x):</strong> Anthropic does not publish Claude&#39;s architecture or parameter count. Stanford&#39;s Foundation Model Transparency Index records both as <a href="https://crfm.stanford.edu/fmti/May-2024/company-reports/Anthropic_Claude%203.html" target="_blank" rel="noopener">&ldquo;not disclosed&rdquo;</a>. Where people speculate, the guess leans <em>dense</em> (every parameter active per token) rather than Mixture-of-Experts &mdash; but this is unconfirmed, and no specific size should be cited.</p>
+<p style="margin-top: 15px;"><strong>Mixture-of-Experts, the documented cases:</strong> The clearest MoE examples are the open ones. DeepSeek-V3 is a <a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">671B-total / 37B-activated MoE</a> (DeepSeek-AI, 2024), and Mixtral routes each token through 2 of 8 experts &mdash; <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">47B total but only ~13B active per token</a> (Jiang et al., 2024). Because these are published, the figures are verifiable.</p>
+<p style="margin-top: 15px;"><strong>GPT-4 (reported ~1.8T, MoE):</strong> Per an unofficial industry report by <a href="https://semianalysis.com/2023/07/10/gpt-4-architecture-infrastructure/" target="_blank" rel="noopener">SemiAnalysis (Patel &amp; Wong, July 2023)</a>, GPT-4 is ~1.8 trillion parameters using 16 experts &mdash; a <a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" rel="noopener">leak, not an OpenAI disclosure</a>.</p>
+<p style="margin-top: 15px;"><strong>GPT-4o (estimated ~200B):</strong> Third-party estimates put GPT-4o roughly an order of magnitude smaller than GPT-4. A Microsoft / Univ. of Washington benchmark paper lists GPT-4o at <a href="https://arxiv.org/abs/2412.19260" target="_blank" rel="noopener">~200B and GPT-4 at ~1.76T</a> (Ben Abacha et al., 2025), explicitly noting these are mined from public articles and unverified; <a href="https://epoch.ai/gradient-updates/frontier-language-models-have-become-much-smaller" target="_blank" rel="noopener">Epoch AI independently estimates ~200B</a> (and warns it &ldquo;could easily be off by a factor of 2&rdquo;).</p>
+<p style="margin-top: 15px;"><strong>Small models:</strong> Open models in the 7B&ndash;13B range (e.g. Llama, Mistral) are genuinely disclosed and run on modest hardware &mdash; the figures here are real, not estimated.</p>
+<p style="margin-top: 15px;"><strong>The trend:</strong> The frontier has shifted from chasing raw parameter count toward architectural efficiency &mdash; sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
 </div>
 <div class="resource-placeholder">
 <h4>📄<a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>

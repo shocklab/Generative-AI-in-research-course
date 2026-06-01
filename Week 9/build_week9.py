@@ -142,7 +142,7 @@ SL1_BODY = """
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The way researchers talk about &ldquo;what AI can&#39;t do&rdquo; goes stale faster than almost any other technical claim in the literature. A paper from 2023 documenting that ChatGPT failed at undergraduate mathematics is, by 2026, a historical artefact rather than a current diagnosis. A claim from 2024 that AI can&#39;t do scientific writing well no longer matches what frontier models produce today. The artefact under study has changed. The literature about it has not always kept up.</p>
     <p>This sub-lesson does two things. First, it lays out the trajectory of LLM capabilities from 2019 to May 2026, so you have a calibrated sense of where the frontier sits right now. Second, it makes the central pedagogical move of the whole week explicit: every claim about AI limitations carries an implicit &ldquo;as of [date]&rdquo;. Reading the AI literature critically means asking which model, which date, and whether anyone has retested.</p>
-    <p>The week&#39;s centrepiece reading lives at the end of this sub-lesson: a May 2026 blog post by the Fields-medallist Tim Gowers reporting on his experience using ChatGPT 5.5 Pro to extend bounds on an open problem in additive number theory. Read it before moving on to the next sub-lesson.</p>
+    <p>The week&#39;s centrepiece reading lives at the end of this sub-lesson: a May 2026 blog post by the Fields-medallist Tim Gowers reporting on his experience using GPT-5.5 Pro to extend bounds on an open problem in additive number theory. Read it before moving on to the next sub-lesson.</p>
   </div>
 
   <h2 class="section-title">&#128200; A Seven-Year Sweep</h2>
@@ -273,7 +273,7 @@ SL1_BODY = """
 
     <div class="card">
       <h3>Other open-weights players</h3>
-      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> targets cost-efficiency at $95-per-benchmark-run but reports a 92% hallucination rate on AA-Omniscience &mdash; a useful warning that not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention &mdash; an architectural-innovation data point.</p>
+      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> is positioned for cost-efficiency but has been reported to hallucinate heavily on knowledge benchmarks such as AA-Omniscience &mdash; a useful warning that not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention &mdash; an architectural-innovation data point.</p>
     </div>
 
   </div>
@@ -301,7 +301,7 @@ SL1_BODY = """
       <tbody>
         <tr>
           <td><strong>FrontierMath</strong></td>
-          <td>350 expert-level mathematics problems (300 Tier 1&ndash;3 + 50 Tier 4 unpublished). Evaluated with Python tools.</td>
+          <td>350 expert-level mathematics problems (300 Tier 1&ndash;3 + 50 Tier 4; of the 50 Tier-4 problems, 48 are non-public and 20 are withheld even from OpenAI). Evaluated with Python tools.</td>
           <td>GPT-5.5 Pro 52.4%</td>
           <td><a href="https://epoch.ai/frontiermath" target="_blank" rel="noopener">Epoch AI</a>; problems set by IMO gold medallists and Fields Medal recipients.</td>
         </tr>
@@ -331,9 +331,9 @@ SL1_BODY = """
         </tr>
         <tr>
           <td><strong>HLE</strong></td>
-          <td>Human Language Evaluation &mdash; broad reasoning across domains.</td>
+          <td>Humanity's Last Exam &mdash; ~2,500 extremely difficult expert-authored questions spanning 100+ disciplines, designed to resist saturation.</td>
           <td>Claude Mythos 64.7</td>
-          <td>Composite reasoning measure.</td>
+          <td>Single hard benchmark; CAIS + Scale AI, 2025 (arXiv:2501.14249).</td>
         </tr>
         <tr>
           <td><strong>Codeforces (Elo)</strong></td>
@@ -405,7 +405,7 @@ SL1_BODY = """
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Three responses have emerged:</p>
 
   <ul class="styled-list">
-    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was deliberately constructed as 350 entirely new and unpublished problems. The Tier 4 set has <strong>20 problems explicitly held out</strong> from OpenAI (the funder) so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
+    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was deliberately constructed as 350 entirely new and unpublished problems. Of the 50 Tier-4 problems, 48 are non-public and <strong>20 are withheld even from OpenAI</strong> (the funder), so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
     <li><strong>Cleaned and refreshed benchmarks.</strong> MMLU-Pro (Wang et al. 2024) increased question difficulty and expanded answer choices to make memorisation less helpful. MMLU-Redux (2025) cleaned ambiguous questions and incorrect answers from the original.</li>
     <li><strong>Dynamic benchmarks.</strong> Benchmarks regenerated continuously based on training cutoffs, so contamination is structurally impossible. <a href="https://arxiv.org/abs/2312.12343" target="_blank" rel="noopener">LatestEval (AAAI 2024)</a> is one example.</li>
   </ul>
@@ -448,20 +448,20 @@ SL1_BODY = """
   </div>
 
   <!-- SECTION: GOWERS -->
-  <h2 class="section-title">&#128218; Centrepiece Reading: Gowers on ChatGPT 5.5 Pro</h2>
+  <h2 class="section-title">&#128218; Centrepiece Reading: Gowers on GPT-5.5 Pro</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Tim Gowers is a Fields medallist and a long-time chronicler of mathematical practice. In May 2026 he posted an account of an experiment in which he used ChatGPT 5.5 Pro to attack open problems from a paper by Mel Nathanson on additive number theory.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Tim Gowers is a Fields medallist and a long-time chronicler of mathematical practice. In May 2026 he posted an account of an experiment in which he used GPT-5.5 Pro to attack open problems from a paper by Mel Nathanson on additive number theory.</p>
 
   <div class="case-study">
     <h4>&#128221; What Gowers reports</h4>
-    <p>Over roughly two hours of interaction, ChatGPT 5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel &mdash; not retrieved from training data &mdash; and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
+    <p>Over roughly two hours of interaction, GPT-5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel &mdash; not retrieved from training data &mdash; and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
     <p>Gowers&#39; broader claim is striking: <em>&ldquo;The lower bound for contributing to mathematics will now be to prove something that LLMs can&#39;t prove.&rdquo;</em></p>
     <p>He pairs this with a defence of human work: <em>&ldquo;by solving hard problems you get an insight&hellip;that you simply don&#39;t if all you do is read other people&#39;s solutions.&rdquo;</em></p>
   </div>
 
   <div class="resource-placeholder">
     <h4>&#128214; Required Reading</h4>
-    <p><strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers, T. (8 May 2026). <em>A recent experience with ChatGPT 5.5 Pro.</em></a></strong></p>
+    <p><strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers, T. (8 May 2026). <em>A recent experience with GPT-5.5 Pro.</em></a></strong></p>
     <p>Read this before moving to the next sub-lesson. The full post is short, accessible without specialist additive-number-theory background, and lays the groundwork for the trajectory frame that runs through the rest of the week.</p>
   </div>
 
@@ -711,7 +711,7 @@ SL3_BODY = """
   <div class="case-study">
     <h4>&#128221; DeepMind&#39;s AI Co-Mathematician (May 2026)</h4>
     <p>Announced on 8 May 2026 by Pushmeet Kohli&#39;s team at Google DeepMind, the AI Co-Mathematician is a multi-agent system built on Gemini 3.1 Pro that actively collaborates with human mathematicians on open research problems.</p>
-    <p>On <strong>FrontierMath Tier 4</strong> &mdash; the hardest 50 problems in the benchmark, designed to take expert mathematicians hours or days &mdash; the system <strong>solved 23 of 48 non-public problems, a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark; the entire jump came from agentic scaffolding with parallel agents reviewing each other&#39;s work.</p>
+    <p>On <strong>FrontierMath Tier 4</strong> &mdash; the hardest 50 problems in the benchmark, designed to take expert mathematicians hours or days &mdash; the system <strong>solved 23 of the 48 non-public problems (of the 50 Tier-4 problems, 48 are non-public and 20 are withheld even from OpenAI), a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark; the entire jump came from agentic scaffolding with parallel agents reviewing each other&#39;s work.</p>
     <p>And it has already been used to close a real open problem: topologist Marc Lackenby used the system to close <strong>problem 21.10 from the Kourovka Notebook</strong>, an open compendium of group theory problems maintained continuously since 1965 in Novosibirsk.</p>
     <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.06651" target="_blank" rel="noopener">AI Co-Mathematician: Accelerating Mathematicians with Agentic AI (arXiv:2605.06651, 7 May 2026)</a></p>
   </div>
@@ -723,7 +723,7 @@ SL3_BODY = """
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Centrepiece reading (revisited)</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you have not yet read it, return to <strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers (May 2026), <em>A recent experience with ChatGPT 5.5 Pro</em></a></strong>. The Gowers post is the single most useful piece of writing I know on the current state of frontier-model mathematics, partly because Gowers is one of the few people who can credibly assess the quality of the work himself.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you have not yet read it, return to <strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers (May 2026), <em>A recent experience with GPT-5.5 Pro</em></a></strong>. The Gowers post is the single most useful piece of writing I know on the current state of frontier-model mathematics, partly because Gowers is one of the few people who can credibly assess the quality of the work himself.</p>
 
   <!-- THEORETICAL PHYSICS -->
   <h2 class="section-title">&#9883; Theoretical Physics</h2>
@@ -790,7 +790,7 @@ SL3_BODY = """
 
     <div class="card">
       <h3>Code at the Frontier</h3>
-      <p><strong>Claude Opus 4.7</strong> at SWE-bench Verified 87.6%; <strong>DeepSeek V4 Pro</strong> at Codeforces 3206 (top of any model); <strong>GPT-5.5 Pro</strong> at MCP-Atlas 77.3%. Frontier models in 2026 are research-grade for many programming tasks. The Week 7 caveat applies: code that runs is not code that&#39;s correct. Verification and known-answer testing are still mandatory.</p>
+      <p><strong>Claude Opus 4.7</strong> at SWE-bench Verified 87.6%; <strong>DeepSeek V4 Pro</strong> at Codeforces 3206 (top of any model); <strong>Opus 4.7</strong> at MCP-Atlas 77.3%. Frontier models in 2026 are research-grade for many programming tasks. The Week 7 caveat applies: code that runs is not code that&#39;s correct. Verification and known-answer testing are still mandatory.</p>
     </div>
 
     <div class="card">

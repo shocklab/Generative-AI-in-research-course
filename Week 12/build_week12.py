@@ -161,7 +161,7 @@ SL_BODY = """
 
   <h2 class="section-title">&#128218; Week 11, Pulled Together</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Each of the six prior sub-lessons in this week handed you a specific input. Read together, they amount to a complete map of the territory the capstone is asking you to position yourself in.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Each of the six prior sub-lessons in Week 11 handed you a specific input. Read together, they amount to a complete map of the territory the capstone is asking you to position yourself in.</p>
 
   <div style="overflow-x: auto;">
     <table class="comparison-table">
@@ -251,10 +251,10 @@ SL_BODY = """
     <p><strong>3.</strong> I will not delegate the biological interpretation of the predicted structures (the structures are starting points, not answers), the choice of which candidates to take into wet-lab validation, or the writing of the discussion section. The wet-lab call is the one with downstream cost and risk; the discussion is where the interpretation lives.</p>
     <p><strong>4.</strong> Local-context choice: I will prioritise <em>P. falciparum</em> strains endemic to Southern Africa for benchmark verification, in collaboration with the H3D Drug Discovery Centre at UCT, and will commit any leads identified to publication under terms that allow generic-manufacturing partners on the continent to use them.</p>
     <p><strong>5.</strong> Verification protocol: every novel binding-site prediction is independently re-run on at least two protein-structure model families before consideration, with positive predictions confirmed against published crystallographic data where available, and a pre-registered decision rule for which candidates advance to wet-lab.</p>
-    <p><strong>6.</strong> Ethical commitment: from the relational reading of Week 4 &mdash; equitable benefit. Any compounds identified will be published in open-access venues with the model output and the wet-lab data both made available; no patent will be filed on any lead by the research team without prior agreement on accessibility for African public-health systems.</p>
+    <p><strong>6.</strong> Ethical commitment: from the Just AI Framework (Week 4) &mdash; the principle of <em>equitable benefit</em>. Any compounds identified will be published in open-access venues with the model output and the wet-lab data both made available; no patent will be filed on any lead by the research team without prior agreement on accessibility for African public-health systems.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Both pitches are around 300 words. Both follow the six-prompt structure tightly. Both name specific tools, specific local choices, specific verification protocols, and a specific ethical commitment. Neither pitch is a template &mdash; your own pitch will look different because your research is different &mdash; but the level of specificity is the bar.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Both pitches run a little under the 300-word ceiling &mdash; yours can use the full budget. Both follow the six-prompt structure tightly. Both name specific tools, specific local choices, specific verification protocols, and a specific ethical commitment. Neither pitch is a template &mdash; your own pitch will look different because your research is different &mdash; but the level of specificity is the bar.</p>
 
   <h2 class="section-title">&#128221; Part 2 &mdash; The Solo Self-Critique (300 words)</h2>
 

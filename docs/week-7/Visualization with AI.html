@@ -545,7 +545,7 @@
 <h4>Colourblind-Safe Palettes</h4>
 <p>The single most impactful change you can make to any AI-generated chart is to switch from the default colour palette to a colourblind-safe alternative. Several well-tested palettes exist:</p>
 <ul class="styled-list">
-<li><strong>ColorBrewer palettes:</strong> Developed by cartographer Cynthia Brewer, these palettes have been rigorously tested for perceptual uniformity and colourblind safety. The <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer 2.0</a> tool lets you select palettes filtered by colourblind-safe options. In matplotlib, use <code>plt.cm.get_cmap('Set2')</code> or the seaborn <code>colorblind</code> palette.</li>
+<li><strong>ColorBrewer palettes:</strong> Developed by cartographer Cynthia Brewer, these palettes have been rigorously tested for perceptual uniformity and colourblind safety. The <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer 2.0</a> tool lets you select palettes filtered by colourblind-safe options. In matplotlib, use <code>plt.get_cmap('Set2')</code> or the seaborn <code>colorblind</code> palette.</li>
 <li><strong>Viridis family:</strong> The viridis, magma, inferno, and plasma colour maps in matplotlib were specifically designed to be perceptually uniform and colourblind-safe. They work well for continuous data and are readable in greyscale.</li>
 <li><strong>Okabe-Ito palette:</strong> An 8-colour categorical palette designed by Masataka Okabe and Kei Ito that is distinguishable under all common forms of colour vision deficiency.</li>
 </ul>
