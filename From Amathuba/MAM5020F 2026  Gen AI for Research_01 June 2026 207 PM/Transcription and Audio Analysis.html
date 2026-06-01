@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.4 - Transcription and Audio Analysis</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+    .ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+    header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+    .week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+    header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+    header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+    .content { padding: 50px 40px; }
+    .intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+    .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .intro-text h2::before { content: '\1F3AF'; }
+    .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+    .section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+    .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+    .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+    .styled-list { list-style: none; margin-top: 15px; }
+    .styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+    .styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+    .highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+    .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+    .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+    .warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+    .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+    .warning-box p { color: #555; line-height: 1.7; }
+    .info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+    .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .info-box p { color: #555; line-height: 1.7; }
+    .technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+    .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+    .case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+    .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover { background: #f9f9f9; }
+    .step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+    .step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+    .step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+    .resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+    .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+    .resource-placeholder p { color: #666; }
+    .sa-highlight { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(0,100,60,0.04) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; }
+    .sa-highlight h4 { color: #003A70; font-size: 1.4em; margin-bottom: 15px; }
+    .wer-table { width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; }
+    .wer-table th { background: #2a5298; color: white; padding: 12px 15px; text-align: left; font-weight: 600; font-size: 0.95em; }
+    .wer-table td { padding: 10px 15px; border-bottom: 1px solid #e9ecef; color: #555; font-size: 0.95em; }
+    .wer-table tr:last-child td { border-bottom: none; }
+    .wer-table tr:hover { background: #f5f8ff; }
+    @media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } .wer-table { font-size: 0.82em; } }
+      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page’s design, presentation and content have been created and enhanced using Claude (Anthropic’s AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 8 • Sub-Lesson 4</div>
+<h1>🎤 <span style="color: #ffffff;">Transcription and Audio Analysis</span></h1>
+<p>AI transcription for research interviews, focus groups, and fieldwork — including what it gets wrong, and what it means for South African research contexts</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>Overview</h2>
+<p>Qualitative researchers, oral historians, social scientists, and educators all work with audio — interviews, focus groups, fieldwork recordings, classroom observations. AI transcription has genuinely transformed this work: tasks that once took hours of manual transcription can now be completed in minutes. But transcription AI also hallucinates — inventing words, sentences, and sometimes entire passages that were never spoken. For research that depends on accurate verbatim records, this is not a minor inconvenience.</p>
+<p>This sub-lesson covers the real capabilities, the real failure modes, and — particularly important for this course — what these tools do and do not do with South African and other African languages. We then look at AI-assisted qualitative analysis tools and close with critical guidance on data privacy for audio recordings.</p>
+</div>
+<!-- SECTION 1: THE TRANSCRIPTION LANDSCAPE -->
+<h2 class="section-title">🎤 The Transcription Landscape</h2>
+<p style="color: #555; line-height: 1.8; margin-bottom: 20px;">The current transcription tool landscape is split between open-source models (primarily the Whisper family) that run locally, commercial cloud APIs that offer enhanced accuracy and features, and specialist providers focused on African language support.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Type</th>
+<th>Best Accuracy</th>
+<th>Key Strength</th>
+<th>Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Whisper large-v3 (OpenAI)</strong></td>
+<td>Open-source</td>
+<td>~2.0% WER (clean audio)</td>
+<td>Free, local, widely supported</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>OpenAI Transcription API (GPT family)</strong></td>
+<td>API</td>
+<td>Better than Whisper on standard benchmarks</td>
+<td>Lowest word error rate; API access</td>
+<td>Paid</td>
+</tr>
+<tr>
+<td><strong>WhisperX</strong></td>
+<td>Open-source</td>
+<td>Comparable to Whisper large-v3</td>
+<td>Enhanced speaker diarization; better multi-speaker</td>
+<td>Free</td>
+</tr>
+<tr>
+<td><strong>Deepgram</strong></td>
+<td>Cloud API</td>
+<td>Strong</td>
+<td>Fast; good for meeting / call audio; speaker labels</td>
+<td>Paid</td>
+</tr>
+<tr>
+<td><strong>AssemblyAI</strong></td>
+<td>Cloud API</td>
+<td>Strong</td>
+<td>Meeting transcription; speaker identification</td>
+<td>Paid</td>
+</tr>
+<tr>
+<td><strong>Intron Sahara v2</strong></td>
+<td>Cloud API</td>
+<td>57 languages (24 added in v2)</td>
+<td>500+ African English accent variants</td>
+<td>Paid</td>
+</tr>
+<tr>
+<td><strong>Lelapa AI</strong></td>
+<td>Cloud API</td>
+<td>South African languages</td>
+<td>Specialist: Zulu, Xhosa, Sotho, Afrikaans</td>
+<td>Paid</td>
+</tr>
+</tbody>
+</table>
+<!-- SECTION 2: ACCURACY &#8212; WHAT THE NUMBERS MEAN -->
+<h2 class="section-title">📈 Accuracy — What the Numbers Mean</h2>
+<div class="technical-detail">
+<h4>🔎 Understanding Word Error Rate (WER)</h4>
+<p style="color: #555; line-height: 1.8; margin-bottom: 15px;"><strong>WER (Word Error Rate)</strong> is the standard metric for transcription accuracy. A 10% WER means 1 in every 10 words is incorrect. For a 1-hour interview of approximately 8,000 words, a 10% WER represents around 800 errors. For academic research, a 10% error rate means every transcript requires careful human review before coding or analysis. The metric combines substitutions (wrong word), deletions (dropped word), and insertions (invented word) into a single number.</p>
+<p style="color: #555; line-height: 1.8; margin-bottom: 10px;">Whisper large-v3 performance across audio conditions (recent benchmarks):</p>
+<table class="wer-table">
+<thead>
+<tr>
+<th>Audio Condition</th>
+<th>Word Error Rate</th>
+<th>What This Means</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Clean read speech (LibriSpeech test-clean)</td>
+<td><strong>~2.0%</strong></td>
+<td>Impressively accurate; ~1 error per 50 words</td>
+</tr>
+<tr>
+<td>Real-world mixed audio</td>
+<td><strong>7.88–11.46%</strong></td>
+<td>Requires review; ~1 error per 9–13 words</td>
+</tr>
+<tr>
+<td>Meeting audio</td>
+<td><strong>~11.5%</strong></td>
+<td>Requires careful review; ~1 error per 9 words</td>
+</tr>
+<tr>
+<td>Telephony / call centre quality</td>
+<td><strong>17.7%</strong></td>
+<td>Substantial errors; manual re-transcription often faster</td>
+</tr>
+<tr>
+<td>Spontaneous speech, challenging conditions</td>
+<td><strong>~17–26% error</strong></td>
+<td>74–83% word accuracy; significant manual effort required</td>
+</tr>
+</tbody>
+</table>
+<p style="color: #555; line-height: 1.8; margin-top: 15px;">Note that the “clean read speech” benchmark (LibriSpeech) represents near-ideal conditions: studio recordings of people reading prepared text aloud. Most research audio is far closer to the “real-world mixed audio” or “meeting audio” conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the Whisper large-v3 model card reports approximately 2.0% on clean audio. Neither figure is representative of typical research use.</p>
+</div>
+<!-- SECTION 3: TRANSCRIPTION HALLUCINATION -->
+<h2 class="section-title">⚠️ Transcription Hallucination — The Critical Warning</h2>
+<div class="warning-box">
+<h4>⚠️ Transcription Hallucination Is a Real and Documented Problem</h4>
+<p>Investigative reporting in 2024 (Associated Press, TechCrunch) surfaced cases where Whisper hallucinated in approximately 80% of public meeting transcriptions tested by researchers. A separate peer-reviewed study — Koenecke et al. (FAccT 2024, “Careless Whisper”) — analysed hallucinations in clinical interview transcriptions and found that 38% included explicit harms such as perpetuating violence, inventing associations, or implying false authority. Together these findings confirm that transcription hallucination is not an occasional glitch: it is a systematic feature of how language model-based transcription works.</p>
+<p style="margin-top: 12px;"><strong>What transcription hallucination looks like:</strong></p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>❌ Invented Sentences</h3>
+<p>Complete sentences that were never spoken appear in the transcript — sometimes plausible-sounding extensions of what was said, sometimes entirely unrelated to the audio content. The model fills silence or uncertain audio with generated text.</p>
+</div>
+<div class="card">
+<h3>🔃 Wrong Words</h3>
+<p>Homophones and phonetically similar sequences produce substitution errors. “Their” becomes “there”, technical terms are replaced with common words that sound similar. These errors are often plausible in context, making them harder to detect on first reading.</p>
+</div>
+<div class="card">
+<h3>👁️ Fabricated Proper Nouns</h3>
+<p>Names of people, places, and organisations that the model does not recognise from its training data are sometimes replaced with invented approximations — a real person’s name becomes a different name that sounds similar. Technical vocabulary and field-specific jargon are particularly vulnerable.</p>
+</div>
+<div class="card">
+<h3>🚫 Dropped Content</h3>
+<p>Entire sentences are omitted silently with no indication in the transcript that anything was missed. Deletion errors are often harder to detect than substitution errors because there is no visible evidence of the omission unless you are following along with the audio.</p>
+</div>
+</div>
+<div class="info-box">
+<h4>📌 When Hallucination Is Most Likely</h4>
+<p>Low-quality audio, background noise, or cross-talk between speakers increases hallucination rates substantially. Unusual terminology (technical vocabulary, field-specific jargon, specialist terms not represented in training data), accented speech that differs significantly from training data, quiet or mumbled speech, and multiple overlapping speakers all increase risk. Research interviews — especially fieldwork recordings in non-studio conditions — routinely combine several of these risk factors simultaneously.</p>
+</div>
+<div class="warning-box">
+<h4>📍 The Verification Imperative</h4>
+<p>Every transcription used for academic analysis must be reviewed by a human with access to the original audio. Spot-checking 10% of the transcript is not sufficient for verbatim accuracy. For critical passages — any passage you intend to quote directly, any passage that forms the evidential basis of an analytical claim — full verification against the audio is required. This is not optional for publishable research.</p>
+</div>
+<!-- SECTION 4: SOUTH AFRICAN AND AFRICAN LANGUAGE TRANSCRIPTION -->
+<h2 class="section-title">🇺🇪 South African and African Language Transcription</h2>
+<div class="sa-highlight">
+<h4>🌎 The South African Research Context</h4>
+<p style="color: #555; line-height: 1.8; margin-bottom: 20px;">Standard transcription tools are trained predominantly on English and major European languages. Their performance on South African languages — and on South African English accents — is significantly lower than the headline accuracy figures suggest. This section gives you the honest performance picture, the tools designed to address this gap, and practical guidance for researchers working in multilingual South African contexts.</p>
+<p style="color: #555; line-height: 1.8; margin-bottom: 15px;"><strong>Representative ASR performance on South African languages, W2v-BERT model with 1 hour vs 50 hours of fine-tuning (Nahabwe et al., 2025, <a href="https://arxiv.org/abs/2512.10968" style="color: #2a5298;" target="_blank" rel="noopener">arXiv:2512.10968</a>):</strong></p>
+<table class="wer-table">
+<thead>
+<tr>
+<th>Language</th>
+<th>WER (W2v-BERT, 1 hour fine-tuning)</th>
+<th>WER (W2v-BERT, 50 hours fine-tuning)</th>
+<th>Improvement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Afrikaans</td>
+<td>22.7%</td>
+<td><strong>3.23%</strong></td>
+<td>≈86% reduction</td>
+</tr>
+<tr>
+<td>Zulu</td>
+<td>28.02%</td>
+<td><strong>7.89%</strong></td>
+<td>≈72% reduction</td>
+</tr>
+<tr>
+<td>Xhosa</td>
+<td>27.83%</td>
+<td><strong>7.13%</strong></td>
+<td>≈74% reduction</td>
+</tr>
+</tbody>
+</table>
+<p style="color: #555; line-height: 1.8; margin-top: 15px;">These figures are from Nahabwe et al. (2025, Deep Learning Indaba 2025), which benchmarks several architectures (Whisper, W2v-BERT, XLS-R, MMS) on African languages. Other models in the same study reach broadly comparable or better WER at 50 hours — e.g., Whisper Afrikaans at 50h is approximately 2.11%. The dramatic improvement from fine-tuning on 1–50 hours of target language data applies across architectures; the practical barrier is the requirement for labelled audio data in the target language, which remains scarce for many African languages. With only 1 hour of fine-tuning, a WER of ~28% on Zulu means roughly 1 in every 3.5 words is wrong — a level of error that makes automated analysis unreliable.</p>
+</div>
+<div class="technical-detail">
+<h4>🌎 Dedicated African Language Tools</h4>
+<p style="color: #555; line-height: 1.8; margin-bottom: 15px;">Several tools have been developed specifically to address the performance gap for African languages:</p>
+<ul class="styled-list">
+<li><strong>Intron Sahara v2 (2026):</strong> Covers 57 languages total (24 newly added in v2, including Zulu, Xhosa, and Afrikaans), with support for over 500 African English accent variants. Developed by Intron, a Nigerian (Lagos-based) AI company. Commercial API. <a href="https://intron.ai" style="color: #2a5298;">https://intron.ai</a></li>
+<li><strong>Lelapa AI:</strong> South African language specialist. Focuses on Zulu, Xhosa, Sotho, and Afrikaans. Developed with African language experts and linguists. <a href="https://lelapa.ai" style="color: #2a5298;">https://lelapa.ai</a></li>
+<li><strong>Microsoft PazaBench:</strong> The first independent leaderboard for low-resource African language ASR (Automatic Speech Recognition), covering 39 languages and 52 models. Use this to compare current model performance across languages before committing to a tool.</li>
+<li><strong>AfriSpeech-Dialog (NAACL 2025):</strong> New benchmark for spontaneous conversational speech in African-accented English — the most relevant benchmark for the kind of accented English speech found in South African research interviews and focus groups where participants code-switch or speak English as a second language.</li>
+</ul>
+</div>
+<div class="info-box">
+<h4>💡 Practical Guidance for South African Research Contexts</h4>
+<p>Standard Whisper large-v3 is a reasonable starting point for Afrikaans in quiet, clean recording conditions. For Zulu and Xhosa — especially in the naturalistic, spontaneous speech typical of qualitative interviews — fine-tuned variants or specialist tools (Intron Sahara v2, Lelapa AI) are strongly preferred over standard Whisper. For research that will be published or cited, budget for human verification of all transcripts regardless of the tool used. The performance gap between African languages and major European languages in standard tools is not a fixed property — it is a data problem, and it is improving as more labeled audio data becomes available. Check current benchmark leaderboards before beginning a new research project.</p>
+</div>
+<!-- SECTION 5: AI-ASSISTED QUALITATIVE ANALYSIS -->
+<h2 class="section-title">🔍 AI-Assisted Qualitative Analysis</h2>
+<p style="color: #555; line-height: 1.8; margin-bottom: 25px;">Several qualitative data analysis (QDA) tools have integrated AI capabilities since 2023–2025. The integrations range from AI-suggested codes to conversational querying of your document corpus. Understanding what these features do and do not do is essential for using them responsibly.</p>
+<div class="card-grid">
+<div class="card">
+<h3>💻 ATLAS.ti (Lumivero)</h3>
+<p>The most AI-integrated qualitative data analysis tool currently available. Includes AI transcription, AI-suggested codes, AI-generated summaries, and conversational querying across your document corpus.</p>
+<ul class="styled-list">
+<li>AI coding suggestions are a starting point, not a final answer</li>
+<li>They reflect statistical patterns in your documents, not your theoretical framework</li>
+<li>Best used to generate initial codes that you then review, accept, modify, or reject</li>
+<li>Conversational querying is powerful for finding relevant passages quickly</li>
+</ul>
+</div>
+<div class="card">
+<h3>📊 NVivo 15.3 (Lumivero)</h3>
+<p>AI-generated summaries, AI auto-coding, and integration with statistical analysis. The Lumivero acquisition of ATLAS.ti (September 2024) has brought both tools under the same corporate umbrella, with increasing feature convergence across the two products.</p>
+<ul class="styled-list">
+<li>AI auto-coding integrates with NVivo’s node structure</li>
+<li>AI summaries work at document and node level</li>
+<li>Statistical integration supports mixed-methods research designs</li>
+</ul>
+</div>
+<div class="card">
+<h3>📄 MAXQDA Analytics Pro</h3>
+<p>AI coding suggestions, document summarisation, and paraphrasing. Lower AI integration than ATLAS.ti but more affordable for individual researchers or small teams. Well-suited to projects where you want AI support without full dependency on AI-generated outputs.</p>
+<ul class="styled-list">
+<li>AI paraphrasing useful for memo writing</li>
+<li>Coding suggestions require explicit human confirmation</li>
+<li>Good export options for integration with other tools</li>
+</ul>
+</div>
+<div class="card">
+<h3>💬 Insight7</h3>
+<p>Specialised platform for analysing interview transcripts and focus groups at scale. Extracts themes, sentiment, and key insights from audio, video, or text. Designed primarily for UX research and market research, but applicable to academic qualitative work where you need to process many interviews quickly.</p>
+<ul class="styled-list">
+<li>Handles audio, video, and text input in a single workflow</li>
+<li>Automated theme extraction across large interview sets</li>
+<li>Less suited to theoretically-driven interpretive analysis</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>⚠️ What AI Auto-Coding Does and Does Not Do</h4>
+<p>AI can identify passages related to themes you specify, flag sentiment, and suggest codes based on semantic similarity to your existing codes or to prompts you provide. It cannot apply your theoretical framework, distinguish between a participant citing a concept and genuinely expressing it, or make the interpretive judgments that are the core of qualitative research. AI coding finds passages efficiently; your own judgment determines what those passages mean within your analytical framework. These are not interchangeable activities.</p>
+</div>
+<!-- SECTION 6: THE CAAI WORKFLOW -->
+<h2 class="section-title">📋 A Conversational Workflow for Interview Analysis</h2>
+<p style="color: #555; line-height: 1.8; margin-bottom: 20px;">The following workflow is informed by Friese's (2025) Conversational Analysis with AI (CAAI) framework, which replaces traditional line-by-line qualitative coding with structured dialogic interaction between the researcher and a large language model (Friese, S., 2025, “From Coding to Conversation: A New Methodological Framework for AI-Assisted Qualitative Analysis,” SSRN 5232579). It is designed for qualitative researchers who want to use AI to accelerate analysis without sacrificing interpretive rigour.</p>
+<ol class="step-list">
+<li><strong>Familiarisation via AI-generated summaries.</strong> Use AI to produce a structured summary of each interview before your first read. This orients you to the content — the key topics discussed, the approximate emotional register, the main positions taken — without replacing close reading. Treat it as a map, not a substitute for the territory.</li>
+<li><strong>Develop your question set.</strong> Before querying AI, write out the specific analytical questions your research requires. The AI will answer whatever you ask; the quality of your questions determines the quality of the analysis. Vague questions produce vague answers. Questions grounded in your theoretical framework produce theoretically relevant responses.</li>
+<li><strong>Focused AI dialogue.</strong> Work with 4–6 interviews at a time rather than your entire corpus at once. This keeps the analysis tractable, allows you to verify AI responses against transcripts you know well, and makes it easier to check consistency across batches. Large-corpus querying is useful for pattern-finding; small-batch dialogue is better for interpretive work.</li>
+<li><strong>Synthesis of insights.</strong> Compile AI-generated themes across batches, explicitly looking for convergence and contradiction. Where the AI surfaces the same theme repeatedly, investigate whether this reflects genuine salience in your data or a bias in how you formulated your prompts.</li>
+<li><strong>Human theoretical integration.</strong> Apply your disciplinary framework to the AI-surfaced themes. Situate findings in your conceptual literature. Interrogate the themes against your research questions. This step is not automatable and should not be delegated to AI. The analysis becomes yours through this step.</li>
+</ol>
+<!-- PRIVACY WARNING -->
+<h2 class="section-title">🔒 Privacy and Data Governance</h2>
+<div class="warning-box">
+<h4>⚠️ Audio Recordings of Research Participants Are Sensitive Data</h4>
+<p>Before uploading audio recordings to any cloud-based transcription service — including Whisper API, AssemblyAI, Deepgram, or any QDA tool with cloud transcription — you must check three things:</p>
+</div>
+<div class="technical-detail">
+<h4>🔒 Three-Point Data Governance Check</h4>
+<ul class="styled-list">
+<li><strong>Your institution’s data governance policy:</strong> Many universities require that personal data (which includes voice recordings of identifiable individuals) be processed only on approved platforms or servers within specified jurisdictions. The UCT Research Data Management Policy is the relevant document for students and staff at this institution.</li>
+<li><strong>Your ethics approval:</strong> Your ethics certificate specifies how data may be collected, stored, and processed. If it does not explicitly authorise cloud-based processing, you may need an amendment before uploading recordings.</li>
+<li><strong>Your consent forms:</strong> Participants who consented to an interview did not necessarily consent to their voice being processed by a commercial AI service in a foreign jurisdiction. If your consent form does not cover this use, you cannot assume consent applies.</li>
+</ul>
+<p style="color: #555; line-height: 1.8; margin-top: 15px;"><strong>Local processing tools (Whisper running on your own machine) avoid this concern entirely</strong> — audio never leaves your device. WhisperX, Whisper.cpp, and Faster-Whisper all run locally and produce output comparable to the cloud Whisper API. For sensitive research data, local processing is the default recommendation.</p>
+</div>
+<!-- READINGS -->
+<h2 class="section-title">📚 Readings</h2>
+<div class="resource-placeholder">
+<h4>🎤 Core Reading 1</h4>
+<p>arXiv:2510.01145 (2025). “Automatic Speech Recognition for African Low-Resource Languages: A Systematic Literature Review.”<br><a href="https://arxiv.org/abs/2510.01145" style="color: #2a5298; font-weight: 600;">https://arxiv.org/abs/2510.01145</a></p>
+<p style="margin-top: 10px; color: #888; font-size: 0.9em;">Comprehensive systematic review covering the current state of ASR for African languages, data availability, benchmark performance, and research gaps.</p>
+</div>
+<div class="resource-placeholder">
+<h4>🎤 Core Reading 2</h4>
+<p>Nahabwe et al. (2025). “Benchmarking Automatic Speech Recognition Models for African Languages.” Deep Learning Indaba 2025.<br><a href="https://arxiv.org/abs/2512.10968" style="color: #2a5298; font-weight: 600;">https://arxiv.org/abs/2512.10968</a></p>
+<p style="margin-top: 10px; color: #888; font-size: 0.9em;">Systematic comparison of Whisper, W2v-BERT, XLS-R, and MMS across African languages with varying amounts of fine-tuning data. The source for the WER tables in this sub-lesson.</p>
+</div>
+<div class="resource-placeholder">
+<h4>🌐 Supplementary: Intron Sahara v2</h4>
+<p>Explore the language coverage and accuracy claims for this Nigerian-developed ASR system. Sahara v2 (2026) covers 57 languages total, with 500+ accent variants.<br><a href="https://intron.ai" style="color: #2a5298; font-weight: 600;">https://intron.ai</a></p>
+</div>
+<div class="resource-placeholder">
+<h4>🌐 Supplementary: Lelapa AI</h4>
+<p>South African language AI specialist. Review their Zulu, Xhosa, Sotho, and Afrikaans capabilities and the approach they take to developing models with African language expertise.<br><a href="https://lelapa.ai" style="color: #2a5298; font-weight: 600;">https://lelapa.ai</a></p>
+</div>
+<!-- SUMMARY -->
+<div class="highlight-box">
+<h3>✅ Sub-Lesson 4 Summary</h3>
+<p><strong>Accuracy landscape:</strong> Whisper large-v3 achieves approximately 2.0% WER on clean read speech but 11.5%+ on meeting audio. Real research audio is rarely clean. Always treat headline accuracy figures with caution.</p>
+<p><strong>Transcription hallucination:</strong> Documented across multiple studies — informal testing found hallucinations in approximately 80% of public meeting transcriptions; Koenecke et al. (FAccT 2024) found 38% of hallucinations in clinical transcriptions involved explicit harms. Invented sentences, fabricated proper nouns, and dropped content are all real failure modes. Every transcript used in research requires human verification against the original audio.</p>
+<p><strong>African language tools:</strong> Standard Whisper shows 22–28% WER on Afrikaans, Zulu, and Xhosa. Fine-tuning drops this dramatically. Intron Sahara v2 and Lelapa AI are specialist tools developed for African language contexts and should be the first consideration for research involving these languages.</p>
+<p><strong>Qualitative analysis software:</strong> ATLAS.ti, NVivo, MAXQDA, and Insight7 all now offer AI coding and summarisation. AI finds passages; you determine what they mean.</p>
+<p><strong>Privacy:</strong> Audio recordings of participants require explicit ethics approval and consent cover before cloud processing. Use local tools (Whisper, WhisperX) for sensitive data.</p>
+<p><strong>Up next — Sub-Lesson 5:</strong> Video analysis and multimodal AI — combining audio, visual, and text modalities in research workflows.</p>
+</div>
+</div>
+<!-- /content --><footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></div>
+<!-- /container --></body></html>

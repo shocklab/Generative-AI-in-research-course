@@ -1,0 +1,679 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.6 - Agentic Data Analysis</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '\1F3AF';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .decision-framework {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+    }
+
+    .decision-framework h4 {
+        color: #003A70;
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+
+    .step-list {
+        counter-reset: step-counter;
+        list-style: none;
+        margin: 20px 0;
+    }
+
+    .step-list > li {
+        counter-increment: step-counter;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 12px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        color: #444;
+        line-height: 1.7;
+    }
+
+    .step-list > li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #003A70;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    .code-block {
+        background: #1e1e2e;
+        color: #cdd6f4;
+        padding: 20px 25px;
+        border-radius: 10px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        line-height: 1.7;
+        margin: 15px 0;
+        overflow-x: auto;
+    }
+
+    .code-block .comment {
+        color: #6c7086;
+    }
+
+    .code-block .key {
+        color: #89b4fa;
+    }
+
+    .code-block .value {
+        color: #a6e3a1;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-table {
+            font-size: 0.85em;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 • Sub-Lesson 6</div>
+<h1>🤖 <span style="color: #ffffff;">Agentic Data Analysis</span></h1>
+<p>The shift from asking AI questions to giving AI tools — and what it means for how research gets done</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Everything covered in this week so far has followed the same basic pattern: you ask the AI something, it produces code or analysis, you check it and decide what to do next. This conversational loop is genuinely useful — but it is no longer the frontier of what AI can do for data-intensive research.</p>
+<p>This session introduces a different paradigm: <strong>agentic AI</strong> , where instead of asking the AI questions one at a time, you give it tools, a goal, and context — and let it plan and execute a multi-step analysis pipeline largely on its own. The AI reads your actual files, runs code, checks the results, fixes problems, and iterates, without you feeding it information piece by piece.</p>
+<p>This is not science fiction. It is deployed and available today. But it introduces a new set of considerations — around setup, oversight, reproducibility, and trust — that are quite different from conversational AI use. By the end of this session you will understand what agentic analysis actually means, how to set up a project for it, and — crucially — where it still needs you.</p>
+</div>
+<!-- SECTION 1: THE PARADIGM SHIFT -->
+<h2 class="section-title">🔀 The Paradigm Shift: From Conversation to Agency</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The distinction between a conversational AI tool and an agentic one is not just about speed or capability — it is a fundamentally different model of how the AI participates in your work.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Conversational AI (What You've Used So Far)</h3>
+<p>You are the one who runs code, checks results, and decides what to ask next. The AI responds to each message in isolation, without access to your actual files or the ability to act on its own suggestions.</p>
+<ul class="styled-list">
+<li>You paste data samples or error messages into the chat</li>
+<li>AI generates a code snippet you copy and run yourself</li>
+<li>You read the output, decide if it's right, and ask the next question</li>
+<li>The AI has no memory between sessions and no access to your file system</li>
+<li>You are the connection between the AI's suggestions and your actual environment</li>
+</ul>
+</div>
+<div class="card">
+<h3>Agentic AI (The New Paradigm)</h3>
+<p>The AI operates in your environment, with access to your files, the ability to run code, and the capacity to plan and execute multi-step tasks autonomously — checking its own work and adjusting as it goes.</p>
+<ul class="styled-list">
+<li>The AI reads your actual data files directly — no copy-pasting</li>
+<li>It runs code, sees the output, and decides what to do next</li>
+<li>It can fix its own errors, iterate on results, and pursue a goal across many steps</li>
+<li>It maintains context across a project through structured documentation (CLAUDE.md)</li>
+<li>You set the goal and the constraints; the agent handles the execution</li>
+</ul>
+</div>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The USB-C Analogy</span></h3>
+<p>The key enabling technology here is the <strong>Model Context Protocol (MCP)</strong> , announced by Anthropic in November 2024 and now an open industry standard supported by Anthropic, OpenAI, and Google. MCP has been described as "USB-C for AI" — a single universal protocol that lets AI models connect to any external system: databases, file systems, APIs, web browsers, version control systems.</p>
+<p>Before MCP, connecting an AI to an external data source required bespoke integration work for every combination of AI and data system. Now, with a standard protocol and over 8,600 available MCP servers, you can give an AI direct, secure access to a PostgreSQL database, a file system, or a cloud storage bucket using off-the-shelf components. This is what makes genuine agentic research workflows practical rather than theoretical.</p>
+</div>
+<!-- SECTION 2: WHAT AGENTS CAN DO -->
+<h2 class="section-title">⚙️ What Agentic Tools Can Actually Do in 2026</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The capability of current agentic tools has expanded significantly in the past 18 months. Here is an honest picture of what is actually possible today — based on what tools like Claude Code, Codex, and Gemini CLI can do in practice.</p>
+<div class="technical-detail">
+<h4>Claude Code: The Current Capability Ceiling</h4>
+<p>Claude Code is currently the most capable agentic coding tool for research use. In practical terms, it can:</p>
+<ul class="styled-list">
+<li><strong>Read entire project structures:</strong> It understands multi-file dependencies, not just individual snippets. You can point it at a project directory and it will orient itself before writing a single line.</li>
+<li><strong>Execute and iterate autonomously:</strong> It runs code, sees the results, fixes errors, and continues — without you prompting it after each step. As of early 2026, median task durations have reached over 45 minutes, with some sessions running autonomously for hours.</li>
+<li><strong>Spawn parallel sub-agents:</strong> For complex multi-step analyses, it can launch independent agents to work on different tasks simultaneously — one cleaning data while another generates exploratory plots.</li>
+<li><strong>View its own visual outputs:</strong> As discussed in Sub-Lesson 3, it can inspect plots it generates and critique them for quality and accessibility issues.</li>
+<li><strong>Connect to external data sources via MCP:</strong> With the right MCP server configured, it can query a database, read cloud storage, or call an API directly, without you manually exporting data first.</li>
+</ul>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Also in the Ecosystem</h3>
+<p><strong>Codex (OpenAI)</strong> — Claude Code's primary commercial competitor, launched as a dedicated agent in April 2025. Terminal-based, file-reading, open-source CLI. Tightly integrated with the OpenAI ecosystem.</p>
+<p><strong>Gemini CLI (Google)</strong> — Open-source terminal agent released January 2026. Strong Google Cloud integration; supports MCP. Useful if your data lives in Google infrastructure.</p>
+<p><strong>Open Interpreter</strong> — Open-source, runs fully locally. Critical distinction: your data never leaves your machine, making it relevant for sensitive research data that cannot be sent to a cloud provider.</p>
+</div>
+<div class="card">
+<h3>The Research Frontier</h3>
+<p>The most ambitious demonstration of agentic research capability is the <strong>Sakana AI Scientist</strong> . Version 2 (2025) automates the entire research lifecycle: idea generation, code writing, experiment execution, result analysis, and paper writing — at approximately $15 per paper.</p>
+<p>One AI Scientist paper achieved peer-review acceptance at an ICLR 2025 workshop; the system description was published in <em>Nature</em> . A 2026 <em>Nature</em> editorial noted that "AI scientists are changing research — institutions must respond." This is not an endorsement — critical evaluations identify serious weaknesses in literature synthesis and novelty assessment — but it marks the direction of travel.</p>
+</div>
+</div>
+<!-- SECTION 3: MCP AND CONNECTING TO YOUR DATA -->
+<h2 class="section-title">🔌 MCP: Connecting AI to Your Research Data</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">For most researchers, the most practically valuable aspect of agentic tools is direct data access via MCP. Instead of exporting a CSV, pasting a sample into a chat window, and hoping the AI correctly infers your data structure, you give the agent a connection to your actual data — and it reads, queries, and works with it directly.</p>
+<div class="technical-detail">
+<h4>What MCP Actually Connects</h4>
+<p>MCP servers expose three types of capability to an AI agent:</p>
+<ul class="styled-list">
+<li><strong>Resources</strong> — structured data injected directly into the model's context: file contents, database records, API responses</li>
+<li><strong>Tools</strong> — functions the agent can call to retrieve or act on data: run a SQL query, write a file, search a codebase</li>
+<li><strong>Prompts</strong> — reusable templates for structured interactions with specific data systems</li>
+</ul>
+<p style="margin-top: 15px;">For research workflows, the most useful MCP servers are:</p>
+<table class="comparison-table" style="margin-top: 15px;">
+<thead>
+<tr>
+<th>Category</th>
+<th>MCP Servers</th>
+<th>Research Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Filesystem</strong></td>
+<td>Official Filesystem server</td>
+<td>Agent reads your data files, writes output, navigates project structure directly</td>
+</tr>
+<tr>
+<td><strong>Databases</strong></td>
+<td>PostgreSQL, SQLite, MySQL, MongoDB</td>
+<td>Agent queries your research database, runs analysis directly on stored data</td>
+</tr>
+<tr>
+<td><strong>Cloud storage</strong></td>
+<td>Google Cloud (BigQuery, Cloud SQL)</td>
+<td>Large datasets in cloud infrastructure; agent runs queries without downloading</td>
+</tr>
+<tr>
+<td><strong>Version control</strong></td>
+<td>Git server</td>
+<td>Agent reads code history, understands project evolution, makes commits</td>
+</tr>
+<tr>
+<td><strong>Semantic search</strong></td>
+<td>Chroma MCP</td>
+<td>Vector database for finding relevant documents or past analyses</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>📌 You Do Not Need to Understand MCP Deeply to Use It</h4>
+<p>MCP configuration typically involves adding a few lines to a JSON settings file that tell Claude Code which servers to connect to and with what permissions. For filesystem access — the most common research use case — the setup takes about five minutes. The official MCP server repository at <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">github.com/modelcontextprotocol/servers</a> provides ready-made configurations for all major data systems. You do not need to build or maintain anything — you are connecting to existing infrastructure.</p>
+</div>
+<!-- SECTION 4: CLAUDE.md -->
+<h2 class="section-title">📄 CLAUDE.md: Onboarding the Agent to Your Project</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">When you start a new Claude Code session, the agent knows nothing about your project. <strong>CLAUDE.md</strong> is how you fix that. It is a plain Markdown file in your project root that Claude Code reads automatically at the start of every session — think of it as the onboarding document you would give a new research assistant joining your project on their first day.</p>
+<div class="case-study">
+<h4>📋 What Goes in a Research CLAUDE.md</h4>
+<p>Running <code>/init</code> in Claude Code will auto-generate a starter file based on what it finds in your project. But for a research data analysis project, you want to customise it carefully. A well-structured research CLAUDE.md typically includes:</p>
+<div class="code-block"><span class="comment"># My Research Project — CLAUDE.md</span> <span class="key"># Research Context</span> <span class="value">- Research question: Does X predict Y in population Z?</span> <span class="value">- Dataset: 847 participants, 3-wave longitudinal survey (2022-2024)</span> <span class="value">- Study pre-registered at: osf.io/xxxxx</span> <span class="key"># Data Structure</span> <span class="value">- /data/raw/ — NEVER modify. Read-only.</span> <span class="value">- /data/processed/ — cleaned and transformed data</span> <span class="value">- /output/figures/ — all plots saved here as PDF</span> <span class="value">- Key variables: satisfaction (1-5 Likert), group (control/intervention)</span> <span class="value">- Missing data code: -99 means "not applicable", not missing</span> <span class="key"># Analysis Conventions</span> <span class="value">- Use Mann-Whitney U (not t-test) for Likert-scale outcomes</span> <span class="value">- Apply Bonferroni correction when running multiple comparisons</span> <span class="value">- Effect sizes: report Cohen's d alongside p-values</span> <span class="value">- Figures: colourblind-safe palette (Okabe-Ito), export as PDF</span> <span class="key"># Things to NEVER do</span> <span class="value">- Do not modify /data/raw/ under any circumstances</span> <span class="value">- Do not install packages without confirming with me first</span> <span class="value">- Do not push to git remote without asking</span> <span class="value">- Flag, do not silently fix, any unexpected data patterns</span></div>
+<p style="margin-top: 15px;">Notice what this achieves: every statistical convention you care about, every data-handling rule, and every constraint on what the agent should not do is specified upfront. The agent applies these throughout the session — you do not need to repeat them in every prompt.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ CLAUDE.md Is Not Magic</h4>
+<p>The agent reads CLAUDE.md but it does not always follow every instruction perfectly, especially in long or complex sessions. Think of it as the difference between telling a new research assistant your conventions on their first day versus expecting them to remember everything perfectly three months later. It significantly improves consistency, but it does not replace oversight. Keep your CLAUDE.md under 200 lines — it consumes context window space, and more instructions do not always mean better adherence.</p>
+</div>
+<!-- SECTION 5: RUNNING AN AGENTIC ANALYSIS -->
+<h2 class="section-title">🏃 Running an Agentic Analysis Pipeline</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">What does it actually look like when you hand an analysis task to an agent rather than conducting it conversationally? Here is a concrete research scenario.</p>
+<div class="case-study">
+<h4>🔬 A Real Agentic Workflow: From Raw Data to Annotated Results</h4>
+<p>You have six months of longitudinal survey data across three sites, pre-cleaned and stored as CSV files. Your research question is whether a teaching intervention improved outcomes differently across sites. Instead of a back-and-forth conversation, you write one goal statement to Claude Code:</p>
+<p style="margin-top: 15px; font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 8px; color: #333; font-size: 0.9em;">"Load the three wave CSV files in /data/processed/, merge them on participant_id, run our pre-registered mixed-effects model (intervention × site × time), produce the three figures from our analysis plan, and save a summary table in /output/. Flag anything unexpected in the data. Use the conventions in CLAUDE.md throughout."</p>
+<p style="margin-top: 15px;">The agent then:</p>
+<ol class="step-list">
+<li>Reads the CLAUDE.md to understand your project context, conventions, and constraints</li>
+<li>Loads all three CSV files, checks that participant IDs merge cleanly, and flags the 12 cases where they do not — rather than silently dropping them</li>
+<li>Runs the mixed-effects model using the specified library, checks convergence warnings, and tries an alternative specification when the first does not converge cleanly</li>
+<li>Produces the three figures in the specified format, checks them for colourblind safety, and exports them as PDF to /output/figures/</li>
+<li>Writes a summary table and a short plain-language interpretation of the key findings to /output/results_summary.md</li>
+<li>Writes a log of every decision it made — which merge strategy it used, how it handled the 12 mismatched IDs, what changed between the first and second model specification</li>
+</ol>
+<p style="margin-top: 15px;">This is not hypothetical — this is what current tools can do with a well-structured project and a good CLAUDE.md. What it does not do is tell you whether the findings are scientifically meaningful, whether the model specification is appropriate for your theory, or whether the "unexpected patterns" it flagged matter for your interpretation. That is still yours.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Goal Statement Is Everything</span></h3>
+<p>The quality of an agentic analysis depends heavily on the quality of the goal statement you give it upfront. Vague goals (“analyse my data”) produce vague results. Specific, bounded goals (“run the pre-registered model, produce these specific outputs, flag anomalies, log all decisions”) produce useful results. The goal statement is your primary lever — not the prompts you send during execution, because for much of a well-specified task, you will not be sending prompts at all.</p>
+</div>
+<!-- SECTION 6: OVERSIGHT -->
+<h2 class="section-title">👀 Oversight: The Non-Negotiable Part</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Agentic tools introduce a specific oversight challenge that does not exist in conversational use: the agent can take many consequential actions between your check-ins. Getting oversight right is the central governance problem of agentic research workflows.</p>
+<div class="technical-detail">
+<h4>The Reliability Mathematics</h4>
+<p>Here is a sobering calculation. Suppose each step in an agentic pipeline succeeds with 90% reliability — a reasonable figure for current tools on well-defined tasks. For a 5-step pipeline:</p>
+<p style="text-align: center; margin: 20px 0; font-size: 1.1em; color: #2a5298;"><strong>0.9 × 0.9 × 0.9 × 0.9 × 0.9 = 59% end-to-end reliability</strong></p>
+<p>For a 10-step pipeline: <strong>35%</strong> . For 20 steps: <strong>12%</strong> .</p>
+<p style="margin-top: 15px;">This is a structural property of sequential processes — it does not matter how capable the individual steps are. It is why long autonomous agentic pipelines need human checkpoints, not because AI tools are unreliable, but because compounding probabilities are mathematics.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>✓ What Good Oversight Looks Like</h3>
+<ul class="styled-list">
+<li><strong>Review the plan before execution:</strong> Ask the agent to outline its intended steps before it starts. If the plan is wrong, catching it here is infinitely cheaper than catching it after 30 minutes of autonomous work</li>
+<li><strong>Set explicit checkpoints:</strong> Instruct the agent to pause and report at key decision points — after data loading, after cleaning, before running the final model</li>
+<li><strong>Require a decision log:</strong> Every choice the agent makes (how to handle missing data, which column it used for grouping) should be logged so you can audit it</li>
+<li><strong>Verify outputs, not just completion:</strong> The agent finishing is not the same as the agent being right. Check key results against known values or sanity checks</li>
+<li><strong>Start with a small scope:</strong> On a new dataset, run the agent on a 10% sample first. Check the results thoroughly before running it on the full data</li>
+</ul>
+</div>
+<div class="card">
+<h3>✗ What Goes Wrong Without It</h3>
+<ul class="styled-list">
+<li><strong>Silent scope creep:</strong> Agents given broad access sometimes take actions beyond their intended task — modifying files you expected to be read-only, or running analyses you did not ask for</li>
+<li><strong>Compounding errors:</strong> An error in step 2 that goes unchecked propagates through every subsequent step. The final output looks complete but is built on a flawed foundation</li>
+<li><strong>Reproducibility loss:</strong> Long agentic sessions can be non-deterministic. If you cannot reconstruct exactly what the agent did and why, you cannot defend your methodology in a paper or reproduce your own results</li>
+<li><strong>Autonomous hypothesis-chasing:</strong> A <em>Nature</em> editorial raised the concern that agentic systems that iterate analysis until they find significant results could automate p-hacking at a scale that "overloads publishing peer-review systems without shifting the needle on discovery"</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ Security: A Genuine Concern for MCP</h4>
+<p>When you connect an AI agent to real institutional data systems via MCP, you introduce security considerations that do not arise in conversational use. Palo Alto Networks' Unit 42 has documented MCP-specific attack vectors including <strong>tool poisoning</strong> (malicious instructions hidden in tool metadata) and credential theft via indirect prompt injection. For researchers connecting agents to institutional databases, applying the principle of <strong>minimum necessary access</strong> is not optional — give the agent access to the specific data it needs for the task, not to your entire institutional data infrastructure. Check with your institution's IT security team before connecting research data systems to external MCP servers.</p>
+</div>
+<!-- SECTION 7: WHEN AGENTIC VS CONVERSATIONAL -->
+<h2 class="section-title">⚖️ When to Use Agentic vs. Conversational</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Agentic tools are not simply "better" than conversational ones. They are suited to different kinds of tasks. Choosing between them is a judgment call you will make regularly as AI becomes more capable.</p>
+<div class="decision-framework">
+<h4>A Decision Framework</h4>
+<table class="comparison-table">
+<thead>
+<tr>
+<th></th>
+<th>Use Agentic When…</th>
+<th>Use Conversational When…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Task structure</strong></td>
+<td>You can specify the goal clearly upfront and the steps are mostly implementation</td>
+<td>The direction depends on what you find — each result changes what you ask next</td>
+</tr>
+<tr>
+<td><strong>Domain judgment</strong></td>
+<td>The required judgments are ones you can specify in advance (e.g., "use Mann-Whitney for Likert data")</td>
+<td>Significant domain judgment is required at each step that you cannot specify in advance</td>
+</tr>
+<tr>
+<td><strong>Scale</strong></td>
+<td>Large datasets, many files, or multi-step pipelines where copy-pasting is impractical</td>
+<td>Small datasets, single questions, learning or exploring what the data contains</td>
+</tr>
+<tr>
+<td><strong>Reproducibility</strong></td>
+<td>You have set up logging and can audit the agent's decisions after the fact</td>
+<td>The conversational history itself serves as the record of your analytical decisions</td>
+</tr>
+<tr>
+<td><strong>Data sensitivity</strong></td>
+<td>You have reviewed access permissions and the data is appropriate for cloud processing, or you are using a local-only tool</td>
+<td>You are working with samples or synthetic data and not transmitting sensitive information</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>📌 The Honest Assessment</h4>
+<p>As of 2026, most researchers using agentic tools for the first time find that the setup cost — structuring a project correctly, writing a good CLAUDE.md, configuring MCP — takes longer than they expected, and the first few autonomous runs require significant review and correction. The payoff comes on the second, third, and tenth use of a well-configured project, when the same setup generates consistent, auditable results with much less manual effort. Agentic tools reward investment in project structure in a way that conversational tools do not.</p>
+</div>
+<!-- SECTION 8: READINGS -->
+<h2 class="section-title">📚 Readings for This Session</h2>
+<div class="resource-placeholder">
+<h4>📖 Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener"> <strong>Anthropic (2024). "Introducing the Model Context Protocol."</strong> </a> — The original announcement of MCP, explaining the motivation, architecture, and vision. Short and accessible — this is the primary source for understanding what MCP is and why it was created. Read alongside the <a href="https://claude.com/blog/using-claude-md-files" target="_blank" rel="noopener">CLAUDE.md best practices guide</a> from Anthropic's blog.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.nature.com/articles/s41467-025-63913-1" target="_blank" rel="noopener"> <strong> Zardiashvili et al. (2025). "Risks of AI scientists: prioritizing safeguarding over autonomy." <em>Nature Communications</em> . </strong> </a> — A rigorous analysis of the specific risks that arise when AI agents are used for autonomous scientific research. Proposes a triadic safeguarding framework (human regulation, agent alignment, environmental feedback) as the key pillars of responsible agentic research deployment. Essential reading before deploying agents on real research data.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.nature.com/articles/d41586-026-00934-w" target="_blank" rel="noopener"> <strong>Nature (2026). "AI scientists are changing research — institutions must respond."</strong> </a> — A policy-oriented editorial on the institutional implications of agentic research tools. Covers reproducibility challenges, peer-review implications, and what research institutions need to put in place. Good for understanding the broader context in which you will be using these tools during your career.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Supplementary: Practical Guides</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener"> <strong>Claude Code Documentation</strong> </a> — The official guide to Claude Code, including sub-agents, CLAUDE.md best practices, MCP configuration, and multi-agent workflows. <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">Best practices section</a> is particularly relevant. <br><br><a href="https://arxiv.org/abs/2503.08979" target="_blank" rel="noopener"> <strong>Agentic AI for Scientific Discovery: A Survey (arXiv:2503.08979, 2025)</strong> </a> — A comprehensive survey of where agentic AI is currently deployed in scientific research, what works, and where the significant gaps remain. Good context for understanding which research domains are furthest ahead.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<p><strong>The paradigm has shifted from conversation to agency.</strong> Giving an AI tools, context, and a goal — and letting it execute a multi-step pipeline autonomously — is now practical for research workflows. MCP, Claude Code, Codex, and Gemini CLI make this accessible without deep technical expertise.</p>
+<p><strong>CLAUDE.md is the most important document you will write for an agentic project.</strong> It specifies your data structure, analytical conventions, and constraints upfront, so the agent applies them throughout a session without you repeating them. Investing 30 minutes in a good CLAUDE.md saves hours of downstream correction.</p>
+<p><strong>Oversight is mathematics, not distrust.</strong> The reliability degradation in sequential pipelines means checkpoints are not optional — they are structural requirements for any serious multi-step agentic analysis. Review the plan before execution, require decision logs, and verify outputs, not just completion.</p>
+<p><strong>Agentic tools reward project structure.</strong> The setup cost is real, but it pays off across repeated use. The researchers who benefit most from agentic tools are those who treat project organisation as a first-class research activity, not an afterthought.</p>
+<p><strong>The judgment is still yours.</strong> Agentic tools can execute a pre-specified analysis faster and more consistently than you can by hand. They cannot decide what question to ask, whether a result is scientifically meaningful, or how to handle a finding that contradicts your expectations. The frontier has moved, but the researcher has not been replaced — the researcher has been given a more capable collaborator.</p>
+<p><strong>Next session:</strong> Sub-Lesson 7 brings together the full week with hands-on activities. You will practice both conversational and agentic workflows on real data, compare the results, and complete the weekly assessment.</p>
+</div>
+</div>
+</div></body></html>

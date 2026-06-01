@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundations of Generative AI</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 12px 40px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+        
+        .ai-notice strong {
+            font-weight: 600;
+        }
+        
+        header {
+            background: #003A70;
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .session-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro-section {
+            background: #f9f9f9;
+            padding: 35px;
+            border-left: 4px solid #003A70;
+            margin-bottom: 40px;
+        }
+        
+        .intro-section p {
+            font-size: 1.15em;
+            color: #495057;
+            line-height: 1.8;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title::before {
+            content: '🎯';
+            font-size: 1.2em;
+        }
+        
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .objective-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-top: 4px solid #003A70;
+            transition: all 0.3s ease;
+        }
+        
+        .objective-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+        
+        .objective-number {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #003A70;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .objective-card h3 {
+            color: #2c3e50;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .objective-card p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .key-topics {
+            background: #003A70;
+            color: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .key-topics h3 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .key-topics h3::before {
+            content: '📚';
+        }
+        
+        .topics-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .topic-item {
+            background: rgba(255,255,255,0.15);
+            padding: 15px 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .topic-item:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateX(5px);
+        }
+        
+        .topic-item::before {
+            content: '→';
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .timeline-preview {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .timeline-preview h3 {
+            color: #2a5298;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .timeline-preview h3::before {
+            content: '🕐';
+        }
+        
+        .timeline-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #003A70;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .timeline-era {
+            font-weight: bold;
+            color: #003A70;
+            min-width: 120px;
+            font-size: 0.9em;
+        }
+        
+        .timeline-description {
+            color: #555;
+            font-size: 0.95em;
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            color: #666;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .objectives-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .timeline-era {
+                min-width: auto;
+            }
+        }
+    </style>
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design and content have been enhanced using Claude (Anthropic's AI assistant) to improve clarity, visual presentation, and educational value.</div>
+<header>
+<div class="session-badge">Lesson 1</div>
+<h1>Foundations of Generative AI</h1>
+<p style="font-size: 1.1em; opacity: 0.95; max-width: 700px; margin: 0 auto;">From Turing's Dream to Today's Revolution</p>
+</header>
+<div class="content">
+<div class="intro-section">
+<p>This opening lesson traces the arc of artificial intelligence from its origins in the 1950s through to today's generative AI revolution. <strong>No technical background in machine learning is assumed.</strong> The goal is to build a shared conceptual vocabulary and historical understanding that will ground every subsequent week of this course.</p>
+</div>
+<h2 class="section-title">Learning Objectives</h2>
+<p style="color: #666; margin-bottom: 25px; font-size: 1.05em;">By the end of this session, you will be able to:</p>
+<div class="objectives-grid">
+<div class="objective-card">
+<div class="objective-number">1</div>
+<h3>Trace AI's Historical Development</h3>
+<p>Follow the evolution from Turing's foundational questions through expert systems, neural networks, deep learning, and ultimately to modern generative AI. Understand the key breakthroughs, setbacks (including the "AI winters"), and turning points that brought us to today.</p>
+</div>
+<div class="objective-card">
+<div class="objective-number">2</div>
+<h3>Explain How Generative AI Works</h3>
+<p>Describe in plain language—without technical jargon—how systems like ChatGPT, DALL-E, Midjourney, and similar tools generate their outputs. Understand the fundamental concepts of training, patterns, and prediction that make these systems possible.</p>
+</div>
+<div class="objective-card">
+<div class="objective-number">3</div>
+<h3>Distinguish Different Types of AI</h3>
+<p>Differentiate between rule-based systems, discriminative AI (classification/regression), and generative AI using everyday analogies. Understand when each approach is appropriate and what their respective strengths and limitations are.</p>
+</div>
+<div class="objective-card">
+<div class="objective-number">4</div>
+<h3>Connect AI to Your Research</h3>
+<p>Identify which AI paradigms are most relevant to different tasks in your own research field. Recognize opportunities where generative AI might assist your work, while understanding its current limitations and appropriate use cases.</p>
+</div>
+</div>
+<div class="key-topics">
+<h3>Key Topics We'll Cover</h3>
+<div class="topics-list">
+<div class="topic-item">The Turing Test and early AI philosophy</div>
+<div class="topic-item">Expert systems: promises and limitations</div>
+<div class="topic-item">Neural networks: from perceptrons to deep learning</div>
+<div class="topic-item">The ImageNet moment and computer vision</div>
+<div class="topic-item">Transformers and attention mechanisms</div>
+<div class="topic-item">Large language models (GPT, BERT, Claude)</div>
+<div class="topic-item">Diffusion models and image generation</div>
+<div class="topic-item">Current capabilities and fundamental limitations</div>
+</div>
+</div>
+<div class="timeline-preview">
+<h3>A Preview: Eras of AI Development</h3>
+<div class="timeline-items">
+<div class="timeline-item">
+<div class="timeline-era">1950s-1970s</div>
+<div class="timeline-description"><strong>Symbolic AI &amp; Early Optimism:</strong> Rule-based systems, logical reasoning, and the first AI programs</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-era">1970s-1980s</div>
+<div class="timeline-description"><strong>First AI Winter:</strong> Unfulfilled promises lead to funding collapse and skepticism</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-era">1980s-1990s</div>
+<div class="timeline-description"><strong>Expert Systems Boom &amp; Bust:</strong> Commercial success followed by another winter</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-era">1990s-2010s</div>
+<div class="timeline-description"><strong>Machine Learning Emerges:</strong> Statistical approaches, backpropagation, and neural network revival</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-era">2012-2017</div>
+<div class="timeline-description"><strong>Deep Learning Revolution:</strong> ImageNet breakthrough, AlphaGo, and the transformer architecture</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-era">2022-Present</div>
+<div class="timeline-description"><strong>Generative AI Era:</strong> ChatGPT, Claude, Deepseek, Nano Banana, Sora, and so much more</div>
+</div>
+</div>
+</div>
+</div>
+</div></body></html>

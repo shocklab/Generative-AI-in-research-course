@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 10.1 - Agents: What They Are and What's Actually New in 2026</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
+<div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 10 • Sub-Lesson 1</div>
+<h1>🤖 <span style="color: #ffffff;">Agents: What They Are and What's New in 2026</span></h1>
+<p>A working definition of agents for researchers — and the central shift since 2024: the harness, not the model, has become the product</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>🎯 What We'll Cover</h2>
+<p>For the last two years, “AI agent” has been one of the most over-used and under-defined phrases in the field. Vendors apply it to everything from a chatbot that can call a weather API to a system that runs unsupervised for hours rewriting a codebase. If we are going to think clearly about what agents mean for research, we need a working definition that survives the marketing.</p>
+<p>This sub-lesson gives you that definition — an agent is a model wrapped in a <em>harness</em> of tools, memory, loops, and permissions — and then makes one central observation that frames the whole week: <strong>since 2024, the harness has become the product</strong>. The base model matters less than it used to; how it is scaffolded matters more. We will look at the May 2026 agent landscape, the surprising trend of coding agents being repurposed for general knowledge work, and what all of this actually means for a working researcher.</p>
+<p>A word of calibration, carried over from Week 9: every concrete claim in this sub-lesson is time-stamped. The agent landscape moves faster than almost anything else in AI right now. What is true in May 2026 will be partly false by November. Treat the specifics as a snapshot and the framing as the durable part.</p>
+</div>
+<h2 class="section-title">🤖 What Is an Agent? A Working Definition</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Strip away the marketing and an agent is a language model placed inside a loop that lets it <em>act</em>, not just respond. Five components turn a model into an agent. The first is the model itself; the other four, taken together, are what this week calls the <strong>harness</strong>.</p>
+<ul class="styled-list">
+<li><strong>A model</strong> — the same kind of transformer doing next-token prediction we met in Week 2. Nothing about the underlying architecture has changed; the model is still predicting tokens. What is new is what those tokens are allowed to <em>do</em>.</li>
+</ul>
+<div class="technical-detail">
+<h4>🧰 The Harness — everything built around the model</h4>
+<p style="color: #555; line-height: 1.7; margin-bottom: 15px;">The model is the engine; the harness is the chassis, wheels, steering, and brakes built around it. A model on its own answers questions. A model in a harness gets things done. These four components — plus the prompts and context-management that coordinate them — are the harness:</p>
+<ul class="styled-list" style="margin-top: 0;">
+<li><strong>Tools</strong> — functions the model can call by emitting a structured request in its output stream: run code, search the web, read a file, query a database, send an email. The model does not execute these; the harness does, and feeds the result back in.</li>
+<li><strong>A loop</strong> — the harness runs the model, executes any tool call it requests, appends the result to the context, and runs the model again. This repeats until the model decides the task is done. A chatbot answers once; an agent iterates.</li>
+<li><strong>Memory</strong> — some way of carrying state across many loop iterations (and sometimes across sessions), because a useful task can span dozens or hundreds of steps that overflow a single context window.</li>
+<li><strong>Permissions</strong> — the boundary of what the agent is allowed to do without asking. Read-only? Allowed to write files? Allowed to spend money? This is the single most important safety dial, and the one researchers most often leave on the wrong setting.</li>
+</ul>
+</div>
+<p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Keep that word — <em>harness</em> — in mind. The central claim of the next section is that in 2026 the harness, not the engine, increasingly decides how well the whole thing drives.</p>
+<div class="info-box">
+<h4>💡 Drop the word “autonomy”</h4>
+<p>Popular coverage frames agents as a binary: either a tool “is autonomous” or it is not. This is unhelpful. Autonomy is a <em>spectrum</em> set by the permissions dial, not a property of the model. The same model is a cautious assistant when it must confirm every action, and an unsupervised delegate when it can act freely for an hour. When you read that a system “is an autonomous agent”, the useful question is never “is it autonomous?” but “<em>how much</em> is it allowed to do, over <em>how long</em>, before a human looks?”</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This definition lets us draw two clean distinctions. A <strong>chatbot with browsing</strong> is not yet an agent in the full sense — it makes one tool call and answers. A <strong>2023-style “chain”</strong> (a fixed, pre-scripted sequence of model calls) is not an agent either, because the model does not decide what to do next; the developer hard-coded the steps. An agent chooses its own next action inside the loop. That difference — the model, not the developer, steering the loop — is what changed between 2023 and 2026, and it is where both the new capability and the new failure modes come from.</p>
+<h2 class="section-title">🔧 What's New Since 2024: The Harness Is the Product</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Here is the single most important shift to internalise. In 2023, agent performance was dominated by the base model: a better model gave you a better agent, full stop. By May 2026, that is no longer true. Agent performance is a <em>joint</em> property of the model, the harness around it, and the strategy for packing the right context into the model at each step. The harness — the prompts, the tool definitions, the context management, the evaluation loop, the model-specific tuning — has become the thing that companies actually build and sell.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This is not just a claim from practitioners. It is now the subject of formal research. The clearest statement comes from a March 2026 Stanford preprint, <em>Meta-Harness: End-to-End Optimization of Model Harnesses</em> (Lee et al.), whose opening line is almost a thesis statement for this whole week:</p>
+<div class="technical-detail">
+<h4>📑 From the Meta-Harness paper (Lee et al., Stanford, March 2026)</h4>
+<p style="color: #444; line-height: 1.75; margin-bottom: 12px;"><em>“The performance of large language model systems depends not only on model weights, but also on their harness: the code that determines what information to store, retrieve, and present to the model.”</em></p>
+<p style="color: #555; line-height: 1.7;">The paper builds a system that automatically searches over harness code — keeping the model fixed — and improves on a state-of-the-art context-management baseline by <strong>7.7 points while using four times fewer context tokens</strong>. The point for us is not the system itself but the demonstration: a measurable chunk of an agent's performance lives in the harness, independent of the model, and is large enough to optimise on its own.</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The companies building these systems show the same effect in detail. In a February 2026 engineering write-up, the LangChain team took a single coding model (GPT-5.2-Codex) and, <em>without changing the model</em>, improved their agent's score on <em>Terminal-Bench 2.0</em> by 13.7 points — from 52.8% to 66.5%, moving it from outside the top 30 to the top 5. Every point of that gain came from the harness:</p>
+<div class="case-study">
+<h4>🔧 A worked example: 13.7 points from the harness alone</h4>
+<p>LangChain's recipe for the jump from 52.8% to 66.5% on Terminal-Bench 2.0 (same model throughout) was entirely harness engineering:</p>
+<ul class="styled-list">
+<li><strong>A better system prompt</strong> — explicit planning, build, verify, and fix phases, with emphasis on edge-case testing and checking output against the task specification.</li>
+<li><strong>Middleware in the loop</strong> — a pre-exit checklist that forces verification before the agent declares itself done, an onboarding step that maps the working environment, and a loop-detector that interrupts the agent when it gets stuck repeating an edit.</li>
+<li><strong>Context management</strong> — mapping the directory structure and available tools up front, and warning the agent about its remaining time budget.</li>
+<li><strong>A “reasoning sandwich”</strong> — allocating more reasoning effort to the planning and verification phases than to the execution in between.</li>
+</ul>
+<p style="margin-top: 12px;">None of this touched the model's weights. It is a concrete demonstration of the thesis: a large slice of agent performance is engineering of the scaffolding, and it is exactly the kind of thing a tool vendor can do that you, choosing between tools, cannot see from the model name alone.</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">And it generalises across models. In a May 2026 follow-up the same team reported that, on a different agentic benchmark (tau2-bench), prompts and middleware alone moved scores by <strong>10 to 20 points</strong> — a roughly 20% lift on one coding model and 10% on another — and that the same harness techniques apply when driving open-weight models such as Kimi, Qwen, and DeepSeek (which we return to in 10.5). The lesson holds regardless of whose model you use: the harness is doing a large and measurable share of the work.</p>
+<div class="warning-box">
+<h4>⚠️ What this means when you read a benchmark</h4>
+<p>If the harness can swing a score by ten points or more, then a leaderboard number attached to a bare model name is close to meaningless without knowing the scaffolding that produced it. This is not hypothetical: <em>Terminal-Bench 2.0</em> (the benchmark itself, arXiv:2601.11868) is explicitly run through a named harness, and different harnesses on the same model produce different scores. When a tool claims “state-of-the-art on benchmark X”, the honest question is: <em>which harness?</em> A strong model, badly scaffolded, will underperform a weaker model in a better harness. This is the agentic version of the Week 9 lesson that benchmark numbers need their context to mean anything.</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There is a research-tooling consequence too. The agent-infrastructure companies are now shipping harnesses as products: at LangChain's <em>Interrupt</em> conference (13–14 May 2026), the company released a cluster of harness-building tools — a hosted runtime for “deep agents”, a faster trace database, sandboxes, a context-management hub, and a gateway that enforces spend limits and redacts personal data before requests leave your environment. The takeaway for a researcher is not that you need any of these, but that the centre of gravity in the field has moved from “which model” to “which harness”. When you choose an agent tool, you are choosing a harness as much as a model.</p>
+<h2 class="section-title">🗺️ The 2026 Agent Landscape in One Picture</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of May 2026, the agent ecosystem sorts into roughly five families. The boundaries are blurring fast (see the next section), but this map is a useful starting orientation. We will return to specific tools, and to the honest free-versus-paid picture, in Sub-Lessons 10.3 and 10.5.</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Family</th>
+<th>What it does</th>
+<th>Representative tools (May 2026)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Coding agents</strong></td>
+<td>Read, write, run, and debug code across a whole project, often unsupervised for long stretches.</td>
+<td>Claude Code, OpenAI Codex, Cursor, Cline, opencode</td>
+</tr>
+<tr>
+<td><strong>Computer-use agents</strong></td>
+<td>Drive a graphical interface — click, type, scroll — the way a person would, for tasks with no API.</td>
+<td>Anthropic Computer Use, Codex computer-use mode, the Operator lineage</td>
+</tr>
+<tr>
+<td><strong>Research agents</strong></td>
+<td>Plan a multi-step search, gather and cross-check sources, and synthesise a cited report. “Deep Research” modes.</td>
+<td>Deep Research modes across the major chat assistants (covered in 10.5)</td>
+</tr>
+<tr>
+<td><strong>General agents</strong></td>
+<td>Attempt arbitrary multi-step tasks across tools and the web from a single instruction.</td>
+<td>Manus, ChatGPT Agent</td>
+</tr>
+<tr>
+<td><strong>Creative agents</strong></td>
+<td>Drive creative software (3D, audio, design) through tool connectors.</td>
+<td>Claude with creative connectors (Blender, Ableton, and others)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">A concrete, datable example of how fast the creative corner is moving: on 28 April 2026 Anthropic shipped nine creative tool connectors for Claude — including Blender, Ableton, Adobe and Autodesk integrations — and, notably, made them available on the <em>free</em> plan. We will treat “what is actually free” as a first-class question throughout this week, because for many students at UCT it is the question that decides whether a tool is usable at all.</p>
+<div class="case-study">
+<h4>🖥️ A threshold moment: computer-use at human speed</h4>
+<p>The computer-use family crossed a noticeable threshold in April 2026. Ari Weinstein of OpenAI, posting about the Codex computer-use mode, wrote on 16 April: <em>“This is the first time I've ever seen an LLM operate a GUI as fast as a person, and it's surreal.”</em> Two weeks later he reported that a Codex app update had made one computer-use task run <strong>42% faster</strong> again.</p>
+<p>Two honest caveats. First, these are <em>first-party</em> claims — the person shipping the product describing his own product — not independent measurements, so treat the 42% as a vendor figure. Second, “as fast as a person” is about <em>speed</em>, not <em>reliability</em>; a fast agent that takes a wrong action quickly is not obviously progress (we develop exactly this distinction in 10.2). But the qualitative marker is real and worth recording: as of mid-2026, an AI driving a graphical interface by clicking and typing is no longer visibly slow. The bottleneck has moved from speed to judgement.</p>
+</div>
+<div class="info-box">
+<h4>📝 A note on naming</h4>
+<p>Throughout this course we refer to model <em>families</em> — “Claude (family)”, “GPT (family)”, “Gemini (family)” — rather than chasing version numbers, because the versions change monthly. Agent <em>products</em> are different: “Claude Code”, “Codex”, “Cursor”, “Manus” are tool names, and we keep them, the same way we kept “Whisper large-v3” in Week 8. When you see a specific version number attached to a benchmark figure, treat it as a dated citation, not a recommendation.</p>
+</div>
+<h2 class="section-title">🚀 Agents Are Breaking Containment</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The most interesting throughline of April–May 2026 is that the families above are bleeding into one another. Tools built as <em>coding</em> agents are being pointed at general knowledge work, because the thing that makes a good coding agent — a robust loop, file access, the ability to run for a long time without losing the thread — turns out to be exactly what a good general agent needs too.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In the space of a few weeks, the major coding-agent products launched explicit “for work” or “for non-code tasks” surfaces. OpenAI's 16 April 2026 Codex update — which the company itself titled <a href="https://openai.com/index/codex-for-almost-everything/" target="_blank" rel="noopener">“Codex for (almost) everything”</a> — explicitly repositioned a coding tool for knowledge work: operating your computer, working across apps like Slack, Gmail and Notion, remembering preferences, and scheduling its own future work. Anthropic pushed Claude into knowledge-work and creative settings over the same period. (A reported general-work product circulating under the name “Orbit” had not, as of mid-May 2026, been officially launched — treat it as a rumour until it ships.) The pattern, though, is real and on the record: the coding harness has become a general-purpose work harness.</p>
+<div class="case-study">
+<h4>🍽️ Why this matters for a researcher</h4>
+<p>You do not need to write code to be affected by this. A coding agent that can read a folder of files, run a script, and edit a document is, functionally, a general research assistant that happens to have been built by people optimising for software tasks. Increasingly, the most capable “do this multi-step thing for me” tool available to a researcher is a coding agent wearing a different label.</p>
+<p>The flip side is that the caution travels with the capability. Everything Week 7 said about verifying AI-generated code — that plausible output can be silently wrong — now applies to a delegate that runs for an hour and touches many files before you see the result.</p>
+</div>
+<h2 class="section-title">🧮 What This Means for Research Workflows</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">It is tempting to read all of this as “AI is about to do research for us”. That is the wrong framing, and the rest of this week is largely about why. The accurate framing is narrower and more useful: <strong>research workflows now routinely include long-running, tool-using delegates</strong>. The question is no longer “can the model answer my question?” but “should I hand this multi-step task to an agent, and if so, how do I stay in control of what it does?”</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">That shift raises the stakes on the Week 7 lesson about “vibe coding” — accepting AI-generated work without understanding it. When a chatbot writes a function, you can read the function. When an agent runs unsupervised for an hour, you inherit whatever it produced, and the surface area for silent error is far larger. The genre of “developer inherits a vibe-coded codebase and finds the cleanup involves deleting millions of lines of accumulated machine-generated cruft” became a recurring story on developer social media through 2025–26. The figures in any single anecdote are unverifiable, but the structural point is not: an unsupervised agent can accumulate a great deal of plausible-looking output, and a great deal of it can be wrong, before any human reviews it.</p>
+<div class="highlight-box">
+<h3>The frame for the week: the harness, not the model</h3>
+<p>Week 9 gave you a frame for capability claims: ask <em>which model, which date, has anyone retested</em>. Week 10 adds the layer above it. For an agent, the model is only one of five components, and often not the one that determines whether the thing works. So the agent-era version of the question is: <em>which model, in which harness, with which permissions, verified how?</em></p>
+<p>Hold onto that. In 10.2 we apply the Week 9 patched / reduced / structural failure taxonomy to agents specifically — because agents fail in genuinely new ways that single-turn chatbots did not.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Sources &amp; Further Reading</h4>
+<p><strong>Primary sources for the claims above:</strong></p>
+<ul class="styled-list">
+<li><a href="https://arxiv.org/abs/2603.28052" target="_blank" rel="noopener">Lee, Y., et al. (2026). <em>Meta-Harness: End-to-End Optimization of Model Harnesses.</em> arXiv:2603.28052</a> — the “harness is the product” thesis, with measured results.</li>
+<li><a href="https://arxiv.org/abs/2601.11868" target="_blank" rel="noopener">Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command-Line Interfaces. arXiv:2601.11868</a> · <a href="https://www.tbench.ai/" target="_blank" rel="noopener">tbench.ai leaderboard</a> — the harness-run benchmark referenced above.</li>
+<li><a href="https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering" target="_blank" rel="noopener">LangChain, “Improving Deep Agents with Harness Engineering”</a> (17 February 2026) — the worked 52.8% → 66.5% example and exactly which harness changes produced it.</li>
+<li><a href="https://www.langchain.com/blog/deep-agents-0-6" target="_blank" rel="noopener">LangChain, “Deep Agents 0.6”</a> (13 May 2026) — the tau2-bench 10–20 point swings across models, and harness profiles for open-weight models (Kimi, Qwen, DeepSeek).</li>
+<li><a href="https://openai.com/index/codex-for-almost-everything/" target="_blank" rel="noopener">OpenAI, “Codex for (almost) everything”</a> (16 April 2026) — coding agent repositioned for knowledge work.</li>
+<li><a href="https://www.langchain.com/blog/interrupt-2026-overview" target="_blank" rel="noopener">LangChain, “Everything we shipped at Interrupt”</a> (13–14 May 2026) — harnesses sold as products.</li>
+<li><a href="https://www.anthropic.com/news/claude-for-creative-work" target="_blank" rel="noopener">Anthropic, “Claude for Creative Work”</a> (28 April 2026) — the nine free creative connectors.</li>
+<li><a href="https://x.com/AriX/status/2049932746567598472" target="_blank" rel="noopener">Ari Weinstein (OpenAI) on X</a> (30 April 2026; quoting his 16 April post) — the computer-use “as fast as a person” observation and the 42% speed-up. A first-party claim, cited as such.</li>
+</ul>
+<p style="margin-top: 12px;"><strong>For day-by-day tracking</strong> of these fast-moving developments, the <a href="https://www.latent.space/" target="_blank" rel="noopener">AINews / Latent Space</a> daily briefings are a useful aggregator — but note that they themselves aggregate company announcements and social-media posts, so trace any specific number back to its origin (as we have done here) before citing it. For a pragmatic practitioner's voice — including healthy scepticism about how much of this you actually need — <a href="https://simonwillison.net/tags/model-context-protocol/" target="_blank" rel="noopener">Simon Willison's ongoing writing</a> is consistently worth reading.</p>
+</div>
+<div class="intro-text" style="margin-top: 50px;">
+<h2>👉 What Comes Next</h2>
+<p><strong>Sub-Lesson 10.2 — Failure Modes for Multi-Step / Long-Horizon Tasks.</strong> Now that we have a working definition and the “harness is the product” frame, we turn to where agents break. We take the patched / reduced-but-persistent / structural taxonomy from Week 9.2 and apply it directly to agents — because running a model in a loop for many steps introduces failure modes that no single-turn chatbot ever had. The headline finding, from a February 2026 Princeton study: across 18 months and 14 models, agent <em>accuracy</em> improved substantially while agent <em>reliability</em> barely moved. Accuracy is not reliability, and for a researcher the gap between them is where the danger lives.</p>
+</div>
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock, University of Cape Town · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></body></html>

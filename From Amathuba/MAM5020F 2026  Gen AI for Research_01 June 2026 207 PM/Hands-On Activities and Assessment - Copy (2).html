@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 10.6 - Hands-On Activities and Assessment</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
+<div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 10 • Sub-Lesson 6</div>
+<h1>🎯 <span style="color: #ffffff;">Hands-On Activities and Assessment</span></h1>
+<p>Same Task, Three Ways: test plain chat, chat-with-tools, and Deep Research on your own research question — then judge and verify the results, on free tools only</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>🎯 What We'll Cover</h2>
+<p>This is where the week becomes concrete. You have a working definition of agents (10.1), a taxonomy of how they fail (10.2), a map of the tools (10.3), an understanding of agentic RAG (10.4), and an honest free-tier guide (10.5). Now you apply all of it to a research question you actually care about.</p>
+<p>The headline activity is <strong>“Same Task, Three Ways”</strong>: run one question through plain chat, chat-with-tools, and a Deep Research mode, then judge the results with the Week 9 failure taxonomy and verify them with the Week 5 citation checks. Two shorter activities follow, and the week's assessment pulls them together. Everything here is designed to be done <strong>entirely on free tools</strong> — on a phone or a borrowed laptop if that is what you have — because, as 10.5 argued, a course for this continent cannot assume a subscription.</p>
+<p>One last echo of Week 9: every output you produce this week is a snapshot dated May 2026. Part of the assessment is acknowledging that — recording what was true when you did the work, and how soon you would expect it to change.</p>
+</div>
+<h2 class="section-title">🧪 Activity 1: Same Task, Three Ways</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The core activity. Choose a research question <strong>in your own field</strong> — specific, genuinely answerable, and not trivially Googleable. Something a knowledgeable colleague would have to think about. You will be the expert judge of the answers, which is the point: you can tell when an AI is wrong in your own area in a way you cannot in someone else's.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Run that one question through three modes, keeping everything else the same:</p>
+<ul class="step-list">
+<li><strong>Plain chat</strong> — a free assistant with no tools (Claude.ai, ChatGPT, or Gemini free; pick one and stay with it). The model answers from training alone.</li>
+<li><strong>Chat with tools</strong> — the same kind of assistant, but with web search / browsing switched on, so it can retrieve before answering.</li>
+<li><strong>Deep Research mode</strong> — a full agentic-RAG run. Perplexity's free Deep Research is the recommended default. <em>If its quota is exhausted or sign-up is blocked, Kimi (kimi.com) is an acceptable substitute</em> — but see the data-disclosure rule below, which applies whichever tool you choose.</li>
+</ul>
+<p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Then write a <strong>one-to-two-page comparison</strong>. Do not just say which was “best”. For each mode, record: how deep and specific the answer was; how good the citations were (and whether they exist — you will check in Activity 2); what it got wrong in your expert judgement; and where each mode failed. Then do the analytical core of the exercise:</p>
+<div class="info-box">
+<h4>📊 Apply the Week 9.2 taxonomy explicitly</h4>
+<p>For every failure you observed, classify it: was it <strong>patched</strong> (you were using a weak tool — a current one would not fail this way), <strong>reduced-but-persistent</strong> (a known weakness you can manage with better prompting or tool choice), or <strong>structural</strong> (something the next model release will not fix — long-tail gaps, compositional error, the reliability-not-accuracy problem from 10.2)? Then, for the structural ones, state what the Week 9.5 verification protocol would have you do about it. This is the muscle the whole activity exists to build.</p>
+</div>
+<h2 class="section-title">🔍 Activity 2: Verify a Deep Research Output</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This follows directly from Activity 1. Take the Deep Research report you generated and put its citations on trial, using the tools you already have:</p>
+<ul class="styled-list">
+<li>Run every citation through the <strong>Week 5 Five-Point Citation Check</strong> (does the paper exist; are the authors and year right; does it say what the report claims; is the venue real; does the link resolve to the right thing).</li>
+<li>Apply the <strong>Week 9 dated-research check</strong>: which model produced this, when, and would the claim survive a retest on a current model?</li>
+</ul>
+<p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Then report the numbers: of the citations the Deep Research tool gave you, how many checked out completely? How many pointed to real sources that said something <em>different</em> from the report's claim? How many were to “papers” that do not appear to exist at all? This is the Week 5 hallucinated-citation exercise carried into the agentic-RAG era — and the results are usually sobering, which is exactly the lesson. A fluent, well-formatted, confident research report is not a verified one.</p>
+<h2 class="section-title">🔌 Activity 3 (Optional): A Small MCP Workflow</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">For students who want to go further. Using one of Claude.ai's free connectors — the creative connectors, or (since April 2026) the read-only Microsoft 365 connector — wire up <em>one</em> small step of your research workflow, involving nothing personal or confidential. Write 250 words on what worked, what failed, and — most importantly — <strong>what you would never let it do unsupervised</strong>, and why. The point is not the connector; it is articulating your own permissions dial (10.1) for a real task.</p>
+<div class="info-box">
+<h4>🔒 A note on the Microsoft 365 connector</h4>
+<p>It needs a <em>business or education</em> Microsoft account (not a personal @outlook.com one), and your institution's IT must allow the connection. There is a simple way to find out whether yours does: just try adding it. If Microsoft shows an “administrator approval required” screen, self-service connection is not enabled for your institution and you would need IT to approve it. Reading that consent screen — and deciding whether you would even want to grant the access it asks for — is itself a useful exercise in the permissions thinking this week is about.</p>
+</div>
+<h2 class="section-title">🌐 The Data-Disclosure Rule (Required, Graded)</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Every tool in this activity processes your data outside South Africa — the US-based assistants and the Chinese ones alike (10.5). So a disclosure statement is part of the deliverable, not an optional extra. Two firm rules and a template:</p>
+<ul class="styled-list">
+<li><strong>No personal or confidential data.</strong> Use a research question that involves no identifiable personal information, no participant data, no unpublished third-party material. POPIA (section 72) restricts sending personal information abroad regardless of the destination country, and a free consumer AI tool gives you no basis to assume the recipient meets the bar. Keep the activity to public, non-personal questions.</li>
+<li><strong>Disclose what you used and where it went.</strong> Naming your tools and their data destinations is a habit worth building now — it is exactly what a research-ethics committee or a journal will increasingly expect.</li>
+</ul>
+<div class="technical-detail">
+<h4>📄 Disclosure statement template (copy, complete, submit)</h4>
+<p style="color: #444; line-height: 1.8;"><em>“For this exercise I used: [tool 1], [tool 2], [tool 3].<br>Each processes data outside South Africa, in: [country/region per tool, e.g. United States / China / unknown].<br>The research question involved no identifiable personal information or third-party confidential material.<br>I verified the outputs as follows: [Five-Point Citation Check / dated-research check / other].<br>Outputs are accurate as of [date]; I would expect the tool capabilities and free-tier limits described to change within [estimate].”</em></p>
+</div>
+<h2 class="section-title">📝 The Week 10 Assessment</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The assessment is a single piece of roughly <strong>1,500 words</strong>, in the same spirit as the Week 9 assessment: an explicitly dated snapshot that acknowledges its own coming obsolescence. <strong>Free tools only</strong> — a hard rule, so that everyone is judged on the same playing field regardless of what they can afford. Required sections:</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Section</th>
+<th>What it contains</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tool comparison</td>
+<td>The Activity 1 three-way comparison, with concrete observations per mode.</td>
+</tr>
+<tr>
+<td>Applied failure taxonomy</td>
+<td>Each observed failure classified patched / reduced / structural, with the Week 9.5 action for the structural ones.</td>
+</tr>
+<tr>
+<td>Verification audit</td>
+<td>The Activity 2 citation check, with the numbers: how many citations held up, how many didn't.</td>
+</tr>
+<tr>
+<td>Data-flow disclosure</td>
+<td>The completed disclosure statement and a sentence on the POPIA reasoning behind it.</td>
+</tr>
+<tr>
+<td>Staleness reflection</td>
+<td>What is dated about your findings, and your recommended retest cadence.</td>
+</tr>
+<tr>
+<td>“If I had a paid subscription”</td>
+<td>One honest paragraph on what you could not do for free, and whether it would have changed your conclusions.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 class="section-title">🗺️ Week 10 in One Page</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Pulling the week together:</p>
+<ul class="styled-list">
+<li><strong>An agent is a model plus a harness</strong> — tools, a loop, memory, and permissions — and since 2024 the harness, not the model, increasingly decides how well the whole thing works (10.1).</li>
+<li><strong>Reliability is not accuracy.</strong> Agents fail in new ways over long horizons; the failures that matter are structural, and the verification burden grows rather than shrinks (10.2).</li>
+<li><strong>The tool landscape is real but volatile</strong> — coding, computer-use, browser, and research agents, connected increasingly through MCP — and best read with three questions: which harness, how reliable, free from here? (10.3)</li>
+<li><strong>RAG has split</strong> into long-context, agentic RAG, and Deep Research; the right choice is task-dependent, and the researcher still decides what to trust (10.4).</li>
+<li><strong>A great deal is genuinely free</strong> from South Africa — Western and Chinese alike — if you know where to look and you treat cross-border data flow seriously for every tool (10.5).</li>
+</ul>
+<div class="highlight-box">
+<h3>The one idea to keep</h3>
+<p>Agents change what the tools can do. They do not change who is responsible for the result. Every capability in this week shifts work onto the machine and verification onto you — and the researcher who understands that trade, and keeps the verification, is the one who benefits from agents instead of being misled by them.</p>
+</div>
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock, University of Cape Town · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></body></html>

@@ -1,0 +1,658 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6.4 - Scientific Integrity and the Writing Pipeline</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '\1F3AF';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover { background: #f9f9f9; }
+
+    .step-list {
+        list-style: none;
+        counter-reset: steps;
+        margin: 20px 0;
+    }
+    .step-list > li {
+        counter-increment: steps;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-radius: 12px;
+    }
+    .step-list > li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 22px;
+        width: 35px;
+        height: 35px;
+        background: #003A70;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    .risk-low { border-left-color: #4caf50; }
+    .risk-medium { border-left-color: #ff9800; }
+    .risk-high { border-left-color: #f44336; }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-table { font-size: 0.85em; }
+        .comparison-table th, .comparison-table td { padding: 8px 10px; }
+    }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 6 • Sub-Lesson 4</div>
+<h1>🛡️ <span style="color: #ffffff;">Scientific Integrity and the Writing Pipeline</span></h1>
+<p>Where AI writing assistance meets research integrity — navigating the spectrum from helpful to harmful, understanding journal policies, and building honest disclosure practices</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>In Week 5, we examined how AI can hallucinate citations — generating references that look real but point to papers that do not exist. This session tackles the parallel problem on the writing side: how AI-assisted writing can compromise scientific integrity in ways that range from subtle to severe.</p>
+<p>The core tension is straightforward. AI can genuinely help you communicate your research more clearly. It can also produce text that sounds authoritative while misrepresenting your data, overstating your claims, or presenting arguments you do not actually understand. The line between these outcomes is not always obvious, and it shifts depending on how you use the tool and how honest you are with yourself about the process.</p>
+<p>We will map the integrity spectrum from low-risk to high-risk uses, examine what major publishers now require, confront the limitations of AI detection tools, and equip you with practical techniques for auditing your own AI-assisted work. The goal is not to scare you away from using AI for writing — it is to help you use it in ways you can defend with confidence.</p>
+</div>
+<!-- SECTION 1: THE INTEGRITY SPECTRUM -->
+<h2 class="section-title">📊 The Integrity Spectrum</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Not all AI writing assistance carries the same ethical weight. The following spectrum moves from minimal integrity concern to serious risk of research misconduct. Where you draw your personal line matters — but understanding the full spectrum is essential.</p>
+<div class="card-grid">
+<div class="card risk-low">
+<h3>Grammar and Spelling Fixes</h3>
+<p><strong>Risk level:</strong> Minimal</p>
+<p>Using AI to catch typos, fix subject-verb agreement, or correct punctuation is the digital equivalent of a spellchecker. The content, arguments, and meaning remain entirely yours. No intellectual contribution shifts to the AI. This is where most researchers feel comfortable, and most journal policies explicitly permit it.</p>
+<p>The key principle: surface-level corrections that do not alter meaning carry negligible integrity risk.</p>
+</div>
+<div class="card risk-low">
+<h3>Paraphrasing Your Own Text</h3>
+<p><strong>Risk level:</strong> Low to moderate</p>
+<p>Asking AI to rephrase a sentence you have already written for clarity or concision is generally low-risk — <em>provided the meaning stays the same</em>. The concern rises when AI paraphrasing subtly shifts your claims. A sentence that said "our results suggest X" might become "our results demonstrate X" — a small change with significant scientific implications. Always read the AI's version against your original meaning, not just for fluency.</p>
+</div>
+<div class="card risk-medium">
+<h3>Restructuring Arguments</h3>
+<p><strong>Risk level:</strong> Medium</p>
+<p>When AI reorganises the flow of your discussion section or reorders your argument, something important shifts: the <em>structure</em> of your reasoning is no longer entirely yours. Argument structure is not neutral — the order in which you present evidence shapes how readers interpret its significance. If AI restructures your argument and you accept the new order without deeply understanding why it is better, you have ceded part of your intellectual contribution.</p>
+<p>The test: can you explain <em>why</em> this structure is better than your original, or did you just accept it because it reads more smoothly?</p>
+</div>
+<div class="card risk-high">
+<h3>Generating Text from Your Notes</h3>
+<p><strong>Risk level:</strong> High</p>
+<p>This is where the boundary becomes genuinely blurred. You provide bullet points, outlines, or rough notes, and AI generates polished prose. The ideas may have started with you, but the expression, emphasis, and framing are the AI's. In academic writing, how you say something is often inseparable from what you mean. If you cannot rewrite the AI-generated paragraph from scratch — expressing the same ideas in your own words — then the AI's contribution to the intellectual work is more significant than it may appear.</p>
+</div>
+<div class="card risk-high">
+<h3>Generating Arguments</h3>
+<p><strong>Risk level:</strong> Very high</p>
+<p>When AI generates the arguments themselves — not just expressing your ideas more clearly, but producing lines of reasoning you had not considered — the intellectual contribution has fundamentally shifted. These are no longer your scholarly contributions in any meaningful sense. Using AI-generated arguments without disclosure is analogous to using a ghostwriter: someone (or something) else did the intellectual heavy lifting, and you are presenting the result as your own thinking.</p>
+</div>
+<div class="card risk-high">
+<h3>Generating Data Descriptions</h3>
+<p><strong>Risk level:</strong> Variable — depends entirely on context</p>
+<p>This is the most nuanced use case on the spectrum. It requires distinguishing two very different scenarios:</p>
+<p><strong>The good news:</strong> Modern AI models are better at this than many people assume. If you ask a well-designed model "I conducted a randomised controlled trial of a mindfulness intervention on undergraduate stress levels with 120 participants — describe the results," it will typically push back and ask for the actual data, the outcome measures, the effect sizes, and the statistical tests. It will not simply fabricate a results section. This is a significant improvement over earlier models.</p>
+<p><strong>The remaining risks are subtler:</strong> The outright fabrication scenario — AI inventing results from nothing — is becoming less likely with better models. But the more dangerous risks persist:</p>
+<ul class="styled-list">
+<li><strong>Instructed fabrication:</strong> If you prompt "Write a results section showing that mindfulness reduced stress," the AI will comply — it does what you ask. The fabrication is in the prompt, not the model.</li>
+<li><strong>Over-claiming:</strong> When given real data, AI may present a weak trend as a strong finding, or describe a non-significant result in language that implies significance.</li>
+<li><strong>Silent gap-filling:</strong> AI may have partial information and fill in gaps without flagging that it is doing so. This is harder to catch than outright invention.</li>
+<li><strong>Missing what matters:</strong> AI describes what is statistically obvious in the data, not what a domain expert would recognise as scientifically interesting or problematic.</li>
+</ul>
+<p style="margin-top: 15px;"><strong>With full data access</strong> (e.g. through Claude Code, a Jupyter notebook, or uploading files), AI can produce genuinely useful draft descriptions. The quality improves significantly with the amount of context you provide — experimental setup, research questions, field conventions, known confounders. But even with perfect context, your judgment as the domain expert is irreplaceable.</p>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ When AI Knows More Than You</h4>
+<p>There is another dimension to consider: AI may genuinely know more than you about certain aspects of your subject. It has been trained on more papers than any human can read. This cuts both ways:</p>
+<p><strong>The positive side:</strong> AI can spot connections to literature you haven't encountered, suggest interpretations from adjacent fields, and fill gaps in your training. For early-career researchers, these can be genuinely valuable moments of learning.</p>
+<p><strong>The dangerous side:</strong> AI states everything with equal confidence, whether it's well-established consensus or something it's confabulating. If it "knows more than you," you are in the worst position to evaluate whether what it's telling you is correct. It can construct compelling narratives that sound authoritative but are subtly wrong — and if you lack the expertise to spot the error, you'll build on a flawed foundation.</p>
+<p><strong>The lesson:</strong> When AI teaches you something new, that is a <em>starting point for verification</em>, not a conclusion. The more you learn from AI, the more you need to verify independently — precisely because you're operating in the zone where you cannot easily distinguish correct from plausible. This connects directly to Week 4's virtue ethics: are you using AI to genuinely develop your understanding, or to create the <em>appearance</em> of understanding?</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Key Principle</span></h3>
+<p>As you move down the spectrum, the AI's contribution shifts from <strong>form</strong> (how something is said) to <strong>substance</strong> (what is being said). Integrity concern scales with this shift. Improving form is assistance. Generating substance is co-authorship — or, without disclosure, misconduct.</p>
+<p>A useful heuristic: if you removed the AI's contribution entirely, would the intellectual content of your paper change? If yes, the AI's role requires disclosure at minimum — and may require rethinking your approach entirely.</p>
+</div>
+<!-- SECTION 2: JOURNAL POLICIES -->
+<h2 class="section-title">📜 Updated Journal Policies (2025–2026)</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The publishing landscape has moved rapidly since early 2023. Major publishers have now established explicit policies on AI use, though they vary significantly in strictness. As a researcher, you are expected to know and comply with the policies of your target journal <em>before</em> submission.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Publisher</th>
+<th>Policy</th>
+<th>AI Authorship?</th>
+<th>Disclosure Required?</th>
+<th>Key Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="https://www.science.org/content/page/science-journals-editorial-policies" target="_blank" rel="noopener">Science (AAAS)</a></strong></td>
+<td>Strictest (disclosure-based since Nov 2023)</td>
+<td>No</td>
+<td>Yes — full prompt disclosure</td>
+<td>Originally banned AI-generated text entirely (Jan 2023). <a href="https://www.science.org/content/blog-post/change-policy-use-generative-ai-and-large-language-models" target="_blank" rel="noopener">Revised November 2023</a> to allow AI use with mandatory disclosure: AI tool and version in cover letter and acknowledgments, full prompts in methods section. Remains among the strictest policies in academic publishing. Authors are fully accountable for accuracy.</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.nature.com/nature-portfolio/editorial-policies/ai" target="_blank" rel="noopener">Nature (Springer Nature)</a></strong></td>
+<td>Middle ground</td>
+<td>No</td>
+<td>Conditional</td>
+<td>Prohibits AI authorship and AI-generated images. Allows AI for copy editing <em>without</em> disclosure. Requires disclosure for any substantive use in methods or acknowledgments. Distinguishes between surface-level and substantive assistance.</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener">Elsevier</a></strong></td>
+<td>Disclosure-focused</td>
+<td>No</td>
+<td>Yes — upon submission</td>
+<td>Updated September 2025. Requires a disclosure statement upon submission. Allows AI use with human oversight and responsibility. Authors must describe where and how AI tools were used. <a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener">Full policy</a>.</td>
+</tr>
+<tr>
+<td><strong><a href="https://journals.ieeeauthorcenter.ieee.org/become-an-ieee-journal-author/publishing-ethics/guidelines-and-policies/submission-and-peer-review-policies/" target="_blank" rel="noopener">IEEE</a></strong></td>
+<td>Disclosure-focused</td>
+<td>No</td>
+<td>Yes</td>
+<td>Requires disclosure of AI tool use. Prohibits listing AI as an author. Authors remain fully responsible for all content, including any AI-assisted portions. Applies across all IEEE publications.</td>
+</tr>
+<tr>
+<td><strong><a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener">ACM</a></strong></td>
+<td>Responsibility-centred</td>
+<td>No</td>
+<td>Yes</td>
+<td>Requires disclosure. Authors must take full responsibility for all content, including AI-generated material. AI cannot fulfil the accountability requirements of authorship. Violation of disclosure constitutes a breach of ACM's publication ethics.</td>
+</tr>
+<tr>
+<td><strong><a href="https://publicationethics.org/guidance/cope-position/authorship-and-ai-tools" target="_blank" rel="noopener">COPE Guidance</a></strong></td>
+<td>Baseline framework</td>
+<td>No</td>
+<td>Yes (recommended)</td>
+<td>The Committee on Publication Ethics provides guidance that most publishers are converging toward: AI cannot be an author, transparency is required, and human responsibility for content is non-negotiable. Serves as the emerging baseline across the industry.</td>
+</tr>
+</tbody>
+</table>
+<div class="info-box">
+<h4>📋 The Converging Baseline</h4>
+<p>Despite differences in strictness, a clear consensus is emerging across publishers: <strong>(1)</strong> AI cannot be listed as an author because it cannot take responsibility for content. <strong>(2)</strong> Disclosure of AI use is required or strongly recommended. <strong>(3)</strong> Human authors bear full responsibility for everything in the manuscript, including any AI-assisted content. <strong>(4)</strong> Violations are treated as breaches of publication ethics. If you follow these four principles, you will be compliant with most current policies.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ Policies Are Moving Targets</h4>
+<p>The policies summarised above reflect the state of play in early 2026. They will continue to evolve. Before submitting to any journal, check its <em>current</em> AI policy directly. Many publishers update their guidelines without issuing prominent announcements. The cost of non-compliance — retraction, investigation, reputational damage — vastly exceeds the cost of checking.</p>
+</div>
+<!-- SECTION 3: AI DETECTION -->
+<h2 class="section-title">🔍 AI Detection — The Unreliable Arms Race</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">If journal policies represent the rules, AI detection tools represent the enforcement mechanism. Unfortunately, that mechanism is deeply flawed.</p>
+<div class="technical-detail">
+<h4>How Detection Tools Work</h4>
+<p>AI detection tools analyse text for statistical patterns associated with machine-generated writing. The two most common metrics are:</p>
+<ul class="styled-list">
+<li><strong>Perplexity:</strong> How "surprising" the word choices are. AI tends to choose highly probable next words, producing text with low perplexity. Human writing is more variable and less predictable.</li>
+<li><strong>Burstiness:</strong> The variation in sentence complexity. Human writing naturally alternates between short, punchy sentences and longer, more complex ones. AI-generated text tends to be more uniform in its sentence structure.</li>
+</ul>
+<p style="margin-top: 15px;">The fundamental problem: modern LLMs have become sophisticated enough to mimic human variation in both perplexity and burstiness. As models improve, the statistical signatures that detection tools rely on become less distinctive. It is a classic arms race, and detection tools are losing ground.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Key Reading on Detection</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.pangram.com/blog/the-state-of-academic-integrity-and-ai-detection-2025" target="_blank" rel="noopener"><strong>Pangram Labs (2025): "The State of Academic Integrity &amp; AI Detection"</strong></a> — A comprehensive overview of the current state of AI detection in academic settings, including accuracy rates, failure modes, and the limitations of current approaches.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>False Positives</h3>
+<p>Detection tools flag human-written text as AI-generated more often than most people realise. Formal academic writing, in particular, shares many statistical features with AI output: measured tone, structured argumentation, standard disciplinary phrasing. Non-native English speakers are disproportionately affected because their writing sometimes uses simpler, more predictable sentence structures — precisely the patterns detection tools associate with AI.</p>
+<p>The consequence: students and researchers can be wrongly accused of AI use, with serious academic consequences, based on unreliable tools.</p>
+</div>
+<div class="card">
+<h3>False Negatives</h3>
+<p>Conversely, AI-generated text that has been lightly edited by a human often evades detection entirely. Simple techniques — changing a few words per paragraph, varying sentence length, introducing deliberate imperfections — can push AI-generated text below detection thresholds. The more sophisticated the writer, the easier it is to defeat detection.</p>
+<p>The consequence: detection tools create a false sense of security. Institutions that rely on them as their primary defence against misuse are building on an unstable foundation.</p>
+</div>
+<div class="card">
+<h3>Bias Against Non-Native Speakers</h3>
+<p>Multiple studies have shown that AI detection tools have higher false positive rates for text written by non-native English speakers. This creates a structural equity problem: researchers from non-Anglophone backgrounds are more likely to be wrongly flagged, investigated, and penalised. In a global academic community, a detection system that disproportionately punishes people based on their first language is not a neutral tool — it is a biased one.</p>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Real Risk Is Not Getting Caught</h4>
+<p>It is tempting to frame AI writing integrity as a detection problem: how do we catch people who use AI without disclosure? But this framing misses the deeper concern. The real risk is <strong>self-deception</strong> — submitting AI-polished work that you do not fully understand, defending claims you did not fully reason through, and presenting arguments you cannot independently reproduce. Detection tools cannot measure understanding. Only you can assess whether you truly own the intellectual content of your work. Integrity is not about evading detection. It is about honest engagement with your own research.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">Detection Is Not the Defence</span></h3>
+<p>AI detection should not be the primary mechanism for maintaining research integrity. Detection tools are too unreliable, too biased, and too easily circumvented to serve as a trustworthy enforcement mechanism. The real defence is cultural: building norms of honest disclosure, developing personal integrity practices, and creating academic environments where transparent AI use is supported rather than punished.</p>
+<p>Integrity comes from the writer, not the detector.</p>
+</div>
+<!-- SECTION 4: AUDITING TECHNIQUES -->
+<h2 class="section-title">🔎 Practical Auditing Techniques</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Rather than relying on detection tools, develop personal auditing practices that ensure you genuinely own every part of your AI-assisted writing. These techniques work regardless of which AI tool you used or how sophisticated detection technology becomes.</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Read-Aloud Test</h3>
+<p><strong>Method:</strong> Read your AI-assisted text out loud, slowly.</p>
+<p>Does it sound like you? Would a colleague recognise your voice in this writing? AI-generated prose often has a distinctive quality — fluent but generic, correct but impersonal. If the text sounds like it could have been written by anyone in your field, it probably was not written by you in any meaningful sense. Your writing should carry your perspective, your emphasis, and your way of connecting ideas.</p>
+<p><strong>What to look for:</strong> Phrases you would never naturally use. Arguments structured in a way that does not match how you think. A level of polish that exceeds what you can produce independently.</p>
+</div>
+<div class="card">
+<h3>The "Explain This Paragraph" Test</h3>
+<p><strong>Method:</strong> Point to any paragraph in your text at random. Without looking at the text, explain the reasoning behind it.</p>
+<p>This is the most powerful single test for AI-assisted writing integrity. If you wrote or deeply engaged with every paragraph, you should be able to explain the logic, the evidence, and the connection to surrounding paragraphs from memory. If you find yourself needing to re-read the paragraph to understand what it says, you did not write it in any intellectually honest sense — you accepted it.</p>
+</div>
+<div class="card">
+<h3>Source Verification</h3>
+<p><strong>Method:</strong> Check every factual claim against your actual sources.</p>
+<p>This connects directly to the hallucination crisis we examined in Week 5. AI-assisted writing can introduce subtle factual errors: slightly wrong statistics, misattributed findings, overstated conclusions. Every claim in your text should trace back to a source you have actually read. If AI suggested a claim and you cannot find it in your sources, it may not be true — regardless of how plausible it sounds.</p>
+</div>
+<div class="card">
+<h3>Internal Consistency Check</h3>
+<p><strong>Method:</strong> Verify that all sections of your paper agree with each other.</p>
+<p>When different sections are written or revised at different times — especially with AI assistance — internal inconsistencies can creep in. Does your methods section describe the same procedure your results section reports? Does your introduction promise what your conclusion delivers? Do the limitations you acknowledge actually correspond to the methods you used? AI does not maintain awareness across your entire manuscript. You must.</p>
+</div>
+<div class="card">
+<h3>The "Defend It" Test</h3>
+<p><strong>Method:</strong> Imagine a sceptical reviewer challenging every claim in your manuscript.</p>
+<p>For each claim, can you explain the evidence, address obvious counterarguments, and defend your interpretation from your own understanding? This is the ultimate test because it mirrors what actually happens during peer review and thesis defence. If you used AI to generate an argument and cannot defend it under questioning, you will be exposed — not by a detection tool, but by the normal processes of academic scrutiny.</p>
+</div>
+</div>
+<div class="info-box">
+<h4>🔧 Making Auditing a Habit</h4>
+<p>These techniques are most effective when they become routine rather than afterthoughts. Consider building auditing into your writing workflow: after each AI-assisted revision round, run through these five checks before moving on. The time investment is modest compared to the cost of submitting work you cannot fully defend.</p>
+</div>
+<!-- SECTION 5: DATA INTEGRITY -->
+<h2 class="section-title">💾 Data Integrity and AI-Enabled Fabrication</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Beyond writing, AI introduces new risks to data integrity that the research community is only beginning to reckon with. The tools that make research more efficient can also make fabrication more sophisticated and harder to detect.</p>
+<div class="resource-placeholder">
+<h4>📄 Key Reading on AI and Scientific Integrity</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> — An overview of how AI is being used both to commit and to detect scientific misconduct, covering synthetic data generation, image manipulation, statistical fabrication, and emerging detection methods.</p>
+</div>
+<div class="technical-detail">
+<h4>The Fabrication Problem</h4>
+<p>AI-enabled fabrication is becoming more sophisticated across multiple dimensions of research output:</p>
+<ul class="styled-list">
+<li><strong>Synthetic data generation:</strong> AI can produce datasets that exhibit realistic statistical properties — appropriate distributions, plausible correlations, expected effect sizes — without any underlying experimental observation. These datasets can be extremely difficult to distinguish from real data through conventional review.</li>
+<li><strong>Plausible results narratives:</strong> When asked to describe experimental results, AI generates confident, well-structured descriptions of trends and findings. These descriptions sound authoritative precisely because they are based on patterns the model learned from thousands of real results sections — but they describe data that does not exist.</li>
+<li><strong>Image manipulation:</strong> AI tools can generate, modify, or enhance scientific images in ways that are increasingly difficult to detect visually. Western blots, microscopy images, and graphs can all be fabricated or manipulated with sophisticated AI tools.</li>
+<li><strong>Statistical fabrication:</strong> AI can generate statistical results — p-values, confidence intervals, effect sizes — that appear internally consistent and plausible, but correspond to no actual analysis.</li>
+</ul>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Detection Tools for Data Integrity</h3>
+<p>A growing ecosystem of tools is emerging to combat AI-enabled fabrication:</p>
+<ul class="styled-list">
+<li><strong>Statcheck:</strong> Automatically checks whether reported statistics (test statistics, degrees of freedom, p-values) are internally consistent. Cannot detect fabrication directly, but catches many errors and inconsistencies.</li>
+<li><strong>Proofig / FigCheck:</strong> Image integrity tools that detect duplication, manipulation, and reuse across figures within and between manuscripts.</li>
+<li><strong>The Black Spatula Project:</strong> Community-driven effort focused on detecting mathematical errors and inconsistencies in published research, often revealing patterns suggestive of fabrication.</li>
+</ul>
+<p>These tools are useful but imperfect. The most effective defence remains rigorous self-auditing and honest research practice.</p>
+</div>
+<div class="card">
+<h3>The Broader Picture</h3>
+<p>AI-enabled fabrication is not just a technology problem — it is a symptom of systemic pressures. When academic careers depend on publication volume, when funding is tied to producing results, and when the costs of fabrication seem low relative to the rewards, the availability of sophisticated AI tools makes fabrication easier and more tempting.</p>
+<p>Addressing this requires more than better detection. It requires examining the incentive structures that make fabrication attractive in the first place, and building research cultures where transparency and honest null results are valued.</p>
+</div>
+</div>
+<div class="case-study">
+<h4>🧪 Try It Yourself: The Fabrication Demonstration</h4>
+<p>To understand how easily AI can fabricate plausible-sounding results, try this exercise with any general-purpose chatbot:</p>
+<p style="margin-top: 10px;"><strong>Prompt:</strong> "I conducted a randomised controlled trial of a mindfulness intervention on undergraduate stress levels, with 120 participants. Describe the results."</p>
+<p style="margin-top: 10px;">Notice what happens: the AI will generate a complete results section with specific effect sizes, p-values, group comparisons, and statistical conclusions — all entirely fabricated. It will sound authoritative because it has learned the patterns of how results sections are written. But it has no access to any actual data. Every number it produces is a hallucination dressed up as a finding.</p>
+<p style="margin-top: 10px;">This is why generating data descriptions with AI is at the extreme end of the integrity spectrum. It is not assistance — it is fabrication.</p>
+</div>
+<!-- SECTION 6: DISCLOSURE TEMPLATES -->
+<h2 class="section-title">📝 Disclosure Templates</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Transparent disclosure is the practical foundation of AI writing integrity. The following templates provide starting points for different levels of AI use. Adapt them to match your actual usage and your target journal's specific requirements.</p>
+<div class="resource-placeholder">
+<h4>📄 Disclosure Guidance</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.tandfonline.com/doi/full/10.1080/0142159X.2025.2607513" target="_blank" rel="noopener"><strong>AMEE Guide No.192 (2025): "When and how to disclose AI use in academic publishing"</strong></a> — A comprehensive guide to AI disclosure in academic contexts, including when disclosure is necessary, what to include, and how to frame it. Provides structured templates that many journals are beginning to reference.</p>
+</div>
+<div class="info-box">
+<h4>✅ Template 1: Minimal Use (Grammar and Proofreading)</h4>
+<p><em>"[Tool name, e.g., ChatGPT-4o / Claude 3.5 Sonnet / Grammarly] was used for grammar checking and proofreading of this manuscript. All intellectual content, including research design, data analysis, interpretation of results, and argumentation, was produced entirely by the authors. No AI-generated text was incorporated into the substantive content of this work."</em></p>
+</div>
+<div class="info-box">
+<h4>📐 Template 2: Moderate Use (Structuring, Feedback, Language Polishing)</h4>
+<p><em>"The authors used [tool name and version] during the preparation of this manuscript for the following purposes: [list specific uses, e.g., improving clarity of expression, suggesting structural revisions to the discussion section, language polishing for non-native English expression]. All AI-assisted text was reviewed, verified, and substantially revised by the authors. The authors take full responsibility for the content of this publication, including any portions that were refined with AI assistance. [If applicable: Prompts used are available in the supplementary materials.]"</em></p>
+</div>
+<div class="info-box">
+<h4>📑 Template 3: Substantial Use (Drafting Assistance, Ideation)</h4>
+<p><em>"[Tool name and version] was used substantially during the preparation of this manuscript, including [list specific uses, e.g., generating initial draft text from author-provided outlines, brainstorming argument structures, synthesising literature themes]. All AI-generated content was critically reviewed, verified against primary sources, and revised by the authors. Sections that involved significant AI contribution include [specify sections]. The authors affirm that they understand and can defend all content in this manuscript, and take full responsibility for its accuracy and integrity. Complete prompts and AI interaction logs are available upon request / in the supplementary materials."</em></p>
+</div>
+<div class="info-box">
+<h4>💡 Practice What We Preach</h4>
+<p>It is worth noting that these course materials themselves fall under Template 3. As stated at the top of every page: this content has been created and enhanced using Claude. The structure, research, and drafting involved substantial AI assistance, while the intellectual direction, pedagogical decisions, verification of all claims, and final editorial judgment remained with the course instructor. We believe in transparency about our own AI use — and we encourage you to adopt the same standard.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ Disclosure Is Not Absolution</h4>
+<p>A disclosure statement does not automatically make any level of AI use acceptable. Some journals (notably Science) prohibit AI-generated text regardless of disclosure. Others may accept disclosed use but still expect the intellectual contribution to be demonstrably the authors'. Disclosure is necessary but not sufficient — you must also ensure that your use of AI is consistent with your target journal's specific policy and with the norms of your discipline.</p>
+</div>
+<!-- SECTION 7: READINGS -->
+<h2 class="section-title">📚 Readings</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Three core readings for this sub-lesson, all freely accessible.</p>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener"><strong>Elsevier (2025): Generative AI policies for journals</strong></a> — One of the most detailed publisher-level AI policies currently available. Read it as a model for understanding what publishers expect, and as a reference point for your own disclosure practices.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.tandfonline.com/doi/full/10.1080/0142159X.2025.2607513" target="_blank" rel="noopener"><strong>AMEE Guide No.192 (2025): "When and how to disclose AI use in academic publishing"</strong></a> — Practical guidance on the mechanics of AI disclosure: when it is required, what to include, how to format it, and how to make disclosure meaningful rather than performative.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> — An overview of the dual role AI plays in scientific integrity — both as a source of new risks and as a tool for detecting misconduct. Useful for understanding the broader landscape of AI and research integrity.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>This session mapped the territory where AI writing assistance intersects with scientific integrity — from the low-risk terrain of grammar fixes to the high-risk zone of data fabrication.</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>The integrity spectrum is real:</strong> Not all AI writing assistance carries the same ethical weight. Understanding where your use falls on the spectrum — from surface-level corrections to substantive content generation — is the first step toward honest practice</li>
+<li><strong>Journal policies are converging:</strong> No major publisher accepts AI as an author. Most require disclosure. All hold human authors responsible for every word. Know your target journal's specific policy before you submit</li>
+<li><strong>Detection tools are unreliable:</strong> AI detection is too inaccurate, too biased, and too easily circumvented to serve as the primary defence against misuse. Do not build your integrity practice around avoiding detection</li>
+<li><strong>Personal auditing is essential:</strong> The read-aloud test, the explain-it test, source verification, internal consistency checks, and the defend-it test are your real safeguards. Build them into your workflow</li>
+<li><strong>Data integrity requires vigilance:</strong> AI can fabricate plausible-sounding data, results, and statistical analyses. Never use AI to describe data it has not seen</li>
+<li><strong>Disclosure is necessary but not sufficient:</strong> Transparent disclosure is the baseline, but it does not automatically make any level of AI use acceptable. Your use must also be consistent with your journal's policy and your discipline's norms</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session:</strong> In Sub-Lesson 5 (Building Your AI Writing Workflow), we bring together everything from this week — the writing process, discipline-specific applications, collaborative workflows, and integrity practices — into a practical, personalised workflow that you can use for your own research writing.</p>
+</div>
+</div>
+</div></body></html>

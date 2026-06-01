@@ -1,0 +1,694 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.5 - Building Your Data Analysis Workflow</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #003A70;
+            color: #ffffff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #ffffff;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .prompt-example {
+            background: #f4f4f4;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #1a202c;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .prompt-label {
+            display: inline-block;
+            background: #003A70;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        .code-block .comment {
+            color: #68d391;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: steps;
+            margin: 20px 0;
+        }
+
+        .step-list > li {
+            counter-increment: steps;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .step-list > li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 15px;
+            top: 22px;
+            width: 35px;
+            height: 35px;
+            background: #003A70;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table thead th {
+            background: #003A70;
+            color: #ffffff;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .comparison-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.93em;
+            color: #2d3748;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #edf2f7;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .prompt-example, .code-block {
+                font-size: 0.82em;
+                padding: 15px;
+            }
+
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 • Sub-Lesson 5</div>
+<h1>📊 <span style="color: #ffffff;">Building Your Data Analysis Workflow</span></h1>
+<p>A principled framework for integrating AI into your data analysis pipeline — from defining your research question to interpreting results with domain expertise</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Earlier in this week, we explored how AI can assist with data analysis tasks, examined the landscape of AI-assisted visualisation, and practised translating natural language into working code. Now we bring it all together into a <strong>practical, principled workflow</strong> that you can apply to your own research data.</p>
+<p style="margin-top: 12px;">This lesson is deliberately hands-on. We will walk through a five-stage analysis workflow, provide copy-and-paste prompt templates for common statistical tasks, discuss when AI genuinely helps and when established statistical packages are the better choice, introduce a Claude Code and Jupyter workflow for interactive analysis, and address the critical privacy and ethical considerations that arise when working with research data.</p>
+<p style="margin-top: 12px;">One principle underpins everything here: <strong>AI should accelerate your analysis, not substitute for your understanding.</strong> If you let an AI tool choose your statistical test, fit a model, and interpret the results without understanding each step yourself, you have not done analysis — you have outsourced it. The workflow below is designed to keep you in control at every stage.</p>
+</div>
+<!-- SECTION 1: THE PRINCIPLED DATA ANALYSIS WORKFLOW -->
+<h2 class="section-title">🛠️ The Principled Data Analysis Workflow</h2>
+<p>Effective AI-assisted data analysis follows a consistent pattern: you lead with your research question and domain knowledge, AI helps with implementation and computation, and you verify and interpret everything. The five stages below form a cycle rather than a strict linear sequence — you will often return to earlier stages as your understanding of the data deepens. But skipping stages, particularly the first and last, is where most errors and misinterpretations originate.</p>
+<ol class="step-list">
+<li><strong>Define the question clearly</strong>
+<p style="margin-top: 8px;">Before writing any code or touching any data, articulate precisely what you are trying to learn. What is your research question? What variables are involved? What would a meaningful answer look like? What are your hypotheses, if any?</p>
+<p style="margin-top: 8px;">This sounds obvious, but it is the step most frequently shortchanged when AI tools are available. The temptation is to load data into a chatbot and say "analyse this" — but without a clear question, AI will give you <em>an</em> analysis, just not necessarily the <em>right</em> one. It may choose inappropriate tests, explore irrelevant relationships, or present findings that answer a question you never asked. A well-defined question constrains the analysis space and makes it far easier to evaluate whether the results are meaningful.</p>
+<p style="margin-top: 8px;">Write your question down. Be specific. "Is there a relationship between X and Y?" is better than "Analyse my data." "Does treatment A produce significantly different outcomes than treatment B, controlling for age and baseline severity?" is better still.</p>
+</li>
+<li><strong>Prepare and understand your data</strong>
+<p style="margin-top: 8px;">Before running any analysis, you need to understand what you are working with. How many observations do you have? What are the variable types (continuous, categorical, ordinal)? Are there missing values, and if so, how much and what pattern? Are there outliers? What does the distribution of each key variable look like?</p>
+<p style="margin-top: 8px;">AI tools are excellent at generating the <em>code</em> for data exploration — summary statistics, distribution plots, missing value reports, correlation matrices. But you must be the one who <em>interprets</em> what those summaries reveal. A correlation matrix generated by AI is only useful if you understand which correlations matter for your research question and which are incidental. A missing value report is only useful if you can judge whether the missingness is random or systematic, and what that means for your planned analysis.</p>
+<p style="margin-top: 8px;">This is also the stage where you handle data cleaning — recoding variables, handling duplicates, dealing with outliers, and transforming variables as needed. AI can write the cleaning code, but the decisions about <em>how</em> to clean (e.g., remove outliers vs. winsorise vs. keep them) must be yours, guided by your domain knowledge and your research question.</p>
+</li>
+<li><strong>Analyse with AI assistance</strong>
+<p style="margin-top: 8px;">Now bring in AI — but for specific, bounded tasks. Ask it to write the code for a particular statistical test you have already decided is appropriate. Ask it to implement a regression model with specific variables you have chosen. Ask it to generate a visualisation of a relationship you want to examine. The key word, as with AI-assisted writing, is <em>bounded</em>: you define the analytical task, AI implements it.</p>
+<p style="margin-top: 8px;">This is where prompt templates (covered in the next section) become invaluable. A well-structured prompt specifies your data structure, your research question, the test or model you want, and the output format you need. It does not say "do whatever you think is best" — it says "implement this specific analysis and explain each step."</p>
+<p style="margin-top: 8px;">When AI suggests an analytical approach you had not considered, treat it as a hypothesis to evaluate, not a recommendation to follow. Ask: why would this approach be appropriate for my data? What assumptions does it make? Does my data meet those assumptions? If you cannot answer these questions, you need to learn more before proceeding.</p>
+</li>
+<li><strong>Verify everything</strong>
+<p style="margin-top: 8px;">This is the stage that separates rigorous research from AI-generated output. Every result must be checked. Does the code run without errors? Do the results make sense given what you know about the data? Are the statistical assumptions met? Do sanity checks pass — for example, if you know the approximate mean of a variable, does the computed mean match?</p>
+<p style="margin-top: 8px;">Verification has several layers. <strong>Code verification:</strong> read the code AI generated and confirm it does what you intended. Watch for common errors — wrong column names, incorrect grouping variables, inappropriate handling of missing values. <strong>Statistical verification:</strong> check that assumption tests were run and passed (normality, homoscedasticity, independence). <strong>Result verification:</strong> compare key results against rough manual calculations or known benchmarks. If AI reports a correlation of 0.95 between two variables you would expect to be weakly related, something is wrong.</p>
+<p style="margin-top: 8px;">A particularly important check: run the same analysis using an established statistical package (R, Stata, SPSS) on a subset of your data. If the results differ from what AI produced, investigate why before trusting either.</p>
+</li>
+<li><strong>Interpret with your expertise</strong>
+<p style="margin-top: 8px;">AI can tell you that a coefficient is statistically significant at p &lt; 0.01. It cannot tell you whether that coefficient is <em>meaningful</em> in your research context. It cannot tell you whether the effect size matters practically. It cannot tell you how your findings relate to the existing literature, what the theoretical implications are, or what the limitations of your particular study design mean for how the results should be qualified.</p>
+<p style="margin-top: 8px;">Interpretation is where your domain expertise is irreplaceable. A statistically significant finding may be trivial. A non-significant finding may be important (perhaps your study was underpowered, or the null result challenges a prevailing assumption). The relationship between statistical output and research conclusions is mediated by theory, context, and judgement — all of which are yours, not the AI's.</p>
+<p style="margin-top: 8px;">Be especially cautious about AI-generated interpretations. When you ask an AI tool to "interpret" your results, it will produce plausible-sounding narratives that may not reflect the actual state of your field. It may cite non-existent literature, draw connections to theories it has fabricated, or offer explanations that sound authoritative but are not grounded in real disciplinary knowledge. Use AI to compute results. Interpret them yourself.</p>
+</li>
+</ol>
+<div class="highlight-box"><strong>The core principle:</strong> AI is most valuable in Stages 2, 3, and 4 — writing code for data exploration, implementing statistical analyses, and running verification checks. It is least valuable (and most dangerous) if used to replace Stage 1 (defining the question) or Stage 5 (interpreting results with domain expertise). Protect your research questions. Protect your interpretations. Let AI handle the implementation in between.</div>
+<!-- SECTION 2: PROMPT TEMPLATES FOR DATA ANALYSIS -->
+<h2 class="section-title">💬 Prompt Templates for Data Analysis</h2>
+<p>The following prompt templates are designed for common data analysis tasks. Each one is structured to keep you in control — you specify the data, the question, and the approach, and AI provides the implementation. Adapt these to your own data and research context. Notice that every prompt asks for explanations alongside code, so you can verify that each step is doing what you expect.</p>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">📊 Loading and Exploring Data</h3>
+<p>The first step in any analysis is understanding what your dataset contains. This prompt generates a comprehensive exploratory data analysis (EDA) that reveals the structure, distributions, and potential issues in your data before you begin modelling.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT — Data Exploration</span> I have a dataset in <strong>[format: CSV / Excel / Stata .dta / etc.]</strong> with <strong>[approximate number]</strong> observations and the following variables: <strong>[List your key variables with brief descriptions, e.g.: - age (continuous, years) - treatment_group (categorical: control, low_dose, high_dose) - outcome_score (continuous, 0-100 scale) - gender (categorical: M/F/Other) - baseline_score (continuous, 0-100 scale)]</strong> Please write Python code to: 1. Load the data and display the first few rows 2. Show data types, missing value counts, and basic summary statistics 3. Plot the distribution of each continuous variable (histograms or KDE plots) 4. Show frequency tables for each categorical variable 5. Create a correlation matrix for continuous variables 6. Flag any potential issues (extreme outliers, high missingness, unexpected data types) Use pandas, matplotlib, and seaborn. Add comments explaining what each section does and what I should look for in the output.</div>
+<div class="info-box"><strong>Why this works:</strong> By listing your variables and their types upfront, you prevent AI from guessing (and guessing wrong). The request for comments and explanations ensures you understand what the code does, rather than blindly running it. The "flag potential issues" instruction leverages AI's pattern-matching ability while keeping the decision about how to handle those issues with you.</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">🔬 Statistical Testing</h3>
+<p>When you have a specific hypothesis to test, this template helps you implement the appropriate statistical test with proper assumption checking. The key is that <em>you</em> decide which test is appropriate — the prompt asks AI to implement it, not to choose it for you.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT — Statistical Testing</span> I want to test whether <strong>[state your specific hypothesis, e.g., "the mean outcome_score differs significantly between treatment groups"]</strong>. My data has: - Dependent variable: <strong>[name and type, e.g., "outcome_score, continuous, range 0-100"]</strong> - Independent variable: <strong>[name and type, e.g., "treatment_group, categorical with 3 levels"]</strong> - Sample size: <strong>[approximate N per group]</strong> - Potential confounders: <strong>[list any, or "none identified"]</strong> I plan to use <strong>[name the test you believe is appropriate, e.g., "one-way ANOVA"]</strong>. Please write Python code that: 1. Checks the assumptions for this test (normality, equal variances, independence) 2. Reports the results of each assumption check with clear pass/fail interpretation 3. Runs the test if assumptions are met 4. If assumptions are violated, suggests and implements an appropriate non-parametric alternative 5. Reports effect sizes alongside p-values 6. Creates a visualisation of the group comparison Explain each step so I can verify the logic. Use scipy.stats and pingouin where appropriate.</div>
+<div class="info-box"><strong>Why this works:</strong> You state the hypothesis and propose a test before AI touches the data. This forces you to think through the analysis design. The assumption-checking steps are critical — AI will run the test regardless of whether assumptions are met unless you explicitly ask it to check. The request for effect sizes alongside p-values reflects modern best practice in statistical reporting. If the test choice was wrong, the assumption checks will reveal it, and you can then make an informed decision about alternatives.</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">📈 Regression Analysis</h3>
+<p>Regression models are among the most common analytical tools in research. This template covers the full pipeline from model specification through diagnostics to interpretation.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT — Regression</span> I want to model the relationship between <strong>[outcome variable]</strong> and <strong>[list predictor variables]</strong>. Context: <strong>[brief description of your research question and why these predictors are theoretically relevant]</strong> Data details: - Outcome: <strong>[variable name, type, distribution description]</strong> - Predictors: <strong>[list each with type and expected direction of effect]</strong> - Sample size: <strong>[N]</strong> - Potential issues: <strong>[e.g., "some multicollinearity expected between X1 and X2", "outcome is right-skewed", "clustered data from 10 schools"]</strong> I plan to use <strong>[model type, e.g., "multiple linear regression" / "logistic regression" / "mixed-effects model"]</strong>. Please write Python code that: 1. Fits the model with the specified variables 2. Displays full model summary with coefficients, standard errors, confidence intervals, and p-values 3. Runs diagnostic checks (residual plots, VIF for multicollinearity, influence measures) 4. Tests key assumptions (linearity, normality of residuals, homoscedasticity) 5. Creates diagnostic visualisation plots 6. If any diagnostics suggest problems, explain what the problem means and suggest remedies Use statsmodels for the regression. Explain each diagnostic and what I should look for in the output.</div>
+<div class="info-box"><strong>Why this works:</strong> By providing theoretical context ("why these predictors are relevant"), you anchor the analysis in your domain knowledge rather than letting AI fish for significant predictors. Specifying known issues (multicollinearity, skewness, clustering) demonstrates that you understand your data and ensures AI addresses these rather than ignoring them. The diagnostic suite catches problems that would otherwise go undetected in a quick AI-generated analysis.</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">📅 Time Series Analysis</h3>
+<p>Time series data requires specialised handling. This template covers the key steps from decomposition through modelling to forecasting, with appropriate attention to the temporal structure of the data.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT — Time Series</span> I have time series data for <strong>[describe what is measured, e.g., "monthly GDP growth rates"]</strong> spanning <strong>[time period, e.g., "January 2010 to December 2024"]</strong> with <strong>[frequency, e.g., "monthly"]</strong> observations. Research question: <strong>[e.g., "Is there a structural break after the policy change in March 2020?" or "Can we forecast the next 12 months?"]</strong> Data details: - Time variable: <strong>[column name and format]</strong> - Value variable(s): <strong>[column name(s)]</strong> - Known events or structural changes: <strong>[list any, e.g., "COVID lockdown March 2020, policy change June 2022"]</strong> - Suspected seasonality: <strong>[yes/no, and if yes, what period]</strong> Please write Python code that: 1. Plots the raw time series with any known events marked 2. Tests for stationarity (ADF test and KPSS test) 3. Decomposes the series into trend, seasonal, and residual components 4. Plots the ACF and PACF to inform model selection 5. Fits an appropriate model based on the diagnostics (explain your choice) 6. Runs residual diagnostics (Ljung-Box test, residual ACF) 7. If forecasting is requested, produces forecasts with confidence intervals Use statsmodels. Explain each step and what the output tells us about the data's temporal structure.</div>
+<div class="info-box"><strong>Why this works:</strong> Time series analysis is particularly prone to AI errors because the temporal structure introduces dependencies that standard methods ignore. By specifying known events and suspected seasonality, you provide domain knowledge that AI cannot infer from the data alone. The dual stationarity tests (ADF and KPSS) catch cases where one test alone would give a misleading answer. The requirement to explain model choice ensures transparency rather than a black-box forecast.</div>
+<!-- SECTION 3: WHEN TO USE AI VS ESTABLISHED STATISTICAL PACKAGES -->
+<h2 class="section-title">⚖️ When to Use AI vs. Established Statistical Packages</h2>
+<p>AI-assisted analysis is powerful, but it is not always the best tool. Understanding when to use AI and when to reach for established statistical software is a mark of analytical maturity. The decision depends on the complexity of the task, the stakes of the analysis, the reproducibility requirements, and your own statistical fluency.</p>
+<div class="technical-detail">
+<h3>Where AI Excels</h3>
+<div class="card-grid">
+<div class="card">
+<h3>⚡ Rapid Prototyping</h3>
+<p>When you need to quickly explore a dataset, try multiple visualisations, or test whether an analytical approach is feasible before committing to it. AI can generate exploratory code in seconds that would take you minutes or hours to write from scratch.</p>
+</div>
+<div class="card">
+<h3>🔧 Code Translation</h3>
+<p>When you have working code in one language (e.g., R) and need it in another (e.g., Python), or when you need to convert between frameworks (e.g., from base R to tidyverse). AI handles syntax translation well, though you should always verify the output.</p>
+</div>
+<div class="card">
+<h3>📚 Learning New Methods</h3>
+<p>When you want to implement a method you have read about but never coded. AI can generate annotated example code that serves as a learning scaffold — much faster than piecing together documentation and Stack Overflow answers.</p>
+</div>
+<div class="card">
+<h3>🔎 Debugging and Error Resolution</h3>
+<p>When your code throws an error you cannot decipher, or when results are unexpected. Pasting error messages or anomalous output into an AI tool often yields faster diagnosis than searching forums, especially for obscure library-specific issues.</p>
+</div>
+</div>
+</div>
+<div class="technical-detail" style="margin-top: 25px;">
+<h3>Where Established Packages Are Better</h3>
+<div class="card-grid">
+<div class="card">
+<h3>🔐 Publication-Ready Analysis</h3>
+<p>For analyses that will appear in a paper, use established packages with known, validated implementations. R packages like <code>lme4</code>, <code>survival</code>, or <code>lavaan</code>, or Stata's built-in commands, have been tested by thousands of researchers. You can cite them. Reviewers trust them. AI-generated code has no such pedigree.</p>
+</div>
+<div class="card">
+<h3>📈 Complex Model Fitting</h3>
+<p>Bayesian models, structural equation models, multilevel models with complex random-effects structures, and other advanced methods are better handled by dedicated packages (e.g., <code>brms</code> in R, <code>Mplus</code>, <code>Stan</code>). AI may generate code that runs but implements the model incorrectly in subtle ways.</p>
+</div>
+<div class="card">
+<h3>📋 Reproducibility Requirements</h3>
+<p>When your analysis must be exactly reproducible (e.g., for preregistered studies or regulatory submissions), established packages with version-locked dependencies are essential. AI-generated code may use deprecated functions, assume specific package versions, or produce non-deterministic results.</p>
+</div>
+<div class="card">
+<h3>✅ Validated Pipelines</h3>
+<p>Clinical trials, regulatory analyses, and any context with legal or safety implications require validated statistical software. AI-generated analysis code has not been validated and cannot be used where validation is required.</p>
+</div>
+</div>
+</div>
+<p>Here is one view of how good AI is at certain data tasks, though many of these have moved into the excellent category already.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Task</th>
+<th>AI-Assisted</th>
+<th>Established Package</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exploratory data analysis</td>
+<td>Excellent</td>
+<td>Good</td>
+<td>Use AI for speed, verify key findings</td>
+</tr>
+<tr>
+<td>Data cleaning and wrangling</td>
+<td>Good</td>
+<td>Good</td>
+<td>AI writes code, you make decisions</td>
+</tr>
+<tr>
+<td>Standard hypothesis tests</td>
+<td>Good</td>
+<td>Excellent</td>
+<td>Use AI to write code, cross-check with package</td>
+</tr>
+<tr>
+<td>Regression (basic)</td>
+<td>Good</td>
+<td>Excellent</td>
+<td>AI for prototyping, final analysis in package</td>
+</tr>
+<tr>
+<td>Regression (complex/multilevel)</td>
+<td>Moderate</td>
+<td>Excellent</td>
+<td>Use established packages; AI for setup help only</td>
+</tr>
+<tr>
+<td>Visualisation</td>
+<td>Excellent</td>
+<td>Good</td>
+<td>AI excels here; iterate quickly</td>
+</tr>
+<tr>
+<td>Time series (standard)</td>
+<td>Good</td>
+<td>Excellent</td>
+<td>AI for exploration, package for final models</td>
+</tr>
+<tr>
+<td>Machine learning</td>
+<td>Good</td>
+<td>Good</td>
+<td>AI for code scaffolding, <code>scikit-learn</code> for execution</td>
+</tr>
+<tr>
+<td>Bayesian analysis</td>
+<td>Moderate</td>
+<td>Excellent</td>
+<td>Use <code>Stan</code>/<code>brms</code>; AI for priors discussion only</td>
+</tr>
+<tr>
+<td>Clinical trial analysis</td>
+<td>Not suitable</td>
+<td>Required</td>
+<td>Validated software only; no AI in pipeline</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-box"><strong>The practical hybrid approach:</strong> For most research analyses, the optimal workflow uses AI for the exploratory and prototyping phases (Stages 1-3 of the workflow), then moves to established statistical packages for the final, publication-ready analysis. AI writes the first draft of your code. You verify it, refine it, and then reimplement the critical analyses using validated tools. This gives you the speed of AI and the reliability of established packages.</div>
+<!-- SECTION 4: CLAUDE CODE / JUPYTER WORKFLOW -->
+<h2 class="section-title">💻 The Claude Code and Jupyter Workflow</h2>
+<p>One of the most powerful ways to use AI for data analysis is through Claude Code — Anthropic's command-line tool that allows Claude to read, write, and execute code directly in your working environment. When combined with Jupyter notebooks, this creates an interactive analysis workflow where AI can see your data, run code, inspect outputs, and iterate on analyses — all within a documented, reproducible environment.</p>
+<div class="info-box"><strong>What is Claude Code?</strong> Claude Code is a command-line tool that gives Claude direct access to your filesystem and terminal. Unlike a chatbot conversation where you copy and paste code back and forth, Claude Code can read your data files, write scripts, execute them, see the results, and fix errors — all in a continuous workflow. Think of it as pair-programming with an AI that can also run the code it writes.</div>
+<div class="technical-detail">
+<h3>Setting Up the Workflow</h3>
+<p>The following workflow is adapted from Patrick Mineault's guide for scientists using Claude Code (Mineault, 2026). The core idea is to use a Jupyter notebook as your analysis document and Claude Code as your coding assistant, creating a tight feedback loop between you and the AI.</p>
+<ol class="step-list">
+<li><strong>Set up your project structure</strong>
+<p style="margin-top: 8px;">Create a clean project directory with your data, a Jupyter notebook, and a <code>CLAUDE.md</code> file that describes your project context. The <code>CLAUDE.md</code> file is particularly important — it tells Claude about your research question, your data structure, and your analytical conventions, so you do not have to repeat this context in every prompt.</p>
+<div class="code-block"><span class="comment"># Example project structure</span> my-analysis/ data/ raw/ survey_responses.csv processed/ cleaned_survey.csv notebooks/ analysis.ipynb CLAUDE.md requirements.txt</div>
+</li>
+<li><strong>Write a CLAUDE.md file for your project</strong>
+<p style="margin-top: 8px;">This file provides persistent context that Claude reads at the start of every interaction. It should describe your data, your research questions, and any conventions you want Claude to follow.</p>
+<div class="code-block"><span class="comment"># CLAUDE.md example</span> <span class="comment"># Project: Survey Analysis for Health Outcomes Study</span> <span class="comment">## Research Question</span> Does community health worker (CHW) contact frequency predict patient adherence to antiretroviral therapy (ART), controlling for distance to clinic and socioeconomic status? <span class="comment">## Data Description</span> - Source: Clinic records from 5 facilities, 2022-2024 - N = 1,247 patients - Key variables: adherence_score (0-100), chw_visits (count), clinic_distance_km, ses_quintile (1-5), age, gender <span class="comment">## Conventions</span> - Use Python with pandas, statsmodels, and seaborn - All plots should use the seaborn "muted" palette - Report 95% confidence intervals alongside p-values - Use significance threshold of 0.05 but always report exact p - Comments in English, variable names in snake_case</div>
+</li>
+<li><strong>Use Claude Code interactively with Jupyter</strong>
+<p style="margin-top: 8px;">Launch Claude Code in your project directory, then ask it to work with your Jupyter notebook. Claude can read existing cells, add new ones, run the notebook, and inspect outputs — creating a conversational analysis experience.</p>
+<div class="code-block"><span class="comment"># In your terminal, from the project directory:</span> claude <span class="comment"># Then interact naturally:</span> &gt; Load the cleaned survey data and give me an overview of the distributions and missing values. <span class="comment"># Claude reads CLAUDE.md, writes code in the notebook,</span> <span class="comment"># executes it, and reports what it finds.</span> &gt; The adherence_score distribution looks bimodal. Can you investigate whether this splits along treatment duration? <span class="comment"># Claude adds new cells, creates visualisations,</span> <span class="comment"># and discusses findings.</span></div>
+</li>
+<li><strong>Review, verify, and iterate</strong>
+<p style="margin-top: 8px;">After each analysis step, open the Jupyter notebook in your browser to review the code and outputs. Check that the code does what you intended. Verify key numbers against your expectations. Then continue the conversation with Claude Code for the next analytical step.</p>
+</li>
+</ol>
+</div>
+<div class="info-box"><strong>Why Jupyter + Claude Code?</strong> The combination provides three advantages over a standard chatbot conversation: (1) Claude can see and work with your actual data files, catching issues that would be invisible in copy-pasted snippets. (2) The notebook preserves a complete, executable record of your analysis — every step is documented and reproducible. (3) The iterative workflow mirrors how real data analysis works — explore, discover something unexpected, investigate further, refine your approach.</div>
+<div class="resource-placeholder">
+<h4>📖 Key Reference: Claude Code for Scientists</h4>
+<p>Patrick Mineault (2026) provides a detailed guide to using Claude Code for scientific data analysis, including setup instructions, best practices for CLAUDE.md files, and worked examples from neuroscience research.</p>
+<p style="margin-top: 8px;"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener">Mineault, P. (2026). Claude Code for Scientists. NeuroAI.</a></p>
+</div>
+<div class="warning-box"><strong>⚠️ Important limitations of Claude Code for data analysis:</strong>
+<ul style="margin-top: 10px; padding-left: 20px; line-height: 1.8;">
+<li>Claude Code sends information to Anthropic's servers. Do not use it with data that cannot leave your institution (see Privacy section below).</li>
+<li>Claude may modify files in your project directory. Always use version control (Git) so you can revert unwanted changes.</li>
+<li>The interactive workflow is excellent for exploration but may not meet reproducibility standards for final analyses. Export your final analytical pipeline as a standalone script.</li>
+<li>Claude Code's context window, while large, has limits. Very large datasets should be summarised or sampled before passing to Claude.</li>
+</ul>
+</div>
+<!-- SECTION 5: PRIVACY AND DATA CONSIDERATIONS -->
+<h2 class="section-title">🔒 Privacy and Data Considerations</h2>
+<p>When AI tools enter the data analysis workflow, privacy and data governance become critical concerns. Unlike traditional statistical software that runs entirely on your local machine, AI-assisted analysis may involve sending data to external servers, storing it in third-party systems, or exposing it to models trained on diverse internet data. As a researcher, you have ethical and often legal obligations to protect your participants' data.</p>
+<div class="warning-box" style="border-left-color: #c62828; background: #ffebee;"><strong style="color: #b71c1c;">⚠️ CRITICAL: Ethics Approval and Sensitive Data</strong>
+<p style="margin-top: 10px;">If your research involves human participants, your ethics approval almost certainly includes conditions about how data is stored, processed, and shared. <strong>Using an AI chatbot or cloud-based AI tool to analyse participant data may violate your ethics approval</strong> unless this was explicitly included in your ethics application and consent forms.</p>
+<p style="margin-top: 12px;">Before using any AI tool with research data, ask yourself:</p>
+<ul style="margin-top: 10px; padding-left: 20px; line-height: 1.9;">
+<li><strong>Does your ethics approval cover AI-assisted analysis?</strong> If your approved protocol says data will be stored on university servers and analysed using SPSS, sending that data to Claude or ChatGPT is a protocol violation. You may need an amendment.</li>
+<li><strong>Does your consent form mention AI processing?</strong> Participants consented to specific uses of their data. AI processing may not be covered. This is particularly important for qualitative data (interview transcripts, open-ended survey responses) where re-identification risks are higher.</li>
+<li><strong>Is the data identifiable?</strong> Even "anonymised" data may be re-identifiable when combined with other information. AI tools may retain data in logs or training sets. If there is any doubt, do not upload identifiable data to AI services.</li>
+<li><strong>What are your institutional data governance requirements?</strong> UCT, like most universities, has data governance policies that specify where data can be stored and processed. Check with your faculty's research ethics committee or data governance office if unsure.</li>
+</ul>
+<p style="margin-top: 12px;"><strong>When in doubt, the safest approach is to use AI tools only with fully anonymised data, synthetic data, or summary statistics — never with raw participant data containing any identifying information.</strong></p>
+</div>
+<div class="technical-detail">
+<h3>Practical Strategies for Data Privacy</h3>
+<div class="card-grid">
+<div class="card">
+<h3>🛡️ Anonymise Before Analysis</h3>
+<p>Remove all direct identifiers (names, ID numbers, addresses, dates of birth) before any AI tool touches the data. Replace them with anonymous codes. Do this in a local environment before uploading or sharing with AI.</p>
+</div>
+<div class="card">
+<h3>🎲 Use Synthetic Data for Prototyping</h3>
+<p>Create a synthetic dataset with the same structure and statistical properties as your real data. Develop and test your analysis pipeline on the synthetic data using AI, then run the finalised pipeline on the real data locally.</p>
+</div>
+<div class="card">
+<h3>💻 Prefer Local Execution</h3>
+<p>Where possible, use AI to generate code rather than analyse data directly. Write prompts that describe your data structure without including actual data. Run the generated code locally on your machine where the data stays.</p>
+</div>
+<div class="card">
+<h3>📜 Check Data Retention Policies</h3>
+<p>Different AI services have different data retention policies. Some retain conversations and uploaded data for model training. Others offer zero-retention options (e.g., Anthropic's API with zero-retention). Know your tool's policy before using it with any research data.</p>
+</div>
+</div>
+</div>
+<div class="info-box"><strong>The South African context:</strong> South Africa's Protection of Personal Information Act (POPIA) applies to the processing of personal information, which includes sending data to AI services. If your research data contains personal information as defined by POPIA, using cloud-based AI tools for analysis may constitute cross-border transfer of personal information, which requires specific legal grounds. Consult your institution's POPIA compliance officer if you are working with personal data.</div>
+<!-- SECTION 6: READINGS -->
+<h2 class="section-title">📚 Readings and Resources</h2>
+<p>The following resources provide deeper guidance on using AI for data analysis in research contexts. Both are practically oriented and written for researchers who are not software engineers.</p>
+<div class="resource-placeholder">
+<h4>📖 Core Reading</h4>
+<p><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener">Mineault, P. (2026). Claude Code for Scientists. NeuroAI.</a></p>
+<p style="margin-top: 5px;">A detailed walkthrough of setting up Claude Code for scientific research, including project structure, CLAUDE.md conventions, and practical examples from neuroscience. Essential reading for anyone planning to use the Claude Code + Jupyter workflow described above.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Core Reading</h4>
+<p><a href="https://www.dataquest.io/blog/getting-started-with-claude-code-for-data-scientists/" target="_blank" rel="noopener">Dataquest (2025). Getting Started with Claude Code for Data Scientists.</a></p>
+<p style="margin-top: 5px;">A step-by-step guide to using Claude Code for data analysis workflows, covering installation, project setup, and practical tips for data scientists transitioning from chatbot-based AI interaction to a code-first approach.</p>
+</div>
+<div class="info-box"><strong>Supplementary resources:</strong> If you want to explore further, the documentation for <a href="https://docs.anthropic.com/en/docs/claude-code/overview" target="_blank" rel="noopener">Claude Code</a> provides technical setup instructions, and the <a href="https://jupyter.org/documentation" target="_blank" rel="noopener">Jupyter documentation</a> covers notebook best practices. For privacy considerations specific to African research contexts, consult your institution's research ethics office and the <a href="https://www.justice.gov.za/inforeg/" target="_blank" rel="noopener">Information Regulator (South Africa)</a> guidance on POPIA compliance.</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Summary &amp; Looking Ahead</h2>
+<p>In this lesson, we assembled a complete workflow for AI-assisted data analysis — from defining your research question through data preparation, AI-assisted analysis, verification, and expert interpretation. The five-stage process is designed to keep you in intellectual and methodological control while making the most of what AI tools can offer.</p>
+<p style="margin-top: 12px;"><strong>Key takeaways:</strong></p>
+<ul class="styled-list">
+<li><strong>Define your question first:</strong> AI should implement analyses you have designed, not choose analyses for you. The most common mistake is loading data into an AI tool without a clear question and accepting whatever analysis it produces.</li>
+<li><strong>Use prompt templates for bounded tasks:</strong> Structured prompts for data exploration, statistical testing, regression, and time series keep AI focused on specific tasks you have defined, with explanations you can verify.</li>
+<li><strong>Know when AI helps and when established packages are better:</strong> AI excels at exploratory analysis, visualisation, and code generation. For publication-ready results, complex models, and validated analyses, use established statistical packages.</li>
+<li><strong>The Claude Code + Jupyter workflow</strong> creates a powerful interactive analysis environment, but requires careful attention to data privacy and reproducibility.</li>
+<li><strong>Protect your participants' data:</strong> Ethics approval, consent forms, POPIA, and institutional policies all constrain how you can use AI tools with research data. When in doubt, use anonymised or synthetic data.</li>
+<li><strong>Interpret with your expertise:</strong> AI can compute results. Only you can determine what those results mean in your research context.</li>
+</ul>
+<p style="margin-top: 15px;">Remember that this workflow, like the writing workflow from Week 6, is meant to be adapted. Some researchers will use AI primarily for code generation and run everything locally. Others will embrace the Claude Code interactive workflow for exploratory phases and switch to established packages for final analyses. The right approach is the one that produces rigorous, reproducible, ethically sound research.</p>
+<p style="margin-top: 15px;"><strong>Next session:</strong> In Sub-Lesson 6, we move to hands-on activities and assessment. You will apply the techniques from this week to a real dataset, build an analysis pipeline using the workflow and prompt templates covered here, and complete the weekly assessment. Come prepared with a dataset from your own research (anonymised if it involves human participants) or use one of the practice datasets we will provide.</p>
+</div>
+</div>
+</div></body></html>

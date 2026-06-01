@@ -1,0 +1,543 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6.5 - Building Your AI Writing Workflow</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #003A70;
+            color: #ffffff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #ffffff;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .prompt-example {
+            background: #f4f4f4;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #1a202c;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .prompt-label {
+            display: inline-block;
+            background: #003A70;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        .code-block .comment {
+            color: #68d391;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .level-card {
+            border-left: 5px solid #003A70;
+        }
+
+        .level-card .level-tag {
+            display: inline-block;
+            background: #003A70;
+            color: #ffffff;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: steps;
+            margin: 20px 0;
+        }
+
+        .step-list > li {
+            counter-increment: steps;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .step-list > li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 15px;
+            top: 22px;
+            width: 35px;
+            height: 35px;
+            background: #003A70;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .prompt-example, .code-block {
+                font-size: 0.82em;
+                padding: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 6 • Sub-Lesson 5</div>
+<h1>✍️ <span style="color: #ffffff;">Building Your AI Writing Workflow</span></h1>
+<p>A practical framework for integrating AI into your academic writing — without losing your voice, your integrity, or your ability to defend every sentence</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Earlier in this week, we explored how AI can help with writing tasks and examined the ethical boundaries of AI-assisted writing. In Sub-Lesson 4, we learned how to audit AI-generated text for accuracy, voice, and integrity. Now we put it all together into a <strong>practical workflow</strong> you can use for your own research writing.</p>
+<p style="margin-top: 12px;">This lesson is deliberately hands-on. We will walk through a five-stage writing process, give you copy-and-paste prompts for common writing tasks, introduce the reverse outline technique for structural editing, and provide ready-to-use disclosure templates for your papers. The goal is not to prescribe a single method — it is to give you enough building blocks that you can assemble a workflow that suits <em>your</em> writing habits, your discipline, and your comfort level with AI assistance.</p>
+<p style="margin-top: 12px;">One principle underpins everything here: <strong>AI should amplify your thinking, not replace it.</strong> If you skip the thinking step and go straight to generation, you get text that sounds plausible but lacks the intellectual substance that makes academic writing valuable. The workflow below is designed to prevent that.</p>
+</div>
+<!-- SECTION 1: THE PRINCIPLED WORKFLOW -->
+<h2 class="section-title">🛠️ The Principled Workflow</h2>
+<p>Effective AI-assisted writing follows a consistent pattern: you lead, AI assists, you verify and revise. The five stages below are not rigid rules — they are a framework you can adapt. But the sequence matters. If you skip Step 1 (thinking) and jump straight to Step 3 (drafting with AI), you will produce text that belongs to the AI rather than to you. That distinction matters for integrity, for your development as a researcher, and for the quality of the final product.</p>
+<ol class="step-list">
+<li><strong>Think first</strong>
+<p style="margin-top: 8px;">Before touching any AI tool, clarify what you want to say. Write rough notes, bullet points, a messy outline. Sketch the argument on paper if that helps. This stage is about <em>your</em> thinking — it is the part that no AI can do for you, and it is what gives your writing its intellectual substance.</p>
+<p style="margin-top: 8px;">Ask yourself: What is my central claim? What evidence do I have? What am I unsure about? What would a sceptical reader challenge? The answers to these questions are the foundation of your writing. Everything that follows builds on this foundation.</p>
+</li>
+<li><strong>Outline yourself</strong>
+<p style="margin-top: 8px;">Structure your argument before you start drafting. What are your main claims? What evidence supports each one? What order makes the logic flow most naturally? AI can help you <em>improve</em> a structure, but you need to have one first — otherwise you are outsourcing the architecture of your argument, which is one of the most intellectually valuable parts of academic writing.</p>
+<p style="margin-top: 8px;">A useful test: can you explain the structure of your paper to a colleague in two minutes without notes? If not, your outline needs more work before you bring in AI.</p>
+</li>
+<li><strong>Draft with AI assistance</strong>
+<p style="margin-top: 8px;">Now bring in AI — but for specific, bounded tasks. Use it to expand bullet points into prose, improve the clarity of a difficult paragraph, suggest transitions between sections, or check whether your argument follows logically. The key word is <em>bounded</em>: you are giving AI a defined task within a structure you created, not asking it to generate your paper from scratch.</p>
+<p style="margin-top: 8px;">Think of it like working with a highly capable writing tutor. You bring the ideas, the evidence, and the argument. The tutor helps you express them more clearly.</p>
+</li>
+<li><strong>Audit thoroughly</strong>
+<p style="margin-top: 8px;">Apply the techniques from Sub-Lesson 4. Read the text aloud — does it sound like you? Check every factual claim against your sources. Apply the "explain this paragraph" test: can you explain in your own words what each paragraph says and why it is there? If you cannot, either the AI has introduced ideas you do not fully understand, or the paragraph is not doing useful work.</p>
+<p style="margin-top: 8px;">Pay special attention to hedging language, citations, and technical terminology. AI tools sometimes add qualifiers that change your meaning, insert references that do not exist, or use discipline-specific terms slightly incorrectly.</p>
+</li>
+<li><strong>Revise in your own voice</strong>
+<p style="margin-top: 8px;">The final pass must be yours. Read through the entire piece and ask: does this sound like me? Would I be comfortable defending every sentence in a viva? Are there phrases that feel borrowed rather than earned? This is where you reclaim full ownership of the text.</p>
+<p style="margin-top: 8px;">This step is not optional. It is the difference between AI-assisted writing (where you maintain intellectual ownership) and AI-generated writing (where you do not). Your examiners, reviewers, and future self will all benefit from this final act of authorial responsibility.</p>
+</li>
+</ol>
+<div class="highlight-box"><strong>The core principle:</strong> AI is most valuable in Steps 3 and 4 — helping you express and check ideas you already have. It is least valuable (and most dangerous) if used to replace Steps 1 and 2 — the thinking and structuring that make writing intellectually meaningful. Protect your thinking. Let AI help with your expression.</div>
+<!-- SECTION 2: SPECIFIC USE CASES WITH PROMPTS -->
+<h2 class="section-title">💬 Specific Use Cases with Prompts</h2>
+<p>Below are five common writing challenges, each paired with a prompt you can adapt for your own work. Notice that every prompt is designed to keep <em>you</em> in the driver's seat — AI asks you questions, reveals structure, or polishes language, but it never generates your argument from whole cloth.</p>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">✍️ Overcoming Blank Page Paralysis</h3>
+<p>The blank page is one of the most common obstacles in academic writing. Instead of asking AI to write your introduction for you (which produces generic, voiceless text), ask it to help you <em>think through</em> what you want to say. This keeps the intellectual work with you while using AI as a conversation partner.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT</span> I'm writing the introduction to a paper about <strong>[topic]</strong>. I've identified these key points: <strong>[list your key points]</strong>. Can you ask me questions that will help me think through how to structure this introduction? Don't write anything for me — just ask me questions that will help me figure out what I want to say and in what order.</div>
+<div class="info-box"><strong>Why this works:</strong> AI acts as a conversation partner, not a ghostwriter. It asks YOU questions, which forces you to articulate your thinking. Many researchers find that simply answering a series of well-targeted questions produces a natural first draft — one that is authentically theirs because every sentence originated in their own responses.</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">🔭 Structuring Arguments</h3>
+<p>When you have your claims but are not sure how they fit together, AI can help you see the logical connections (and gaps) in your argument. This is particularly useful for discussion sections, where you need to weave together multiple findings into a coherent narrative.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT</span> Here are the main claims I want to make in my discussion section: <strong>[list your claims, one per line]</strong> What are the logical connections between these claims? Where might a reviewer see gaps in the argument? What counter-arguments should I address? Please analyse the structure only — don't write the discussion for me.</div>
+<div class="info-box"><strong>Why this works:</strong> AI reveals the structure of your argument without filling it in. You provide the substance — the claims, the evidence, the reasoning. AI helps you see how the pieces fit together and where a critical reader might push back. The result is a stronger argument that is still entirely yours.</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">🌐 Translation and Language Polishing</h3>
+<p>For researchers writing in a second (or third) language, AI-assisted language polishing is one of the most ethically straightforward uses of these tools. The ideas, arguments, and evidence are yours — AI simply helps you express them in more fluent academic English. Most journal editors and ethics committees consider this equivalent to professional copy-editing.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT</span> Please improve the academic English in the following paragraph while preserving my original meaning and argument structure exactly. Do not add new ideas or change the logic. Do not add citations or claims that are not already present. Only improve grammar, word choice, and sentence flow: <strong>[paste your text]</strong></div>
+<div class="info-box"><strong>Why this works:</strong> The constraint "preserve my original meaning and argument structure exactly" is critical. Without it, AI tools tend to "improve" text by adding hedging, inserting filler sentences, or subtly shifting the emphasis of your claims. By being explicit about what should and should not change, you maintain control over the intellectual content while getting genuine help with expression.</div>
+<div class="warning-box">
+<h4>⚠️ Even With This Constraint, Check Carefully</h4>
+<p>Even when you explicitly instruct AI to preserve your meaning, it may subtly change your argument without you noticing. A slight rewording can shift emphasis, soften a strong claim, or introduce a hedge that changes what you are actually saying. These shifts are easy to miss precisely because the polished text reads so smoothly — your eye glides over changes that your critical mind should catch.</p>
+<p style="margin-top: 10px;"><strong>Always compare the AI output against your original, sentence by sentence.</strong> Ask yourself: is this still saying what I meant to say? Has the strength of any claim changed? Has any nuance been added or removed? If you cannot tell the difference between your original meaning and the AI's version, that is a warning sign, not a reassurance — it may mean the change was too subtle for you to detect on a casual read.</p>
+</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">🔍 Getting Feedback on Clarity</h3>
+<p>Before sending a draft to your supervisor or submitting to a journal, use AI as a first reader. This is not a substitute for human feedback, but it can catch clarity problems before they reach your reviewer — saving you a revision cycle.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT</span> Read the following paragraph and tell me: (1) What is the main claim? (2) What evidence supports it? (3) Is there anything unclear or ambiguous? (4) What would a sceptical reviewer ask? Do not rewrite the paragraph. Just analyse it. <strong>[paste your paragraph]</strong></div>
+<div class="info-box"><strong>Why this works:</strong> If AI cannot correctly identify the main claim of your paragraph, your reader probably will not be able to either. This is a diagnostic tool — it tells you whether your writing is doing what you think it is doing. The "sceptical reviewer" question is particularly valuable because it surfaces objections you might not have considered.</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 10px;">📣 Summarising for Different Audiences</h3>
+<p>Researchers increasingly need to communicate their work to non-specialist audiences — for grant applications, policy briefs, media engagement, or public scholarship. AI can help you translate between registers while you check that accuracy is preserved.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT</span> I have written the following technical abstract. Please help me create a plain-language summary (200 words) for a general audience, preserving accuracy but removing jargon. Flag any places where simplification might distort the meaning so I can check them. <strong>[paste your abstract]</strong></div>
+<div class="info-box"><strong>Why this works:</strong> The instruction to "flag any places where simplification might distort the meaning" is key. Simplification always involves trade-offs — some nuance is inevitably lost. By asking AI to flag these trade-offs explicitly, you maintain control over which simplifications are acceptable and which go too far.</div>
+<!-- SECTION 3: THE REVERSE OUTLINE TECHNIQUE -->
+<h2 class="section-title">📑 The Reverse Outline Technique</h2>
+<p>The reverse outline is a powerful editing technique that predates AI, but AI makes it dramatically easier to apply. The idea is simple: instead of writing from an outline (which you did in Step 2), you take your finished draft and work <em>backwards</em> to extract the outline that your text actually embodies. If that extracted outline does not match what you intended, you have found a structural problem.</p>
+<div class="technical-detail">
+<h3>How to Apply the Reverse Outline</h3>
+<ol class="step-list">
+<li><strong>Write your draft first</strong>
+<p style="margin-top: 8px;">Complete your section or chapter following the five-stage workflow above. Do not skip ahead to this technique — you need a reasonably complete draft for it to work.</p>
+</li>
+<li><strong>Ask AI to extract the outline</strong>
+<p style="margin-top: 8px;">Use the following prompt (or adapt it to your needs):</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT</span> Read this section and create an outline showing: - The main claim of each paragraph - How each paragraph connects to the next - The overall logical flow of the argument Do not suggest improvements. Just show me what is there. <strong>[paste your section]</strong></div>
+</li>
+<li><strong>Compare to your intended structure</strong>
+<p style="margin-top: 8px;">Put the AI-extracted outline next to the outline you created in Step 2 of the workflow. Where do they match? Where do they diverge? Mismatches typically fall into three categories:</p>
+<ul style="margin-top: 8px; padding-left: 20px; line-height: 1.8;">
+<li><strong>Missing claims:</strong> You intended to make a point but it did not make it into the prose</li>
+<li><strong>Stray paragraphs:</strong> A paragraph exists that does not serve any claim in your outline</li>
+<li><strong>Broken connections:</strong> Two paragraphs that should connect logically do not actually lead from one to the other</li>
+</ul>
+</li>
+<li><strong>Revise based on what you find</strong>
+<p style="margin-top: 8px;">Fix the structural issues yourself. You now have a clear diagnosis of what needs to change — the revision becomes targeted rather than vague.</p>
+</li>
+</ol>
+</div>
+<div class="highlight-box"><strong>This is AI at its most useful:</strong> it is not generating content for you. It is helping you <em>see</em> your own writing more clearly. The intellectual work — the argument, the claims, the evidence — remains entirely yours. AI simply provides a mirror that makes structural problems visible.</div>
+<!-- SECTION 4: VERSION CONTROL FOR AI-ASSISTED WRITING -->
+<h2 class="section-title">📂 Version Control for AI-Assisted Writing</h2>
+<p>When AI is involved in your writing process, keeping track of who wrote what becomes both more important and more difficult. You need a system — not because anyone is necessarily checking, but because intellectual honesty requires it, and because you may need to explain your process at any point during examination, peer review, or a future audit.</p>
+<div class="info-box"><strong>Why version control matters for AI-assisted writing:</strong>
+<ul style="margin-top: 12px; padding-left: 20px; line-height: 1.9;">
+<li><strong>For disclosure:</strong> Many journals now require you to describe how AI was used. A log makes this easy and accurate rather than a guess after the fact.</li>
+<li><strong>For your own intellectual honesty:</strong> If you cannot tell which sentences are yours and which were AI-suggested, that is a sign you need more control over the process.</li>
+<li><strong>For future questions:</strong> If your supervisor, examiner, or a journal editor asks how a particular passage was written, you want a clear answer.</li>
+<li><strong>For learning:</strong> Tracking AI contributions helps you see patterns in your own writing — where you consistently need help and where you are strong.</li>
+</ul>
+</div>
+<div class="technical-detail">
+<h3>Practical Tools and Approaches</h3>
+<div class="card-grid">
+<div class="card">
+<h3>📄 Simple Approach</h3>
+<p><strong>Date-stamped copies</strong></p>
+<p style="margin-top: 8px;">Save a new copy of your document each time you use AI to make significant changes. Name files clearly: <code>Ch3_draft_v2_pre-AI.docx</code> and <code>Ch3_draft_v2_post-AI.docx</code>. Low-tech but effective.</p>
+</div>
+<div class="card">
+<h3>📝 Moderate Approach</h3>
+<p><strong>Google Docs version history</strong></p>
+<p style="margin-top: 8px;">Use Google Docs' built-in version history (File &gt; Version history &gt; See version history). Name versions before and after AI editing sessions. This gives you a full timeline with no extra effort.</p>
+</div>
+<div class="card">
+<h3>⚡ Advanced Approach</h3>
+<p><strong>Git version control</strong></p>
+<p style="margin-top: 8px;">For those comfortable with the terminal, Git provides the most granular version control. Write in plain text or LaTeX, commit before and after each AI interaction. Your full editing history is preserved permanently.</p>
+</div>
+</div>
+<p style="margin-top: 20px;">Regardless of which approach you use, keep a brief log of what AI contributed at each stage. It can be as simple as a note at the top of your document:</p>
+<div class="code-block"><span class="comment"># AI Contribution Log</span> <span class="comment">## 15 March 2026</span> - Used Claude to polish language in Methods section (grammar and clarity only) - Used Claude to check logical flow of Discussion paragraphs 3-5 <span class="comment">## 18 March 2026</span> - Used Claude reverse outline technique on Results section - Found two paragraphs out of logical order; rearranged myself - Used Claude to improve transition between Results and Discussion</div>
+</div>
+<div class="warning-box"><strong>⚠️ A common trap:</strong> Some writers use AI so extensively that they lose track of which ideas are theirs and which were AI-suggested. If you find yourself in this position, stop and return to Step 1 of the workflow. The whole point of the five-stage process is to ensure that the ideas and arguments are yours <em>before</em> AI touches the text. If you cannot clearly separate your contributions from AI contributions, the process has broken down.</div>
+<!-- SECTION 5: DISCLOSURE TEMPLATES -->
+<h2 class="section-title">📜 Disclosure Templates</h2>
+<p>As discussed earlier in this week, most journals and universities now require or strongly encourage disclosure of AI use in research writing. The statements below are templates you can adapt for your own work. Choose the one that best matches your actual use — and err on the side of more disclosure rather than less. Transparency is never penalised; concealment, if discovered, always is.</p>
+<div class="info-box" style="border-left-color: #2e7d32; background: #e8f5e9;"><strong style="color: #1b5e20;">✅ Minimal Use</strong>
+<p style="margin-top: 10px; font-style: italic;">"AI tools (specifically [tool name]) were used for grammar checking and language polishing of the manuscript. All intellectual content, analysis, and conclusions are the authors' own."</p>
+<p style="margin-top: 12px;"><strong style="color: #1b5e20;">When to use:</strong> You used AI only for surface-level language corrections — grammar, spelling, sentence flow. No ideas, arguments, or structure were AI-generated or AI-influenced. This is roughly equivalent to using Grammarly or a professional copy-editor.</p>
+</div>
+<div class="info-box" style="border-left-color: #f57f17; background: #fff8e1;"><strong style="color: #e65100;">🟡 Moderate Use</strong>
+<p style="margin-top: 10px; font-style: italic;">"The authors used [tool name] to assist with [specific tasks: structuring the literature review, improving clarity of the methods section]. All content was reviewed, verified, and revised by the authors, who take full responsibility for the accuracy and integrity of the work."</p>
+<p style="margin-top: 12px;"><strong style="color: #e65100;">When to use:</strong> You used AI for substantive writing assistance beyond basic proofreading — for example, helping structure a section, suggesting how to frame an argument, or generating draft text that you then significantly revised. The key here is specificity: name what AI helped with so readers can evaluate the nature of the assistance.</p>
+</div>
+<div class="info-box" style="border-left-color: #c62828; background: #ffebee;"><strong style="color: #b71c1c;">🔴 Substantial Use</strong>
+<p style="margin-top: 10px; font-style: italic;">"AI tools ([tool names]) were used to assist with [specific tasks]. The authors' contributions included [list specific intellectual contributions]. All AI-generated content was critically reviewed, fact-checked against primary sources, and substantially revised. The authors take full responsibility for all content."</p>
+<p style="margin-top: 12px;"><strong style="color: #b71c1c;">When to use:</strong> AI played a significant role in the production of the text — for example, generating substantial draft sections, synthesising literature, or producing initial analyses that were then checked and revised. This level of disclosure requires you to be explicit about both what AI did and what <em>you</em> did. The phrase "the authors' contributions included" forces you to articulate your own intellectual contribution clearly.</p>
+</div>
+<div class="warning-box"><strong>⚠️ Important note on journal policies:</strong> These templates are starting points. Always check the specific requirements of the journal you are submitting to — some journals have their own mandatory disclosure formats, and a few still prohibit any AI use in writing. The templates above are designed to be compatible with most current policies, but policies are evolving rapidly. When in doubt, contact the editor.</div>
+<div class="highlight-box"><strong>A rule of thumb:</strong> If you are unsure which level of disclosure to use, choose the higher one. No reviewer has ever criticised a paper for being <em>too transparent</em> about its methods. Under-disclosure, on the other hand, can raise serious questions about integrity if it comes to light later. Transparency is a strength, not a weakness.</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Summary &amp; Looking Ahead</h2>
+<p>In this lesson, we assembled a complete workflow for AI-assisted academic writing — from the initial thinking stage through drafting, auditing, and final revision. The five-stage process is designed to keep you in intellectual control while making the most of what AI tools can offer.</p>
+<p style="margin-top: 12px;"><strong>Key takeaways:</strong></p>
+<ul class="styled-list">
+<li><strong>Think and outline first:</strong> AI should amplify your thinking, not replace it. The most common mistake is skipping the thinking stage and going straight to generation.</li>
+<li><strong>Use AI for bounded tasks:</strong> Expanding bullet points, checking clarity, suggesting transitions, polishing language. Not generating arguments or inventing evidence.</li>
+<li><strong>The reverse outline technique</strong> uses AI to help you see your own writing more clearly — it diagnoses structural problems without generating new content.</li>
+<li><strong>Keep a version control log</strong> of what AI contributed at each stage. This protects your integrity and makes disclosure straightforward.</li>
+<li><strong>Disclose honestly</strong> using a level of detail that matches your actual AI use. Err on the side of more transparency rather than less.</li>
+<li><strong>The final pass must be yours:</strong> every sentence should be something you can explain and defend.</li>
+</ul>
+<p style="margin-top: 15px;">Remember that this workflow is meant to be adapted. There is no one-size-fits-all approach to AI-assisted writing. Some researchers will use AI heavily for language polishing and barely at all for structuring. Others will rely on the reverse outline technique daily but never use AI for drafting. The right workflow is the one that helps you produce better work while maintaining your intellectual ownership and voice.</p>
+<p style="margin-top: 15px;"><strong>Next session:</strong> In Sub-Lesson 6, we move to hands-on activities and assessment. You will apply the techniques from this week to your own research writing, practise the reverse outline technique on a real draft, and complete the weekly assessment. Come prepared with a piece of your own writing that you would like to improve.</p>
+</div>
+</div>
+</div></body></html>

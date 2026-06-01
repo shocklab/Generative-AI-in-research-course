@@ -1,0 +1,448 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 10.4 - RAG in 2026</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
+<div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 10 • Sub-Lesson 4</div>
+<h1>📚 <span style="color: #ffffff;">RAG in 2026</span></h1>
+<p>What changed since Week 5: long context vs retrieval, agentic RAG and Deep Research, evaluating it all — and why the researcher stays in the loop</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>🎯 What We'll Cover</h2>
+<p>Week 5 introduced retrieval-augmented generation (RAG) as the engine behind the AI literature tools — the technique of fetching relevant documents and feeding them to a model so its answer is grounded in real sources rather than its training data alone. Those tools and that technique are still central. But three things have shifted since Week 5, and this sub-lesson is about all three.</p>
+<p>First, <strong>long context</strong>: frontier models now routinely accept a million tokens or more, which changes when you need retrieval at all. Second, <strong>agentic RAG</strong>: retrieval has moved from a single fetch-then-answer step to a loop in which the model plans, retrieves, reads, and retrieves again — and the Deep Research modes you have heard about are exactly this. Third, <strong>evaluation</strong>: we now have frameworks for measuring whether a RAG system is any good, though the hardest cases remain open.</p>
+<p>The honest verdict, which we build to: for reading one long document, just use long context; for synthesising across many sources, agentic RAG still wins; and for anything you will cite, the Week 5 verification protocols apply regardless of which method produced the answer. None of this removes the researcher from the loop.</p>
+</div>
+<h2 class="section-title">📖 Recap: What Week 5 Established</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week 5 mapped a landscape of AI literature tools — Elicit, Consensus, NotebookLM, Perplexity, Connected Papers, ResearchRabbit — and a hard warning: the hallucinated-citation crisis is real. Both still hold in 2026. The tools have improved; the warning has not expired.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In the Week 9 taxonomy, hallucinated citations are a <em>reduced-but-persistent</em> failure: far less common on well-covered topics than in 2023, but still present, and concentrated exactly where research lives — the niche, the recent, the long-tail. RAG was always partly a response to this: ground the model in retrieved sources and it has less need to invent them. That logic is intact. What has changed is how the grounding is done.</p>
+<h2 class="section-title">📜 Change One: Long Context vs Retrieval</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In Week 5, a model's context window was small enough that you <em>had</em> to retrieve: you could not simply paste a stack of papers in. By 2026, frontier models accept a million tokens or more (the Gemini Pro tier from Week 8 being the standard example) — enough for hundreds of pages at once. So a fair question is whether retrieval is still needed at all, or whether you should just dump everything into the context window and ask.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The most-cited study on this is Li et al. (2024), <em>Retrieval Augmented Generation or Long-Context LLMs?</em> (Google; EMNLP 2024). Their finding, in their words: <em>“when resourced sufficiently, [long context] consistently outperforms RAG in terms of average performance. However, RAG's significantly lower cost remains a distinct advantage.”</em> They proposed a hybrid, “Self-Route”, that routes each query to whichever approach suits it — cutting cost while keeping long-context quality.</p>
+<div class="warning-box">
+<h4>⚠️ Two caveats on the long-context win</h4>
+<p>First, that study is from 2024, tested on the long-context models of the time. Treat it as evidence of the <em>shape</em> of the trade-off, not the current margins — the Week 9 “which model, which date” discipline applies.</p>
+<p>Second, and more important: an advertised context length is not the same as reliable recall across the whole of it. A model that <em>accepts</em> a million tokens does not necessarily <em>use</em> all of them well; recall tends to sag in the middle of very long inputs, and practitioners in 2026 still report that a model's true working-memory across a giant context is well short of the advertised number. “It fits” is not “it was read carefully.”</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The practical upshot: for analysing a <em>single</em> long document where everything relevant is in front of the model, long context is simpler and usually better. For drawing on a large or open-ended body of sources — where you cannot fit it all, and where the model needs to decide what to look at next — you still want retrieval. And that is where the second change comes in.</p>
+<h2 class="section-title">🔁 Change Two: Agentic RAG</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Classic RAG is a single shot: retrieve a set of passages once, then generate an answer from them. Its weakness is obvious for real research questions — if the first retrieval misses, the answer is built on the wrong sources, and the system never reconsiders. <strong>Agentic RAG</strong> turns the single shot into a loop.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The canonical reference is Singh et al. (2025), <em>Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG</em>, which describes how agentic RAG <em>“transcends these limitations by embedding autonomous AI agents into the RAG pipeline.”</em> In plain terms, the agent does what a careful researcher does:</p>
+<ul class="step-list">
+<li><strong>Plan</strong> — break the question into sub-questions.</li>
+<li><strong>Retrieve</strong> — search for sources on the first sub-question.</li>
+<li><strong>Read and reflect</strong> — work out what was learned and what is still missing.</li>
+<li><strong>Retrieve again</strong> — run follow-up searches based on what the first round turned up (this is the step classic RAG cannot do).</li>
+<li><strong>Synthesise and check</strong> — assemble an answer and, in better systems, verify claims against the retrieved sources.</li>
+</ul>
+<p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">This loop is just the agent definition from 10.1 (model + tools + loop + memory) pointed at a retrieval tool. And it is not a research curiosity: <strong>the “Deep Research” modes</strong> in the major assistants — which take a question, spend several minutes searching and reading, and return a cited report — are agentic RAG in consumer form. When you use one, you are running a planner-retriever-synthesiser loop, with all the strengths and the 10.2 reliability caveats that implies. We compare the specific Deep Research tools, free tiers included, in 10.5.</p>
+<h2 class="section-title">📏 Change Three: Can You Tell If It's Any Good?</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If a RAG system can retrieve the wrong sources and still produce a fluent answer, how do you measure quality? The most widely-adopted answer is <strong>RAGAS</strong> (Es, James, Espinosa-Anke &amp; Schockaert, 2023) — a framework that scores a RAG system without needing hand-written gold answers for every question. Its widely-used metrics separate the two places RAG can fail:</p>
+<ul class="styled-list">
+<li><strong>Context precision &amp; context recall</strong> — did the <em>retrieval</em> step fetch the relevant passages, and only those?</li>
+<li><strong>Faithfulness</strong> — is the <em>generated answer</em> actually supported by the retrieved passages, or did the model add unsupported claims?</li>
+<li><strong>Answer relevancy</strong> — does the answer actually address the question asked?</li>
+</ul>
+<div class="warning-box">
+<h4>⚠️ What these metrics do and do not tell you</h4>
+<p>The crucial limitation: <strong>faithfulness is not correctness</strong>. An answer can be perfectly faithful to its retrieved passages — inventing nothing beyond them — and still be wrong, because the passages themselves were wrong, outdated, or cherry-picked. RAGAS checks that the model did not hallucinate <em>beyond its sources</em>; it cannot check that the sources were right. That second check is yours.</p>
+<p>Two further caveats: RAGAS uses a strong “judge” model to score, so it inherits that model's blind spots; and the hardest cases — multi-hop questions that require chaining several retrievals, and judging how well an agent compacted a huge context — remain operationally hard to evaluate even in 2026.</p>
+</div>
+<h2 class="section-title">⚖️ The Honest Verdict for May 2026</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Pulling the three changes together, here is how to choose, as a researcher, for a given task:</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Your task</th>
+<th>Best approach (May 2026)</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analyse one long document (a thesis, a report, a contract)</td>
+<td>Long context — paste it in</td>
+<td>Everything relevant fits; retrieval adds complexity for no gain.</td>
+</tr>
+<tr>
+<td>Synthesise across many sources or the open literature</td>
+<td>Agentic RAG / Deep Research</td>
+<td>The model needs to decide what to read next; follow-up retrieval is the whole point.</td>
+</tr>
+<tr>
+<td>Anything you will cite in your own work</td>
+<td>Either — then verify by hand</td>
+<td>The Week 5 citation checks apply regardless of method. Faithful ≠ correct.</td>
+</tr>
+<tr>
+<td>High-volume / repeated querying on a budget</td>
+<td>RAG</td>
+<td>RAG's lower cost is its standing advantage (Li et al.); stuffing a million tokens in per query is expensive.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>🧠 A Week 9.4 warning that sharpens here</h4>
+<p>Messeri &amp; Crockett warned (Week 9.4) that AI can create “monocultures of knowing” — everyone funnelled toward the same sources and framings. Agentic RAG intensifies the risk, because now the <em>agent</em> decides what to retrieve, what counts as relevant, and what to leave out — and it does so invisibly, in a loop you do not see. A Deep Research report that reads as comprehensive may rest on a narrow, agent-chosen slice of the literature. The friction that retrieval used to add — you, deciding what to read — was doing useful epistemic work. Automating it away is convenient and quietly costly.</p>
+</div>
+<h2 class="section-title">🌍 RAG, Local Corpora, and the Equity Angle</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">There is a genuinely hopeful version of RAG for African and other under-represented research contexts. Frontier models are trained predominantly on high-resource languages and well-digitised corpora; they know comparatively little about, say, isiXhosa scholarship or region-specific datasets. RAG offers a route around this: ground the model in a <em>local</em> corpus it was never trained well on, and it can work with material outside its training distribution.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The catch is in the retrieval layer. RAG works by converting text into embeddings (numerical representations) and matching on them — and the embedding models are themselves trained mostly on high-resource languages. If the embedding layer cannot represent isiXhosa or Setswana well, retrieval over an isiXhosa corpus will be poor no matter how good the generating model is. So the equity promise is real but conditional: <strong>RAG can ground frontier models in local knowledge only as well as the retrieval layer handles the local language</strong>, and as of 2026 most embedding models handle African languages poorly. This connects directly to the sovereign-capacity questions of Week 11 — the Esethu Framework (Rajab et al., 2025) argues for exactly this kind of locally-grounded infrastructure as a precondition for equitable AI, not an afterthought.</p>
+<div class="resource-placeholder">
+<h4>📖 Sources &amp; Further Reading</h4>
+<ul class="styled-list">
+<li><a href="https://arxiv.org/abs/2501.09136" target="_blank" rel="noopener">Singh, A., Ehtesham, A., Kumar, S., Talaei Khoei, T., &amp; Vasilakos, A. V. (2025). <em>Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG.</em> arXiv:2501.09136</a> — the canonical agentic-RAG reference.</li>
+<li><a href="https://arxiv.org/abs/2407.16833" target="_blank" rel="noopener">Li, Z., Li, C., Zhang, M., Mei, Q., &amp; Bendersky, M. (2024). <em>Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach.</em> arXiv:2407.16833</a> (Google; EMNLP 2024) — the long-context-vs-RAG trade-off and the Self-Route hybrid. (2024 evidence — read for shape, not current margins.)</li>
+<li><a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">Es, S., James, J., Espinosa-Anke, L., &amp; Schockaert, S. (2023). <em>RAGAS: Automated Evaluation of Retrieval Augmented Generation.</em> arXiv:2309.15217</a> — the RAG evaluation framework; metric definitions at <a href="https://docs.ragas.io/" target="_blank" rel="noopener">docs.ragas.io</a>.</li>
+<li><a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">Esethu Framework (Rajab et al., 2025). arXiv:2502.15916</a> — locally-grounded infrastructure for equitable AI (introduced in Week 4; expanded in Week 11).</li>
+</ul>
+</div>
+<div class="intro-text" style="margin-top: 50px;">
+<h2>👉 What Comes Next</h2>
+<p><strong>Sub-Lesson 10.5 — Advanced Research Tools: A Curated Tour.</strong> We have now built up the concepts (10.1–10.2) and the categories (10.3–10.4). The next sub-lesson is the practical pay-off: a tool-by-tool tour with an honest free-versus-paid split, including the Deep Research modes that implement the agentic RAG from this lesson, the Chinese free-tier options, and the MCP connectors that plug agents into your research tools — all framed by the question that runs through this week: what can you actually use, from here, for free?</p>
+</div>
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock, University of Cape Town · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></body></html>

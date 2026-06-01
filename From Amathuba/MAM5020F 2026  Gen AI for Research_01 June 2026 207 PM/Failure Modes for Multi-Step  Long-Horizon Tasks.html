@@ -1,0 +1,511 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 10.2 - Agents: Failure Modes for Multi-Step / Long-Horizon Tasks</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
+<div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 10 • Sub-Lesson 2</div>
+<h1>🧨 <span style="color: #ffffff;">Failure Modes for Long-Horizon Tasks</span></h1>
+<p>Applying the Week 9 patched / reduced / structural taxonomy to agents — and the central finding that reliability is not accuracy</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>🎯 What We'll Cover</h2>
+<p>Week 9 gave us a taxonomy for how AI fails: some failures have been <em>patched</em>, some are <em>reduced but persistent</em>, and some are <em>structural</em> — baked into how the systems work and unlikely to be fixed by the next release. That taxonomy was built for single-turn chatbots. This sub-lesson applies it to agents, which fail in genuinely new ways because they do not answer once and stop. They run for many steps, accumulate state, call tools, and act on whatever those tools return.</p>
+<p>The single most important idea in this sub-lesson is a distinction: <strong>reliability is not accuracy</strong>. An agent can be more accurate than ever — better at any individual step — and still be unreliable, because reliability is about doing the whole multi-step task consistently, recovering from its own mistakes, and knowing when it is wrong. A February 2026 Princeton study put numbers on this: across 14 models and 18 months, accuracy improved substantially while reliability barely moved. For a researcher deciding whether to hand a task to an agent, the gap between those two things is exactly where the danger lives.</p>
+<p>As always, the framing is the durable part and the examples are the snapshot. The specific failure stories below will date; the three-category question — <em>is this patched, reduced, or structural?</em> — will not.</p>
+</div>
+<h2 class="section-title">⏱️ Why Agents Need Their Own Failure Lesson</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A chatbot makes one prediction and stops. If it is right 90% of the time, that is roughly your experience of it. An agent runs the model in a loop — dozens or hundreds of times for a single task — and three things change.</p>
+<ul class="styled-list">
+<li><strong>Errors compound.</strong> If each step is 95% reliable and the task takes twenty independent steps, the probability that <em>every</em> step is correct is roughly 0.95<sup>20</sup> — about 36%. High per-step accuracy can still produce a task that usually fails. This is the agentic version of the Week 7 silent-error problem: each step looks plausible, the end result is wrong.</li>
+<li><strong>State accumulates.</strong> The agent carries its own earlier outputs forward as context. An early mistake does not just cost one step — it poisons every step that depends on it, and the agent rarely notices.</li>
+<li><strong>The agent acts.</strong> A chatbot that hallucinates wastes your time. An agent that hallucinates can delete a file, send an email, or spend money — because it has tools and permissions (the harness components from 10.1). The cost of a failure is no longer just a wrong answer.</li>
+</ul>
+<div class="info-box">
+<h4>📊 Reliability ≠ accuracy — the definition that anchors this week</h4>
+<p><strong>Accuracy</strong> asks: when the agent acts, is the action correct? <strong>Reliability</strong> asks: across many runs and many steps, does the agent <em>consistently</em> complete the task, recover from its own errors, behave predictably, and avoid unsafe actions? You can improve the first without improving the second. A model that is more accurate per step but no better at the other things is a more capable component inside a system that is no more trustworthy.</p>
+</div>
+<h2 class="section-title">🗃️ The Agent Failure Taxonomy</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Here is the Week 9.2 taxonomy, applied to agents. As before, the value is in placing a failure you encounter into the right category, because the category tells you what to do about it.</p>
+<!-- CATEGORY A -->
+<h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">✅ (a) Patched / Largely Solved</h3>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Early agent demos (2023–24) failed in ways that have since been largely engineered away by the harness layer:</p>
+<ul class="styled-list">
+<li><strong>Malformed tool calls.</strong> Early agents frequently emitted tool requests that did not parse. Structured tool-calling APIs and constrained decoding have largely fixed this.</li>
+<li><strong>“Forgetting” available tools.</strong> Better system prompts and tool-discovery steps (exactly the harness changes in the LangChain worked example from 10.1) have substantially reduced this.</li>
+<li><strong>Trivially hallucinated tools.</strong> Calling a function that was never provided is now rare on short tasks, though it returns on long ones.</li>
+</ul>
+<p style="color: #555; line-height: 1.75; margin-top: 15px;">The lesson here mirrors 9.2: if you see one of these, you are probably using an old model or a thin harness. Switch to a current frontier tool and the problem usually disappears.</p>
+<!-- CATEGORY B -->
+<h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">🛡️ (b) Reduced but Persistent</h3>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These are mitigated but resurface, especially on longer tasks. They are the failure modes most relevant to real research workflows in 2026:</p>
+<div class="card-grid">
+<div class="card">
+<h3>Loop instability</h3>
+<p>Agents get stuck repeating an edit, re-running a failing command, or oscillating between two states. Harnesses now ship explicit loop-detectors (again, see the LangChain recipe in 10.1) — which tells you the problem is real enough to need a dedicated mitigation.</p>
+</div>
+<div class="card">
+<h3>Over-eager action</h3>
+<p>Given write permissions, agents delete more than asked, refactor confidently in the wrong direction, or “fix” things that were not broken. The Week 9 pattern of confidently-defended wrong reasoning becomes confidently-executed wrong action.</p>
+</div>
+<div class="card">
+<h3>Sycophancy over long sessions</h3>
+<p>The Week 9 sycophancy finding (Sharma et al., 2023) intensifies in long agentic conversations: the longer the session and the more you push back, the more the agent drifts toward agreeing with you rather than the task.</p>
+</div>
+<div class="card">
+<h3>Confidence miscalibration over horizons</h3>
+<p>An agent's sense of “I've got this” does not decay as a task gets longer and riskier, even though its actual success rate does. The confidence signal you might want to threshold on is least trustworthy exactly when you need it most.</p>
+</div>
+</div>
+<!-- CATEGORY C -->
+<h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">🧨 (c) Structural and Likely Persistent</h3>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These follow from how agents work, not from fixable engineering gaps. They are the ones to design your workflow <em>around</em>, because the next model release will not remove them. Each gets its own section below: the reliability gap, long-horizon planning collapse, and prompt injection. Compositional brittleness — the compounding-error problem from the top of this lesson, and the same effect behind ProgramBench scoring 0% on whole-repository tasks in Week 9 — sits here too.</p>
+<h2 class="section-title">📉 Reliability Is Not Accuracy: The Princeton Finding</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The structural case is made most rigorously by a February 2026 paper from Princeton's Center for Information Technology Policy: <em>Towards a Science of AI Agent Reliability</em> (Rabanser, Kapoor, Kirgis, Liu, Utpala &amp; Narayanan). It is the agent-era counterpart to the Kalai et al. hallucination paper we met in Week 9 — a careful argument that a whole class of failure is structural, not a passing engineering problem.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The authors evaluated 14 models from OpenAI, Google, and Anthropic spanning 18 months of releases, across roughly 500 benchmark runs. Their headline finding is the one in this section's title:</p>
+<div class="highlight-box">
+<h3>Accuracy went up. Reliability did not.</h3>
+<p><em>“Reliability has improved only modestly over 18 months, while accuracy improved substantially.”</em> Compressing an agent's behaviour into a single success score, the authors argue, hides the operational flaws that actually determine whether you can depend on it.</p>
+<p>They decompose reliability into four dimensions — <strong>consistency, robustness, predictability, and safety</strong> — measured by twelve concrete metrics. The weakest, across the board, is <strong>predictability</strong>: <em>“agents are not good at knowing when they're wrong.”</em> On one benchmark, most models could not distinguish their own correct answers from their incorrect ones better than chance.</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two numbers make this concrete. Outcome <strong>consistency</strong> scores ranged from <strong>30% to 75%</strong> across the models tested — meaning that running the same agent on the same task under identical conditions often produced different outcomes. And because predictability is so weak, you cannot use the agent's own confidence as a filter: the “ask it only when it's sure” strategy fails, because it is not reliably sure when it should be.</p>
+<div class="warning-box">
+<h4>⚠️ What this means for delegating a task</h4>
+<p>If you run an agent once and it succeeds, that is weak evidence it will succeed next time — outcome consistency can be as low as a coin flip. And you cannot lean on the agent to tell you when it has failed, because knowing-when-it's-wrong is its weakest skill. Both facts push in the same direction: <strong>the verification burden stays with you</strong>, and it is heavier for agents than for chatbots, not lighter. This is the Week 9 verification lesson, scaled up.</p>
+</div>
+<h2 class="section-title">🧭 Long-Horizon Planning Collapse</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Why do long tasks fail so distinctively? A January 2026 paper, <em>Why Reasoning Fails to Plan</em> (Wang et al.), gives a structural answer that is worth understanding because it explains a failure you will see repeatedly.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The argument: the step-by-step reasoning that makes models good at short tasks is, formally, a <em>greedy</em> strategy — it picks the locally best next step. Greedy strategies are fine over short horizons. Over long ones they fail, because an early choice that looks locally optimal commits the agent to a path whose costs only show up much later, and those early commitments get <em>amplified over time and are difficult to recover from</em>. The authors prove the gap is <strong>structural, not a matter of model capability</strong>: a more powerful reasoner making step-wise decisions is still fundamentally limited on long-horizon tasks.</p>
+<div class="case-study">
+<h4>💡 The counter-intuitive result: small + planning beats large + greedy</h4>
+<p>The paper's most striking demonstration: with their lookahead method (FLARE), <em>“LLaMA-8B with FLARE frequently outperforms GPT-4o with standard step-by-step reasoning”</em> on long-horizon benchmarks. A small model that genuinely plans can beat a much larger model that merely reasons step by step.</p>
+<p>The research lesson is not “use LLaMA-8B”. It is that <em>reasoning is not planning</em>. When you see an agent handle each individual step competently and still walk the task into a wall, you are watching greedy step-wise reasoning fail at planning — a structural limitation, not a bug that more model scale will fix.</p>
+</div>
+<h2 class="section-title">📈 Watching Agents Run Long: Two 2026 Benchmarks</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A new class of benchmark in 2026 stopped measuring single answers and started measuring whether an agent can hold a task together over a long horizon. Two are worth knowing, both because of what they measure and because they make the structural failures visible.</p>
+<div class="card-grid">
+<div class="card">
+<h3>YC-Bench — run a startup for a (simulated) year</h3>
+<p>YC-Bench (arXiv:2604.01212) tasks an agent with running a simulated startup over a one-year horizon spanning hundreds of turns — managing employees, choosing contracts, and staying profitable while adversarial clients and rising payroll create compounding consequences. It is long-horizon planning made measurable.</p>
+<p style="font-size: 0.95em; color: #003a70;">Top result: Claude Opus 4.6 at $1.27M average final funds — with the much cheaper GLM-5 (from China's Zhipu AI) close behind at $1.21M for roughly 11× lower inference cost. A preview of the lower-cost and Chinese-model story we develop in 10.5.</p>
+</div>
+<div class="card">
+<h3>The “Meltdown Onset Point”</h3>
+<p><em>Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents</em> (arXiv:2603.29231) evaluated 10 models across 23,392 episodes and introduced metrics for how agents fall apart over time — including a <strong>Meltdown Onset Point</strong> that detects behavioural collapse by watching the agent's tool-call patterns become erratic.</p>
+<p style="font-size: 0.95em; color: #003a70;">That a benchmark needs a dedicated “meltdown” metric tells you the phenomenon is common enough to formalise: past some task length, agents do not just get things wrong, they come apart.</p>
+</div>
+</div>
+<h2 class="section-title">💉 Prompt Injection: The Structural Security Hole</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One structural failure deserves singling out because it is a security problem, not just a reliability one. An agent reads tool output — web pages, file contents, emails, search results — and acts on it. If an attacker can place text in that content, they can try to issue instructions to your agent. This is <strong>prompt injection</strong>, and the practitioner who has tracked it most closely, Simon Willison, has made the uncomfortable point repeatedly: we have known about it since 2022 and still have no robust, general defence.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For a researcher this is concrete. If you point an agent at the open web, or at a shared document, or at your inbox, you are trusting every piece of content it reads not to contain hostile instructions — and the agent has no reliable way to tell data from commands, because to a language model they are both just text. The mitigation is not technical cleverness on your side; it is the <em>permissions</em> dial from 10.1. An agent that can only read is far harder to weaponise than one that can also send, delete, or pay.</p>
+<div class="info-box">
+<h4>🌕 An African-context note: where the agent acts matters</h4>
+<p>Prompt injection and the permissions dial are not abstractions when an agent touches real systems. An agent with access to a university inbox, a grant portal, or institutional data is acting inside systems governed by South Africa's Protection of Personal Information Act (POPIA). The structural insecurity of agents is one more reason the verification and permissioning burden cannot be delegated — a theme we return to concretely in the Week 10 activity, where you will be asked to state where your tools send data before you use them.</p>
+</div>
+<h2 class="section-title">🧯 Putting the Taxonomy to Work</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As in Week 9, the point of the taxonomy is action. When you observe an agent failure, locate it — the category tells you what to do.</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Observed failure</th>
+<th>Category</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent emits a broken tool call or forgets it has a tool</td>
+<td>Patched</td>
+<td>You're on an old model or thin harness. Switch to a current frontier tool.</td>
+</tr>
+<tr>
+<td>Agent gets stuck in a loop or re-runs a failing step</td>
+<td>Reduced but persistent</td>
+<td>Use a harness with loop-detection; cap the number of steps; watch it rather than walking away.</td>
+</tr>
+<tr>
+<td>Agent deletes or changes more than you asked</td>
+<td>Reduced but persistent</td>
+<td>Turn down the permissions dial. Run read-only or in a sandbox until you trust the task.</td>
+</tr>
+<tr>
+<td>Agent succeeds once; you assume it always will</td>
+<td>Structural (consistency)</td>
+<td>Don't. Outcome consistency can be 30–75%. Re-run, or verify the output directly.</td>
+</tr>
+<tr>
+<td>Agent handles each step well but walks the whole task into a wall</td>
+<td>Structural (planning)</td>
+<td>Long-horizon planning collapse. Break the task into shorter, checkpointed pieces you verify between.</td>
+</tr>
+<tr>
+<td>Agent acts on a web page / email / document that contained instructions</td>
+<td>Structural (prompt injection)</td>
+<td>Assume any content the agent reads may be hostile. Restrict permissions; never give a web-reading agent send/pay/delete rights you wouldn't give a stranger.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-box">
+<h3>The skill is the taxonomy, not the examples</h3>
+<p>The specific tools and figures in this sub-lesson will date within months. What persists is the move: when an agent fails, ask whether the failure is patched (you're using the wrong tool), reduced-but-persistent (manage it with harness settings and supervision), or structural (design your workflow around it, because the next release will not save you).</p>
+<p>And the one structural fact to carry forward: <em>accuracy is not reliability</em>. More capable agents are not automatically more trustworthy ones. The trust has to be earned per task, by you, through verification.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Sources &amp; Further Reading</h4>
+<ul class="styled-list">
+<li><a href="https://arxiv.org/abs/2602.16666" target="_blank" rel="noopener">Rabanser, S., Kapoor, S., Kirgis, P., Liu, K., Utpala, S., &amp; Narayanan, A. (2026). <em>Towards a Science of AI Agent Reliability.</em> arXiv:2602.16666</a> (Princeton CITP) — reliability vs accuracy; four dimensions; the predictability finding.</li>
+<li><a href="https://arxiv.org/abs/2601.22311" target="_blank" rel="noopener">Wang, Z., et al. (2026). <em>Why Reasoning Fails to Plan: A Planning-Centric Analysis of Long-Horizon Decision Making in LLM Agents.</em> arXiv:2601.22311</a> — planning collapse is structural; FLARE; small-plus-planning beats large-plus-greedy.</li>
+<li><a href="https://arxiv.org/abs/2604.01212" target="_blank" rel="noopener">YC-Bench: Benchmarking AI Agents for Long-Term Planning and Consistent Execution. arXiv:2604.01212</a> — the simulated-startup long-horizon benchmark.</li>
+<li><a href="https://arxiv.org/abs/2603.29231" target="_blank" rel="noopener">Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents. arXiv:2603.29231</a> — reliability-decay and the Meltdown Onset Point.</li>
+<li><a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (2025). <em>Why Language Models Hallucinate.</em> arXiv:2509.04664</a> — the single-turn parent of the agent reliability problem (from Week 9).</li>
+<li><a href="https://simonwillison.net/tags/prompt-injection/" target="_blank" rel="noopener">Simon Willison on prompt injection</a> — the standing argument that we still lack a robust general defence.</li>
+</ul>
+</div>
+<div class="intro-text" style="margin-top: 50px;">
+<h2>👉 What Comes Next</h2>
+<p><strong>Sub-Lesson 10.3 — The Current Tool Landscape (Including MCP).</strong> Having defined agents (10.1) and mapped how they fail (10.2), we get concrete about the tools themselves: the coding, computer-use, research, and general agents available in May 2026, and the Model Context Protocol (MCP) that increasingly connects them to your data. We carry the permissions-dial and reliability lessons straight into that tour — because choosing an agent tool is, in large part, choosing how much you are willing to let it do on your behalf.</p>
+</div>
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock, University of Cape Town · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></body></html>

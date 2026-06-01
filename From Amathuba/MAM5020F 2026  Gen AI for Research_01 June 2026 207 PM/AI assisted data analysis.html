@@ -1,0 +1,583 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.2 - AI-Assisted Data Analysis in Practice</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '\1F3AF';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+
+    .step-list {
+        list-style: none;
+        counter-reset: steps;
+        margin: 20px 0;
+    }
+
+    .step-list > li {
+        counter-increment: steps;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-radius: 12px;
+    }
+
+    .step-list > li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 22px;
+        width: 35px;
+        height: 35px;
+        background: #003A70;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-table {
+            font-size: 0.85em;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 • Sub-Lesson 2</div>
+<h1>📊 <span style="color: #ffffff;">AI-Assisted Data Analysis in Practice</span></h1>
+<p>From data cleaning to exploratory analysis — what AI actually does well, where it silently fails, and why your domain expertise is the one thing no model can replace</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>In Sub-Lesson 1, we explored the landscape of AI tools for data analysis and the broad promise they hold for researchers. This session gets practical. We are going to walk through what actually happens when you hand your data to an AI system and ask it to help you analyse it — the good, the bad, and the dangerously subtle.</p>
+<p>The central message of this lesson can be stated simply: <strong>AI code that runs without errors is not the same as AI code that produces correct results.</strong> This is the "silent error problem," and it is the single most important risk in AI-assisted data analysis. A misspelled variable name throws an error. A wrong variable used in a calculation does not — it just gives you the wrong answer, formatted beautifully.</p>
+<p>We will cover data cleaning, exploratory analysis, common silent errors, the irreplaceable role of domain expertise, and the statistical pitfalls that AI can introduce into your research. No programming background is required — the concepts apply whether you work in R, Python, SPSS, or any other tool.</p>
+</div>
+<!-- SECTION 1: DATA CLEANING WITH AI -->
+<h2 class="section-title">🧹 Data Cleaning with AI</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">If data analysis were a film, data cleaning would be the months of set construction that nobody sees. Researchers routinely estimate that 80% of the time spent on any data analysis project goes into cleaning and preparation — fixing inconsistencies, handling missing values, reshaping formats, and resolving duplicates. AI can accelerate this work substantially, but only if you understand what it is doing and what it might miss.</p>
+<div class="card-grid">
+<div class="card">
+<h3>What AI Does Well</h3>
+<p>AI excels at the repetitive, pattern-based aspects of data cleaning. It can scan thousands of rows and flag entries that deviate from expected formats in seconds. Common strengths include:</p>
+<ul class="styled-list">
+<li><strong>Detecting missing values:</strong> Identifying blank cells, NA entries, placeholder values like -999 or "N/A" that should be treated as missing</li>
+<li><strong>Spotting formatting inconsistencies:</strong> Dates stored as "12/03/2024" in some rows and "2024-03-12" in others, or mixed use of commas and periods as decimal separators</li>
+<li><strong>Standardising entries:</strong> Recognising that "Cape Town", "CAPE TOWN", "cape town", and "CT" all refer to the same city</li>
+<li><strong>Identifying duplicates:</strong> Finding rows that are exact copies or near-duplicates with minor variations</li>
+<li><strong>Statistical outlier detection:</strong> Flagging values that fall far outside the expected range based on the distribution of the data</li>
+</ul>
+</div>
+<div class="card">
+<h3>What AI Can Miss</h3>
+<p>AI operates on statistical patterns, not domain understanding. This creates a fundamental blind spot: it cannot distinguish between a value that is unusual and a value that is wrong. However, with the right prompting, you can get it to find these issues. Consider these examples:</p>
+<ul class="styled-list">
+<li><strong>Domain-specific errors:</strong> A blood pressure reading of 300/200 is not an outlier — it is an impossibility. A resting heart rate of 180 in an adult is almost certainly a recording error. AI sees numbers; you see clinical meaning. If you tell it what to look out for, it will likely spot such errors.</li>
+<li><strong>Contextual plausibility:</strong> A salary of R2,000,000 per month might be a valid entry for a CEO or a data entry error for a junior employee. The same number means different things in different rows. Again, telling it to audit the data is likely to turn up this inconsistency.</li>
+<li><strong>Coded values with meaning:</strong> In many datasets, specific values carry special meaning. A "0" might mean "not measured" rather than "zero." A "-1" might be a sentinel value for "not applicable." AI will treat these as ordinary numbers unless you tell it otherwise.</li>
+<li><strong>Relationships between fields:</strong> A participant listed as 15 years old with a PhD should raise questions. AI may clean each column independently without checking cross-field consistency, unless you are careful.</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Danger of Silent Fixes</h4>
+<p>Perhaps the most significant risk in AI-assisted data cleaning is that the AI "fixes" your data without telling you what it changed. You ask it to clean a dataset, it returns a clean dataset, and you proceed to analysis — never knowing that it dropped 47 rows it deemed problematic, imputed values for 200 missing entries using a method you would not have chosen, or silently converted a categorical variable to a numeric one.</p>
+<p><strong>Best practice:</strong> Always ask AI to produce a transformation log — a complete record of every change it made, why it made it, and how many records were affected. Review this log before accepting any cleaned dataset. If the AI cannot tell you exactly what it changed, do not use the cleaned data.</p>
+</div>
+<div class="info-box">
+<h4>📝 Practical Tip: The Before-and-After Check</h4>
+<p>Before AI touches your data, record basic summary statistics: row count, column count, mean and range for key numeric variables, frequency counts for key categorical variables. After cleaning, check these again. If the row count dropped by 15% and the mean of your primary outcome variable shifted, you need to understand exactly why before proceeding. These are sanity checks that take seconds and can save you from building an entire analysis on corrupted foundations.</p>
+</div>
+<!-- SECTION 2: EXPLORATORY DATA ANALYSIS (EDA) WITH AI -->
+<h2 class="section-title">🔍 Exploratory Data Analysis (EDA) with AI</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Exploratory data analysis is the phase where you get to know your data — its shape, its quirks, its stories. AI tools promise to accelerate this phase by generating summary statistics and visualisations from natural language descriptions. The promise is real, but it comes with important caveats.</p>
+<div class="technical-detail">
+<h4>The Promise</h4>
+<p>Imagine being able to type: <em>"Show me the distribution of patient recovery times, broken down by treatment group, with outliers highlighted and a statistical comparison between groups."</em> Modern AI tools can take a request like this and generate the appropriate code, produce the visualisation, calculate summary statistics, and even offer preliminary interpretations — all in seconds.</p>
+<p>For researchers without deep programming expertise, this is transformative. Tasks that once required hours of coding and debugging can now be accomplished through conversation. AI can generate dozens of views of your data in the time it would take you to produce one, enabling a breadth of exploration that was previously impractical.</p>
+</div>
+<div class="technical-detail">
+<h4>The Reality</h4>
+<p>Speed is not the same as insight. Several problems commonly arise when AI drives the EDA process:</p>
+<ul class="styled-list">
+<li><strong>Inappropriate visualisations:</strong> AI may produce a bar chart when a box plot would be more informative, or use a pie chart (almost never the right choice) for data that demands a different representation. It optimises for what looks clean, not for what reveals the most about your data</li>
+<li><strong>Missing important relationships:</strong> AI generates the plots you ask for, but it cannot anticipate which relationships in your data are scientifically interesting. It will not spontaneously check whether your treatment effect varies by site, or whether your time series has a seasonal pattern — unless you think to ask</li>
+<li><strong>Over-interpreting noise:</strong> AI may describe random variation as a "trend" or a "pattern." When you ask it to summarise what it sees, it will find something to say even when the honest answer is "there is nothing notable here"</li>
+<li><strong>Default choices that obscure:</strong> AI makes dozens of small decisions in every plot — axis scales, bin widths, colour schemes, whether to show individual data points or just summaries. Each of these choices can hide or reveal important features of your data, and AI defaults are not always the best choices for your specific analysis</li>
+</ul>
+</div>
+<div class="case-study">
+<h4>🔬 Walkthrough: An EDA Workflow with AI Assistance</h4>
+<p>Suppose you have a dataset of 500 survey responses measuring attitudes toward AI in education across three South African universities, with responses on a 5-point Likert scale across 20 items, along with demographic variables (age, gender, faculty, year of study).</p>
+<p><strong>Step 1 — Let AI generate the overview:</strong> Ask for basic summary statistics, missing data patterns, and distributions of all variables. This is where AI shines — it generates the mechanical overview quickly and accurately.</p>
+<p><strong>Step 2 — You decide what to explore:</strong> The AI's overview shows that one university has a much higher non-response rate on certain items. This is interesting — but only because you know that university recently had a controversy about AI-assisted plagiarism. AI would not make this connection.</p>
+<p><strong>Step 3 — Direct targeted analysis:</strong> Ask AI to break down responses by university, controlling for faculty. Ask it to check whether the non-response pattern correlates with specific survey items. You are now driving the analysis based on domain knowledge that the AI does not have.</p>
+<p><strong>Step 4 — Challenge the output:</strong> AI produces a plot showing a "significant difference" between universities. Before you accept this, check: Did it account for the different sample sizes? Did it use the right statistical test for Likert-scale data? Did it adjust for multiple comparisons? These are questions you must ask — AI will not volunteer that its default choices might be inappropriate.</p>
+<p><strong>The pattern:</strong> AI generates, you direct, you verify. At no point does the AI decide what matters — that is your job.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Golden Rule of AI-Assisted EDA</span></h3>
+<p>AI is excellent at generating many views of your data quickly. But <strong>you</strong> decide which views matter. The tool can show you everything; it cannot tell you what is important. Your research question, your domain knowledge, and your scientific judgment determine which of the AI's many outputs deserve further investigation and which are noise. Exploration without direction is just generating pictures.</p>
+</div>
+<!-- SECTION 3: THE SILENT ERROR PROBLEM -->
+<h2 class="section-title">🚨 The Silent Error Problem</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 15px;"><strong>This is the most important section of this lesson.</strong></p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Modern agentic tools like Claude Code are excellent at handling crashes — they run the code, see the error, and iterate autonomously until it runs. That class of problem is largely solved. But there is a deeper and more dangerous category of failure: code that runs perfectly — no errors, no warnings, clean output — and produces results that are completely wrong. This is the silent error problem. Unlike a crash, there is nothing to alert you that something has gone wrong. The analysis proceeds, the paper gets written, and the error only surfaces later — if it surfaces at all.</p>
+<div class="case-study">
+<h4>📋 Case Study: The Analysis That Looked Perfect</h4>
+<p>A researcher asks an AI to analyse the relationship between a new teaching intervention and student exam scores. The AI produces clean, well-commented code. It generates a beautiful regression table showing a statistically significant positive effect (p = 0.003). The researcher is delighted.</p>
+<p>But there is a problem. The dataset contains two similarly named columns: <code>final_score</code> (the actual exam result) and <code>final_score_predicted</code> (a model prediction from a previous analysis). The AI used the predicted scores instead of the actual scores. The regression is essentially correlating the intervention with a previous model's output — not with real student performance.</p>
+<p>The code ran without errors. The output looked professional. The p-value was "significant." And every conclusion drawn from the analysis was wrong.</p>
+<p>This is not a hypothetical scenario. It is the kind of mistake that happens routinely when AI selects variables based on column names rather than semantic understanding of what each column represents.</p>
+</div>
+<p style="font-size: 1.1em; color: #555; margin: 30px 0;">Why does this happen? AI generates code that is <em>statistically plausible</em> — it follows valid programming syntax and applies real statistical methods. But it does not understand the <em>meaning</em> of your data. It does not know that column B and column C represent fundamentally different things if their names are similar. It optimises for code that runs, not code that answers your specific research question correctly.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Wrong Variable Selection</h3>
+<p>AI picks a variable based on its name rather than its meaning. If your dataset has <code>income</code> , <code>income_adjusted</code> , and <code>income_log</code> , the AI may choose whichever seems most generic — not the one that is appropriate for your analysis. This is especially dangerous when variable names are abbreviated or ambiguous, as they often are in real research datasets.</p>
+</div>
+<div class="card">
+<h3>Off-by-One Errors in Time Series</h3>
+<p>When aligning time series data, AI may shift your data by one time period without you noticing. If you are measuring the effect of a policy implemented in March, and the AI aligns outcomes starting from February or April, your entire causal story changes. These alignment errors produce results that look plausible but point to the wrong time period.</p>
+</div>
+<div class="card">
+<h3>Incorrect Missing Data Handling</h3>
+<p>There are three fundamentally different approaches to missing data: dropping incomplete cases, imputing values, and using methods that account for missingness. Each produces different results, and the right choice depends on <em>why</em> data are missing — something AI cannot determine. If your data are missing because sicker patients dropped out of a study, dropping those cases biases your results. AI does not know this unless you tell it.</p>
+</div>
+<div class="card">
+<h3>Wrong Statistical Test</h3>
+<p>AI selects a parametric test when your data are non-normal, or uses a test that assumes independence when your observations are paired. It may run a t-test on Likert scale data, apply a Pearson correlation to ordinal variables, or use linear regression when the relationship is clearly non-linear. The output will still include a p-value and a confidence interval — they will just be meaningless.</p>
+</div>
+<div class="card">
+<h3>Grouping and Aggregation Errors</h3>
+<p>When AI groups or aggregates your data, it may inadvertently change the unit of analysis. If you have repeated measurements per participant and the AI calculates a mean across all observations rather than first averaging within participants, you have pseudo-replication — your effective sample size is inflated, your standard errors are too small, and your p-values are too optimistic. The analysis looks more impressive than it should.</p>
+</div>
+<div class="card">
+<h3>Data Leakage</h3>
+<p>In predictive modelling, AI may inadvertently include information from the future or from the outcome variable in the features used for prediction. Kapoor and Narayanan (2023) documented how this kind of data leakage has compromised a significant body of machine-learning research across multiple scientific fields. The models report excellent performance — because they are effectively cheating by using information they should not have access to.</p>
+</div>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Key Lesson</span></h3>
+<p>A correct-looking output is not a correct output. The most dangerous errors in AI-assisted analysis are the ones that produce professional, publication-ready results that happen to be wrong. Your defence against silent errors is not better AI — it is better verification practices. Check what variable the AI used. Check how it handled missing data. Check that the statistical test matches your data structure. Check the units. Check the direction of effects against your expectations. <strong>If you cannot explain every step of the analysis, you do not understand the analysis — and you should not publish it.</strong></p>
+</div>
+<div class="info-box">
+<h4>📖 Key Reading: Kapoor &amp; Narayanan (2023)</h4>
+<p>The paper <em>"Leakage and the Reproducibility Crisis in Machine-Learning-Based Science"</em> published in <em>Patterns</em> documents how data leakage — where information from outside the training set improperly influences model development — has affected research across 17 scientific fields. The authors found that papers with leakage reported substantially inflated performance metrics. This is not an obscure technical problem: it represents a systematic way in which computational analysis can go wrong, producing results that look strong but do not replicate. The paper provides a taxonomy of leakage types and practical guidelines for avoiding them. It is essential reading for anyone using AI or machine learning in their research.</p>
+<p><a href="https://doi.org/10.1016/j.patter.2023.100804" target="_blank" rel="noopener">Read the paper: doi.org/10.1016/j.patter.2023.100804</a></p>
+</div>
+<!-- SECTION 4: DOMAIN EXPERTISE AS THE ESSENTIAL COMPLEMENT -->
+<h2 class="section-title">🧠 Domain Expertise as the Essential Complement</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI finds patterns. That is what it does, and it does it faster than any human. But finding a pattern is not the same as finding a meaningful pattern. The entire history of science is littered with patterns that turned out to be coincidences, artefacts, or confounders. Your domain expertise is what separates genuine discoveries from statistical noise.</p>
+<div class="technical-detail">
+<h4>Spurious Correlations: When Patterns Lie</h4>
+<p>Tyler Vigen's <a href="https://tylervigen.com/spurious-correlations" target="_blank" rel="noopener">Spurious Correlations</a> project provides a vivid illustration of this problem. He documents strong statistical correlations between completely unrelated variables: the divorce rate in Maine and per capita consumption of margarine, for instance, or the number of people who drowned in pools and the number of films Nicolas Cage appeared in. These correlations are real — the numbers genuinely track together — but they are meaningless. No causal mechanism connects them.</p>
+<p>AI will find these kinds of correlations in your data. It will present them with confidence intervals and p-values. It will not tell you that they are nonsense — because it cannot distinguish a meaningful relationship from a coincidental one. That distinction requires understanding the subject matter: the biology, the economics, the psychology, the physics. It requires knowing what <em>should</em> be related and what should not.</p>
+</div>
+<div class="case-study">
+<h4>🔬 Simpson's Paradox: When Aggregation Deceives</h4>
+<p>Simpson's paradox occurs when a trend that appears in aggregated data reverses or disappears when the data are separated into subgroups. This is not a rare curiosity — it is surprisingly common in real research data, and AI tools will typically show you whichever version of the data you ask for without flagging the paradox.</p>
+<p><strong>Classic example:</strong> A treatment appears to be less effective than a control overall. But when you break the data down by severity of illness, the treatment is better in <em>every subgroup</em> . The paradox arises because sicker patients were more likely to receive the treatment, creating a confound in the aggregate data.</p>
+<p>If you ask AI to "compare outcomes between treatment and control groups," it will give you the aggregate comparison — the misleading one. It will not spontaneously check for Simpson's paradox unless you know to ask. And knowing to ask requires understanding that severity might be a confounding variable — which requires domain expertise.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Overfitting: Learning Noise</h3>
+<p>When AI models are given too much freedom to find patterns, they "learn" the noise in your data rather than the underlying signal. An overfitted model will perform brilliantly on your existing data and fail completely on new data. AI will not warn you that this is happening — the training metrics will look excellent. You need to know enough about your data and your methods to insist on proper validation: holdout sets, cross-validation, and out-of-sample testing. The AI will do these things if you ask, but it will not always do them by default.</p>
+</div>
+<div class="card">
+<h3>Confounding Variables</h3>
+<p>A confounding variable is one that influences both the supposed cause and the supposed effect, creating the illusion of a direct relationship. Ice cream sales and drowning deaths both increase in summer — not because ice cream causes drowning, but because hot weather drives both. AI cannot identify confounders without domain knowledge. It will happily model the direct relationship between ice cream and drowning if that is what the data show. Only you know which variables might be confounders in your specific research context.</p>
+</div>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Researcher's Irreplaceable Role</span></h3>
+<p>AI can process data faster, generate more plots, and test more hypotheses than any human researcher. But it cannot do three things that are fundamental to research:</p>
+<p><strong>1. Know what questions to ask.</strong> The most important moment in any analysis is deciding what to analyse. AI can answer questions; it cannot identify which questions matter.</p>
+<p><strong>2. Know what results are surprising.</strong> A surprising result — one that contradicts existing theory or prior findings — is where scientific progress happens. But recognising surprise requires knowing what was expected, and that requires deep familiarity with your field.</p>
+<p><strong>3. Know what findings would change the field.</strong> Not all statistically significant results are scientifically important. Understanding the implications of a finding — how it fits into or challenges the existing body of knowledge — is an inherently human judgment that no amount of data processing can replace.</p>
+</div>
+<!-- SECTION 5: STATISTICAL PITFALLS AI CAN INTRODUCE -->
+<h2 class="section-title">⚠️ Statistical Pitfalls AI Can Introduce</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Beyond the silent errors in code, AI can introduce more subtle statistical problems into your analysis. These are not bugs — they are features of how AI approaches data analysis that can systematically inflate your confidence in findings that may not be real.</p>
+<ol class="step-list">
+<li><strong>Confusing Correlation with Causation</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">AI will present correlations as "findings" without distinguishing them from causal relationships. If you ask "what factors predict student success?", AI will identify variables that correlate with success — but correlation is not causation. A variable that predicts an outcome is not necessarily a variable that influences it. AI will not make this distinction for you. It will present a list of predictors and let you draw the causal conclusions — correctly or not.</p>
+</li>
+<li><strong>The Multiple Comparisons Problem</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">If you test 20 hypotheses at the p &lt; 0.05 level, you expect to find one "significant" result by chance alone — even if none of the hypotheses is true. AI makes it trivially easy to test dozens or hundreds of hypotheses in minutes. Without correction for multiple comparisons (Bonferroni, false discovery rate, or similar), the more you test, the more "significant" results you will find by chance. AI will dutifully report each one as significant unless you specifically instruct it to correct for multiple testing.</p>
+</li>
+<li><strong>Cherry-Picking Results</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">When AI summarises an analysis, it tends to highlight the most dramatic finding — the largest effect size, the smallest p-value, the most visually striking pattern. This is not necessarily the most important or most reliable finding. If you run a comprehensive analysis and only report the highlights that AI emphasises, you are cherry-picking — even if you did not intend to. The remedy is to report the full analysis, including null results and weak effects, not just the headline numbers.</p>
+</li>
+<li><strong>Accidental P-Hacking</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">P-hacking occurs when analysts iterate through different analysis choices until they find a statistically significant result. With AI, this can happen almost unconsciously. You ask for an analysis, the result is non-significant, so you ask AI to "try a different approach" or "check if there's a better way to model this." Each iteration represents a new analysis decision, and if you keep iterating until p &lt; 0.05, you have p-hacked — even though you never deliberately set out to do so. The speed and ease of AI-assisted iteration makes this especially insidious.</p>
+</li>
+<li><strong>The Garden of Forking Paths</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">Every data analysis involves dozens of decisions: how to handle outliers, which covariates to include, how to define subgroups, which time period to analyse, what transformation to apply. Each decision creates a "fork" in the analytical path. AI makes these decisions for you, often without flagging that alternatives exist. The problem is that different reasonable choices can lead to different conclusions. If AI happens to choose the combination of decisions that produces a significant result, you may not realise that equally reasonable alternative choices would have produced a null result. Pre-registration of your analysis plan is the strongest defence against this problem.</p>
+</li>
+</ol>
+<div class="warning-box">
+<h4>⚠️ The Speed Trap</h4>
+<p>All of these pitfalls share a common amplifier: speed. When analysis takes hours or days, researchers naturally consider each step carefully. When AI can produce a complete analysis in seconds, the temptation to iterate rapidly — trying different models, subsets, and specifications until something "works" — becomes almost irresistible. The speed of AI-assisted analysis is a feature, but it is also a risk multiplier for every statistical pitfall on this list. Slow down. Think about each result before requesting the next analysis.</p>
+</div>
+<!-- SECTION 6: READINGS -->
+<h2 class="section-title">📚 Readings and Resources</h2>
+<div class="technical-detail">
+<h4>Core Readings</h4>
+<ol class="step-list">
+<li><strong> Kapoor, S. &amp; Narayanan, A. (2023). "Leakage and the Reproducibility Crisis in Machine-Learning-Based Science." <em>Patterns</em> , 4(9). </strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">The definitive paper on how data leakage compromises ML-based research across scientific fields. Documents systematic problems with computational analysis that produce impressive-looking but unreliable results. Essential for understanding why AI-generated analysis requires careful verification.</p>
+<p style="margin-top: 5px;"><a href="https://doi.org/10.1016/j.patter.2023.100804" target="_blank" rel="noopener">doi.org/10.1016/j.patter.2023.100804</a></p>
+</li>
+<li><strong>Cheng, L., Li, X., &amp; Bing, L. (2023). "Is GPT-4 a Good Data Analyst?" arXiv:2305.15038.</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">An empirical evaluation of GPT-4's capabilities for end-to-end data analysis tasks. The paper systematically tests the model's ability to handle data cleaning, visualisation, and statistical analysis, revealing both genuine strengths and consistent weaknesses. Provides concrete evidence for the claims made in this lesson about what AI can and cannot do with data.</p>
+<p style="margin-top: 5px;"><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener">arxiv.org/abs/2305.15038</a></p>
+</li>
+<li><strong>Vigen, T. "Spurious Correlations."</strong>
+<p style="margin-top: 10px; color: #555; line-height: 1.7;">A vivid and memorable demonstration of why correlation does not imply causation. Browse the examples before class — they are entertaining, but the underlying lesson is serious. AI will find these kinds of correlations in your data and present them as findings.</p>
+<p style="margin-top: 5px;"><a href="https://tylervigen.com/spurious-correlations" target="_blank" rel="noopener">tylervigen.com/spurious-correlations</a></p>
+</li>
+</ol>
+</div>
+<div class="technical-detail">
+<h4>Supplementary Readings</h4>
+<ul class="styled-list">
+<li><strong>Narayanan, A. &amp; Kapoor, S. AI as Normal Technology (formerly AI Snake Oil).</strong> Ongoing commentary from the authors of the leakage paper, covering the broader landscape of AI hype and how to distinguish real capabilities from exaggerated claims. Highly recommended for developing critical judgment about AI tools. <a href="https://www.normaltech.ai/" target="_blank" rel="noopener">normaltech.ai</a></li>
+<li><strong>Mollick, E. One Useful Thing (Substack).</strong> Practical, research-informed commentary on AI in education and research from a Wharton professor. Mollick writes extensively about using AI for data analysis with appropriate caution about limitations. <a href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">oneusefulthing.org</a></li>
+</ul>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Summary</h2>
+<p>This lesson has focused on one core reality: AI can accelerate every stage of data analysis, from cleaning to exploration to statistical testing, but it introduces risks at every stage as well. The most dangerous of these risks are not the ones that produce error messages — they are the ones that produce clean, professional, wrong results.</p>
+<p>Data cleaning with AI is powerful but requires transformation logs and domain-informed sanity checks. Exploratory analysis with AI generates breadth but not direction — you must supply the scientific judgment about what matters. Silent errors in AI-generated code are pervasive and can only be caught through careful verification. Domain expertise remains the irreplaceable complement to AI's computational power: it is what allows you to distinguish signal from noise, meaningful from spurious, and important from trivial. And the statistical pitfalls that AI can introduce — from multiple comparisons to p-hacking to the garden of forking paths — are amplified by the very speed that makes AI-assisted analysis attractive.</p>
+<p>The bottom line is not that you should avoid AI for data analysis. It is that you should use it with your eyes open, your verification practices in place, and your domain expertise fully engaged.</p>
+<p style="margin-top: 20px;"><strong>Next session:</strong> In Sub-Lesson 3 (Visualization with AI), we will explore how AI can help you create effective data visualisations — and how the same tool that makes beautiful charts can also make misleading ones. We will cover principles of honest visualisation, common AI defaults that distort data, and how to build graphics that communicate your findings accurately.</p>
+</div>
+</div>
+</div></body></html>
