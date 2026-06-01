@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 1 - Hands-On Exploration: Testing Generative AI Tools</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.intro-text p:last-child { margin-bottom: 0; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; }
+.info-box p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.info-box p:last-child { margin-bottom: 0; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #555; line-height: 1.7; margin-bottom: 8px; }
+.resource-placeholder p:last-child { margin-bottom: 0; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.highlight-box p:last-child { margin-bottom: 0; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } }
+header, header h1, header p, header span, .week-badge,
+.highlight-box, .highlight-box h3, .highlight-box p, .highlight-box strong, .highlight-box span { color: #ffffff !important; }
+.highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 1 &bull; Hands-On Activities</div>
+  <h1>&#129514; <span style="color: #ffffff;">Hands-On Exploration: Testing Generative AI Tools</span></h1>
+  <p>Practical activities for exploring generative AI tools and understanding their potential applications in research contexts</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Do</h2>
+    <p>This session provides practical activities to help you explore generative AI tools and understand their potential applications in research contexts. Through hands-on experimentation and collaborative exercises, you will gain direct experience with AI capabilities and limitations.</p>
+    <p>Work through the three activities below, complete the core readings, and write the weekly reflection journal entry before the Week 2 session.</p>
+  </div>
+
+  <h2 class="section-title">&#128301; Activity 1 &mdash; Hands-On Exploration</h2>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.8;"><strong>Task:</strong> Interact with at least three different generative AI tools:</p>
+  <ul class="styled-list">
+    <li>Claude or ChatGPT for text</li>
+    <li>A free image generator (e.g. Craiyon, Bing Image Creator)</li>
+    <li>A code assistant, if applicable to your work</li>
+  </ul>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px;">For each tool, try a task relevant to your research and consider:</p>
+  <ul class="styled-list">
+    <li>What did it do well?</li>
+    <li>What surprised you?</li>
+    <li>What went wrong?</li>
+  </ul>
+
+  <h2 class="section-title">&#128197; Activity 2 &mdash; Timeline Exercise</h2>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.8;">In small groups:</p>
+  <ul class="styled-list">
+    <li>Construct an annotated timeline of AI milestones from 1950 to 2025</li>
+    <li>Each group focuses on a different era and presents back to the class</li>
+  </ul>
+  <div class="info-box">
+    <h4>&#128172; Discussion question</h4>
+    <p>What patterns do you notice? Why were there &ldquo;AI winters&rdquo;? What changed to enable the current revolution?</p>
+  </div>
+
+  <h2 class="section-title">&#128506;&#65039; Activity 3 &mdash; Research Relevance Mapping</h2>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.8;">Individual reflection, then class discussion:</p>
+  <ul class="styled-list">
+    <li>Write down three tasks from your own research workflow</li>
+    <li>The class collectively maps these to AI tool categories</li>
+  </ul>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px;">Consider these questions:</p>
+  <ul class="styled-list">
+    <li>Which tasks are likely to benefit from AI assistance?</li>
+    <li>Which are not?</li>
+    <li>What are the risks?</li>
+  </ul>
+
+  <h2 class="section-title">&#128218; Core Readings (All Freely Accessible)</h2>
+  <div class="resource-placeholder">
+    <p><strong>Wolfram, S. (2023). What Is ChatGPT Doing&hellip; and Why Does It Work?</strong><br>Intuitive explanation; no equations required &mdash; <a href="https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/" target="_blank" rel="noopener">writings.stephenwolfram.com</a></p>
+    <p><strong>3Blue1Brown (2024). But What Is a GPT? Visual Intro to Transformers</strong><br>~27 min video; best visual introduction &mdash; <a href="https://www.youtube.com/watch?v=wjZofJX0v4M" target="_blank" rel="noopener">youtube.com</a></p>
+    <p><strong>Mollick, E. (2023). What Just Happened? Catching Up on the AI Revolution</strong><br>Clear, non-technical orientation &mdash; <a href="https://www.oneusefulthing.org/" target="_blank" rel="noopener">One Useful Thing (Substack)</a></p>
+    <p style="color: #888; font-size: 0.9em;">See the full reading list for five supplementary readings.</p>
+  </div>
+
+  <h2 class="section-title">&#9999;&#65039; Weekly Assessment</h2>
+  <div class="technical-detail">
+    <h4>Reflection Journal Entry (500 words)</h4>
+    <p style="color: #444; line-height: 1.75;">Address the following in your reflection:</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li>Describe your prior experience with AI tools, if any</li>
+      <li>What are your expectations and concerns about using AI in your research?</li>
+      <li>What do you most want to learn from this course?</li>
+    </ul>
+    <p style="color: #444; line-height: 1.75; margin-top: 12px;"><strong>Due:</strong> before the Week 2 session.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>&#128301; <span style="color: #ffffff;">Next Week: How Modern AI Systems Work</span></h3>
+    <p>Topics we&#39;ll explore: next-token prediction at enormous scale; what the model &ldquo;knows&rdquo; (and doesn&#39;t); tokenization and linguistic equity. Come ready to experiment with prompts!</p>
+  </div>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-1/Current Generative AI Landscape.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Current Generative AI Landscape (May 2026)</div></a>
+  <a class="page-nav-link" href="../week-2/LLM Architecture Deep Dive.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">LLM Architecture Deep Dive</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>
