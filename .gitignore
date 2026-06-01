@@ -1,2 +1,7 @@
 .DS_Store
-.claude/
+
+# Ignore local Claude Code config, but DO track project skills so they travel
+# with the repo (needed for scheduled/remote agents working from a fresh clone).
+.claude/*
+!.claude/skills/
+.claude/skills/**/.DS_Store
