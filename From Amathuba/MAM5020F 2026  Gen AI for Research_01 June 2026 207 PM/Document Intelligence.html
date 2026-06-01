@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.3 - Document Intelligence</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+    .ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+    header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+    .week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+    header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+    header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+    .content { padding: 50px 40px; }
+    .intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+    .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+    .intro-text h2::before { content: '\1F3AF'; }
+    .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+    .section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+    .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+    .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+    .styled-list { list-style: none; margin-top: 15px; }
+    .styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+    .styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+    .highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+    .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+    .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+    .warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+    .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+    .warning-box p { color: #555; line-height: 1.7; }
+    .info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+    .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .info-box p { color: #555; line-height: 1.7; }
+    .technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+    .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+    .case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+    .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+    .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+    .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+    .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .comparison-table tr:hover { background: #f9f9f9; }
+    .step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+    .step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+    .step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+    .resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+    .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+    .resource-placeholder p { color: #666; }
+    @media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page’s design, presentation and content have been created and enhanced using Claude (Anthropic’s AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 8 • Sub-Lesson 3</div>
+<h1>📄 <span style="color: #ffffff;">Document Intelligence — PDFs, Tables, and Forms</span></h1>
+<p>Extracting structured data from research documents, the tools that do it best, and why complex tables remain the hardest unsolved problem</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>Overview</h2>
+<p>Research lives in PDFs. Supplementary data tables, scanned archival documents, preprints, journal papers, grant reports — the information researchers need most is often locked in formats that resist easy extraction. AI has made substantial progress here, but the gap between “I can read this PDF” and “I can reliably extract its data” is wider than most tools acknowledge.</p>
+<p>This sub-lesson unpacks the technical reasons PDFs are hard, maps the current tool landscape with honest accuracy figures, identifies the complex table problem as the central unresolved challenge, and gives you a practical workflow for document AI in research settings.</p>
+</div>
+<!-- SECTION 1: WHY PDFs ARE HARDER THAN THEY LOOK -->
+<h2 class="section-title">📄 Why PDFs Are Harder Than They Look</h2>
+<div class="technical-detail">
+<h4>🔎 The Technical Reality of PDF Structure</h4>
+<p style="color: #555; line-height: 1.8; margin-bottom: 15px;">PDFs were designed for printing, not data exchange. They store text as positioned glyphs — not as structured content. A column of numbers in a table is not stored as a table: it is stored as individual text fragments at specific page coordinates. When an AI “reads” a PDF, it must first reconstruct the logical structure (paragraphs, headings, table cells, figure captions) from this positional information. This reconstruction is the hard part, and it is where most errors originate.</p>
+<p style="color: #555; line-height: 1.8; margin-bottom: 5px;">There are three distinct PDF types, each with different extraction characteristics:</p>
+<ul class="styled-list">
+<li><strong>Native PDF (text layer):</strong> text is stored as text; extraction is relatively reliable. Most modern journal PDFs fall into this category.</li>
+<li><strong>Image PDF (scanned):</strong> the entire page is an image; extraction requires OCR before any structure reconstruction is possible. Older archival documents and some supplementary files are often image PDFs.</li>
+<li><strong>Mixed PDF:</strong> some pages have text layers, some are scanned — the most common and most error-prone type for research documents. A thesis that includes a scanned signature page is technically a mixed PDF.</li>
+</ul>
+<p style="color: #555; line-height: 1.8; margin-top: 15px;">Identifying your PDF type before choosing a tool is the single most useful habit you can develop for document extraction work.</p>
+</div>
+<!-- SECTION 2: THE TOOLS LANDSCAPE -->
+<h2 class="section-title">🔧 The Tools Landscape</h2>
+<p style="color: #555; line-height: 1.8; margin-bottom: 20px;">The field has moved quickly. The following table summarises the leading options as of 2025, drawing on the OmniDocBench benchmark (CVPR 2025) and independent evaluations.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Best For</th>
+<th>Accuracy (Simple Tables)</th>
+<th>Accuracy (Complex Tables)</th>
+<th>Local / Cloud</th>
+<th>Free?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Docling (IBM)</strong></td>
+<td>Research PDFs, local processing</td>
+<td>Strong</td>
+<td>Good (struggles with row merging)</td>
+<td>Local</td>
+<td>Open-source</td>
+</tr>
+<tr>
+<td><strong>LlamaParse (LlamaIndex)</strong></td>
+<td>Highest accuracy overall</td>
+<td>Excellent</td>
+<td>Excellent</td>
+<td>Cloud</td>
+<td>Limited free tier</td>
+</tr>
+<tr>
+<td><strong>Marker</strong></td>
+<td>Scanned papers</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Local</td>
+<td>Open-source</td>
+</tr>
+<tr>
+<td><strong>Unstructured</strong></td>
+<td>Diverse document types</td>
+<td>Strong</td>
+<td>Moderate</td>
+<td>Cloud / Local</td>
+<td>Open-source</td>
+</tr>
+<tr>
+<td><strong>Azure Document Intelligence</strong></td>
+<td>Enterprise scale</td>
+<td>Good</td>
+<td>Good</td>
+<td>Cloud</td>
+<td>Paid</td>
+</tr>
+</tbody>
+</table>
+<div class="info-box">
+<h4>💡 Current Best Practice Recommendation</h4>
+<p>For most research use cases: <strong>Docling</strong> is the fastest local option and handles most standard academic PDFs well. For tables in supplementary materials, <strong>LlamaParse</strong> gives the best accuracy but requires API access. For scanned documents, <strong>Marker</strong> runs full OCR on every page. A hybrid approach — Docling for speed, LlamaParse for the tables that matter most — is the current best practice recommendation from benchmarking studies (OmniDocBench, CVPR 2025; note that top tools now exceed 94% on the original benchmark, and a harder v1.6 subset has been released to track continued progress).</p>
+</div>
+<!-- SECTION 3: THE COMPLEX TABLE PROBLEM -->
+<h2 class="section-title">📋 The Complex Table Problem</h2>
+<div class="case-study">
+<h4>🔍 The Central Unresolved Challenge</h4>
+<p style="color: #555; line-height: 1.8; margin-bottom: 15px;">A <em>complex table</em> is any table with merged cells, nested headers, multi-level row or column spans, footnotes referenced within cells, or values that span multiple rows. These are extremely common in research: ANOVA tables, regression output tables, pharmaceutical trial results, census data extracts. If you work with quantitative data, you work with complex tables.</p>
+<p style="color: #555; line-height: 1.8; margin-bottom: 15px;">Current performance: even the best tools (LlamaParse, Docling) break down on complex tables. The specific failure modes are well-documented:</p>
+<ul class="styled-list">
+<li><strong>Row merging:</strong> cells that span multiple rows are often split into duplicate entries or lost entirely</li>
+<li><strong>Multi-level headers:</strong> a header spanning three columns becomes three independent, disconnected headers with no parent-child relationship preserved</li>
+<li><strong>Footnote associations:</strong> the superscript “a” in a cell that refers to footnote “a” at the bottom of the table is lost — the association between cell and note is not reconstructed</li>
+<li><strong>Reading order:</strong> in some table layouts, the logical reading order (how a human reads the data) differs from the spatial order (how glyphs are positioned on the page); tools that follow spatial order produce structurally invalid output</li>
+</ul>
+<p style="color: #555; line-height: 1.8; margin-top: 15px;"><strong>Practical consequence:</strong> always verify extracted table data cell by cell for any table with merged cells or complex structure. Do not assume extraction accuracy for complex tables regardless of which tool you use.</p>
+</div>
+<!-- SECTION 4: LOST IN THE MIDDLE -->
+<h2 class="section-title">📌 The “Lost in the Middle” Problem</h2>
+<div class="warning-box">
+<h4>⚠️ A Long-Document Limitation Worth Knowing About</h4>
+<p>When you give an AI model a long document, it has historically paid more attention to content at the beginning and end than to content in the middle. This was documented systematically by Liu et al. (2024) in “Lost in the Middle: How Language Models Use Long Contexts” (<em>Transactions of the Association for Computational Linguistics</em>, arXiv:2307.03172) — a foundational finding that frontier long-context models have partially addressed but not eliminated. The U-shaped attention curve has flattened with newer training methods, but performance on locating specific information in the middle of long contexts is still measurably weaker than at the edges.</p>
+<p style="margin-top: 12px;"><strong>For researchers:</strong> if you are asking an AI to find specific information in a long paper — methodological details, a contradictory finding, a specific numerical result — do not assume that “1M-token context window” means equal attention to all 1M tokens. For important information, extract the relevant section and query it separately rather than relying on the AI to correctly locate it within the full document. This is the safer workflow even where the underlying limitation has improved.</p>
+</div>
+<div class="info-box">
+<h4>📖 Reference</h4>
+<p>Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., &amp; Liang, P. (2024). Lost in the Middle: How Language Models Use Long Contexts. <em>Transactions of the Association for Computational Linguistics</em>, 12, 157–173. <a href="https://arxiv.org/abs/2307.03172" style="color: #2a5298;">arXiv:2307.03172</a></p>
+</div>
+<!-- SECTION 5: SCANNED AND HANDWRITTEN DOCUMENTS -->
+<h2 class="section-title">✍️ Scanned and Handwritten Documents</h2>
+<div class="card-grid">
+<div class="card">
+<h3>📝 Printed, Legible Handwriting</h3>
+<p>Frontier vision-language models now achieve roughly <strong>96–98% character-level accuracy</strong> (~3–4% WER) on standard handwritten text benchmarks like IAM and RIMES — GPT-4o reports ~1.69% character error rate on RIMES (Crosilla et al., 2025, <a href="https://arxiv.org/abs/2503.15195" style="color: #2a5298;" target="_blank" rel="noopener">arXiv:2503.15195</a>). Specialised open models like Allen AI's olmOCR-2-7B (Oct 2025, <a href="https://arxiv.org/abs/2510.19817" style="color: #2a5298;" target="_blank" rel="noopener">arXiv:2510.19817</a>) match commercial systems on document OCR, though they are not primarily evaluated on handwriting. Accuracy drops into the 80–95% range on noisy, historical, or cursive handwriting.</p>
+</div>
+<div class="card">
+<h3>📂 Archival Documents</h3>
+<p>Degraded scans, unusual page layouts, yellowing or staining, and mixed handwriting/print significantly degrade all models. Budget time for manual review on archival material — AI can accelerate the work but cannot replace careful human checking for documents where accuracy matters.</p>
+</div>
+<div class="card">
+<h3>🌐 Multi-Language OCR</h3>
+<p>Most tools perform well on printed English and Western European languages. Performance is measurably lower for African scripts, many Asian scripts, and non-Latin alphabets. For research that involves documents in Zulu, Xhosa, Afrikaans, or other African languages, verify tool support explicitly before committing to a workflow.</p>
+</div>
+<div class="card">
+<h3>📄 Practical Tool: Marker</h3>
+<p>Marker processes every page through full OCR, making it robust to scanned documents even at the cost of processing speed. For archival research where you cannot guarantee that documents have a text layer, Marker is the safest default choice among the open-source options.</p>
+</div>
+</div>
+<!-- SECTION 6: DOCUMENT AI IN RESEARCH WORKFLOWS -->
+<h2 class="section-title">🚀 Document AI in Research Workflows</h2>
+<p style="color: #555; line-height: 1.8; margin-bottom: 20px;">The following workflow reflects best practices for integrating document AI into academic research — prioritising accuracy verification at each stage where errors are most likely to occur.</p>
+<ol class="step-list">
+<li><strong>Identify your document type first</strong> (native PDF, scanned, or mixed) — this single decision determines which tool to use and what accuracy to expect. Open the PDF, zoom in, and try selecting text: if text is selectable, it has a text layer; if not, it is a scanned image.</li>
+<li><strong>For native PDFs with standard structure:</strong> Docling works well and is free, local, and produces clean Markdown output. Install via <code>pip install docling</code>; the Python API is straightforward for batch processing.</li>
+<li><strong>For complex tables in supplementary files:</strong> use LlamaParse and verify every extracted table against the visual layout. LlamaParse’s premium mode uses a multimodal model to “see” the table rather than parse glyphs, which substantially improves complex table accuracy.</li>
+<li><strong>For scanned documents:</strong> Marker or Azure Document Intelligence; budget time for manual checking of all tables and numerical values.</li>
+<li><strong>For long documents with specific target information:</strong> extract the relevant section (the methods section, a specific table, a particular results subsection) before querying rather than querying the full document. This directly mitigates the “lost in the middle” effect.</li>
+<li><strong>Always check extracted tables against the visual layout:</strong> open the PDF alongside the extracted output and compare. For complex tables, check every cell. For simple tables, spot-check at least the header row and first and last data rows.</li>
+<li><strong>For batch processing multiple papers:</strong> start with a sample of 5–10 where you know the correct values, measure accuracy before scaling to the full corpus. Discovering a systematic error after processing 200 papers is far more costly than discovering it after 10.</li>
+</ol>
+<!-- READINGS -->
+<h2 class="section-title">📚 Readings</h2>
+<div class="resource-placeholder">
+<h4>📋 Core Reading</h4>
+<p>Liu et al. (2024). “Lost in the Middle: How Language Models Use Long Contexts.” <em>Transactions of the Association for Computational Linguistics</em>.<br><a href="https://arxiv.org/abs/2307.03172" style="color: #2a5298; font-weight: 600;">https://arxiv.org/abs/2307.03172</a></p>
+</div>
+<div class="resource-placeholder">
+<h4>📊 Supplementary Reading</h4>
+<p>OmniDocBench (CVPR 2025) — the most comprehensive 2025 benchmark for document parsing. Note that top tools now exceed 94% on the original benchmark; a harder v1.6 subset was released to track continued progress on nested tables, dense formulas, and unconventional layouts.<br><a href="https://github.com/opendatalab/OmniDocBench" style="color: #2a5298; font-weight: 600;">https://github.com/opendatalab/OmniDocBench</a></p>
+</div>
+<!-- SUMMARY -->
+<div class="highlight-box">
+<h3>✅ Sub-Lesson 3 Summary</h3>
+<p><strong>PDF structure:</strong> PDFs store text as positioned glyphs, not structured content. Three types — native, scanned, and mixed — require different tools and yield different accuracy levels.</p>
+<p><strong>Tool landscape:</strong> Docling (best local option for standard academic PDFs), LlamaParse (best overall accuracy, cloud), Marker (best for scanned documents), Unstructured (versatile). A hybrid approach is the current recommended practice.</p>
+<p><strong>Complex tables:</strong> The central unsolved problem. Row merging, multi-level headers, footnote associations, and reading order all cause systematic failures even in the best tools. Always verify complex table extractions cell by cell.</p>
+<p><strong>Lost in the middle:</strong> AI models attend less to content in the middle of long documents. Extract specific sections before querying rather than querying full documents.</p>
+<p><strong>Up next — Sub-Lesson 4:</strong> We move from documents to audio. Transcription AI, word error rates, South African language performance, and qualitative analysis software.</p>
+</div>
+</div>
+<!-- /content --></div>
+<!-- /container --></body></html>

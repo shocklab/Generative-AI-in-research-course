@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9.2 - Three Categories of Failure</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
+<div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 9 • Sub-Lesson 2</div>
+<h1>🧮 <span style="color: #ffffff;">Three Categories of Failure</span></h1>
+<p>A taxonomy that survives the next model release: what's been patched, what's reduced but persistent, and what's structural</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>🎯 What We'll Cover</h2>
+<p>If “what AI can't do” is a moving target, you need a way of organising failures that doesn't go stale every time a new model drops. This sub-lesson offers one: three categories that classify failures by how durable they are, not by which specific model exhibited them.</p>
+<p>The pay-off: when you encounter an AI failure in your own work, you can place it in the taxonomy. Failures in category (a) are diagnostic of model age — switch to a current frontier model and try again. Failures in category (b) require workflow design to manage. Failures in category (c) are structural and won't be fixed by the next release; they need verification protocols (Sub-Lesson 9.5).</p>
+</div>
+<!-- CATEGORY A -->
+<h2 class="section-title">✅ (a) Patched / Largely Solved</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These were widely-cited failure modes in 2023–24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks — but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Reversal Curse</h3>
+<p>In 2023, Berglund et al. showed that LLMs trained on facts of the form “A is B” failed to generalise to “B is A” — even when the inverse relationship was common in their training data. A model that knew “Tom Cruise's mother is Mary Lee Pfeiffer” would not reliably answer “Who is Mary Lee Pfeiffer's son?”</p>
+<p>By 2026, this failure mode is no longer prominent in benchmark discussions. Training-data interventions and inference-time techniques have substantially mitigated it in frontier models. Still cited in the literature, but largely as a historical landmark.</p>
+<p style="font-size: 0.9em; color: #003a70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2309.12288" target="_blank" rel="noopener">Berglund, L., Tong, M., Kaufmann, M., et al. (2023). The Reversal Curse. arXiv:2309.12288</a></p>
+</div>
+<div class="card">
+<h3>Basic Arithmetic and Short-Form Reasoning</h3>
+<p>In 2023, Frieder et al. tested ChatGPT and GPT-4 on graduate-level mathematics and found them mostly inadequate. The paper became a touchstone for “LLMs can't do real maths” arguments. By May 2026 this is thoroughly superseded: GPT-5.5 Pro scores 52.4% on FrontierMath (research-level problems set by Fields medallists), Gemini Deep Think scored 35/42 at IMO 2025, and several Erdős problems have been solved with frontier-model assistance (see 9.3).</p>
+<p style="font-size: 0.9em; color: #003a70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2301.13867" target="_blank" rel="noopener">Frieder, S., Pinchetti, L., et al. (2023). Mathematical Capabilities of ChatGPT. NeurIPS 2023</a></p>
+</div>
+<div class="card">
+<h3>Hallucinated Code on Common Tasks</h3>
+<p>In 2023, asking a model for code in a popular library would frequently produce calls to functions that didn't exist. By 2026, frontier models pass SWE-bench Verified above 87% — meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
+</div>
+</div>
+<div class="info-box">
+<h4>📚 The Skill Being Taught</h4>
+<p>When reading a 2023–24 paper that says “AI cannot do X”, ask: has the same X been retested with current frontier models? If yes, what did the retest find? If no, the claim is unproven on current systems and should be cited cautiously, with the model and date explicit.</p>
+</div>
+<!-- CATEGORY B -->
+<h2 class="section-title">🛡️ (b) Reduced but Persistent</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These failures have been mitigated but still surface, especially under specific conditions. Frontier models behave better than 2023–era models, but not so well that you can stop checking. These are the failure modes most relevant to research workflows in 2026.</p>
+<h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Hallucinated Citations</h3>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Even frontier models in 2026 hallucinate citations on niche topics. The Week 5 evidence remains directly relevant:</p>
+<ul class="styled-list">
+<li><strong>Magesh et al. (2024).</strong> <em>Hallucination-Free?</em> arXiv:2405.20362. Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17–33%</strong> hallucination on benchmarking queries — despite vendor marketing as “hallucination-free”.</li>
+<li><strong>Chelli et al. (2024).</strong> <em>JMIR</em> 26: e53164. GPT-3.5 39.6%, GPT-4 28.6%, Bard 91.4%.</li>
+<li><strong>Linardon et al. (2025).</strong> <em>JMIR Mental Health</em> 12: e80371. GPT-4o: 19.9% overall; <strong>28–29% on niche topics</strong>; 6% on well-studied. Citation hallucination correlates with how rare the topic is in training data.</li>
+</ul>
+<p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">In 2026 these rates have dropped further on common topics but the long-tail problem persists: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A vivid current data point: Ant Group's <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis's Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong>. The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
+<h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong — a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
+<ul class="styled-list">
+<li><strong>Constitutional AI</strong> trains the model to evaluate its own outputs against principles including honesty and calibrated confidence (Week 2).</li>
+<li><strong>DPO with sycophancy-labelled preference pairs</strong> directly penalises sycophantic responses while preserving instruction-following.</li>
+<li><strong>Persona-vector interpretability methods</strong> extract activation patterns associated with traits like sycophancy and intervene at inference time.</li>
+</ul>
+<p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models — but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it's wrong, you need to ask in a way that doesn't signal what answer you want.</p>
+<div class="case-study" style="margin-top: 20px;">
+<h4>📝 A May 2026 anecdote: model overconfidence on a maths disagreement</h4>
+<p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both — reconciled the formulas and explained why the apparent disagreement dissolved.</p>
+<p>Anecdotal, single-case, not a benchmark. But it's a useful illustration that overconfident defence of wrong reasoning — the sycophancy/calibration failure mode — is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
+</div>
+<p style="font-size: 0.9em; color: #003a70; font-weight: 600; margin-top: 15px;">Original sycophancy paper: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
+<h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Calibration</h3>
+<p style="color: #555; line-height: 1.75;">Frontier models are still over-confident. The probability they assign to an answer being correct does not reliably match the actual accuracy. Calibration has improved over time, but a 90%-confident answer may be right 75% of the time, and a 60%-confident answer may be right 80%. This makes confidence-thresholded workflows less useful than you might hope — you can't simply “ask the model only when it's sure”.</p>
+<!-- CATEGORY C -->
+<h2 class="section-title">🧮 (c) Structural and Likely Persistent</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These failures follow from how LLMs work, not from training-data quirks. They are unlikely to be solved by the next model release because they are properties of the architecture or the training paradigm. Verification protocols (Sub-Lesson 9.5) target these specifically.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Hallucination as Statistical Pressure</h3>
+<p>OpenAI's own analysis: hallucinations originate as binary-classification errors and persist because evaluations reward confident guessing over acknowledging uncertainty. The proposed fix is socio-technical — change how benchmarks score uncertainty — not architectural.</p>
+<p>The argument: <em>“Hallucinations need not be mysterious — they originate simply as errors in binary classification.”</em></p>
+<p style="font-size: 0.9em; color: #003a70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). Why Language Models Hallucinate. arXiv:2509.04664</a></p>
+</div>
+<div class="card">
+<h3>Pattern Completion vs Understanding</h3>
+<p>LLMs predict next tokens. Whether this constitutes “understanding” in any deeper sense is a philosophical question, but the practical implication is concrete: a model can produce correct output via shortcuts that don't generalise. This is the foundation for the <em>illusions of understanding</em> argument we develop in Sub-Lesson 9.4 (Messeri &amp; Crockett, Nature 2024).</p>
+</div>
+<div class="card">
+<h3>The Long-Tail Problem</h3>
+<p>Performance degrades on rare topics regardless of model scale. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones — exactly where novel research happens. Niimi (2025), cited in Week 5, demonstrated that bibliographic hallucination rates correlate strongly with how often a paper appears in training data. This effect compounds at the frontier of any field.</p>
+</div>
+<div class="card">
+<h3>Compositional Brittleness</h3>
+<p>The “silent error” theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. This is not solved by making each step more accurate, because compositional errors compound multiplicatively. Long agentic chains amplify the problem.</p>
+<p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro — competitive with the closed frontier on most single-step benchmarks — struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This is the failure mode that scales worst as agentic systems get longer.</p>
+</div>
+<div class="card">
+<h3>Domain-Specific Failure Modes</h3>
+<p>Even frontier models fail differently in different fields, regardless of overall benchmark score. A model excellent at theoretical physics may be brittle on Renaissance history. Aggregate benchmarks don't predict performance in your specific domain. This is why the hands-on activities (9.6) ask you to test capability in your own field rather than rely on published numbers.</p>
+</div>
+<div class="card">
+<h3>Training Data Dependence</h3>
+<p>Models can only know what was in their training data. They will confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural — it doesn't go away with more parameters or better RLHF.</p>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Background Reading</h4>
+<p><strong><a href="https://normaltech.ai/" target="_blank" rel="noopener">Kapoor, S., &amp; Narayanan, A. (ongoing). normaltech.ai</a></strong> — the blog formerly known as <em>AI Snake Oil</em>. The structural-failures position; argues that many AI capability claims are overstated and many failures are structural rather than version-specific. The 2024 Princeton UP book <em>AI Snake Oil</em> is a longer version of the argument.</p>
+<p style="margin-top: 10px;"><strong><a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). <em>Why Language Models Hallucinate.</em> arXiv:2509.04664</a></strong> — OpenAI's technical paper on the structural origins of hallucination. Reading both Kapoor &amp; Narayanan and Kalai et al. gives you views from outside and inside the labs respectively.</p>
+</div>
+<!-- DIAGNOSTIC TABLE -->
+<h2 class="section-title">🧾 Putting the Taxonomy to Work</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Here's how the taxonomy plays out for failures you might actually encounter in research workflows. When you observe a failure, locate it in this table:</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Observed Failure</th>
+<th>Category</th>
+<th>Diagnosis &amp; Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Model fails on simple arithmetic in your prompt</td>
+<td>Patched</td>
+<td>You're using an old model. Switch to a current frontier (Opus 4.7, GPT-5.5, etc.) and try again.</td>
+</tr>
+<tr>
+<td>Model produces a confident citation that doesn't exist on a niche topic</td>
+<td>Reduced but persistent</td>
+<td>Run the Five-Point Citation Check from Week 5. Don't skip verification because the model sounded confident.</td>
+</tr>
+<tr>
+<td>Model agrees with your hypothesis after you express attachment to it</td>
+<td>Reduced but persistent</td>
+<td>Sycophancy. Re-prompt without signalling your preferred answer; cross-check with a different model.</td>
+</tr>
+<tr>
+<td>Model produces code that runs perfectly but gives wrong numerical results</td>
+<td>Structural (compositional)</td>
+<td>The Week 7 silent-error problem. Verification with known-answer testing is mandatory.</td>
+</tr>
+<tr>
+<td>Model gives you summary statistics on a topic that look reasonable but on inspection are wrong</td>
+<td>Structural (long tail)</td>
+<td>You've hit the long-tail problem. Verify against primary sources; consider whether the model's training data covers your topic adequately.</td>
+</tr>
+<tr>
+<td>Model is excellent in one of your domains and brittle in another</td>
+<td>Structural (domain-specific)</td>
+<td>Test capability in each domain you use AI in. Don't generalise from one domain's reliability to another's.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="highlight-box">
+<h3>The skill is the taxonomy, not the specific examples</h3>
+<p>The specific examples in this sub-lesson will date. The reversal curse will eventually be a footnote that no one cites. New patched failures will replace it. The structural-failures list may grow or shrink as research clarifies what is fundamental and what is not.</p>
+<p>What persists is the question you ask when you encounter a failure: <em>is this patched, reduced-but-persistent, or structural?</em> The answer determines what you do about it.</p>
+</div>
+<div class="intro-text" style="margin-top: 50px;">
+<h2>👉 What Comes Next</h2>
+<p><strong>Sub-Lesson 9.3 — Where AI Is Now Genuinely Strong.</strong> Having looked at the trajectory and the failure taxonomy, we now look at the other side: what current frontier models are genuinely good at, with concrete examples from mathematics and theoretical physics in 2026. Many students underestimate AI in some directions; recalibration is the work.</p>
+</div>
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></body></html>

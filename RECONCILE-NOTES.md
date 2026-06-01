@@ -35,7 +35,36 @@ Per-page similarity (March export vs current docs; lower = more session-fixes + 
 
 **Implication:** the reconcile is mostly "apply the checklist fixes to Amathuba" (already documented) **plus** a small harvest of bucket-(b) LMS-only wording (H1s, possibly a few headings) back into docs. Not a big merge.
 
-## Phase 3 — Fresh Brightspace export ⏳ NEEDS USER
+## Phase 3 — Fresh Brightspace export ✅ DONE
+Current export (01 June 2026) copied into `From Amathuba/MAM5020F 2026  Gen AI for Research_01 June 2026 207 PM/` — 69 HTML files, includes Weeks 9–12. Confirmed it captures the session's Amathuba work (W11/W12 pages, W8 Intron fix, W9 HLE fix, W11.6 8-founder Indaba) and still shows the un-applied checklist items (e.g. W3 TMI "restarted" error present).
+
+## Phase 4 — Categorised reconciliation report ✅ DONE (against 01 June export)
+
+Auto-mapped all 69 export pages to their best `docs/` match by content similarity. **The fork is small and well-behaved.**
+
+**Bucket summary:**
+- **57 pages ≥ 0.97 similar** → identical modulo docs-only chrome. **Nothing to do.**
+- **5 pages 0.85–0.97** (LLM Architecture, Current Landscape, Foundations, Course Caveats, "But what is a neural network") → differences are the **session fact-fixes** = bucket (c), already in `AMATHUBA-EDIT-CHECKLIST.md`.
+- **Low-similarity matches** that are actually heavily-edited real pairs (How AI Image Generation 0.80, Intro to Transformers 0.81, Lightning Tour 0.84) → also bucket (c) / cosmetic; short/video pages where small edits move the ratio.
+
+**Bucket (b) — genuine Amathuba-only content the repo is MISSING (the real reconciliation payload):**
+| LMS page | Status | Action |
+|---|---|---|
+| **Class introductions** (Week 1) | live activity page, not in docs | decide: add to docs, or intentionally LMS-only |
+| **Meet the course team** (orientation) | live, not in docs | likely intentionally LMS-only (personal/teaching-team info) |
+| **Course Orientation / Overview** | live, not in docs | check vs `docs/course-orientation/Overview.html` (may be a near-empty template stub on the site) |
+| **Hands-On Exploration: Testing GenAI Tools** (`m…slln2nvba`, Week 1) | live activity page, not in docs | decide: add to docs, or intentionally LMS-only |
+
+**Bucket (b) — LMS housekeeping (not a content fork, but worth fixing on Amathuba):**
+- **Four "Hands-On Activities and Assessment" pages share collision-prone names** (two carry literal "- Copy"/"- Copy (1)/(2)" suffixes from duplication). They are actually **different weeks**: `- Copy (1)`=Week 8, `- Copy (2)`=Week 9, `- Copy`=Week 6, plain=Week 5. Recommend renaming each on Amathuba to "Week N — Hands-On Activities and Assessment" to remove ambiguity. (docs already keeps them cleanly separated by week folder.)
+
+**H1/title differences** (bucket b, decide per page — user chose case-by-case): the clearest is the Week-1 history page — Amathuba H1 "The Evolution of Artificial Intelligence" vs docs "History of AI: From Neurons to Neural Networks". A full H1-conflict list will be produced at merge time.
+
+**Net:** reconciliation = (c) apply the existing checklist to Amathuba  +  (b) decide on 4 LMS-only pages (adopt into docs or mark intentionally-LMS-only) + tidy the 4 duplicate Hands-On names + settle a short list of H1 wordings. No large content merge.
+
+## ~~Phase 3~~ (superseded — see above)
+<!-- original Phase 3 instructions retained below for reference -->
+### Original Phase 3 instructions ⏳ NEEDS USER
 The March export can't be the reconcile basis (stale + missing Weeks 9–12). Need a **current** export:
 1. Amathuba → **Manage Course → Import / Export / Copy Components**
 2. **Export** as a component package (include all Content/HTML topics).

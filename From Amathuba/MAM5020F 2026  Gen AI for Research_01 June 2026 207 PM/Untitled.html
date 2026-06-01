@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2.2 - Training Large Language Models</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 10px auto 0;
+        }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-text h2::before { content: '🎯'; }
+
+        .intro-text p {
+            font-size: 1.1em;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #2a5298;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #003A70;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+
+        .highlight-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .resource-placeholder p { color: #666; font-style: italic; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th {
+            background: #003A70;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        .cost-estimate {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #003A70;
+            margin: 20px 0;
+        }
+
+        .cost-estimate h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 2 • Sub-Lesson 2</div>
+<h1>🚀 <span style="color: #ffffff;">Training Large Language Models</span></h1>
+<p>From raw text to intelligent systems: the pre-training journey</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Last session, we dissected the transformer architecture—the <em>structure</em> of modern LLMs. But how do billions of parameters actually learn to generate coherent, knowledgeable text? This session covers the training process: how we go from random weights and massive text corpora to models that can write, reason, and assist with research.</p>
+<p>We'll explore the pre-training objective, the scale of data required, the optimization techniques that make training feasible, and the staggering computational costs involved. We'll also examine scaling laws that predict model performance and the parallelism strategies that enable training at unprecedented scales.</p>
+<p><strong>Key question:</strong> Why does training a frontier model cost tens of millions of dollars—and what are researchers buying with that money?</p>
+</div>
+<!-- SECTION 1: PRE-TRAINING OBJECTIVES -->
+<h2 class="section-title">🎯 Pre-Training Objectives</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Before we can train a model, we need a learning objective: what task should the model solve during training? Modern LLMs primarily use one deceptively simple objective.</p>
+<div class="highlight-box">
+<h3>🔑<span style="color: #ffffff;"> Next-Token Prediction</span></h3>
+<p>The dominant pre-training objective for modern decoder-only LLMs: given a sequence of tokens, predict the next token.</p>
+<p style="margin-top: 15px;">In many training pipelines this is the main loss, and it’s powerful: applied to massive corpora, it encourages the model to capture grammar, factual associations, and patterns of reasoning. Some training setups also add auxiliary losses or curriculum/mixing strategies (especially for multimodal or retrieval-augmented systems).</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Autoregressive Language Modeling</h3>
+<p>The dominant approach for decoder-only models (GPT, Claude, LLaMA):</p>
+<ul class="styled-list">
+<li><strong>Input:</strong> Sequence of tokens [t₁, t₂, ..., tₙ]</li>
+<li><strong>Task:</strong> Predict tₙ₊₁ given [t₁, ..., tₙ]</li>
+<li><strong>Training signal:</strong> Cross-entropy loss between predicted distribution and actual next token</li>
+<li><strong>Causal masking:</strong> Model can only see previous tokens, not future ones</li>
+<li><strong>Example:</strong> "The capital of France is" → model should assign high probability to "Paris"</li>
+</ul>
+</div>
+<div class="card">
+<h3>Why This Works</h3>
+<p>Next-token prediction seems simple, but it pushes the model to represent:</p>
+<ul class="styled-list">
+<li><strong>Syntax:</strong> Grammatical structure, word order, punctuation</li>
+<li><strong>Semantics:</strong> Context-dependent meaning and reference</li>
+<li><strong>Regularities:</strong> Statistical structure of language, code, and math-like text</li>
+<li><strong>Factual patterns:</strong> Associations present in the corpus (not guaranteed truth)</li>
+<li><strong>Inference patterns:</strong> Common reasoning templates that help predict what comes next</li>
+</ul>
+<div class="info-box" style="margin-top: 15px;">
+<h4>💡 Self-Supervised Learning</h4>
+<p>No human labels needed—the text itself provides supervision. This is why LLMs can train on very large corpora without manual annotation.</p>
+</div>
+</div>
+<div class="card">
+<h3>Alternative Objectives (Historical and Still Useful)</h3>
+<p>Other pre-training approaches:</p>
+<ul class="styled-list">
+<li><strong>Masked Language Modeling (BERT):</strong> Mask random tokens, predict them from context (bidirectional)</li>
+<li><strong>Encoder-Decoder (T5):</strong> Span corruption/reconstruction tasks</li>
+<li><strong>Prefix LM:</strong> Hybrid approach with bidirectional prefix and autoregressive suffix</li>
+</ul>
+<p style="margin-top: 15px; color: #666;"><strong>Why decoder-only is common:</strong> Simple, scales well, and is directly suited to open-ended generation. That said, encoder–decoder and masked objectives remain competitive for some tasks (e.g., translation, certain structured generation settings).</p>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📹 A little more on next-token prediction</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bKdc5O54GiM?si=JZnsE0i06flr-0Cp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<!-- SECTION 2: TRAINING DATA -->
+<h2 class="section-title">📚 Training Data: Scale, Quality, and Curation</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The data you train on determines what your model can pick up. Modern LLMs are trained on enormous token counts from diverse sources—but data quality and composition matter as much as quantity.</p>
+<div class="technical-detail">
+<h4>📊 Data Scale Evolution</h4>
+<p style="margin-bottom: 15px;">Training data has grown dramatically:</p>
+<table class="comparison-table" style="width: 100%;">
+<thead>
+<tr>
+<th style="width: 14%;">Model</th>
+<th style="width: 10%;">Year</th>
+<th style="width: 28%;">Training Tokens</th>
+<th style="width: 48%;">Data Sources</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://openai.com/index/better-language-models/" target="_blank" rel="noopener"><strong>GPT-2</strong></a></td>
+<td>2019</td>
+<td>~8 billion</td>
+<td>WebText (outbound Reddit links)</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener"><strong>GPT-3</strong></a></td>
+<td>2020</td>
+<td>~300 billion</td>
+<td>Filtered Common Crawl, WebText2, Books, Wikipedia (mixture described in the paper)</td>
+</tr>
+<tr>
+<td><strong>GPT-4</strong></td>
+<td>2023</td>
+<td>~13 trillion (unreported, speculative)</td>
+<td>Undisclosed; multimodal data included in GPT-4V-style systems</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2307.09288" target="_blank" rel="noopener"><strong>LLaMA 2</strong></a></td>
+<td>2023</td>
+<td>2 trillion</td>
+<td>Publicly available data; no Meta user data (per authors)</td>
+</tr>
+<tr>
+<td><a href="https://arxiv.org/abs/2407.21783" target="_blank" rel="noopener"><strong>LLaMA 3</strong></a></td>
+<td>2024</td>
+<td>~15 trillion</td>
+<td>More diverse sources; stronger filtering and quality controls (per authors)</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666;"><strong>Trend (often claimed):</strong> As public web text becomes noisier and more saturated, labs increasingly emphasize filtering, licensing, domain balancing, and synthetic data. The extent of “data scarcity” depends heavily on definitions and access to private/licensed corpora.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Common Data Sources</h3>
+<ul class="styled-list">
+<li><strong>Web crawls:</strong> <a href="https://commoncrawl.org" target="_blank" rel="noopener">Common Crawl</a>, C4 (Colossal Clean Crawled Corpus)</li>
+<li><strong>Books:</strong> Project Gutenberg, other book corpora (often legally and ethically contentious)</li>
+<li><strong>Wikipedia:</strong> High-quality encyclopedic knowledge</li>
+<li><strong>Code repositories:</strong> GitHub, Stack Overflow (for coding + structured text patterns)</li>
+<li><strong>Scientific papers:</strong> arXiv, PubMed, and academic corpora</li>
+<li><strong>Forums/conversations:</strong> Reddit and other forums (with heavy filtering)</li>
+</ul>
+</div>
+<div class="card">
+<h3>Data Curation Challenges</h3>
+<ul class="styled-list">
+<li><strong>Quality filtering:</strong> Removing spam, boilerplate, and low-information text</li>
+<li><strong>Deduplication:</strong> Reducing repeats that inflate token counts without adding signal</li>
+<li><strong>Toxicity:</strong> Filtering harmful or unsafe content (imperfectly)</li>
+<li><strong>Privacy:</strong> Removing personal/sensitive information</li>
+<li><strong>Copyright:</strong> Legal questions about using copyrighted material</li>
+<li><strong>Contamination:</strong> Preventing evaluation/test sets from leaking into training data</li>
+</ul>
+</div>
+<div class="card">
+<h3>Data Composition Matters</h3>
+<p>It's not just volume—the mix of data types affects model behavior:</p>
+<ul class="styled-list">
+<li><strong>Code data:</strong> Often correlates with better performance on structured reasoning tasks (causal mechanism debated)</li>
+<li><strong>Mathematical text:</strong> Can improve symbolic/quantitative patterns (often still brittle)</li>
+<li><strong>Multilingual data:</strong> Enables cross-lingual transfer and broader coverage</li>
+<li><strong>Instruction-like data:</strong> Some pipelines include instruction-following examples earlier than “alignment” (varies by lab)</li>
+<li><strong>Balance:</strong> Over-representing one domain biases style and knowledge</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>🔧 Tokenization: Preparing Text for Training</h4>
+<p>Before training, text must be converted to tokens:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li><strong>BPE (Byte-Pair Encoding):</strong> Common for GPT/LLaMA-family tokenizers. Iteratively merges frequent symbol pairs.</li>
+<li><strong>WordPiece:</strong> Used by BERT-style models; similar spirit to BPE with a different objective.</li>
+<li><strong>SentencePiece:</strong> A tokenizer toolkit that can implement <em>BPE</em> or <em>Unigram LM</em>; trains from raw text without pre-tokenization, often with byte fallback options.</li>
+<li><strong>Vocabulary size:</strong> Often 32K–100K tokens. Larger vocab can reduce sequence length but increases embedding/softmax sizes.</li>
+</ul>
+<p style="margin-top: 10px;"><strong>Trade-off:</strong> Finer tokens = more flexible, longer sequences. Coarser tokens = shorter sequences, less flexibility for rare words/morphology.</p>
+</div>
+<div class="resource-placeholder">
+<section style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; line-height: 1.5; color: #1f2937;">
+<h2 style="margin: 0 0 0.5rem 0;">📄 Reading Resources: Data Curation, Scaling Laws, and Data Mixtures</h2>
+<h3 style="margin: 1.25rem 0 0.5rem 0;">🧠 Core Papers</h3>
+<ol style="margin: 0 0 1rem 1.25rem; padding: 0;">
+<li style="margin: 0 0 0.75rem 0;"><strong>Chinchilla scaling laws / compute-optimal training</strong><br><em>Training Compute-Optimal Large Language Models</em> (Hoffmann et al., 2022).<br>Key idea: for a fixed compute budget, many models are <strong>under-trained</strong> on too few tokens; compute-optimal regimes often favor training on more tokens per parameter.<br><a href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener noreferrer">arXiv:2203.15556</a></li>
+<li style="margin: 0 0 0.75rem 0;"><strong>Earlier scaling laws</strong><br><em>Scaling Laws for Neural Language Models</em> (Kaplan et al., 2020).<br>Establishes empirical scaling relationships and provides a baseline lens for thinking about compute/data/model size regimes (pre-Chinchilla).<br><a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener noreferrer">arXiv:2001.08361</a></li>
+<li style="margin: 0 0 0.75rem 0;"><strong>GPT-3 data mixture</strong><br><em>Language Models are Few-Shot Learners</em> (Brown et al., 2020).<br>Describes the <strong>training data mixture</strong> (filtered Common Crawl + WebText2 + Books + Wikipedia) and why mixture design matters.<br><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">arXiv:2005.14165</a></li>
+<li style="margin: 0 0 0.75rem 0;"><strong>LLaMA 2 data + filtering</strong><br><em>Llama 2: Open Foundation and Fine-Tuned Chat Models</em> (Touvron et al., 2023).<br>Data sources, filtering, and high-level curation choices from a major open model.<br><a href="https://arxiv.org/abs/2307.09288" target="_blank" rel="noopener noreferrer">arXiv:2307.09288</a></li>
+</ol>
+<ul style="margin: 0 0 1rem 1.25rem; padding: 0;">
+<li style="margin: 0 0 0.75rem 0;"><strong>GPT-4 Technical Report</strong><br>Not detailed on datasets, but useful for seeing what major labs disclose and how they frame data/safety constraints at a high level.<br><a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener noreferrer">arXiv:2303.08774</a></li>
+</ul>
+<h3 style="margin: 1.25rem 0 0.5rem 0;">🎓 Practical Guides / Hands-On References</h3>
+<ul style="margin: 0 0 1rem 1.25rem; padding: 0;">
+<li style="margin: 0 0 0.75rem 0;"><strong>Hugging Face Course (data prep + tokenization basics)</strong><br>Tokenization, dataset preparation, and evaluation hygiene.<br><a href="https://huggingface.co/learn" target="_blank" rel="noopener noreferrer">huggingface.co/learn</a></li>
+<li style="margin: 0 0 0.75rem 0;"><strong>Instruction-tuning dataset construction (for curation intuition)</strong><br>Alpaca-style pipelines illustrate balancing, formatting, and contamination pitfalls (more finetuning than pretraining).<br><a href="https://github.com/tatsu-lab/stanford_alpaca" target="_blank" rel="noopener noreferrer">Stanford Alpaca (GitHub)</a></li>
+</ul>
+</section>
+</div>
+<div class="resource-placeholder">
+<h4>📹 LLM Tokenizers explained</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hL4ZnAWSyuU?si=bWqEyWHmOhHihgsC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<!-- SECTION 3: OPTIMIZATION -->
+<h2 class="section-title">⚙️ Optimization: Making Training Work</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Training a billion-parameter model requires sophisticated optimization techniques. You can't just run vanilla gradient descent and expect it to work!</p>
+<div class="highlight-box">
+<h3>🎯<span style="color: #ffffff;"> The Optimization Challenge</span></h3>
+<p>Training LLMs means finding good values for billions of parameters in a high-dimensional space. The loss landscape is non-convex, and training is computationally expensive and sensitive to hyperparameters.</p>
+<p style="margin-top: 15px;">Modern LLM training relies on: <strong>adaptive optimizers</strong> (Adam variants), <strong>careful learning rate schedules</strong>, <strong>large global batch sizes</strong>, and <strong>gradient clipping</strong> to reduce instability.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Optimizers</h3>
+<p>Algorithms for updating parameters based on gradients:</p>
+<ul class="styled-list">
+<li><strong>SGD:</strong> Foundational but often slower/harder to tune at LLM scale.</li>
+<li><strong>Adam:</strong> Adaptive learning rates per parameter; common baseline.</li>
+<li><strong>AdamW:</strong> Adam with decoupled weight decay; a standard choice for LLM training.</li>
+<li><strong>Adafactor:</strong> Memory-efficient variant used in some very large models.</li>
+<li><strong>Lion:</strong> A recent optimizer sometimes explored for efficiency; usage varies and is not universal.</li>
+</ul>
+<div class="info-box" style="margin-top: 15px;">
+<h4>💡 Why Adam-style optimizers?</h4>
+<p>They maintain momentum and adaptive step sizes, which often stabilizes training across very heterogeneous parameter scales.</p>
+</div>
+</div>
+<div class="card">
+<h3>Learning Rate Schedules</h3>
+<p>Learning rate determines step size during optimization. Too high = instability; too low = slow convergence.</p>
+<ul class="styled-list">
+<li><strong>Warmup:</strong> Start small and ramp up (reduces early instability)</li>
+<li><strong>Cosine decay:</strong> Common after warmup</li>
+<li><strong>Linear decay:</strong> Another standard schedule</li>
+<li><strong>Typical peak LR:</strong> often around 1e-4 to 3e-4 in many public recipes (depends strongly on batch size/model size)</li>
+</ul>
+</div>
+<div class="card">
+<h3>Batch Size &amp; Gradient Accumulation</h3>
+<ul class="styled-list">
+<li><strong>Batch size:</strong> Number of sequences/tokens processed before updating parameters</li>
+<li><strong>Large global batches:</strong> In many large-scale runs the global batch corresponds to <em>millions</em> of tokens, but it varies by model and hardware</li>
+<li><strong>Why large?</strong> Stabilizes training and improves hardware utilization</li>
+<li><strong>Gradient accumulation:</strong> If you can't fit the batch, accumulate gradients over multiple forward passes</li>
+<li><strong>Trade-off:</strong> Extremely large batches can alter generalization dynamics; effects depend on regime</li>
+</ul>
+</div>
+</div>
+<div class="technical-detail">
+<h4>🛡️ Preventing Training Instability</h4>
+<p style="margin-bottom: 15px;">Training can diverge due to exploding gradients or numerical issues. Common mitigations:</p>
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
+<ol style="margin-left: 25px; color: #555; line-height: 1.8;">
+<li><strong>Gradient clipping:</strong> Cap gradient norm (often around 1.0, but not universal)</li>
+<li><strong>Mixed precision:</strong> Use lower precision for speed, with higher precision accumulation to reduce under/overflow</li>
+<li><strong>Normalization:</strong> LayerNorm/RMSNorm stabilizes activations</li>
+<li><strong>Warmup:</strong> Gradual LR ramp prevents early divergence</li>
+<li><strong>Checkpointing:</strong> Reload from recent stable checkpoint after spikes/failures</li>
+</ol>
+</div>
+<p style="color: #666; margin-top: 15px;"><strong>Reality check:</strong> Large-scale training can still fail; robust checkpointing and monitoring are essential.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📹 ChatGPT 5.2 explanation of the Adam Optimizer and Learning Rate Scheduling</h4>
+<p><a href="https://chatgpt.com/share/69a04d7a-ce78-800f-9437-2f58d578b575" target="_blank" rel="noopener">Here</a> you will find the explanation that I got to the above using ChatGPT 5.2. I have a <a href="/d2l/common/dialogs/quickLink/quickLink.d2l?ou=169512&amp;type=discuss&amp;rcode=3AFCCA9F-D97E-4A99-BF84-8C5C2A3B1E23-1409747" target="_blank" rel="noopener">very specific preprompt that I use</a>. Try the same prompt in different AIs and see how good, or bad, each one is.</p>
+</div>
+<!-- SECTION 4: COMPUTE REQUIREMENTS -->
+<h2 class="section-title">💰 Computational Resources &amp; Costs</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Training frontier LLMs requires staggering amounts of compute. Let's quantify exactly what that means.</p>
+<div class="cost-estimate">
+<h4>🔢 Understanding FLOPs</h4>
+<p style="margin-bottom: 15px;"><strong>FLOP</strong> = Floating Point Operation (a single addition or multiplication)</p>
+<p style="margin-bottom: 15px;">A common dense-transformer back-of-the-envelope estimate:</p>
+<ul style="margin-left: 25px; color: #555; line-height: 1.8;">
+<li><strong>Training compute:</strong> ≈ <strong>6 FLOPs</strong> per parameter per token</li>
+<li><strong>Forward pass:</strong> ≈ 2 FLOPs/param/token</li>
+<li><strong>Backward pass:</strong> ≈ 4 FLOPs/param/token</li>
+</ul>
+<p style="margin-top: 15px; color: #666;"><strong>Caveat:</strong> Real compute differs with architecture and implementation (attention vs MLP ratios, sequence length effects, activation checkpointing, MoE routing, etc.). Use this as an order-of-magnitude estimate.</p>
+<p style="margin-top: 15px; font-weight: 600;">Example: Training a 7B parameter model on 1T tokens ≈ 6 × 7B × 1T = 42 × 10²¹ FLOPs = 42 zettaFLOPs</p>
+</div>
+<div class="technical-detail">
+<h4>💸 Cost Estimates for Famous Models</h4>
+<p style="margin-bottom: 15px;">Compute requirements and estimated costs (highly approximate):</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Model</th>
+<th>Parameters</th>
+<th>Training Tokens</th>
+<th>Compute (FLOPs)</th>
+<th>GPU-Days (A100)</th>
+<th>Estimated Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>GPT-3 175B</strong></td>
+<td>175B</td>
+<td>300B</td>
+<td>~3.1 × 10²³</td>
+<td>~11,500</td>
+<td>~$5–10M</td>
+</tr>
+<tr>
+<td><strong>LLaMA 2 70B</strong></td>
+<td>70B</td>
+<td>2T</td>
+<td>~8.4 × 10²³</td>
+<td>~31,000</td>
+<td>~$15–20M</td>
+</tr>
+<tr>
+<td><strong>GPT-4 (speculative dense equivalent)</strong></td>
+<td>~1.76T (unconfirmed)</td>
+<td>~13T (unconfirmed)</td>
+<td>~1.4 × 10²⁶</td>
+<td>~5,000,000</td>
+<td>~$100M+</td>
+</tr>
+<tr>
+<td><strong>Claude Opus 4.5 (speculative dense equivalent)</strong></td>
+<td>~500B (unconfirmed)</td>
+<td>~10T (unconfirmed)</td>
+<td>~3 × 10²⁵</td>
+<td>~1,100,000</td>
+<td>~$50–70M</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666;"><strong>Note:</strong> These are rough estimates. Modern frontier models may use Mixture-of-Experts (MoE), where “parameters” and “active compute per token” diverge. Costs also depend on utilization, restarts, networking overheads, and whether compute is rented or owned.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Hardware Requirements</h3>
+<ul class="styled-list">
+<li><strong>GPUs:</strong> Thousands of A100/H100/H200 GPUs running in parallel</li>
+<li><strong>Interconnect:</strong> High-bandwidth NVLink / InfiniBand for GPU communication</li>
+<li><strong>Storage:</strong> Large, fast storage for streaming training data</li>
+<li><strong>Clusters:</strong> Datacenters with substantial power and cooling constraints</li>
+<li><strong>Cost per GPU-hour (cloud):</strong> Varies widely by provider/region/commitment; treat any single number as a moving target</li>
+</ul>
+</div>
+<div class="card">
+<h3>Training Time</h3>
+<p>How long does it take?</p>
+<ul class="styled-list">
+<li><strong>Small models (7B):</strong> Days to weeks on moderate clusters</li>
+<li><strong>Mid-size (70B):</strong> Weeks to months on large clusters</li>
+<li><strong>Frontier (1T+):</strong> Months on massive clusters (10K+ GPUs)</li>
+<li><strong>Bottleneck:</strong> Often GPU communication, not raw compute</li>
+<li><strong>Restarts:</strong> Training runs fail; checkpointing every few hours is critical</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>⚡ Energy Consumption</h4>
+<p>Energy use depends on hardware, datacenter efficiency (PUE), utilization, and retries. Published numbers vary substantially across sources and assumptions.</p>
+<p style="margin-top: 8px; color: #666;">Rule of thumb for impact discussions: inference can dominate total energy/carbon footprint for widely deployed models, but this depends on deployment scale and usage patterns.</p>
+</div>
+<!-- SECTION 5: SCALING LAWS -->
+<h2 class="section-title">📈 Scaling Laws: Predicting Performance</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Can we predict how good a model will be before spending millions on training? Scaling laws say yes—with important caveats.</p>
+<div class="highlight-box">
+<h3>🔮 <span style="color: #ffffff;">The Scaling Law Hypothesis</span></h3>
+<p><span style="color: #ffffff;">Model performance (often measured by loss on held-out data) follows predictable power laws as a function of:</span></p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li style="color: #ffffff;"><strong>Model size (N):</strong> Number of parameters</li>
+<li style="color: #ffffff;"><strong>Dataset size (D):</strong> Number of training tokens</li>
+<li style="color: #ffffff;"><strong>Compute (C):</strong> FLOPs spent on training</li>
+</ul>
+<p style="margin-top: 15px;">These relationships let labs extrapolate performance and plan expensive training runs.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Kaplan Scaling Laws (2020)</h3>
+<p>OpenAI's early scaling-law analysis suggested:</p>
+<ul class="styled-list">
+<li><strong>Smooth power laws:</strong> Test loss decreases predictably with scale</li>
+<li><strong>Weak sensitivity to shape:</strong> Depth vs width mattered less than total scale in their regime</li>
+<li><strong>Overfitting was limited:</strong> With large datasets, larger models continued improving</li>
+<li><strong>Takeaway (in that regime):</strong> Scaling model size was an effective lever</li>
+</ul>
+</div>
+<div class="card">
+<h3>Chinchilla Scaling Laws (2022)</h3>
+<p>DeepMind revised the story: data matters more than previously assumed.</p>
+<ul class="styled-list">
+<li><strong>Compute-optimal training:</strong> Model size and tokens should scale together</li>
+<li><strong>Rule of thumb:</strong> ~20 tokens per parameter for compute-optimal dense training (in their setting)</li>
+<li><strong>GPT-3 undertrained (by that criterion):</strong> 175B params on 300B tokens; compute-optimal would use more tokens</li>
+<li><strong>Chinchilla:</strong> 70B params on ~1.4T tokens outperformed some larger-but-undertrained models</li>
+</ul>
+<div class="info-box" style="margin-top: 15px;">
+<h4>💡 The Chinchilla Insight</h4>
+<p>If you have a fixed compute budget, it can be better to train a smaller model on more data than a huge model on too little data.</p>
+</div>
+</div>
+<div class="card">
+<h3>Implications for Research</h3>
+<ul class="styled-list">
+<li><strong>Predictability:</strong> Early loss curves can often forecast final loss</li>
+<li><strong>Allocation choices:</strong> Labs trade off model size vs tokens based on product constraints</li>
+<li><strong>Algorithmic progress:</strong> Architecture/optimizer improvements matter, but scale remains a dominant driver</li>
+<li><strong>Sharp transitions:</strong> Some benchmarks show abrupt-looking capability jumps; whether these are intrinsic or evaluation-dependent is debated</li>
+</ul>
+</div>
+</div>
+<div class="technical-detail">
+<h4>📊 Training for Compute vs Training for Inference Cost</h4>
+<p style="margin-bottom: 15px;">“Compute-optimal” usually means <em>best loss for a fixed training compute budget</em>. Product teams may instead optimize for <em>low inference cost at a target quality</em>, which can justify extra training (more tokens) to make a smaller model good enough.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Consideration</th>
+<th>Compute-Optimal (fixed training compute)</th>
+<th>Inference-Targeted (fixed target quality)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Model size</strong></td>
+<td>Often smaller (paired with more tokens)</td>
+<td>Often smaller (to reduce inference cost), but trained longer</td>
+</tr>
+<tr>
+<td><strong>Training tokens</strong></td>
+<td>Scaled with parameters (e.g., ~20 tokens/param in Chinchilla regime)</td>
+<td>May exceed compute-optimal tokens to reach a target quality with a smaller model</td>
+</tr>
+<tr>
+<td><strong>Training cost</strong></td>
+<td>Optimized for given budget</td>
+<td>Potentially higher (extra training to reduce deployment costs)</td>
+</tr>
+<tr>
+<td><strong>Inference cost</strong></td>
+<td>Not the primary objective; depends on the resulting model size</td>
+<td>Explicitly minimized (smaller model for a target quality)</td>
+</tr>
+<tr>
+<td><strong>Best for</strong></td>
+<td>Research planning; compute budgeting; fast iteration</td>
+<td>Deployed systems where serving cost dominates</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666;"><strong>Example framing:</strong> A lab might spend extra training compute to make a smaller model reach the desired quality, because the smaller model is dramatically cheaper to serve at scale.</p>
+</div>
+<!-- SECTION 6: PARALLELISM STRATEGIES -->
+<h2 class="section-title">🔀 Parallelism: Training at Scale</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A single GPU can't hold a 70B parameter model, let alone train it. Modern LLM training requires distributing the model and data across many GPUs using parallelism strategies.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Data Parallelism</h3>
+<p>The simplest approach: replicate the model across GPUs and split data across them.</p>
+<ul class="styled-list">
+<li><strong>Setup:</strong> Each GPU holds a complete model replica</li>
+<li><strong>Process:</strong> Different GPUs process different batches</li>
+<li><strong>Synchronization:</strong> Aggregate gradients across GPUs</li>
+<li><strong>Pros:</strong> Simple, good utilization</li>
+<li><strong>Cons:</strong> Memory-limited—very large models won’t fit on one GPU</li>
+<li><strong>Used for:</strong> Smaller models or when combined with sharding</li>
+</ul>
+</div>
+<div class="card">
+<h3>Model Parallelism (Tensor Parallel)</h3>
+<p>Split individual layers across GPUs.</p>
+<ul class="styled-list">
+<li><strong>Setup:</strong> Each transformer layer split across multiple GPUs</li>
+<li><strong>Example:</strong> Attention/MLP matrices split across GPUs</li>
+<li><strong>Process:</strong> Frequent intra-layer communication</li>
+<li><strong>Pros:</strong> Can scale to very large models</li>
+<li><strong>Cons:</strong> Communication overhead</li>
+<li><strong>Used for:</strong> Models too large for a single GPU</li>
+</ul>
+</div>
+<div class="card">
+<h3>Pipeline Parallelism</h3>
+<p>Split model into stages—each GPU handles specific layers.</p>
+<ul class="styled-list">
+<li><strong>Setup:</strong> Layers partitioned into pipeline stages</li>
+<li><strong>Microbatching:</strong> Keeps all stages busy</li>
+<li><strong>Pros:</strong> Less intra-layer comms than tensor parallel</li>
+<li><strong>Cons:</strong> Pipeline “bubbles” (idle time), scheduling complexity</li>
+<li><strong>Used for:</strong> Very large models (often with tensor parallel)</li>
+</ul>
+</div>
+</div>
+<div class="technical-detail">
+<h4>🎯 Combining Parallelism: 3D Parallelism</h4>
+<p style="margin-bottom: 15px;">Frontier training often combines multiple strategies:</p>
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
+<p style="color: #555; margin-bottom: 15px;"><strong>Example: Training a 175B model on 1024 GPUs</strong></p>
+<ul style="margin-left: 25px; color: #555; line-height: 1.8;">
+<li><strong>Data parallelism:</strong> 16-way</li>
+<li><strong>Pipeline parallelism:</strong> 8-way</li>
+<li><strong>Tensor parallelism:</strong> 8-way</li>
+<li><strong>Total:</strong> 16 × 8 × 8 = 1024 GPUs</li>
+</ul>
+</div>
+<p style="color: #666; margin-top: 15px;"><strong>Challenge:</strong> Tuning these dimensions is nontrivial: too much tensor parallelism can bottleneck on communication; too much pipeline parallelism increases bubble overhead.</p>
+</div>
+<div class="info-box">
+<h4>🛠️ Frameworks &amp; Tools</h4>
+<p>Libraries that implement these parallelism strategies:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li><strong><a href="https://github.com/deepspeedai/DeepSpeed" target="_blank" rel="noopener">DeepSpeed</a> (Microsoft):</strong> ZeRO optimizations and multi-parallel strategies</li>
+<li><strong><a href="https://github.com/NVIDIA/Megatron-LM" target="_blank" rel="noopener">Megatron-LM</a> (NVIDIA):</strong> Efficient tensor and pipeline parallelism for transformers</li>
+<li><strong><a href="https://docs.pytorch.org/tutorials/intermediate/FSDP1_tutorial.html" target="_blank" rel="noopener">FSDP </a>(PyTorch):</strong> Fully Sharded Data Parallel (sharding + data parallel concepts)</li>
+<li><strong><a href="https://docs.jax.dev/en/latest/" target="_blank" rel="noopener">JAX</a>/Flax:</strong> Flexible parallelism used in some large-scale research systems</li>
+</ul>
+</div>
+<div class="resource-placeholder">
+<h4>📹 GPU explainer</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LfdK-v0SbGI?si=Rqm7c1U0Q4ShzMT1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<div class="resource-placeholder">
+<h4>📹 JAX explainer</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/juy9nrcTBck?si=N6kMNfe2DAdzv8rz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>You now understand how LLMs are trained at scale:</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>Pre-training objective:</strong> Next-token prediction is the dominant driver for decoder-only LMs (sometimes with additional training tricks)</li>
+<li><strong>Training data:</strong> Massive corpora from curated web, books, code, papers—quality and composition matter</li>
+<li><strong>Optimization:</strong> AdamW + LR schedules + large global batches + stability techniques</li>
+<li><strong>Compute costs:</strong> Large-scale training requires enormous compute; exact costs depend on hardware and efficiency</li>
+<li><strong>Scaling laws:</strong> Loss often scales predictably with compute; Chinchilla emphasizes balancing model size and tokens</li>
+<li><strong>Parallelism:</strong> Data + tensor + pipeline parallelism distributes training across many GPUs</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session (Week 2.3):</strong> We'll explore what happens <em>after</em> pre-training—fine-tuning, RLHF, and alignment techniques that turn raw language models into helpful AI assistants.</p>
+</div>
+</div>
+</div></body></html>

@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.3 - Visualization with AI</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '\1F3AF';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .decision-framework {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+    }
+
+    .decision-framework h4 {
+        color: #003A70;
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+
+    .step-list {
+        counter-reset: step-counter;
+        list-style: none;
+        margin: 20px 0;
+    }
+
+    .step-list > li {
+        counter-increment: step-counter;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 12px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        color: #444;
+        line-height: 1.7;
+    }
+
+    .step-list > li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #003A70;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-table {
+            font-size: 0.85em;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 • Sub-Lesson 3</div>
+<h1>📊 <span style="color: #ffffff;">Visualisation with AI</span></h1>
+<p>How AI tools generate charts and figures, what they get wrong by default, and how to turn AI-generated plots into publication-ready, accessible visualisations</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>AI can now generate a complete data visualisation from a single natural-language prompt. You describe what you want to see, and within seconds you have a chart. This is genuinely powerful — and genuinely dangerous. The speed at which AI produces plots means you can explore data faster than ever before, but it also means you can publish misleading figures faster than ever before.</p>
+<p>This session covers what AI visualisation tools can actually do, the specific ways their default outputs violate good visualisation principles, how to work with AI to audit and refine figures before they reach a reader, and why accessibility is not optional. By the end, you will have a practical five-step workflow for going from AI-generated draft to publication-quality figure — increasingly in conversation with the AI rather than after it.</p>
+</div>
+<!-- SECTION 1: WHAT AI CAN GENERATE -->
+<h2 class="section-title">🤖 What AI Can Generate</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The landscape of AI-assisted visualisation has expanded rapidly. Several tools now let you describe a chart in plain English and receive working code or a rendered image in return. The underlying approach varies, but the result is the same: you no longer need to memorise matplotlib syntax or ggplot grammar to produce a chart. You do, however, still need to know whether the chart is any good.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Claude Code (or OpenAI Codex) with matplotlib</h3>
+<p>Claude can write and execute Python code directly, including full matplotlib, seaborn, and plotly visualisations. You describe what you want, provide your data (or point to a file), and Claude generates the code, runs it, and shows you the result — all in one conversation.</p>
+<ul class="styled-list">
+<li>Full control over every aspect of the plot via Python code</li>
+<li>Can iterate: "make the axis labels larger," "switch to a log scale," "add error bars"</li>
+<li>Supports any Python plotting library (matplotlib, seaborn, plotly, altair)</li>
+<li>You can inspect and modify the generated code directly</li>
+<li>Best for researchers who want to learn plotting alongside using it</li>
+</ul>
+</div>
+<div class="card">
+<h3>ChatGPT Code Interpreter</h3>
+<p>OpenAI's Code Interpreter (available in ChatGPT Plus) lets you upload data files and ask for visualisations in natural language. It runs Python in a sandboxed environment, produces charts, and lets you download the results. The experience is similar to Claude Code but runs in a browser-based sandbox.</p>
+<ul class="styled-list">
+<li>Upload CSV, Excel, or other data files directly</li>
+<li>Generates and executes Python plotting code automatically</li>
+<li>Good for quick exploratory analysis of uploaded datasets</li>
+<li>Limited to the libraries available in its sandbox environment</li>
+<li>Less transparent about the code it runs unless you ask to see it</li>
+</ul>
+</div>
+<div class="card">
+<h3>LIDA (Language-Independent Data Analysis)</h3>
+<p>LIDA, developed by Microsoft Research and introduced by <a href="https://arxiv.org/abs/2303.02927" target="_blank" rel="noopener">Dibia (2023)</a> , is a research tool that automates the entire visualisation pipeline: data summarisation, goal generation, chart creation, and even infographic styling. It uses LLMs to generate visualisation code from natural-language descriptions of data.</p>
+<ul class="styled-list">
+<li>Automatically suggests visualisation goals based on your data</li>
+<li>Generates multiple chart options for each goal</li>
+<li>Includes an infographic module for styled output</li>
+<li>Open-source and available on GitHub</li>
+<li>Represents the research frontier of automated visualisation</li>
+</ul>
+</div>
+<div class="card">
+<h3>Google Colab AI</h3>
+<p>Google Colab now includes AI-assisted code generation that can help write plotting code within Jupyter notebooks. You type a comment describing what you want, and Colab suggests the code to produce it. This integrates AI assistance into a workflow many researchers already use.</p>
+<ul class="styled-list">
+<li>Works inside the familiar Jupyter/Colab notebook environment</li>
+<li>Suggestions appear inline as you write comments or code</li>
+<li>Free tier available (with usage limits on AI features)</li>
+<li>Natural fit for researchers already using Colab for data analysis</li>
+<li>Less conversational than Claude or ChatGPT — more like autocomplete for code</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>📌 What All These Tools Share</h4>
+<p>Every AI visualisation tool ultimately generates code (usually Python) that calls a plotting library. The AI is not drawing pixels — it is writing instructions for matplotlib, seaborn, plotly, or a similar library. This means the output is only as good as the code the AI writes, and that code reflects the defaults and conventions baked into those libraries. Understanding this is key to understanding why AI-generated charts so often need fixing.</p>
+</div>
+<div class="info-box">
+<h4>🚀 A Capability Worth Knowing About</h4>
+<p>Modern agentic tools — particularly Claude Code — can view the plots they generate. When they produce a chart, they can inspect the rendered image, identify problems ("the y-axis starts at 94 which exaggerates the difference," "the legend overlaps the data"), and revise the code accordingly. If you explicitly ask Claude Code to critique its own visualisation for publication quality, colourblind safety, and clarity, it will often catch many of the issues described in this lesson and fix them autonomously. This does not eliminate your need to check the final output — but it does mean your starting point can be substantially better than raw matplotlib defaults.</p>
+</div>
+<!-- SECTION 2: GOOD VISUALISATION PRINCIPLES AI OFTEN VIOLATES -->
+<h2 class="section-title">⚠️ Good Visualisation Principles AI Often Violates (unless you prompt it to look out for them)</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">AI tools are trained on code from the internet, which means they reproduce the most common plotting patterns — not the best ones. The defaults in matplotlib and seaborn were designed for quick exploratory analysis, not for publication. When AI generates a chart, it almost always produces something that looks reasonable at first glance but violates one or more principles of effective data communication. Here are the six most common problems.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Misleading Axes</h3>
+<p>AI-generated charts frequently use axis ranges that exaggerate or minimise differences in the data. A bar chart with a y-axis starting at 95 instead of 0 can make a 2% difference look like a 50% difference. Conversely, an axis range that is too wide can flatten meaningful variation into invisibility.</p>
+<ul class="styled-list">
+<li>Bar charts should almost always start at zero</li>
+<li>Line charts have more flexibility, but truncated axes must be flagged</li>
+<li>AI rarely considers whether the axis range is appropriate for the story the data tells</li>
+<li>Dual y-axes are another common AI default that can mislead readers into seeing correlations that do not exist</li>
+</ul>
+</div>
+<div class="card">
+<h3>Poor Colour Choices</h3>
+<p>Default colour palettes in most plotting libraries were not designed with colourblind readers in mind, and AI tools rarely switch away from these defaults. The classic matplotlib blue-orange-green palette is problematic for the roughly 8% of men and 0.5% of women with colour vision deficiency. Beyond accessibility, AI often uses too many colours or applies colour without informational purpose.</p>
+<ul class="styled-list">
+<li>Default palettes fail common colourblindness tests</li>
+<li>AI uses colour for decoration rather than information encoding</li>
+<li>Too many categories in one colour scheme creates confusion</li>
+<li>No consideration of whether the chart will be printed in greyscale</li>
+</ul>
+</div>
+<div class="card">
+<h3>Overplotting</h3>
+<p>When AI generates scatter plots or dense line charts, it rarely accounts for overlapping data points. A scatter plot with 10,000 points where most overlap into an opaque blob tells you nothing about the distribution underneath. AI tools default to plotting every point at full opacity, obscuring the very patterns you are trying to reveal.</p>
+<ul class="styled-list">
+<li>Scatter plots with many points need transparency (alpha), jittering, or density plots</li>
+<li>Line charts with many series become unreadable spaghetti</li>
+<li>AI defaults to full opacity and no jitter</li>
+<li>Hexbin plots, contour plots, or violin plots are often better choices that AI rarely suggests on its own</li>
+</ul>
+</div>
+<div class="card">
+<h3>Wrong Chart Type</h3>
+<p>AI tends to reach for the chart type most commonly associated with a keyword rather than the type best suited to the data. Ask for "a comparison" and you will likely get a bar chart, even when a dot plot, slope chart, or small multiples display would be more effective. Ask for "a trend" and you get a line chart, even when the data is not continuous.</p>
+<ul class="styled-list">
+<li>Pie charts for more than 3–4 categories (humans are poor at comparing angles)</li>
+<li>3D charts that add no information but obscure patterns</li>
+<li>Line charts for categorical or discontinuous data</li>
+<li>Stacked bar charts when the middle segments are impossible to compare</li>
+</ul>
+</div>
+<div class="card">
+<h3>Missing Context</h3>
+<p>A chart without proper labels, units, a clear title, and source attribution is a chart that cannot be interpreted. AI-generated plots routinely omit axis units, use generic titles like "Data Plot," leave out sample sizes, and provide no indication of statistical uncertainty. A figure in a paper must stand alone — a reader should understand it without reading the surrounding text.</p>
+<ul class="styled-list">
+<li>Axis labels missing units (is that kilometres, miles, or arbitrary units?)</li>
+<li>No indication of sample size or data source</li>
+<li>Generic or missing titles that do not describe the finding</li>
+<li>No error bars, confidence intervals, or uncertainty indicators</li>
+</ul>
+</div>
+<div class="card">
+<h3>Chartjunk</h3>
+<p>Edward Tufte coined the term "chartjunk" for visual elements that do not convey information: gratuitous gridlines, heavy borders, decorative backgrounds, 3D effects, and redundant legends. AI-generated charts often include all of these because the training data is full of them. Every non-data element in a chart competes for the reader's attention and should earn its place.</p>
+<ul class="styled-list">
+<li>Heavy gridlines that dominate the data</li>
+<li>Borders and boxes around every element</li>
+<li>Legends that duplicate information already in the axis labels</li>
+<li>Background colours, gradient fills, and shadow effects that add nothing</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Core Problem</h4>
+<p>AI tools optimise for producing a chart that looks complete, not a chart that communicates accurately. A chart can be technically correct — the data points are in the right places — and still be misleading because of how it is framed. The visual choices (axis range, colour, chart type, annotations) are as important as the data itself, and these are exactly the choices AI handles poorly by default.</p>
+</div>
+<!-- SECTION 3: HELP VS MISLEAD -->
+<h2 class="section-title">⚖️ When AI Visualisation Helps vs. When It Misleads</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The gap between an AI-generated draft plot and a publication-quality figure is not trivial. Understanding where that gap lies — and how easy it is to miss — is essential for any researcher using AI to create visualisations.</p>
+<div class="case-study">
+<h4>The Default Settings Trap</h4>
+<p>The most dangerous aspect of AI-generated visualisations is that they look professional enough to use immediately. A matplotlib chart with default settings has clean lines, a white background, and properly rendered text. It looks like a finished product. But "looks finished" and "communicates accurately" are different things.</p>
+<p>Consider what happens when you ask an AI to plot quarterly revenue data. The AI will likely produce a clean bar chart with sensible colours and axis labels. What it will not do, unless you specifically ask, is:</p>
+<ul class="styled-list">
+<li>Adjust for inflation if the data spans multiple years</li>
+<li>Start the y-axis at zero (it may auto-scale to exaggerate trends)</li>
+<li>Add context about what drove changes (annotations for key events)</li>
+<li>Consider whether a line chart would better show the trend</li>
+<li>Include uncertainty or variance indicators</li>
+<li>Choose colours that work in greyscale for journal printing</li>
+</ul>
+<p style="margin-top: 15px;">The trap is that the chart is technically correct but communicatively incomplete. Researchers who accept AI defaults without review risk publishing figures that mislead readers — not through fabrication, but through omission and poor framing.</p>
+</div>
+<div class="highlight-box">
+<h3><span style="color: #ffffff;">Publication Quality Is a Different Standard</span></h3>
+<p>Journal reviewers and readers expect figures that meet specific standards: vector formats (PDF or SVG) rather than rasterised PNG, consistent font sizes across all figures in a paper, colour palettes that work for colourblind readers, axis labels with units, informative captions, and appropriate statistical annotations.</p>
+<p>AI tools do not produce this by default — but modern agentic tools like Claude Code can get remarkably close when prompted well. Claude Code can generate a plot, <em>view the output itself</em> , critique what it sees ("the axis labels are too small," "this palette is not colourblind-safe"), and iterate on the code accordingly. This is a genuine capability leap over earlier tools. With good prompting — explicitly specifying colourblind-safe palettes, vector export, accessible fonts, and annotation requirements upfront — you can often reach near-publication quality in a single conversation.</p>
+<p>That said, there are things AI cannot judge on your behalf: whether this chart type is the right choice for your argument, whether the framing is honest, whether the figure will stand alone for a reader who has not read your paper. Those are communication design decisions that require your judgment, not just your approval.</p>
+</div>
+<div class="info-box">
+<h4>📌 Where AI Genuinely Helps</h4>
+<p>AI visualisation tools are excellent for <strong>exploration</strong> . When you are trying to understand your data — looking for patterns, checking distributions, comparing groups — the speed of AI-generated plots is transformative. You can produce twenty different views of your data in the time it would take to hand-code two. The danger comes when you skip the step of turning exploratory plots into carefully designed communication tools before publishing them.</p>
+</div>
+<!-- SECTION 4: ACCESSIBILITY -->
+<h2 class="section-title">♿️ Accessibility in Data Visualisation</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Accessibility in data visualisation is not a nice-to-have — it is a professional obligation. Roughly 8% of men and 0.5% of women worldwide have some form of colour vision deficiency. In a lecture hall of 100 students or a conference room of 50 researchers, the odds are high that someone cannot distinguish the colours in your chart. If your figure relies on colour alone to convey information, you have excluded those readers from understanding your work.</p>
+<div class="technical-detail">
+<h4>Colourblind-Safe Palettes</h4>
+<p>The single most impactful change you can make to any AI-generated chart is to switch from the default colour palette to a colourblind-safe alternative. Several well-tested palettes exist:</p>
+<ul class="styled-list">
+<li><strong>ColorBrewer palettes:</strong> Developed by cartographer Cynthia Brewer, these palettes have been rigorously tested for perceptual uniformity and colourblind safety. The <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer 2.0</a> tool lets you select palettes filtered by colourblind-safe options. In matplotlib, use <code>plt.cm.get_cmap('Set2')</code> or the seaborn <code>colorblind</code> palette.</li>
+<li><strong>Viridis family:</strong> The viridis, magma, inferno, and plasma colour maps in matplotlib were specifically designed to be perceptually uniform and colourblind-safe. They work well for continuous data and are readable in greyscale.</li>
+<li><strong>Okabe-Ito palette:</strong> An 8-colour categorical palette designed by Masataka Okabe and Kei Ito that is distinguishable under all common forms of colour vision deficiency.</li>
+</ul>
+<p style="margin-top: 15px;">When prompting AI to generate visualisations, explicitly request a colourblind-safe palette. Without this instruction, AI will almost always use the library default, which is rarely optimised for accessibility.</p>
+</div>
+<div class="technical-detail">
+<h4>Beyond Colour: Redundant Encoding</h4>
+<p>The gold standard for accessible visualisation is redundant encoding: using multiple visual channels (colour, shape, pattern, position, line style) to convey the same information. If your scatter plot uses colour to distinguish groups, also use different marker shapes. If your line chart uses colour for different series, also use different line styles (solid, dashed, dotted).</p>
+<ul class="styled-list">
+<li>Combine colour with shape (circles, squares, triangles) for scatter plots</li>
+<li>Combine colour with line style (solid, dashed, dotted) for line charts</li>
+<li>Use direct labelling on or near data elements instead of a separate legend</li>
+<li>Ensure sufficient contrast between adjacent elements (minimum 3:1 contrast ratio)</li>
+<li>Test your figures in a colourblindness simulator (Coblis or Color Oracle are free tools)</li>
+</ul>
+</div>
+<div class="case-study">
+<h4>Alt Text for Figures</h4>
+<p>Every figure in a digital publication should have meaningful alternative text (alt text) that describes what the figure shows for readers using screen readers. This is a basic web accessibility requirement that academic publishing has been slow to adopt, but it is increasingly expected by journals and funding bodies.</p>
+<p>Good alt text for a data visualisation should include:</p>
+<ul class="styled-list">
+<li><strong>Chart type:</strong> "Bar chart showing..." or "Scatter plot comparing..."</li>
+<li><strong>Key finding:</strong> What the figure demonstrates, not just what it contains</li>
+<li><strong>Data summary:</strong> The main trend, difference, or pattern visible in the chart</li>
+<li><strong>Scale:</strong> Approximate range of values, especially if the finding depends on magnitude</li>
+</ul>
+<p style="margin-top: 15px;">AI can help write alt text — describe your figure to Claude or ChatGPT and ask for alt text — but you must verify that the description accurately reflects what the figure actually shows. AI-generated alt text can hallucinate trends or misstate values just as easily as AI-generated prose can hallucinate citations.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ The 8% You Cannot Ignore</h4>
+<p>Approximately 8% of men have some form of colour vision deficiency — predominantly red-green colour blindness (deuteranopia and protanopia). This is not a rare condition. In any sizeable academic audience, multiple people will struggle with figures that rely on red-green distinctions. The default colour palettes in matplotlib and many other tools use exactly these problematic colour combinations. Switching to a colourblind-safe palette costs you nothing and includes a meaningful fraction of your audience. There is no good reason not to do it.</p>
+</div>
+<!-- SECTION 5: PRACTICAL WORKFLOW -->
+<h2 class="section-title">🛠️ A Practical Five-Step Workflow</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The following workflow takes you from raw data to a publication-ready, accessible figure using AI as your drafting tool. Each step builds on the previous one, and skipping any step risks publishing a figure that misleads or excludes readers.</p>
+<div class="decision-framework">
+<h4>From AI Draft to Publication-Ready Figure</h4>
+<ol class="step-list">
+<li><strong>Explore with AI — generate multiple views.</strong> Start by asking the AI to produce several different visualisations of your data. Do not commit to the first chart it gives you. Ask for a bar chart, a box plot, a scatter plot, and a small multiples display of the same data. Compare them. Which one reveals the pattern most honestly? Which one would mislead a reader? This exploratory phase is where AI speed is most valuable. Generate ten plots in ten minutes, then think carefully about which one to develop.</li>
+<li><strong>Audit the defaults — check every visual choice.</strong> Take the most promising chart and systematically check: Does the axis start at an appropriate value? Are the units labelled? Is the title informative (describing the finding, not just the data)? Is the chart type appropriate for the data? Are there error bars or uncertainty indicators where needed? Does the colour palette serve a purpose, or is it decorative? Would this chart make sense to someone who has not read the surrounding text? Fix every issue you find.</li>
+<li><strong>Fix accessibility — colours, encoding, and alt text.</strong> Switch to a colourblind-safe palette (ColorBrewer, viridis, or Okabe-Ito). Add redundant encoding: if colour distinguishes groups, also use different shapes or line styles. Check contrast. Write alt text that describes the chart type, the key finding, and the data range. Test with a colourblindness simulator. This step is non-negotiable for professional-quality work.</li>
+<li><strong>Polish for publication — fonts, formats, and consistency.</strong> Match fonts and sizes to your other figures and to the journal's requirements. Export in a vector format (PDF or SVG) for print, or high-resolution PNG (300+ DPI) for digital. Remove chartjunk: unnecessary gridlines, decorative elements, redundant legends. Ensure the figure caption is complete and accurate. Check that the figure works in greyscale if the journal prints in black and white.</li>
+<li><strong>Verify against the data — the final sanity check.</strong> Before submitting, verify that the figure accurately represents the underlying data. Check specific values: does the tallest bar correspond to the largest number in your data? Do the axis limits include all data points? Are any outliers hidden by the axis range? This step catches errors introduced during formatting and is especially important when AI has transformed or aggregated data during the plotting process.</li>
+</ol>
+</div>
+<div class="info-box">
+<h4>📌 Prompting Tip</h4>
+<p>When asking AI to generate a visualisation, include your quality requirements in the initial prompt. Instead of "plot this data," try: "Create a publication-quality scatter plot of X vs Y. Use the Okabe-Ito colourblind-safe palette. Include axis labels with units, a descriptive title, and error bars for the mean values. Export as SVG." The more specific your prompt, the less fixing you need to do afterward.</p>
+</div>
+<!-- SECTION 6: READINGS -->
+<h2 class="section-title">📚 Readings for This Session</h2>
+<div class="technical-detail">
+<h4>Core Readings</h4>
+<ol class="step-list">
+<li><strong>Dibia (2023).</strong> "LIDA: A Tool for Automatic Generation of Grammar-Agnostic Visualizations and Infographics using Large Language Models." <em>arXiv preprint</em> . <a href="https://arxiv.org/abs/2303.02927" target="_blank" rel="noopener">Read on arXiv</a> — The foundational paper on using LLMs to automate the full visualisation pipeline, from data summarisation through goal generation to chart creation. Introduces the LIDA framework and demonstrates what automated visualisation can and cannot achieve.</li>
+<li><strong>Wilke (2019).</strong> <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures.</em> O'Reilly Media. <a href="https://clauswilke.com/dataviz/" target="_blank" rel="noopener">Read online (free)</a> — The best practical guide to data visualisation principles for researchers. Covers chart selection, colour use, axis design, and annotation with clear examples of what works and what does not. The full text is freely available online.</li>
+<li><strong>ColorBrewer 2.0.</strong> <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">colorbrewer2.org</a> — The essential tool for selecting colourblind-safe, print-friendly colour palettes. Originally designed for cartography but widely used across all data visualisation. Experiment with different palette types (sequential, diverging, qualitative) and filter for colourblind safety.</li>
+</ol>
+</div>
+<div class="technical-detail">
+<h4>Supplementary Resources</h4>
+<ul class="styled-list">
+<li><strong>Tufte, E. (2001).</strong> <em>The Visual Display of Quantitative Information.</em> 2nd ed. Graphics Press. — The classic text on visualisation design. Introduces the concepts of chartjunk, data-ink ratio, and small multiples that remain central to good visualisation practice.</li>
+<li><strong>Coblis Colour Blindness Simulator:</strong> <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank" rel="noopener">color-blindness.com/coblis</a> — Upload your figures and see how they appear under different forms of colour vision deficiency. A quick and free way to test accessibility before publication.</li>
+<li><strong>Seaborn colourblind palette documentation:</strong> When using seaborn in Python, <code>sns.set_palette("colorblind")</code> switches to a colourblind-safe default. This single line of code addresses the most common accessibility failure in AI-generated charts.</li>
+</ul>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<p><strong>AI makes chart generation fast, and modern tools can critique their own output.</strong> Tools like Claude Code can generate a visualisation, view the rendered result, identify problems, and iterate — all without manual code-pasting. With good prompting, you can get close to publication quality in one conversation. But "close" and "publication-ready" are still different things, and the gap increasingly lives in communication design decisions rather than technical defaults.</p>
+<p><strong>Six common failures to watch for.</strong> Misleading axes, poor colour choices, overplotting, wrong chart types, missing context, and chartjunk are the most frequent problems in AI-generated visualisations. Knowing these failure modes means you know exactly what to check every time AI gives you a chart.</p>
+<p><strong>Accessibility is not optional.</strong> With approximately 8% of men affected by colour vision deficiency, any figure that relies on colour alone to convey information excludes a substantial portion of your audience. Colourblind-safe palettes, redundant encoding, and alt text are baseline requirements for professional work.</p>
+<p><strong>Use AI as a collaborative design partner, not just a code generator.</strong> The five-step workflow — explore, audit, fix accessibility, polish, verify — can now happen in conversation with the AI rather than purely after it. Ask Claude Code to critique its own charts, specify quality requirements upfront, and iterate in dialogue. The AI handles the syntax and can flag many technical issues; you handle the scientific and communication design decisions that no tool can make for you.</p>
+<p><strong>Next session:</strong> Sub-Lesson 4 brings together everything from this week with hands-on activities and your weekly assessment. You will practice the full workflow from data to publication-ready figure, audit AI-generated visualisations for the problems discussed here, and build the habits that distinguish effective data communication from pretty pictures.</p>
+</div>
+</div>
+</div></body></html>

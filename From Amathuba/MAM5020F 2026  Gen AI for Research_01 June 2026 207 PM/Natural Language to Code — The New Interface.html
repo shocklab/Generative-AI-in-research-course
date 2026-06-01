@@ -1,0 +1,677 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.1 - Natural Language to Code</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '\1F3AF';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+
+    .step-list {
+        list-style: none;
+        counter-reset: steps;
+        margin: 20px 0;
+    }
+
+    .step-list > li {
+        counter-increment: steps;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-radius: 12px;
+    }
+
+    .step-list > li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 22px;
+        width: 35px;
+        height: 35px;
+        background: #003A70;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-table {
+            font-size: 0.85em;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 • Sub-Lesson 1</div>
+<h1>💻 <span style="color: #ffffff;">Natural Language to Code — The New Interface</span></h1>
+<p>How describing what you want in plain English has become a viable way to produce working code — and what you still need to understand to use it responsibly</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Something genuinely revolutionary has happened in the past two years. Researchers with no programming background can now describe an analysis in plain English and receive working Python, R, or MATLAB code in return. You can say "load this CSV file, calculate summary statistics for each column, and plot a histogram of the age variable" — and get a script that actually runs.</p>
+<p>This is not a gimmick. It is a fundamental change in who can do computational research. Tasks that previously required months of programming courses, or hiring a programmer, or spending days on Stack Overflow, can now be accomplished in minutes through conversation. For many of you in this room, this is the single most practical thing you will learn in this course.</p>
+<p>But — and this is the critical caveat — you do not need to become a programmer, but you <strong>do</strong> need to understand what the code is doing. Modern agentic tools like Claude Code are remarkably good at catching and fixing their own syntax errors through autonomous iteration — they run the code, see what failed, and fix it without you lifting a finger. What they cannot reliably catch is code that runs perfectly but uses the wrong statistical method, the wrong variable, or the wrong analytical logic for your research question. This session will orient you to the tools, the quality gap between free and paid versions, the emerging practice of "vibe coding," and the minimum level of scientific literacy you need to use these tools responsibly.</p>
+</div>
+<!-- SECTION 1: THE PARADIGM SHIFT -->
+<h2 class="section-title">🚀 The Paradigm Shift</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">For decades, the barrier between having a research question and being able to answer it computationally was <em>programming skill</em> . That barrier has not disappeared, but it has been dramatically lowered.</p>
+<div class="card-grid">
+<div class="card">
+<h3>What Has Changed</h3>
+<p>Until recently, if you wanted to analyse a dataset, you had two options: learn to program, or find someone who could program to do it for you. Both options introduced delays, dependencies, and friction. Many valuable research questions went unanswered simply because the researcher asking them did not have the technical skills to answer them.</p>
+<p>Large language models have created a third option: describe what you want in natural language, and let the AI generate the code. This works because modern LLMs have been trained on millions of code repositories and documentation pages. They have seen essentially every common programming pattern, library call, and data analysis workflow that exists.</p>
+</div>
+<div class="card">
+<h3>What This Means for You</h3>
+<p><strong>If you have no coding background:</strong> This is genuinely democratising. Tasks that were previously impossible for you — loading datasets, running statistical tests, creating visualisations, cleaning messy data — are now accessible through conversation. You are not pretending to be a programmer. You are using a new kind of interface to achieve the same results.</p>
+<p><strong>If you already code:</strong> This changes your workflow but not your need for expertise. You will write code faster, explore approaches more quickly, and spend less time on boilerplate. But your understanding of algorithms, data structures, and domain-specific methods remains essential — the AI accelerates your work; it does not replace your judgment.</p>
+</div>
+</div>
+<div class="case-study">
+<h4>🧪 A Concrete Example</h4>
+<p>Imagine you have a CSV file with survey data from 500 respondents. You want to know whether responses differ significantly between two groups. Here is what you might type into an AI coding tool:</p>
+<p style="margin-top: 15px; font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 8px; color: #333;">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
+<p style="margin-top: 15px;">A modern AI coding tool will generate working Python or R code that does exactly this — including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation. The entire process takes less than a minute.</p>
+<p style="margin-top: 15px;"><strong>The key insight:</strong> you described <em>what</em> you wanted, not <em>how</em> to implement it. The AI translated your intent into specific technical instructions. This is what we mean by natural language as an interface to code.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Critical Caveat</span></h3>
+<p>Modern agentic tools like Claude Code are excellent at catching their own programming errors — they iterate autonomously, fix syntax issues, and can even inspect their own visualisation outputs. This is a genuine capability leap from earlier AI coding tools. But there is a category of error these tools do not reliably catch: code that runs perfectly but uses the wrong statistical test, the wrong variable, or the wrong analytical logic for your research question.</p>
+<p style="margin-top: 12px;">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may be wrong. No amount of autonomous iteration catches this — because from the code's perspective, nothing failed. You do not need to write code, but you absolutely need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
+</div>
+<!-- SECTION 2: THE TOOLS LANDSCAPE -->
+<h2 class="section-title">🛠️ The Tools Landscape</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The ecosystem of AI coding tools has expanded rapidly. Each tool has a different approach, different strengths, and a different trade-off between ease of use and capability. Here is what matters for researchers.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Claude Code</h3>
+<p><strong>What it is:</strong> A terminal-based, agentic coding tool from Anthropic. It runs in your computer's command line and can read and write files on your system, execute code, and iterate on results — all through natural language conversation.</p>
+<p><strong>Key strengths:</strong> Strongest reasoning capabilities of any current coding tool. Can work with your actual files and project structure. Agentic mode means it can plan multi-step tasks, run code, check results, and fix errors autonomously.</p>
+<p><strong>Limitations:</strong> Requires comfort with the terminal (command line). The free tier is limited in usage. Steeper learning curve than chat-based alternatives.</p>
+<p><strong>Pricing:</strong> Free tier limited. Pro tier $20/month.</p>
+</div>
+<div class="card">
+<h3>ChatGPT Code Interpreter</h3>
+<p><strong>What it is:</strong> OpenAI's built-in Python execution environment inside ChatGPT. You can upload data files directly, and it will write and run Python code in a sandboxed environment, returning results and visualisations in the chat.</p>
+<p><strong>Key strengths:</strong> Extremely easy to use — no setup required. Upload a CSV and start asking questions. Generates visualisations inline. Good for exploratory analysis and quick data tasks.</p>
+<p><strong>Limitations:</strong> Python only (no R or MATLAB). The sandbox environment has limited libraries. Cannot access your local files or other systems. Session state can be lost.</p>
+<p><strong>Pricing:</strong> Free tier available. Plus $20/month.</p>
+</div>
+<div class="card">
+<h3>GitHub Copilot</h3>
+<p><strong>What it is:</strong> An AI autocomplete tool that integrates directly into code editors like VS Code and JetBrains. As you type code, it suggests completions — from single lines to entire functions — based on the context of what you are writing.</p>
+<p><strong>Key strengths:</strong> Seamless integration into the coding workflow. Excellent for writing code faster if you already know how to code. Supports virtually every programming language. The inline suggestion model is very natural once you get used to it.</p>
+<p><strong>Limitations:</strong> Requires a code editor and some coding knowledge to use effectively. It completes code — it does not have a conversation with you about your analysis goals. Less useful for complete beginners.</p>
+<p><strong>Pricing:</strong> Free tier for students and educators. Pro $10/month.</p>
+</div>
+<div class="card">
+<h3>Cursor</h3>
+<p><strong>What it is:</strong> An AI-first code editor built on VS Code. It combines the familiar editing experience with deep AI integration: you can chat with your codebase, make multi-file edits through natural language, and run up to eight parallel AI agents on different tasks.</p>
+<p><strong>Key strengths:</strong> The most powerful AI integration of any code editor. Multi-file awareness means it understands your entire project. Natural language commands for editing and refactoring. Parallel agents for complex tasks.</p>
+<p><strong>Limitations:</strong> Still a code editor — more approachable than a raw terminal, but still oriented toward people who work with code regularly. The free tier is quite limited.</p>
+<p><strong>Pricing:</strong> Free tier limited. Pro $20/month.</p>
+</div>
+<div class="card">
+<h3>Google Colab AI</h3>
+<p><strong>What it is:</strong> AI assistance built directly into Google Colaboratory, a free cloud-based Jupyter notebook environment. You can write natural language prompts in code cells and get AI-generated code suggestions.</p>
+<p><strong>Key strengths:</strong> Free with any Google account. Runs in the browser — no installation needed. Access to free GPU/TPU resources for machine learning tasks. Familiar notebook interface for iterative analysis. Easy to share and collaborate.</p>
+<p><strong>Limitations:</strong> AI features are less sophisticated than dedicated tools. Python-only. Session timeouts can lose your work. The free tier has limited compute resources.</p>
+<p><strong>Pricing:</strong> Free with Google account. Colab Pro from $10/month for more resources.</p>
+</div>
+<div class="card">
+<h3>Gemini Code Assist</h3>
+<p><strong>What it is:</strong> Google's AI coding assistant, integrated into various IDEs including VS Code and JetBrains, as well as Google Cloud tools. Uses Google's Gemini models for code generation, completion, and explanation.</p>
+<p><strong>Key strengths:</strong> Strong integration with the Google Cloud ecosystem. Good at working with Google-specific tools and services. Supports multiple languages. Codebase-aware for context-appropriate suggestions.</p>
+<p><strong>Limitations:</strong> Less established than Copilot in terms of community adoption. Some features are tied to Google Cloud Platform. Quality can be variable depending on the language and framework.</p>
+<p><strong>Pricing:</strong> Free tier available. Enterprise pricing varies.</p>
+</div>
+</div>
+<div class="info-box">
+<h4>📋 Which Tool Should You Start With?</h4>
+<p><strong>If you have never written code before:</strong> Start with ChatGPT Code Interpreter or Google Colab AI. Both let you upload data and start asking questions immediately, with zero setup. You will hit limitations eventually, but they are the gentlest entry point.</p>
+<p><strong>If you have some coding experience:</strong> Try Cursor or GitHub Copilot. Both integrate into the coding workflow you already know and will accelerate it significantly.</p>
+<p><strong>If you want maximum power and are willing to learn:</strong> Claude Code offers the strongest reasoning and most autonomous capabilities, but requires comfort with command-line tools.</p>
+</div>
+<!-- SECTION 3: FREE VS PAID -->
+<h2 class="section-title">💰 Free vs Paid — The Quality Gap</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">This section matters. Many of you will be using free tiers of these tools, and you need an honest assessment of what free versions can and cannot do. The quality gap in AI coding tools is real, and pretending otherwise would be a disservice.</p>
+<div class="technical-detail">
+<h4>Where the Differences Lie</h4>
+<p>The gap between free and paid AI coding tools is not just about speed or convenience. It affects the quality of the code you receive and, by extension, the reliability of your research analysis. Here are the key dimensions:</p>
+<ul class="styled-list">
+<li><strong>Context window:</strong> Free tiers typically offer much smaller context windows — the amount of information the AI can consider at once. This matters enormously when working with data. If the AI cannot see your entire dataset structure, your full script, or the error messages alongside your code, it will produce less accurate and less relevant suggestions. Paid tiers may offer 100,000+ tokens of context versus 8,000–32,000 on free tiers.</li>
+<li><strong>Model quality:</strong> Free tiers often route you to older or smaller models. The difference in code quality is substantial: better models write more idiomatic code, catch edge cases, choose appropriate libraries, and understand complex multi-step requests. They are also significantly better at debugging — understanding why code fails, not just what to try next.</li>
+<li><strong>Rate limits:</strong> Free tiers restrict how many requests you can make per hour or per day. During an intensive analysis session — where you are iterating on code, fixing bugs, and refining visualisations — you can easily hit limits that force you to stop working or wait. This breaks your analytical flow at exactly the moment when momentum matters most.</li>
+<li><strong>File access and code execution:</strong> Some free tiers cannot read your files or run code at all. You are reduced to copy-pasting snippets back and forth, which introduces errors, loses context, and makes multi-step analysis painfully slow. Paid tiers often include direct file access and execution environments.</li>
+</ul>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Where Free Is Sufficient</h3>
+<p>Free tiers are genuinely useful for many common research tasks, and you should not feel that paid access is required to benefit from AI coding assistance:</p>
+<ul class="styled-list">
+<li><strong>Simple code generation:</strong> Writing a function to calculate a specific metric, converting between data formats, or generating boilerplate code</li>
+<li><strong>Learning syntax:</strong> Understanding how a particular library works, what arguments a function takes, or how to accomplish a basic task in a language you are learning</li>
+<li><strong>Basic data exploration:</strong> Loading a dataset, computing summary statistics, creating simple visualisations — especially through tools like Colab AI that provide free execution environments</li>
+<li><strong>Getting started with a new library:</strong> Understanding the basic patterns of pandas, ggplot2, matplotlib, or any other common data analysis library</li>
+<li><strong>Understanding error messages:</strong> Pasting an error message and getting a clear explanation of what went wrong and how to fix it — often the single most valuable use of AI for beginners</li>
+</ul>
+</div>
+<div class="card">
+<h3>Where Paid Makes a Real Difference</h3>
+<p>The gap becomes apparent in more demanding scenarios, particularly those common in research:</p>
+<ul class="styled-list">
+<li><strong>Complex multi-step analysis:</strong> When your analysis requires loading data, cleaning it, merging datasets, running statistical models, and generating publication-quality figures — all as a coherent workflow — paid tools handle this dramatically better</li>
+<li><strong>Debugging subtle errors:</strong> When code runs but produces wrong results, identifying the problem requires deep reasoning about data flow and logic. Better models are substantially more capable here</li>
+<li><strong>Working with large datasets:</strong> Larger context windows mean the AI can consider more of your data structure, variable names, and relationships simultaneously</li>
+<li><strong>Iterative refinement:</strong> Research analysis is rarely one-shot. You refine, adjust, and explore. Paid tiers support the sustained back-and-forth conversation this requires</li>
+<li><strong>Production-quality code:</strong> Code that needs to be reproducible, well-documented, and robust enough for publication benefits significantly from better models</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Strategies for Maximising Free Tier Value</h4>
+<p>If you are working within free tiers — which is perfectly reasonable — these strategies will help you get the most out of them:</p>
+<ul class="styled-list">
+<li><strong>Break tasks into small pieces:</strong> Instead of asking for an entire analysis pipeline, ask for one step at a time. This works within smaller context windows and produces more reliable code</li>
+<li><strong>Provide maximum context in your prompts:</strong> Tell the AI about your data structure, variable types, what you have already tried, and what you expect the output to look like. The more context you provide upfront, the less the AI needs to guess</li>
+<li><strong>Use different free tools for different strengths:</strong> Google Colab for free code execution, Claude free tier for reasoning through complex problems, GitHub Copilot's free tier for autocomplete while coding. No single free tool does everything well, but the combination covers a lot of ground</li>
+<li><strong>Save your prompts:</strong> When a prompt produces good results, save it. Building a personal library of effective prompts is like building a toolkit — it compounds over time and reduces the number of requests you need to make</li>
+</ul>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Honest Assessment</h4>
+<p>The quality gap between free and paid AI coding tools is larger than in any other category we have covered in this course. If your research depends heavily on computational analysis, the investment in a paid tier may be one of the most cost-effective you can make — a single month's subscription costs less than a textbook and can save dozens of hours. But you should know exactly what you are paying for and what the free alternatives can still do. Do not let marketing convince you that free tools are useless, and do not let optimism convince you that free tools are equivalent to paid ones. The truth is in between, and where you fall depends on the complexity of your work.</p>
+</div>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Free Tier</th>
+<th>Paid Tier</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude Code</strong></td>
+<td>Limited usage</td>
+<td>$20/mo (Pro)</td>
+<td>Complex reasoning, multi-file projects, agentic workflows</td>
+</tr>
+<tr>
+<td><strong>ChatGPT Code Interpreter</strong></td>
+<td>Basic access available</td>
+<td>$20/mo (Plus)</td>
+<td>Quick data exploration, beginners, visual output</td>
+</tr>
+<tr>
+<td><strong>GitHub Copilot</strong></td>
+<td>Free for students/educators</td>
+<td>$10/mo (Pro)</td>
+<td>Inline code completion, working within an editor</td>
+</tr>
+<tr>
+<td><strong>Cursor</strong></td>
+<td>Limited completions</td>
+<td>$20/mo (Pro)</td>
+<td>Multi-file editing, codebase-wide changes, parallel agents</td>
+</tr>
+<tr>
+<td><strong>Google Colab AI</strong></td>
+<td>Free with Google account</td>
+<td>$10/mo (Colab Pro)</td>
+<td>Notebook-based analysis, free GPU access, collaboration</td>
+</tr>
+<tr>
+<td><strong>Gemini Code Assist</strong></td>
+<td>Free tier available</td>
+<td>Enterprise pricing</td>
+<td>Google Cloud integration, multi-language support</td>
+</tr>
+</tbody>
+</table>
+<!-- SECTION 4: VIBE CODING -->
+<h2 class="section-title">🎵 "Vibe Coding" — Promise and Peril</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A term emerged in early 2025 for this new way of writing code by describing what you want rather than specifying how to implement it. It captures both the appeal and the danger of the approach.</p>
+<div class="technical-detail">
+<h4>What Is Vibe Coding?</h4>
+<p>The term "vibe coding" was coined in 2025 to describe a style of programming where you guide AI through natural language descriptions, accepting or modifying what it produces based on whether the output "feels right" rather than verifying every line. You describe the vibe of what you want, and the AI fills in the technical details.</p>
+<p style="margin-top: 15px;">At its best, vibe coding is a powerful rapid prototyping technique. At its worst, it produces code that <em>appears</em> to work but answers the wrong question. The distinction between these outcomes depends almost entirely on whether you verify the scientific correctness of the analysis — not just whether the code runs.</p>
+<p style="margin-top: 15px;"><strong>An important caveat for 2026:</strong> Modern agentic tools have largely eliminated the old "paste error message back and forth" problem. Claude Code, Codex, and similar tools run code autonomously, read the error, fix it, and iterate — often without any human intervention. They can also view their own plot outputs and critique them. This is a genuine improvement over earlier tools. But this capability addresses <em>programming errors</em> . It does not address <em>scientific errors</em> — and those are the ones that matter most for research.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>When Vibe Coding Works Well</h3>
+<p>There are legitimate, productive uses of the vibe coding approach in research:</p>
+<ul class="styled-list">
+<li><strong>Prototyping:</strong> When you want to quickly test whether an approach is feasible before investing time in a careful implementation. If the prototype works, you can then verify and refine the code</li>
+<li><strong>Exploratory analysis:</strong> When you are exploring a dataset to understand its structure, distributions, and patterns. At this stage, approximate answers are fine because you are generating hypotheses, not testing them</li>
+<li><strong>Learning:</strong> When you are trying to understand how a library or technique works. Having AI generate examples that you then study and modify is an effective learning strategy</li>
+<li><strong>Quick utility scripts:</strong> Renaming files, converting formats, reorganising data — tasks where the correctness is obvious from the output</li>
+</ul>
+</div>
+<div class="card">
+<h3>When Vibe Coding Is Dangerous</h3>
+<p>The same approach becomes risky when the stakes are higher:</p>
+<ul class="styled-list">
+<li><strong>Analysis for publication:</strong> Code that produces results you will report in a paper must be verified, not vibed. A wrong statistical test or a subtle data filtering error can invalidate your findings</li>
+<li><strong>Anything where errors have consequences:</strong> If your analysis informs policy decisions, clinical recommendations, or resource allocation, "it looks about right" is not an acceptable standard</li>
+<li><strong>Complex data pipelines:</strong> When data passes through multiple transformation steps, errors can compound. Each step might look reasonable in isolation while the pipeline as a whole produces garbage</li>
+<li><strong>Reproducibility-critical work:</strong> If other researchers need to reproduce your analysis, vibe-coded scripts with unclear logic and no documentation will fail the reproducibility test</li>
+</ul>
+</div>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Parallel to AI Writing</span></h3>
+<p>There is a direct connection to what we discussed in Week 6. Just as AI can write prose that <em>sounds right</em> but says something subtly wrong, it can write code that <em>looks right</em> but computes something subtly wrong. In both cases, the surface quality masks potential problems underneath. And in both cases, the solution is the same: you need to understand what the output is doing well enough to catch errors, not just well enough to accept it.</p>
+<p>The "explain this paragraph" test from Week 6 has an exact analogue in code: can you explain what each section of the AI-generated code does and why? If not, you are vibe coding, and you should not trust the output for anything that matters.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Remaining Problem</h4>
+<p>The vibe coding risk has shifted. In 2024, the danger was code that crashed halfway through your analysis. Today, with agentic tools handling iteration autonomously, that risk is largely gone. The danger is now more subtle: a script that runs without errors, produces a polished plot, and returns a confident p-value — while using the wrong test for your data type, silently excluding observations in a way that biases your results, or modelling the wrong relationship entirely. These are scientific errors, not programming errors, and no amount of autonomous code iteration will catch them. The only defence is understanding what the analysis is doing and whether it matches your research question.</p>
+</div>
+<!-- SECTION 5: WHAT YOU NEED TO KNOW -->
+<h2 class="section-title">📖 What You Need to Know Even Without Programming</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">You do not need to write code from scratch. But you do need to <strong>read</strong> code well enough to verify that AI-generated scripts are doing what you intend. Here is the minimum set of concepts that every AI-assisted researcher should understand.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Variables and Data Types</h3>
+<p>A variable is a named container that holds a value. When AI-generated code says <code>mean_score = df['satisfaction'].mean()</code> , you should understand that <code>mean_score</code> is storing the average of the 'satisfaction' column, and <code>df</code> is the dataset.</p>
+<p>Data types matter because operations that work on one type may fail or behave unexpectedly on another. A column of numbers stored as text will not compute a correct average — and AI-generated code does not always catch this. Knowing the difference between numeric, text, and categorical data is essential.</p>
+</div>
+<div class="card">
+<h3>Functions and Libraries</h3>
+<p>A function is a reusable block of code that takes input and produces output. <code>t_test(group_a, group_b)</code> takes two sets of values and returns a test result. You do not need to know how the t-test is implemented, but you need to know what it expects as input and what it returns.</p>
+<p>Libraries (also called packages) are collections of pre-written functions. When code starts with <code>import pandas as pd</code> or <code>library(tidyverse)</code> , it is loading tools that other programmers have built. Understanding which libraries are standard for your type of analysis helps you judge whether the AI is making sensible choices.</p>
+</div>
+<div class="card">
+<h3>Loops and Conditionals</h3>
+<p>A loop repeats an operation multiple times — for example, processing each row in a dataset or running an analysis on each subgroup. When you see <code>for group in groups:</code> , the code inside will execute once for each group.</p>
+<p>A conditional executes code only when a condition is true. <code>if p_value &lt; 0.05:</code> means the indented code only runs when the p-value is below the threshold. These are the basic building blocks of any analysis logic, and understanding them helps you trace what AI-generated code is actually doing step by step.</p>
+</div>
+<div class="card">
+<h3>Reading Error Messages</h3>
+<p>When code fails, it produces an error message. These messages are not written for beginners, but they contain valuable information. A typical Python error tells you: which line failed, what type of error occurred, and often a description of the problem.</p>
+<p>The most practical skill you can develop is learning to <strong>copy the error message into an AI tool and ask for an explanation</strong> . This is one area where even free-tier AI tools excel — translating cryptic error messages into plain English and suggesting fixes. You do not need to memorise error types. You need to know that the error message is the starting point for fixing the problem, not a reason to give up.</p>
+</div>
+</div>
+<div class="case-study">
+<h4>🧪 The Difference Between "Runs" and "Correct"</h4>
+<p>Consider this scenario: you ask AI to compare satisfaction scores between two groups. The AI generates code that runs perfectly and produces a p-value of 0.03. You conclude the groups are significantly different.</p>
+<p style="margin-top: 15px;">But look closer at the code. The AI used a standard t-test, which assumes your data is normally distributed. Your satisfaction scores are on a 1–5 Likert scale — they are ordinal, not normally distributed. A Mann-Whitney U test would have been more appropriate. The "correct" code might give you a p-value of 0.08 — not significant.</p>
+<p style="margin-top: 15px;">The code ran. It produced a result. That result was wrong — not because the AI made a programming error, but because it chose an inappropriate statistical method for your data type. This is exactly the kind of error that vibe coding will miss and that a basic understanding of your analysis can catch.</p>
+<p style="margin-top: 15px;"><strong>The lesson:</strong> Always ask yourself — is this code doing the right analysis, or just <em>an</em> analysis? If you are unsure, describe your data and the test the AI chose to a second AI tool and ask whether the choice is appropriate. Cross-checking between tools is one of the most effective strategies available to non-programmers.</p>
+</div>
+<ol class="step-list">
+<li><strong>Describe your goal clearly.</strong> Be specific about your data (types, size, structure), what question you are trying to answer, and what you expect the output to look like. Vague prompts produce vague code.</li>
+<li><strong>Ask the AI to explain the code it generates.</strong> Before running anything, ask "explain what each section of this code does." If the explanation does not match your intent, the code is wrong — even if it runs.</li>
+<li><strong>Check the statistical choices.</strong> Ask "is [test name] appropriate for my data?" Describe your variables (ordinal, continuous, categorical) and your sample size. The AI should justify its choice, not just make one.</li>
+<li><strong>Verify with known values.</strong> If possible, run the code on a small dataset where you know the correct answer. If your code says the mean of [2, 4, 6] is not 4, something is wrong.</li>
+<li><strong>Read the output critically.</strong> Do the numbers make sense? Is the range plausible? Are there obvious anomalies? Your domain expertise is your most valuable debugging tool — you know what the answer should approximately look like even before running the analysis.</li>
+</ol>
+<!-- SECTION 6: READINGS -->
+<h2 class="section-title">📚 Readings</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Three core readings for this sub-lesson. The first two are practical guides aimed at researchers using AI coding tools. The third is an empirical evaluation of how well AI performs as a data analyst.</p>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener"> <strong>Mineault, P. (2026). "Claude Code for Scientists."</strong> </a> — A practical guide by a neuroscientist on how Claude Code fits into a scientific workflow. Covers setup, common use cases, and the balance between AI assistance and scientific rigour. Particularly relevant for researchers who want to understand the agentic approach to AI-assisted coding.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.dataquest.io/blog/getting-started-with-claude-code-for-data-scientists/" target="_blank" rel="noopener"> <strong>Dataquest (2025). "Getting Started with Claude Code for Data Scientists."</strong> </a> — A step-by-step introduction to using Claude Code for data analysis tasks. Good for understanding the practical workflow: how you interact with the tool, what kinds of tasks it handles well, and where it needs guidance.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener"> <strong>Cheng, L., Li, X., &amp; Bing, L. (2023). "Is GPT-4 a Good Data Analyst?" arXiv:2305.15038</strong> </a> — An empirical evaluation of GPT-4's capabilities as a data analyst, testing it on real-world data analysis tasks. The findings are nuanced: strong on standard tasks, weaker on edge cases and domain-specific judgment. Essential reading for understanding both the capabilities and limitations of AI-assisted data analysis.</p>
+</div>
+<p style="font-size: 1.1em; color: #555; margin-top: 40px; margin-bottom: 20px;"><strong>Supplementary readings</strong> for those who want to go deeper:</p>
+<div class="resource-placeholder">
+<h4>📄 Supplementary Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://r4ds.hadley.nz/" target="_blank" rel="noopener"> <strong> Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for Data Science</em> , 2nd Edition. </strong> </a> — Free online. Even if you plan to use Python, this book is one of the best introductions to thinking about data analysis systematically. The concepts transfer across languages, and AI tools can help you translate R patterns into Python or vice versa.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Supplementary Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2402.18679" target="_blank" rel="noopener"> <strong>Hong, S., et al. (2024). "Data Interpreter: An LLM Agent for Data Science." arXiv:2402.18679</strong> </a> — A research paper on building LLM-based agents specifically for data science tasks. Relevant for understanding where the field is heading: AI tools that do not just generate code but plan, execute, and iteratively refine entire analysis pipelines.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; What Comes Next</h2>
+<p>This session introduced the paradigm shift that AI coding tools represent for researchers: the ability to describe analysis in natural language and receive working code. We surveyed the tools available, from beginner-friendly options like ChatGPT Code Interpreter and Google Colab to power tools like Claude Code and Cursor.</p>
+<p>We addressed the quality gap between free and paid tiers honestly — free tools are genuinely useful for many tasks, but the difference in complex analysis scenarios is substantial. We examined "vibe coding" as both a useful prototyping approach and a dangerous habit when applied to research that will be published. And we outlined the minimum code literacy that every AI-assisted researcher needs: not the ability to write code, but the ability to read it well enough to verify that it does what you intend.</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>Natural language to code is real and practical:</strong> You can describe what you want and get working code. This is a genuine democratisation of computational research</li>
+<li><strong>The tools vary significantly:</strong> Choose based on your experience level, your needs, and whether free tiers are sufficient for your work</li>
+<li><strong>Free vs paid matters:</strong> The gap is real, especially for complex analysis. Use strategies to maximise free tier value, and consider paid tiers as a research investment if computation is central to your work</li>
+<li><strong>Vibe coding has its place:</strong> For prototyping and exploration, it is useful. For publication-quality analysis, it is dangerous. Know the difference</li>
+<li><strong>You need code literacy, not coding skill:</strong> Reading code, understanding error messages, and verifying statistical choices are the essential skills for AI-assisted research</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session:</strong> In Sub-Lesson 2 (AI-Assisted Data Analysis in Practice), we move from concepts to hands-on work — loading real datasets, generating analysis code, debugging errors, and producing visualisations using the tools and principles introduced today.</p>
+</div>
+</div>
+</div></body></html>

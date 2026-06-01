@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 10.3 - Agents: The Current Tool Landscape (Including MCP)</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
+<div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 10 • Sub-Lesson 3</div>
+<h1>🧰 <span style="color: #ffffff;">The Current Tool Landscape (Including MCP)</span></h1>
+<p>A time-stamped, free-tier-honest tour of coding agents, computer-use and browser agents, and the MCP connector layer — as of May 2026</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>🎯 What We'll Cover</h2>
+<p>This is the practical sub-lesson: a tour of the agent tools that actually exist in May 2026, organised by what they do. We cover three families here — coding agents, computer-use and browser agents, and the connector layer (MCP) that links agents to your data. The fourth family, research agents (“Deep Research” modes), gets its own treatment in 10.4, and the full honest free-versus-paid tool comparison — including Chinese options — lands in 10.5.</p>
+<p>Two commitments carry through. First, every capability number is time-stamped and will date; treat the trajectory as the lesson and the figures as a snapshot. Second, we keep asking the question that matters most for a UCT student: <strong>what can you actually use without a credit card?</strong> The answer is more encouraging than you might expect, but it requires knowing where to look.</p>
+<p>And we carry forward the two ideas from 10.1 and 10.2: an agent is a model plus a harness, and an agent's reliability is not the same as its accuracy. Both shape how you should read every claim a tool vendor makes.</p>
+</div>
+<h2 class="section-title">💻 Coding Agents</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Coding agents are the most mature family, and — as we saw in 10.1 — increasingly the most capable <em>general</em> agents too, because a tool that can read a folder, run a command, and edit a document is a research assistant whether or not the documents are code. The leaders as of May 2026 are Claude Code (Anthropic), Codex (OpenAI), and Cursor, with Cline and opencode as prominent open alternatives.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The honest access picture: <strong>the most capable coding agents are paid.</strong> Claude Code, Codex, and Cursor all sit behind subscriptions, and through 2026 the pricing models shifted repeatedly as the companies worked out how to charge for long-running, compute-hungry agents. For a student without a subscription, the realistic free routes are (a) the open-source agent frameworks — Cline, opencode, and LangChain's open <em>deepagents</em> — which you can point at a free or low-cost model, and (b) running a smaller open-weight coding model locally if you have a capable GPU. Both require setup and neither matches the polished paid tools, so we do not build the Week 10 activity around coding agents (see 10.6). They are best treated, for now, as a powerful option you should know exists rather than a baseline everyone can reach.</p>
+<div class="info-box">
+<h4>📚 The connection to Week 7</h4>
+<p>Everything Week 7 said about verifying AI-generated code applies with more force here. A chatbot writes a function you can read; a coding agent runs for an hour and hands you a result built from many steps, any of which could be silently wrong (10.2's compounding-error problem). The more autonomous the coding agent, the more the verification burden grows — not shrinks.</p>
+</div>
+<h2 class="section-title">🖱️ Computer-Use Agents</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A computer-use agent drives a graphical interface the way a person does — it looks at the screen, then clicks and types. The “looks at the screen” part is the same vision-language technology from Week 8: the agent reads screen pixels exactly as it reads a scientific figure, and it inherits Week 8's failure modes (it can describe what it sees far more reliably than it can extract precise values from it). The point of computer-use agents is that they work with any software, including the many tools that have no API.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The standard benchmark is <strong>OSWorld</strong> — 369 real tasks across desktop applications. Its trajectory is one of the steepest in AI:</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>When</th>
+<th>System</th>
+<th>OSWorld score</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>January 2025</td>
+<td>OpenAI's first computer-use agent, at launch</td>
+<td>38.1%</td>
+</tr>
+<tr>
+<td>—</td>
+<td><strong>Human baseline (estimated)</strong></td>
+<td><strong>~72%</strong></td>
+</tr>
+<tr>
+<td>Late 2025</td>
+<td>Simular Agent S2 — first agent to cross the human baseline</td>
+<td>72.6%</td>
+</tr>
+<tr>
+<td>March 2026</td>
+<td>GPT-5.4 (OSWorld-Verified)</td>
+<td>75.0%</td>
+</tr>
+<tr>
+<td>May 2026<br>(leaderboard top, clustered)</td>
+<td>Claude Mythos Preview<br>GPT-5.5<br>Gemini 3.5 Flash<br>Claude Opus 4.7</td>
+<td>79.6%<br>78.7%<br>78.4%<br>78.0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p style="color: #555; line-height: 1.75; margin-top: 18px; margin-bottom: 15px;">By the time you read this, those May 2026 figures will already be wrong — the public OSWorld-Verified leaderboard was reshuffling week to week as this was written, with newer preview models displacing the ones named here. That is not a flaw in the table; it <em>is</em> the lesson. Check <a href="https://llm-stats.com/benchmarks/osworld-verified" target="_blank" rel="noopener">the live leaderboard</a> for today's standings, and read whatever you find there through the caveat below.</p>
+<div class="warning-box">
+<h4>⚠️ “Beats the human baseline” does not mean “does your work”</h4>
+<p>It is true and striking that computer-use agents now match or exceed the average human score on OSWorld. But read that claim through 10.2. OSWorld is 369 specific, well-defined tasks — a narrow slice of what “using a computer” means. A benchmark score is a single-number summary of exactly the kind that the Princeton reliability work warns hides operational flaws. In real, open-ended workflows, computer-use agents remain fragile: they misclick, they lose the thread on long tasks, and — per 10.2 — their outcome consistency is far below 100%. The honest summary is the one from 10.1: the bottleneck has moved from speed to judgement, not disappeared.</p>
+</div>
+<h2 class="section-title">🌐 Agentic Browsers</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A growing category wraps a computer-use agent inside a web browser, so it can browse, fill forms, and carry out multi-step web tasks on your behalf. For UCT students, one of these is genuinely accessible:</p>
+<div class="card-grid">
+<div class="card">
+<h3>Comet (Perplexity) — free, worldwide</h3>
+<p>Perplexity's agentic browser. After a paywalled 2025 launch, Comet became <strong>free for all Perplexity account holders in 2026</strong>, across iOS, Android, Mac and Windows, with no regional restriction — which means it works from South Africa without a subscription or a foreign card. The free tier includes the assistant that answers questions and summarises pages; paid plans add a background assistant for longer multi-step tasks.</p>
+</div>
+<div class="card">
+<h3>Dia &amp; ChatGPT Atlas</h3>
+<p>Dia (from the team behind the Arc browser) and OpenAI's ChatGPT-integrated browsing are two other entrants. Availability and free tiers shift constantly; verify current access before relying on either. The category as a whole is young and the products are not yet stable.</p>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ Agentic browsers are a prompt-injection magnet</h4>
+<p>This is 10.2's structural security hole at its most exposed. An agentic browser reads whatever web page you send it to — and any page can contain hidden instructions aimed at your agent. Never give a browsing agent the ability to act on accounts that matter (email, banking, institutional systems) while it roams the open web. Keep the permissions dial low: let it read and summarise, not send, buy, or delete.</p>
+</div>
+<h2 class="section-title">🤔 Manus and the “General Agent” Claim</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Manus is worth discussing precisely because it is a good case study in reading agent hype critically. Launched in invitation-only beta in March 2025 by Butterfly Effect (a Chinese-founded company that relocated to Singapore), it was marketed as a <em>general</em> autonomous agent — give it a goal, walk away, come back to a finished task. The launch demos generated enormous attention and a thriving secondary market in invitation codes.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Apply the week's discipline. Manus's headline capability claims are <strong>company-reported</strong>, and independent replication has been scarce — exactly the situation 10.1 and 10.2 tell you to treat cautiously, because a polished demo is a best case, not a reliability measurement. What is independently documented is the regulatory drama: in April 2026, China's National Development and Reform Commission <strong>blocked Meta's reported $2&nbsp;billion acquisition of Manus</strong>, following a Ministry of Commerce investigation earlier in the year. That is a verifiable fact about the company; the “it can do anything” framing is not. Useful tool, genuine engineering — but a textbook example of why you separate what a vendor claims from what has been measured.</p>
+<h2 class="section-title">🔌 MCP: The Connector Layer</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The Model Context Protocol (MCP) is the plumbing that lets an agent connect to your tools and data through a single standard interface — often described as “USB-C for AI”. Instead of every tool needing a bespoke integration with every model, a tool exposes an MCP server once and any MCP-speaking agent can use it.</p>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">MCP matters in 2026 because it stopped being one vendor's idea and became a cross-industry standard with remarkable speed. Anthropic introduced it in November 2024; OpenAI adopted it in March 2025; Google followed in April 2025. In December 2025 Anthropic donated the protocol to a Linux Foundation body (the Agentic AI Foundation, co-founded with Block and OpenAI), so it is now governed in the open rather than controlled by one company. In barely a year it went from a single company's proposal to a standard that all the major model providers speak — which is why it is worth a researcher's attention rather than just a developer's.</p>
+<div class="info-box">
+<h4>🔬 Why a researcher should care</h4>
+<p>MCP is what will connect agents to the tools you already use. MCP servers exist (or are emerging) for reference managers like <strong>Zotero</strong>, for <strong>GitHub</strong>, <strong>Google Drive</strong>, <strong>Notion</strong>, and more — meaning an agent can search your library, read your repository, or draft in your notes through one standard. On Claude.ai, a set of connectors is available even on the <em>free</em> plan (the nine creative connectors from 10.1 are MCP under the hood). We return to the specific research-relevant connectors, and how to use them safely, in 10.5.</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The protocol's own March 2026 roadmap signals where it is heading: scaling the transport layer for production, refining agent-to-agent communication, maturing open governance, and enterprise features like audit trails and authentication — an evolution “from releases to working groups” that marks MCP's shift from experiment to infrastructure.</p>
+<div class="warning-box">
+<h4>⚠️ The pragmatic and the security caveats</h4>
+<p>Two cautions. First, practically: MCP is not always the right tool. Simon Willison — among the most careful practitioner voices — has argued that for a lot of agent work, plain command-line utilities are simpler and more reliable than wiring up an MCP server. MCP is a standard, not a magic wand. Second, and more seriously: anything an agent reads through MCP is untrusted content, so MCP is another channel for the prompt injection from 10.2. A connector that can both read your email and browse the web is exactly the kind of capability combination that turns a hidden instruction on a web page into an action on your inbox. Connect deliberately; keep the permissions dial low.</p>
+</div>
+<h2 class="section-title">🧭 Reading the Frontier: Real, Overclaimed, and Vapour</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A closing honesty note — but in the spirit of Week 9, the honest move is calibration in <em>both</em> directions, not blanket scepticism. Some frontier agent claims are genuine and shipping; some are real but overclaimed; some are still vapour. The skill is telling them apart. Three examples that are easy to get wrong in either direction.</p>
+<div class="case-study">
+<h4>🧬 Autonomous science: real milestones, overclaimed framing</h4>
+<p>It would be wrong to dismiss autonomous-science agents as vapour. The milestones are real and documented. Sakana AI's <em>AI Scientist-v2</em> produced a fully AI-generated manuscript that cleared peer review at an ICLR 2025 workshop — the first time a start-to-finish AI-written paper passed human review. DeepMind's <em>AlphaEvolve</em> discovered a way to multiply two 4×4 complex matrices using 48 scalar multiplications, improving on a record that had stood since 1969. Hypothesis-generation agents like DeepMind's <em>Co-Scientist</em> and FutureHouse's <em>Robin</em> are being used in real labs. These sit alongside the Week 9 results — Erdős problems, gluon amplitudes — as genuine AI contributions to research.</p>
+<p>What is overclaimed is the framing “the AI did the science”. The workshop paper passed a deliberately lower bar than a main conference and was withdrawn by agreement; the system still makes errors a reviewer must catch. Most of these tools <em>generate hypotheses or optimise within a well-defined space</em> — the human still frames the problem, validates the result, and supplies the novel data the agent cannot gather itself. As one assessment put it, we are likely years from autonomous “true innovation”. So: real and accelerating, genuinely useful — and not the end-to-end autonomous discovery the headlines imply. Both halves are true.</p>
+</div>
+<div class="case-study">
+<h4>🔄 Self-improving agents: bootstrapping is real; recursive self-improvement is not (yet)</h4>
+<p>Here too the honest answer is “partly real”. AI coding tools are now substantially used to build themselves: Anthropic engineers write much of Claude Code <em>using</em> Claude Code, and the Meta-Harness research from 10.1 automates the search for better harnesses. That is genuine bootstrapping — the tools are accelerating their own development, and it is not hype to say so.</p>
+<p>But it is human-directed bootstrapping, not the autonomous recursive self-improvement the term usually invokes. An engineer wields Claude Code to write Claude Code faster, including reviewing and deciding what ships; the agent is not, on its own, rewriting itself in a closed loop and getting recursively more capable without people. “AI-accelerated development of AI tools” (real, shipping, important) is a different claim from “agents autonomously improving themselves” (not what is happening). Keep the two apart and you will read this corner of the hype accurately.</p>
+</div>
+<p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">And some things genuinely are just vapour or rumour as of mid-May 2026 — for example the Anthropic general-work product circulating under the codename “Orbit” (from 10.1), which had not officially launched. A codename is not a product, and a demo is not a deployment. The pattern across all three examples is the same: find the verified core, name the overclaim around it, and do not let either the hype or the backlash do your thinking for you.</p>
+<div class="highlight-box">
+<h3>How to read this whole landscape</h3>
+<p>Three questions cut through almost any agent-tool announcement. <strong>Which harness?</strong> (10.1 — the model name alone tells you little.) <strong>How reliable, not just how accurate?</strong> (10.2 — a demo is a best case.) <strong>What can I actually access for free, from here?</strong> (this week's throughline.) Hold those three up against every tool below and in 10.5, and you will not be badly misled.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Sources &amp; Further Reading</h4>
+<ul class="styled-list">
+<li><a href="https://llm-stats.com/benchmarks/osworld-verified" target="_blank" rel="noopener">OSWorld-Verified leaderboard</a> and <a href="https://xlang.ai/blog/osworld-verified" target="_blank" rel="noopener">XLANG Lab, “Introducing OSWorld-Verified”</a> — the computer-use benchmark, human baseline, and current standings.</li>
+<li><a href="https://en.wikipedia.org/wiki/Model_Context_Protocol" target="_blank" rel="noopener">Model Context Protocol (Wikipedia)</a> — the cross-vendor adoption timeline and Linux Foundation governance.</li>
+<li><a href="https://blog.modelcontextprotocol.io/posts/2026-mcp-roadmap/" target="_blank" rel="noopener">MCP 2026 Roadmap</a> (9 March 2026) — the protocol's own stated priorities.</li>
+<li><a href="https://simonwillison.net/tags/model-context-protocol/" target="_blank" rel="noopener">Simon Willison on MCP</a> — the pragmatic critique that MCP is not always the best abstraction.</li>
+<li><a href="https://www.perplexity.ai/comet" target="_blank" rel="noopener">Perplexity Comet</a> · <a href="https://www.cnbc.com/2025/10/02/perplexity-ai-comet-browser-free-.html" target="_blank" rel="noopener">CNBC on Comet going free</a> — the free agentic browser accessible from South Africa.</li>
+<li><a href="https://en.wikipedia.org/wiki/Manus_(AI_agent)" target="_blank" rel="noopener">Manus (Wikipedia)</a> — origin and the blocked Meta acquisition; note its capability claims are company-reported.</li>
+<li><a href="https://arxiv.org/abs/2504.08066" target="_blank" rel="noopener">Sakana AI, <em>The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search</em>. arXiv:2504.08066</a> — the autonomous-paper-through-peer-review milestone, with its own caveats.</li>
+<li><a href="https://deepmind.google/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/" target="_blank" rel="noopener">Google DeepMind, “AlphaEvolve”</a> — the 4×4 complex-matrix algorithm (48 multiplications) that improved on Strassen's 1969 record after 56 years.</li>
+<li><a href="https://cen.acs.org/articles/104/web/2026/05/ai-companies-introduce-agent-based-research-tools.html" target="_blank" rel="noopener">C&amp;EN (May 2026), “AI companies introduce new agent-based tools for scientific discovery”</a> — overview of Co-Scientist, Robin, and the realistic limits.</li>
+</ul>
+</div>
+<div class="intro-text" style="margin-top: 50px;">
+<h2>👉 What Comes Next</h2>
+<p><strong>Sub-Lesson 10.4 — RAG in 2026.</strong> We deferred the research-agent family to its own lesson, and here it is. Retrieval-augmented generation was the backbone of the literature tools in Week 5; we look at what has changed since — how much longer context windows have eroded the need for naive retrieval, where “agentic RAG” wins it back, and why evaluating any of this remains genuinely hard. Deep Research modes — the research agents — sit right at the centre of that story.</p>
+</div>
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">© 2026 Jonathan Shock, University of Cape Town · MAM5020F: Generative AI for Research · Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003a70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a></footer></body></html>

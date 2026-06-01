@@ -1,0 +1,574 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.4 - Verification of AI-Generated Code</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .card ol li {
+            padding: 4px 0;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f0fe;
+            border-left: 5px solid #003A70;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #003A70;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .case-study {
+            background: #f8fafc;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .case-study h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table thead th {
+            background: #003A70;
+            color: #ffffff;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .comparison-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.93em;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #e8f0fe;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: steps;
+            margin: 20px 0;
+        }
+
+        .step-list > li {
+            counter-increment: steps;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .step-list > li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 15px;
+            top: 22px;
+            width: 35px;
+            height: 35px;
+            background: #003A70;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 • Sub-Lesson 4</div>
+<h1>✅ <span style="color: #ffffff;">Verification of AI-Generated Code</span></h1>
+<p>The most important skill in AI-assisted coding is not writing code — it is knowing whether the code you received actually does what you think it does</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>This is the most critical lesson of the week. The previous sub-lessons showed you how AI can help with data analysis, visualisation, and translating research questions into code. This lesson is about the part that matters most: making sure the code is doing the <em>right analysis</em>, not just <em>an</em> analysis.</p>
+<p style="margin-top: 12px;">A word of honest context first. Modern agentic tools like Claude Code have largely solved the problem of code that crashes. They run the code, read the error, fix it, and iterate — often without any human intervention. If your script fails, the tool handles it. That is genuinely impressive, and it means one entire category of verification work has been automated away.</p>
+<p style="margin-top: 12px;">What remains — and what this lesson is about — is the deeper category of errors that no amount of autonomous iteration can catch: code that runs perfectly but uses the wrong statistical test for your data type, the wrong variable because two columns have similar names, the wrong aggregation logic because the AI did not know your unit of analysis. These errors produce polished, professional-looking results. They will not trigger an error message. They will not cause the tool to retry. They will just give you the wrong answer, beautifully formatted. That is the failure mode this lesson addresses.</p>
+<p style="margin-top: 12px;">This session will teach you how to verify the <em>scientific correctness</em> of AI-generated code — even if you are not an experienced programmer. You do not need to write the code from scratch. You do need to understand it well enough to judge whether it is answering your actual research question.</p>
+</div>
+<!-- SECTION 1: WHY VERIFICATION MATTERS MORE THAN GENERATION -->
+<h2 class="section-title">🚨 Why Verification Matters More Than Generation</h2>
+<p>There is an asymmetry at the heart of AI-assisted coding that every researcher needs to understand: generating code is easy, but verifying that it answers the right scientific question is hard. AI has dramatically lowered the barrier to producing code that runs — modern agentic tools have largely automated the process of fixing crashes and syntax errors. What has not been automated is verifying that the code implements the right statistical logic for your specific research question. That judgment requires you.</p>
+<ul class="styled-list">
+<li><strong>AI-generated code looks authoritative.</strong> It is well-formatted, uses sensible variable names, includes comments, and often follows best practices for code structure. This surface-level quality creates a false sense of confidence. Code that looks professional — and runs flawlessly — is not necessarily code that is correct for your analysis.</li>
+<li><strong>Speed creates a verification debt.</strong> When you can generate ten analysis scripts in the time it used to take to write one, you have created ten scripts that need scientific review. If you do not budget time for verification, you are simply producing potentially wrong results faster. The time you save on writing should be reinvested in checking.</li>
+<li><strong>Errors in research code have real consequences.</strong> A bug in a web application might cause a button to misbehave. A wrong statistical test in research code might produce a significant result where none exists, or miss a real effect entirely. The stakes are different, and the verification standards must be different too.</li>
+<li><strong>You are responsible for your results, regardless of who or what wrote the code.</strong> No journal, no ethics board, and no thesis committee will accept "the AI wrote the code" as an excuse for incorrect results. The code runs under your name, and the results appear in your paper. You own them.</li>
+</ul>
+<div class="warning-box"><strong>⚠️ The trust trap:</strong> With modern agentic tools handling syntax errors autonomously, the trust trap has shifted. The danger now is not code that crashes — the tool will fix that. The danger is code that runs on the first try, produces a polished table or plot, and gives you a p-value. That is when most people stop checking. But "ran without errors" and "computed the right answer to my research question" are very different things. Always verify the scientific logic of the output, not just whether it executed.</div>
+<div class="technical-detail">
+<h3>📊 The Verification Asymmetry</h3>
+<p>Consider a practical example: you ask an AI to compute the mean and standard deviation of a dataset grouped by experimental condition. The code runs, prints a neatly formatted table, and the numbers look plausible. But did the AI:</p>
+<ul class="styled-list">
+<li>Use the correct column for grouping, or a similarly-named one?</li>
+<li>Handle missing values correctly, or silently drop rows?</li>
+<li>Compute the sample standard deviation (dividing by n-1) or the population standard deviation (dividing by n)?</li>
+<li>Include or exclude outliers that should have been filtered?</li>
+<li>Apply the grouping before or after a filtering step?</li>
+</ul>
+<p style="margin-top: 12px;">Every one of these questions can change your results. None of them will cause an error message. The code will run either way — it will just give you the wrong answer. This is why verification is not a nice-to-have. It is the core skill.</p>
+</div>
+<!-- SECTION 2: READING CODE YOU DIDN'T WRITE -->
+<h2 class="section-title">📖 Reading Code You Didn't Write</h2>
+<p>The single most effective verification technique is also the simplest: can you explain, in plain language, what each part of the code does? This is sometimes called the "explain it back" test, and it is your first and most important line of defence against errors in AI-generated code.</p>
+<div class="highlight-box"><strong>💡 The "Explain It Back" Test:</strong> Before you run any AI-generated code on your real data, go through it line by line (or block by block) and explain in your own words what each section does. If you cannot explain it, you do not understand it well enough to trust it. Ask the AI to explain the parts you do not understand — but then verify those explanations too.</div>
+<p style="margin-top: 20px;">This does not mean you need to understand every syntax detail. You do not need to memorise function signatures or know every argument by heart. But you do need to understand the <em>logic</em> of what the code is doing at each step. Here is a practical approach:</p>
+<ol class="step-list">
+<li><strong>Read the code from top to bottom and annotate it.</strong> Add comments in your own words describing what each block does. "This section loads the data." "This filters out participants under 18." "This computes the correlation between variables X and Y." If you cannot write these annotations, you have found a gap in your understanding.</li>
+<li><strong>Identify the key decision points.</strong> Where does the code make choices that affect the results? Filtering conditions, grouping variables, statistical tests, handling of missing values — these are the places where errors are most likely and most consequential. Pay extra attention here.</li>
+<li><strong>Ask the AI to explain its choices.</strong> "Why did you use a t-test instead of a Mann-Whitney U test?" "Why are you dropping rows with missing values instead of imputing them?" "What does the <code>axis=0</code> argument do here?" The quality of the AI's explanation will often reveal whether the choice was principled or arbitrary.</li>
+<li><strong>Check the explanation against your research design.</strong> Does the code implement what your methodology section describes? If your methods say "we used a two-tailed test" but the code uses a one-tailed test, that is a discrepancy that needs to be resolved before you proceed.</li>
+<li><strong>Trace the data flow.</strong> Follow a single data point from the raw input through every transformation to the final output. Does it go where you expect? Does it get modified in ways you intended? This is tedious but extremely effective at catching errors in data wrangling pipelines.</li>
+</ol>
+<div class="info-box"><strong>💡 A note on humility:</strong> There is no shame in not understanding a piece of code. The shame is in running code you do not understand and publishing results based on it. If you are using AI to generate code in a language or framework you are not familiar with, budget extra time for the verification step. The less you understand the language, the more carefully you need to check.</div>
+<!-- SECTION 3: PRACTICAL VERIFICATION TECHNIQUES -->
+<h2 class="section-title">🔧 Practical Verification Techniques</h2>
+<p>Beyond reading the code, you need a toolkit of practical techniques for confirming that AI-generated code produces correct results. None of these techniques requires advanced programming skills — they require careful thinking and a willingness to test systematically.</p>
+<div class="card-grid">
+<div class="card">
+<h3>🎯 Test with Known Data</h3>
+<p>Create a small dataset where you know what the correct answer should be, and run the code on that data first. If you are computing a mean, create five numbers and calculate the mean by hand. If you are running a regression, use a dataset where you know the relationship. If the code gives the wrong answer on data you understand, it will give the wrong answer on your real data too.</p>
+<p style="margin-top: 10px;">This is the single most powerful verification technique available to non-programmers. You do not need to read the code perfectly — you just need to know what the right answer looks like.</p>
+</div>
+<div class="card">
+<h3>⚠️ Test Edge Cases</h3>
+<p>Edge cases are the boundary conditions where code is most likely to break. What happens when a group has only one observation? What happens with missing values? What about negative numbers, zeros, or extremely large values? What if a categorical variable has a category with no data?</p>
+<p style="margin-top: 10px;">AI-generated code often handles the "happy path" well but fails on edge cases. Testing these explicitly is how you find the bugs that will otherwise surface at the worst possible moment — after you have submitted your paper.</p>
+</div>
+<div class="card">
+<h3>🧠 Sanity Checks</h3>
+<p>After every analysis step, ask: "Does this result make sense?" If your dataset has 500 participants but the summary shows 487 rows, where did the other 13 go? If the mean age is 3.7, something has gone wrong. If a correlation is exactly 1.0 on real data, something is suspicious.</p>
+<p style="margin-top: 10px;">Print intermediate results. Check the shape of your data at each step. Verify that counts, totals, and ranges match what you expect. These simple checks catch a remarkable number of errors.</p>
+</div>
+<div class="card">
+<h3>📈 Compare with Established Tools</h3>
+<p>If you are running a statistical test, try running the same test in a different tool and comparing results. Compute a t-test in both Python and R, or compare your regression output with what Excel or SPSS produces. If the results match, you have good evidence that the code is correct. If they differ, you have found a problem worth investigating.</p>
+<p style="margin-top: 10px;">This cross-validation approach is especially valuable when you are using a tool or library you are not familiar with.</p>
+</div>
+<div class="card">
+<h3>🔄 The Change-One-Thing Test</h3>
+<p>Modify one input value and check whether the output changes in the direction you expect. If you increase a participant's score, does the group mean increase? If you add an outlier, does the standard deviation get larger? If you change the grouping variable, do you get different groups?</p>
+<p style="margin-top: 10px;">This technique tests your understanding of the code's behaviour without requiring you to read every line. If the output does not respond to changes the way you expect, the code is not doing what you think it is doing.</p>
+</div>
+<div class="card">
+<h3>🛠️ Write Simple Unit Tests</h3>
+<p>A unit test checks that a single function does what it claims. You can ask the AI to write unit tests for the code it generated, and then review those tests to make sure they are testing the right things. Better yet, write the test yourself: "Given this input, I expect this output." Then run it.</p>
+<p style="margin-top: 10px;">Even a handful of well-chosen tests dramatically increases your confidence in the code. If you are not sure what to test, focus on the functions that compute your key results — the ones that will appear in your paper.</p>
+</div>
+</div>
+<div class="highlight-box"><strong>👉 The golden rule of verification:</strong> If you cannot think of a way to check whether the code's output is correct, you are not ready to use that output in your research. Every result that goes into your paper should have been verified by at least one independent method. This is not paranoia — it is scientific rigour.</div>
+<!-- SECTION 4: COMMON AI CODE FAILURE PATTERNS -->
+<h2 class="section-title">🐛 Common AI Code Failure Patterns</h2>
+<p>AI models tend to make specific, predictable types of errors in code. Knowing these patterns helps you focus your verification effort on the places where mistakes are most likely. Think of this as a checklist of the usual suspects — the errors you should actively look for every time you receive AI-generated code.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Failure Pattern</th>
+<th>What Happens</th>
+<th>How to Catch It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Variable Confusion</strong></td>
+<td>The AI uses a column name that does not exist in your data, or confuses two similarly-named variables (e.g., <code>score</code> vs <code>score_adjusted</code>). The code may still run if the wrong variable exists, silently computing results on the wrong data.</td>
+<td>Print column names before and after each transformation. Check that the variables referenced in the code actually exist in your dataset and refer to what you think they do.</td>
+</tr>
+<tr>
+<td><strong>Off-by-One Errors</strong></td>
+<td>Loops or slicing operations include one too many or one too few elements. In Python, <code>range(1, 10)</code> gives you 1 through 9, not 1 through 10. These errors affect counts, indices, and aggregations.</td>
+<td>Test with a small dataset where you can count the elements manually. Check that loop boundaries and slice ranges include exactly the elements you expect.</td>
+</tr>
+<tr>
+<td><strong>Wrong Statistical Test</strong></td>
+<td>The AI applies a parametric test when your data is not normally distributed, uses an independent-samples test when your data is paired, or applies a test that assumes equal variances when variances differ. The code runs without errors — it just gives you a meaningless p-value.</td>
+<td>Before running any statistical test, verify that the assumptions of the test are met. Check the AI's choice of test against your research design and the properties of your data.</td>
+</tr>
+<tr>
+<td><strong>Missing Data Handling</strong></td>
+<td>The AI silently drops rows with missing values (changing your sample size), fills them with zeros (biasing your results), or ignores them in a way that produces misleading statistics. Different functions handle NaN differently, and the AI may not be consistent.</td>
+<td>Check your row count before and after every operation. Explicitly ask: "How does this code handle missing values?" Compare the number of observations in your output with what you expect.</td>
+</tr>
+<tr>
+<td><strong>Aggregation Errors</strong></td>
+<td>The AI aggregates at the wrong level — computing a mean of means instead of an overall mean, double-counting observations, or grouping by the wrong variable. These errors are especially common in multi-level or longitudinal data.</td>
+<td>Verify the grouping structure at each step. Check that the number of groups matches what you expect. Compute a simple aggregation by hand and compare it with the code's output.</td>
+</tr>
+<tr>
+<td><strong>Library Version Issues</strong></td>
+<td>The AI generates code that uses function signatures, argument names, or default behaviours from a different version of a library than what you have installed. A function that existed in pandas 1.x may have been renamed or deprecated in pandas 2.x. The AI's training data includes code from many versions.</td>
+<td>Check your installed library versions. If you get unexpected errors or deprecation warnings, look up the function's documentation for your specific version. Pin your library versions in a requirements file.</td>
+</tr>
+</tbody>
+</table>
+<div class="case-study">
+<h3>🔍 Example: A Subtle Aggregation Error</h3>
+<p>Suppose you have data from 30 participants across 3 experimental conditions, with 10 observations per participant per condition. You ask AI to compute the mean reaction time per condition. A common mistake is to compute the mean of all 300 observations in each condition directly, rather than first computing each participant's mean and then averaging those participant-level means.</p>
+<p style="margin-top: 12px;">If participants contributed different numbers of valid trials (due to dropped outliers or missing responses), the direct approach gives more weight to participants with more trials. The participant-level approach gives equal weight to each participant. Both are valid choices, but they answer different questions and can give different results. The AI will pick one without asking you which you intended — and the code will run without complaint either way.</p>
+<p style="margin-top: 12px;"><strong>The fix:</strong> Always specify the aggregation structure you want. Check intermediate outputs to confirm the grouping is correct. When in doubt, compute both ways and see if the results differ — if they do, you need to make a principled decision about which is appropriate for your research question.</p>
+</div>
+<!-- SECTION 5: VERSION CONTROL AND REPRODUCIBILITY -->
+<h2 class="section-title">📂 Version Control and Reproducibility</h2>
+<p>Verification is not a one-time event. Code evolves as your analysis develops, and you need a system for tracking what changed, when, and why. Version control is not just a software engineering practice — it is a scientific practice that protects the reproducibility of your work.</p>
+<ul class="styled-list">
+<li><strong>Save every version of your analysis code.</strong> At minimum, keep dated copies of your scripts at each major milestone (after data cleaning, after main analysis, after revisions). Better yet, use a version control system like Git, which tracks every change automatically and lets you go back to any previous version.</li>
+<li><strong>Record the conversation.</strong> If you are using AI to generate or modify code, save the prompts and responses. This is part of your research record. If a reviewer asks "Why did you handle missing data this way?", you want to be able to show the reasoning process, not just the final code.</li>
+<li><strong>Pin your dependencies.</strong> Record the exact versions of every library and tool you used. In Python, this means a <code>requirements.txt</code> file. In R, this means recording your <code>sessionInfo()</code>. Code that works with one version of a library may produce different results with another version.</li>
+<li><strong>Document your verification steps.</strong> Keep a log of what you tested, how you tested it, and what you found. This is not just good practice — it is evidence that you did your due diligence. If questions arise later about the correctness of your results, your verification log is your defence.</li>
+<li><strong>Make your code runnable by someone else.</strong> The ultimate test of reproducibility is whether a colleague can take your code, your data, and your documentation and produce the same results you did. AI-generated code is often self-contained, which is a good start, but it still needs clear documentation about what to install, what data to provide, and what output to expect.</li>
+</ul>
+<div class="technical-detail">
+<h3>⚙️ A Minimal Reproducibility Checklist</h3>
+<p>Before you consider your analysis complete, confirm that you have:</p>
+<ol class="step-list">
+<li><strong>A clean, well-commented analysis script</strong> that runs from start to finish without manual intervention. Someone reading it should be able to follow the logic without referring to your paper.</li>
+<li><strong>A record of your computing environment</strong> — Python/R version, library versions, operating system. Use <code>pip freeze &gt; requirements.txt</code> or <code>sessionInfo()</code> to generate this automatically.</li>
+<li><strong>Documentation of your data</strong> — what each variable means, how missing values are coded, what units are used, and any preprocessing steps applied before the analysis script runs.</li>
+<li><strong>A verification log</strong> — what you tested, the expected vs actual results, and how you resolved any discrepancies. This can be as simple as a text file or a section of comments in your code.</li>
+<li><strong>An AI usage record</strong> — which parts of the code were AI-generated, what prompts you used, and what modifications you made. This supports both transparency and reproducibility.</li>
+</ol>
+</div>
+<div class="info-box"><strong>💡 Why this matters for your career:</strong> Reproducibility failures are increasingly career-threatening. High-profile retractions often trace back to code errors that went undetected because no one checked. Building good version control and documentation habits now protects you from these risks and signals to collaborators and reviewers that you take computational rigour seriously.</div>
+<!-- SECTION 6: READINGS -->
+<h2 class="section-title">📚 Readings and Resources</h2>
+<div class="resource-placeholder">
+<h4>📑 Kapoor, S. &amp; Narayanan, A. (2023). Leakage and the reproducibility crisis in machine-learning-based science.</h4>
+<p><a href="https://doi.org/10.1016/j.patter.2023.100804" target="_blank" rel="noopener">https://doi.org/10.1016/j.patter.2023.100804</a></p>
+<p style="margin-top: 8px;">A landmark paper documenting how data leakage — a subtle and common code error — has led to widespread irreproducible results across scientific fields that use machine learning. The authors found the problem in hundreds of published papers across 17 scientific fields. Essential reading for understanding why code verification matters at a systemic level.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📑 Cheng, L., Li, X., &amp; Bing, L. (2023). Is GPT-4 a Good Data Analyst?</h4>
+<p><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener">https://arxiv.org/abs/2305.15038</a></p>
+<p style="margin-top: 8px;">An empirical evaluation of GPT-4's capability for data analysis tasks, examining where it succeeds and where it fails. The paper provides concrete examples of the kinds of errors AI makes when generating analysis code, making it directly relevant to the verification techniques covered in this lesson. <strong>Note that this is now pretty out of date!</strong></p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. — R for Data Science (2nd edition)</h4>
+<p><a href="https://r4ds.hadley.nz/" target="_blank" rel="noopener">https://r4ds.hadley.nz/</a></p>
+<p style="margin-top: 8px;">The standard reference for data analysis in R, freely available online. Even if you primarily use Python, the principles of tidy data, reproducible workflows, and systematic data transformation are universal. The chapters on data import, transformation, and communication are especially relevant to verification practices.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📖 Good Research Code Handbook</h4>
+<p><a href="https://goodresearch.dev/" target="_blank" rel="noopener">https://goodresearch.dev/</a></p>
+<p style="margin-top: 8px;">A practical, opinionated guide to writing research code that is correct, reproducible, and maintainable. Covers project organisation, version control, testing, and documentation with a focus on academic researchers rather than software engineers. Highly recommended for anyone who wants to build good habits around code quality in research.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<ul class="styled-list">
+<li><strong>Verification is more important than generation.</strong> Anyone can generate code with AI. The skill that distinguishes rigorous research from sloppy research is the ability to verify that the code actually does what it claims. Budget at least as much time for verification as you do for generation.</li>
+<li><strong>The "explain it back" test is your first line of defence.</strong> If you cannot explain in plain language what each section of the code does, you do not understand it well enough to trust it. Read the code, annotate it, and trace the data flow before running it on real data.</li>
+<li><strong>Use practical verification techniques systematically.</strong> Test with known data, check edge cases, perform sanity checks, compare with established tools, try the change-one-thing test, and write unit tests. No single technique catches everything — use several in combination.</li>
+<li><strong>Know the common failure patterns.</strong> Variable confusion, off-by-one errors, wrong statistical tests, missing data mishandling, aggregation errors, and library version issues — these are the errors AI makes most often. Look for them actively every time.</li>
+<li><strong>Version control and reproducibility are not optional.</strong> Track your code changes, pin your dependencies, document your verification steps, and record your AI usage. Your future self, your collaborators, and your reviewers will thank you.</li>
+<li><strong>You are responsible for your results.</strong> The AI is a tool. You are the researcher. Every number that appears in your paper is your responsibility, regardless of who or what generated the code that produced it.</li>
+</ul>
+<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> In Sub-Lesson 5, we bring everything together with hands-on activities and the weekly assessment. You will apply the verification techniques from this lesson to real AI-generated analysis code, practise catching the failure patterns we covered, and build a verified, reproducible analysis workflow from start to finish.</div>
+</div>
+</div>
+</div></body></html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6.3 - AI Writing Tools</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .intro-text h2::before { content: '\1F3AF'; }
+        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+        .warning-box p { color: #555; line-height: 1.7; }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+        .resource-placeholder p { color: #666; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        .case-study {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+
+        .decision-framework {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .decision-framework h4 { color: #003A70; font-size: 1.4em; margin-bottom: 20px; }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .step-list > li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 12px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .step-list > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #003A70;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 0.85em; }
+            .comparison-table th, .comparison-table td { padding: 8px 10px; }
+        }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 6 • Sub-Lesson 3</div>
+<h1>✍️ <span style="color: #ffffff;">AI Writing Tools — Landscape and Honest Assessment</span></h1>
+<p>A clear-eyed look at what AI writing tools can and cannot do for academic researchers — and the equity and homogenisation questions they raise</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>AI writing tools are everywhere, and they range from general-purpose chatbots to purpose-built academic writing assistants. This session maps the landscape, honestly evaluates what each category offers, and confronts two critical questions: Can AI help level the playing field for non-native English speakers? And does that help come at the cost of linguistic and cultural diversity?</p>
+<p>We will also look at the evidence for whether these tools actually improve writing quality and efficiency, rather than just assuming they do. The answers are more nuanced than most marketing materials suggest.</p>
+</div>
+<!-- SECTION 1: TOOL CATEGORIES -->
+<h2 class="section-title">🗂️ The Four Categories of AI Writing Tools</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">AI writing tools fall into four broad categories. Understanding which category a tool belongs to helps you set realistic expectations for what it will and will not do for your writing.</p>
+<div class="card-grid">
+<div class="card">
+<h3>General-Purpose LLMs</h3>
+<p><strong>Tools:</strong> Claude, ChatGPT, Gemini</p>
+<p>The most versatile category. These can brainstorm ideas, give feedback on drafts, restructure arguments, explain concepts, and help with everything from abstracts to cover letters. They are not designed specifically for academic writing, which means they lack specialist features like citation management or journal-specific style checking — but their flexibility is their strength.</p>
+<ul class="styled-list">
+<li>Best for brainstorming, feedback, restructuring, and overcoming writer's block</li>
+<li>Can adapt to almost any writing task with good prompting</li>
+<li>Free tiers available for all three (with usage limits)</li>
+<li>No built-in citation tools or academic style enforcement</li>
+<li>Quality of output depends heavily on how well you prompt</li>
+</ul>
+</div>
+<div class="card">
+<h3>Specialist Academic Writing Tools</h3>
+<p><strong>Tools:</strong> Paperpal, Jenni AI, Paperguide, Yomu</p>
+<p>Designed specifically for academic contexts. These tools offer features like citation integration, academic style checking, paraphrasing with source awareness, and journal-specific formatting. They understand the conventions of academic writing in ways general LLMs do not, but their narrower focus means they are less useful outside their intended domain.</p>
+<ul class="styled-list">
+<li>Academic-aware: understand citation formats, section conventions, hedging language</li>
+<li>Some integrate directly with reference managers and databases</li>
+<li>Mostly paid, typically $10–20 per month for full features</li>
+<li>Less flexible than general LLMs for non-standard tasks</li>
+<li>Quality varies significantly between tools — test before committing</li>
+</ul>
+</div>
+<div class="card">
+<h3>Grammar and Style Tools</h3>
+<p><strong>Tools:</strong> Grammarly, ProWritingAid, LanguageTool</p>
+<p>Focused on surface-level corrections: spelling, grammar, punctuation, sentence clarity, and style consistency. These tools are good at what they do, but they fundamentally do not touch content. They will fix your comma splices and flag passive voice, but they will not tell you that your argument is weak or your literature review is missing a key source.</p>
+<ul class="styled-list">
+<li>Excellent for catching mechanical errors and improving readability</li>
+<li>Free tiers cover basic grammar; paid tiers add style, tone, and clarity suggestions</li>
+<li>LanguageTool is open-source and supports many languages</li>
+<li>Will not evaluate or improve the substance of your argument</li>
+<li>Can be overly prescriptive — not every suggestion is an improvement</li>
+</ul>
+</div>
+<div class="card">
+<h3>Translation Tools</h3>
+<p><strong>Tools:</strong> DeepL, Google Translate</p>
+<p>Critical for multilingual researchers working across language boundaries. DeepL is generally considered superior for academic and technical text, producing more natural-sounding translations that preserve nuance better than Google Translate. Both are free for basic use, with paid tiers removing length limits and adding specialised features.</p>
+<ul class="styled-list">
+<li>DeepL generally produces more natural academic prose than Google Translate</li>
+<li>Invaluable for reading sources in other languages and for multilingual researchers drafting in English</li>
+<li>Free tiers have character limits; paid tiers are relatively affordable</li>
+<li>Neither is perfect — domain-specific terminology still needs expert review</li>
+<li>Translation quality varies by language pair (European languages tend to be strongest)</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>📌 A Note on Overlap</h4>
+<p>These categories are not watertight. General-purpose LLMs can do grammar checking. Specialist tools often include translation features. Grammarly is adding AI writing assistance. The trend is convergence — every tool wants to be your everything. But understanding the core category helps you evaluate whether a tool's peripheral features are genuinely good or just checkbox items on a marketing page.</p>
+</div>
+<!-- SECTION 2: THE MULTILINGUAL EQUITY ANGLE -->
+<h2 class="section-title">🌍 The Multilingual Equity Angle</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">One of the most important — and genuinely hopeful — aspects of AI writing tools is their potential to reduce the disadvantage faced by researchers who write in English as a second, third, or fourth language. But this potential comes with a significant catch.</p>
+<div class="technical-detail">
+<h4>The Scale of the Problem</h4>
+<p>Research consistently shows that non-native English speakers spend significantly more time on writing tasks than their native-speaking peers. A study by <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3003215" target="_blank" rel="noopener">Amano et al. (2023)</a> in <em>PLOS Biology</em> found non-native speakers spend approximately 50% more time on writing tasks. This is not a matter of intelligence or research quality — it is a structural disadvantage baked into a publishing system that operates overwhelmingly in English.</p>
+<p>For researchers at UCT and across Africa, where English may be a second, third, or fourth language for many scholars, this time penalty is not trivial. It means fewer publications, slower career progression, and less time for the research itself. Any tool that genuinely reduces this gap is worth taking seriously.</p>
+</div>
+<div class="case-study">
+<h4>Two Possible Futures for Multilingual Academic Publishing</h4>
+<p>A 2025 paper in <em>PLOS Biology</em> by Amano, Bowker &amp; Burton-Jones presents a thought-provoking framework for how AI translation could reshape academic publishing. The paper identifies two divergent futures:</p>
+<div class="card-grid">
+<div class="card">
+<h3>Future 1: English Reinforced</h3>
+<p>Everyone uses AI to write in English. The tools get good enough that non-native speakers can produce polished English text with minimal effort. This is the path of least resistance, and it is what most current tools optimise for.</p>
+<p><strong>The problem:</strong> This reinforces English hegemony. Knowledge continues to flow in one direction. Researchers must still operate in English to be heard, and their own languages remain marginal in academic discourse.</p>
+</div>
+<div class="card">
+<h3>Future 2: Multilingual Access</h3>
+<p>Researchers write in their own language, and readers use AI to read in theirs. Publishing becomes genuinely multilingual because the translation barrier drops for both writers and readers.</p>
+<p><strong>The promise:</strong> This promotes linguistic diversity and allows researchers to think and write in the language most natural to them. Ideas flow in multiple directions. Academic knowledge becomes accessible in many languages, not just English.</p>
+</div>
+</div>
+<p style="margin-top: 15px; color: #555; line-height: 1.7;"><strong>Source:</strong> Amano, Bowker &amp; Burton-Jones (2025). <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3003215" target="_blank" rel="noopener">AI-mediated translation presents two possible futures for academic publishing in a multilingual world</a>. <em>PLOS Biology</em>.</p>
+</div>
+<div class="highlight-box">
+<h3>What Does This Mean for Africa?</h3>
+<p>The African context makes this question especially urgent. Across the continent, researchers navigate dozens of languages in their daily lives. When a Zulu-speaking researcher at UCT must write in English, the time penalty is real and the cognitive cost is significant.</p>
+<p>AI writing tools could be genuinely democratising here. A tool that helps a researcher express complex ideas in polished academic English — ideas they can think through perfectly well in isiXhosa or Afrikaans — removes a barrier that has nothing to do with research quality.</p>
+<p>But we must ask: are we helping researchers communicate, or are we erasing the linguistic diversity that enriches academic thought? The answer depends on which future we build toward.</p>
+</div>
+<div class="info-box">
+<h4>📌 Further Reading on Language Equity</h4>
+<p>A ResearchGate study, "Beyond English Hegemony: AI Academic Writing Tool Usage Among Non-Native English Speakers," examines how non-native English speakers are actually using these tools in practice and what patterns emerge in adoption across different linguistic communities. See the Readings section below for the full reference.</p>
+</div>
+<!-- SECTION 3: THE HOMOGENISATION PROBLEM -->
+<h2 class="section-title">⚠️ The Homogenisation Problem</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">If the multilingual equity angle is the hopeful side of AI writing tools, the homogenisation problem is the cautionary one. There is growing evidence that AI writing assistance does not just help people write — it shapes <em>how</em> they write, and that shaping tends to push everyone toward the same style.</p>
+<div class="case-study">
+<h4>When AI Suggestions Flatten Cultural Differences</h4>
+<p>A 2025 study presented at CHI (the premier conference on human-computer interaction) directly tested what happens when people from different cultural backgrounds use an AI writing assistant. The findings are striking.</p>
+<p>Researchers at Cornell had both Indian and American participants complete writing tasks with and without AI assistance. Two key findings emerged:</p>
+<ul class="styled-list">
+<li><strong>Indian writing became more American-sounding</strong> when participants used AI suggestions. The AI's training data skewed toward Western English styles, and its suggestions pushed Indian writers away from their natural expression patterns.</li>
+<li><strong>Indian participants got a smaller productivity boost</strong> compared to Americans. Why? Because they spent more time evaluating and correcting AI suggestions that did not match their intended meaning or style. The AI was optimising for a style that was not theirs.</li>
+</ul>
+<p style="margin-top: 15px; color: #555; line-height: 1.7;"><strong>Source:</strong> Agarwal, Naaman &amp; Vashistha (2025). <a href="https://dl.acm.org/doi/10.1145/3706598.3713564" target="_blank" rel="noopener">AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nuances</a>. <em>CHI 2025</em>. Also available on <a href="https://arxiv.org/abs/2409.11360" target="_blank" rel="noopener">arXiv</a>.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Core Tension</h4>
+<p>This is the fundamental tension in AI writing assistance: the same tools that help non-native English speakers access academic publishing may simultaneously erode the diversity of expression that makes academic discourse rich. AI helps with access, but it can come at the cost of linguistic and cultural variety. A world where every paper reads the same — regardless of whether the author is in Cape Town, Mumbai, or Boston — is not a richer world. It is a flatter one.</p>
+</div>
+<div class="technical-detail">
+<h4>The Broader Homogenisation Concern</h4>
+<p>The writing homogenisation finding is part of a larger pattern. Daryani et al. (2026) argue in their paper "The Homogenizing Engine" that AI's standardising effects extend well beyond writing. When AI tools are trained on dominant cultural datasets and deployed globally, they tend to compress the variation that makes human expression diverse. In writing, this means less stylistic variety. In research, it could mean less diversity of thought.</p>
+<p>This is not an argument against using AI writing tools. It is an argument for using them <em>consciously</em> — knowing that the suggestions they make carry implicit assumptions about what "good writing" looks like, and that those assumptions are not culturally neutral.</p>
+<p style="margin-top: 10px;"><strong>Source:</strong> Daryani et al. (2026). <a href="https://journals.sagepub.com/doi/10.1177/23727322251406591" target="_blank" rel="noopener">The Homogenizing Engine: AI's Role in Standardizing Culture</a>. <em>SAGE Journals</em>.</p>
+</div>
+<!-- SECTION 4: WHAT THE EVIDENCE SAYS -->
+<h2 class="section-title">📊 What the Evidence Says About Effectiveness</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Do AI writing tools actually make academic writing better and faster? The evidence is surprisingly thin, but what exists is encouraging — with an important caveat.</p>
+<div class="case-study">
+<h4>The Carnegie Mellon Study</h4>
+<p>A <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4941022" target="_blank" rel="noopener">study by Usdan, Connell Pensky &amp; Chang (2024)</a> at Carnegie Mellon University examined what happened when graduate students were given structured instruction on using AI writing tools for their academic work. The results were notable:</p>
+<ul class="styled-list">
+<li><strong>Writing time reduced by approximately 65%</strong> — tasks that previously took hours were completed significantly faster with AI assistance.</li>
+<li><strong>Average grades improved from B+ to A</strong> — the quality of the writing produced with AI assistance was rated higher by evaluators.</li>
+<li><strong>Benefits were consistent for both native and ESL writers</strong> — non-native English speakers saw similar improvements to their native-speaking peers.</li>
+</ul>
+</div>
+<div class="warning-box">
+<h4>⚠️ "Proper Instruction" Is Doing a Lot of Work</h4>
+<p>The Carnegie Mellon results come with a crucial qualifier: participants received <strong>structured training</strong> on how to use AI writing tools effectively. They were taught specific prompting strategies, shown how to iterate on AI output, and given frameworks for maintaining their own voice while leveraging AI assistance.</p>
+<p>This matters because untrained use of AI writing tools may not produce the same results. The difference between a researcher who pastes their draft into ChatGPT and says "make this better" and one who uses structured prompting strategies to get targeted feedback on specific aspects of their argument is enormous. The tool is the same; the outcome is not.</p>
+<p>This is, incidentally, exactly why this course exists. The tool matters less than knowing how to use it.</p>
+</div>
+<div class="highlight-box">
+<h3>The Practical Takeaway</h3>
+<p>AI writing tools can genuinely improve both the speed and quality of academic writing — but only when used with intention and skill. Dropping your draft into an AI and accepting whatever comes back is unlikely to produce good results. Using AI as a structured collaborator — for brainstorming, feedback, restructuring, and polishing — can produce excellent results.</p>
+<p>The skills you are developing in this course — effective prompting, critical evaluation of AI output, iterative refinement — are what separate productive AI-assisted writing from lazy AI-dependent writing. The tool amplifies whatever approach you bring to it.</p>
+</div>
+<!-- SECTION 5: COMPARISON TABLE -->
+<h2 class="section-title">📋 Tool Comparison</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Here is a practical comparison of the most commonly used AI writing tools. Note that pricing and features change frequently — check the tool's website for current details.</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Category</th>
+<th>Best For</th>
+<th>Free Tier?</th>
+<th>Pricing</th>
+<th>Key Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude</strong></td>
+<td>General-purpose LLM</td>
+<td>Detailed feedback, restructuring arguments, nuanced writing assistance</td>
+<td>Yes (usage limits)</td>
+<td>Free / $20/mo Pro</td>
+<td>No citation management or academic style enforcement</td>
+</tr>
+<tr>
+<td><strong>ChatGPT</strong></td>
+<td>General-purpose LLM</td>
+<td>Brainstorming, drafting, general writing feedback</td>
+<td>Yes (GPT-4o limited)</td>
+<td>Free / $20/mo Plus</td>
+<td>Can be overly agreeable; no built-in academic features</td>
+</tr>
+<tr>
+<td><strong>Gemini</strong></td>
+<td>General-purpose LLM</td>
+<td>Research-connected writing with Google integration</td>
+<td>Yes</td>
+<td>Free / $20/mo Advanced</td>
+<td>Newer to the space; academic writing quality still catching up</td>
+</tr>
+<tr>
+<td><strong>Paperpal</strong></td>
+<td>Specialist academic</td>
+<td>Language polishing for non-native English speakers, journal submission prep</td>
+<td>Limited</td>
+<td>~$12/mo</td>
+<td>Narrow focus on language; less useful for content-level feedback</td>
+</tr>
+<tr>
+<td><strong>Jenni AI</strong></td>
+<td>Specialist academic</td>
+<td>Long-form academic writing with inline citation support</td>
+<td>Limited (200 words/day)</td>
+<td>~$20/mo</td>
+<td>Citation suggestions need verification; can encourage over-reliance</td>
+</tr>
+<tr>
+<td><strong>Grammarly</strong></td>
+<td>Grammar and style</td>
+<td>Catching mechanical errors, improving clarity and readability</td>
+<td>Yes (basic grammar)</td>
+<td>~$12/mo Premium</td>
+<td>Surface-level only; does not evaluate argument quality or content</td>
+</tr>
+<tr>
+<td><strong>DeepL</strong></td>
+<td>Translation</td>
+<td>Translating academic text between languages; reading foreign-language sources</td>
+<td>Yes (character limits)</td>
+<td>~$9/mo Pro</td>
+<td>Strongest for European languages; less reliable for African languages</td>
+</tr>
+<tr>
+<td><strong>LanguageTool</strong></td>
+<td>Grammar and style</td>
+<td>Grammar checking with strong multilingual support; open-source option</td>
+<td>Yes (basic)</td>
+<td>~$5/mo Premium</td>
+<td>Less sophisticated AI suggestions than Grammarly; best for grammar only</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>📌 On Pricing</h4>
+<p>All prices shown are approximate as of early 2026 and are given in US dollars. Prices change frequently, and many tools offer student discounts or institutional pricing. Before paying individually, check whether UCT has institutional access — your faculty librarian is the best first point of contact.</p>
+</div>
+<!-- SECTION 6: READINGS -->
+<h2 class="section-title">📚 Readings for This Session</h2>
+<div class="technical-detail">
+<h4>Core Readings</h4>
+<ol class="step-list">
+<li>Amano, Bowker &amp; Burton-Jones (2025). "AI-mediated translation presents two possible futures for academic publishing in a multilingual world." <em>PLOS Biology</em>. <a href="https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3003215" target="_blank" rel="noopener">Read the paper</a> — A thoughtful analysis of how AI translation could either reinforce or dismantle English hegemony in academic publishing.</li>
+<li>Agarwal, Naaman &amp; Vashistha (2025). "AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nuances." <em>CHI 2025</em>. <a href="https://arxiv.org/abs/2409.11360" target="_blank" rel="noopener">Read on arXiv</a> — Empirical evidence that AI writing assistance pushes non-Western writers toward Western expression styles, with implications for cultural diversity in academic writing.</li>
+<li>"Beyond English Hegemony: AI Academic Writing Tool Usage Among Non-Native English Speakers." <a href="https://www.researchgate.net/publication/396177562" target="_blank" rel="noopener">Read on ResearchGate</a> — Examines patterns in how non-native English speakers adopt and use AI writing tools, and what this reveals about language equity in academia.</li>
+</ol>
+</div>
+<div class="technical-detail">
+<h4>Supplementary Readings</h4>
+<ul class="styled-list">
+<li>Daryani et al. (2026). "The Homogenizing Engine: AI's Role in Standardizing Culture." <em>SAGE Journals</em>. <a href="https://journals.sagepub.com/doi/10.1177/23727322251406591" target="_blank" rel="noopener">Read the paper</a> — Broader analysis of how AI standardises cultural expression, including but not limited to writing.</li>
+<li>Explore the free tiers of tools discussed in this session. Try giving the same paragraph to Claude, Grammarly, and Paperpal and compare what each focuses on. The differences are instructive.</li>
+</ul>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<p><strong>The landscape is wide but the categories are clear.</strong> General-purpose LLMs offer flexibility, specialist tools offer academic awareness, grammar tools fix mechanics, and translation tools bridge languages. Knowing which category you need prevents you from paying for features you will not use.</p>
+<p><strong>AI writing tools raise genuine equity questions.</strong> For non-native English speakers — including many researchers at UCT and across Africa — these tools can meaningfully reduce a structural disadvantage. This is one of the strongest arguments in their favour.</p>
+<p><strong>But homogenisation is real.</strong> The same tools that help diverse writers access academic publishing can also flatten the diversity of expression that enriches scholarly discourse. Using AI writing tools consciously means being aware of whose "good writing" the AI was trained to produce.</p>
+<p><strong>Evidence supports effectiveness — with training.</strong> Structured use of AI writing tools can dramatically improve both speed and quality. Unstructured use may not. The prompting and evaluation skills you are building in this course are what make the difference.</p>
+<p><strong>Next session:</strong> We turn to the most consequential question in AI-assisted academic writing — scientific integrity. Sub-Lesson 4 examines how AI tools interact with plagiarism, fabrication, and the norms of honest scholarly communication. The stakes are higher than most researchers realise.</p>
+</div>
+</div>
+</div></body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.1 - What Multimodal AI Can See, Hear, and Read</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text h2::before { content: '\1F3AF'; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #666; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 8 • Sub-Lesson 1</div>
+<h1>👁 <span style="color: #ffffff;">What Multimodal AI Can See, Hear, and Read</span></h1>
+<p>From text-only tools to models that see images, read documents, transcribe audio, and process hours of video — and what this means for research</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>The assumption that AI is a text tool is already outdated. Modern models can see images, read documents, transcribe audio, and process hours of video. This week is about understanding what these capabilities genuinely offer researchers — and where the gap between “impressive demo” and “reliable research tool” remains significant.</p>
+<p>A key framing distinction sits at the centre of everything this week: <strong>AI reading vs. AI understanding</strong>. These are not the same thing. A model can describe a chart fluently and still get the numbers wrong. It can transcribe speech accurately and still hallucinate sentences that were never said. It can extract text from a PDF and still misread the structure of a complex table.</p>
+<p>Each sub-lesson in Week 8 examines this distinction through a different modality. This overview sets up the landscape so you know where you are going — and why the distinction matters before you pick up any multimodal tool.</p>
+</div>
+<!-- SECTION 1: THE FOUR MODALITIES -->
+<h2 class="section-title">🌏 The Four Modalities</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 25px; line-height: 1.8;">Multimodal AI refers to models that accept inputs beyond plain text. Four modalities are most relevant to research workflows in 2026. Each opens different tasks — and carries different reliability profiles.</p>
+<div class="card-grid">
+<div class="card">
+<h3>📷 Images</h3>
+<p>Scientific figures, microscopy, satellite imagery, photographs, charts, and diagrams. Images were the first non-text modality to reach general-purpose LLMs and remain the most widely tested.</p>
+<ul class="styled-list">
+<li>Describing and captioning figures for accessibility</li>
+<li>Qualitative interpretation of charts and graphs</li>
+<li>Comparing images for obvious visual differences</li>
+<li>Satellite and geospatial imagery analysis</li>
+<li>Microscopy documentation and description</li>
+</ul>
+<p style="margin-top: 15px; font-size: 0.9em; color: #003a70; font-weight: 600;">Representative tools: Claude (family), GPT (family), Gemini (family)</p>
+</div>
+<div class="card">
+<h3>🎤 Audio</h3>
+<p>Interviews, focus groups, field recordings, lectures, oral histories, podcasts, and environmental sound. Audio capabilities range from transcription-only to full end-to-end audio reasoning.</p>
+<ul class="styled-list">
+<li>Transcription of interviews and focus groups</li>
+<li>Speaker diarisation (who said what)</li>
+<li>Transcription in African and low-resource languages</li>
+<li>Thematic analysis of spoken content</li>
+<li>Field recording documentation</li>
+</ul>
+<p style="margin-top: 15px; font-size: 0.9em; color: #003a70; font-weight: 600;">Representative tools: Whisper large-v3, GPT (family), Gemini (family), Intron Sahara</p>
+</div>
+<div class="card">
+<h3>📄 Documents</h3>
+<p>PDFs, scanned papers, tables, forms, supplementary data files, archival documents. Document understanding combines OCR with structural reasoning — extracting not just text but how that text is organised.</p>
+<ul class="styled-list">
+<li>Table extraction from PDFs and supplementary files</li>
+<li>OCR of scanned archival documents</li>
+<li>Summarisation of long research papers</li>
+<li>Structured data extraction from forms</li>
+<li>Cross-document comparison and synthesis</li>
+</ul>
+<p style="margin-top: 15px; font-size: 0.9em; color: #003a70; font-weight: 600;">Representative tools: Claude (family), Docling, LlamaParse, Azure Document Intelligence</p>
+</div>
+<div class="card">
+<h3>🎥 Video</h3>
+<p>Lectures, experiments, classroom observations, field interviews, documentary footage, and recorded procedures. Video is the most demanding modality — combining visual, audio, and temporal reasoning.</p>
+<ul class="styled-list">
+<li>Classroom observation analysis</li>
+<li>Summarising recorded lectures or seminars</li>
+<li>Experiment documentation from video recordings</li>
+<li>Interview transcription with visual context</li>
+<li>Long-form documentary or archival footage analysis</li>
+</ul>
+<p style="margin-top: 15px; font-size: 0.9em; color: #003a70; font-weight: 600;">Representative tools: Gemini Pro tier (~1 hr standard, longer at low FPS), GPT (family, frames + audio)</p>
+</div>
+</div>
+<!-- SECTION 2: MODEL LANDSCAPE -->
+<h2 class="section-title">🔬 The Model Landscape</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">No single model leads on all four modalities. Understanding which model handles which input — and where native capability ends and workarounds begin — prevents both over-reliance and missed opportunity.</p>
+<div style="overflow-x: auto; margin: 25px 0;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Model</th>
+<th>Developer</th>
+<th>Images</th>
+<th>Audio</th>
+<th>Video</th>
+<th>Documents</th>
+<th>Context Window</th>
+<th>Key Strength for Research</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Claude (family)</strong></td>
+<td>Anthropic</td>
+<td style="color: #2e7d32; font-weight: 600;">✓</td>
+<td style="color: #c62828;">✗ (no native)</td>
+<td style="color: #c62828;">✗ (no native)</td>
+<td style="color: #2e7d32; font-weight: 600;">✓</td>
+<td>200K tokens</td>
+<td>Deep document reasoning, code generation alongside analysis</td>
+</tr>
+<tr>
+<td><strong>GPT (family)</strong></td>
+<td>OpenAI</td>
+<td style="color: #2e7d32; font-weight: 600;">✓</td>
+<td style="color: #2e7d32; font-weight: 600;">✓ (end-to-end)</td>
+<td style="color: #2e7d32; font-weight: 600;">✓ (frames + audio)</td>
+<td style="color: #2e7d32; font-weight: 600;">✓</td>
+<td>128K tokens</td>
+<td>Best general-purpose; very low audio latency in real-time tier; strong mixed image&nbsp;+&nbsp;text</td>
+</tr>
+<tr>
+<td><strong>Gemini (Pro tier)</strong></td>
+<td>Google DeepMind</td>
+<td style="color: #2e7d32; font-weight: 600;">✓</td>
+<td style="color: #2e7d32; font-weight: 600;">✓ (native)</td>
+<td style="color: #2e7d32; font-weight: 600;">✓ (native, ~1&nbsp;hr standard)</td>
+<td style="color: #2e7d32; font-weight: 600;">✓</td>
+<td>1M tokens</td>
+<td>Best for long video/audio; ~1&nbsp;hr video (standard) or ~8.5&nbsp;hrs audio-only in one call (durations depend on FPS and resolution; check current API docs)</td>
+</tr>
+<tr>
+<td><strong>Whisper large-v3</strong></td>
+<td>OpenAI</td>
+<td style="color: #c62828;">✗</td>
+<td style="color: #2e7d32; font-weight: 600;">✓ (transcription)</td>
+<td style="color: #c62828;">✗</td>
+<td style="color: #c62828;">✗</td>
+<td>N/A</td>
+<td>Open-source audio transcription; ~2.0% WER on clean audio</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>🔔 Audio and Video for Claude Users</h4>
+<p>Claude does not currently process audio or video natively. If you are working primarily in Claude, the recommended workflow is to combine it with a transcription tool first: use Whisper large-v3 or OpenAI's transcription endpoint to convert audio or video to text, then bring that text into Claude for analysis. Alternatively, use the Gemini API for the audio/video step, then pass the transcript or summary to Claude for deeper reasoning or code generation. The tools complement each other rather than compete.</p>
+</div>
+<!-- SECTION 3: RESEARCH USE-CASE MAP -->
+<h2 class="section-title">📍 Research Use-Case Map</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Different research domains have different primary modalities. This table maps common UCT research contexts to the modality and tooling most relevant to them. It is a starting point — not every cell will match your specific project.</p>
+<div style="overflow-x: auto; margin: 25px 0;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Research Domain</th>
+<th>Key Modality</th>
+<th>Example Use</th>
+<th>Best Tool</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Qualitative (interviews / focus groups)</strong></td>
+<td>Audio</td>
+<td>Transcription and thematic analysis</td>
+<td>Whisper + ATLAS.ti / NVivo</td>
+</tr>
+<tr>
+<td><strong>Quantitative (survey data in PDFs)</strong></td>
+<td>Documents</td>
+<td>Table extraction from supplementary files</td>
+<td>Docling / LlamaParse</td>
+</tr>
+<tr>
+<td><strong>Scientific publishing</strong></td>
+<td>Images</td>
+<td>Figure interpretation, alt text generation</td>
+<td>Claude (family) / GPT (family)</td>
+</tr>
+<tr>
+<td><strong>Field research (Africa, low-resource)</strong></td>
+<td>Audio</td>
+<td>Transcription in African languages</td>
+<td>Intron Sahara / Lelapa AI</td>
+</tr>
+<tr>
+<td><strong>Archival research</strong></td>
+<td>Documents</td>
+<td>Scanned document OCR</td>
+<td>Marker / Azure Doc Intelligence</td>
+</tr>
+<tr>
+<td><strong>Earth / environmental science</strong></td>
+<td>Images</td>
+<td>Satellite imagery analysis</td>
+<td>TerraTorch + Prithvi / Gemini Geospatial</td>
+</tr>
+<tr>
+<td><strong>Medical / health sciences</strong></td>
+<td>Images</td>
+<td>Assisting with image description (not diagnosis)</td>
+<td>Frontier VLM (with verification)</td>
+</tr>
+<tr>
+<td><strong>Education research</strong></td>
+<td>Video</td>
+<td>Classroom observation analysis</td>
+<td>Gemini (family) / ClassMind</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- SECTION 4: READING VS UNDERSTANDING -->
+<h2 class="section-title">🧠 Reading vs. Understanding — The Core Distinction</h2>
+<p style="color: #555; font-size: 1.05em; margin-bottom: 25px; line-height: 1.8;">This is the most important conceptual framing of the week. It applies to every modality and every tool. Understanding it before using any multimodal AI is not optional — it is the difference between using these tools safely and being misled by them.</p>
+<div class="highlight-box">
+<h3>The Reading – Understanding Gap</h3>
+<p>When an AI model “reads” an image or document, it is pattern-matching against its training data. When it “understands” that image or document, it would be reasoning about what the content <em>means</em> in context. Current models are genuinely impressive at the former — and frequently overconfident about the latter.</p>
+<p>A model can describe a chart fluently and still get the numbers wrong. It can transcribe speech accurately and still hallucinate sentences that were never said. It can extract text from a PDF and still misread the structure of a complex table.</p>
+<p>The distinction between reading and understanding is not philosophical — it is the practical difference between a tool you can trust and one that will quietly mislead you.</p>
+</div>
+<div class="case-study">
+<h4>📊 Case Study: The Real-World Chart Gap</h4>
+<p>The CharXiv benchmark (NeurIPS 2024, Princeton University) tests AI on real scientific charts from actual published papers — not simplified test datasets designed for evaluation convenience. It has become the standard reference for evaluating genuine scientific chart understanding.</p>
+<p>When the benchmark was published in 2024, <strong>GPT-4o scored 47.1%</strong> on reasoning questions versus <strong>80.5%</strong> for humans — a gap that received considerable attention. Frontier model scores have risen substantially since (top models now approach human performance on the original benchmark). But the core finding persists in evaluations of newer models: real-world performance on actual scientific figures consistently lags performance on simplified, purpose-built benchmarks. The headline gap has narrowed; the underlying pattern has not gone away.</p>
+<p>One mechanism: when models do struggle, they often appear to read labels, axis titles, and captions — the text surrounding the chart — rather than actually processing the chart geometry. The language decoder generates plausible-sounding descriptions that drift from what is visually present in the image. Frontier models have improved on this, but the failure mode is not fully solved.</p>
+<p>This is the week's central finding. Each sub-lesson shows a version of it in a different modality: charts, documents, audio. The benchmark-vs-real-world gap is not a chart-specific failure. It is a general property of current multimodal AI that you need to build into your research workflows.</p>
+<p style="margin-top: 15px;"><em>Source: Wang et al. (2024). “CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs.” NeurIPS 2024. <a href="https://arxiv.org/abs/2406.18521" style="color: #003a70;">arxiv.org/abs/2406.18521</a></em></p>
+</div>
+<!-- SECTION 5: RAPID CHANGE -->
+<h2 class="section-title">⚡ A Note on Rapid Change</h2>
+<div class="info-box">
+<h4>🕑 These Capabilities Are a Moving Target</h4>
+<p>Multimodal capabilities are advancing faster than any other area we cover in this course. Model versions change quarterly. Capability comparisons that are accurate today may not be accurate in six months. A model announced after this page was written may outperform every entry in the table above on one or more dimensions.</p>
+<p style="margin-top: 12px;">The skill this week is <strong>not</strong> memorising which model does what — it is developing the habit of testing claims about multimodal capability against your own research tasks before trusting them.</p>
+<p style="margin-top: 12px;">CharXiv is a good example: when the benchmark launched in 2024, leading models that scored 90%+ on standard chart benchmarks scored substantially less on real scientific charts. Frontier models have since improved, but the underlying lesson is durable — standard benchmarks rarely capture what matters for research. When you read claims about AI performance on a new multimodal task, the first question should always be: “What was it actually tested on, and how close is that to my data?”</p>
+</div>
+<!-- READINGS -->
+<h2 class="section-title">📚 Core Readings</h2>
+<div class="card-grid">
+<div class="card">
+<h3>Wang et al. (2024)</h3>
+<p><strong>CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs</strong></p>
+<p>NeurIPS 2024 (Princeton University). The benchmark study that established the 47% finding. Essential reading for anyone planning to use AI with scientific figures, charts, or data visualisations. Includes a detailed analysis of <em>why</em> models fail — not just the benchmark scores.</p>
+<ul class="styled-list">
+<li>2,323 charts from real published papers</li>
+<li>Descriptive vs. reasoning question split</li>
+<li>Human baseline comparison</li>
+<li>Root-cause analysis of failure modes</li>
+</ul>
+<p style="margin-top: 15px;"><a href="https://arxiv.org/abs/2406.18521" style="color: #003a70; font-weight: 600; font-size: 0.95em;">arxiv.org/abs/2406.18521 ↗</a></p>
+</div>
+<div class="card">
+<h3>Rahmanzadehgervi et al. (2024)</h3>
+<p><strong>Vision Language Models Are Blind</strong></p>
+<p>ACCV 2024. Tests models on tasks trivial for humans: overlapping circles, intersecting lines, counting objects in simple arrangements. Models average 58.07% on these tasks — barely better than random on some sub-tasks. Provides the mechanistic explanation for the CharXiv result: models are not seeing the geometry.</p>
+<ul class="styled-list">
+<li>7 simple geometric task categories</li>
+<li>4 state-of-the-art VLMs evaluated</li>
+<li>Failure mode taxonomy</li>
+<li>Implications for scientific image use</li>
+</ul>
+<p style="margin-top: 15px;"><a href="https://arxiv.org/abs/2407.06581" style="color: #003a70; font-weight: 600; font-size: 0.95em;">arxiv.org/abs/2407.06581 ↗</a></p>
+</div>
+</div>
+<!-- SUMMARY -->
+<h2 class="section-title">✅ Summary and What's Next</h2>
+<div class="intro-text">
+<h2>Week 8 at a Glance</h2>
+<p>This sub-lesson introduced the four modalities relevant to research — <strong>images, audio, documents, and video</strong> — and mapped them to the tools and research contexts where they matter most. The model landscape table gives you a working comparison of where the major tools are today; treat it as a snapshot, not a permanent reference.</p>
+<p>The central conceptual frame for the week is the <strong>reading vs. understanding distinction</strong>. The CharXiv benchmark provides the most rigorous available evidence for why this matters: even as model scores have improved, real-world performance on actual scientific figures consistently lags performance on purpose-built evaluation benchmarks. The companion “VLMs Are Blind” paper explains one key mechanism: models often read surrounding text labels rather than processing image geometry.</p>
+<p>The remaining sub-lessons go deeper into each domain:</p>
+<ul class="styled-list">
+<li><strong>Sub-Lesson 2: AI and Scientific Images</strong> — the CharXiv finding in depth, the correct-answer-wrong-reasoning problem, domain-specific tools, and bias in image recognition</li>
+<li><strong>Sub-Lesson 3: Document Intelligence</strong> — OCR, table extraction, PDF structure, and where document AI genuinely excels vs. fails</li>
+<li><strong>Sub-Lesson 4: Transcription and Audio Analysis</strong> — Whisper performance, African language support, speaker diarisation, and hallucination in audio transcription</li>
+<li><strong>Sub-Lesson 5: Video and Multimodal Workflows</strong> — Gemini's long-context video capability, temporal reasoning, and practical workflows for lecture and field recording analysis</li>
+<li><strong>Sub-Lesson 6: Hands-On Activities and Assessment</strong> — three practical exercises (figure analysis, self-recorded transcription test, document table extraction) and the weekly assessment</li>
+</ul>
+<p style="margin-top: 10px;">Each sub-lesson includes a practical workflow section — concrete steps for using that modality reliably in your own research, including how to verify outputs before trusting them.</p>
+</div>
+</div>
+<!-- end .content --></div>
+<!-- end .container --></body></html>
