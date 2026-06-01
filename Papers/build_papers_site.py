@@ -416,7 +416,7 @@ WEEKS = {
             {"citation": "Usdan, S., Connell Pensky, A., & Chang, R. (2024). Effects of structured AI writing instruction at Carnegie Mellon.",
              "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4941022", "url_label": "SSRN:4941022",
              "sublesson": "6.3", "note": "Same SSRN bot-protection."},
-            {"citation": "Daryani, S., et al. (2026). The Homogenizing Engine: AI&rsquo;s Role in Standardizing Culture. <em>SAGE Journals</em>.",
+            {"citation": "Daryani, S., et al. (2026). The Homogenizing Engine: AI&rsquo;s Role in Standardizing Culture. <em>Policy Insights from the Behavioral and Brain Sciences</em>.",
              "url": "https://journals.sagepub.com/doi/10.1177/23727322251406591", "url_label": "DOI:10.1177/23727322251406591",
              "sublesson": "6.2, 6.3",
              "note": "SAGE paywalled; UCT library has SAGE access."},
@@ -485,7 +485,7 @@ WEEKS = {
             {"id": "7.7", "title": "Hands-On Activities and Assessment", "papers": [], "note": "Assessment design."},
         ],
         "paywalled": [
-            {"citation": "<em>Nature</em> (2026). AI scientists are changing research &mdash; institutions must respond.",
+            {"citation": "<em>Nature</em> (2026). AI scientists are changing research &mdash; institutions, funders and publishers must respond.",
              "url": "https://doi.org/10.1038/d41586-026-00934-w", "url_label": "DOI:10.1038/d41586-026-00934-w",
              "sublesson": "7.6",
              "note": "Nature editorial &mdash; free to read on Nature.com but no redistributable PDF endpoint."},
