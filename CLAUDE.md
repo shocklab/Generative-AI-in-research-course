@@ -265,6 +265,16 @@ Key conventions that apply across weeks:
 - **Week 11 strong African emphasis:** the four sub-lessons 11.4–11.7 treat the African intellectual tradition as the analytical home base, with Northern voices treated as foils. African voices include Mhlambi, Effoduh, Esethu Framework, Mutung'u et al., CARE Principles (Gaborone 2018), Pelonomi Moiloa (Lelapa), Vukosi Marivate (UP/Lelapa/Indaba/Masakhane), Anri Lombard (UCT, MzansiLM lead).
 - **Week 12 is a 3-hour solo capstone** with the brief living entirely inside the Week 12 page (six-prompt structured pitch + solo self-critique = 600 words). No separate document, no live session.
 
+## 🔴 Source of truth: `docs/` is canonical — never edit Amathuba directly
+
+The repository (`docs/` + the `Week N/` source + the `build_weekN.py` generators) is the **single source of truth** for all lesson content. Amathuba (the live LMS) is a **publish target**, not a place to author.
+
+**The rule:** make every content/wording change in the repo first, then re-upload the affected page(s) to Amathuba. **Do NOT edit lesson text directly in the Brightspace editor.** Doing so created a fork (2026): Lessons 1–9 on Amathuba drifted from `docs/` (different page titles, H1s, section headings, AI-notice wording) while `docs/` accumulated the fact-checks — leaving no single correct copy and making later corrections risky.
+
+If a quick fix is ever made directly on Amathuba (e.g. by a co-teacher), **mirror it straight back into `docs/`** in the same sitting, or it becomes fork debt.
+
+Reconciliation status (2026): a full reconcile is in progress — see `AMATHUBA-EDIT-CHECKLIST.md` (the pending Lesson 1–9 fixes) and the reconciliation plan. The `From Amathuba/` folder is a **dated export snapshot** (March 2026, now stale); a fresh Brightspace export is needed to diff current live content against `docs/`.
+
 ## GitHub Pages Site
 
 The public course website is served from the `docs/` folder on the `main` branch via GitHub Pages.
