@@ -277,6 +277,14 @@ The public course website is served from the `docs/` folder on the `main` branch
 - **Course Orientation pages** use Brightspace/Bootstrap templates (different from Week 1-5 inline CSS pages). Their `/shared/HTML-Template-Library/` CSS references won't resolve on GitHub Pages — the content is still readable but styling is limited
 - **When adding new weeks:** copy Amathuba-exported files to `docs/week-N/`, add back-nav, update `docs/index.html` links, and change the "coming soon" placeholder to active links
 
+### Prev/Next page navigation (`add_page_nav.py`)
+
+Every lesson page in `docs/` carries a bottom **"← Previous / Next →"** nav bar (each cell shows the arrow + destination lesson title). It is injected by `add_page_nav.py`, which reads the lesson ORDER directly from `docs/index.html` (the curated landing page is the single source of truth), so reordering lessons there and re-running keeps nav correct.
+
+- **docs/ only.** Source `Week N/` pages are deliberately left without it — those feed Amathuba, where relative links wouldn't resolve and the LMS has its own next/prev controls.
+- **Idempotent:** the block is wrapped in `<!-- PAGE-NAV-START/END -->` markers; re-running replaces rather than duplicates.
+- **🔴 RE-RUN after any week rebuild.** `build_week9/10/11/12.py` overwrite their `docs/` copies and will WIPE the nav from those pages. After running any `build_weekN.py`, run `python3 add_page_nav.py` again to restore it. Use `python3 add_page_nav.py --check` for a dry run (reports the sequence, writes nothing).
+
 ## Notes
 
 - Week 3 folder is lowercase (`week 3`); other weeks use title case

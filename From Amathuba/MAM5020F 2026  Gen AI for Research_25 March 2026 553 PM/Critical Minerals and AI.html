@@ -1,0 +1,642 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3.3 - Critical Minerals and AI</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '🎯';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 3 • Sub-Lesson 3</div>
+<h1>⛏️ <span style="color: #ffffff;">Critical Minerals and AI</span></h1>
+<p>The physical supply chain behind AI hardware: what it requires, where it comes from, and at what cost</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Every discussion of AI's environmental impact tends to focus on electricity and carbon emissions. But before a single query is ever run, a long and complex supply chain has already extracted materials from the earth, refined them using energy-intensive processes, fabricated them into chips in some of the most technologically demanding manufacturing facilities humans have ever built, and shipped them across the world.</p>
+<p>This session examines the <em>upstream</em> environmental and social costs of AI: the critical minerals that make AI hardware possible, where they come from, what extracting them costs, and the geopolitical tensions that surround their supply. These are questions that receive far less attention than energy consumption — yet they connect AI directly to some of the world's most pressing issues around environmental justice, human rights, and global supply chain governance.</p>
+</div>
+<!-- SECTION 1: WHAT ARE CRITICAL MINERALS -->
+<h2 class="section-title">🪨 What Are Critical Minerals?</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The term "critical minerals" has a specific meaning in policy contexts — it does not simply mean important or useful. A mineral is typically classified as critical when it meets two criteria simultaneously.</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Two Criteria</h3>
+<ul class="styled-list">
+<li><strong>Economically essential:</strong> The mineral is required for technologies or industries that are central to the modern economy — in particular, digital technology, defence, and the clean energy transition</li>
+<li><strong>Supply-concentrated:</strong> Production or processing is dominated by a small number of countries or companies, creating significant risk of disruption</li>
+</ul>
+<p style="margin-top: 12px; color: #666;">A mineral can be physically abundant in the earth's crust and still be "critical" if its processing is controlled by a single country. Gallium is a good example: not particularly rare, but ~80% of global production comes from China.</p>
+</div>
+<div class="card">
+<h3>Two Overlapping Categories for AI</h3>
+<p>AI infrastructure requires minerals from two overlapping categories:</p>
+<ul class="styled-list">
+<li><strong>Electronics-critical minerals:</strong> Used directly in chip fabrication and electronic components — silicon, gallium, germanium, hafnium, tantalum, copper, gold, indium</li>
+<li><strong>Energy-transition minerals:</strong> Used in batteries (for uninterruptible power supplies, data centre backup, cooling systems) and in the clean energy infrastructure powering data centres — cobalt, lithium, nickel, rare earth elements</li>
+</ul>
+<p style="margin-top: 12px; color: #666;">The AI hardware boom is driving demand in both categories simultaneously — compounding pressure that already exists from the clean energy transition.</p>
+</div>
+</div>
+<!-- SECTION 2: THE AI HARDWARE SUPPLY CHAIN -->
+<h2 class="section-title">🔗 From Mine to Data Centre: The Supply Chain</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Let's trace some of the key materials that go into modern AI infrastructure — from the GPU chips to the servers to the data centre cooling and power systems.</p>
+<div class="technical-detail">
+<h4>📊 Key Minerals in AI Infrastructure</h4>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Mineral</th>
+<th>Where Used in AI Infrastructure</th>
+<th>Top Producers</th>
+<th>Key Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Silicon</strong></td>
+<td>The base of all semiconductor chips; wafers on which transistors are built</td>
+<td>China (~75% of polysilicon), Japan (wafers)</td>
+<td>Refining energy-intensive; Chinese dominance in polysilicon</td>
+</tr>
+<tr>
+<td><strong>Gallium</strong></td>
+<td>Gallium nitride (GaN) used in power electronics and some compound semiconductors</td>
+<td>China (~80%)</td>
+<td>Chinese export controls imposed July 2023</td>
+</tr>
+<tr>
+<td><strong>Germanium</strong></td>
+<td>Optical fibre, some semiconductor processes, infrared optics in data centres</td>
+<td>China (~60%), Canada</td>
+<td>Chinese export controls imposed August 2023</td>
+</tr>
+<tr>
+<td><strong>Hafnium</strong></td>
+<td>High-k dielectric layers in modern transistors (sub-5nm chips, including NVIDIA H100/H200)</td>
+<td>France, USA, Russia (as by-product of zirconium)</td>
+<td>Niche supply; disruption from geopolitical tension</td>
+</tr>
+<tr>
+<td><strong>Copper</strong></td>
+<td>Chip interconnects, PCB traces, power delivery, cooling pipes, data centre wiring</td>
+<td>Chile (~27%), Peru, DRC, China</td>
+<td>Demand surge from AI + electrification; long mine development timelines</td>
+</tr>
+<tr>
+<td><strong>Cobalt</strong></td>
+<td>Lithium-cobalt-oxide batteries (UPS systems, laptop batteries); some chip manufacturing chemistries</td>
+<td>DRC (~70%)</td>
+<td>Artisanal mining, child labour, environmental damage</td>
+</tr>
+<tr>
+<td><strong>Rare Earth Elements</strong></td>
+<td>Permanent magnets in server fans, cooling pumps, hard drives; also in EV motors and wind turbines</td>
+<td>China (~60% mining, ~85% processing)</td>
+<td>Near-monopoly on processing; radioactive waste from mining</td>
+</tr>
+<tr>
+<td><strong>Tantalum</strong></td>
+<td>Capacitors in virtually all electronic devices including servers and networking equipment</td>
+<td>DRC (~40%), Rwanda, Australia</td>
+<td>Conflict mineral history; artisanal mining conditions</td>
+</tr>
+<tr>
+<td><strong>Indium</strong></td>
+<td>Indium tin oxide in displays, some thin-film processes</td>
+<td>China (~55%), South Korea, Japan</td>
+<td>No primary mining — recovered only as by-product of zinc refining</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>💡 Why Chips Specifically Are So Demanding</h4>
+<p>Modern AI chips like the NVIDIA H100 are among the most complex objects humans manufacture. A single chip contains billions of transistors at feature sizes of 4–5 nanometres (roughly 10–15 atoms wide), built through hundreds of sequential fabrication steps, each requiring ultrapure materials and tightly controlled chemical processes. The slightest contamination at any step can ruin the chip.</p>
+<p style="margin-top: 8px;">This is why semiconductor manufacturing is so geographically concentrated: TSMC in Taiwan fabricates the chips for NVIDIA, Apple, AMD, and many others. There is essentially no substitute facility for the most advanced nodes. A single disruption — whether from geopolitical tension, natural disaster, or energy shortfall — would affect global AI capacity.</p>
+</div>
+<!-- SECTION 3: GEOGRAPHIC CONCENTRATION -->
+<h2 class="section-title">🌍 Geographic Concentration and Geopolitical Risk</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The physical supply chain for AI hardware is more geographically concentrated — and therefore more fragile — than most people realise.</p>
+<div class="highlight-box">
+<h3>🇨🇳 <span style="color: #ffffff;">China's Dominant Position</span></h3>
+<p>China occupies a uniquely powerful position in the critical minerals supply chain for AI — not primarily through raw mineral extraction, but through dominance of <em>processing and refining</em> . Even where minerals are mined elsewhere, they are often shipped to China for processing before being used in manufacturing.</p>
+<p style="margin-top: 15px;">Key figures:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li style="color: rgba(255,255,255,0.9);">~85% of global rare earth processing</li>
+<li style="color: rgba(255,255,255,0.9);">~80% of gallium production</li>
+<li style="color: rgba(255,255,255,0.9);">~60% of germanium production</li>
+<li style="color: rgba(255,255,255,0.9);">~75% of polysilicon refining (the raw material for silicon wafers)</li>
+<li style="color: rgba(255,255,255,0.9);">Majority of lithium chemical processing, even though most lithium is mined in Australia and South America</li>
+</ul>
+<p style="margin-top: 15px;">In 2023, China imposed export controls on gallium and germanium — both classified as critical for advanced semiconductor manufacturing. This was widely understood as a response to US restrictions on advanced chip exports to China, and a signal that critical minerals are a lever in geopolitical competition.</p>
+</div>
+<div class="case-study">
+<h4>🔍 Case Study: The TSMC Concentration Problem</h4>
+<p>Taiwan Semiconductor Manufacturing Company (TSMC) fabricates the overwhelming majority of the world's most advanced chips — including essentially all of the NVIDIA GPUs that power AI infrastructure. In 2024, TSMC held approximately:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li>~90% market share at the most advanced nodes (≤5nm)</li>
+<li>~54% of global semiconductor foundry revenue overall</li>
+</ul>
+<p style="margin-top: 12px;">Taiwan sits 160 km from mainland China, which claims it as its own territory. The concentration of advanced chip manufacturing in a geopolitically contested location is considered by many security analysts to be one of the most significant systemic risks to the global economy. The US CHIPS Act (2022) and EU Chips Act (2023) are both partly responses to this risk — investing in domestic semiconductor manufacturing capacity to reduce dependence on Taiwan.</p>
+<p style="margin-top: 12px; color: #666;">TSMC itself is investing in new fabs in Arizona, Japan, and Germany, though these facilities remain years from full production and are unlikely to match the leading edge of TSMC's Taiwan operations for some time.</p>
+</div>
+<div class="technical-detail">
+<h4>🌍 Other Supply Concentrations Worth Knowing</h4>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Country / Region</th>
+<th>Dominant Position</th>
+<th>Relevance to AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Democratic Republic of Congo</strong></td>
+<td>~70% of global cobalt mining</td>
+<td>Cobalt in batteries for UPS and mobile devices; tantalum in capacitors</td>
+</tr>
+<tr>
+<td><strong>Chile, Argentina, Bolivia ("Lithium Triangle")</strong></td>
+<td>~55% of global lithium reserves</td>
+<td>Lithium-ion batteries for data centre backup power and cooling</td>
+</tr>
+<tr>
+<td><strong>Taiwan</strong></td>
+<td>~90% of leading-edge chip fabrication</td>
+<td>All advanced AI chips (NVIDIA, AMD, Apple) manufactured here</td>
+</tr>
+<tr>
+<td><strong>Netherlands (ASML)</strong></td>
+<td>100% of extreme ultraviolet (EUV) lithography machines</td>
+<td>EUV machines are required to manufacture chips at ≤7nm; ASML is the only manufacturer</td>
+</tr>
+<tr>
+<td><strong>Japan</strong></td>
+<td>Dominant in semiconductor chemicals and some specialty materials</td>
+<td>Photoresists, chemical mechanical planarisation slurries, and other process chemicals used in chip fabs</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- SECTION 4: ENVIRONMENTAL AND SOCIAL COSTS OF MINING -->
+<h2 class="section-title">⚠️ Environmental and Social Costs of Mining</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The concentration of mining in particular countries and regions means that the environmental and social costs of AI hardware are borne unevenly — and often by communities in the Global South that have little connection to the AI systems being built.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Cobalt: The DRC Case</h3>
+<p>The Democratic Republic of Congo produces roughly 70% of the world's cobalt, much of it through artisanal and small-scale mining (ASM) — informal operations using hand tools rather than industrial equipment.</p>
+<ul class="styled-list">
+<li><strong>Child labour:</strong> Investigations by Amnesty International and others have documented children working in cobalt mines in Katanga province, in conditions that expose them to toxic dust and cause serious health impacts</li>
+<li><strong>Occupational health:</strong> Artisanal miners lack protective equipment; cobalt dust causes lung disease ("hard metal lung disease")</li>
+<li><strong>Environmental damage:</strong> Mining runoff contaminates local water supplies and agricultural land</li>
+<li><strong>Traceability gap:</strong> Artisanal cobalt often enters the supply chain through intermediaries that make tracing its origin difficult for downstream technology companies</li>
+</ul>
+</div>
+<div class="card">
+<h3>Lithium: The Water Problem</h3>
+<p>The Lithium Triangle (Chile, Argentina, Bolivia) holds more than half the world's lithium reserves, concentrated in salt flats (salares) in the Atacama Desert — one of the driest places on earth.</p>
+<ul class="styled-list">
+<li><strong>Brine extraction:</strong> Lithium is extracted by pumping lithium-rich brine to the surface and evaporating it in large ponds; this process consumes large volumes of water in an extremely arid region</li>
+<li><strong>Indigenous communities:</strong> Many salares are in or near territories of indigenous communities (Atacameño, Aymara, Quechua) who rely on local water sources for subsistence farming and livestock; water diversion threatens these livelihoods</li>
+<li><strong>Ecosystem impacts:</strong> The salares are fragile ecosystems supporting flamingo populations and endemic species; the brine ponds disrupt these habitats</li>
+<li><strong>Governance:</strong> Bolivia's large reserves remain largely undeveloped partly due to disputes over sovereignty and benefit-sharing</li>
+</ul>
+</div>
+<div class="card">
+<h3>Rare Earth Mining: The Radioactivity Problem</h3>
+<p>Rare earth elements (neodymium, dysprosium, and others used in the magnets in server fans, hard drives, and cooling pumps) are typically found in geological associations with radioactive thorium and uranium.</p>
+<ul class="styled-list">
+<li><strong>Radioactive waste:</strong> Mining and processing rare earths generates radioactive tailings — waste material that must be carefully managed to prevent contamination</li>
+<li><strong>China's environmental legacy:</strong> Decades of poorly regulated rare earth mining in Jiangxi province have left significant environmental damage — stripped hillsides, contaminated rivers, and legacy radioactive waste</li>
+<li><strong>Lynas (Australia/Malaysia):</strong> Australia's Lynas Rare Earths processes ore in Malaysia; the facility has faced protests over concerns about radioactive waste disposal</li>
+<li><strong>Why processing matters:</strong> Even "clean" mining in countries with strict environmental standards often sends ore to China for processing, where environmental regulations may be weaker</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ On Discussing Environmental Justice</h4>
+<p>The environmental and social costs of critical mineral extraction are real and documented — but this area is also one where media coverage can be selective or sensationalised. When engaging with specific claims about conditions in mining regions, try to trace them to primary sources: peer-reviewed research, investigative journalism from established outlets (The Guardian, Bloomberg, Reuters), or reports from organisations like Amnesty International or the Business &amp; Human Rights Resource Centre rather than secondary summaries.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📚 Further Reading: The Human Cost</h4>
+<p style="font-style: normal; margin-top: 8px;"><strong>Siddharth Kara, "Cobalt Red: How the Blood of the Congo Powers Our Lives" (2023)</strong> — a journalist and academic's account of artisanal cobalt mining in the DRC. Vivid and accessible, though note it is an advocacy-oriented narrative rather than an academic study.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.amnesty.org/en/documents/afr62/3183/2016/en/" target="_blank" rel="noopener"> <strong>Amnesty International (2016): "This Is What We Die For: Human Rights Abuses in the DRC Cobalt Supply Chain"</strong> </a> — foundational investigative report on cobalt supply chain conditions. Conditions have partly improved since publication but the report remains an important reference.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://iea.blob.core.windows.net/assets/ffd8a6d3-5f0b-4c0b-9b25-ea1db5f0ad2d/TheRoleofCriticalMineralsinCleanEnergyTransitions.pdf" target="_blank" rel="noopener"> <strong>IEA (2021): "The Role of Critical Minerals in Clean Energy Transitions"</strong> </a> — the most comprehensive institutional analysis of critical minerals demand, supply geography, and policy options. Technical but authoritative.</p>
+</div>
+<!-- SECTION 5: E-WASTE -->
+<h2 class="section-title">🗑️ The End of the Line: E-Waste</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The critical minerals story does not end when hardware is manufactured. What happens when AI servers, GPUs, and data centre equipment reach the end of their lives is a significant and growing problem.</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Scale of the Problem</h3>
+<ul class="styled-list">
+<li>The Global E-waste Monitor estimates that ~62 million tonnes of e-waste was generated globally in 2023 — the equivalent of roughly 107,000 jumbo jets</li>
+<li>Only about 22% of global e-waste is formally collected and recycled; the rest is either landfilled, incinerated, or handled informally</li>
+<li>AI's rapid hardware upgrade cycles — driven by the competitive pressure to deploy the latest GPUs — accelerate this waste stream</li>
+<li>A GPU generation that was state-of-the-art in 2022 (A100) may be decommissioned for newer H100s or H200s within 2–3 years, even when physically functional</li>
+</ul>
+</div>
+<div class="card">
+<h3>Where E-Waste Goes</h3>
+<ul class="styled-list">
+<li>Much of the world's e-waste — including from data centres in wealthy countries — is exported to informal recycling sites in West Africa (Ghana's Agbogbloshie), South Asia (Pakistan, India), and Southeast Asia</li>
+<li>Informal e-waste recycling involves burning cables to recover copper, using acid baths to extract gold, and other processes that release toxic substances (lead, mercury, dioxins) and expose workers to serious health risks</li>
+<li>This trade is technically illegal under the Basel Convention, but enforcement is inconsistent</li>
+<li>The valuable materials — gold, copper, palladium — are recovered; the hazardous residues are often left in the local environment</li>
+</ul>
+</div>
+<div class="card">
+<h3>The Recycling Gap</h3>
+<p>Despite the high value of materials in AI hardware, formal recycling rates for critical minerals from e-waste are very low:</p>
+<ul class="styled-list">
+<li><strong>Rare earth elements:</strong> &lt;1% end-of-life recycling rate globally</li>
+<li><strong>Cobalt:</strong> Higher recycling rates from lithium-ion batteries (&gt;50% in some jurisdictions), but recovery from non-battery e-waste is low</li>
+<li><strong>Indium:</strong> &lt;1% end-of-life recycling rate</li>
+<li><strong>Gold:</strong> Higher rates (~15–20% from electronics) but significant losses in informal processing</li>
+</ul>
+<p style="margin-top: 10px; color: #666;">The recycling gap is partly a technology problem (recovering materials from complex multi-layer chips is genuinely difficult) and partly an economics problem (virgin mineral extraction has historically been cheaper than urban mining from e-waste).</p>
+</div>
+</div>
+<!-- SECTION 6: WHAT'S BEING DONE -->
+<h2 class="section-title">🌱 Responses: Policy, Industry, and Research</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The risks around critical minerals supply chains have prompted responses at multiple levels. These are worth knowing, both as context and as a basis for evaluating claims made by technology companies and governments.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Policy Responses</h3>
+<ul class="styled-list">
+<li><strong>US CHIPS and Science Act (2022):</strong> $52 billion for domestic semiconductor manufacturing; restrictions on companies receiving funds from expanding in "countries of concern" (primarily China)</li>
+<li><strong>EU Critical Raw Materials Act (2023):</strong> Sets targets for domestic mining, processing, and recycling of critical minerals by 2030; reduces dependence on single-country sourcing to max 65% for any mineral</li>
+<li><strong>Minerals Security Partnership:</strong> US-led coalition of 14 countries (including Australia, Canada, UK, EU) coordinating on critical mineral supply chains</li>
+<li><strong>Export controls:</strong> US has restricted exports of advanced AI chips to China; China has responded with export controls on gallium, germanium, and graphite</li>
+</ul>
+</div>
+<div class="card">
+<h3>Industry Responses</h3>
+<ul class="styled-list">
+<li><strong>Responsible sourcing programs:</strong> Most major technology companies have cobalt and conflict minerals policies; the Responsible Minerals Initiative (RMI) runs a widely-used smelter audit program</li>
+<li><strong>Recycling investment:</strong> Apple has invested in its Daisy robot that disassembles iPhones for material recovery; broader e-waste recycling programs are expanding</li>
+<li><strong>Supply chain diversification:</strong> Companies are attempting to source from multiple countries and producers rather than relying on single sources</li>
+<li><strong>Battery chemistry shifts:</strong> Lithium iron phosphate (LFP) batteries, which do not use cobalt, are gaining market share — reducing cobalt demand in some applications</li>
+</ul>
+</div>
+<div class="card">
+<h3>Research and Alternative Materials</h3>
+<ul class="styled-list">
+<li><strong>Cobalt-free battery chemistries:</strong> LFP, sodium-ion, and other alternatives are being developed and deployed to reduce dependence on cobalt</li>
+<li><strong>Rare-earth-free magnets:</strong> Research into iron-nitride and other materials that could replace neodymium-iron-boron magnets in motors and actuators</li>
+<li><strong>Gallium nitride (GaN) alternatives:</strong> Silicon carbide (SiC) can substitute in some power electronics applications with a different sourcing profile</li>
+<li><strong>Urban mining technology:</strong> Improved hydrometallurgy and biotechnology processes for recovering rare earths and other metals from e-waste — still largely pre-commercial at scale</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 The "Green" Energy Transition and Critical Minerals: A Complication</h4>
+<p>One of the more complex ironies in this space: the clean energy transition that AI companies point to when claiming to reduce their carbon footprint also requires large quantities of the same critical minerals as AI hardware. Electric vehicles need cobalt and lithium; wind turbines need rare earth magnets; solar panels need indium and other minerals.</p>
+<p style="margin-top: 8px;">This means that AI infrastructure growth and clean energy growth are competing for the same mineral supply — and that the environmental and social costs of critical mineral extraction are simultaneously relevant to both. Policies that aim to decarbonise electricity also increase pressure on critical mineral supply chains in ways that must be managed carefully.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Key Reports and Data Sources</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://iea.blob.core.windows.net/assets/ffd8a6d3-5f0b-4c0b-9b25-ea1db5f0ad2d/TheRoleofCriticalMineralsinCleanEnergyTransitions.pdf" target="_blank" rel="noopener"> <strong>IEA (2021): "The Role of Critical Minerals in Clean Energy Transitions"</strong> </a> — comprehensive, data-rich, and widely cited. The best single source for supply concentration data.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://globalewaste.org/" target="_blank" rel="noopener"> <strong>Global E-waste Monitor</strong> </a> — published by the UN Institute for Training and Research; the authoritative source for global e-waste statistics.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://responsibleminerals.org/" target="_blank" rel="noopener"> <strong>Responsible Minerals Initiative</strong> </a> — industry-led organisation running the Responsible Minerals Assurance Process (RMAP) for smelter auditing. Useful for understanding what "responsible sourcing" claims actually mean in practice.</p>
+<p style="font-style: normal; margin-top: 8px;"><strong>UK Critical Minerals Intelligence Centre</strong> — <a href="https://www.bgs.ac.uk/news-and-media/news/new-critical-minerals-intelligence-centre-launched/" target="_blank" rel="noopener">British Geological Survey</a> — publishes regular assessments of criticality and supply risk for individual minerals.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>The physical supply chain for AI infrastructure extends far beyond data centres and electricity bills:</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>AI hardware requires a wide range of critical minerals:</strong> from silicon and copper (abundant but processing-intensive) to gallium, germanium, hafnium, cobalt, and rare earth elements (scarce or concentrated)</li>
+<li><strong>Geographic concentration creates systemic risk:</strong> China dominates processing for most of these materials; Taiwan is the sole manufacturer of leading-edge chips; the DRC produces the majority of cobalt</li>
+<li><strong>Export controls are already being used as geopolitical leverage:</strong> China's 2023 restrictions on gallium and germanium are a preview of how critical mineral supply chains can be weaponised</li>
+<li><strong>Mining carries environmental and human costs that are borne unequally:</strong> Cobalt mining in the DRC, lithium extraction in the Atacama, and rare earth processing in China all involve significant environmental and social impacts — largely in communities far removed from AI's benefits</li>
+<li><strong>E-waste is a growing problem:</strong> Rapid GPU upgrade cycles accelerate hardware disposal; current formal recycling rates for most critical minerals are very low</li>
+<li><strong>Policy and industry responses exist but are insufficient to the scale of the challenge:</strong> The CHIPS Act, EU Critical Raw Materials Act, and responsible sourcing programs are real steps, but critical mineral demand from both AI and the clean energy transition is growing faster than supply chains are diversifying</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session (Week 3.4):</strong> We bring the week together with practical guidance — tools for measuring your own AI footprint, the choices that make the most difference, and AI's potential as a tool for addressing environmental challenges rather than just creating them.</p>
+</div>
+</div>
+</div></body></html>

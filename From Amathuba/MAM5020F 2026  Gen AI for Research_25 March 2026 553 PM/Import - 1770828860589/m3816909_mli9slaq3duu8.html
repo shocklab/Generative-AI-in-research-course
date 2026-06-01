@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding How Generative AI Works: Key Architectures Explained</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+        
+        .ai-notice strong {
+            font-weight: 600;
+        }
+        
+        header {
+            background: #003A70;
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            line-height: 1.3;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro-section {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+        
+        .intro-section h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .intro-section h2::before {
+            content: '🎯';
+        }
+        
+        .intro-section p {
+            font-size: 1.1em;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .comparison-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+        
+        .comparison-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .comparison-card.generative {
+            border-top-color: #2a5298;
+        }
+        
+        .card-label {
+            display: inline-block;
+            background: #003A70;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .comparison-card h3 {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        
+        .comparison-card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .example-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .example-list li {
+            padding: 10px 0 10px 30px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .example-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #003A70;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .architecture-card {
+            background: white;
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 6px solid #003A70;
+        }
+        
+        .architecture-card h3 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        
+        .architecture-subtitle {
+            color: #003A70;
+            font-size: 1.2em;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .architecture-examples {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 3px solid #003A70;
+        }
+        
+        .architecture-examples strong {
+            color: #2a5298;
+        }
+        
+        .how-it-works {
+            background: rgba(0, 58, 112, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .how-it-works h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .how-it-works h4::before {
+            content: '⚙️';
+        }
+        
+        .analogy-box {
+            background: #003A70;
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .analogy-box h4 {
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .analogy-box h4::before {
+            content: '💡';
+        }
+        
+        .research-applications {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+        
+        .research-applications h4 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .research-applications h4::before {
+            content: '🔬';
+        }
+        
+        .key-concepts {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 2px solid #e9ecef;
+        }
+        
+        .key-concepts h4 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+        
+        .key-concepts ul {
+            list-style: none;
+        }
+        
+        .key-concepts ul li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .key-concepts ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #003A70;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .highlight-box h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design and content have been enhanced using Claude (Anthropic's AI assistant) to improve clarity, visual presentation, and educational value.</div>
+<header>
+<h1>🤖 Understanding How Generative AI Works</h1>
+<p>Key Architectures Explained for Researchers</p>
+</header>
+<div class="content">
+<div class="intro-section">
+<h2>What is "Generative" AI?</h2>
+<p>The key shift in artificial intelligence is moving from <strong>analysis to creation</strong>. For decades, AI systems excelled at recognizing patterns, classifying data, and making predictions based on what they'd seen before. Generative AI represents a fundamental leap: these systems don't just analyze—they create entirely new content that never existed before.</p>
+<p>Think of it this way: traditional AI is like a highly skilled critic who can identify whether a rock is igneous, sedimentary, or metamorphic. Generative AI is like a geologist who can describe what a never-before-seen mineral deposit might look like based on tectonic conditions, then actually synthesize a detailed model of it.</p>
+</div>
+<h2 class="section-title">📊 The Fundamental Distinction</h2>
+<div class="comparison-grid">
+<div class="comparison-card"><span class="card-label">Discriminative AI</span>
+<h3>Analysis &amp; Classification</h3>
+<p>Discriminative AI draws boundaries between categories. It learns to distinguish between different classes of data by identifying the features that separate them. These systems answer the question: "Which category does this belong to?"</p>
+<p><strong>Core task:</strong> Classification and prediction based on learned patterns</p>
+<ul class="example-list">
+<li><strong>Email spam detection:</strong> Is this message legitimate or spam?</li>
+<li><strong>Species identification:</strong> What plant species is in this photo?</li>
+<li><strong>Medical diagnosis:</strong> Will this patient develop complications?</li>
+<li><strong>Seismic analysis:</strong> Does this signal indicate an earthquake or background noise?</li>
+<li><strong>Image recognition:</strong> Which proteins are present in this microscopy image?</li>
+</ul>
+</div>
+<div class="comparison-card generative"><span class="card-label" style="background: #2a5298;">Generative AI</span>
+<h3>Creation &amp; Synthesis</h3>
+<p>Generative AI creates new content from learned patterns. Rather than just classifying existing data, it generates novel outputs—text, images, code, even scientific hypotheses—that didn't exist before. These systems answer: "What might this look like?"</p>
+<p><strong>Core task:</strong> Creating new, original content based on learned patterns</p>
+<ul class="example-list">
+<li><strong>Research proposals:</strong> Draft a grant application in your field</li>
+<li><strong>Image generation:</strong> Create visualizations of theoretical concepts</li>
+<li><strong>Experimental design:</strong> Suggest novel approaches to test a hypothesis</li>
+<li><strong>Literature synthesis:</strong> Generate summaries combining multiple papers</li>
+<li><strong>Code generation:</strong> Write analysis scripts from natural language descriptions</li>
+</ul>
+</div>
+</div>
+<div class="highlight-box">
+<h3>🔑 The Key Insight</h3>
+<p>Both types of AI learn from data, but they use that learning differently. Discriminative AI learns decision boundaries ("this side is spam, that side isn't"). Generative AI learns the underlying structure of the data itself ("this is what spam looks like, so I can create new examples"). This fundamental difference is why generative AI can create rather than just classify.</p>
+</div>
+<h2 class="section-title">🏗️ Key Architectures in Plain Language</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Three main architectures power today's generative AI systems. Each uses different approaches to create new content, much like different scientific instruments use different principles to measure the same phenomena. Let's understand how each works without diving into complex mathematics.</p>
+<!-- Transformers -->
+<div class="architecture-card">
+<h3>1. Transformers (e.g., ChatGPT, Claude, Deepseek)</h3>
+<div class="architecture-subtitle">"Attention Machines"</div>
+<p style="font-size: 1.05em; margin-bottom: 20px;">Transformers are the architecture behind modern large language models. They revolutionized AI by introducing the concept of "attention"—the ability to focus on the most relevant parts of input when generating output.</p>
+<div class="analogy-box">
+<h4>Scientific Analogy</h4>
+<p>Imagine you're reading a geology paper about sedimentary layers. When you encounter "the Cretaceous formation," your brain doesn't treat every word equally. You automatically pay more attention to certain context clues: mentions of fossils, depth measurements, dating methods, and geographical locations from earlier in the paper. You ignore irrelevant details about the authors' institutional affiliations.</p>
+<p style="margin-top: 10px;">Transformers work similarly. When predicting the next word, they don't weigh all previous words equally. The "attention mechanism" learns which earlier words are most relevant to the current prediction. This selective focus is what makes them so powerful at understanding and generating coherent, contextually appropriate text.</p>
+</div>
+<div class="how-it-works">
+<h4>How It Works</h4>
+<p><strong>1. Tokenization:</strong> Text is broken into small units called "tokens" (roughly words or word fragments). The sentence "The volcano erupted" might become tokens: ["The", "vol", "cano", "erupt", "ed"].</p>
+<p style="margin-top: 12px;"><strong>2. Embedding:</strong> Each token is converted into a high-dimensional vector—essentially a point in a space with hundreds or thousands of dimensions. Similar concepts end up close together in this space (e.g., "magma" and "lava" would be near each other).</p>
+<p style="margin-top: 12px;"><strong>3. Attention:</strong> The model calculates how much each token should "attend to" every other token. When processing "erupted," it pays strong attention to "volcano" but less to "The."</p>
+<p style="margin-top: 12px;"><strong>3. Attention again, and again:</strong> This process happens again and again, iteratively to create a much more abstract (rather than symbolically in words) idea of the content.&nbsp;</p>
+<p style="margin-top: 12px;"><strong>4. Prediction:</strong> Based on all these weighted relationships, the model predicts the most likely next token. It doesn't just memorize phrases—it understands patterns of how words relate.</p>
+<p style="margin-top: 12px;"><strong>5. Iteration:</strong> This happens recursively: predict one token, add it to the sequence, predict the next, and so on, until a complete response is generated.</p>
+</div>
+<div class="key-concepts">
+<h4>Key Concepts</h4>
+<ul>
+<li><strong>Context window:</strong> The amount of text the model can "see" at once—typically thousands or tens of thousands of tokens. Think of it as the model's "working memory."</li>
+<li><strong>Temperature:</strong> A parameter controlling randomness. Low temperature = predictable, conservative responses. High temperature = creative, diverse responses. Similar to choosing between a cautious or speculative hypothesis.</li>
+<li><strong>Training data:</strong> These models learn from vast text corpora—books, websites, papers—identifying statistical patterns in how language is used.</li>
+<li><strong>No true "understanding":</strong> Or does it...? To be discussed</li>
+</ul>
+</div>
+<div class="research-applications">
+<h4>Research Applications</h4>
+<p><strong>Writing assistance:</strong> Helping to polish writing, suggest better explanations, give advice on high level structure.</p>
+<p style="margin-top: 8px;"><strong>Code generation:</strong> Creating data analysis scripts, statistical tests, visualization code, creating apps</p>
+<p style="margin-top: 8px;"><strong>Conceptual exploration:</strong> Brainstorming research questions, exploring theoretical frameworks</p>
+<p style="margin-top: 8px;"><strong>Translation:</strong> Converting between technical and plain language, or between human languages</p>
+</div>
+<div class="architecture-examples"><strong>Popular Examples:</strong> GPT-5.2 (OpenAI), Claude (Anthropic),&nbsp; Gemini (Google), LLaMA (Meta), Deepseek, Kimi, and more</div>
+</div>
+<!-- Diffusion Models -->
+<div class="architecture-card" style="border-left-color: #003A70;">
+<h3>2. Diffusion Models (e.g., DALL-E, Midjourney, Stable Diffusion)</h3>
+<div class="architecture-subtitle">"Noise-to-Signal Refiners"</div>
+<p style="font-size: 1.05em; margin-bottom: 20px;">Diffusion models generate images through an elegant process: they start with pure random noise (static), then gradually refine it into a coherent image guided by a text description. It's like sculpting a figure from marble, but in reverse—starting with chaos and progressively revealing order.</p>
+<div class="analogy-box">
+<h4>Scientific Analogy</h4>
+<p>Think of crystallization from a supersaturated solution. Initially, you have a chaotic mix of dissolved particles with no structure—pure randomness. As crystallization proceeds, ordered patterns emerge: first rough shapes, then increasingly refined crystal structures with specific orientations and faces.</p>
+<p style="margin-top: 10px;">Diffusion models work similarly but in reverse. Training teaches them the "crystallization process" for images. When generating, they start with randomness (like dissolved particles) and progressively add structure, guided by learned patterns about what images look like and constrained by your text prompt.</p>
+</div>
+<div class="how-it-works">
+<h4>How It Works</h4>
+<p><strong>Training Phase:</strong></p>
+<p style="margin-left: 20px;">1. Take real images and progressively add noise until they're unrecognizable static</p>
+<p style="margin-left: 20px;">2. Train a neural network to reverse this: given a noisy image, predict what it looked like one step earlier</p>
+<p style="margin-left: 20px;">3. Repeat millions of times on millions of images, learning the patterns of how to "denoise"</p>
+<p style="margin-top: 15px;"><strong>Generation Phase:</strong></p>
+<p style="margin-left: 20px;">1. Start with pure random noise (every pixel random)</p>
+<p style="margin-left: 20px;">2. The trained network predicts what this should look like with slightly less noise</p>
+<p style="margin-left: 20px;">3. Make that change, creating a slightly less noisy image</p>
+<p style="margin-left: 20px;">4. Repeat 50-100 times: noise → vague shapes → rough features → refined details → final image</p>
+<p style="margin-left: 20px;">5. Text prompts guide this process: they steer the denoising toward images matching the description</p>
+</div>
+<div class="key-concepts">
+<h4>Key Concepts</h4>
+<ul>
+<li><strong>Denoising steps:</strong> Typical models use 50-100 steps. More steps = higher quality but slower generation. Like taking finer measurements in an experiment.</li>
+<li><strong>Guidance scale:</strong> How strongly the text prompt influences generation. High values = follows prompt closely. Low values = more creative interpretation.</li>
+<li><strong>Latent space:</strong> For efficiency, many models work in a compressed representation space rather than directly on pixels, like working with principal components rather than raw data.</li>
+<li><strong>Conditioning:</strong> Text prompts are encoded into vectors and "condition" the denoising process, steering it toward matching concepts.</li>
+</ul>
+</div>
+<div class="research-applications">
+<h4>Research Applications</h4>
+<p><strong>Scientific visualization:</strong> Creating diagrams of theoretical concepts, molecular structures, geological formations</p>
+<p style="margin-top: 8px;"><strong>Data augmentation:</strong> Generating synthetic training images for machine learning projects</p>
+<p style="margin-top: 8px;"><strong>Presentation graphics:</strong> Creating custom illustrations for papers, talks, and posters</p>
+<p style="margin-top: 8px;"><strong>Conceptual modeling:</strong> Visualizing "what if" scenarios—extinct species, climate futures, experimental setups</p>
+</div>
+<div class="architecture-examples"><strong>Popular Examples:</strong> DALL-E 2/3 (OpenAI), Midjourney, Stable Diffusion, Adobe Firefly, Nano-Banana (Google),&nbsp;</div>
+</div>
+<!-- GANs -->
+<div class="architecture-card" style="border-left-color: #8B0000;">
+<h3>3. GANs - Generative Adversarial Networks</h3>
+<div class="architecture-subtitle">"Creator versus Critic"</div>
+<p style="font-size: 1.05em; margin-bottom: 20px;">GANs use an ingenious competitive approach: two neural networks locked in a contest. One (the "generator") creates fake images. The other (the "discriminator") tries to detect which images are fake. As they compete, both improve—the generator gets better at creating convincing fakes, and the discriminator gets better at detection. Eventually, the generator becomes so good that its creations are indistinguishable from real data.</p>
+<div class="analogy-box">
+<h4>Scientific Analogy</h4>
+<p>Imagine training a paleontologist to identify genuine fossils versus forgeries. You have two researchers: one (the "forger") tries to create fake fossils, and one (the "expert") tries to distinguish real from fake.</p>
+<p style="margin-top: 10px;">Initially, the forger makes crude fakes that the expert easily identifies. The forger learns from each failure: "the trabecular structure was wrong," "the mineral composition doesn't match," etc. Meanwhile, the expert gets better at detection, learning subtle tells. Through this adversarial process, the forger eventually creates fakes so convincing that even experts can't tell the difference.</p>
+<p style="margin-top: 10px;">GANs work exactly this way: generator and discriminator push each other to improve through competition.</p>
+</div>
+<div class="how-it-works">
+<h4>How It Works</h4>
+<p><strong>1. The Generator:</strong> Starts with random noise and transforms it into an image (or other data). Initially produces nonsense.</p>
+<p style="margin-top: 12px;"><strong>2. The Discriminator:</strong> Receives both real images (from training data) and fake images (from the generator). Learns to classify them as real or fake.</p>
+<p style="margin-top: 12px;"><strong>3. Adversarial Training:</strong> They train simultaneously in competition:</p>
+<p style="margin-left: 20px;">• Generator tries to fool the discriminator</p>
+<p style="margin-left: 20px;">• Discriminator tries not to be fooled</p>
+<p style="margin-left: 20px;">• Generator learns from failures: which features made fakes detectable?</p>
+<p style="margin-left: 20px;">• Discriminator learns from successes: what subtle differences reveal fakes?</p>
+<p style="margin-top: 12px;"><strong>4. Equilibrium:</strong> Training continues until the generator is so good that the discriminator can't do better than random guessing (50% accuracy)—meaning the fakes are statistically indistinguishable from real data.</p>
+<p style="margin-top: 12px;"><strong>5. Generation:</strong> Once trained, the generator can create new, realistic samples by transforming random noise into structured outputs.</p>
+</div>
+<div class="key-concepts">
+<h4>Key Concepts</h4>
+<ul>
+<li><strong>Nash equilibrium:</strong> Training aims for a balance where neither network can improve without the other also improving—a concept from game theory.</li>
+<li><strong>Mode collapse:</strong> A failure mode where the generator only learns to create a few types of outputs rather than the full diversity of the training data.</li>
+<li><strong>Training instability:</strong> GANs can be tricky to train because the two networks must stay balanced. If one becomes too strong, learning breaks down.</li>
+<li><strong>Latent space interpolation:</strong> You can smoothly blend between different outputs by moving through the random input space, creating morphing sequences.</li>
+</ul>
+</div>
+<div class="research-applications">
+<h4>Research Applications</h4>
+<p><strong>Data synthesis:</strong> Generating synthetic datasets when real data is scarce or privacy-sensitive (e.g., medical images, climate simulations)</p>
+<p style="margin-top: 8px;"><strong>Image enhancement:</strong> Super-resolution (increasing image detail), denoising, restoring damaged images</p>
+<p style="margin-top: 8px;"><strong>Domain transfer:</strong> Converting data between modalities (e.g., satellite images to maps, sketches to photos)</p>
+<p style="margin-top: 8px;"><strong>Simulation:</strong> Creating realistic synthetic experimental results for testing analysis pipelines</p>
+</div>
+<div class="architecture-examples"><strong>Popular Examples:</strong> StyleGAN (NVIDIA), CycleGAN, Pix2Pix, ProGAN
+<p style="margin-top: 10px; color: #666; font-size: 0.95em;"><em>Note: GANs were dominant for image generation until ~2022, when diffusion models largely surpassed them in quality and ease of use. However, GANs remain important for specific applications like real-time generation and domain transfer.</em></p>
+</div>
+</div>
+<div class="highlight-box">
+<h3>🎓 Why Understanding Architecture Matters</h3>
+<p>Each architecture has strengths and weaknesses shaped by its design. Transformers excel at sequential data and reasoning but are computationally expensive. Diffusion models create stunning images but are slow. GANs can generate in real-time but are hard to train.</p>
+<p style="margin-top: 15px;">As a researcher, understanding these tradeoffs helps you choose the right tool for your task. Need to draft a methods section? Use a transformer. Need to visualize a theoretical concept? Try a diffusion model. Need to augment a small dataset? Consider a GAN.</p>
+<p style="margin-top: 15px;">More importantly, understanding how these systems work helps you recognize their limitations: they're pattern matching engines, not reasoning entities. They don't "understand" science—they've learned statistical patterns in how scientific language and images are structured. This knowledge is crucial for using them effectively and avoiding pitfalls.</p>
+</div>
+<div class="intro-section" style="margin-top: 40px;">
+<h2>🔍 The Bottom Line for Researchers</h2>
+<p>All three architectures share a fundamental principle: they learn patterns from vast amounts of data, then use those patterns to generate new content. They're extraordinarily good at this—good enough to be useful research tools. But they remain statistical pattern matchers, not true reasoners.</p>
+<p>Think of them as sophisticated instruments in your research toolkit. Just as you'd understand how a mass spectrometer works before trusting its output, understanding how generative AI works helps you use it effectively: knowing when to trust it, when to verify its outputs, and how to craft inputs that produce useful results.</p>
+<p>The goal isn't to become an AI expert—it's to become an informed user who can leverage these powerful tools while remaining appropriately skeptical and maintaining scientific rigor.</p>
+</div>
+</div>
+</div></body></html>
