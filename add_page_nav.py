@@ -89,14 +89,18 @@ def nav_html(prev_item, next_item):
     )
 
 def inject(content, block):
-    content = BLOCK_RE.sub("", content)        # strip prior block if present
+    # Strip any prior block AND the blank line(s) around it, so re-runs are
+    # byte-idempotent (otherwise a newline accretes before <footer> each run).
+    content = re.sub(r"\n*" + re.escape(START) + r".*?" + re.escape(END) + r"\n*",
+                     "\n", content, flags=re.DOTALL)
     # prefer to sit just above the page footer; else just before </body>
     idx = content.rfind("<footer")
     if idx == -1:
         idx = content.rfind("</body>")
     if idx == -1:
         return None
-    return content[:idx] + block + "\n" + content[idx:]
+    # exactly one newline on each side of the block, every run
+    return content[:idx].rstrip("\n") + "\n" + block + "\n" + content[idx:]
 
 def main():
     order = build_order()
