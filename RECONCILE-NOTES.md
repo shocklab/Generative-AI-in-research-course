@@ -2,6 +2,21 @@
 
 Goal: end with **one source of truth (`docs/`)** and Amathuba matching it, with no editorial work lost from either side.
 
+## Phase 5 — Merge (docs-side) ✅ IN PROGRESS
+
+**LMS-only pages — decisions made:**
+- **Hands-On Exploration: Testing Generative AI Tools (Week 1)** → **ADOPTED into docs** as `docs/week-1/Hands-On Exploration.html` (converted bare LMS import file to house template; added to `index.html` + prev/next nav). It's self-contained lesson content that renders fine statically.
+- **Class introductions (Week 1)** → **left intentionally LMS-only.** It is only a wrapper around an embedded Brightspace discussion board, which cannot function on the static GitHub site; adopting it would create a dead page. Recorded here so future audits don't re-flag it.
+- **Meet the course team (orientation)** → **left intentionally LMS-only** (teaching-team/personal info; per user decision).
+
+**Still to do (Amathuba-side — user applies by hand, since direct-LMS editing is the user's domain):**
+1. Apply `AMATHUBA-EDIT-CHECKLIST.md` (the bucket-(c) fact-fixes) to Lessons 1–9.
+2. Rename the four collision-named "Hands-On Activities and Assessment" pages on Amathuba to disambiguate by week (currently Weeks 5/6/8/9; two carry literal "- Copy" suffixes).
+3. Settle the per-page H1/title wordings (see list below) — decide which wording is canonical and align both sides.
+4. Optionally upload the new `docs/week-1/Hands-On Exploration.html` to Amathuba if a tidied version is wanted there too (the LMS already has the original).
+
+**H1/title conflicts to settle (user decides per page):** the main known one is Week-1 history — Amathuba H1 "The Evolution of Artificial Intelligence" vs docs "History of AI: From Neurons to Neural Networks". (A complete H1 list can be generated on request by diffing H1s export-vs-docs.)
+
 ## Phase 1 — Governance ✅ DONE
 - `docs/` declared canonical; "never edit Amathuba directly" rule added to CLAUDE.md.
 
