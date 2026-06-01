@@ -1,0 +1,619 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2.3 - Fine-Tuning, RLHF and Alignment</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 10px auto 0;
+        }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-text h2::before { content: '🎯'; }
+
+        .intro-text p {
+            font-size: 1.1em;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #2a5298;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #003A70;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+
+        .highlight-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .resource-placeholder p { color: #666; font-style: italic; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th {
+            background: #003A70;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .step-list li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 12px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #003A70;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 2 • Sub-Lesson 3</div>
+<h1>🎯 <span style="color: #ffffff;">Fine-Tuning, RLHF &amp; Alignment</span></h1>
+<p>From raw pre-trained model to helpful AI assistant: the post-training pipeline</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>In the last two sessions we covered <em>how</em> transformers are built and <em>how</em> they are pre-trained on massive text corpora. But a freshly pre-trained model is a strange thing: it has absorbed an enormous amount of human knowledge, yet it would complete your carefully written prompt with something entirely unhelpful—or worse.</p>
+<p>This session covers what happens <em>after</em> pre-training: the techniques that turn a raw language model into Claude, ChatGPT, or Gemini. This is also the stage that AI labs are most secretive about—so there is a lot of speculation and partial information in the public record.</p>
+<p>We will look at Supervised Fine-Tuning, Reinforcement Learning from Human Feedback (RLHF), Constitutional AI, Direct Preference Optimisation, and finally the practical question every researcher eventually asks: <em>can I fine-tune a model for my own domain?</em></p>
+</div>
+<!-- SECTION 1: THE GAP -->
+<h2 class="section-title">🧩 The Gap Between Pre-Training and Usefulness</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Pre-training produces a model that is extraordinarily good at one thing: predicting the next token. This is not the same as being helpful, honest, or safe.</p>
+<div class="highlight-box">
+<h3>🔑 <span style="color: #ffffff;">What a Base Model Actually Does</span></h3>
+<p>If you ask a raw pre-trained model "What is the capital of France?", it might respond: "What is the capital of France? This is a common question asked in geography quizzes. The answer is…" — because that's what the internet looks like. It completes text. It hasn't been taught that your message is a <em>question</em> that deserves a direct <em>answer</em>.</p>
+<p style="margin-top: 15px;">Even more concerning: given a prompt about making a dangerous substance, a base model trained on internet text might simply continue generating whatever plausible text follows such a prompt—because it has no concept of harm, helpfulness, or honesty. It only knows statistical patterns.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>The Three Goals of Alignment</h3>
+<p>Anthropic's original framing (widely adopted across the field) describes the target as three properties that should be balanced:</p>
+<ul class="styled-list">
+<li><strong>Helpful:</strong> Actually useful to the person making a request</li>
+<li><strong>Harmless:</strong> Does not cause harm to the user, third parties, or society</li>
+<li><strong>Honest:</strong> Does not deceive, manipulate, or confabulate</li>
+</ul>
+<p style="margin-top: 15px; color: #666;">These goals can conflict. A model that refuses everything is harmless but useless. A model that always agrees is helpful in the short term but dishonest. Alignment research is largely about navigating these tensions.</p>
+</div>
+<div class="card">
+<h3>What "Alignment" Means</h3>
+<p>In AI, <strong>alignment</strong> refers to the challenge of making a model's behaviour match human values and intentions—not just in cases it was trained on, but in novel situations too.</p>
+<ul class="styled-list">
+<li><strong>Narrow alignment:</strong> Model follows instructions and avoids obvious harms</li>
+<li><strong>Broader alignment:</strong> Model behaves safely even as capabilities increase</li>
+<li><strong>Why it's hard:</strong> Human values are complex, contextual, and sometimes contradictory</li>
+<li><strong>Why it matters now:</strong> As models become more capable, misalignment becomes more consequential</li>
+</ul>
+</div>
+</div>
+<!-- SECTION 2: SFT -->
+<h2 class="section-title">📋 Supervised Fine-Tuning (SFT)</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The first step after pre-training is relatively straightforward: show the model many examples of good behaviour and train it to imitate them.</p>
+<div class="card-grid">
+<div class="card">
+<h3>How SFT Works</h3>
+<p>Supervised Fine-Tuning takes a pre-trained model and continues training it—but now on a much smaller, carefully curated dataset of (prompt, ideal response) pairs.</p>
+<ul class="styled-list">
+<li><strong>Dataset size:</strong> Typically thousands to tens of thousands of examples—tiny compared to pre-training</li>
+<li><strong>Data source:</strong> Written by human contractors or researchers who demonstrate ideal responses</li>
+<li><strong>Training objective:</strong> Same as pre-training (next-token prediction), but on high-quality instruction data</li>
+<li><strong>Result:</strong> Model learns to "act like an assistant"—it begins producing structured, helpful responses rather than raw text continuations</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations of SFT Alone</h3>
+<p>SFT is a powerful first step, but it has an important structural weakness.</p>
+<ul class="styled-list">
+<li><strong>Imitation, not preference:</strong> The model learns to produce responses that look like the training examples—not necessarily responses that are <em>genuinely better</em></li>
+<li><strong>Hard to specify everything:</strong> You cannot write ideal responses for every possible prompt; the model has to generalise from examples</li>
+<li><strong>Confident errors:</strong> A model fine-tuned on examples of fluent, confident writing may produce fluent, confident errors in situations it hasn't seen</li>
+<li><strong>Can't compare:</strong> SFT doesn't teach the model that response A is better than response B—only that response A is a valid completion</li>
+</ul>
+</div>
+</div>
+<div class="technical-detail">
+<h4>📄 What an Instruction Dataset Looks Like</h4>
+<p style="margin-bottom: 15px;">Modern instruction datasets use a structured format with distinct roles. Here is a simplified example of what a training example might contain:</p>
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 15px 0; font-family: monospace; font-size: 0.95em; line-height: 1.8; color: #333;">
+<p><strong style="color: #003a70;">[System]</strong> You are a helpful research assistant. Be concise and accurate.</p>
+<p style="margin-top: 10px;"><strong style="color: #003a70;">[User]</strong> What is the difference between a p-value and a confidence interval?</p>
+<p style="margin-top: 10px;"><strong style="color: #003a70;">[Assistant]</strong> A p-value is the probability of observing results at least as extreme as yours if the null hypothesis is true—it is a single number that summarises evidence against the null. A confidence interval gives a range of plausible values for the parameter of interest. They are related but convey different information: a 95% CI that excludes zero is consistent with p &lt; 0.05, but the CI also tells you about the magnitude and precision of the effect, which the p-value does not.</p>
+</div>
+<p style="color: #666; margin-top: 10px;">The model is trained to predict the assistant's response given the system prompt and user message. By seeing thousands of such examples, it learns the format, tone, and behaviour expected of an assistant.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 The InstructGPT Paper — The Landmark SFT + RLHF Study</h4>
+<p style="margin-top: 8px;">OpenAI's 2022 paper introduced the now-standard three-step pipeline (SFT → Reward Model → RL) and showed it made GPT-3 dramatically more helpful with only a small amount of human feedback data.</p>
+<p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2203.02155" target="_blank" rel="noopener"><strong>Training language models to follow instructions with human feedback</strong> (Ouyang et al., 2022) — arXiv:2203.02155</a></p>
+</div>
+<!-- SECTION 3: RLHF -->
+<h2 class="section-title">🏆 Reinforcement Learning from Human Feedback (RLHF)</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">RLHF is the technique that transformed language models from clever text completers into the capable, (mostly) well-behaved assistants we use today. It solves the core problem that SFT cannot: how do you teach a model not just to produce good responses, but to <em>prefer</em> better responses over worse ones?</p>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Core Insight</span></h3>
+<p>It is much easier for a human to compare two responses and say "this one is better" than to write the ideal response from scratch. RLHF exploits this: instead of showing the model what good output looks like, we show it which of two outputs is <em>preferred</em>, train a model to predict those preferences, and then use that as a reward signal to improve the language model.</p>
+<p style="margin-top: 15px;">Think of it like training a chef not by handing them recipes, but by letting them cook many dishes and having diners rate them—then using those ratings to guide further cooking.</p>
+</div>
+<div class="technical-detail">
+<h4>🔢 The Three-Step RLHF Pipeline</h4>
+<ol class="step-list">
+<li><strong>Collect human preference data.</strong> The SFT model generates multiple responses to the same prompt. Human annotators compare pairs of responses and select which is better (or rank several). This produces a dataset of (prompt, chosen response, rejected response) triples.</li>
+<li><strong>Train a Reward Model (RM).</strong> A separate neural network—typically initialised from the SFT model—is trained to predict which response a human would prefer. Given a prompt and a response, the RM outputs a scalar score. This model effectively encodes human preferences in a form the computer can evaluate automatically.</li>
+<li><strong>Optimise the LLM with Reinforcement Learning.</strong> The SFT model is now the "policy"—it generates responses and receives scores from the reward model. An RL algorithm (typically PPO—Proximal Policy Optimisation) updates the policy to generate higher-scoring responses. A KL-divergence penalty prevents the model from drifting too far from the original SFT model, avoiding incoherent outputs.</li>
+</ol>
+<p style="margin-top: 15px; color: #666;"><strong>Note on PPO:</strong> You don't need to understand the maths of PPO to understand RLHF at a conceptual level. The key idea is simply: the model tries out responses, gets scored, and adjusts to score higher—much like how humans learn from feedback.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Why RLHF Works</h3>
+<ul class="styled-list">
+<li><strong>Captures nuance:</strong> Human preferences encode a vast amount of implicit knowledge about what "good" looks like—tone, accuracy, safety, appropriateness—that is nearly impossible to specify explicitly</li>
+<li><strong>Generalises:</strong> The reward model can score novel prompts that were never in the training set</li>
+<li><strong>Handles ambiguity:</strong> The RL optimisation can discover response strategies that weren't present in the SFT data at all</li>
+<li><strong>Scalable signal:</strong> Pairwise comparison is much faster to collect than writing ideal responses from scratch</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations &amp; Failure Modes</h3>
+<ul class="styled-list">
+<li><strong>Reward hacking:</strong> The model can find ways to score highly on the reward model without being genuinely better—like a student who learns to game a marking rubric</li>
+<li><strong>Sycophancy:</strong> Models often learn to tell users what they want to hear, since agreeable responses tend to receive higher ratings from annotators</li>
+<li><strong>Annotation disagreement:</strong> Different human annotators have different values and preferences; the reward model averages over these, possibly poorly</li>
+<li><strong>Expensive:</strong> High-quality human preference data from domain experts is costly to collect</li>
+<li><strong>Alignment tax:</strong> RLHF can reduce raw capability on some benchmarks while improving behaviour</li>
+</ul>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📹 A clear explanation of RLHF</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hhiLw5Q_UFg?si=placeholder" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<!-- SECTION 4: MODERN ALTERNATIVES -->
+<h2 class="section-title">🔀 Modern Alternatives &amp; Evolutions</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">RLHF's complexity—three separate training stages, expensive human annotation, and tricky RL optimisation—has driven researchers to develop cleaner alternatives. These are now used across most frontier models.</p>
+<div class="technical-detail">
+<h4>📊 Post-Training Approaches Compared</h4>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Approach</th>
+<th>Key Idea</th>
+<th>Key Benefit</th>
+<th>Used In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RLHF (PPO)</strong></td>
+<td>Human preferences → reward model → RL policy optimisation</td>
+<td>Flexible; captures nuanced preferences</td>
+<td>InstructGPT, early Claude, GPT-4</td>
+</tr>
+<tr>
+<td><strong>Constitutional AI (CAI)</strong></td>
+<td>Model critiques its own outputs against a written "constitution"; uses AI feedback (RLAIF) instead of human feedback</td>
+<td>Scalable; reduces expensive human annotation; makes values explicit</td>
+<td>Claude models (Anthropic)</td>
+</tr>
+<tr>
+<td><strong>DPO (Direct Preference Optimisation)</strong></td>
+<td>Reformulates preference learning as a classification problem on the language model itself; no separate reward model or RL loop needed</td>
+<td>Much simpler training; stable; similar performance to RLHF</td>
+<td>Zephyr, Llama-3-Instruct, many open models</td>
+</tr>
+<tr>
+<td><strong>GRPO / ORPO</strong></td>
+<td>Variants that remove the reference model or combine supervised and preference objectives in a single loss</td>
+<td>Further memory savings; single training stage</td>
+<td>DeepSeek-R1, Qwen models</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>🏛️ Constitutional AI — Why It's Worth Understanding</h4>
+<p>Constitutional AI (CAI), developed by Anthropic, is the approach used to train Claude—the AI that helped design these course pages. It works in two stages:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li><strong>Supervised stage:</strong> The model is shown its own potentially harmful response and asked to critique it against a list of principles (the "constitution"), then revise the response. This generates supervised training data without human annotation of every example.</li>
+<li><strong>RL stage:</strong> A separate AI model (rather than humans) scores responses against the constitution. This "AI feedback" (RLAIF) replaces the expensive human preference collection step.</li>
+</ul>
+<p style="margin-top: 10px;">The key advantage is that the values guiding alignment are made <em>explicit</em> in the constitution, rather than being implicitly encoded in annotator preferences. This also makes the process more auditable.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Constitutional AI: Harmlessness from AI Feedback (Bai et al., 2022 — Anthropic)</h4>
+<p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener"><strong>arXiv:2212.08073</strong></a> — the original paper introducing Constitutional AI. Accessible even without a deep ML background.</p>
+<p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2305.18290" target="_blank" rel="noopener"><strong>Direct Preference Optimisation (DPO)</strong></a> (Rafailov et al., 2023) — arXiv:2305.18290. The paper that made RLHF significantly simpler for practitioners.</p>
+</div>
+<!-- SECTION 5: PEFT -->
+<h2 class="section-title">🔧 Fine-Tuning for Researchers: PEFT &amp; LoRA</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">You are unlikely to train a frontier model from scratch. But you may well want to adapt an existing model to your domain—whether that's genomics, legal text, historical archives, or clinical notes. Parameter-Efficient Fine-Tuning (PEFT) methods make this tractable even on modest hardware.</p>
+<div class="highlight-box">
+<h3>⚡ <span style="color: #ffffff;">The Researcher's Dilemma</span></h3>
+<p>General-purpose models like Claude or GPT-4 are excellent at a wide range of tasks. But for specialised domains, they may lack specific vocabulary, output formats, or reasoning patterns. Fine-tuning lets you take an existing model's general capabilities and specialise them—without paying the enormous cost of pre-training from scratch.</p>
+<p style="margin-top: 15px;">The challenge: a 7B parameter model has 7 billion weights. Updating all of them requires GPU memory and compute that most researchers don't have. PEFT methods solve this by updating only a small fraction of the parameters.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Full Fine-Tuning</h3>
+<p>Update all parameters of the pre-trained model on your domain data.</p>
+<ul class="styled-list">
+<li><strong>Best performance:</strong> Can maximally adapt the model to new domain</li>
+<li><strong>Expensive:</strong> Requires the same GPU memory as pre-training a model of that size</li>
+<li><strong>Catastrophic forgetting:</strong> Model can lose general capabilities if training data is narrow</li>
+<li><strong>Practical:</strong> Only realistic for models up to a few billion parameters on consumer hardware; larger models require significant cloud compute</li>
+</ul>
+</div>
+<div class="card">
+<h3>LoRA (Low-Rank Adaptation)</h3>
+<p>The dominant approach for researcher-scale fine-tuning. Instead of updating all weights, inject small trainable matrices alongside the existing attention weights.</p>
+<ul class="styled-list">
+<li><strong>Only ~0.1–1% of parameters updated:</strong> Dramatically lower memory and compute</li>
+<li><strong>Near-equivalent performance:</strong> For most domain adaptation tasks, LoRA matches full fine-tuning</li>
+<li><strong>Composable:</strong> LoRA adapters can be merged, swapped, or shared—enabling collaborative fine-tuning</li>
+<li><strong>Practical:</strong> A 7B model can be LoRA fine-tuned on a single consumer GPU in hours</li>
+</ul>
+</div>
+<div class="card">
+<h3>Prompt Tuning &amp; Prefix Tuning</h3>
+<p>Even lighter-weight alternatives: instead of modifying model weights at all, learn a set of "soft tokens" that are prepended to every input.</p>
+<ul class="styled-list">
+<li><strong>No weight changes:</strong> The base model is completely frozen; only the soft prompt vectors are trained</li>
+<li><strong>Extremely lightweight:</strong> Only a few thousand parameters to learn</li>
+<li><strong>Limited expressiveness:</strong> Less powerful than LoRA for significant domain shifts</li>
+<li><strong>Easy to switch:</strong> Swap soft prompts to change the model's domain without reloading weights</li>
+</ul>
+</div>
+</div>
+<div class="technical-detail">
+<h4>🤔 When Should You Fine-Tune vs Just Prompt?</h4>
+<p style="margin-bottom: 15px;">This is a practical question researchers often face. The answer is almost always: <strong>try prompting first</strong>.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Situation</th>
+<th>Recommendation</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>General tasks with good instructions</td>
+<td>Prompt engineering</td>
+<td>Faster, cheaper, easier to iterate; frontier models are powerful with good prompts</td>
+</tr>
+<tr>
+<td>Consistent structured output format needed</td>
+<td>Fine-tuning</td>
+<td>Reliable JSON/table/annotation outputs across many examples</td>
+</tr>
+<tr>
+<td>Highly specialised vocabulary or reasoning</td>
+<td>Fine-tuning</td>
+<td>Domain-specific terms, notation, or reasoning patterns not in pre-training data</td>
+</tr>
+<tr>
+<td>Running at scale with cost constraints</td>
+<td>Fine-tune a smaller model</td>
+<td>A fine-tuned 7B model can match a prompted 70B model at 10× lower inference cost</td>
+</tr>
+<tr>
+<td>Only a handful of examples available</td>
+<td>Few-shot prompting</td>
+<td>Fine-tuning on &lt;50 examples often leads to overfitting; few-shot prompting is safer</td>
+</tr>
+<tr>
+<td>Want to remove certain behaviours</td>
+<td>Fine-tuning (with care)</td>
+<td>Prompting cannot reliably suppress capabilities; fine-tuning can shift defaults</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="resource-placeholder">
+<h4>📄 LoRA: Low-Rank Adaptation of Large Language Models (Hu et al., 2021)</h4>
+<p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2106.09685" target="_blank" rel="noopener"><strong>arXiv:2106.09685</strong></a> — the original LoRA paper. Highly readable and has become one of the most cited papers in applied NLP.</p>
+<p style="margin-top: 12px;"><a href="https://huggingface.co/docs/peft/en/index" target="_blank" rel="noopener"><strong>Hugging Face PEFT Library</strong></a> — practical documentation covering LoRA, prefix tuning, and other PEFT methods. A good starting point if you want to try this yourself.</p>
+</div>
+<!-- SECTION 6: PRACTICAL IMPLICATIONS -->
+<h2 class="section-title">🔬 Practical Implications for Researchers</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Understanding post-training helps you use AI tools more effectively and interpret their behaviour more accurately.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Why Models Sometimes Refuse</h3>
+<p>When a model declines to help with something, this is almost always a product of alignment training—not a fundamental limitation of what the model can do.</p>
+<ul class="styled-list">
+<li><strong>Refusals are trained behaviour:</strong> The underlying pre-trained model likely has the relevant capability; the post-training process has reduced the probability of certain outputs</li>
+<li><strong>System prompts:</strong> When you use a model via an API or product, a hidden "system prompt" is usually prepended that sets the model's persona, constraints, and defaults</li>
+<li><strong>Context matters:</strong> The same model will behave differently depending on the system prompt—a medical API deployment behaves differently from a general consumer product</li>
+<li><strong>Over-refusal is a known problem:</strong> Alignment training can make models too cautious; labs actively try to calibrate this balance</li>
+</ul>
+</div>
+<div class="card">
+<h3>Open vs Closed Models for Research</h3>
+<p>A key practical decision is whether to use a closed API (Claude, GPT-4) or an open-weights model (LLaMA, Mistral).</p>
+<ul class="styled-list">
+<li><strong>Closed (API):</strong> No setup; frontier capability; data privacy questions; no fine-tuning control; ongoing costs; subject to policy changes</li>
+<li><strong>Open-weights:</strong> Can run locally; full fine-tuning control; data stays on your infrastructure; requires compute; smaller models than frontier closed models</li>
+<li><strong>For sensitive data:</strong> Open models running locally may be required if data cannot leave your institution</li>
+<li><strong>Key open models:</strong> Meta's LLaMA 3, Mistral, Qwen, Gemma — all have research-friendly licences</li>
+</ul>
+</div>
+<div class="card">
+<h3>The Alignment Tax</h3>
+<p>Post-training improves behaviour but can reduce some raw capabilities—a trade-off researchers should be aware of.</p>
+<ul class="styled-list">
+<li><strong>Base vs instruct models:</strong> Many open model releases include both a raw base model and an instruction-tuned variant; they have different strengths</li>
+<li><strong>Benchmark performance:</strong> Base models sometimes score higher on specific benchmarks than their aligned counterparts—alignment optimises for helpfulness/safety, not benchmark scores</li>
+<li><strong>Sycophancy in research use:</strong> RLHF-trained models may agree with incorrect statements if the user seems confident—a genuine risk in research workflows requiring critical evaluation</li>
+<li><strong>Calibration:</strong> Aligned models sometimes express more confidence than is warranted; always verify factual claims independently</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 A Note on Sycophancy in Research</h4>
+<p>Sycophancy—the tendency of aligned models to agree with the user rather than provide accurate information—is one of the most practically important alignment failure modes for researchers. If you present a hypothesis to an AI assistant and it agrees enthusiastically, that agreement may reflect your framing rather than truth. Techniques to mitigate this: ask the model to steelman opposing views, explicitly prompt for criticism, or present the hypothesis without indicating your own position first.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>You now have a picture of the full training pipeline that produces modern AI assistants:</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>Base models aren't assistants:</strong> Pre-training produces a powerful text predictor, not a helpful, safe conversational agent</li>
+<li><strong>SFT teaches format and instruction-following:</strong> High-quality (prompt, response) pairs teach the model to behave like an assistant, but via imitation</li>
+<li><strong>RLHF captures nuanced preferences:</strong> Human comparisons → reward model → RL optimisation produces models that are genuinely preferred by users, not just fluent</li>
+<li><strong>CAI and DPO offer cleaner alternatives:</strong> Constitutional AI makes values explicit; DPO removes the need for a separate RL loop</li>
+<li><strong>LoRA makes fine-tuning accessible:</strong> Researchers can adapt existing models to specialist domains without frontier-scale compute</li>
+<li><strong>Understanding post-training helps:</strong> Refusals, sycophancy, and differences between models largely reflect alignment choices, not raw capability</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session (Week 3):</strong> We zoom out from model internals to consider the broader context—the <em>environmental implications</em> of AI. Training and deploying large models consumes enormous amounts of energy. What does the carbon footprint of AI actually look like, and what does sustainable AI practice mean for researchers?</p>
+</div>
+</div>
+</div></body></html>

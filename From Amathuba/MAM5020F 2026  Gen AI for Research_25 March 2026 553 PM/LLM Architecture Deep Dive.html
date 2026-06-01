@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 2.1 - LLM Architecture Deep Dive</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+        
+        .ai-notice strong {
+            font-weight: 600;
+        }
+        
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 10px auto 0;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+        
+        .intro-text h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .intro-text h2::before {
+            content: '🎯';
+        }
+        
+        .intro-text p {
+            font-size: 1.1em;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 {
+            color: #2a5298;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .card p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        
+        .styled-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+        
+        .styled-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #003A70;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .highlight-box h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+        
+        .info-box h4 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-box p {
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .resource-placeholder h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .resource-placeholder p {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 30px 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 15px;
+        }
+        
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .technical-detail h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .comparison-table th {
+            background: #003A70;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 2 • Sub-Lesson 1</div>
+<h1>🏗️ <span style="color: #ffffff;">LLM Architecture Deep Dive</span></h1>
+<p>Understanding the technical foundations of modern large language models</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>In Week 1, we introduced transformers as "attention machines" and explored a little how they differ from earlier architectures. This session goes deeper: we'll dive back into the transformer architecture that powers models like GPT, Claude, and Gemini, understand how attention mechanisms actually work, and explore cutting-edge innovations like Mixture of Experts that make modern models more efficient.</p>
+<p>By the end of this session you should have a greater appreciation of <em>how</em>&nbsp;LLMs work—and why architectural choices matter for research applications.</p>
+<p>Some of this may feel uncomfortably mathematical, so if you find yourself worrying about this, you can try to just get the overall gist of what is going on.</p>
+</div>
+<!-- SECTION 1: TRANSFORMER FUNDAMENTALS -->
+<h2 class="section-title">🧩 Transformer Architecture Fundamentals</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Let's revisit the transformer architecture with more technical depth. While Week 1 gave us the intuition, here we'll understand the actual mechanisms.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">This video is in addition to the videos from last week and is also a little technical, but it does give a slightly different description of the 3blue1brown explanations.</p>
+<div class="resource-placeholder">
+<h4>📹 Take a look at the 3brown1blue videos before this one, but here is a lecture series on the transformer architecture.</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ub3GoFaUcds?si=_aMU4KYCrHeOp6Dx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<div class="card-grid">
+<div class="card">
+<h3>The Core Components</h3>
+<ul class="styled-list">
+<li><strong>Token embeddings:</strong> Converting discrete tokens into continuous vector representations</li>
+<li><strong>Positional encoding:</strong> Injecting information about token position in the sequence</li>
+<li><strong>Attention layers:</strong> The heart of the model—learning which tokens matter</li>
+<li><strong>Feed-forward networks:</strong> Processing attended information within each layer</li>
+<li><strong>Layer normalization:</strong> Stabilizing training across deep networks</li>
+<li><strong>Residual connections:</strong> Allowing gradients to flow through many layers</li>
+</ul>
+</div>
+<div class="card">
+<h3>Decoder-Only Architecture</h3>
+<p>Modern LLMs (GPT, Claude, LLaMA) use <strong>decoder-only</strong> architectures rather than the original encoder-decoder design.</p>
+<ul class="styled-list">
+<li><strong>Autoregressive generation:</strong> Predict one token at a time, left to right</li>
+<li><strong>Causal masking:</strong> Each token can only attend to previous tokens</li>
+<li><strong>Simpler architecture:</strong> No cross-attention needed</li>
+<li><strong>Unified pre-training:</strong> Single objective (next-token prediction) for all training</li>
+</ul>
+<div class="info-box" style="margin-top: 15px;">
+<h4>💡 Why decoder-only?</h4>
+<p>Decoder-only models proved more scalable and effective for general-purpose language understanding and generation. The encoder-decoder design is still used for specific tasks like translation.</p>
+</div>
+</div>
+</div>
+<div class="technical-detail">
+<h4>📐 The Forward Pass: Input to Output</h4>
+<p style="margin-bottom: 15px;">Here's what happens when you send text to an LLM:</p>
+<ol style="margin-left: 25px; color: #555; line-height: 1.8;">
+<li><strong>Tokenization:</strong> Text → token IDs (e.g., "The cat" → [464, 3797])</li>
+<li><strong>Embedding lookup:</strong> Each token ID → dense vector (e.g., 4096 dimensions)</li>
+<li><strong>Positional encoding:</strong> Add position information to each token vector</li>
+<li><strong>Transformer layers (repeated N times):</strong>
+<ul style="margin-left: 20px; margin-top: 8px;">
+<li>Multi-head self-attention: tokens attend to previous context</li>
+<li>Feed-forward network: process attended representations</li>
+<li>Residual connections + layer norm after each sub-layer</li>
+</ul>
+</li>
+<li><strong>Final layer norm:</strong> Normalize output representations</li>
+<li><strong>Output projection:</strong> Map to vocabulary size (e.g., 50,000 tokens)</li>
+<li><strong>Sampling:</strong> Choose next token based on probability distribution</li>
+</ol>
+</div>
+<div class="resource-placeholder">
+<p style="margin-top: 10px; font-size: 0.9em;">Here is the original paper itself, in case you are feeling particularly brave: "<a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://arxiv.org/pdf/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>" (Vaswani et al., 2017)&nbsp;</p>
+</div>
+<!-- SECTION 2: ATTENTION MECHANISMS -->
+<h2 class="section-title">👁️ Attention Mechanisms in Detail</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Attention is the fundamental innovation that makes transformers work. Let's understand the different types and how they've evolved.</p>
+<div class="highlight-box">
+<h3>🔑<span style="color: #ffffff;"> The Attention Intuition</span></h3>
+<p>When you read "The animal didn't cross the street because it was too tired," your brain automatically knows "it" refers to "the animal," not "the street." You <em>attend</em> to relevant context.</p>
+<p style="margin-top: 15px;">Self-attention mechanisms let transformers do the same thing: for each token, learn which other tokens in the context are relevant, and weight them accordingly when building representations.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Self-Attention</h3>
+<p>The core mechanism: each token computes attention scores with every other token in the sequence.</p>
+<ul class="styled-list">
+<li><strong>Query, Key, Value:</strong> Each token produces three vectors through learned projections</li>
+<li><strong>Attention scores:</strong> Dot product of Query with all Keys (how relevant is each token?)</li>
+<li><strong>Softmax normalization:</strong> Convert scores to probability distribution</li>
+<li><strong>Weighted sum:</strong> Combine Values using attention weights</li>
+</ul>
+<div class="info-box" style="margin-top: 15px;">
+<h4>🔍 Scaled Dot-Product</h4>
+<p>Attention scores are scaled by √d_k (square root of key dimension) to prevent extremely small gradients in softmax for large embedding sizes.</p>
+</div>
+</div>
+<div class="card">
+<h3>Multi-Head Attention</h3>
+<p>Instead of one attention mechanism, use many in parallel—each learns different patterns.</p>
+<ul class="styled-list">
+<li><strong>Multiple heads:</strong> 32-96 attention heads in modern LLMs</li>
+<li><strong>Specialized patterns:</strong> Each head might learn syntax, semantics, or other relationships</li>
+<li><strong>Concatenation:</strong> Outputs from all heads combined and projected</li>
+<li><strong>Richer representations:</strong> Capture multiple types of dependencies simultaneously</li>
+</ul>
+</div>
+<div class="card">
+<h3>Cross-Attention</h3>
+<p>Used in encoder-decoder models (and multimodal systems): attend to a different sequence.</p>
+<ul class="styled-list">
+<li><strong>Query from decoder:</strong> "What am I trying to generate?"</li>
+<li><strong>Keys/Values from encoder:</strong> "What input information is available?"</li>
+<li><strong>Translation example:</strong> Decoder attends to source language while generating target</li>
+<li><strong>Vision-language models:</strong> Text decoder attends to image features</li>
+</ul>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📹 I don't think that you can do much better than 3brown1blue to understand attention</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eMlx5fFNoYc?si=Ki9MibQLh9LXIX9-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<div class="technical-detail">
+<h4>⚡ Modern Attention Variants</h4>
+<p style="margin-bottom: 15px;">Standard multi-head attention is computationally expensive. Modern models use optimized variants:</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Variant</th>
+<th>Key Idea</th>
+<th>Benefit</th>
+<th>Used In</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Multi-Head Attention (MHA)</strong></td>
+<td>Each head has its own Q, K, V projections</td>
+<td>Rich representations</td>
+<td>Original transformers, GPT-3</td>
+</tr>
+<tr>
+<td><strong>Multi-Query Attention (MQA)</strong></td>
+<td>Share K, V across heads; unique Q per head</td>
+<td>Faster inference, less memory</td>
+<td>PaLM, some Llama variants</td>
+</tr>
+<tr>
+<td><strong>Grouped-Query Attention (GQA)</strong></td>
+<td>Multiple heads share K, V in groups</td>
+<td>Balance between MHA and MQA</td>
+<td>Llama 2, Mistral, GPT-4 (rumored)</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666;"><strong>Research implication:</strong> GQA has become the dominant choice for new models—it provides most of MHA's quality with much better inference efficiency.</p>
+</div>
+<!-- SECTION 3: POSITIONAL ENCODING -->
+<h2 class="section-title">📍 Positional Encoding: Teaching Position</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Transformers process all tokens in parallel (unlike RNNs which are sequential). But word order matters! Positional encoding solves this problem.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Absolute Positional Encoding</h3>
+<p>Original approach: add a position-specific vector to each token embedding.</p>
+<ul class="styled-list">
+<li><strong>Sinusoidal encoding:</strong> Original transformer used sin/cos functions of different frequencies</li>
+<li><strong>Learned positions:</strong> Some models learn position embeddings during training (like GPT)</li>
+<li><strong>Fixed context:</strong> Limited to maximum sequence length seen during training</li>
+<li><strong>Issue:</strong> Doesn't extrapolate well to longer sequences</li>
+</ul>
+</div>
+<div class="card">
+<h3>Relative Positional Encoding</h3>
+<p>Modern approach: encode the <em>distance</em> between tokens rather than absolute position.</p>
+<ul class="styled-list">
+<li><strong>RoPE (Rotary Position Embedding):</strong> Rotate Q and K vectors based on position—used in LLaMA, Mistral, GPT-NeoX</li>
+<li><strong>ALiBi (Attention with Linear Biases):</strong> Add bias to attention scores based on distance—used in BLOOM, MPT</li>
+<li><strong>Length extrapolation:</strong> Can handle sequences longer than training context</li>
+<li><strong>Better generalization:</strong> Understands "distance" concept rather than memorizing positions</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Why RoPE Dominates</h4>
+<p>RoPE (Rotary Position Embedding) has become the standard for new LLMs because it:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li>Encodes relative positions naturally through rotation in complex space</li>
+<li>Allows models to extrapolate to longer contexts than seen in training</li>
+<li>Maintains computational efficiency (applied during Q/K computation)</li>
+<li>Empirically outperforms alternatives on long-context tasks</li>
+</ul>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Again, this is a little mathsy, but see if you can use this, along with ChatGPT to understand positional encodings</h4>
+<h1><a href="https://towardsdatascience.com/positional-embeddings-in-transformers-a-math-guide-to-rope-alibi/" target="_blank" rel="noopener"><span style="font-size: 24px;">Positional Embeddings in Transformers: A Math Guide to RoPE &amp; ALiBi</span></a></h1>
+</div>
+<!-- SECTION 4: MODERN INNOVATIONS - MoE -->
+<h2 class="section-title">🔀 Modern Architectural Innovations</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The frontier of LLM architecture isn't just about making models bigger—it's about making them <em>smarter</em>. Here are the key innovations driving 2024-2026 models.</p>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">The Efficiency Revolution</span></h3>
+<p>Modern LLM research focuses on <strong>parameter efficiency</strong>: getting better performance without proportionally increasing compute costs. The key insight: not every parameter needs to activate for every input.</p>
+<p style="margin-top: 15px;">This shift—from "bigger is better" to "smarter is better"—is driven by Mixture of Experts architectures, attention optimizations, and clever training techniques.</p>
+</div>
+<div class="technical-detail">
+<h4>🎯 Mixture of Experts (MoE)</h4>
+<p style="margin-bottom: 15px;">MoE is perhaps the most important architectural innovation in modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
+<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
+<h5 style="color: #2a5298; margin-bottom: 10px;">How MoE Works:</h5>
+<ol style="margin-left: 25px; color: #555; line-height: 1.8;">
+<li><strong>Expert networks:</strong> Instead of one feed-forward network per layer, have 8-64 expert FFNs</li>
+<li><strong>Router network:</strong> Small learned network decides which experts process each token</li>
+<li><strong>Sparse activation:</strong> Only top-K experts (typically 2-8) activate per token</li>
+<li><strong>Load balancing:</strong> Ensure tokens distribute roughly evenly across experts</li>
+<li><strong>Combination:</strong> Outputs from active experts weighted and summed</li>
+</ol>
+</div>
+<div class="card-grid" style="margin-top: 25px;">
+<div class="card">
+<h3>MoE Benefits</h3>
+<ul class="styled-list">
+<li><strong>Massive parameter count:</strong> 100B+ total parameters with only 10-20B active per token</li>
+<li><strong>Inference efficiency:</strong> Computational cost based on active parameters, not total</li>
+<li><strong>Specialization:</strong> Different experts can learn different domains/patterns</li>
+<li><strong>Scaling:</strong> Add more experts without proportional compute increase</li>
+</ul>
+</div>
+<div class="card">
+<h3>MoE Challenges</h3>
+<ul class="styled-list">
+<li><strong>Training complexity:</strong> Load balancing is tricky—some experts might be underutilized</li>
+<li><strong>Memory requirements:</strong> All experts must fit in GPU memory even if only few are active</li>
+<li><strong>Communication overhead:</strong> Routing adds latency in distributed systems</li>
+<li><strong>Instability:</strong> Careful tuning needed to prevent expert collapse</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="info-box">
+<h4>📊 MoE in Production Models</h4>
+<p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → performs like 47B dense model at cost of 13B</p>
+<p style="margin-top: 8px;"><strong>DeepSeek-V3:</strong> 256 experts, 8 active per token → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
+<p style="margin-top: 8px;"><strong>GPT-4 (rumored):</strong> Speculated to use MoE with 8-16 experts, explaining its size vs. inference speed</p>
+</div>
+<div class="resource-placeholder">
+<h4>📹 Mixture of Experts explanation</h4>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sOPDGQjFcuM?si=NFnJf-1oBlwCzYjK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
+<div class="resource-placeholder">
+<h4>📄 <a href="https://github.com/deepseek-ai/DeepSeek-V3" target="_blank" rel="noopener">DeepSeek-V3 Github repo</a></h4>
+<p>Here is an open-weights Mixture of Experts model that you can, in theory, download and run (though I wouldn't do this on your laptop.</p>
+</div>
+<!-- SECTION 5: MODEL SCALE -->
+<h2 class="section-title">📏 Understanding Model Scale</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When we say "GPT-4 has 1.76 trillion parameters" or "LLaMA 3 70B," what do these numbers actually mean? And is bigger always better?</p>
+<div class="card-grid">
+<div class="card">
+<h3>Parameter Count Breakdown</h3>
+<p>Parameters are the learned weights in the neural network. They're distributed across:</p>
+<ul class="styled-list">
+<li><strong>Embedding layers:</strong> Token + position embeddings (vocab_size × embedding_dim)</li>
+<li><strong>Attention layers:</strong> Q, K, V, output projections for each head, each layer</li>
+<li><strong>Feed-forward networks:</strong> Two linear layers per transformer layer (typically 4× hidden size)</li>
+<li><strong>Layer norms:</strong> Small contribution (scale + shift per layer)</li>
+</ul>
+<div class="info-box" style="margin-top: 15px;">
+<h4>🔢 Quick Math</h4>
+<p>A 7B parameter model might have: 32 layers × (12 attention heads × 4096 dim + 4× FFN expansion) ≈ 7 billion parameters</p>
+</div>
+</div>
+<div class="card">
+<h3>Parameters vs. Active Parameters</h3>
+<p>For MoE models, these are different concepts:</p>
+<ul class="styled-list">
+<li><strong>Total parameters:</strong> All weights in all experts (what's reported as "model size")</li>
+<li><strong>Active parameters:</strong> Weights used for any single forward pass</li>
+<li><strong>Example:</strong> Mixtral 8x7B has 47B total params but only 13B active per token</li>
+<li><strong>Inference cost:</strong> Determined by active parameters, not total</li>
+</ul>
+</div>
+<div class="card">
+<h3>Dense vs. Sparse Architectures</h3>
+<ul class="styled-list">
+<li><strong>Dense models:</strong> All parameters active for every input (GPT-3, Claude, LLaMA 2)</li>
+<li><strong>Sparse models (MoE):</strong> Subset of parameters active per input (Mixtral, DeepSeek-V3, Switch Transformer)</li>
+<li><strong>Trade-off:</strong> Sparse models offer better parameter efficiency but increased training complexity</li>
+<li><strong>Trend:</strong> Major labs moving toward sparse architectures for flagship models</li>
+</ul>
+</div>
+</div>
+<div class="technical-detail">
+<h4>🎯 When Bigger ≠ Better</h4>
+<p style="margin-bottom: 15px;">The relationship between model size and performance is nuanced:</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Smaller Model Wins</th>
+<th>Larger Model Wins</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Latency-sensitive applications</strong></td>
+<td>✓ Faster inference, lower latency</td>
+<td>✗ Slower, requires more compute</td>
+</tr>
+<tr>
+<td><strong>Resource-constrained deployment</strong></td>
+<td>✓ Runs on smaller GPUs, edge devices</td>
+<td>✗ Needs high-end infrastructure</td>
+</tr>
+<tr>
+<td><strong>Narrow domain tasks</strong></td>
+<td>✓ Can be fine-tuned effectively</td>
+<td>Diminishing returns</td>
+</tr>
+<tr>
+<td><strong>Complex reasoning</strong></td>
+<td>Limited capability</td>
+<td>✓ Better at multi-step problems</td>
+</tr>
+<tr>
+<td><strong>Rare/specialized knowledge</strong></td>
+<td>Likely to hallucinate</td>
+<td>✓ More knowledge encoded in parameters</td>
+</tr>
+<tr>
+<td><strong>Few-shot learning</strong></td>
+<td>Requires more examples</td>
+<td>✓ Better in-context learning</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666;"><strong>Research principle:</strong> Match model size to your task. A well-trained 7B model often outperforms a poorly-prompted 70B model. And for many research tasks (data analysis, writing assistance, literature review), mid-size models are sufficient.</p>
+</div>
+<div class="highlight-box">
+<h3>🔮<span style="color: #202122;"> <span style="color: #ffffff;">The Current Frontier (Feb 2026)</span></span></h3>
+<p><strong>Dense models:</strong> Have been largely superseded by MoE models. However ChatGPT 4o seems to have been a dense model with around 1T parameters</p>
+<p style="margin-top: 15px;"><strong>MoE models:</strong> Many 200B-700B total parameters with 30B-50B active (DeepSeek-V3, Mixtral variants). Claude 4.6 may be an MoE model with around 700B parameters. ChatGPT 5.2 may have over 10T parameters, with fewer active parameters.</p>
+<p style="margin-top: 15px;"><strong>Small models:</strong> 7B-13B models (LLaMA 3, Mistral 7B) remain popular for local deployment, fine-tuning, and research experimentation</p>
+<p style="margin-top: 15px;"><strong>Trend:</strong> Architectural efficiency improvements (MoE, GQA, better training) matter more than raw parameter count</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄<a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>
+<h3 dir="auto">Understanding the current state of LLM scaling and the future of AI research</h3>
+</div>
+<!-- SUMMARY AND NEXT STEPS -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>You now understand the technical architecture of modern LLMs:</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>Transformer fundamentals:</strong> Decoder-only architecture, layer structure, residual connections</li>
+<li><strong>Attention mechanisms:</strong> Self-attention, multi-head variants (MHA/MQA/GQA), how tokens learn relevance</li>
+<li><strong>Positional encoding:</strong> RoPE and ALiBi enable models to understand sequence order and extrapolate length</li>
+<li><strong>Mixture of Experts:</strong> Sparse activation allows massive models with efficient inference</li>
+<li><strong>Scale considerations:</strong> Bigger isn't always better—match model to task, consider active vs. total parameters</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session (Week 2.2):</strong> We'll explore how these architectures are actually <em>trained</em>—the pre-training process, optimization techniques, and the computational resources required to create LLMs from scratch.</p>
+</div>
+</div>
+</div></body></html>

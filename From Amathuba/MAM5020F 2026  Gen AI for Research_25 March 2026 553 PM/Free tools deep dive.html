@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5.2 - Free Tools Deep Dive</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .intro-text h2::before { content: '🎯'; }
+        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+        .warning-box p { color: #555; line-height: 1.7; }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+        .resource-placeholder p { color: #666; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        .case-study {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+            .comparison-table { font-size: 0.85em; }
+            .comparison-table th, .comparison-table td { padding: 8px 10px; }
+        }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 5 • Sub-Lesson 2</div>
+<h1>🆓 <span style="color: #ffffff;">Free Tools Deep Dive</span></h1>
+<p>Exploring the free AI-powered tools that every researcher should know — their strengths, limitations, and when to use each</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>This session takes you hands-on through the most important free (or free-tier) AI literature tools. For each tool, we cover what it does, how it works, what it does well, and where it falls short. The goal is not to champion any single tool but to help you understand which tools serve which purposes — so you can build your own workflow.</p>
+<p>We look at five tools in detail: Semantic Scholar, ResearchRabbit, Connected Papers, Google's NotebookLM, and Google Scholar. Each serves a different purpose in the research lifecycle, and understanding those differences is the key to using them effectively. We then compare them head-to-head and explore how to combine them into a workflow that costs nothing.</p>
+</div>
+<!-- SECTION 1: SEMANTIC SCHOLAR -->
+<h2 class="section-title">🔬 Semantic Scholar</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Your free, AI-enhanced academic search engine — and arguably the most important tool in this list.</p>
+<div class="technical-detail">
+<h4>What It Is</h4>
+<p style="color: #555; line-height: 1.7;">Semantic Scholar is a free academic search engine built and maintained by the <strong>Allen Institute for AI (AI2)</strong>. It indexes over 220 million papers across most academic disciplines and uses machine learning to enhance the search experience in ways that traditional databases do not. Unlike Google Scholar, which primarily relies on keyword matching, Semantic Scholar understands the meaning of queries and provides AI-generated features on top of its search results.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;"><strong>URL:</strong> <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">semanticscholar.org</a></p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Strengths</h3>
+<ul class="styled-list">
+<li><strong>Completely free</strong> with no usage limits — no paywall, no restricted free tier, no premium upsell for core features.</li>
+<li><strong>AI-generated TLDRs</strong> provide one-sentence summaries of papers, saving significant time during initial scanning of search results.</li>
+<li><strong>Citation context</strong> shows you <em>how</em> a paper is cited — whether it is supported, contrasted, or merely mentioned — not just that it is cited. This is a feature few other tools offer.</li>
+<li><strong>Research feeds</strong> let you define your interests and receive personalised alerts when new relevant papers are published.</li>
+<li><strong>Open API</strong> available for programmatic access, making it useful for systematic reviews or custom research tools.</li>
+<li><strong>Broad disciplinary coverage</strong> across STEM, social sciences, and increasingly the humanities.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations</h3>
+<ul class="styled-list">
+<li><strong>Coverage gaps</strong> in some humanities and social science sub-fields. If your field relies heavily on books or non-journal publications, you may find incomplete results.</li>
+<li><strong>TLDRs can miss nuance</strong> — they are generated by a language model and will sometimes flatten a paper's contribution into something that sounds right but misses the point.</li>
+<li><strong>No built-in chat or synthesis</strong> — it is a search and discovery tool, not a reading assistant. You cannot ask it to summarise across papers or answer questions about your findings.</li>
+<li><strong>Interface less polished</strong> than some commercial alternatives, though it has improved substantially over recent years.</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Best Use Case</h4>
+<p><strong>Your primary free search engine.</strong> Use Semantic Scholar as the backbone of your search strategy. Start here for any topic search, and use the TLDR and citation context features to triage results quickly. Then move to other tools for deeper exploration or synthesis.</p>
+</div>
+<!-- SECTION 2: RESEARCHRABBIT -->
+<h2 class="section-title">🐰 ResearchRabbit</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A citation-based discovery engine that finds the papers you didn't know you were looking for.</p>
+<div class="technical-detail">
+<h4>What It Is</h4>
+<p style="color: #555; line-height: 1.7;">ResearchRabbit is a citation-based discovery tool that works differently from keyword search engines. Instead of asking "what papers match these search terms?", it asks "given these papers you already care about, what other papers are related through citation networks?" You seed it with a collection of papers you find important, and it maps outward from those seeds to find work you might have missed.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;">In October 2025, ResearchRabbit partnered with <strong>Litmaps</strong>, which has changed its pricing model. The tool that was once entirely free now operates on a freemium model.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;"><strong>URL:</strong> <a href="https://www.researchrabbit.ai/" target="_blank" rel="noopener">researchrabbit.ai</a></p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Strengths</h3>
+<ul class="styled-list">
+<li><strong>Discovers papers keyword search misses.</strong> Citation networks surface work that uses different terminology or comes from adjacent fields — exactly the papers that are hardest to find through traditional search.</li>
+<li><strong>Collection-based approach</strong> means you seed with multiple papers, not just one. This gives richer, more nuanced recommendations than single-seed tools.</li>
+<li><strong>Systematic bibliography building.</strong> Start with 5-10 key papers and iteratively expand. This is closer to how experienced researchers actually build literature reviews.</li>
+<li><strong>Citation network visualisation</strong> helps you see how papers relate to each other, revealing clusters and connections you might not notice from reading abstracts alone.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations</h3>
+<ul class="styled-list">
+<li><strong>Free tier is now limited</strong> — up to 50 seed papers and 1 project. This is a significant change from the original fully-free model that existed before the 2025 Litmaps merger.</li>
+<li><strong>Can feel overwhelming.</strong> It often returns many results that need manual curation. Without discipline, you can end up with hundreds of "related" papers and no clear sense of priority.</li>
+<li><strong>Dependent on citation database coverage.</strong> If the citation links are incomplete (common for newer papers or less-indexed journals), the recommendations will be incomplete too.</li>
+<li><strong>Newer papers with few citations</strong> may not surface well, since the tool relies on citation relationships that take time to accumulate.</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Best Use Case</h4>
+<p><strong>Expanding your literature beyond what keyword search finds.</strong> Use ResearchRabbit when you have a handful of key papers and want to build a comprehensive bibliography. It is particularly valuable in the middle stages of a literature review, when you know enough to have seed papers but want to make sure you are not missing important related work.</p>
+</div>
+<!-- SECTION 3: CONNECTED PAPERS -->
+<h2 class="section-title">🔗 Connected Papers</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A visual exploration tool that maps the neighbourhood around a single paper.</p>
+<div class="technical-detail">
+<h4>What It Is</h4>
+<p style="color: #555; line-height: 1.7;">Connected Papers is a visual tool that builds a graph of related papers from a single seed paper. The graph is constructed using <strong>co-citation and bibliographic coupling similarity</strong> — meaning papers are connected not just because one cites the other, but because they tend to be cited together or cite the same sources. This captures a richer notion of relatedness than simple citation chains.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;">The result is an interactive graph where node size represents citation count and colour represents publication year, giving you an immediate visual sense of the landscape around your seed paper.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;"><strong>URL:</strong> <a href="https://www.connectedpapers.com/" target="_blank" rel="noopener">connectedpapers.com</a></p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;"><strong>Free tier:</strong> 5 graphs per month (reduced from earlier, more generous limits).</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Strengths</h3>
+<ul class="styled-list">
+<li><strong>Beautiful, intuitive visualisation.</strong> The graph view is immediately understandable — you can see clusters, outliers, and the overall shape of a research area at a glance.</li>
+<li><strong>Fastest way to explore a paper's neighbourhood.</strong> In under a minute, you can see what surrounds a paper you have just found interesting.</li>
+<li><strong>Prior Works and Derivative Works views</strong> show you a paper's intellectual ancestry (what it builds on) and its influence (what has built on it). This is invaluable for understanding where a paper sits in the evolution of a field.</li>
+<li><strong>Minimal learning curve.</strong> Enter a paper, get a graph. No collections to manage, no accounts required (though free tier is limited).</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations</h3>
+<ul class="styled-list">
+<li><strong>Single-seed approach</strong> means you are always exploring from one paper's perspective. This can create a biased view of the literature if your seed paper is not representative.</li>
+<li><strong>Free tier is quite limited</strong> at 5 graphs per month. If you are doing intensive literature review work, you will hit this ceiling quickly.</li>
+<li><strong>Similarity metric can surface tangential papers.</strong> Co-citation similarity is powerful but imperfect — you may see papers that are related in methodology but not in substance, or vice versa.</li>
+<li><strong>No synthesis or summarisation features.</strong> It is purely a discovery and visualisation tool. You still need to read the papers it surfaces.</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Best Use Case</h4>
+<p><strong>Quick 5-minute exploration when you find one interesting paper and want to see what's around it.</strong> Connected Papers is the tool you reach for when you stumble upon a paper — in a reference list, a Twitter thread, a colleague's recommendation — and want to immediately understand its neighbourhood. Use it for initial orientation, not comprehensive coverage.</p>
+</div>
+<!-- SECTION 4: NOTEBOOKLM -->
+<h2 class="section-title">📓 Google's NotebookLM</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A source-grounded AI reading companion that works with YOUR documents — not the open web.</p>
+<div class="technical-detail">
+<h4>What It Is</h4>
+<p style="color: #555; line-height: 1.7;">NotebookLM is Google's free AI research tool that lets you upload your own documents and have <strong>grounded conversations</strong> with them. The key word is "grounded" — NotebookLM uses <strong>Retrieval-Augmented Generation (RAG)</strong>, which means its responses are based on the content of YOUR uploaded sources, not the model's general training data. When it makes a claim, it cites the specific passage in your documents where that information comes from.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;">This is a fundamentally different approach from tools like ChatGPT or Gemini, which generate responses from their training data and are prone to hallucination. NotebookLM dramatically reduces hallucination because it is constrained to what your documents actually say.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;"><strong>URL:</strong> <a href="https://notebooklm.google.com/" target="_blank" rel="noopener">notebooklm.google.com</a></p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Strengths</h3>
+<ul class="styled-list">
+<li><strong>Free</strong> (requires a Google account). No usage-based pricing for the core features.</li>
+<li><strong>Source-grounded responses</strong> dramatically reduce hallucination. Every claim is linked to a specific passage in your uploaded documents, making it easy to verify.</li>
+<li><strong>Audio Overview feature</strong> generates podcast-style discussions of your papers — a surprisingly effective way to engage with complex material, especially for auditory learners.</li>
+<li><strong>Cross-document synthesis.</strong> Upload multiple papers and ask questions that require connecting ideas across them. This is where it truly shines for literature review work.</li>
+<li><strong>Excellent reading comprehension.</strong> Particularly useful for understanding complex methods sections, statistical approaches, or theoretical frameworks in papers outside your immediate expertise.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations</h3>
+<ul class="styled-list">
+<li><strong>Only works with documents you upload</strong> — it does not search the web or academic databases. It is a reading and synthesis tool, not a discovery tool.</li>
+<li><strong>Upload limits</strong> on both the number and size of documents. For very large literature reviews, you may need to work in batches.</li>
+<li><strong>Quality depends entirely on what you feed it.</strong> If your uploaded papers are not representative or are of poor quality, the synthesis will reflect that. Garbage in, garbage out.</li>
+<li><strong>Can still misinterpret complex arguments</strong>, particularly nuanced philosophical positions or highly technical methodological details. Always verify critical claims against the source text.</li>
+<li><strong>Google account and data privacy considerations.</strong> Your uploaded documents are processed by Google's systems. Consider this if you are working with sensitive or pre-publication data.</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Best Use Case</h4>
+<p><strong>Deep reading and synthesis of papers you have already found.</strong> NotebookLM is not a discovery tool — it is a comprehension tool. Use it after you have found your papers (through Semantic Scholar, ResearchRabbit, etc.) and need to actually understand and connect them. It is particularly powerful for generating study aids, understanding difficult papers, and synthesising themes across a set of readings.</p>
+</div>
+<!-- SECTION 5: GOOGLE SCHOLAR -->
+<h2 class="section-title">🎓 Google Scholar</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The baseline. Not flashy, not AI-powered in the modern sense — but essential.</p>
+<div class="technical-detail">
+<h4>What It Is</h4>
+<p style="color: #555; line-height: 1.7;">Google Scholar needs little introduction. It is Google's academic search engine, launched in 2004, and it remains the most widely used tool for finding academic literature. It is not AI-powered in the way the other tools in this session are — it does not generate summaries, build citation graphs, or let you chat with your papers. But it has the broadest coverage of any free tool, and it serves as the foundation that many other tools build on.</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;">Understanding Google Scholar's role is important precisely because it is so familiar. Many researchers use it as their <em>only</em> search tool, which is both understandable (it works well) and limiting (it misses what the newer tools can do).</p>
+<p style="color: #555; line-height: 1.7; margin-top: 10px;"><strong>URL:</strong> <a href="https://scholar.google.com/" target="_blank" rel="noopener">scholar.google.com</a></p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Strengths</h3>
+<ul class="styled-list">
+<li><strong>Broadest coverage of any free tool.</strong> Books, theses, conference papers, preprints, patents — Google Scholar indexes sources that many other tools miss.</li>
+<li><strong>"Cited by" feature is invaluable.</strong> Tracking forward citations (who has cited this paper since it was published?) remains one of the most powerful literature review techniques, and Google Scholar does it well.</li>
+<li><strong>Freely accessible full texts</strong> where available. Google Scholar links to open-access versions, institutional repositories, and author preprints, making it easier to find papers you can actually read.</li>
+<li><strong>Familiar interface</strong> with a negligible learning curve. If you can use Google, you can use Google Scholar.</li>
+<li><strong>Citation alerts</strong> notify you when a paper you are tracking gets cited by new work.</li>
+<li><strong>Integration with institutional library access</strong> through "Library links" settings, connecting you directly to your university's subscriptions.</li>
+</ul>
+</div>
+<div class="card">
+<h3>Limitations</h3>
+<ul class="styled-list">
+<li><strong>No AI synthesis or summarisation.</strong> You get a list of results and their metadata. The intellectual work of reading, evaluating, and connecting them is entirely on you.</li>
+<li><strong>Keyword-dependent.</strong> You need to know what to search for. If you use the wrong terms, or if the field uses terminology you are not yet familiar with, you will miss relevant work.</li>
+<li><strong>No quality filtering.</strong> Results can include papers from predatory journals alongside rigorous peer-reviewed work, with no way to distinguish them from the search interface.</li>
+<li><strong>Can surface very old or irrelevant results</strong> that happen to match your keywords. Sorting by date helps, but it is not a complete solution.</li>
+<li><strong>Limited advanced search features</strong> compared to purpose-built academic databases like Scopus or Web of Science.</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Best Use Case</h4>
+<p><strong>Verification, full-text access, and citation tracking.</strong> Google Scholar is your "ground truth" database. Use it to check whether a paper exists (especially important when AI tools hallucinate citations), to find full-text versions of papers you have identified through other tools, and to track citations forward and backward. It is not the best discovery tool for any specific task, but it is the most reliable all-rounder.</p>
+</div>
+<!-- SECTION 6: COMPARISON TABLE -->
+<h2 class="section-title">📊 Head-to-Head Comparison</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">How do these tools stack up against each other — and against two other notable free options?</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Type</th>
+<th>Cost</th>
+<th>Best For</th>
+<th>Key Limitation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Semantic Scholar</strong></td>
+<td>AI-enhanced search engine</td>
+<td>Completely free</td>
+<td>Primary search engine; broad topic discovery</td>
+<td>No synthesis or chat features</td>
+</tr>
+<tr>
+<td><strong>ResearchRabbit</strong></td>
+<td>Citation-based discovery</td>
+<td>Free tier (50 seeds, 1 project); paid for more</td>
+<td>Expanding bibliography via citation networks</td>
+<td>Free tier now limited; overwhelming volume of results</td>
+</tr>
+<tr>
+<td><strong>Connected Papers</strong></td>
+<td>Visual citation mapping</td>
+<td>5 free graphs/month; paid for more</td>
+<td>Quick visual exploration from a single paper</td>
+<td>Single-seed; very limited free tier</td>
+</tr>
+<tr>
+<td><strong>NotebookLM</strong></td>
+<td>Source-grounded AI reading assistant</td>
+<td>Free (Google account)</td>
+<td>Deep reading and cross-document synthesis</td>
+<td>Only works with your uploaded documents</td>
+</tr>
+<tr>
+<td><strong>Google Scholar</strong></td>
+<td>Academic search engine</td>
+<td>Completely free</td>
+<td>Verification, full-text access, citation tracking</td>
+<td>No AI features; keyword-dependent</td>
+</tr>
+<tr>
+<td><strong>Perplexity</strong></td>
+<td>AI search with citations</td>
+<td>Free tier; Pro for advanced features</td>
+<td>Quick factual queries with source links</td>
+<td>Not specialised for academic literature; can hallucinate</td>
+</tr>
+<tr>
+<td><strong>Gemini Deep Research</strong></td>
+<td>AI-generated research reports</td>
+<td>Free (Google account)</td>
+<td>Multi-page research overviews with cited sources</td>
+<td>Reports can lack depth; not peer-reviewed sourcing</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>📝 A Note on Perplexity and Gemini Deep Research</h4>
+<p><strong>Perplexity</strong> is an AI-powered search engine that provides answers with inline citations. Its free tier is useful for quick factual queries, but it is not designed specifically for academic research and should be used as a supplement, not a primary tool. It can and does hallucinate — always verify its claims.</p>
+<p style="margin-top: 10px;"><strong>Google Gemini's Deep Research</strong> feature (free with a Google account) can generate multi-page research reports on a topic, complete with cited sources. It is impressive for getting a rapid overview but should be treated as a starting point for your own investigation, not as a finished literature review. The sources it cites should always be independently verified.</p>
+</div>
+<!-- WARNING BOX -->
+<div class="warning-box">
+<h4>⚠️ The Free Tier Landscape Is Shifting</h4>
+<p>The free tool landscape changes rapidly. ResearchRabbit was fully free until October 2025 when it merged with Litmaps. Connected Papers has reduced its free tier over time. Always check current pricing before committing to a workflow — and consider what happens to your data and workflow if a free tool changes its terms. Building your entire research process around a single tool's free tier is a risk. Diversification is not just good research practice; it is good tool strategy.</p>
+</div>
+<!-- HIGHLIGHT BOX -->
+<div class="highlight-box">
+<h3>🔑 The Free Workflow</h3>
+<p>A powerful free workflow: <strong>Semantic Scholar</strong> for broad search → <strong>ResearchRabbit or Connected Papers</strong> for citation mapping → <strong>NotebookLM</strong> for deep reading and synthesis → <strong>Google Scholar</strong> for verification. This combination costs nothing and covers the four core stages of literature work: discovery, mapping, comprehension, and verification.</p>
+<p>No single tool does everything well. But by understanding what each tool is best at, you can chain them together into a workflow that rivals — and in some ways exceeds — what any single paid tool can offer.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<ul class="styled-list">
+<li><strong>Semantic Scholar</strong> is your free search backbone — use it first and often. Its TLDRs and citation context features save significant time.</li>
+<li><strong>ResearchRabbit</strong> and <strong>Connected Papers</strong> complement keyword search by discovering papers through citation relationships. They find what you did not know to search for.</li>
+<li><strong>NotebookLM</strong> fills a different niche entirely — it is for reading and understanding papers you have already found, not for finding new ones. Its source-grounded approach makes it far more trustworthy than general-purpose chatbots.</li>
+<li><strong>Google Scholar</strong> remains essential as your verification layer and full-text access point, even as newer tools handle discovery and synthesis better.</li>
+<li><strong>Free tiers are shrinking.</strong> Build workflows that can adapt if a tool changes its pricing. Do not put all your eggs in one basket.</li>
+<li>The best tool strategy is not choosing the "best" tool — it is understanding what each tool does well and combining them intelligently.</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session:</strong> We examine the paid tools — Elicit, Consensus, Scite, SciSpace, and Litmaps — exploring what the premium features add and when they are genuinely worth the investment.</p>
+</div>
+</div>
+<!-- end .content --></div>
+<!-- end .container --></body></html>
