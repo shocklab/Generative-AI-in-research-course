@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 7 - Discussion Questions</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; color: #ffffff; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text p { font-size: 1.05em; color: #495057; line-height: 1.8; margin-bottom: 0; }
+.part-title { font-size: 1.7em; color: #003A70; margin: 50px 0 20px; padding-bottom: 12px; border-bottom: 3px solid #003A70; letter-spacing: 0.3px; }
+.question-set { background: white; border: 2px solid #d0e8f2; border-radius: 14px; padding: 28px 30px; margin: 22px 0; }
+.question-set h3 { color: #2a5298; font-size: 1.3em; margin-bottom: 18px; border-bottom: 1px dashed #d0e0ee; padding-bottom: 10px; }
+.question-list { counter-reset: q-counter; list-style: none; margin: 0; padding: 0; }
+.question-list > li { counter-increment: q-counter; padding: 14px 0 14px 50px; position: relative; color: #2c3e50; line-height: 1.7; border-bottom: 1px solid #f1f4f7; font-size: 1.02em; }
+.question-list > li:last-child { border-bottom: none; padding-bottom: 4px; }
+.question-list > li::before { content: counter(q-counter); position: absolute; left: 0; top: 14px; background: #003A70; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.95em; }
+.q-tag { display: inline-block; background: #f0f4f8; color: #003A70; padding: 2px 10px; border-radius: 10px; font-size: 0.75em; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; margin-right: 8px; vertical-align: 2px; }
+footer { background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; }
+footer a { color: #003A70; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .question-set { padding: 22px 18px; } .question-list > li { padding-left: 44px; } }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> The first drafts of these discussion questions were generated using Claude (Anthropic&#39;s AI assistant) and then reviewed and edited for the in-class use of this course.</div>
+
+<header>
+  <div class="week-badge">Week 7 &bull; Discussion</div>
+  <h1>&#128172; Week 7 &mdash; Discussion Questions</h1>
+  <p>To think about before class</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <p>These are <strong>example discussion points</strong> for you to think about before class. You are <em>not</em> expected to engage with all of them &mdash; pick the ones that speak most directly to your own research, and bring two or three rough answers to the in-class session. The full description of how to use these pages, including what the question tags mean, is on the <a href="../week-1/Discussion Questions.html" style="color: #003A70; font-weight: 600;">Week 1 Discussion page</a>.</p>
+  </div>
+
+  <h2 class="part-title">Sub-lessons</h2>
+
+  <div class="question-set">
+    <h3>AI-Assisted Data Analysis in Practice</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> The lesson surfaces the &ldquo;silent error&rdquo; problem &mdash; the case where AI produces a plausible-looking analysis that is quietly wrong. Pick a recent example from your own work or a colleague&#39;s. What would have caught it short of running the whole pipeline again from scratch?</li>
+      <li><span class="q-tag">Apply</span> For a representative dataset from your field, draft a one-paragraph spec of what you would let AI clean and what you would still do by hand. Where is the line, and what evidence would move it?</li>
+      <li><span class="q-tag">Critical</span> &ldquo;Domain expertise is the essential complement&rdquo; is a comforting line for researchers. Where is it actually true, and where is it a fig leaf for resisting tool adoption?</li>
+      <li><span class="q-tag">Connect</span> The silent-error problem here is the data-analysis cousin of the hallucinated-citation problem in Week 5. Are they instances of the same failure mode, or genuinely different problems that happen to share a vibe?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Natural Language to Code</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Use a natural-language-to-code tool to generate a small analysis script in your area. Without running it, predict where it will be wrong. Then run it. How well did your prediction match the actual failure points?</li>
+      <li><span class="q-tag">Apply</span> Map your own programming-confidence honestly: which of your research tasks are <em>safe</em> for natural-language-to-code (you can verify outputs without reading the code) and which are <em>not</em> safe (verification needs you to read the code line by line)?</li>
+      <li><span class="q-tag">Critical</span> &ldquo;Vibe coding&rdquo; is acknowledged as both promise and peril. Is it a transient phenomenon that fades as researchers get more practice, or a stable new mode that we should design protocols around?</li>
+      <li><span class="q-tag">Connect</span> The free-vs-paid quality gap discussed here is the same conversation as the free-vs-paid tier in Week 5 and the compute-access tiers in 11.4. Are you consistently on the same side of these conversations, or are you paying for some and not others &mdash; and what does that pattern reveal?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Verification of AI-Generated Code</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Read a piece of AI-generated code from a recent session. Identify three of the &ldquo;common AI code failure patterns&rdquo; from the lesson in it &mdash; if you find none, look harder. Which pattern is most dangerous in your field?</li>
+      <li><span class="q-tag">Apply</span> Design a personal verification checklist for AI-generated analysis code you will actually run. Make it specific enough that another researcher could apply it to your work and reach roughly the same conclusion about which code is trustworthy.</li>
+      <li><span class="q-tag">Critical</span> The lesson&#39;s claim is that verification matters more than generation. Steel-man the opposite case: are there research contexts where generation matters more, and verification is overhead that slows things down without proportional gain?</li>
+      <li><span class="q-tag">Connect</span> Verification here is the technical-skills counterpart of the calibrated-reading habit in Week 9. What concrete habits do they share, and where do they part ways?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Visualisation with AI</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Ask an AI tool to make a publication-grade figure from a small dataset of yours. Read the output against the lesson&#39;s list of good-visualisation principles. Where does it violate them by default, and what would you have to do to get it right?</li>
+      <li><span class="q-tag">Apply</span> Sketch the kinds of figure in your work where AI-generated visualisation is genuinely time-saving, and the kinds where it&#39;s actively misleading. What is the underlying property that separates them?</li>
+      <li><span class="q-tag">Critical</span> Accessibility (colour-blind palettes, alt text, etc.) is treated as a separable concern. Is it &mdash; or are accessibility violations a symptom of a deeper problem with how AI visualisation defaults are chosen?</li>
+      <li><span class="q-tag">Connect</span> The visualisation failure modes here mirror the &ldquo;what AI is overclaimed at&rdquo; framing from 11.1. Pick one specific visualisation failure pattern and place it on the Real / Overclaimed / Aspirational map.</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Agentic Data Analysis</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Run a small agentic-data-analysis session (Claude Code, an equivalent agent) on a real but low-stakes question. Compare what the agent claimed to do with what the artifacts (code, logs, intermediate files) show it actually did. Where do they diverge?</li>
+      <li><span class="q-tag">Apply</span> Draft a one-page CLAUDE.md for an agentic data-analysis session on your own data. Be specific about what context the agent needs, what tools it should and shouldn&#39;t use, and what counts as a successful outcome.</li>
+      <li><span class="q-tag">Critical</span> Agentic analysis is presented as a paradigm shift. Is the shift real for <em>your</em> kind of analysis, or is the conversational loop still the right mode for what you do?</li>
+      <li><span class="q-tag">Connect</span> The agentic-data-analysis frame is the same architectural step as agentic coding (11.1) and agentic literature search (Week 5). What changes &mdash; or stays the same &mdash; about your verification habits across these three?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Building Your Data Analysis Workflow</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> The lesson&#39;s &ldquo;principled workflow&rdquo; expects you to keep AI in a specific role. Where on the workflow do you currently let AI overstep that role most often, and what would it take to stop?</li>
+      <li><span class="q-tag">Apply</span> Pick a real research question and walk it through the principled workflow in detail (research question &rarr; prompts &rarr; verification &rarr; interpretation). What surprises you about where the work actually lives?</li>
+      <li><span class="q-tag">Critical</span> When does the principled workflow become bureaucratic enough that a researcher will plausibly skip it? Where would you trim it without losing what matters?</li>
+      <li><span class="q-tag">Connect</span> The &ldquo;AI vs established statistical packages&rdquo; question in this lesson is the data-analysis version of the &ldquo;small efficient models vs frontier scale&rdquo; argument in 11.4. Are the considerations the same, or genuinely different domains?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Hands-On Activities and Assessment</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Compare cohort results on Activity 1 (the Data Cleaning Challenge). Where the cleaned outputs differ, what assumptions did the AI &mdash; or you &mdash; quietly make? Be precise.</li>
+      <li><span class="q-tag">Apply</span> Use the Interpretation Challenge to find one place where the AI&#39;s interpretation of a result was more defensible than your initial reading. What does that say about the kinds of interpretation worth delegating?</li>
+      <li><span class="q-tag">Critical</span> The activities reward you for catching AI mistakes. Are you sure you would catch them with similar reliability when the stakes are real and the deadline is closer?</li>
+      <li><span class="q-tag">Connect</span> The skills tested here &mdash; verification, interpretation, controlled use &mdash; are what Week 9 calls the &ldquo;disposition&rdquo; and Week 10 calls &ldquo;harness habits.&rdquo; Which terminology actually helps you most in your own practice?</li>
+    </ol>
+  </div>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-7/Hands-On Activities and Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Activities and Assessment</div></a>
+  <a class="page-nav-link" href="../week-8/What Multimodal AI Can See Hear and Read.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">What Multimodal AI Can See, Hear, and Read</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer>
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>

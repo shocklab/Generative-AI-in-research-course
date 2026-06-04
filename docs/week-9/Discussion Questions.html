@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9 - Discussion Questions</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; color: #ffffff; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text p { font-size: 1.05em; color: #495057; line-height: 1.8; margin-bottom: 0; }
+.part-title { font-size: 1.7em; color: #003A70; margin: 50px 0 20px; padding-bottom: 12px; border-bottom: 3px solid #003A70; letter-spacing: 0.3px; }
+.question-set { background: white; border: 2px solid #d0e8f2; border-radius: 14px; padding: 28px 30px; margin: 22px 0; }
+.question-set h3 { color: #2a5298; font-size: 1.3em; margin-bottom: 18px; border-bottom: 1px dashed #d0e0ee; padding-bottom: 10px; }
+.question-list { counter-reset: q-counter; list-style: none; margin: 0; padding: 0; }
+.question-list > li { counter-increment: q-counter; padding: 14px 0 14px 50px; position: relative; color: #2c3e50; line-height: 1.7; border-bottom: 1px solid #f1f4f7; font-size: 1.02em; }
+.question-list > li:last-child { border-bottom: none; padding-bottom: 4px; }
+.question-list > li::before { content: counter(q-counter); position: absolute; left: 0; top: 14px; background: #003A70; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.95em; }
+.q-tag { display: inline-block; background: #f0f4f8; color: #003A70; padding: 2px 10px; border-radius: 10px; font-size: 0.75em; font-weight: 600; letter-spacing: 0.4px; text-transform: uppercase; margin-right: 8px; vertical-align: 2px; }
+footer { background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif; }
+footer a { color: #003A70; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .question-set { padding: 22px 18px; } .question-list > li { padding-left: 44px; } }
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> The first drafts of these discussion questions were generated using Claude (Anthropic&#39;s AI assistant) and then reviewed and edited for the in-class use of this course.</div>
+
+<header>
+  <div class="week-badge">Week 9 &bull; Discussion</div>
+  <h1>&#128172; Week 9 &mdash; Discussion Questions</h1>
+  <p>To think about before class</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <p>These are <strong>example discussion points</strong> for you to think about before class. You are <em>not</em> expected to engage with all of them &mdash; pick the ones that speak most directly to your own research, and bring two or three rough answers to the in-class session. The full description of how to use these pages, including what the question tags mean, is on the <a href="../week-1/Discussion Questions.html" style="color: #003A70; font-weight: 600;">Week 1 Discussion page</a>.</p>
+  </div>
+
+  <h2 class="part-title">Sub-lessons</h2>
+
+  <div class="question-set">
+    <h3>The Trajectory of LLM Capabilities</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> The May 2026 frontier snapshot is explicitly dated and will be wrong within months. Pick the single most recent model release in your area and place its capabilities against the snapshot. Where does the picture still hold, and where has it already moved?</li>
+      <li><span class="q-tag">Apply</span> For your own work, which family of models &mdash; closed frontier, open-weights, specialist &mdash; is the right default? When would you swap defaults?</li>
+      <li><span class="q-tag">Critical</span> The benchmark numbers cited (GPQA, SWE-bench, FrontierMath, MCP-Atlas) all show extraordinary gains. The lesson treats them as carefully bounded. Where, honestly, do you find yourself reading them as more authoritative than the lesson means them to be?</li>
+      <li><span class="q-tag">Connect</span> The trajectory framing in 9.1 is a precondition for the Real / Overclaimed / Aspirational frame in 11.1. Pick a recent model-release announcement and place it in both frames simultaneously. Where do they push the same way, and where do they pull apart?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Where AI Is Now Genuinely Strong</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Pick the strongest claim in this sub-lesson about a current AI capability. Find one paper or demonstration that supports it cleanly, and one that complicates it. Which complicates the claim most?</li>
+      <li><span class="q-tag">Apply</span> Identify a concrete task in your own work where the lesson&#39;s &ldquo;now genuinely strong&rdquo; framing matches your direct experience, and one where the framing oversells what you have seen. Be specific.</li>
+      <li><span class="q-tag">Critical</span> &ldquo;Genuinely strong at X&rdquo; tends to be argued from impressive demonstrations. What would the same case look like argued from a representative sample of failed attempts?</li>
+      <li><span class="q-tag">Connect</span> &ldquo;Where AI is genuinely strong&rdquo; here is the same kind of claim as &ldquo;Real&rdquo; in 11.1. Are they doing the same intellectual work, or are they targeting different consumers (researchers vs the public)?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Three Categories of Failure</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Take a recent failure of an AI tool you have personally encountered. Place it in the patched / reduced-but-persistent / structural taxonomy. What evidence would move it between categories?</li>
+      <li><span class="q-tag">Apply</span> For your own research workflow, which category of failure is the most operationally costly &mdash; the one most worth investing verification effort in mitigating?</li>
+      <li><span class="q-tag">Critical</span> The structural category implies some failures will not be solved by scale. Steel-man the opposite view: where might today&#39;s structural-looking failures turn out to be next year&#39;s patched ones?</li>
+      <li><span class="q-tag">Connect</span> The harness-engineering result (69.7%&rarr;77.0% on the same model) suggests that some apparent failures are not in the model at all. Read this against the &ldquo;patched&rdquo; / &ldquo;persistent&rdquo; / &ldquo;structural&rdquo; categories. Does it shift the categorisation, or sit outside it?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Illusions of Understanding</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> The lesson describes specific failure modes (hallucination, sycophancy, benchmark contamination) that produce illusions of understanding. Pick one example from a recent paper or model output where you initially mistook fluency for understanding. What was the actual tell that broke the illusion?</li>
+      <li><span class="q-tag">Apply</span> Design a personal &ldquo;sycophancy check&rdquo; you would apply to your AI sessions. Make it specific enough that you would actually use it on a real task.</li>
+      <li><span class="q-tag">Critical</span> Benchmark contamination is a deep, persistent problem. Is the right response to (a) build harder, fresher benchmarks faster than they can be polluted, (b) abandon benchmarks for capability claims, or (c) use them only as upper bounds? Pick one.</li>
+      <li><span class="q-tag">Connect</span> The Kalai et al. &ldquo;hallucinations are statistical, not bugs&rdquo; argument lives in this sub-lesson. The Princeton reliability finding (Week 10) extends it to agents. Put them side by side: is the structural-failure case strengthened or weakened by the move from chat to agents?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Verification Protocols for a Moving Target</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Apply the lesson&#39;s verification protocol to one piece of AI output you have used in real research in the past two weeks. Where in the protocol did you actually stop, and where did you skip steps you would now go back and do?</li>
+      <li><span class="q-tag">Apply</span> Draft your minimal personal verification protocol &mdash; the version you would not skip even under deadline pressure. What is on it, and what did you have to leave off?</li>
+      <li><span class="q-tag">Critical</span> Verification adds friction. When does that friction stop being protective and start being avoidant procrastination?</li>
+      <li><span class="q-tag">Connect</span> The verification habit here is the technical-skills version of the calibrated-reading disposition in 11.1. Do they require the same skills, or genuinely different ones? Which is the harder to teach?</li>
+    </ol>
+  </div>
+
+  <div class="question-set">
+    <h3>Hands-On Activities and Assessment</h3>
+    <ol class="question-list">
+      <li><span class="q-tag">Calibrate</span> Apply the worked exercises to a real, current research task &mdash; not a contrived example. Where does the exercise design itself reveal something about your habits, regardless of what the AI does?</li>
+      <li><span class="q-tag">Apply</span> The Week 9 assessment is &ldquo;an explicitly dated snapshot.&rdquo; Sketch the metadata you would want on every AI-assisted artefact you produce in research so that &ldquo;dated snapshot&rdquo; becomes your default mode.</li>
+      <li><span class="q-tag">Critical</span> The free-tools-only constraint is presented as an equity move. Is the trade-off between equity (everyone on the same footing) and capability (some students could get further with paid tools) being struck in the right place? What would you change?</li>
+      <li><span class="q-tag">Connect</span> The skills tested here feed directly into Weeks 10 and 11. Pick one specific habit from these activities you intend to keep, and one you suspect you will drop within a month. Why the asymmetry?</li>
+    </ol>
+  </div>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-9/Hands-On Activities and Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Activities and Assessment</div></a>
+  <a class="page-nav-link" href="../week-10/What Agents Are and Whats New in 2026.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Agents: What They Are and What&#x27;s New in 2026</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer>
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>
