@@ -91,10 +91,20 @@ def ensure_schemas():
                 f.write(f"<!-- placeholder; original schema at {url} -->\n")
 
 
+def pretty_title(scope_label):
+    """Turn 'week1' / 'week11' / 'course' into a human-readable manifest title."""
+    if scope_label == "course":
+        return "MAM5020F — Full Course (Generative AI for Research, 2026)"
+    m = re.match(r"week(\d+)$", scope_label)
+    if m:
+        return f"MAM5020F — Week {int(m.group(1))}"
+    return f"MAM5020F — {scope_label}"
+
+
 def make_manifest(scope_label, items):
     """Render the SCORM 1.2 manifest XML."""
     pkg_id = "MAM5020F." + scope_label
-    course_title = f"MAM5020F — {scope_label.replace('-', ' ').title()}"
+    course_title = pretty_title(scope_label)
     parts = []
     parts.append('<?xml version="1.0" encoding="UTF-8"?>')
     parts.append('<manifest identifier="' + pkg_id + '" version="1.0"')
