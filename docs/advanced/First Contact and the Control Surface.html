@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced A.3 - First Contact and the Control Surface</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.instructor-box {
+    background: #f3effa;
+    border-left: 5px solid #6a5da8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+}
+.instructor-box h4 {
+    color: #4f4391;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.instructor-box p {
+    color: #463f5e;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.instructor-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+pre.code-block {
+    background: #11243d;
+    color: #e6edf3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.65;
+    white-space: pre;
+}
+pre.code-block .cm {
+    color: #8aa0b6;
+}
+pre.code-block .pr {
+    color: #7fd1b9;
+}
+code {
+    background: #eef2f6;
+    color: #11407c;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.86em;
+}
+pre.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.gate-banner {
+    background: #003A70;
+    color: white;
+    padding: 22px 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.0em;
+    line-height: 1.7;
+}
+.gate-banner strong {
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    } pre.code-block { font-size: 0.78em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span,
+.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
+    color: #ffffff !important;
+}
+.highlight-box a, header a, .gate-banner a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Advanced Track &bull; Lesson A &bull; 3 of 3</div>
+  <h1>&#129517; <span style="color: #ffffff;">First Contact and the Control Surface</span></h1>
+  <p>Your first real session, plan mode, permissions, and the CLAUDE.md file that steers everything</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>Enough framing &mdash; this lesson gets your hands on the tool. We do a first real session against a deliberately messy research archive, the kind every researcher actually has. You will inspect it <em>without changing anything</em>, see exactly how Claude Code asks permission before it touches a file, run the debrief that turns the exercise into a lesson, and meet <code>CLAUDE.md</code> &mdash; the file that steers every session and becomes, in Lesson&nbsp;B, the device that enforces reproducible habits.</p>
+    <p>Setup is deliberately out of scope here: installation changes too often to print. Install Claude Code from the official documentation at <a href="https://docs.claude.com/en/docs/claude-code" target="_blank" rel="noopener">docs.claude.com</a>, confirm it runs, and come back.</p>
+  </div>
+
+  <h2 class="section-title">&#128193; The Sample Project: A Messy Research Archive</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Throughout this track we use one fictional running example: <strong>the Berg River microplastics study</strong>. A postgraduate has collected water samples at three sites &mdash; upstream of a town, in the town, and downstream &mdash; and counted microplastic particles across a sampling season. Wherever you see &ldquo;microplastic counts,&rdquo; read your own measurements; the structure is what matters, not the subject.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The starting archive is realistically messy, because real ones are. Inconsistent column names across files, two obvious data-entry errors, a confusingly named &ldquo;final-v2&rdquo; file with no v1 in sight, free-text field notes that contradict the spreadsheets in places, and a stale README referring to files that no longer exist:</p>
+
+  <pre class="code-block">berg-river-microplastics/
+  data/raw/
+    site-upstream.csv          <span class="cm"># columns differ from the others</span>
+    site_town.csv              <span class="cm"># mixed date formats; two data-entry errors</span>
+    downstream-final-v2.csv    <span class="cm"># where is v1?</span>
+    sampling-metadata.xlsx     <span class="cm"># site coordinates, dates, methods</span>
+    field-notes.md             <span class="cm"># free text; contradicts the CSVs in places</span>
+  literature-notes.md          <span class="cm"># half-organised reading notes</span>
+  README-old.txt               <span class="cm"># stale; refers to files that are gone</span></pre>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This is the perfect first task because the danger is obvious: you do <em>not</em> want an over-eager agent &ldquo;tidying&rdquo; your only copy of the raw data before you have understood it. So the first thing we do is the opposite of letting it loose.</p>
+
+  <h2 class="section-title">&#128064; Your First Task: Inspect, Don&#39;t Change</h2>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Open a terminal in the project folder and start Claude Code:</p>
+
+  <pre class="code-block">cd berg-river-microplastics
+claude</pre>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Then give it an inspection-only task. The wording matters &mdash; it explicitly forbids changes:</p>
+
+  <pre class="code-block"><span class="pr">&gt;</span> Inspect this folder before changing anything. Tell me what files
+  are here, what each appears to contain, what you should not edit,
+  and what you would recommend doing first. Do not move, rename, or
+  edit anything yet.</pre>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Better still, put Claude Code into <strong>plan mode</strong> first (Claude Code lets you toggle a read-only planning mode in which it can look but cannot act). In plan mode the agent physically cannot edit a file &mdash; it can only inspect and propose. For a first encounter with a folder you care about, that guarantee is worth having rather than relying on the wording of your prompt alone.</p>
+
+  <div class="info-box">
+    <h4>&#128065; What to watch while it works</h4>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li>Does it actually <em>read</em> the files before making claims about them, or does it guess from the names?</li>
+      <li>Does it separate what it observed from what it inferred &mdash; &ldquo;this column is labelled pH&rdquo; versus &ldquo;this is probably pH&rdquo;?</li>
+      <li>Does it flag the contradictions (the field notes versus the CSVs) rather than silently picking one?</li>
+      <li>When it wants to do something, does it propose it and wait, or just do it?</li>
+      <li>Which permissions does it ask you for, and which did you grant?</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">&#128272; Permissions and Plan Mode</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the moment to understand Claude Code&#39;s safety model, because it is what makes handing an agent your files defensible rather than reckless.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Permission prompts</h3>
+      <p>By default, Claude Code asks before it does anything consequential &mdash; editing a file, running a command. You see what it intends and approve or decline. The default posture is &ldquo;ask first,&rdquo; and for research work you should keep it that way until you have reason not to.</p>
+    </div>
+    <div class="card">
+      <h3>Plan mode</h3>
+      <p>A read-only mode: the agent inspects and produces a plan but cannot change anything. Use it for any first contact with real data, and for any step whose consequences you cannot easily reverse. It is the cheapest insurance in the tool.</p>
+    </div>
+    <div class="card">
+      <h3>Allowlists</h3>
+      <p>Once you trust a category of action &mdash; say, running your read-only inspection script &mdash; you can allow it without re-approving each time. The skill is allowlisting the genuinely safe and routine, never the destructive. (Your own projects, the survey showed, allowlist exact commands, not blanket access.)</p>
+    </div>
+    <div class="card">
+      <h3>The sandbox boundary</h3>
+      <p>Claude Code works in the folder you point it at. It does not roam your whole machine by default. Keep raw, sensitive, or irreplaceable material outside the working folder, or explicitly marked read-only, and the blast radius of any mistake stays small.</p>
+    </div>
+  </div>
+
+  <h2 class="section-title">&#128172; The Debrief</h2>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">When the inspection is done, ask the question that converts the exercise into a transferable habit:</p>
+
+  <pre class="code-block"><span class="pr">&gt;</span> What did you inspect, what did you infer, and what would you
+  change only after my approval?</pre>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A good answer cleanly separates the three. <em>Inspected</em>: the files it actually opened and what they contained. <em>Inferred</em>: the educated guesses &mdash; that &ldquo;final-v2&rdquo; supersedes a missing v1, that two values are data-entry errors. <em>Would change only with approval</em>: every rename, merge, and correction it is recommending but has not done. If the agent blurs these together, that is itself the finding: it is exactly the &ldquo;evidence versus guess&rdquo; line that Week&nbsp;9 spent a whole sub-lesson on, now showing up in a tool instead of a chat.</p>
+
+  <h2 class="section-title">&#128221; <code>CLAUDE.md</code>: The Control Surface</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">You will not want to retype &ldquo;don&#39;t touch the raw data, separate evidence from inference, ask before editing&rdquo; at the start of every session. You should not have to. That is what <code>CLAUDE.md</code> is for: a plain-Markdown file at the root of your project that Claude Code reads automatically at the start of every session. It is the standing instruction set &mdash; the single most important file for steering the agent, and the thing that makes the next session behave like the last one.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">You can generate a starter with the <code>/init</code> command, which inspects the project and drafts a <code>CLAUDE.md</code> for you to edit. A minimal one for the Berg River project might begin:</p>
+
+  <pre class="code-block"><span class="cm"># CLAUDE.md &mdash; Berg River microplastics study</span>
+
+<span class="cm">## Working rules</span>
+- Read files before proposing changes.
+- Never modify anything in data/raw/. It is the only copy.
+- Use plan mode and show me the plan before any consequential change.
+- When you summarise or analyse, name which files you used.
+- If something is uncertain, say so &mdash; do not fill the gap with a guess.
+- Save scripts in scripts/ and generated outputs in outputs/.
+- Before you tell me a task is done, show me the diff.</pre>
+
+  <div class="info-box">
+    <h4>&#128161; This is the hinge of the whole track</h4>
+    <p>Notice what just happened. Every one of those lines is a research-integrity habit this course already taught &mdash; &ldquo;do not fill the gap with a guess&rdquo; is the Week&nbsp;9 hallucination lesson; &ldquo;name which files you used&rdquo; is the Week&nbsp;5 citation lesson; &ldquo;show me the diff&rdquo; is verification. Written into <code>CLAUDE.md</code>, they stop being good intentions and become rules the agent follows every time. Lesson&nbsp;B turns this short file into the full <em>reproducibility-enforcement</em> template &mdash; the headline artefact of the track.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>&#9989; What to take from Lesson A</h3>
+    <p>Claude Code is a model with hands in your project folder &mdash; the harness, not the model, is what you are driving. The work lives in files, not in the chat. It costs money and excludes some researchers, and we said so. Using it well is a shift from prompting to <em>managing</em>: delegate, checkpoint, verify, and scaffold in proportion to the stakes. And <code>CLAUDE.md</code> is where your standing rules live.</p>
+    <p>Lesson&nbsp;B is the reason the track exists: turning all of this into research that someone else can inspect and repeat &mdash; reproducibility, made concrete.</p>
+  </div>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced A.2 - The Honest Case: Cost, Access, and the Disposition</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.instructor-box {
+    background: #f3effa;
+    border-left: 5px solid #6a5da8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+}
+.instructor-box h4 {
+    color: #4f4391;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.instructor-box p {
+    color: #463f5e;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.instructor-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+pre.code-block {
+    background: #11243d;
+    color: #e6edf3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.65;
+    white-space: pre;
+}
+pre.code-block .cm {
+    color: #8aa0b6;
+}
+pre.code-block .pr {
+    color: #7fd1b9;
+}
+code {
+    background: #eef2f6;
+    color: #11407c;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.86em;
+}
+pre.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.gate-banner {
+    background: #003A70;
+    color: white;
+    padding: 22px 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.0em;
+    line-height: 1.7;
+}
+.gate-banner strong {
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    } pre.code-block { font-size: 0.78em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span,
+.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
+    color: #ffffff !important;
+}
+.highlight-box a, header a, .gate-banner a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Advanced Track &bull; Lesson A &bull; 2 of 3</div>
+  <h1>&#9878;&#65039; <span style="color: #ffffff;">The Honest Case: Cost, Access, and the Shift in How You Work</span></h1>
+  <p>What it costs, who it excludes, what you can approximate for free, and the disposition it demands</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>This is the one place in the entire course where we recommend a paid tool, so it gets the same calibrated treatment the course gives every other claim: an honest reckoning, not a sales pitch. This lesson covers what Claude Code costs, the equity problem that cost creates, what you can genuinely approximate on free tools, and &mdash; the part that changes how you work &mdash; the disposition shift from chatting to <em>managing an agent</em>.</p>
+    <p>The aim is that by the end you can decide, for yourself and honestly, whether this track is worth it for your situation. For some readers it clearly will be; for others it clearly will not be, and saying so plainly is part of keeping faith with the rest of the course.</p>
+  </div>
+
+  <h2 class="section-title">&#128176; The Cost Picture, Honestly</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Claude Code is not free. As of mid-2026 it is available through Anthropic&#39;s paid subscription tiers and via metered API usage; the entry subscription sits at roughly the price of a couple of streaming services per month, and the heavier tiers cost substantially more. Because these numbers change, this lesson deliberately does not pin an exact figure &mdash; check the current Anthropic pricing page rather than trusting a number a course page wrote months ago. (That habit &mdash; trust the live source, not the cached claim &mdash; is the Week&nbsp;9 disposition applied to pricing.)</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There are two cost shapes worth distinguishing. A flat <strong>subscription</strong> gives you a generous but bounded amount of use for a predictable monthly fee &mdash; the right model for most individual researchers. <strong>Metered API</strong> use is pay-as-you-go and can run up quickly when an agent works autonomously for an hour across a large codebase: that is real money per run, and worth watching. Either way, the honest framing from Week&nbsp;3 applies &mdash; the cost is not only the invoice. It is also tokens, time, attention, and the review effort every piece of agent output demands.</p>
+
+  <h2 class="section-title">&#127757; The Equity Tension, Named</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This course has been militantly free-tier-first, and that was a deliberate choice with an argument behind it. Week&nbsp;10 made the case that &ldquo;just pay for the Pro plan&rdquo; is not advice but an assumption that excludes most of the people the course is for. Week&nbsp;11.4 put numbers on the African compute gap. A paid-tool track sits in direct tension with all of that, and the worst thing we could do is pretend otherwise.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">So, plainly: for a researcher in a well-funded lab, the subscription cost is a rounding error and this track is a straightforward yes. For a postgraduate paying out of pocket, in a department without an AI budget, on a currency that makes dollar-denominated subscriptions painful, it is a genuine barrier &mdash; the same barrier this course spent eleven weeks taking seriously. This track is the signposted exception, not a quiet reversal. It comes after the assessed core precisely so that nothing required of you depends on being able to afford it.</p>
+
+  <div class="info-box">
+    <h4>&#127909; What you can approximate for free</h4>
+    <p>You can get <em>part</em> of the way without paying. The free Claude.ai web app, combined with manual file discipline &mdash; you keep a real project folder, you paste files in, you save the outputs and decisions back into that folder yourself &mdash; gives you the most important idea of this whole track: <strong>the chat is not the archive</strong>. You can keep a decision log, a data inventory, and separated outputs entirely by hand.</p>
+    <p>What you lose without the paid agent is the automation: it will not read and write your files for you, run your code, drive Git, or use Skills and subagents. You become the harness &mdash; doing by hand the file operations the agent would otherwise do. That is slower and more error-prone, but it is not nothing, and the <em>reproducibility discipline</em> in Lesson&nbsp;B is valuable whether a paid agent enforces it or you do.</p>
+  </div>
+
+  <h2 class="section-title">&#129520; The Disposition Shift: You Are Managing an Agent Now</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The hardest part of using Claude Code well is not technical. It is a shift in posture. In a chat you prompt and read, prompt and read &mdash; you are in the loop on every step. With an agent you <em>delegate</em>: you hand over a multi-step task and the agent goes away and does it. The skill is no longer prompt-craft. It is judgement &mdash; about what to delegate, where to put checkpoints, and how to verify what comes back.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Week&nbsp;11.1 borrowed Ethan Mollick&#39;s framing for exactly this moment: we are moving from working <em>with</em> a co-intelligence to managing what he calls a <em>wizard</em> &mdash; a system that produces sophisticated work through a process you did not watch and cannot fully see. His paradox holds here with force: <em>competence and opacity rise together</em>. The better the agent gets, the more it can do unsupervised, and the harder it becomes to verify. And Week&nbsp;10&#39;s Princeton reliability finding is the warning underneath: an agent that runs for an hour can do an hour of confident, plausible, wrong work. The verification burden does not shrink as the tool improves. It grows.</p>
+
+  <div class="instructor-box">
+    <h4>&#128100; From the instructor&#39;s own practice</h4>
+    <p>&ldquo;The mental adjustment that took me longest was learning to stop watching every step and start designing checkpoints instead. Early on I either micromanaged &mdash; which wastes the whole point &mdash; or I let it run and then could not tell whether the result was trustworthy. What works is treating it like supervising a capable but over-confident research assistant: be clear about the goal, insist on seeing the plan before the work, and verify the output as if a stranger had handed it to me, because in a real sense one has.&rdquo;</p>
+    <p style="font-style: normal; font-size: 0.9em; color: #6a5da8;">[Instructor voice &mdash; adjust or replace with your own account.]</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There is one more thing Week&nbsp;11.1 said that lands hardest here: two researchers using the identical tool can have wildly different experiences. The agent does not make you a good researcher. It amplifies whatever practice you bring to it. A careful researcher with strong verification habits gets a powerful collaborator; a careless one gets a faster way to produce confident nonsense. The rest of this track is, in effect, about being the first kind.</p>
+
+  <h2 class="section-title">&#9878;&#65039; Discipline Proportionate to Stakes</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Before Lesson&nbsp;B lays out a fair amount of structure &mdash; immutable raw data, decision logs, reproducible folders &mdash; it is worth heading off a misreading. None of this is a ritual you must perform on every interaction. The honest practice is to <strong>match the discipline to the stakes and the lifespan of the work</strong>.</p>
+
+  <div class="instructor-box">
+    <h4>&#128100; From the instructor&#39;s own practice</h4>
+    <p>&ldquo;My scaffolding scales with stakes and longevity, not prestige. A serious computational experiment and my personal training log get the same discipline &mdash; one source of truth, append-only logs, a protocol the agent cannot skip &mdash; because both are records I will need to trust months from now. A one-off read of a colleague&#39;s draft gets a structured output file and nothing else. The heavy machinery earns its place only where the work has to survive, be repeated, or be defended.&rdquo;</p>
+    <p style="font-style: normal; font-size: 0.9em; color: #6a5da8;">[Instructor voice &mdash; adjust or replace with your own account.]</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Read Lesson&nbsp;B in that spirit. It shows you the full apparatus so you know what good looks like when the stakes are high. You then apply as much of it as the task in front of you deserves &mdash; which for an exploratory afternoon might be almost none, and for the analysis behind a paper figure should be most of it.</p>
+
+  <div class="highlight-box">
+    <h3>&#128221; The disposition, in three lines</h3>
+    <p>Delegate, then verify &mdash; the burden of checking is yours and it grows with the agent&#39;s competence.</p>
+    <p>The tool amplifies your practice; it does not replace your judgement.</p>
+    <p>Scaffold in proportion to the stakes &mdash; heavy where the work must last, light where it need not.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.3:</strong> your first real session. We open a deliberately messy research archive, use plan mode to inspect it without changing anything, watch how permissions work, and meet the single most important file in any Claude Code project &mdash; <code>CLAUDE.md</code>, the control surface.</p>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>
