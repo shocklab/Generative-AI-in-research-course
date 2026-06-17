@@ -35,7 +35,7 @@ BLOCK_RE = re.compile(re.escape(START) + r".*?" + re.escape(END), re.DOTALL)
 # so banner/intro links (e.g. "full AI content disclaimer", about.html) are
 # excluded and do not pollute the sequence or its ordering.
 LINK_RE = re.compile(
-    r'<li\b[^>]*>\s*<a\b[^>]*\bhref="((?:course-orientation|course-introduction|week-\d+)/[^"]+\.html)"[^>]*>(.*?)</a>',
+    r'<li\b[^>]*>\s*<a\b[^>]*\bhref="((?:course-orientation|course-introduction|week-\d+|advanced)/[^"]+\.html)"[^>]*>(.*?)</a>',
     re.IGNORECASE | re.DOTALL,
 )
 

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced B.1 - Reproducibility, and the Reproducible Project Folder</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.instructor-box {
+    background: #f3effa;
+    border-left: 5px solid #6a5da8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+}
+.instructor-box h4 {
+    color: #4f4391;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.instructor-box p {
+    color: #463f5e;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.instructor-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+pre.code-block {
+    background: #11243d;
+    color: #e6edf3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.65;
+    white-space: pre;
+}
+pre.code-block .cm {
+    color: #8aa0b6;
+}
+pre.code-block .pr {
+    color: #7fd1b9;
+}
+code {
+    background: #eef2f6;
+    color: #11407c;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.86em;
+}
+pre.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.gate-banner {
+    background: #003A70;
+    color: white;
+    padding: 22px 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.0em;
+    line-height: 1.7;
+}
+.gate-banner strong {
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    } pre.code-block { font-size: 0.78em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span,
+.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
+    color: #ffffff !important;
+}
+.highlight-box a, header a, .gate-banner a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Advanced Track &bull; Lesson B &bull; 1 of 3</div>
+  <h1>&#128257; <span style="color: #ffffff;">Reproducibility, and the Reproducible Project Folder</span></h1>
+  <p>Why reproducibility is not the same as verification, and how a project folder becomes the unit of trustworthy research</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>Lesson&nbsp;A was about driving the tool. Lesson&nbsp;B is the reason the whole track exists: using Claude Code to make your research genuinely <em>reproducible</em> &mdash; the kind of work a stranger, or you in two years, can open up, inspect, and repeat.</p>
+    <p>This first page draws the distinction that the rest of the lesson hangs on: reproducibility is not the same as verification, and the two demand different things. Then it lays out the structure that makes reproducibility possible &mdash; the project folder as the unit of trustworthy research &mdash; and gives you a scaffold you can copy for your own work.</p>
+    <p>The two pages that follow turn that structure into practice: a <code>CLAUDE.md</code> that enforces good habits, pre-registration, and reusable Skills (B.2); then a full worked analysis from messy data to a reproducible result, how to verify it, and how the folder itself becomes your disclosure (B.3).</p>
+  </div>
+
+  <h2 class="section-title">&#9878;&#65039; Reproducibility Is Not Verification</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The course has taught <strong>verification</strong> thoroughly &mdash; Week&nbsp;9 was largely about it. Verification asks a question about an output: <em>is this correct?</em> Did the model hallucinate the citation, get the analysis right, reason soundly? Reproducibility asks a different question, about a process: <em>could someone else inspect what I did and repeat it?</em> They are siblings, and they are not the same. A result can be correct but irreproducible (you got the right answer but cannot say how), and a process can be perfectly reproducible but wrong (anyone can repeat your flawed analysis exactly). Good research needs both.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Agentic work cuts both ways here, and it is worth being honest about both edges. It makes reproducibility <em>harder</em>, because the agent does a great deal autonomously and the steps can be opaque &mdash; this is Mollick&#39;s &ldquo;wizard&rdquo; problem from Week&nbsp;11.1, where competence and opacity rise together: the more the agent does for you, the less you watched it do. But it also makes reproducibility <em>easier</em> in a way manual work never managed, because the agent can be instructed to document as it goes &mdash; to log every decision, name every source, and save every script, tirelessly, without the human tendency to think &ldquo;I&#39;ll write that up later.&rdquo;</p>
+
+  <div class="highlight-box">
+    <h3>&#128161; The claim this lesson makes good on</h3>
+    <p>Used with discipline, Claude Code can produce research that is <em>more</em> reproducible than typical manual work &mdash; not less. The reason is simple: a human researcher documents their decisions when they remember to and have time; an agent told to log every consequential choice does it every time, by default. The opacity is real, but it is a problem you solve by <em>instructing the agent to leave a trail</em>, and the rest of this lesson is how.</p>
+  </div>
+
+  <h2 class="section-title">&#128193; The Project Folder as the Unit of Reproducible Work</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Lesson&nbsp;A&#39;s organising principle was <em>the chat is not the archive</em>. Its positive form is this: the <strong>project folder</strong> is the unit of reproducible work. Everything that matters &mdash; the raw data, the code, the outputs, the decisions, the standing instructions, the version history &mdash; lives in one inspectable place. Here is what a reproducible version of the Berg River project looks like once it is set up properly:</p>
+
+  <pre class="code-block">berg-river-microplastics/
+  CLAUDE.md                  <span class="cm"># the standing instructions (B.2)</span>
+  data/
+    raw/                     <span class="cm"># the original data &mdash; never edited</span>
+    processed/               <span class="cm"># cleaned data, regenerable from raw + scripts</span>
+  scripts/                   <span class="cm"># the code, preserved and re-runnable</span>
+  outputs/                   <span class="cm"># figures, tables, reports</span>
+  notes/
+    decision-log.md          <span class="cm"># every consequential choice, dated, with reasons</span>
+  docs/
+    data-inventory.md        <span class="cm"># what the data actually is</span>
+  pre-registrations/         <span class="cm"># predictions + decision rules, before the compute (B.2)</span></pre>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Each part earns its place by answering a question a replicator would ask:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>data/raw/ &mdash; never edited</h3>
+      <p>The original data, treated as immutable. Cleaning produces <em>new</em> files in <code>data/processed/</code>; the raw stays untouched so the whole chain can always be rebuilt from the source. The <code>CLAUDE.md</code> will forbid the agent from editing anything in here.</p>
+    </div>
+    <div class="card">
+      <h3>scripts/ &mdash; the method, preserved</h3>
+      <p>Every cleaning and analysis step is a saved script, not a one-off action in a chat. &ldquo;Re-run the analysis&rdquo; becomes a command, not a memory. This is the difference between a result you can regenerate and one you merely once obtained.</p>
+    </div>
+    <div class="card">
+      <h3>outputs/ &mdash; derived, separate</h3>
+      <p>Figures, tables, and reports live apart from the data and the code that made them, so it is always clear what is source, what is method, and what is product. Nothing in <code>outputs/</code> is hand-edited &mdash; if it&#39;s wrong, you fix the script and regenerate.</p>
+    </div>
+    <div class="card">
+      <h3>notes/decision-log.md &mdash; the reasons</h3>
+      <p>The single most valuable file for reproducibility. Which outliers were excluded and why; how missing values were handled; which test was chosen. The decisions a reader most needs and most often cannot find. The agent appends to it as it works.</p>
+    </div>
+    <div class="card">
+      <h3>docs/data-inventory.md &mdash; what the data is</h3>
+      <p>A plain description of each file, its variables, units, and known problems. The thing you wish every dataset you inherited had come with. Usually the first thing the agent writes, after inspecting the raw data.</p>
+    </div>
+    <div class="card">
+      <h3>pre-registrations/ &mdash; the commitments</h3>
+      <p>Where you write down what you expect to find, and the rule for deciding, <em>before</em> you run anything. This is the strongest single guard against fooling yourself, and it gets its own section in B.2.</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h4>&#9878;&#65039; Remember: discipline proportionate to stakes</h4>
+    <p>This is the full apparatus, for work whose results have to survive, be repeated, or be defended &mdash; the analysis behind a paper figure, say. It is deliberately heavy. As Lesson&nbsp;A.2 argued, you apply as much of it as the task in front of you deserves: an exploratory afternoon might need only a <code>data-inventory.md</code> and a saved script; the headline analysis of your thesis should have all of it. The structure here is what &ldquo;good&rdquo; looks like at the high-stakes end, not a ritual for every interaction.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128229; Download: the reproducible-project scaffold</h4>
+    <p>An empty version of the structure above &mdash; the folders, a starter <code>CLAUDE.md</code>, and empty <code>decision-log.md</code> and <code>data-inventory.md</code> templates &mdash; ready to copy into your own project and adapt. <a href="files/reproducible-project-scaffold.zip">reproducible-project-scaffold.zip</a></p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in B.2:</strong> the structure is the skeleton; the habits are what bring it to life. Next we write the <code>CLAUDE.md</code> that makes the agent keep the raw data sacred and the decision log current &mdash; the headline artefact of this track &mdash; then add pre-registration and reusable Skills.</p>
+
+</div>
+</div>
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+</body></html>
