@@ -655,6 +655,19 @@
 <h4>📄<a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>
 <h3 dir="auto">Understanding the current state of LLM scaling and the future of AI research</h3>
 </div>
+<!-- TRY THIS YOURSELF -->
+<div style="background: #eef7f0; border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0;">
+<h3 style="color: #1f6e43; font-size: 1.25em; margin-bottom: 12px;">🔬 Try this yourself (about 10 minutes)</h3>
+<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">This page has been conceptual; here is a hands-on way to <em>see</em> tokenisation, which underpins everything above. Open a free tokeniser playground &mdash; for example the <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener" style="color: #1f6e43; font-weight: 600;">OpenAI tokenizer</a> &mdash; and paste in two or three sentences from your own field, deliberately including the messy bits: a piece of jargon, a chemical formula or equation, an author's name, a word in another language.</p>
+<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">Then look at what happened:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0 0 12px;">
+<li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>How many tokens did your text become? Common English words are usually one token; rare or technical terms often shatter into several.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms &mdash; the model never sees your word as a single unit.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 0; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window &mdash; the limit this lesson&#39;s positional-encoding section is ultimately about.</li>
+</ul>
+<p style="color: #345; line-height: 1.75; margin-bottom: 0;">It is a small exercise, but it converts &ldquo;tokens&rdquo; from an abstraction into something you have watched happen to your own writing.</p>
+</div>
+
 <!-- SUMMARY AND NEXT STEPS -->
 <div class="intro-text" style="margin-top: 50px;">
 <h2>📚 Summary &amp; Key Takeaways</h2>
