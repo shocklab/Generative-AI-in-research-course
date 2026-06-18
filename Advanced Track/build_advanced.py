@@ -296,8 +296,8 @@ SL_A2_BODY = """
 
   <div class="instructor-box">
     <h4>&#128100; From the instructor&#39;s own practice</h4>
-    <p>&ldquo;My scaffolding scales with stakes and longevity, not prestige. A serious computational experiment and my personal training log get the same discipline &mdash; one source of truth, append-only logs, a protocol the agent cannot skip &mdash; because both are records I will need to trust months from now. A one-off read of a colleague&#39;s draft gets a structured output file and nothing else. The heavy machinery earns its place only where the work has to survive, be repeated, or be defended.&rdquo;</p>
-    <p style="font-style: normal; font-size: 0.9em; color: #6a5da8;">[Instructor voice &mdash; adjust or replace with your own account.]</p>
+    <p>&ldquo;I&rsquo;ve got many different projects. Some need serious scaffolding &mdash; to make sure everything is reproducible and auditable, and that I understand all of the underlying processes. Others need much less, but still have agentic aspects. An example of the latter is a project for my fitness goals, which reads in my smartwatch data and adjusts the training plan accordingly: the stakes there are low, and I&rsquo;ll question it if it feels really off.&rdquo;</p>
+    <p>&ldquo;But something that&rsquo;s going to be published has much higher stakes &mdash; and so it needs much more scaffolding.&rdquo;</p>
   </div>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Read Lesson&nbsp;B in that spirit. It shows you the full apparatus so you know what good looks like when the stakes are high. You then apply as much of it as the task in front of you deserves &mdash; which for an exploratory afternoon might be almost none, and for the analysis behind a paper figure should be most of it.</p>
