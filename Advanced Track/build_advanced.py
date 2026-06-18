@@ -731,8 +731,8 @@ SL_B3_BODY = """
 
   <div class="instructor-box">
     <h4>&#128100; From the instructor&#39;s own practice</h4>
-    <p>&ldquo;The errors that have mattered were never the dramatic ones &mdash; the agent rarely does something obviously absurd. They were quiet: a plausible default I didn&#39;t notice, a column silently dropped, a result that looked right and wasn&#39;t. What catches them is boring and reliable: reading the diff every time, keeping the decision log honest enough that a wrong choice stands out in it, and re-running the thing myself before I believe the number. The discipline isn&#39;t there to slow me down; it&#39;s there because the failures are invisible by design.&rdquo;</p>
-    <p style="font-style: normal; font-size: 0.9em; color: #6a5da8;">[Instructor voice &mdash; adjust or replace with your own account.]</p>
+    <p>&ldquo;In my earlier workflows I could go off on tangents for days, sometimes weeks, thinking that something was interesting, when in fact we were just chasing a bug in another paper. In this case the agent thought that the bug-chasing was the interesting thing we were trying to do, and I didn&rsquo;t have the right checks in place to understand that that&rsquo;s what it thought. No amount of looking at individual changes would have caught that: nothing was wrong with any one line; the whole direction was wrong.&rdquo;</p>
+    <p>&ldquo;I&rsquo;ve had lots of smaller errors too, and the genuine issue is that when so much is changing all the time, you often can&rsquo;t check each change as it happens (as you wouldn&rsquo;t if you were supervising a student). So I&rsquo;ve stopped trying to be careful by watching everything. The carefulness has to live somewhere else. It&rsquo;s in the gates I set at the start so a tangent gets stopped early, in keeping the structure so that any mistake can be undone, and in checking the things that actually matter rather than every step along the way. I&rsquo;m still trying to figure out how to do this well at the volume the tools now make possible.&rdquo;</p>
   </div>
 
   <h2 class="section-title">&#128196; Disclosure: The Reproducible Folder Is the Disclosure</h2>
