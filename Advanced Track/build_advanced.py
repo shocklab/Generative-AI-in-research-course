@@ -165,6 +165,11 @@ SL_A1_BODY = GATE_BANNER + """
     <p>Lesson&nbsp;B then turns to the payoff this track exists for: using Claude Code to make your research genuinely <em>reproducible</em> &mdash; inspectable and repeatable by someone who is not you.</p>
   </div>
 
+  <div class="info-box">
+    <h4>&#128591; Sources and thanks</h4>
+    <p>This track&rsquo;s reproducibility framework owes a large and explicit debt to <strong>Dominik Luke&#353;</strong>&rsquo;s workshop <em>Using AI Agents for Reproducible Research</em> (Oxford e-Research Centre). The organising principle that the chat is not the archive, the model-versus-harness framing, the research-habits instruction file, and the &ldquo;inspect a messy folder&rdquo; first task are all adapted, with thanks, from that workshop and its accompanying skills. His materials are openly available: <a href="https://techczech.github.io/agents-for-reproducibility/" target="_blank" rel="noopener">techczech.github.io/agents-for-reproducibility</a> (the workshop guide) and <a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a> (his agent-skills collection, MIT-licensed). The <code>grill-with-docs</code> glossary practice is from Matt Pocock (AI&nbsp;Hero). What this track adds on top &mdash; the pre-registration gates, the worked Berg River example, and the instructor&rsquo;s own practice in the boxes below &mdash; builds on that foundation.</p>
+  </div>
+
   <h2 class="section-title">&#129518; The Model Is the Smallest Part</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week&nbsp;10.1 made an argument that is easy to nod along to and hard to feel until you see it: <strong>the harness is the product</strong>. The language model &mdash; Claude itself &mdash; is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
