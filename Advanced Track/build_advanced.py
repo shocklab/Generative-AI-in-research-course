@@ -196,7 +196,7 @@ SL_A1_BODY = GATE_BANNER + """
     </div>
     <div class="card">
       <h3>Uses version control</h3>
-      <p>It can initialise Git, commit changes, show you diffs, and read the history. Used well, this turns into a reproducibility trace (Lesson&nbsp;B.5), not just a software habit.</p>
+      <p>It can initialise Git, commit changes, show you diffs, and read the history. Used well, this turns into a reproducibility trace (Lesson&nbsp;B.3), not just a software habit.</p>
     </div>
     <div class="card">
       <h3>Reads standing instructions</h3>
@@ -204,7 +204,7 @@ SL_A1_BODY = GATE_BANNER + """
     </div>
     <div class="card">
       <h3>Runs reusable Skills</h3>
-      <p>A Skill is a packaged, reusable workflow (a folder with a <code>SKILL.md</code>) the agent can invoke when it is relevant &mdash; a tested research procedure that travels across projects rather than being re-improvised each time (Lesson&nbsp;B.4).</p>
+      <p>A Skill is a packaged, reusable workflow (a folder with a <code>SKILL.md</code>) the agent can invoke when it is relevant &mdash; a tested research procedure that travels across projects rather than being re-improvised each time (Lesson&nbsp;B.2).</p>
     </div>
     <div class="card">
       <h3>Spawns subagents</h3>
@@ -250,7 +250,7 @@ SL_A1_BODY = GATE_BANNER + """
 
   <div class="resource-placeholder">
     <h4>&#128214; Download: the companion guide</h4>
-    <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document &mdash; the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the natural companion to these two lessons and goes further than we can here. Many of its ideas &mdash; the reproducibility framework above all &mdash; come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a></p>
+    <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document &mdash; the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the natural companion to these two lessons and goes further than we can here. Many of its ideas &mdash; the reproducibility framework above all &mdash; come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a> &mdash; and the seven research <em>Skills</em> it documents are available as a separate download in Lesson&nbsp;B.2.</p>
   </div>
 
   <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands &mdash; the move from <em>chatting</em> to <em>managing an agent</em>.</p>
@@ -681,6 +681,12 @@ do not guess. Cross-check against any field notes and flag contradictions.
 Write the result to docs/data-inventory.md.</pre>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Written once and inspected, that Skill produces the same disciplined inventory on every project you use it in. That repeatability is the reproducibility win: a Skill is a procedure you have tested and can trust, the opposite of ad-hoc prompting that varies every time.</p>
+
+  <div class="resource-placeholder">
+    <h4>&#128230; Download: seven research Skills</h4>
+    <p>The <code>data-inventory</code> Skill above is deliberately small, to show the shape. To see the idea at full size &mdash; and to actually use it &mdash; here is a bundle of seven ready-to-install Skills for reproducible research: <code>pre-register</code> (idea triage before you spend compute), <code>arxiv-fetcher</code> and <code>academic-pdf-to-mkd</code> (getting papers into a workable form), <code>paper-review</code>, <code>claim-fact-checker</code> and <code>reference-verifier</code> (the Week&nbsp;9 verification habit, packaged as procedures), and <code>convergence-check</code> (an honest read on whether an iterative loop is converging or just spinning). Unzip, drop the folders into <code>~/.claude/skills/</code>, and Claude Code loads each one on demand. <a href="files/co-scientist-skills.zip">co-scientist-skills.zip</a></p>
+    <p style="font-size: 0.92em; color: #777;">Three of the seven &mdash; <code>academic-pdf-to-mkd</code>, <code>claim-fact-checker</code>, and <code>paper-review</code> &mdash; are adapted, with thanks, from <strong>Dominik Luke&#353;</strong>&rsquo;s MIT-licensed agent-skills collection (<a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a>); the bundle ships with a <code>LICENSE</code> and full attribution. The other four are the instructor&rsquo;s own.</p>
+  </div>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Subagents</strong> add a second move. For a bounded job, Claude Code can spawn a separate, focused agent &mdash; and the most useful research application is verification. After the main agent has produced an analysis, you can have an independent subagent check it: re-derive the result from the raw data, look for the errors the first agent might have made, and report disagreements. This is the Week&nbsp;9 adversarial-verification idea made operational &mdash; a second pair of eyes that does not share the first agent&#39;s assumptions.</p>
 
