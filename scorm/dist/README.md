@@ -4,11 +4,11 @@ This folder contains SCORM 1.2 packages for the course **MAM5020F (2026): Genera
 
 ## What's in this folder
 
-13 SCORM 1.2 ZIPs:
+14 SCORM 1.2 ZIPs:
 
 | File | Contents | Approx. size |
 |---|---|---|
-| `mam5020f_course_scorm12.zip` | **Full course** — every lesson, all 12 weeks plus course orientation and introduction. One unified SCORM package. | ~810 KB |
+| `mam5020f_course_scorm12.zip` | **Full course** — every lesson, all 12 weeks plus course orientation, introduction, and the Advanced Track (sequenced after Week 12). One unified SCORM package. | ~1.8 MB |
 | `mam5020f_week1_scorm12.zip` | Week 1 — Foundations of Generative AI | ~65 KB |
 | `mam5020f_week2_scorm12.zip` | Week 2 — LLM Deep Dive | ~55 KB |
 | `mam5020f_week3_scorm12.zip` | Week 3 — Environmental Implications of AI | ~70 KB |
@@ -21,6 +21,7 @@ This folder contains SCORM 1.2 packages for the course **MAM5020F (2026): Genera
 | `mam5020f_week10_scorm12.zip` | Week 10 — Agentic AI, RAG & Advanced Research Tools | ~75 KB |
 | `mam5020f_week11_scorm12.zip` | Week 11 — Future of AI in Research & Africa's Sovereign AI Capacity | ~110 KB |
 | `mam5020f_week12_scorm12.zip` | Week 12 — Integrative Capstone | ~27 KB |
+| `mam5020f_advanced_scorm12.zip` | **Advanced Track** — Agentic Research with Claude Code (optional; beyond the free tier). Six lessons (A.1–B.3) plus the six downloadable artefacts (datasets, worked solution, skills bundle, companion guide). | ~1.0 MB |
 
 Each per-week package is self-contained — it includes its own lesson pages, the SCORM API binding, and the course landing page so navigation works inside the LMS.
 
@@ -52,6 +53,8 @@ adlcp_rootv1p2.xsd           ← ADL SCORM extension schema
 scorm-api.js                 ← The runtime JavaScript binding to the LMS
 index.html                   ← Course landing page (for in-package navigation)
 week-N/                      ← The actual lesson HTML files
+advanced/                    ← Advanced Track lessons (in the full-course and Advanced packages)
+advanced/files/              ← Advanced Track downloads (datasets, worked solution, skills bundle, guide PDF)
 ```
 
 > **Note on `adlcp_rootv1p2.xsd`**: the canonical copy of this file is served by ADLnet.gov and was occasionally unavailable when these packages were built; in some cases this XSD may be a small placeholder pointing at the canonical URL rather than the real ~14 KB schema. Most LMSes do not strictly validate the bundled XSDs at import time — these packages have been tested successfully on SCORM Cloud. If your LMS rejects the package for an XSD reason, ask the package maintainer to rebuild after fetching the schema cleanly, or substitute the file from <https://adlnet.gov/projects/scorm-1-2/>.

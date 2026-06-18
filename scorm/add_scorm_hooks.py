@@ -67,8 +67,8 @@ def gather_targets(week):
                 for f in sorted(os.listdir(sub)):
                     if f.endswith(".html"):
                         targets.append((os.path.join(sub, f), 1))
-        # course-orientation and course-introduction folders sit alongside week-N
-        for extra in ("course-orientation", "course-introduction"):
+        # course-orientation, course-introduction, and the advanced track sit alongside week-N
+        for extra in ("course-orientation", "course-introduction", "advanced"):
             sub = os.path.join(DOCS, extra)
             if os.path.isdir(sub):
                 for f in sorted(os.listdir(sub)):
@@ -79,7 +79,7 @@ def gather_targets(week):
         if os.path.exists(idx):
             targets.append((idx, 0))
     else:
-        sub = os.path.join(DOCS, f"week-{week}")
+        sub = os.path.join(DOCS, "advanced" if week == "advanced" else f"week-{week}")
         if not os.path.isdir(sub):
             print(f"  no such directory: {sub}", file=sys.stderr)
             sys.exit(2)

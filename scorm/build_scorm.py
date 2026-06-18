@@ -54,7 +54,7 @@ def read_index_chain(week):
     with open(INDEX, encoding="utf-8") as f:
         idx = f.read()
     link_re = re.compile(
-        r'<li\b[^>]*>\s*<a\b[^>]*\bhref="((?:course-orientation|course-introduction|week-\d+)/[^"]+\.html)"[^>]*>(.*?)</a>',
+        r'<li\b[^>]*>\s*<a\b[^>]*\bhref="((?:course-orientation|course-introduction|week-\d+|advanced)/[^"]+\.html)"[^>]*>(.*?)</a>',
         re.IGNORECASE | re.DOTALL,
     )
     seen, items = set(), []
@@ -65,6 +65,10 @@ def read_index_chain(week):
         seen.add(h)
         if week == "all":
             items.append((h, t))
+        elif week == "advanced":
+            # the Advanced Track only (the advanced/ pages, in index order)
+            if h.startswith("advanced/"):
+                items.append((h, t))
         else:
             # restrict to the requested week-N/ prefix only (no orientation/intro)
             if h.startswith(f"week-{week}/"):
@@ -95,6 +99,8 @@ def pretty_title(scope_label):
     """Turn 'week1' / 'week11' / 'course' into a human-readable manifest title."""
     if scope_label == "course":
         return "MAM5020F — Full Course (Generative AI for Research, 2026)"
+    if scope_label == "advanced":
+        return "MAM5020F — Advanced Track (Agentic Research with Claude Code)"
     m = re.match(r"week(\d+)$", scope_label)
     if m:
         return f"MAM5020F — Week {int(m.group(1))}"
@@ -154,6 +160,14 @@ def stage_files(stage, items):
         dst = os.path.join(stage, href)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
         shutil.copy2(src, dst)
+    # bundle any per-section download assets (e.g. advanced/files/) so the
+    # in-package download links resolve inside the LMS
+    staged_dirs = {href.split("/", 1)[0] for href, _ in items if "/" in href}
+    for d in sorted(staged_dirs):
+        assets = os.path.join(DOCS, d, "files")
+        if os.path.isdir(assets):
+            shutil.copytree(assets, os.path.join(stage, d, "files"), dirs_exist_ok=True)
+            print(f"  bundled {d}/files/ ({len(os.listdir(assets))} items)")
     # include the landing page only when bundling more than a single week
     # (helps cross-page navigation inside the package without duplicating bytes)
     landing_src = os.path.join(DOCS, "index.html")
@@ -187,7 +201,12 @@ def main():
     args = p.parse_args()
 
     week = "all" if args.all else args.week
-    scope = "course" if week == "all" else f"week{week}"
+    if week == "all":
+        scope = "course"
+    elif week == "advanced":
+        scope = "advanced"
+    else:
+        scope = f"week{week}"
     items = read_index_chain(week)
     if not items:
         print(f"No lessons found for scope '{scope}'. Aborting.", file=sys.stderr)
