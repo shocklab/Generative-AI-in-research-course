@@ -705,6 +705,11 @@ SL_B3_BODY = """
     <p>The deliberately-messy starting files &mdash; the three inconsistent CSVs with their planted errors, the contradicting field notes, the stale README, and the metadata &mdash; so you can run this whole workflow yourself. <a href="files/berg-river-microplastics.zip">berg-river-microplastics.zip</a></p>
   </div>
 
+  <div class="resource-placeholder">
+    <h4>&#9989; Download: the worked solution (model answer)</h4>
+    <p>The completed, reproducible folder &mdash; a filled <code>CLAUDE.md</code>, the pre-registration, the data inventory, the cleaning-and-analysis script, the decision log, the processed data, and the outputs (summary table, run log, and a figure). Running <code>python3 scripts/analyse.py</code> regenerates every output from the raw data, so you can watch the whole chain work and confirm the result for yourself. Do the exercise first; reach for this when you want to check your structure against a model answer. <a href="files/berg-river-microplastics-worked-solution.zip">berg-river-microplastics-worked-solution.zip</a></p>
+  </div>
+
   <h2 class="section-title">&#128270; Verifying Agentic Work</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">When the agent runs for an hour and makes a hundred changes you did not watch, the instinct is to inspect each one &mdash; to read every diff as it happens. That does not scale, and pretending it does is the fastest route to a false sense of safety. The volume <em>is</em> the problem: when so much is changing all the time, there often isn&#39;t a chance to check each change, and any carefulness that depends on watching every one will quietly fail. So the move is to take verification <em>off</em> the per-change axis. Don&#39;t try to catch every mistake as it happens; instead make mistakes survivable, encode what must stay true so a machine checks it, and verify the few things that actually matter. Week&nbsp;9&#39;s protocols and Week&nbsp;10&#39;s Princeton reliability finding still bite &mdash; the burden is real and it grows &mdash; but the response is to automate and target verification, not to watch harder.</p>

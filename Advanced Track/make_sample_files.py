@@ -270,6 +270,288 @@ SCAFFOLD_FILES = {
 }
 
 
+# ---------------------------------------------------------------------------
+# Worked solution (model answer): the completed reproducible Berg River folder.
+# The analysis script is run at build time so the outputs in the zip are
+# genuinely produced by the included code.
+# ---------------------------------------------------------------------------
+
+import subprocess, shutil, tempfile
+
+WS_NAME = "berg-river-microplastics-worked-solution"
+
+WS_ANALYSE = '''#!/usr/bin/env python3
+"""
+Berg River microplastics - cleaning and pre-registered analysis (model answer).
+
+Run from the project root:   python3 scripts/analyse.py
+
+Reads the immutable raw data in data/raw/, applies the corrections the field
+notes call for (logging each to notes/decision-log.md), writes the cleaned data
+to data/processed/, runs the pre-registered test, and saves the outputs. The
+raw files are never modified - delete data/processed/ and outputs/ and re-run,
+and you get them back.
+"""
+import csv, statistics
+from pathlib import Path
+from scipy.stats import mannwhitneyu, kruskal
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+ROOT = Path(__file__).resolve().parent.parent
+RAW = ROOT / "data" / "raw"
+PROC = ROOT / "data" / "processed"; PROC.mkdir(parents=True, exist_ok=True)
+OUT = ROOT / "outputs"; OUT.mkdir(exist_ok=True)
+NOTES = ROOT / "notes"; NOTES.mkdir(exist_ok=True)
+
+DATE = "2026-03-20"   # fixed for a reproducible build
+decisions = []
+def logd(decision, reason, source): decisions.append((decision, reason, source))
+
+def load(fname, colmap):
+    with open(RAW / fname) as f:
+        return [{k: r[v] for k, v in colmap.items()} for r in csv.DictReader(f)]
+
+up = load("site-upstream.csv", {"id":"sample_id","date":"date","count":"particles_per_litre"})
+tn = load("site_town.csv", {"id":"SampleID","date":"Date","count":"MP_count_per_L"})
+dn = load("downstream-final-v2.csv", {"id":"id","date":"sampling_date","count":"particles_L"})
+for r in up: r["site"] = "upstream"
+for r in tn: r["site"] = "town"
+for r in dn: r["site"] = "downstream"
+
+# Upstream automated counter double-counted all season -> halve.
+for r in up:
+    r["count"] = str(int(r["count"]) / 2)
+logd("Halved all upstream counts.",
+     "The upstream automated counter double-counted all season (recorded ~2x true).",
+     "data/raw/field-notes.md, data/raw/site-upstream.csv")
+
+# D-03 contaminated -> exclude.
+dn = [r for r in dn if r["id"] != "D-03"]
+logd("Excluded downstream sample D-03.",
+     "Bottle cracked in transit and was contaminated (count 118, far above neighbours).",
+     "data/raw/field-notes.md, data/raw/downstream-final-v2.csv")
+
+# Missing counts -> drop listwise (pre-registered).
+rows = up + tn + dn
+for r in rows:
+    r["count_n"] = float(r["count"]) if r["count"].strip() != "" else None
+dropped = [r["id"] for r in rows if r["count_n"] is None]
+logd("Dropped " + str(len(dropped)) + " row(s) with no particle count (listwise): " + ", ".join(dropped) + ".",
+     "Pre-registered missing-value handling; counts were not taken (e.g. D-04, underfilled bottle).",
+     "pre-registrations/2026-03-20-town-vs-upstream.md, data/raw/field-notes.md")
+clean = [r for r in rows if r["count_n"] is not None]
+
+with open(PROC / "clean.csv", "w", newline="") as f:
+    w = csv.writer(f); w.writerow(["site","sample_id","date","particles_per_litre"])
+    for r in clean: w.writerow([r["site"], r["id"], r["date"], r["count_n"]])
+
+def counts(site): return [r["count_n"] for r in clean if r["site"] == site]
+up_c, tn_c, dn_c = counts("upstream"), counts("town"), counts("downstream")
+
+lines = []
+def out(s): lines.append(s); print(s)
+out("PER-SITE PARTICLE COUNTS (particles/L, cleaned)")
+for name, c in [("upstream",up_c),("town",tn_c),("downstream",dn_c)]:
+    out("  %-11s n=%2d  median=%5.1f  range=%.0f-%.0f" % (name, len(c), statistics.median(c), min(c), max(c)))
+out("")
+out("PRE-REGISTERED TEST (town vs upstream)")
+diff = statistics.median(tn_c) - statistics.median(up_c)
+u, p = mannwhitneyu(tn_c, up_c, alternative="greater")
+out("  median difference = %.1f  (pre-registered threshold: >= 20)" % diff)
+out("  Mann-Whitney U = %.1f, p = %.3g  (pre-registered: p < 0.05)" % (u, p))
+out("  DECISION: %s per the pre-registered rule" % ("INTERESTING" if diff >= 20 and p < 0.05 else "no difference"))
+out("")
+out("EXPLORATORY (all three sites)")
+h, pk = kruskal(up_c, tn_c, dn_c)
+out("  Kruskal-Wallis H = %.1f, p = %.3g" % (h, pk))
+
+with open(OUT / "summary.csv", "w", newline="") as f:
+    w = csv.writer(f); w.writerow(["site","n","median_particles_per_litre"])
+    for name, c in [("upstream",up_c),("town",tn_c),("downstream",dn_c)]:
+        w.writerow([name, len(c), statistics.median(c)])
+
+fig, ax = plt.subplots(figsize=(6, 4))
+data = [up_c, dn_c, tn_c]; labels = ["upstream", "downstream", "town"]
+ax.boxplot(data, tick_labels=labels, widths=0.5)
+for i, c in enumerate(data, 1):
+    ax.scatter([i] * len(c), c, alpha=0.5, color="#003A70", zorder=3)
+ax.set_ylabel("microplastics (particles/L)")
+ax.set_title("Berg River microplastics by site (cleaned)")
+fig.tight_layout(); fig.savefig(OUT / "site_comparison.png", dpi=120)
+
+with open(OUT / "analysis_run.log", "w") as f:
+    f.write("\\n".join(lines) + "\\n")
+
+with open(NOTES / "decision-log.md", "w") as f:
+    f.write("# Decision log\\n\\nEvery consequential cleaning/analysis choice, with its reason and source.\\nWritten by scripts/analyse.py.\\n\\n")
+    for d, reason, src in decisions:
+        f.write("## " + DATE + " - " + d + "\\n- Reason: " + reason + "\\n- Source: " + src + "\\n\\n")
+
+print("")
+print("Wrote data/processed/clean.csv, outputs/{summary.csv, analysis_run.log, site_comparison.png}, notes/decision-log.md")
+'''
+
+WS_CLAUDE = """# CLAUDE.md - Berg River microplastics study
+
+## What this project is
+- A field study of microplastic counts at three Berg River sites (upstream of a
+  town, in the town, downstream), one sampling season.
+- Status: fictional teaching dataset for the MAM5020F Advanced Track.
+
+## Working rules
+- Read files before proposing changes.
+- Never modify anything in data/raw/. It is the only copy.
+- Use plan mode and show me the plan before any consequential change.
+- When you summarise or analyse, name which files you used.
+- If something is uncertain, say so - never fill a gap with a plausible guess.
+- Save reusable code in scripts/; save generated outputs in outputs/.
+- Log every consequential decision in notes/decision-log.md, dated, with the reason.
+- Run analysis scripts to a committed log; the log, not the figure, is the record.
+- Before you tell me a task is done, show me the diff.
+
+## Pre-registration
+- The entry in pre-registrations/ is binding. Do not tune on the headline metric;
+  do not reframe a result after the fact. If reality contradicts the prediction,
+  apply the decision rule and say so.
+
+## Boundaries
+- Treat all data as fictional; add no claims about real people or places.
+- British spelling.
+"""
+
+WS_PREREG = """# Pre-registration: do microplastic counts differ across the sites?
+# Committed 2026-03-20, before running the analysis.
+
+Question: Is the median microplastic count higher at the town site than at the
+  upstream site?
+
+Prediction: Town > upstream, by a margin large enough to matter ecologically
+  (we set "matters" at a difference of >= 20 particles/L in advance).
+
+Decision rule:
+  - Interesting: town median exceeds upstream by >= 20 particles/L AND the
+    difference survives a Mann-Whitney U test at p < 0.05.
+  - Boring-but-worth-knowing: a real but smaller difference, or no difference.
+    Either way we report it straight.
+  - Dead: the data are too sparse or too messy after cleaning to test at all.
+
+Fixed in advance:
+  - Outlier rule: exclude only samples the field notes mark unreliable.
+  - Missing-value handling: listwise (drop rows with no particle count).
+  - Test: Mann-Whitney U (counts are not normally distributed).
+  No tuning of these on the results.
+"""
+
+WS_INVENTORY = """# Data inventory
+
+## data/raw/site-upstream.csv
+- Upstream site, 12 samples (U-01..U-12), one season.
+- Columns: date (ISO), sample_id, particles_per_litre, ph, water_temp_c, notes.
+- Rows: 12. Missing: none.
+- Known problem: counts sit suspiciously close to the town's, which is odd for a
+  site ABOVE the town. field-notes.md explains it - the automated counter
+  double-counted all season; halve these counts.
+
+## data/raw/site_town.csv
+- Town site, 12 samples (T-01..T-12).
+- Columns: Date (DD/MM/YYYY - different format), SampleID, MP_count_per_L, pH,
+  temp, comment - different column names from the other files.
+- Rows: 12. Missing: none.
+- Known problem: T-07 flagged post-storm in field-notes.md (count may be high).
+
+## data/raw/downstream-final-v2.csv
+- Downstream site, 12 samples (D-01..D-12).
+- Columns: sampling_date, id, particles_L, pH_value, temperature, remarks -
+  a third naming convention.
+- Rows: 12. Missing: D-04 count, D-05 pH, D-07 temperature.
+- Known problem: D-03 count (118) is far above its neighbours; field-notes.md
+  says the bottle was contaminated - discard D-03.
+
+## data/raw/sampling-metadata.csv
+- Site coordinates, distance from town (signed: negative = upstream), method.
+
+## Notes
+- Three files, three column-naming conventions - harmonise before combining.
+- field-notes.md is essential: it explains the upstream double-count and the
+  D-03 contamination, neither of which is visible from the CSVs alone.
+"""
+
+WS_README = """# Berg River microplastics - worked solution (model answer)
+
+The completed, reproducible version of the Lesson B exercise for the MAM5020F
+Advanced Track. It shows what "good" looks like after working through the messy
+berg-river-microplastics archive.
+
+## Reproduce it
+From this folder:
+
+    python3 scripts/analyse.py
+
+That reads the immutable data in data/raw/, applies the field-note corrections
+(logging each to notes/decision-log.md), writes the cleaned data to
+data/processed/, runs the pre-registered test, and saves the outputs. The raw
+files are never touched - delete data/processed/ and outputs/ and re-run, and
+you get them back. (Requires Python with scipy and matplotlib.)
+
+## What's here
+  CLAUDE.md                    standing instructions for the agent
+  pre-registrations/           the question + decision rule, set before the analysis
+  data/raw/                    the original messy files (immutable)
+  data/processed/clean.csv     harmonised, corrected data (regenerable)
+  scripts/analyse.py           the cleaning + analysis (the method)
+  outputs/                     summary table, run log, figure
+  notes/decision-log.md        every consequential choice, written by the script
+  docs/data-inventory.md       what each raw file is
+
+## The point
+The whole result hinges on one logged decision: halving the double-counted
+upstream counts (per field-notes.md). Without it, the town and upstream look
+identical (no difference). With it, the town is clearly higher. A reader can see
+exactly where the result turns - that is what reproducibility buys.
+
+CC BY 4.0.
+"""
+
+
+def build_worked_solution():
+    tmp = tempfile.mkdtemp()
+    root = os.path.join(tmp, WS_NAME)
+
+    def w(rel, content):
+        p = os.path.join(root, rel)
+        os.makedirs(os.path.dirname(p), exist_ok=True)
+        with open(p, "w", encoding="utf-8") as f:
+            f.write(content)
+
+    # raw data (reuse the exercise archive, re-rooted)
+    for name, content in BERG_FILES.items():
+        w(name.split("/", 1)[1], content)
+    # authored artefacts
+    w("scripts/analyse.py", WS_ANALYSE)
+    w("CLAUDE.md", WS_CLAUDE)
+    w("pre-registrations/2026-03-20-town-vs-upstream.md", WS_PREREG)
+    w("docs/data-inventory.md", WS_INVENTORY)
+    w("README.md", WS_README)
+    # run the analysis so the outputs + decision log are genuinely produced by the script
+    subprocess.run(["python3", "scripts/analyse.py"], cwd=root, check=True,
+                   stdout=subprocess.DEVNULL)
+    # zip the whole folder
+    out_zip = os.path.join(FILES_DIR, WS_NAME + ".zip")
+    if os.path.exists(out_zip):
+        os.remove(out_zip)
+    n = 0
+    with zipfile.ZipFile(out_zip, "w", zipfile.ZIP_DEFLATED) as zf:
+        for dirpath, _dirs, files in os.walk(root):
+            for fn in sorted(files):
+                full = os.path.join(dirpath, fn)
+                zf.write(full, os.path.relpath(full, tmp))
+                n += 1
+    shutil.rmtree(tmp)
+    print(f"  wrote {out_zip} ({os.path.getsize(out_zip)} bytes, {n} entries)")
+
+
 def write_zip(path, files: dict):
     with zipfile.ZipFile(path, "w", zipfile.ZIP_DEFLATED) as zf:
         for name, content in files.items():
@@ -283,6 +565,7 @@ def main():
 
     write_zip(os.path.join(FILES_DIR, "berg-river-microplastics.zip"), BERG_FILES)
     write_zip(os.path.join(FILES_DIR, "reproducible-project-scaffold.zip"), SCAFFOLD_FILES)
+    build_worked_solution()
 
     tmpl_path = os.path.join(FILES_DIR, "CLAUDE-md-research-template.md")
     with open(tmpl_path, "w", encoding="utf-8") as f:
