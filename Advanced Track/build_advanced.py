@@ -274,6 +274,13 @@ SL_A2_BODY = """
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There are two cost shapes worth distinguishing. A flat <strong>subscription</strong> gives you a generous but bounded amount of use for a predictable monthly fee &mdash; the right model for most individual researchers. <strong>Metered API</strong> use is pay-as-you-go and can run up quickly when an agent works autonomously for an hour across a large codebase: that is real money per run, and worth watching. Either way, the honest framing from Week&nbsp;3 applies &mdash; the cost is not only the invoice. It is also tokens, time, attention, and the review effort every piece of agent output demands.</p>
 
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The practical question this raises is how to <em>not</em> be surprised by it. Two honest cautions. On a subscription your usage is generous but not unlimited &mdash; sustained agentic work can reach the cap, at which point you wait for a reset, so budget for that if a deadline is near. On metered API use the spend concentrates in <em>long autonomous runs</em>: an agent working unattended for an hour across a large project is where a bill grows, far more than a quick exchange. Helpfully, the instincts that keep you safe also keep you cheap &mdash; a tightly-scoped task in plan mode costs less than &ldquo;go work out my whole project,&rdquo; and the pre-registration gates of Lesson&nbsp;B.2 stop you pouring compute into a question that has already failed its test.</p>
+
+  <div class="info-box">
+    <h4>&#128176; The bill is not only the tokens</h4>
+    <p>Remember the burden named in the disposition shift below: every agentic result needs checking, and that review time is part of the true cost. A run that is cheap in tokens but produces an hour of plausible-but-wrong work you then have to untangle was not cheap. Scope tightly, checkpoint often, and the spend &mdash; of money <em>and</em> of attention &mdash; stays proportionate to the stakes.</p>
+  </div>
+
   <h2 class="section-title">&#127757; The Equity Tension, Named</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This course has been militantly free-tier-first, and that was a deliberate choice with an argument behind it. Week&nbsp;10 made the case that &ldquo;just pay for the Pro plan&rdquo; is not advice but an assumption that excludes most of the people the course is for. Week&nbsp;11.4 put numbers on the African compute gap. A paid-tool track sits in direct tension with all of that, and the worst thing we could do is pretend otherwise.</p>
@@ -433,6 +440,38 @@ claude</pre>
     </div>
   </div>
 
+  <h2 class="section-title">&#128274; What Leaves Your Machine</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The permissions model governs what the agent may <em>do</em> to your files. There is a second question it does not answer, and for research data it is the more important one: what <em>leaves your machine</em>? Claude Code runs in your terminal, but the model does not. When the agent reads a file, that file&#39;s contents are sent to Anthropic&#39;s API for the model to process &mdash; that is how it &ldquo;sees&rdquo; them at all. Pointing the agent at a folder is, in effect, sending that folder&#39;s contents to a third party. For a great deal of research that is completely fine. For some of it, it is the whole question.</p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; Before you point an agent at confidential data</h4>
+    <p>If your data is human-subjects data under an ethics approval, personal data under POPIA or the GDPR, or covered by an NDA or a data-use agreement, you carry an obligation that is entirely separate from how good the tool is: <strong>establish whether sending it to a third-party service is permitted at all.</strong> Your ethics clearance or data agreement may forbid external processing, require de-identification first, or demand specific contractual terms. That is yours to confirm <em>before</em> the first <code>claude</code> in that folder &mdash; not the tool&#39;s, and not an afterthought.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two things are worth keeping separate. First, the <strong>provider&#39;s data-usage terms</strong> &mdash; whether your inputs are retained or used to improve models. For Anthropic&#39;s commercial and API products the default is that they are <em>not</em> used for training; the consumer subscription plans are governed separately, and those settings have changed over time. So apply the Week&nbsp;9 habit and read the <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" target="_blank" rel="noopener">current data-usage terms for your plan</a> rather than trusting a claim a course page wrote months ago. Second, and independent of that: <strong>your own obligations</strong>. Even a provider that never trains on your data is still a third party your ethics approval may not permit you to send participant data to. The training question and the permission-to-send question are different, and you have to clear both.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In practice, a few habits keep you on the right side of this:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>State the data&#39;s status</h3>
+      <p>Put it at the very top of <code>CLAUDE.md</code> &mdash; &ldquo;real, human-subjects; do not share externally&rdquo; versus &ldquo;public; fine to process.&rdquo; It reminds you each session, and it tells the agent the stakes it is working under.</p>
+    </div>
+    <div class="card">
+      <h3>Work on extracts, not the originals</h3>
+      <p>Where you can, point the agent at de-identified, sampled, or synthetic data and keep the identifiable originals out of the working folder entirely. The agent can only transmit what it can read.</p>
+    </div>
+    <div class="card">
+      <h3>Keep secrets out of the folder</h3>
+      <p>API keys, passwords, tokens: an agent that reads a config file reads those too. Keep them in environment variables, never in the working tree, and <code>.gitignore</code> anything sensitive so it is neither read nor committed.</p>
+    </div>
+    <div class="card">
+      <h3>Mind what you commit</h3>
+      <p>Never commit participant data or credentials to a repository &mdash; especially a public one. A <code>.gitignore</code> covering <code>data/raw/</code> and any secrets stops one careless commit from becoming a permanent, published mistake.</p>
+    </div>
+  </div>
+
   <h2 class="section-title">&#128172; The Debrief</h2>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">When the inspection is done, ask the question that converts the exercise into a transferable habit:</p>
@@ -464,6 +503,17 @@ claude</pre>
   <div class="info-box">
     <h4>&#128161; This is the hinge of the whole track</h4>
     <p>Notice what just happened. Every one of those lines is a research-integrity habit this course already taught &mdash; &ldquo;do not fill the gap with a guess&rdquo; is the Week&nbsp;9 hallucination lesson; &ldquo;name which files you used&rdquo; is the Week&nbsp;5 citation lesson; &ldquo;show me the diff&rdquo; is verification. Written into <code>CLAUDE.md</code>, they stop being good intentions and become rules the agent follows every time. Lesson&nbsp;B turns this short file into the full <em>reproducibility-enforcement</em> template &mdash; the headline artefact of the track.</p>
+  </div>
+
+  <h2 class="section-title">&#129504; Sessions, Memory, and Starting Fresh</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One practical thing about how Claude Code behaves over a long task. A session has a finite <strong>context window</strong> &mdash; the amount it can hold in working memory at once. A morning&#39;s analysis can fill it, and as it fills, the agent starts to lose track of what was said early on. This sounds like a limitation, and in part it is. It is also where this track&#39;s organising principle quietly pays off.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Because <em>the chat is not the archive</em>, you are never dependent on the conversation surviving. The project state lives on disk: the <code>CLAUDE.md</code> (re-read automatically at the start of every session), the decision log, the scripts, the Git history. So you can end a bloated, drifting session and start a clean one whenever you like &mdash; quit, run <code>claude</code> again, and the new session picks the project up <em>from the files</em>, not from a transcript you have lost. A fresh session pointed at a well-kept folder is often sharper than a long one that has wandered.</p>
+
+  <div class="info-box">
+    <h4>&#128161; The corollary of &ldquo;the chat is not the archive&rdquo;</h4>
+    <p>If losing the conversation would lose your work, your work is in the wrong place. In a well-kept project folder the conversation is disposable by design: you commission the work in the chat, it lands in the files, and the next session starts fresh from those files. This is also why committing at milestones matters &mdash; a brand-new session can read the Git history and the decision log and see exactly where things stand, with no memory of the chat required.</p>
   </div>
 
   <div class="highlight-box">
