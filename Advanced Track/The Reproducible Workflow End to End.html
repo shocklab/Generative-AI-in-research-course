@@ -458,26 +458,28 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h2 class="section-title">&#128270; Verifying Agentic Work</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">When the agent runs for an hour and writes a script you did not watch line by line, verification is harder and matters more &mdash; Week&nbsp;9&#39;s protocols and Week&nbsp;10&#39;s Princeton reliability finding apply with full force. The good news is that the reproducible structure gives you the surfaces you need to check the work; the honest news is that some of the burden simply stays human.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">When the agent runs for an hour and makes a hundred changes you did not watch, the instinct is to inspect each one &mdash; to read every diff as it happens. That does not scale, and pretending it does is the fastest route to a false sense of safety. The volume <em>is</em> the problem: when so much is changing all the time, there often isn&#39;t a chance to check each change, and any carefulness that depends on watching every one will quietly fail. So the move is to take verification <em>off</em> the per-change axis. Don&#39;t try to catch every mistake as it happens; instead make mistakes survivable, encode what must stay true so a machine checks it, and verify the few things that actually matter. Week&nbsp;9&#39;s protocols and Week&nbsp;10&#39;s Princeton reliability finding still bite &mdash; the burden is real and it grows &mdash; but the response is to automate and target verification, not to watch harder.</p>
 
   <div class="card-grid">
     <div class="card">
-      <h3>Plan before consequence</h3>
-      <p>Keep plan mode in front of any step you cannot easily reverse. Approving a plan is far cheaper than unpicking a bad action, and it is the checkpoint where most errors are caught before they happen.</p>
+      <h3>1. Make mistakes recoverable</h3>
+      <p>The quiet hero. With <code>data/raw/</code> read-only, everything regenerable from raw plus scripts, and all of it under Git, any bad change can be rolled back and any output rebuilt. You are no longer reviewing to prevent disaster &mdash; disaster is structurally off the table &mdash; so you can safely <em>not</em> watch every step, and find errors later, in batch.</p>
     </div>
     <div class="card">
-      <h3>Read the diff</h3>
-      <p>Before accepting a change, look at what actually changed. The <code>CLAUDE.md</code> rule &ldquo;show me the diff before done&rdquo; exists so this is routine, not optional.</p>
+      <h3>2. Automate the checks</h3>
+      <p>Write down what must stay true &mdash; row counts didn&#39;t drop, values stay in physical range, a known sub-result still holds &mdash; and have the agent assert it after changes. A Claude Code <em>hook</em> can run your check script automatically after every edit, so a silently-dropped column trips an assertion with no diff-reading at all. You read a one-line pass or fail, not the change.</p>
     </div>
     <div class="card">
-      <h3>Use the decision log as a check</h3>
-      <p>The log is not just a record &mdash; it is a verification surface. Read the decisions back: does each one make sense, is each sourced, would you have made it? A decision that cannot be justified in the log is a decision to revisit.</p>
+      <h3>3. Verify the result, not every step</h3>
+      <p>You cannot check every edit, but you can check the end against ground truth: re-derive the one number that matters, trace a few output values back to the raw data by hand, sanity-check against what you know of the domain. A hundred edits collapse into a handful of checks on the thing you actually care about.</p>
     </div>
     <div class="card">
-      <h3>Re-run and spot-check</h3>
-      <p>Run the script yourself and confirm you get the same numbers. Trace a few output values back to the raw data by hand. An independent verification subagent (B.2) can do a first pass, but your own spot-check is the one that counts.</p>
+      <h3>4. Let the decision log choose your diffs</h3>
+      <p>You don&#39;t read every diff &mdash; you read the consequential ones. The &ldquo;log every consequential decision&rdquo; rule means the agent surfaces the handful that mattered (excluded D-03; divided the town pH by ten); those are the few worth your eyes, and the boilerplate you let go. The log is a high-signal substitute for the full diff.</p>
     </div>
   </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These layers catch different failures, and it helps to see which catches which. A <em>wrong-direction</em> failure &mdash; the agent confidently pursuing the wrong goal because it inferred the wrong intent, and taking you on a tangent for days &mdash; is invisible to any amount of diff-reading, because no single change is wrong; the <em>question</em> is wrong. That is what the pre-registration <em>gates</em> from B.2 are for: a closed gate stops the tangent early. A <em>quiet-correctness</em> failure &mdash; a dropped column, a plausible default you didn&#39;t notice &mdash; is what the automated assertions catch. And reviewing at the <em>checkpoint</em> (the commit boundary) rather than at every keystroke is how human review stays in the loop without becoming a full-time job. Verification scales when it is layered, not when it is heroic.</p>
 
   <div class="warning-box">
     <h4>&#9888;&#65039; What stays human, honestly</h4>
