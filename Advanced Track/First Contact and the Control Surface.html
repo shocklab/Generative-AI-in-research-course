@@ -429,15 +429,15 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Throughout this track we use one fictional running example: <strong>the Berg River microplastics study</strong>. A postgraduate has collected water samples at three sites &mdash; upstream of a town, in the town, and downstream &mdash; and counted microplastic particles across a sampling season. Wherever you see &ldquo;microplastic counts,&rdquo; read your own measurements; the structure is what matters, not the subject.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The starting archive is realistically messy, because real ones are. Inconsistent column names across files, two obvious data-entry errors, a confusingly named &ldquo;final-v2&rdquo; file with no v1 in sight, free-text field notes that contradict the spreadsheets in places, and a stale README referring to files that no longer exist:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The starting archive is realistically messy, because real ones are. Inconsistent column names across files, counts at one site that are quietly wrong in a way only the field notes explain, a confusingly named &ldquo;final-v2&rdquo; file with no v1 in sight, a contaminated outlier and some missing values, free-text field notes that explain anomalies the spreadsheets don&rsquo;t, and a stale README referring to files that no longer exist:</p>
 
   <pre class="code-block">berg-river-microplastics/
   data/raw/
-    site-upstream.csv          <span class="cm"># columns differ from the others</span>
-    site_town.csv              <span class="cm"># mixed date formats; two data-entry errors</span>
-    downstream-final-v2.csv    <span class="cm"># where is v1?</span>
-    sampling-metadata.xlsx     <span class="cm"># site coordinates, dates, methods</span>
-    field-notes.md             <span class="cm"># free text; contradicts the CSVs in places</span>
+    site-upstream.csv          <span class="cm"># one naming convention...</span>
+    site_town.csv              <span class="cm"># ...different columns, DD/MM/YYYY dates</span>
+    downstream-final-v2.csv    <span class="cm"># third naming; blank cells; one oddly high value; where is v1?</span>
+    sampling-metadata.csv      <span class="cm"># site coordinates, dates, methods</span>
+    field-notes.md             <span class="cm"># free text; explains anomalies the CSVs don't</span>
   literature-notes.md          <span class="cm"># half-organised reading notes</span>
   README-old.txt               <span class="cm"># stale; refers to files that are gone</span></pre>
 

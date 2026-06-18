@@ -27,42 +27,50 @@ FILES_DIR = os.path.join(ROOT, "docs", "advanced", "files")
 # Berg River messy archive contents
 # ---------------------------------------------------------------------------
 
+# Upstream: the "reference" column naming. The automated counter double-counted
+# all season, so the recorded values are ~2x the true per-litre figure. The field
+# notes say to halve them. This is the systematic trap that decides the result:
+# uncorrected, upstream looks the same as the town; halved, the town is clearly higher.
 SITE_UPSTREAM = """date,sample_id,particles_per_litre,ph,water_temp_c,notes
-2026-03-05,U-01,12,7.1,18.4,
-2026-03-05,U-02,9,7.2,18.5,
-2026-03-12,U-03,15,7.0,17.9,
-2026-03-12,U-04,11,7.1,17.8,
-2026-03-19,U-05,18,7.3,17.2,slightly turbid
-2026-03-19,U-06,14,7.2,17.1,
-2026-03-26,U-07,10,7.0,16.8,
-2026-03-26,U-08,13,7.1,16.9,
-2026-04-02,U-09,16,7.2,16.4,
-2026-04-02,U-10,12,7.1,16.5,
-2026-04-09,U-11,19,7.3,15.9,after light rain
-2026-04-09,U-12,15,7.2,16.0,
+2026-03-05,U-01,52,7.1,18.4,
+2026-03-05,U-02,62,7.2,18.5,
+2026-03-12,U-03,76,7.0,17.9,
+2026-03-12,U-04,58,7.1,17.8,
+2026-03-19,U-05,88,7.3,17.2,slightly turbid
+2026-03-19,U-06,72,7.2,17.1,
+2026-03-26,U-07,48,7.0,16.8,
+2026-03-26,U-08,66,7.1,16.9,
+2026-04-02,U-09,82,7.2,16.4,
+2026-04-02,U-10,60,7.1,16.5,
+2026-04-09,U-11,92,7.3,15.9,after light rain
+2026-04-09,U-12,70,7.2,16.0,
 """
 
-# Town site: DIFFERENT column names, DD/MM/YYYY dates, pH meter reading x10 all season.
+# Town site: DIFFERENT column names, DD/MM/YYYY dates. pH is normal here (the
+# planted issues are the upstream double-count and the downstream contamination,
+# not pH). T-07 is flagged post-storm in the field notes.
 SITE_TOWN = """Date,SampleID,MP_count_per_L,pH,temp,comment
-05/03/2026,T-01,58,71,18.9,
-05/03/2026,T-02,63,72,19.0,
-12/03/2026,T-03,71,70,18.3,
-12/03/2026,T-04,66,73,18.4,
-19/03/2026,T-05,84,72,17.7,heavy litter upstream of bridge
-19/03/2026,T-06,77,71,17.6,
-26/03/2026,T-07,90,72,17.1,sampled after storm - may be unreliable
-26/03/2026,T-08,69,70,17.2,
-02/04/2026,T-09,74,73,16.8,
-02/04/2026,T-10,81,72,16.9,
-09/04/2026,T-11,88,71,16.2,
-09/04/2026,T-12,79,72,16.3,
+05/03/2026,T-01,48,7.1,18.9,
+05/03/2026,T-02,71,7.2,19.0,
+12/03/2026,T-03,55,7.0,18.3,
+12/03/2026,T-04,66,7.3,18.4,
+19/03/2026,T-05,84,7.2,17.7,heavy litter upstream of bridge
+19/03/2026,T-06,77,7.1,17.6,
+26/03/2026,T-07,90,7.2,17.1,sampled after storm - may be unreliable
+26/03/2026,T-08,62,7.0,17.2,
+02/04/2026,T-09,74,7.3,16.8,
+02/04/2026,T-10,81,7.2,16.9,
+09/04/2026,T-11,69,7.1,16.2,
+09/04/2026,T-12,45,7.2,16.3,
 """
 
-# Downstream: third naming convention, missing values, D-03 present (but discarded per field notes).
+# Downstream: third naming convention, missing values, and D-03 a contaminated
+# outlier (count far higher than any other downstream sample) that the field
+# notes say to discard.
 SITE_DOWNSTREAM = """sampling_date,id,particles_L,pH_value,temperature,remarks
 2026-03-05,D-01,34,7.0,18.7,
 2026-03-05,D-02,29,7.1,18.8,
-2026-03-12,D-03,41,7.0,18.1,
+2026-03-12,D-03,118,7.0,18.1,
 2026-03-12,D-04,,7.1,18.2,bottle underfilled - count not taken
 2026-03-19,D-05,46,,17.5,ph probe error
 2026-03-19,D-06,38,7.2,17.4,
@@ -87,17 +95,21 @@ spreadsheets, and some of it contradicts them - read before analysing.
 
 ## Equipment
 
-- IMPORTANT: the pH meter used at the TOWN site was faulty all season and
-  reported readings ten times too high (it was outputting x10). Every town
-  pH value needs dividing by 10 to get the real figure. Upstream and
-  downstream used a different, correctly calibrated meter.
+- IMPORTANT: the automated particle counter used at the UPSTREAM site was later
+  found to have been DOUBLE-COUNTING all season - it registered each particle
+  twice. Every upstream count in the sheet is therefore about twice the true
+  figure and must be HALVED to get the real particles/L. The town and downstream
+  sites were counted manually and are not affected. (Without this correction the
+  upstream counts look almost as high as the town's, which is the whole reason
+  the fault was noticed - upstream of a town should not read like the town.)
 - The downstream temperature logger failed on 26 March (sample D-07); the
   blank in the sheet is genuine, not a transcription slip.
 
 ## Samples to treat with care
 
 - D-03 (downstream, 12 March): the sample bottle cracked in transit and was
-  contaminated. DISCARD this sample - the value in the sheet should not be
+  contaminated, which is why its count (118) is far higher than any other
+  downstream sample. DISCARD this sample - the value in the sheet should not be
   used.
 - D-04 (downstream, 12 March): bottle underfilled, particle count was not
   taken. The blank is intentional.
