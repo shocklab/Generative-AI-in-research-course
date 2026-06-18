@@ -248,6 +248,11 @@ SL_A1_BODY = GATE_BANNER + """
     <p>Chat is still the right tool for a great deal: a quick question, a brainstorm, a one-off paragraph, thinking out loud. The honest distinction is about <em>durability</em>. Reach for chat when the value is in the answer you read right now. Reach for an agent in a project folder when the value is in work that has to survive, be repeated, or be defended later. Most researchers will use both, for different things, and knowing which is which is itself a skill.</p>
   </div>
 
+  <div class="resource-placeholder">
+    <h4>&#128214; Download: the companion guide</h4>
+    <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document &mdash; the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the natural companion to these two lessons and goes further than we can here. Many of its ideas &mdash; the reproducibility framework above all &mdash; come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a></p>
+  </div>
+
   <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands &mdash; the move from <em>chatting</em> to <em>managing an agent</em>.</p>
 """
 
@@ -294,6 +299,32 @@ SL_A2_BODY = """
   </div>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">There is one more thing Week&nbsp;11.1 said that lands hardest here: two researchers using the identical tool can have wildly different experiences. The agent does not make you a good researcher. It amplifies whatever practice you bring to it. A careful researcher with strong verification habits gets a powerful collaborator; a careless one gets a faster way to produce confident nonsense. The rest of this track is, in effect, about being the first kind.</p>
+
+  <h2 class="section-title">&#129504; The Human Core: What Not to Automate</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A workflow this automated has a failure mode that matters more than any bug: it can let you produce a paper without doing the research. Everything in Lesson&nbsp;B is worth using precisely because it clears away drudgery &mdash; but the drudgery was never the research. The research is the thinking, and the thinking has to be yours. So before the structure arrives, here is the counterweight to the whole track: the work you must never hand over, however capable the agent becomes.</p>
+
+  <div class="info-box">
+    <h4>&#129302; A co-scientist, not a substitute scientist</h4>
+    <p>The agent is for the work that is <strong>mechanical</strong> (fetching, extracting, formatting), <strong>repetitive</strong> (checking fifty claims or two hundred citations), and <strong>adversarial</strong> (an honest critic that will not flatter you). It is <em>not</em> for the work that is <strong>generative, interpretive, or authorial</strong>. The moment you let it do your thinking, reading, or writing, you have stopped doing research.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>The idea is yours.</strong> Taste &mdash; noticing what is strange, what is beautiful, what is worth a year of your life &mdash; is the whole game, and it comes from immersion, conversation, teaching, and play, not from a prompt. Do not ask the agent for your research questions. Bring an idea you already care about and use the agent to <em>stress-test</em> it: surface the load-bearing assumption, find the paper that already did it, ask the awkward question.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Reading is yours.</strong> Turning a PDF into Markdown is not reading it. The argument you have <em>with</em> a paper, the marginal note, the slow accretion of a mental map of a field, the connection that fires only in your own head &mdash; that is where research understanding is actually built. An agent can put a paper in front of you in a workable form; it cannot do the reading. Read deeply, and read more than the agent summarises.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Writing is thinking</strong> &mdash; take this one most seriously of all. Writing is not the transcription of finished thoughts; it is how the thoughts get finished. Putting an argument into sentences is what exposes the gap in the logic, forces the definition you were fudging, and tells you what you actually believe. If the agent writes your draft, you skip exactly the thinking the writing was meant to do &mdash; and you end up defending prose you never reasoned your way to. So: <strong>you write the draft.</strong> The agent&rsquo;s job around your writing is to <em>critique</em> it, check its claims, and catch inconsistencies &mdash; not to produce it, and not to supply your voice.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Judgement is yours.</strong> What a surprising result <em>means</em>, whether a finding is interesting or merely true, which thread to pull next &mdash; these are judgements, and judgement does not come off a shelf. The agent can lay out the options and the evidence; the choosing is yours.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>The struggle is not a bug.</strong> Some of the friction in research &mdash; the stuck week, the fourth rewrite, the confusion that sits just before understanding &mdash; is not waste to be optimised away. It is often exactly where the understanding is forged. Automate the drudgery, by all means; be wary of automating away the productive struggle along with it.</p>
+
+  <div class="highlight-box">
+    <h3>&#129514; The acid test</h3>
+    <p>At the end, can you defend every idea, every claim, and every sentence as your own thinking? If yes, the agent helped you do research. If the agent did the thinking, you have a paper but you have not done research &mdash; and your examiners, your reviewers, and your future self will eventually find the hollow centre.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This section is drawn from the instructor&rsquo;s companion guide, <em>Claude Code as a Co-Scientist</em>, available to download at the end of Lesson&nbsp;A.1. Keep it in view as you read Lesson&nbsp;B: the structure there exists to support this thinking, never to replace it.</p>
 
   <h2 class="section-title">&#9878;&#65039; Discipline Proportionate to Stakes</h2>
 
