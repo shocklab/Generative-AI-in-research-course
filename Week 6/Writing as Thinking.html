@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6.1 - Writing as Thinking</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .card ol li {
+            padding: 4px 0;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f0fe;
+            border-left: 5px solid #003A70;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #003A70;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .case-study {
+            background: #f8fafc;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .case-study h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .step-list > li {
+            counter-increment: step-counter;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 15px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .step-list > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            background: #003A70;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table thead th {
+            background: #003A70;
+            color: #ffffff;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .comparison-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.93em;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #e8f0fe;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 10px 12px;
+            }
+        }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head>
+<body>
+    <div class="container">
+        <div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+
+        <header>
+            <div class="week-badge">Week 6 &bull; Sub-Lesson 1</div>
+            <h1>&#9997;&#65039; <span style="color: #ffffff;">Writing as Thinking</span></h1>
+            <p>Why the struggle of writing is not a problem to be solved &mdash; it is the process through which researchers develop, test, and refine their ideas</p>
+        </header>
+
+        <div class="content">
+
+            <!-- INTRO -->
+            <div class="intro-text">
+                <h2>What We'll Cover</h2>
+                <p>This week we turn from how AI changes the way you find and evaluate research (Week 5) to how it changes the way you write and communicate that research. We begin with what might be the most important idea of the entire week: writing is not just output. It is a cognitive process &mdash; a form of thinking that cannot be separated from the ideas it produces.</p>
+                <p style="margin-top: 12px;">When you struggle to put an argument into words, that struggle is not wasted effort. It is the mechanism by which you discover what you actually think, where your reasoning breaks down, and what you still need to learn. This is not a romantic notion about the craft of writing. It is a claim backed by cognitive science, and it has profound implications for how you use AI writing tools.</p>
+                <p style="margin-top: 12px;">In this session, we will examine the cognitive science behind writing-as-thinking, look at emerging research on what happens when AI disrupts this process, map out a spectrum of AI assistance from low-risk to high-risk, and connect all of this back to the virtue ethics framework you developed in Week 4. The goal is not to scare you away from AI writing tools &mdash; it is to help you use them in ways that make you a better thinker, not a better delegator.</p>
+            </div>
+
+            <!-- SECTION 1: WRITING IS THINKING -->
+            <h2 class="section-title">&#129504; Writing IS Thinking</h2>
+
+            <p>The relationship between writing and thinking is not merely correlational &mdash; it is constitutive. You do not first think clearly and then write down what you have thought. The act of writing itself forces you to clarify vague intuitions, test the logical connections between ideas, and confront gaps in your understanding that were invisible while the ideas remained in your head.</p>
+
+            <div class="technical-detail">
+                <h3>&#9881;&#65039; The Cognitive Science of Writing-as-Thinking</h3>
+                <p>Cognitive scientists have long understood that writing is not a transcription activity but a <strong>knowledge-transforming</strong> activity. When you write, you are forced to linearise thoughts that exist as messy, interconnected webs in your mind. This linearisation process &mdash; choosing what comes first, what follows, what supports what &mdash; is itself a form of reasoning. You cannot organise an argument on paper without first organising it in your mind, and the attempt to organise it on paper frequently reveals that your mental organisation was less coherent than you believed.</p>
+                <p style="margin-top: 12px;">Writing also imposes a form of self-explanation. When you write for a reader (even an imagined one), you must make explicit the assumptions, definitions, and logical steps that you take for granted in internal thought. This externalisation is where many of the deepest insights occur. A researcher who says "I knew this, but I only really understood it when I had to write it down" is describing a genuine cognitive phenomenon, not a figure of speech.</p>
+                <p style="margin-top: 12px;">The implication is significant: <strong>if you skip the writing, you skip the thinking.</strong> A perfectly polished paragraph produced by AI may communicate an idea effectively to a reader, but it has not put you through the cognitive process that would have deepened your own understanding of that idea. The product looks the same; the intellectual development is entirely absent.</p>
+            </div>
+
+            <p>Recent research has begun to quantify what happens when AI disrupts this cognitive process. The findings are sobering.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>&#129504; Reduced Cognitive Engagement</h3>
+                    <p>A 2025 article in the <a href="https://news.harvard.edu/gazette/story/2025/11/is-ai-dulling-our-minds/" target="_blank" rel="noopener">Harvard Gazette</a> reported on research exploring whether AI use is associated with reduced cognitive effort. The concern is that when AI handles the heavy lifting of formulating ideas into prose, users engage in less deep processing &mdash; the kind of effortful thinking that leads to genuine understanding and long-term retention. The question the researchers raise is direct: is AI making us intellectually lazier?</p>
+                </div>
+                <div class="card">
+                    <h3>&#128200; Brain Activity and ChatGPT</h3>
+                    <p>Researchers at the <a href="https://www.media.mit.edu/projects/your-brain-on-chatgpt/overview/" target="_blank" rel="noopener">MIT Media Lab</a> conducted a study (<a href="https://arxiv.org/abs/2506.08872" target="_blank" rel="noopener">Kosmyna et al., "Your Brain on ChatGPT"</a>) measuring neural activity in participants while they used ChatGPT for writing tasks. The study found that ChatGPT users showed the lowest levels of brain engagement compared to control groups, with reduced alpha and beta connectivity indicating under-engagement. The sample size was relatively small (54 participants) and the findings should be interpreted with appropriate caution. But they align with the broader theoretical concern: offloading the cognitive work of writing to AI may reduce the depth of thinking that writers engage in.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <strong>&#128161; The key insight:</strong> The struggle of writing is not a bug &mdash; it is the feature. When you stare at a blank page and wrestle with how to express a complex idea, that discomfort is the feeling of your mind doing its most demanding work. The difficulty IS the learning. If writing feels easy, you are probably not pushing yourself intellectually. And if AI makes writing feel effortless, you should ask what cognitive work you are no longer doing.
+            </div>
+
+            <!-- SECTION 2: THE COGNITIVE DISSONANCE -->
+            <h2 class="section-title">&#128107; The Cognitive Dissonance</h2>
+
+            <p>Beyond the question of reduced thinking, researchers are documenting a specific psychological tension that emerges when students and academics use AI for writing &mdash; a form of cognitive dissonance that goes to the heart of scholarly identity.</p>
+
+            <div class="case-study">
+                <h3>&#128240; The Dissonance Between "Sounds Better" and "Sounds Like Me"</h3>
+                <p>A 2025 study published in <a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1573368/full" target="_blank" rel="noopener">Frontiers in AI</a> conducted a conceptual exploration of what the authors call "generative AI-induced cognitive dissonance" in university-level academic writing. The researchers identified a specific tension: students recognise that AI-generated text often sounds more polished and professional than their own writing, yet they also feel that this text does not represent their thinking, their voice, or their intellectual development.</p>
+                <p style="margin-top: 12px;">This is not a trivial discomfort. For researchers, your writing voice is inseparable from your intellectual identity. The way you frame a problem, the analogies you reach for, the hedging language you use &mdash; these reflect how you think, not just what you think. When AI produces text that is technically superior but intellectually hollow (from your perspective), you are faced with an uncomfortable choice: submit something that sounds better but is not yours, or submit something that sounds worse but represents genuine intellectual engagement.</p>
+                <p style="margin-top: 12px;">The study argues that this dissonance, if unresolved, can lead researchers to gradually cede more writing to AI &mdash; not because they believe it produces better scholarship, but because the polished output creates social pressure to match that standard, even at the cost of genuine engagement with ideas.</p>
+            </div>
+
+            <h3 style="color: #003A70; margin-top: 30px; margin-bottom: 15px;">The First Draft Trap</h3>
+
+            <p>One of the most common uses of AI in academic writing is generating a first draft. On the surface, this seems efficient: let AI produce a rough version, then edit it into shape. But there is a fundamental problem with this approach that goes beyond questions of originality.</p>
+
+            <ul class="styled-list">
+                <li><strong>Writing a first draft is generative; editing is reactive.</strong> When you write your own first draft, you are generating ideas, testing structures, making choices about what to include and exclude. When you edit AI-generated text, you are reacting to someone else's choices &mdash; accepting, rejecting, or modifying a framework that is not yours.</li>
+                <li><strong>AI's draft shapes your thinking, not the reverse.</strong> Once you have read an AI-generated draft, you cannot un-read it. The structure it chose, the arguments it emphasised, the examples it selected &mdash; these become the frame through which you view the topic. Your "editing" is now constrained by the AI's initial choices, even when you disagree with them.</li>
+                <li><strong>The hardest and most valuable part of writing is the beginning.</strong> Deciding what to say, how to organise it, what the central argument is &mdash; these are the decisions that reflect the deepest thinking. If AI makes these decisions for you, the subsequent editing, no matter how thorough, cannot recover the intellectual work that was skipped.</li>
+                <li><strong>Editing AI prose trains a different skill than writing.</strong> Becoming an excellent editor of AI-generated text is a useful ability, but it is not the same as becoming an excellent thinker and writer. The two skills develop different cognitive capacities, and a researcher who can only edit &mdash; but not generate from scratch &mdash; is missing a fundamental intellectual capability.</li>
+            </ul>
+
+            <h3 style="color: #003A70; margin-top: 30px; margin-bottom: 15px;">The Dependency Risk</h3>
+
+            <p>A 2025 synthesis published in <a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1711718/full" target="_blank" rel="noopener">Frontiers in Education</a> reviewed recent evidence (2023&ndash;2025) on the impact of generative AI on academic reading and writing. Among the patterns identified was a concerning trend toward student dependency on AI outputs, coupled with surface-level engagement with the material. Students who regularly use AI for writing tasks showed reduced willingness to engage in the kind of deep, sustained, often uncomfortable cognitive work that characterises genuine academic inquiry.</p>
+
+            <div class="warning-box">
+                <strong>&#9888;&#65039; The dependency spiral:</strong> The more you use AI for writing, the less practice you get at the cognitive work of writing. The less practice you get, the harder writing feels. The harder writing feels, the more tempting it is to use AI. This is not a slippery slope argument &mdash; it is a well-established pattern in skill development. Skills that are not practised atrophy. The question is not whether you <em>can</em> use AI to write. The question is what cognitive capacities you lose when you do.
+            </div>
+
+            <!-- SECTION 3: SPECTRUM OF AI ASSISTANCE -->
+            <h2 class="section-title">&#128208; A Spectrum of AI Assistance</h2>
+
+            <p>Not all uses of AI in writing are equal. There is a meaningful difference between using AI to fix your typos and using AI to generate your arguments. The following spectrum maps out different levels of AI assistance, from genuinely helpful to genuinely harmful to your development as a researcher.</p>
+
+            <div class="card-grid">
+                <div class="card" style="border-left: 5px solid #4caf50;">
+                    <h3>&#9989; Proofreading and Grammar</h3>
+                    <p style="color: #4caf50; font-weight: 700; margin-bottom: 8px;">Low Risk</p>
+                    <p>Fixing typos, correcting grammar, adjusting punctuation. You have done all the thinking &mdash; the argument is yours, the structure is yours, the voice is yours. AI polishes the surface without touching the substance. This is the equivalent of a spell-checker, and there is no meaningful cognitive cost. Your ideas remain entirely your own; AI simply ensures they are presented without distracting mechanical errors.</p>
+                </div>
+                <div class="card" style="border-left: 5px solid #8bc34a;">
+                    <h3>&#128221; Language Enhancement</h3>
+                    <p style="color: #689f38; font-weight: 700; margin-bottom: 8px;">Low&ndash;Medium Risk</p>
+                    <p>Improving clarity, smoothing flow, refining word choice. The ideas and structure remain yours, but AI helps you communicate them more effectively. This is particularly valuable for non-native English speakers (which we will explore in Sub-Lesson 3). The risk is modest: you might lose some of your distinctive voice, and you might not develop your own instincts for clear prose. But the core intellectual work &mdash; the thinking &mdash; is still yours.</p>
+                </div>
+                <div class="card" style="border-left: 5px solid #ff9800;">
+                    <h3>&#128296; Restructuring</h3>
+                    <p style="color: #e65100; font-weight: 700; margin-bottom: 8px;">Medium Risk</p>
+                    <p>AI suggests a better organisation for your arguments. The content is still yours, but AI is now shaping <em>how</em> your arguments are presented &mdash; what comes first, how sections relate, where emphasis falls. Structure is not neutral: the order in which you present ideas affects how a reader (and you) understand the relationships between them. When AI restructures your writing, it is making argumentative choices on your behalf, even if you approve them afterward.</p>
+                </div>
+                <div class="card" style="border-left: 5px solid #f44336;">
+                    <h3>&#128165; Generating Arguments</h3>
+                    <p style="color: #d32f2f; font-weight: 700; margin-bottom: 8px;">High Risk</p>
+                    <p>AI produces the reasoning &mdash; the claims, the evidence selection, the logical connections. This is where the line between assistance and substitution becomes dangerously blurry. If AI generates an argument, whose argument is it? Can you defend it under questioning? Do you understand why this particular evidence supports this particular claim, or are you trusting that the AI got it right? If you cannot articulate the reasoning without looking at what the AI wrote, the argument is not yours.</p>
+                </div>
+                <div class="card" style="border-left: 5px solid #b71c1c;">
+                    <h3>&#128683; Generating Entire Sections</h3>
+                    <p style="color: #b71c1c; font-weight: 700; margin-bottom: 8px;">Very High Risk</p>
+                    <p>AI writes substantial portions of your work &mdash; paragraphs, sections, or entire chapters. This is not assistance. This is substitution. The AI has done the thinking, made the structural choices, selected the evidence, and crafted the prose. Your role has been reduced from author to editor-of-someone-else's-work, and the "someone else" is a statistical model that does not understand the content it has produced. You are submitting work that you did not intellectually engage with in any meaningful way.</p>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>&#128161; Where is the line?</strong> There is no universal answer to where acceptable assistance ends and problematic substitution begins. Different institutions, journals, and supervisors draw the line differently. What matters is that you are honest with yourself about which side of the line you are on. Ask yourself: if my supervisor asked me to explain every choice in this paragraph &mdash; why this structure, why this evidence, why this phrasing &mdash; could I do it from my own understanding? If the answer is no, AI has done too much.
+            </div>
+
+            <!-- SECTION 4: WHEN AI WRITING ASSISTANCE GENUINELY HELPS -->
+            <h2 class="section-title">&#128077; When AI Writing Assistance Genuinely Helps</h2>
+
+            <p>The point of this session is not to argue that AI should never be used for writing. There are genuine cases where AI writing assistance can help researchers produce better work without sacrificing the cognitive benefits of the writing process. The key is to use AI in ways that support your thinking rather than replace it.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>&#128172; Overcoming Writer's Block</h3>
+                    <p>Sometimes the hardest part of writing is starting. When you are staring at a blank page, paralysed by the gap between the complexity in your head and the empty document in front of you, AI can serve as a conversation partner. Not to write for you, but to help you think out loud. Explain your ideas to Claude as if to a colleague. Ask it to push back, to ask clarifying questions, to identify where your reasoning is unclear. Use AI as a thinking tool &mdash; a way to externalise your thoughts &mdash; and then write the actual text yourself.</p>
+                </div>
+                <div class="card">
+                    <h3>&#127760; Language Polishing for Non-Native Speakers</h3>
+                    <p>If English is not your first language (we will explore this in depth in Sub-Lesson 3), AI can help you express ideas that are already fully formed in your mind but difficult to articulate in academic English. This is one of the strongest legitimate use cases: you have done the thinking, you know what you want to say, and AI helps you say it in a language that is not your own. The intellectual work remains entirely yours; the linguistic barrier is lowered.</p>
+                </div>
+                <div class="card">
+                    <h3>&#128221; Summarising Your Own Work</h3>
+                    <p>You have written a 10,000-word thesis chapter and need a 200-word abstract. You have produced a technical paper and need a plain-language summary for a public audience. These are translation tasks &mdash; expressing the same ideas at different levels of detail or for different audiences. AI can be genuinely useful here because the ideas are already yours; you are not generating new thinking, you are reformatting existing thinking.</p>
+                </div>
+                <div class="card">
+                    <h3>&#128269; Getting Feedback on Clarity</h3>
+                    <p>After you have written a draft yourself, asking AI to identify passages that are unclear, arguments that seem unsupported, or transitions that feel abrupt can be valuable feedback. This is analogous to asking a colleague to read your draft &mdash; the thinking and writing are yours, and AI provides a reader's perspective on how effectively you have communicated. The critical difference: you wrote the draft first. The thinking happened. AI responds to your work, rather than generating it.</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <strong>&#9888;&#65039; Even in these legitimate cases:</strong> You must remain the thinker, not just the editor. Every use case above assumes that you have done the intellectual work first and that AI is supporting the communication of ideas you already understand. The moment AI starts making decisions about what your argument should be, which evidence to use, or how to structure your reasoning, you have crossed from assistance to substitution &mdash; regardless of how you frame it to yourself.
+            </div>
+
+            <!-- SECTION 5: CONNECTION TO VIRTUE ETHICS -->
+            <h2 class="section-title">&#128218; Connection to Virtue Ethics</h2>
+
+            <p>In Week 4, we explored multiple ethical frameworks for thinking about AI in research. One of the most relevant to this week's topic is virtue ethics &mdash; the framework that asks not "what should I do?" but "what kind of person am I becoming?"</p>
+
+            <div class="highlight-box">
+                <strong>&#129504; What kind of researcher are you becoming?</strong> Virtue ethics invites us to consider not just the immediate outcome (a polished essay, a well-structured thesis chapter) but the long-term effect on our character and capabilities. If AI does your thinking-through-writing, you are not developing the intellectual muscles that define expertise. You may produce better output in the short term, but you are becoming a weaker thinker in the long term. Expertise is not just knowing things &mdash; it is the capacity to reason through complexity, to synthesise disparate ideas, to construct arguments that hold up under scrutiny. These capacities are developed through practice, and writing is one of the primary forms of that practice.
+            </div>
+
+            <ul class="styled-list">
+                <li><strong>Efficiency versus avoidance.</strong> There is a meaningful difference between using AI to be more efficient (doing the same cognitive work in less time) and using AI to avoid cognitive work entirely. Proofreading is efficiency. Generating your arguments is avoidance. The virtue ethics lens helps you see this distinction clearly: efficiency preserves your development as a thinker; avoidance undermines it.</li>
+                <li><strong>The compound effect.</strong> One AI-generated paragraph seems harmless. But over the course of a degree &mdash; hundreds of paragraphs, dozens of assignments, years of practice &mdash; the cumulative effect of skipping the cognitive work of writing is significant. A researcher who has spent three years editing AI output has developed fundamentally different capacities than one who has spent three years wrestling with their own prose. The difference may not be visible in any single submission, but it will be visible in the researcher they each become.</li>
+                <li><strong>Intellectual honesty.</strong> Virtue ethics also asks about honesty &mdash; not just whether you have violated a rule, but whether you are being honest with yourself about what you are doing and why. Using AI to generate content and then telling yourself you are "just using it as a starting point" is a form of self-deception if the truth is that AI did the thinking and you did the polishing. Being honest about what role AI played is a virtue that protects your own development.</li>
+                <li><strong>The ubuntu dimension.</strong> Recall from Week 4 that ubuntu ethics emphasises relational accountability. Your intellectual development does not only affect you. When you present AI-generated thinking as your own in a seminar, a peer review, or a collaboration, you are affecting the intellectual community around you. Your colleagues are engaging with ideas they believe represent your genuine understanding. If those ideas are AI-generated, the relational trust that scholarship depends on is undermined.</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>&#128161; A practical test from virtue ethics:</strong> Before submitting any piece of writing, ask yourself: "If my supervisor sat me down and asked me to explain every claim, every structural choice, and every piece of evidence in this work &mdash; from memory, without looking at the text &mdash; could I do it?" If the answer is yes, AI has been a tool in service of your thinking. If the answer is no, AI has replaced your thinking. The virtue ethics framework says: the first makes you a better researcher; the second makes you a weaker one.
+            </div>
+
+            <!-- SECTION 6: READINGS -->
+            <h2 class="section-title">&#128218; Readings</h2>
+
+            <h3 style="color: #003A70; margin-top: 20px; margin-bottom: 15px;">Core Readings</h3>
+
+            <div class="resource-placeholder">
+                <h4>&#128240; Harvard Gazette (2025): "Is AI dulling our minds?"</h4>
+                <p>Explores research on the cognitive effects of AI use, including concerns about reduced deep thinking and intellectual engagement when AI handles cognitively demanding tasks. A broad, accessible introduction to the central concern of this session.</p>
+                <p style="margin-top: 8px;"><a href="https://news.harvard.edu/gazette/story/2025/11/is-ai-dulling-our-minds/" target="_blank" rel="noopener">Read the article &rarr;</a></p>
+            </div>
+
+            <div class="resource-placeholder">
+                <h4>&#128240; Frontiers in AI (2025): "A conceptual exploration of generative AI-induced cognitive dissonance and its emergence in university-level academic writing"</h4>
+                <p>A peer-reviewed study examining the psychological tension students experience when AI-generated text sounds more polished than their own writing but does not represent their thinking. Introduces the concept of cognitive dissonance in the AI writing context and explores its implications for academic identity and intellectual development.</p>
+                <p style="margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1573368/full" target="_blank" rel="noopener">Read the full paper &rarr;</a></p>
+            </div>
+
+            <div class="resource-placeholder">
+                <h4>&#128240; Frontiers in Education (2025): "The impact of generative AI on academic reading and writing: a synthesis of recent evidence (2023&ndash;2025)"</h4>
+                <p>A synthesis of recent research evidence on how generative AI is changing academic reading and writing practices. Identifies patterns including student dependency on AI outputs, surface-level engagement, and the tension between productivity gains and learning losses. Essential reading for understanding the landscape of current evidence.</p>
+                <p style="margin-top: 8px;"><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1711718/full" target="_blank" rel="noopener">Read the full paper &rarr;</a></p>
+            </div>
+
+            <h3 style="color: #003A70; margin-top: 30px; margin-bottom: 15px;">Supplementary Readings</h3>
+
+            <div class="resource-placeholder">
+                <h4>&#128214; Psychology Today (2025): "How AI Impacts Academic Thinking, Writing and Learning"</h4>
+                <p>An accessible overview of the intersection between AI tools and cognitive processes in academic settings. Discusses how reliance on AI for writing tasks may affect the development of critical thinking and independent reasoning skills.</p>
+                <p style="margin-top: 8px;"><a href="https://www.psychologytoday.com/us/blog/in-one-lifespan/202509/how-ai-impacts-academic-thinking-writing-and-learning" target="_blank" rel="noopener">Read the article &rarr;</a></p>
+            </div>
+
+            <div class="resource-placeholder">
+                <h4>&#128214; Holmner et al. (2025): "The Future of Academic Writing in the Age of Generative AI"</h4>
+                <p>Published in the Proceedings of the Association for Information Science and Technology (ASIS&amp;T), this paper examines how generative AI is reshaping the landscape of academic writing and what this means for the future of scholarly communication.</p>
+                <p style="margin-top: 8px;"><a href="https://asistdl.onlinelibrary.wiley.com/doi/abs/10.1002/pra2.1374" target="_blank" rel="noopener">Read the paper &rarr;</a></p>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="intro-text" style="margin-top: 50px;">
+                <h2>Key Takeaways</h2>
+                <ul class="styled-list">
+                    <li><strong>Writing is a cognitive process, not just a communication tool.</strong> The act of writing forces you to clarify, structure, and test your ideas in ways that thinking alone does not. When you skip the writing, you skip a critical form of intellectual development.</li>
+                    <li><strong>AI creates a real cognitive dissonance for academic writers.</strong> Students and researchers feel torn between text that sounds polished (AI) and text that represents their actual thinking (their own). This tension, if unresolved, can push writers toward dependency rather than development.</li>
+                    <li><strong>The "first draft trap" is real.</strong> If AI writes your first draft, you edit rather than think. Editing someone else's prose &mdash; even AI prose &mdash; is fundamentally different from generating your own. The hardest and most valuable cognitive work happens at the beginning, not during the polish.</li>
+                    <li><strong>AI writing assistance exists on a spectrum.</strong> Proofreading is low risk. Language enhancement is modest risk. Restructuring starts to encroach on your thinking. Generating arguments is high risk. Generating entire sections is substitution, not assistance.</li>
+                    <li><strong>Even legitimate uses require you to remain the thinker.</strong> Overcoming writer's block, polishing non-native language, summarising your own work, and getting feedback on clarity are all valid uses &mdash; but only if you have done the intellectual work first.</li>
+                    <li><strong>Virtue ethics asks: what kind of researcher are you becoming?</strong> The cumulative effect of offloading cognitive work to AI shapes not just your output but your intellectual capacities. Efficiency is not the same as avoidance. The researcher you become in three years depends on the cognitive work you do (or do not do) today.</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <strong>&#128073; Up next:</strong> Sub-Lesson 2 &mdash; <strong>Research Ideation with AI</strong>. We move from writing to the earlier stages of the research process: using AI to brainstorm research questions, explore conceptual connections, and develop your ideas. How can AI genuinely help you think &mdash; without thinking for you?
+                </div>
+            </div>
+
+        </div>
+    
+
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+
+</body>
+</html>

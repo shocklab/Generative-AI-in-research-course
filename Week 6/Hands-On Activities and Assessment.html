@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6.6 - Hands-On Activities &amp; Assessment</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+    .ai-notice strong {
+        font-weight: 600;
+    }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+    .content {
+        padding: 50px 40px;
+    }
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .intro-text h2::before {
+        content: '&#127919;';
+    }
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+    .styled-list li::before {
+        content: '&#9656;';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+    .resource-placeholder p {
+        color: #666;
+    }
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .decision-framework {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 3px solid #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+    }
+    .decision-framework h4 {
+        color: #003A70;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    .decision-framework p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+    .step-list {
+        list-style: none;
+        counter-reset: steps;
+        margin: 20px 0;
+    }
+    .step-list > li {
+        counter-increment: steps;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-radius: 12px;
+    }
+    .step-list > li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 22px;
+        width: 35px;
+        height: 35px;
+        background: #003A70;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    .tool-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+    .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .tool-card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .tool-card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+        .comparison-table {
+            font-size: 0.85em;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 6 • Sub-Lesson 6</div>
+<h1>&#129514; <span style="color: #ffffff;">Hands-On: Activities &amp; Assessment</span></h1>
+<p>Putting it all together — experimenting with writing processes, prompt engineering for ideation, auditing AI output, and your weekly assessment</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>This final session of Week 6 is entirely practical. You will work through three activities that build on everything we have covered this week about AI-assisted writing, and we will introduce the weekly assessment. The activities are designed to make the differences between human writing and AI writing viscerally clear, to give you hands-on experience with structured prompting for research ideation, and to develop the auditing habits that protect your academic integrity.</p>
+<p>By the end of this session, you will have first-hand evidence of how AI changes the writing process, a repertoire of prompting strategies for generating research ideas, and a practised workflow for auditing AI-assisted text before it enters your work.</p>
+</div>
+
+<!-- ACTIVITY 1: THE WRITING PROCESS EXPERIMENT -->
+<h2 class="section-title">&#9997;&#65039; Activity 1: The Writing Process Experiment</h2>
+<div class="decision-framework">
+<h4>Objective</h4>
+<p>Experience the difference between writing and editing AI text first-hand. This is the most important exercise of the week because it makes the abstract debate about AI writing concrete and personal. You will discover something about your own writing process that no amount of reading about it can teach you.</p>
+
+<h4 style="margin-top: 25px;">Setup</h4>
+<ol class="step-list">
+<li><strong>Choose a topic</strong> related to your research. It can be the same topic you used for Week 5 activities, or a different one. The topic should be something you know well enough to write about without consulting sources.</li>
+<li><strong>Write a 300-word argument</strong> on that topic entirely by yourself. No AI. No templates. Set a timer — you have 20 minutes. Write in whatever way feels natural to you, but aim for an argument with a clear position, not just a description of the topic.</li>
+<li><strong>Now ask AI</strong> (ChatGPT, Claude, or Gemini) to write a 300-word argument on the same topic. Give it the same brief you gave yourself — same topic, same word count, same instruction to take a clear position.</li>
+<li><strong>Compare the two versions side by side.</strong> Print them out or place them in adjacent windows. Read each one carefully, then work through the reflection questions below.</li>
+</ol>
+
+<h4 style="margin-top: 25px;">What to Record</h4>
+<ul class="styled-list">
+<li>Which version is more polished — smoother sentences, better transitions, fewer grammatical issues?</li>
+<li>Which version is more "you" — reflecting your actual thinking, your perspective, and the way you naturally express ideas?</li>
+<li>Which version do you understand better and could defend more confidently if questioned at a seminar?</li>
+<li>Which version contains ideas you hadn't considered? Did the AI introduce any genuinely new angles?</li>
+<li>If you had to present one version at a seminar, which would you choose? Why?</li>
+</ul>
+
+<div class="info-box" style="margin-top: 20px;">
+<h4>&#128172; Discussion</h4>
+<p>This exercise usually reveals that AI text is smoother but shallower. Your own text may be rougher but reflects genuine understanding. The AI version often reads like a well-constructed essay that could have been written about almost any topic — competent but generic. Your version, even if it has awkward sentences or incomplete thoughts, typically contains something the AI cannot replicate: the specific insights that come from actually working in your field. This is the difference between writing-as-thinking and writing-as-performance.</p>
+</div>
+</div>
+
+<!-- ACTIVITY 2: PROMPT ENGINEERING FOR IDEATION -->
+<h2 class="section-title">&#128161; Activity 2: Prompt Engineering for Ideation</h2>
+<div class="case-study">
+<h4>Objective</h4>
+<p style="color: #555; line-height: 1.7;">Practice structured prompting for research ideation and observe how different strategies produce different results. A <a href="https://arxiv.org/abs/2409.04109" target="_blank" rel="noopener">2024 study by Si et al.</a> found that LLM-generated research ideas were rated as significantly more novel than human expert ideas, though with suggestive (but not statistically significant) evidence of weaker feasibility, and notably less diversity across ideas. This exercise lets you test those findings against your own field.</p>
+
+<h4 style="margin-top: 25px;">Setup</h4>
+<ol class="step-list">
+<li><strong>Choose a broad research area</strong> from your field. It should be broad enough that there are many possible research questions within it, but specific enough to be meaningful (e.g., "machine learning in healthcare" rather than just "AI").</li>
+<li><strong>Round 1 — Naive prompt:</strong> Ask AI: <em>"Generate 10 research ideas about [your area]."</em> Record all 10 ideas exactly as the AI produces them. Do not refine or follow up — this is your baseline.</li>
+<li><strong>Round 2 — Chain-of-thought:</strong> Ask AI: <em>"Think step by step about what gaps exist in current research on [your area], then generate 10 research ideas that address those gaps."</em> Record all 10 ideas.</li>
+<li><strong>Round 3 — Persona-based:</strong> Ask AI: <em>"You are a [specific expert type] with 20 years of experience in [adjacent field]. What research questions about [your area] would you find most interesting and worth investigating?"</em> Record the response.
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">Choose a persona from a field adjacent to yours, not your own field — this is what makes the cross-pollination interesting</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">For example, if you study ecology, try a data scientist persona; if you study education, try a behavioural economist</li>
+</ul>
+</li>
+<li><strong>Round 4 — Constraint-based:</strong> Ask AI: <em>"Generate 10 research ideas about [your area] that do NOT involve [the most obvious approach in your field]. Focus on underexplored methodologies or populations."</em> Record all 10 ideas.
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">The constraint should exclude whatever the default or dominant methodology is in your area</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">For example: "that do NOT involve surveys" or "that do NOT use regression analysis" or "that do NOT focus on WEIRD populations"</li>
+</ul>
+</li>
+</ol>
+
+<h4 style="margin-top: 25px;">What to Record</h4>
+<ul class="styled-list">
+<li>How did the ideas change across the 4 rounds? Was there a clear progression in quality or originality?</li>
+<li>Which round produced the most surprising or novel ideas — ones you genuinely had not considered before?</li>
+<li>Which round produced the most feasible ideas — ones that could realistically be pursued with available resources?</li>
+<li>Did you notice repetition or convergence across rounds? Did the AI keep returning to the same themes regardless of the prompt?</li>
+<li><strong>Select your top 3 ideas from ALL rounds combined</strong> and justify your selection. What makes these three stand out?</li>
+</ul>
+</div>
+
+<!-- ACTIVITY 3: THE AUDIT EXERCISE -->
+<h2 class="section-title">&#128269; Activity 3: The Audit Exercise</h2>
+<div class="case-study">
+<h4>Objective</h4>
+<p style="color: #555; line-height: 1.7;">Practice auditing AI-assisted writing for accuracy, voice, and integrity. This exercise takes the audit techniques from Sub-Lesson 4 and applies them to a real piece of AI-generated text. The goal is to build muscle memory for the kind of critical reading that should become automatic whenever you work with AI-generated content.</p>
+
+<h4 style="margin-top: 25px;">Setup</h4>
+<ol class="step-list">
+<li><strong>Take the AI-generated 300 words from Activity 1</strong> (or, if you skipped Activity 1, ask AI to write 300 words arguing a position on a topic in your field).</li>
+<li><strong>Apply each audit technique</strong> from Sub-Lesson 4 systematically. Work through them one at a time — do not skip any, even if you think the text looks fine.</li>
+<li><strong>Read aloud</strong> — read the entire text out loud, slowly. Mark any sentences that don't sound natural or like something you would say. Pay attention to where you stumble, where the rhythm feels wrong, and where the language feels too generic or too formal for how you actually communicate.</li>
+<li><strong>The "explain this paragraph" test</strong> — cover the AI text and, for each paragraph, explain the argument from memory in your own words. If you cannot do this fluently, you do not fully understand or own that paragraph's argument.</li>
+<li><strong>Check every factual claim</strong> — identify every statement that makes a factual assertion (statistics, dates, claims about research findings, cause-and-effect statements). Verify each one against a reliable source. Note which claims are accurate, which are vague, and which are wrong.</li>
+<li><strong>Internal consistency</strong> — read the text as a whole. Does the argument hold together logically from start to finish? Are there contradictions? Does the conclusion actually follow from the evidence presented? Does each paragraph connect to the next?</li>
+</ol>
+
+<h4 style="margin-top: 25px;">What to Record</h4>
+<ul class="styled-list">
+<li>How many sentences did you flag when reading aloud? What patterns did you notice in the flagged sentences?</li>
+<li>Could you explain every paragraph without looking? Which paragraphs were hardest to recall and why?</li>
+<li>How many factual claims needed correction? Were the errors subtle or obvious?</li>
+<li>What would you change to make this text genuinely yours — not just corrected, but authentically representing your thinking and voice?</li>
+</ul>
+</div>
+
+<!-- WEEKLY ASSESSMENT -->
+<h2 class="section-title">&#128221; Weekly Assessment</h2>
+<div class="decision-framework">
+<h4>AI-Assisted Writing Sample (800 words)</h4>
+<p>This week's assessment asks you to write a substantial piece of academic text using AI tools, then document and reflect on the process with complete transparency. The assessment is designed to test not just the quality of the writing, but the quality of your engagement with the tools — how thoughtfully you integrated AI into your process, and how critically you evaluated its contributions.</p>
+
+<h4 style="margin-top: 25px;">Requirements</h4>
+<ol class="step-list">
+<li><strong>Choose a section</strong> of your research project to write: introduction, literature review, methods, or discussion. It should be a section where AI assistance is potentially useful. If you do not yet have a defined research project, choose a topic from your field and write the section as if it were part of a real paper.</li>
+<li><strong>Write the section (800 words)</strong> using AI tools as you see fit. You may use any combination of tools and strategies from this week — ChatGPT, Claude, Gemini, or any other AI writing tool. You may use AI for brainstorming, drafting, editing, restructuring, or any other purpose. There are no restrictions on how much or how little AI you use, but you must document everything honestly.</li>
+<li><strong>Include a Process Log (minimum 200 words, does not count toward 800):</strong> Document exactly how AI contributed at each stage of your writing process. What prompts did you use? What did the AI produce? What did you accept, modify, or reject? Where did you write without AI assistance? Be specific — include the actual prompts you used and describe the AI's responses.
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">Think of this as a lab notebook for your writing process</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">Vague statements like "I used AI for editing" are not sufficient — describe what you asked, what it suggested, and what you did with those suggestions</li>
+</ul>
+</li>
+<li><strong>Include a Self-Audit (minimum 200 words, does not count toward 800):</strong> Identify at least 3 specific places where you corrected, overrode, or rejected AI suggestions. For each one, explain why you made that decision. What was wrong with the AI's suggestion? What did you replace it with and why?
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">Use the audit techniques from Sub-Lesson 4 and Activity 3</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">If you cannot find 3 places to correct or override, that itself is worth reflecting on — did you engage critically enough with the AI output?</li>
+</ul>
+</li>
+<li><strong>Include a Disclosure Statement</strong> as you would for a journal submission — use one of the templates from Sub-Lesson 5, adapted to describe your actual use of AI in producing this piece. The statement should be specific enough that a reader could understand exactly what role AI played in your writing.</li>
+</ol>
+</div>
+
+<p style="font-size: 1.1em; color: #555; margin: 30px 0 15px;"><strong>Assessment Criteria:</strong></p>
+<div class="card-grid">
+<div class="card">
+<h3>Writing Quality (30%)</h3>
+<p>Coherent argument, appropriate academic voice, evidence of genuine understanding. Does it sound like a researcher who knows their field? We are looking for depth of thought, not just polish. A beautifully written piece that says nothing substantive will score lower than a rougher piece with genuine insight.</p>
+</div>
+<div class="card">
+<h3>Process Log (25%)</h3>
+<p>Honest, detailed documentation of AI use. Shows thoughtful integration rather than wholesale delegation. The best process logs reveal a researcher who used AI strategically — knowing when to lean on it and when to step back and think independently.</p>
+</div>
+<div class="card">
+<h3>Self-Audit (25%)</h3>
+<p>Evidence of critical engagement with AI output. Quality of reasoning about what to accept and reject. We want to see that you can identify weaknesses in AI-generated text and articulate why your judgement is better than the AI's in specific instances.</p>
+</div>
+<div class="card">
+<h3>Disclosure Statement (20%)</h3>
+<p>Appropriate, honest, and specific. Would this satisfy a journal's requirements? A good disclosure statement is neither defensive nor dismissive — it simply and clearly describes what happened, following the frameworks covered in Sub-Lesson 5.</p>
+</div>
+</div>
+
+<div class="info-box">
+<h4>&#128228; Submission</h4>
+<p><strong>Upload to Amathuba by the deadline indicated on the activity.</strong> Include the process log, self-audit, and disclosure statement as clearly marked sections within your submission. The process log and self-audit do not count toward the 800-word limit for the writing sample itself.</p>
+</div>
+
+<!-- WEEK 6 SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2 style="display: flex; align-items: center; gap: 10px;">Week 6 Summary &amp; Key Takeaways</h2>
+<ul class="styled-list">
+<li><strong>Writing is thinking</strong> — outsourcing the writing process to AI risks outsourcing the intellectual development that makes you a researcher. The struggle to articulate your ideas is not a problem to be solved; it is the process through which understanding deepens.</li>
+<li><strong>AI can generate ideas rated as MORE novel than human ideas, but less feasible and less diverse</strong> — use AI to expand your thinking, not replace it. The best research ideas come from the intersection of AI-generated possibilities and your domain expertise.</li>
+<li><strong>AI writing tools are powerful equalisers for non-native English speakers,</strong> but they homogenise writing toward Western, generic academic styles. Be aware of what you gain in fluency and what you may lose in distinctive voice and perspective.</li>
+<li><strong>Scientific integrity requires a spectrum of awareness</strong> — from grammar fixes (low risk) to generating arguments (very high risk). Know where on that spectrum you are operating at every moment, and be honest about it.</li>
+<li><strong>Journal policies are converging on mandatory disclosure</strong> — build the habit now. Every major publisher now requires some form of AI use declaration. Treating this as a routine part of your workflow, rather than an afterthought, protects you and strengthens the research community.</li>
+<li><strong>The principled workflow:</strong> think first, outline yourself, draft with AI assistance, audit thoroughly, revise in your own voice. This sequence matters — starting with your own thinking ensures that AI augments rather than replaces your intellectual contribution.</li>
+<li><strong>The most important question: can you defend every sentence in your work?</strong> If someone challenged any claim, any phrasing, any argument in your text, could you explain why it is there and what it means? If not, more revision is needed.</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Looking ahead:</strong> Next week, we move from writing to data — <em>AI for Data, Code &amp; Computation</em>. We will explore how AI tools can help with statistical analysis, data cleaning, visualisation, and interpretation, with the same critical eye we have applied to literature review and writing.</p>
+</div>
+</div>
+<!-- end .content -->
+
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- end .container -->
+
+</body></html>

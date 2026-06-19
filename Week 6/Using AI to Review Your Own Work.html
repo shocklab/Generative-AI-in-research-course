@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 - Using AI to Review Your Own Work</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .card ol li {
+            padding: 4px 0;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f0fe;
+            border-left: 5px solid #003A70;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #003A70;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .case-study {
+            background: #f8fafc;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .case-study h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: steps;
+            margin: 20px 0;
+        }
+
+        .step-list > li {
+            counter-increment: steps;
+            padding: 15px 15px 15px 60px;
+            position: relative;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .step-list > li::before {
+            content: counter(steps);
+            position: absolute;
+            left: 15px;
+            top: 22px;
+            width: 35px;
+            height: 35px;
+            background: #003A70;
+            color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+        }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head>
+<body>
+    <div class="container">
+        <div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+
+        <header>
+            <div class="week-badge">Week 6 &bull; Supplementary</div>
+            <h1>&#128269; <span style="color: #ffffff;">Using AI to Review Your Own Work</span></h1>
+            <p>Simulating peer review before submission &mdash; catching the easy problems so real reviewers can focus on the hard ones</p>
+        </header>
+
+        <div class="content">
+
+            <!-- INTRO -->
+            <div class="intro-text">
+                <h2>What This Page Covers</h2>
+                <p>Every researcher knows the feeling: you submit a paper, wait three to six months for reviews, and then discover that two of the three reviewers flagged problems you could have caught yourself &mdash; an unclear argument in Section 3, a missing baseline comparison, a citation that does not actually support the claim you made. These are the kinds of issues that AI can help you identify <em>before</em> submission.</p>
+                <p style="margin-top: 12px;">This supplementary page introduces the concept of AI-assisted pre-review: using large language models to simulate aspects of peer review on your own drafts. The goal is not to replace peer review &mdash; that remains essential &mdash; but to prepare for it. Think of it as a dress rehearsal. You would not give a conference talk without practising it first, so why submit a paper without stress-testing it?</p>
+                <p style="margin-top: 12px;">We will cover what AI can usefully check, what it cannot reliably judge, how to structure multi-perspective reviews, practical prompting strategies for getting useful feedback, and the important limitations you need to keep in mind. We will also introduce the <code>/paper-review</code> skill in Claude Code, which implements many of these ideas as an automated multi-agent workflow.</p>
+            </div>
+
+            <!-- SECTION 1: WHY PRE-REVIEW YOUR OWN WORK WITH AI? -->
+            <h2 class="section-title">&#129300; Why Pre-Review Your Own Work with AI?</h2>
+
+            <p>The traditional peer review process, for all its importance, has well-known limitations as a feedback mechanism for individual authors. Understanding these limitations helps explain why AI pre-review is a genuinely useful addition to the research workflow.</p>
+
+            <ul class="styled-list">
+                <li><strong>Peer review is slow.</strong> Turnaround times of three to six months are common in most fields. In fast-moving areas like machine learning or genomics, your paper may be partially outdated by the time you receive feedback. AI pre-review gives you structured feedback in minutes, letting you iterate faster before submission.</li>
+                <li><strong>You typically get very few reviews.</strong> Most journals assign two to three reviewers. That is a tiny sample of perspectives on your work. Each reviewer brings their own expertise, blind spots, and priorities. AI can simulate a broader range of review perspectives &mdash; not perfectly, but enough to surface issues that a single self-review would miss.</li>
+                <li><strong>This is not about replacing peer review.</strong> Let us be clear about what AI pre-review is and is not. It is a preparation tool, not a substitute. Real peer reviewers bring deep domain knowledge, awareness of the current state of debates in your field, and the ability to judge genuine novelty. AI cannot do these things reliably. What AI <em>can</em> do is catch the surface-level problems &mdash; logical inconsistencies, unclear writing, missing methodological details &mdash; so that real reviewers can focus their limited attention on substantive issues.</li>
+                <li><strong>The dress rehearsal analogy.</strong> Musicians rehearse before concerts. Lawyers prepare for cross-examination by having colleagues challenge their arguments. Scientists present at lab meetings before conferences. AI pre-review is the same idea applied to written research. You are not asking the AI whether your research is <em>good</em>; you are asking it to find the places where your presentation of the research could be <em>stronger</em>.</li>
+            </ul>
+
+            <div class="warning-box">
+                <strong>&#9888;&#65039; Important limitations to keep in mind from the start:</strong> AI review has serious constraints that you must understand before relying on it. It cannot judge true novelty in your specific sub-field &mdash; it does not know what has and has not been done before at the frontier of your research area. It may miss domain-specific conventions that reviewers in your field take for granted. And it tends to be either too harsh or too generous depending on how you prompt it &mdash; a prompt that asks for "critical feedback" may produce an unrealistically negative review, while a prompt that asks for "suggestions" may produce empty praise. Calibrating AI review output is a skill you will need to develop.
+            </div>
+
+            <!-- SECTION 2: WHAT AI CAN USEFULLY CHECK -->
+            <h2 class="section-title">&#9989; What AI Can Usefully Check</h2>
+
+            <p>Not all dimensions of peer review are equally suited to AI assistance. The following six areas correspond to real criteria that reviewers evaluate, ordered roughly from where AI is most helpful to where it is least reliable. Understanding this hierarchy helps you allocate your AI pre-review efforts wisely.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <h3>&#128220; Logical Consistency</h3>
+                    <p>Does your abstract promise what your conclusion delivers? Do your methods actually support the claims in your results discussion? Are there internal contradictions between sections?</p>
+                    <p style="margin-top: 10px;">AI is genuinely good at catching these kinds of internal coherence problems. Because it processes the entire paper at once, it can identify when Section 4 contradicts something stated in Section 2 &mdash; something that human authors, who write sections at different times, frequently miss. Ask AI to compare your abstract claims against your actual findings, and to flag any place where your paper promises something it does not deliver.</p>
+                </div>
+                <div class="card">
+                    <h3>&#9997;&#65039; Writing Quality</h3>
+                    <p>Clarity, structure, flow, redundancy, and organisation. Is the paper well-structured? Are there sections that could be tighter? Are transitions between sections smooth? Is the level of detail appropriate?</p>
+                    <p style="margin-top: 10px;">This is probably AI's strongest review dimension. Language models are trained on enormous quantities of well-written text, and they are effective at identifying unclear sentences, redundant passages, awkward phrasing, and structural problems. They can suggest where paragraphs should be split, where transitions are needed, and where the argument loses the reader. For non-native English speakers, this dimension alone can significantly improve a paper's chances.</p>
+                </div>
+                <div class="card">
+                    <h3>&#128218; Positioning &amp; Related Work</h3>
+                    <p>Has the paper cited the most relevant prior work? Are the novelty claims reasonable given what already exists? Is the paper positioned clearly within the existing literature?</p>
+                    <p style="margin-top: 10px;">AI with web search capabilities can surface papers you may have missed and identify gaps in your related work section. However, the lesson from Week 5 applies here with full force: any citation AI suggests must be independently verified before inclusion. AI can also help you evaluate whether your novelty claims are appropriately scoped &mdash; though it cannot definitively judge whether something is truly novel in your specific niche.</p>
+                </div>
+                <div class="card">
+                    <h3>&#128300; Experimental Methodology</h3>
+                    <p>Are there missing baselines? Are error bars or confidence intervals included? Is the evaluation metric appropriate for the task? Is the experimental setup described with enough detail for replication?</p>
+                    <p style="margin-top: 10px;">AI can flag obvious methodological gaps &mdash; a classification paper without precision/recall, a comparison without standard baselines, missing details about hyperparameters or random seeds. However, it cannot judge whether your specific experimental design is sound for your field. It knows general methodological standards but not the specific conventions of your sub-area. Use it to catch what is missing, not to validate what is present.</p>
+                </div>
+                <div class="card">
+                    <h3>&#128202; Statistical Reporting</h3>
+                    <p>Are statistics reported correctly? Are p-values, confidence intervals, and effect sizes presented appropriately? Are sample sizes adequate? Is the statistical test appropriate for the data?</p>
+                    <p style="margin-top: 10px;">AI can check whether statistical reporting follows standard conventions and whether the numbers in your text match those in your tables. Specialised tools like <a href="https://statcheck.io/" target="_blank" rel="noopener">Statcheck</a> can catch numerical inconsistencies &mdash; for instance, a reported p-value that does not match the reported test statistic and degrees of freedom. This is one area where automated checking genuinely catches errors that human reviewers often miss.</p>
+                </div>
+                <div class="card">
+                    <h3>&#128202; Figures and Tables</h3>
+                    <p>Do captions accurately describe what is shown? Are axes labelled with units? Is the visual presentation clear and readable? Do tables have appropriate headers and formatting?</p>
+                    <p style="margin-top: 10px;">AI can flag missing axis labels, captions that do not match the content of the figure, tables without proper headers, and figures that are referenced in the text but not included (or included but never referenced). What it cannot judge is aesthetic effectiveness &mdash; whether a figure is the <em>best</em> way to present the data, or whether a different visualisation would communicate the result more clearly. That remains a human judgment.</p>
+                </div>
+            </div>
+
+            <!-- SECTION 3: WHAT AI CANNOT RELIABLY JUDGE -->
+            <h2 class="section-title">&#128683; What AI Cannot Reliably Judge</h2>
+
+            <p>Understanding the boundaries of AI review is just as important as understanding its capabilities. The following are areas where AI judgment is less reliable &mdash; but this comes with an important caveat: even in these areas, AI may occasionally flag something you missed precisely because you are too close to your own work. Authors have blind spots. You know what you <em>meant</em> to write, which can prevent you from seeing what you <em>actually</em> wrote. An AI reader does not share your assumptions, and that outsider perspective can sometimes surface issues that you and your colleagues have all overlooked. So treat these limitations as reasons for caution, not for dismissal.</p>
+
+            <div class="highlight-box">
+                <strong>Critical limitations of AI as a reviewer:</strong>
+                <ul class="styled-list">
+                    <li><strong>True novelty.</strong> AI cannot know what is genuinely new in your specific sub-field. It has broad knowledge from its training data, but it does not have an up-to-the-minute understanding of what has been tried, what has failed, and what the community considers an open problem. A human reviewer in your field can immediately recognise whether your contribution is novel; an AI can only check whether it <em>sounds</em> novel based on what it has seen before. These are very different things.</li>
+                    <li><strong>Domain conventions.</strong> Every field has unwritten rules about methodology, presentation, and argument style that AI may not know. Mathematicians expect a certain structure for proofs. Clinical researchers have specific reporting standards (CONSORT, STROBE). Qualitative researchers have their own criteria for rigour. AI may apply generic standards that miss field-specific expectations, or worse, it may confidently suggest changes that violate your field's norms.</li>
+                    <li><strong>Significance.</strong> Whether your contribution matters to your community is a human judgment. A technically correct paper can still be uninteresting, incremental, or solving a problem that nobody cares about. AI cannot judge the sociology of your field &mdash; which questions are exciting, which results would surprise people, which contributions would change how people think. This is perhaps the most important dimension of peer review, and it is entirely beyond AI's reach.</li>
+                    <li><strong>Ethical concerns.</strong> Whether your research raises ethical issues that reviewers would flag &mdash; informed consent problems, dual-use concerns, potential for harm to vulnerable populations &mdash; requires contextual understanding that AI handles poorly. AI may flag obvious ethical issues (like missing IRB approval) but will miss subtle concerns that arise from understanding the specific populations, contexts, or applications involved.</li>
+                    <li><strong>Reviewer taste and politics.</strong> Real reviewers have preferences, agendas, and blind spots that no AI can simulate. Some reviewers favour certain methodological approaches. Some have strong opinions about theoretical frameworks. Some are generous with borderline papers; others are not. The interpersonal and political dimensions of peer review &mdash; which are real and consequential &mdash; are invisible to AI.</li>
+                </ul>
+            </div>
+
+            <!-- SECTION 4: A MULTI-AGENT REVIEW APPROACH -->
+            <h2 class="section-title">&#129309; A Multi-Agent Review Approach</h2>
+
+            <p>One of the most effective ways to get useful AI feedback is to simulate the structure of real peer review, where multiple reviewers with different expertise examine the same paper. Rather than asking a single AI for a generic review, you can create specialist "reviewers" who each focus on a different dimension of quality.</p>
+
+            <div class="technical-detail">
+                <h3>&#9881;&#65039; Creating Specialist AI Reviewers</h3>
+                <p>One powerful approach is to prompt AI to review your paper from multiple perspectives simultaneously. Rather than asking "review my paper" (which produces generic, surface-level feedback), you can create specialist reviewers, each with a defined focus and expertise:</p>
+                <ul class="styled-list">
+                    <li>A <strong>Theory reviewer</strong> who checks logical rigour, proof correctness, and whether the theoretical contributions are sound and well-motivated. This reviewer looks for gaps in arguments, unstated assumptions, and logical leaps.</li>
+                    <li>An <strong>Experiments reviewer</strong> who evaluates methodology, baselines, statistical reporting, and reproducibility. This reviewer checks whether the experimental design supports the claims, whether comparisons are fair, and whether there is enough detail to replicate the work.</li>
+                    <li>A <strong>Writing reviewer</strong> who focuses on clarity, structure, flow, and presentation. This reviewer identifies unclear passages, redundant sections, missing transitions, and places where the paper loses the reader.</li>
+                    <li>A <strong>Positioning reviewer</strong> who checks related work coverage, novelty claims, and how the paper situates itself in the existing literature. This reviewer looks for missing citations, overclaimed novelty, and inadequate discussion of competing approaches.</li>
+                    <li>A <strong>Devil's Advocate</strong> whose sole job is to construct the strongest possible objection to your main claim. This is often the most valuable reviewer, because it forces you to confront weaknesses you cannot see due to your own belief in your thesis.</li>
+                </ul>
+                <p style="margin-top: 15px;">Running these specialist reviews in parallel and then synthesising the results gives you a much more thorough and actionable review than a single generic prompt. Each reviewer catches things the others miss, just as real multi-reviewer peer review works better than a single opinion.</p>
+            </div>
+
+            <div class="info-box">
+                <strong>&#128161; The <code>/paper-review</code> skill in Claude Code:</strong> This multi-agent approach is available as a built-in skill. When you run <code>/paper-review</code>, it spawns specialist agents in parallel &mdash; each with a distinct review focus &mdash; synthesises their findings, ranks issues by severity, and produces a mock review formatted in the style of your target venue (NeurIPS, Nature, Science, and many other major venues are supported with venue-specific rubrics). Critically, the human always gates implementation: the skill identifies problems and suggests fixes, but no changes are made to your paper without your explicit approval. You remain in control of every edit.
+            </div>
+
+            <!-- SECTION 5: PRACTICAL GUIDE -->
+            <h2 class="section-title">&#128736;&#65039; Practical Guide &mdash; How to Get Good Feedback</h2>
+
+            <p>The quality of AI review feedback depends heavily on how you ask for it. Vague requests produce vague responses. Specific, well-structured prompts produce actionable criticism. The following steps represent best practice for getting AI feedback that actually improves your paper.</p>
+
+            <ol class="step-list">
+                <li>
+                    <strong>Provide the full paper, not just an abstract.</strong>
+                    <p style="margin-top: 8px;">AI needs context to give useful feedback. An abstract alone does not contain enough information for meaningful review. If your paper is too long for the context window, provide the full text of the sections you want reviewed along with the abstract and conclusion for context. A reviewer who has only read your abstract cannot give you useful feedback on your methodology &mdash; and neither can an AI.</p>
+                </li>
+                <li>
+                    <strong>Specify your target venue.</strong>
+                    <p style="margin-top: 8px;">Telling the AI "this paper is being submitted to [journal or conference name]" helps it calibrate expectations. A paper for Nature needs to emphasise broad significance and accessibility. A paper for a specialist journal needs depth and technical precision. A NeurIPS submission needs strong experimental methodology and clear novelty claims. The venue context shapes what counts as a weakness.</p>
+                </li>
+                <li>
+                    <strong>Ask for specific, located criticism.</strong>
+                    <p style="margin-top: 8px;">"Identify the 5 most significant weaknesses in this paper, with exact section numbers and specific suggestions for improvement" is dramatically better than "any feedback?" The former forces the AI to prioritise and be concrete. The latter invites a list of generic platitudes. Always ask for section-level or paragraph-level specificity, and always ask for a ranked list so you know what to fix first.</p>
+                </li>
+                <li>
+                    <strong>Request the Devil's Advocate explicitly.</strong>
+                    <p style="margin-top: 8px;">"Construct the strongest possible argument against the main claim of this paper" is one of the most valuable prompts you can use. It forces the AI to adopt an adversarial stance rather than a supportive one. The issues it surfaces are often the ones you cannot see yourself, because you believe in your own thesis. This is not comfortable, but it is useful. The best papers are the ones that have anticipated and addressed the strongest objections.</p>
+                </li>
+                <li>
+                    <strong>Iterate: fix, then review again.</strong>
+                    <p style="margin-top: 8px;">Real peer review is iterative &mdash; you receive feedback, revise, and often go through multiple rounds. Your AI pre-review should work the same way. Fix the issues from the first round, then run the review again. New issues will surface because changes to one section can create problems in another. Two or three rounds of AI review, with revisions in between, are far more valuable than a single pass.</p>
+                </li>
+            </ol>
+
+            <!-- SECTION 6: THE LIMITATIONS — AN HONEST WARNING -->
+            <h2 class="section-title">&#9888;&#65039; The Limitations &mdash; An Honest Warning</h2>
+
+            <p>We have discussed what AI review can and cannot do, but there are deeper risks that deserve explicit attention. AI pre-review, used carelessly, can actually make your paper <em>worse</em> by creating false confidence or by optimising for the wrong things.</p>
+
+            <div class="warning-box">
+                <strong>&#9888;&#65039; Risks of AI pre-review that you must manage:</strong>
+                <ul class="styled-list">
+                    <li><strong>False confidence from surface-level feedback.</strong> If your AI pre-review only finds minor issues &mdash; typos, unclear sentences, a missing comma &mdash; you may conclude that the paper is in good shape. But the AI may have missed the biggest weakness because that weakness is specific to your field and requires domain expertise to recognise. A clean AI review does not mean a clean paper.</li>
+                    <li><strong>Generic praise that feels good but changes nothing.</strong> If you prompt AI in a way that invites positive feedback ("What are the strengths of this paper?"), it will happily produce paragraphs of praise. This feels validating but does not improve your work. Always bias your prompts toward criticism. You want the AI to find problems, not to make you feel good.</li>
+                    <li><strong>Optimising for AI-reviewable dimensions at the expense of others.</strong> If you polish writing quality and logical consistency (dimensions AI is good at checking) but neglect novelty, significance, and domain positioning (dimensions AI cannot check), you may end up with a beautifully written paper that is rejected for being insufficiently novel or significant.</li>
+                    <li><strong>Over-reliance on a single perspective.</strong> Even the multi-agent approach described above is still fundamentally one system with one training distribution. It cannot replace the genuine diversity of perspectives that comes from having your paper read by colleagues, mentors, and domain experts. AI pre-review should supplement, not replace, human feedback from people who know your field.</li>
+                </ul>
+            </div>
+
+            <div class="case-study">
+                <h3>&#128214; Scenario: The False Confidence Trap</h3>
+                <p>Consider this scenario: A student runs their thesis chapter through AI review. The AI is thorough &mdash; it flags 15 issues across the chapter. There are two typos in Section 2, three unclear sentences in Section 3, a paragraph in Section 4 that could be tightened, a missing transition between Sections 5 and 6, and several minor formatting inconsistencies. The student diligently fixes all 15 issues and feels confident that the chapter is now polished and ready.</p>
+                <p style="margin-top: 12px;">But when the chapter goes to the thesis supervisor, the feedback is very different. The supervisor identifies a fundamental methodological flaw: the statistical test used in the analysis is inappropriate for the data distribution, and the conclusions drawn from it do not follow. This is the kind of domain-specific judgment that the AI was never equipped to make. It could check whether the statistics were <em>reported</em> correctly, but it could not judge whether the <em>choice</em> of statistical test was appropriate for this specific research context.</p>
+                <p style="margin-top: 12px;"><strong>The lesson:</strong> AI review is a complement to domain expertise, not a replacement. Use it to handle the surface issues so that your supervisor, committee, and peer reviewers can focus their expertise on the substantive questions that only humans can judge. That division of labour is what makes AI pre-review genuinely valuable.</p>
+            </div>
+
+            <!-- SECTION 7: VENUE-SPECIFIC REVIEW STANDARDS -->
+            <h2 class="section-title">&#127891; Venue-Specific Review Standards</h2>
+
+            <p>One of the most important things to understand about peer review is that standards vary enormously between venues. A paper that is excellent by the standards of one journal may be entirely wrong for another. Your AI pre-review needs to account for this.</p>
+
+            <div class="info-box">
+                <strong>&#128161; Different venues, different expectations:</strong>
+                <ul class="styled-list">
+                    <li><strong>Machine learning conferences (NeurIPS, ICML, ICLR):</strong> These venues prioritise technical correctness, clear novelty over prior work, strong experimental methodology with proper baselines, ablation studies, and reproducibility. Papers are expected to include code availability statements and detailed experimental setups. The review process is typically double-blind with a rebuttal phase.</li>
+                    <li><strong>General science journals (Nature, Science, PNAS):</strong> These venues prioritise significance, broad interest beyond a single sub-field, methodological rigour, and clear communication to a wide scientific audience. A technically impressive result that matters only to specialists may not be suitable. The bar for novelty and impact is extremely high.</li>
+                    <li><strong>Domain-specific journals:</strong> Every field has its own conventions for methodology, reporting, argument structure, and presentation. Clinical journals require CONSORT or STROBE checklists. Social science journals expect specific approaches to validity and reflexivity. Mathematics journals have their own norms for proof presentation. AI cannot know all of these conventions, but it can be guided by telling it which venue you are targeting.</li>
+                    <li><strong>The <code>/paper-review</code> skill supports venue-specific rubrics</strong> for many major venues. When you specify a target venue, the review is calibrated to that venue's known criteria, review form structure, and common reasons for rejection. This is not a perfect simulation of the venue's review process, but it is substantially more useful than a generic review that ignores venue context entirely.</li>
+                </ul>
+            </div>
+
+            <!-- SUMMARY -->
+            <div class="intro-text" style="margin-top: 50px;">
+                <h2>Key Takeaways</h2>
+                <ul class="styled-list">
+                    <li><strong>AI pre-review catches surface issues before peer reviewers see them.</strong> Logical inconsistencies, unclear writing, missing methodological details, and reporting errors are all dimensions where AI feedback is genuinely useful. Fixing these before submission means that real reviewers can focus their expertise on the substantive questions that matter most.</li>
+                    <li><strong>Multiple specialist "reviewers" give better feedback than one generic review.</strong> Structuring your AI review as a panel &mdash; with dedicated theory, experiments, writing, positioning, and devil's advocate perspectives &mdash; produces more thorough and actionable feedback than a single prompt asking for general comments.</li>
+                    <li><strong>AI cannot judge true novelty, domain conventions, or significance.</strong> These are the dimensions that matter most in peer review, and they remain firmly in the domain of human expertise. No amount of AI pre-review can tell you whether your contribution is genuinely important to your field.</li>
+                    <li><strong>Use AI review to prepare for peer review, not to replace it.</strong> The goal is preparation, not substitution. AI pre-review and human peer review serve different functions, and both are necessary. Think of AI as your first reader, not your final judge.</li>
+                    <li><strong>The <code>/paper-review</code> skill in Claude Code implements this multi-agent approach.</strong> It provides venue-specific, multi-perspective review with severity rankings and human-gated implementation. If you use Claude Code for your research workflow, this skill is a practical way to apply the concepts from this page.</li>
+                </ul>
+
+                <div class="highlight-box" style="margin-top: 25px;">
+                    <strong>&#128073; Back to Week 6:</strong> Return to the main Week 6 lessons for the core content on AI for Writing, Communication and Research Ideation. This supplementary page is designed to complement those lessons by providing a specific, actionable workflow for one of the most valuable uses of AI in the research process: making your papers stronger before anyone else reads them.
+                </div>
+            </div>
+
+        </div>
+    
+
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+
+</body>
+</html>
