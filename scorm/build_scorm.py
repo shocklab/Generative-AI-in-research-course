@@ -150,8 +150,22 @@ def make_manifest(scope_label, items):
     return "\n".join(parts) + "\n"
 
 
+ANALYTICS_RE = re.compile(r"\n*<!-- ANALYTICS-START -->.*?<!-- ANALYTICS-END -->", re.DOTALL)
+
+
+def _copy_no_analytics(src, dst):
+    """Copy an HTML page into the package, stripping the analytics beacon.
+    SCORM pages run inside an LMS and must not phone home to an external
+    analytics service."""
+    with open(src, encoding="utf-8") as f:
+        c = f.read()
+    c = ANALYTICS_RE.sub("\n", c)
+    with open(dst, "w", encoding="utf-8") as f:
+        f.write(c)
+
+
 def stage_files(stage, items):
-    """Copy the lesson HTML files into the staging directory."""
+    """Copy the lesson HTML files into the staging directory (analytics stripped)."""
     for href, _title in items:
         src = os.path.join(DOCS, href)
         if not os.path.exists(src):
@@ -159,7 +173,7 @@ def stage_files(stage, items):
             continue
         dst = os.path.join(stage, href)
         os.makedirs(os.path.dirname(dst), exist_ok=True)
-        shutil.copy2(src, dst)
+        _copy_no_analytics(src, dst)
     # bundle any per-section download assets (e.g. advanced/files/) so the
     # in-package download links resolve inside the LMS
     staged_dirs = {href.split("/", 1)[0] for href, _ in items if "/" in href}
@@ -172,7 +186,7 @@ def stage_files(stage, items):
     # (helps cross-page navigation inside the package without duplicating bytes)
     landing_src = os.path.join(DOCS, "index.html")
     if os.path.exists(landing_src):
-        shutil.copy2(landing_src, os.path.join(stage, "index.html"))
+        _copy_no_analytics(landing_src, os.path.join(stage, "index.html"))
     # SCORM API binding
     shutil.copy2(APIJS, os.path.join(stage, "scorm-api.js"))
 
