@@ -333,8 +333,8 @@
 <div class="content">
 <div class="intro-text">
 <h2>What We'll Cover</h2>
-<p>In Week 1, we introduced transformers as "attention machines" and explored a little how they differ from earlier architectures. This session goes deeper: we'll dive back into the transformer architecture that powers models like GPT, Claude, and Gemini, understand how attention mechanisms actually work, and explore cutting-edge innovations like Mixture of Experts that make modern models more efficient.</p>
-<p>By the end of this session you should have a greater appreciation of <em>how</em>&nbsp;LLMs work—and why architectural choices matter for research applications.</p>
+<p>In Week 1, we introduced transformers as "attention machines" and explored a little how they differ from earlier architectures. This session goes deeper: we'll return to the transformer architecture that powers models like GPT, Claude, and Gemini, understand how attention mechanisms actually work, and explore innovations like Mixture of Experts that make modern models more efficient.</p>
+<p>By the end of this session you should have a greater appreciation of <em>how</em>&nbsp;LLMs work, and why architectural choices matter for research applications.</p>
 <p>Some of this may feel uncomfortably mathematical, so if you find yourself worrying about this, you can try to just get the overall gist of what is going on.</p>
 </div>
 <!-- SECTION 1: TRANSFORMER FUNDAMENTALS -->
@@ -350,7 +350,7 @@
 <ul class="styled-list">
 <li><strong>Token embeddings:</strong> Converting discrete tokens into continuous vector representations</li>
 <li><strong>Positional encoding:</strong> Injecting information about token position in the sequence</li>
-<li><strong>Attention layers:</strong> The heart of the model—learning which tokens matter</li>
+<li><strong>Attention layers:</strong> learning which tokens matter</li>
 <li><strong>Feed-forward networks:</strong> Processing attended information within each layer</li>
 <li><strong>Layer normalization:</strong> Stabilizing training across deep networks</li>
 <li><strong>Residual connections:</strong> Allowing gradients to flow through many layers</li>
@@ -395,7 +395,7 @@
 </div>
 <!-- SECTION 2: ATTENTION MECHANISMS -->
 <h2 class="section-title">👁️ Attention Mechanisms in Detail</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Attention is the fundamental innovation that makes transformers work. Let's understand the different types and how they've evolved.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Attention is the innovation that makes transformers work. Let's look at the different types and how they've evolved.</p>
 <div class="highlight-box">
 <h3>🔑<span style="color: #ffffff;"> The Attention Intuition</span></h3>
 <p>When you read "The animal didn't cross the street because it was too tired," your brain automatically knows "it" refers to "the animal," not "the street." You <em>attend</em> to relevant context.</p>
@@ -418,7 +418,7 @@
 </div>
 <div class="card">
 <h3>Multi-Head Attention</h3>
-<p>Instead of one attention mechanism, use many in parallel—each learns different patterns.</p>
+<p>Instead of one attention mechanism, use many in parallel, each learning different patterns.</p>
 <ul class="styled-list">
 <li><strong>Multiple heads:</strong> 32-96 attention heads in modern LLMs</li>
 <li><strong>Specialized patterns:</strong> Each head might learn syntax, semantics, or other relationships</li>
@@ -473,7 +473,7 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 15px; color: #666;"><strong>Research implication:</strong> GQA has become the dominant choice for new models—it provides most of MHA's quality with much better inference efficiency.</p>
+<p style="margin-top: 15px; color: #666;"><strong>Research implication:</strong> GQA has become the dominant choice for new models: it provides most of MHA's quality with much better inference efficiency.</p>
 </div>
 <!-- SECTION 3: POSITIONAL ENCODING -->
 <h2 class="section-title">📍 Positional Encoding: Teaching Position</h2>
@@ -493,8 +493,8 @@
 <h3>Relative Positional Encoding</h3>
 <p>Modern approach: encode the <em>distance</em> between tokens rather than absolute position.</p>
 <ul class="styled-list">
-<li><strong>RoPE (Rotary Position Embedding):</strong> Rotate Q and K vectors based on position—used in LLaMA, Mistral, GPT-NeoX</li>
-<li><strong>ALiBi (Attention with Linear Biases):</strong> Add bias to attention scores based on distance—used in BLOOM, MPT</li>
+<li><strong>RoPE (Rotary Position Embedding):</strong> Rotate Q and K vectors based on position; used in LLaMA, Mistral, GPT-NeoX</li>
+<li><strong>ALiBi (Attention with Linear Biases):</strong> Add bias to attention scores based on distance; used in BLOOM, MPT</li>
 <li><strong>Length extrapolation:</strong> Can handle sequences longer than training context</li>
 <li><strong>Better generalization:</strong> Understands "distance" concept rather than memorizing positions</li>
 </ul>
@@ -516,15 +516,15 @@
 </div>
 <!-- SECTION 4: MODERN INNOVATIONS - MoE -->
 <h2 class="section-title">🔀 Modern Architectural Innovations</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The frontier of LLM architecture isn't just about making models bigger—it's about making them <em>smarter</em>. Here are the key innovations driving 2024-2026 models.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The frontier of LLM architecture is about making models <em>smarter</em>, not only bigger. Here are the innovations driving 2024-2026 models.</p>
 <div class="highlight-box">
 <h3>💡 <span style="color: #ffffff;">The Efficiency Revolution</span></h3>
-<p>Modern LLM research focuses on <strong>parameter efficiency</strong>: getting better performance without proportionally increasing compute costs. The key insight: not every parameter needs to activate for every input.</p>
-<p style="margin-top: 15px;">This shift—from "bigger is better" to "smarter is better"—is driven by Mixture of Experts architectures, attention optimizations, and clever training techniques.</p>
+<p>Modern LLM research focuses on <strong>parameter efficiency</strong>: getting better performance without proportionally increasing compute costs. Not every parameter needs to activate for every input.</p>
+<p style="margin-top: 15px;">This shift, from "bigger is better" to "smarter is better", is driven by Mixture of Experts architectures, attention optimizations, and clever training techniques.</p>
 </div>
 <div class="technical-detail">
 <h4>🎯 Mixture of Experts (MoE)</h4>
-<p style="margin-bottom: 15px;">MoE is perhaps the most important architectural innovation in modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
+<p style="margin-bottom: 15px;">MoE is one of the architectural changes shaping modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
 <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
 <h5 style="color: #2a5298; margin-bottom: 10px;">How MoE Works:</h5>
 <ol style="margin-left: 25px; color: #555; line-height: 1.8;">
@@ -548,7 +548,7 @@
 <div class="card">
 <h3>MoE Challenges</h3>
 <ul class="styled-list">
-<li><strong>Training complexity:</strong> Load balancing is tricky—some experts might be underutilized</li>
+<li><strong>Training complexity:</strong> Load balancing is tricky; some experts might be underutilized</li>
 <li><strong>Memory requirements:</strong> All experts must fit in GPU memory even if only few are active</li>
 <li><strong>Communication overhead:</strong> Routing adds latency in distributed systems</li>
 <li><strong>Instability:</strong> Careful tuning needed to prevent expert collapse</li>
@@ -609,7 +609,7 @@
 </div>
 <div class="technical-detail">
 <h4>🎯 When Bigger ≠ Better</h4>
-<p style="margin-bottom: 15px;">The relationship between model size and performance is nuanced:</p>
+<p style="margin-bottom: 15px;">The relationship between model size and performance is more subtle:</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -655,13 +655,13 @@
 </div>
 <div class="highlight-box">
 <h3>🔮<span style="color: #202122;"> <span style="color: #ffffff;">The Current Frontier (Feb 2026)</span></span></h3>
-<p><strong>A caveat first:</strong> The sizes and architectures of proprietary frontier models are <em>not</em> officially disclosed by their makers. Every parameter figure below for a closed model is a third-party <em>estimate</em> &mdash; informed guesses, not facts.</p>
-<p style="margin-top: 15px;"><strong>Claude Opus (4.x):</strong> Anthropic does not publish Claude&#39;s architecture or parameter count. Stanford&#39;s Foundation Model Transparency Index records both as <a href="https://crfm.stanford.edu/fmti/May-2024/company-reports/Anthropic_Claude%203.html" target="_blank" rel="noopener">&ldquo;not disclosed&rdquo;</a>. Where people speculate, the guess leans <em>dense</em> (every parameter active per token) rather than Mixture-of-Experts &mdash; but this is unconfirmed, and no specific size should be cited.</p>
-<p style="margin-top: 15px;"><strong>Mixture-of-Experts, the documented cases:</strong> The clearest MoE examples are the open ones. DeepSeek-V3 is a <a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">671B-total / 37B-activated MoE</a> (DeepSeek-AI, 2024), and Mixtral routes each token through 2 of 8 experts &mdash; <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">47B total but only ~13B active per token</a> (Jiang et al., 2024). Because these are published, the figures are verifiable.</p>
-<p style="margin-top: 15px;"><strong>GPT-4 (reported ~1.8T, MoE):</strong> Per an unofficial industry report by <a href="https://semianalysis.com/2023/07/10/gpt-4-architecture-infrastructure/" target="_blank" rel="noopener">SemiAnalysis (Patel &amp; Wong, July 2023)</a>, GPT-4 is ~1.8 trillion parameters using 16 experts &mdash; a <a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" rel="noopener">leak, not an OpenAI disclosure</a>.</p>
+<p><strong>A caveat first:</strong> The sizes and architectures of proprietary frontier models are <em>not</em> officially disclosed by their makers. Every parameter figure below for a closed model is a third-party <em>estimate</em>: informed guesses, not facts.</p>
+<p style="margin-top: 15px;"><strong>Claude Opus (4.x):</strong> Anthropic does not publish Claude&#39;s architecture or parameter count. Stanford&#39;s Foundation Model Transparency Index records both as <a href="https://crfm.stanford.edu/fmti/May-2024/company-reports/Anthropic_Claude%203.html" target="_blank" rel="noopener">&ldquo;not disclosed&rdquo;</a>. Where people speculate, the guess leans <em>dense</em> (every parameter active per token) rather than Mixture-of-Experts. This is unconfirmed, and no specific size should be cited.</p>
+<p style="margin-top: 15px;"><strong>Mixture-of-Experts, the documented cases:</strong> The clearest MoE examples are the open ones. DeepSeek-V3 is a <a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">671B-total / 37B-activated MoE</a> (DeepSeek-AI, 2024), and Mixtral routes each token through 2 of 8 experts: <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">47B total but only ~13B active per token</a> (Jiang et al., 2024). Because these are published, the figures are verifiable.</p>
+<p style="margin-top: 15px;"><strong>GPT-4 (reported ~1.8T, MoE):</strong> Per an unofficial industry report by <a href="https://semianalysis.com/2023/07/10/gpt-4-architecture-infrastructure/" target="_blank" rel="noopener">SemiAnalysis (Patel &amp; Wong, July 2023)</a>, GPT-4 is ~1.8 trillion parameters using 16 experts, a <a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" rel="noopener">leak, not an OpenAI disclosure</a>.</p>
 <p style="margin-top: 15px;"><strong>GPT-4o (estimated ~200B):</strong> Third-party estimates put GPT-4o roughly an order of magnitude smaller than GPT-4. A Microsoft / Univ. of Washington benchmark paper lists GPT-4o at <a href="https://arxiv.org/abs/2412.19260" target="_blank" rel="noopener">~200B and GPT-4 at ~1.76T</a> (Ben Abacha et al., 2025), explicitly noting these are mined from public articles and unverified; <a href="https://epoch.ai/gradient-updates/frontier-language-models-have-become-much-smaller" target="_blank" rel="noopener">Epoch AI independently estimates ~200B</a> (and warns it &ldquo;could easily be off by a factor of 2&rdquo;).</p>
-<p style="margin-top: 15px;"><strong>Small models:</strong> Open models in the 7B&ndash;13B range (e.g. Llama, Mistral) are genuinely disclosed and run on modest hardware &mdash; the figures here are real, not estimated.</p>
-<p style="margin-top: 15px;"><strong>The trend:</strong> The frontier has shifted from chasing raw parameter count toward architectural efficiency &mdash; sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
+<p style="margin-top: 15px;"><strong>Small models:</strong> Open models in the 7B&ndash;13B range (e.g. Llama, Mistral) are genuinely disclosed and run on modest hardware: the figures here are real, not estimated.</p>
+<p style="margin-top: 15px;"><strong>The trend:</strong> The frontier has shifted from chasing raw parameter count toward architectural efficiency: sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
 </div>
 <div class="resource-placeholder">
 <h4>📄<a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>
@@ -670,12 +670,12 @@
 <!-- TRY THIS YOURSELF -->
 <div style="background: #eef7f0; border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0;">
 <h3 style="color: #1f6e43; font-size: 1.25em; margin-bottom: 12px;">🔬 Try this yourself (about 10 minutes)</h3>
-<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">This page has been conceptual; here is a hands-on way to <em>see</em> tokenisation, which underpins everything above. Open a free tokeniser playground &mdash; for example the <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener" style="color: #1f6e43; font-weight: 600;">OpenAI tokenizer</a> &mdash; and paste in two or three sentences from your own field, deliberately including the messy bits: a piece of jargon, a chemical formula or equation, an author's name, a word in another language.</p>
+<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">This page has been conceptual; here is a hands-on way to <em>see</em> tokenisation, which underpins everything above. Open a free tokeniser playground (for example the <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener" style="color: #1f6e43; font-weight: 600;">OpenAI tokenizer</a>) and paste in two or three sentences from your own field, including the messy bits: a piece of jargon, a chemical formula or equation, an author's name, a word in another language.</p>
 <p style="color: #345; line-height: 1.75; margin-bottom: 12px;">Then look at what happened:</p>
 <ul style="list-style: none; padding-left: 0; margin: 0 0 12px;">
 <li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>How many tokens did your text become? Common English words are usually one token; rare or technical terms often shatter into several.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms &mdash; the model never sees your word as a single unit.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 0; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window &mdash; the limit this lesson&#39;s positional-encoding section is ultimately about.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms: the model never sees your word as a single unit.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 0; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window, the limit this lesson&#39;s positional-encoding section is about.</li>
 </ul>
 <p style="color: #345; line-height: 1.75; margin-bottom: 0;">It is a small exercise, but it converts &ldquo;tokens&rdquo; from an abstraction into something you have watched happen to your own writing.</p>
 </div>
@@ -689,9 +689,9 @@
 <li><strong>Attention mechanisms:</strong> Self-attention, multi-head variants (MHA/MQA/GQA), how tokens learn relevance</li>
 <li><strong>Positional encoding:</strong> RoPE and ALiBi enable models to understand sequence order and extrapolate length</li>
 <li><strong>Mixture of Experts:</strong> Sparse activation allows massive models with efficient inference</li>
-<li><strong>Scale considerations:</strong> Bigger isn't always better—match model to task, consider active vs. total parameters</li>
+<li><strong>Scale considerations:</strong> Bigger isn't always better; match model to task, consider active vs. total parameters</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session (Week 2.2):</strong> We'll explore how these architectures are actually <em>trained</em>—the pre-training process, optimization techniques, and the computational resources required to create LLMs from scratch.</p>
+<p style="margin-top: 20px;"><strong>Next session (Week 2.2):</strong> We'll explore how these architectures are <em>trained</em>: the pre-training process, optimization techniques, and the computational resources required to create LLMs from scratch.</p>
 </div>
 </div>
 <!-- PAGE-NAV-START -->

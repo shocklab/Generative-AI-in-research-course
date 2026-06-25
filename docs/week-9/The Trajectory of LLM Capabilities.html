@@ -347,7 +347,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <header>
   <div class="week-badge">Week 9 &bull; Sub-Lesson 1</div>
   <h1>&#128200; <span style="color: #ffffff;">The Trajectory of LLM Capabilities</span></h1>
-  <p>From GPT-2 to the May 2026 frontier &mdash; why every claim about &ldquo;what AI can do&rdquo; carries a hidden date stamp</p>
+  <p>From GPT-2 to the May 2026 frontier: why every claim about &ldquo;what AI can do&rdquo; carries a hidden date stamp</p>
 </header>
 
 <div class="content">
@@ -355,13 +355,13 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The way researchers talk about &ldquo;what AI can&#39;t do&rdquo; goes stale faster than almost any other technical claim in the literature. A paper from 2023 documenting that ChatGPT failed at undergraduate mathematics is, by 2026, a historical artefact rather than a current diagnosis. A claim from 2024 that AI can&#39;t do scientific writing well no longer matches what frontier models produce today. The artefact under study has changed. The literature about it has not always kept up.</p>
-    <p>This sub-lesson does two things. First, it lays out the trajectory of LLM capabilities from 2019 to May 2026, so you have a calibrated sense of where the frontier sits right now. Second, it makes the central pedagogical move of the whole week explicit: every claim about AI limitations carries an implicit &ldquo;as of [date]&rdquo;. Reading the AI literature critically means asking which model, which date, and whether anyone has retested.</p>
+    <p>This sub-lesson does two things. First, it lays out the trajectory of LLM capabilities from 2019 to May 2026, so you have a calibrated sense of where the frontier sits right now. Second, it sets up a frame the rest of the week leans on: every claim about AI limitations carries an implicit &ldquo;as of [date]&rdquo;. Reading the AI literature critically means asking which model, which date, and whether anyone has retested.</p>
     <p>The week&#39;s centrepiece reading lives at the end of this sub-lesson: a May 2026 blog post by the Fields-medallist Tim Gowers reporting on his experience using GPT-5.5 Pro to extend bounds on an open problem in additive number theory. Read it before moving on to the next sub-lesson.</p>
   </div>
 
   <h2 class="section-title">&#128200; A Seven-Year Sweep</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The pace of capability change over the last seven years is worth pausing on. Below is a deliberately compressed history. Each row marks a moment when the answer to &ldquo;what can these systems do?&rdquo; shifted enough that the previous answer became wrong.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The pace of capability change over the last seven years is worth pausing on. Below is a compressed history. Each row marks a moment when the answer to &ldquo;what can these systems do?&rdquo; shifted enough that the previous answer became wrong.</p>
 
   <div style="overflow-x: auto;">
     <table class="comparison-table">
@@ -416,20 +416,20 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="info-box">
     <h4>&#128161; Why This Matters Now</h4>
-    <p>If you arrived in this course with a calibration of AI based on news coverage from 2023, you are in roughly the position of someone reading 2010 reviews of smartphone cameras. Some core observations still apply &mdash; cameras have lenses, smartphones have batteries &mdash; but the specifics are out of date.</p>
+    <p>If you arrived in this course with a calibration of AI based on news coverage from 2023, you are in roughly the position of someone reading 2010 reviews of smartphone cameras. Some core observations still apply (cameras have lenses, smartphones have batteries) but the specifics are out of date.</p>
     <p>The recalibration matters in two directions. Some things you might think AI can&#39;t do, it now can. Some things you might think AI can do reliably, it cannot. Both errors are common in published research right now. This sub-lesson and the next two address them in turn.</p>
   </div>
 
   <!-- SECTION: MAY 2026 LANDSCAPE -->
   <h2 class="section-title">&#128300; The May 2026 Frontier &mdash; Closed-Weights Models</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of mid-May 2026, the closed-weights frontier comprises six families of models, all from large well-resourced labs. Each has slightly different strengths, and the leaderboards shuffle every few weeks. The numbers below are accurate at time of writing and will be wrong within months &mdash; that itself is a teaching point.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of mid-May 2026, the closed-weights frontier comprises six families of models, all from large well-resourced labs. Each has slightly different strengths, and the leaderboards shuffle every few weeks. The numbers below are accurate at time of writing and will be wrong within months.</p>
 
   <div class="card-grid">
 
     <div class="card">
       <h3>Anthropic &mdash; Claude Mythos (Preview)</h3>
-      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. As of early May 2026, the UK AI Security Institute reported GPT-5.5 reaching rough parity with Mythos on offensive-cyber evaluations (GPT-5.5 71.4% vs Mythos 68.6% on multi-step attack simulations) &mdash; so Anthropic&#39;s earlier unique lead in this domain has narrowed. Available to limited partners via Project Glasswing.</p>
+      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. As of early May 2026, the UK AI Security Institute reported GPT-5.5 reaching rough parity with Mythos on offensive-cyber evaluations (GPT-5.5 71.4% vs Mythos 68.6% on multi-step attack simulations), so Anthropic&#39;s earlier unique lead in this domain has narrowed. Available to limited partners via Project Glasswing.</p>
     </div>
 
     <div class="card">
@@ -444,7 +444,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Google DeepMind &mdash; Gemini 3.1 Pro / Deep Think</h3>
-      <p>Achieved IMO 2025 gold medal: 5/6 problems solved, 35/42 points, end-to-end natural language within the competition&#39;s 4.5-hour window &mdash; up from a silver in 2024. Long context, multimodal, and the Deep Think variant powers the cosmic-string radiation result discussed in 9.3.</p>
+      <p>Achieved IMO 2025 gold medal: 5/6 problems solved, 35/42 points, end-to-end natural language within the competition&#39;s 4.5-hour window, up from a silver in 2024. Long context, multimodal, and the Deep Think variant powers the cosmic-string radiation result discussed in 9.3.</p>
     </div>
 
     <div class="card">
@@ -467,12 +467,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>DeepSeek V4 Pro</h3>
-      <p>Released 24 April 2026 under the MIT licence. Mixture-of-experts architecture: <strong>1.6 trillion total parameters with 49 billion active</strong> per token. <strong>1 million token context window</strong>. Codeforces rating <strong>3206</strong> &mdash; the highest competitive-programming score of any model, surpassing GPT-5.4&#39;s 3168. SWE-bench Verified 80.6%. Roughly 10&ndash;13&times; cheaper per output token than the closed frontier on most agentic benchmarks.</p>
+      <p>Released 24 April 2026 under the MIT licence. Mixture-of-experts architecture: <strong>1.6 trillion total parameters with 49 billion active</strong> per token. <strong>1 million token context window</strong>. Codeforces rating <strong>3206</strong>, the highest competitive-programming score of any model, surpassing GPT-5.4&#39;s 3168. SWE-bench Verified 80.6%. Roughly 10&ndash;13&times; cheaper per output token than the closed frontier on most agentic benchmarks.</p>
     </div>
 
     <div class="card">
       <h3>Kimi K2.6 (Moonshot AI)</h3>
-      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 85.4 %</strong> &mdash; effectively ties GPT-5.5 (85.1%) at roughly 80% lower cost per token. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue). A second open-weights model now matching closed-frontier coding capability is a notable trajectory data point.</p>
+      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 85.4 %</strong>, effectively tying GPT-5.5 (85.1%) at roughly 80% lower cost per token. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue). It is the second open-weights model to match closed-frontier coding capability.</p>
     </div>
 
     <div class="card">
@@ -482,12 +482,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Qwen 3.6 (Alibaba) &amp; Gemma 4 (Google DeepMind)</h3>
-      <p>Qwen 3.6 27B (April 2026): Apache 2.0, 262K context window, native multimodal input, BF16 weights small enough to fit on a single H100. Top of Artificial Analysis&#39;s Intelligence Index for open-weights models under 150B parameters at 46. Hybrid thinking model (toggle chain-of-thought on/off). Reaches frontier on AIME 2026 (~91%). Both Qwen 3.6 and Gemma 4 implement <strong>Multi-Token Prediction (MTP)</strong> &mdash; predicting several future tokens per forward pass for substantial inference speed-ups, an emerging cross-model technique.</p>
+      <p>Qwen 3.6 27B (April 2026): Apache 2.0, 262K context window, native multimodal input, BF16 weights small enough to fit on a single H100. Top of Artificial Analysis&#39;s Intelligence Index for open-weights models under 150B parameters at 46. Hybrid thinking model (toggle chain-of-thought on/off). Reaches frontier on AIME 2026 (~91%). Both Qwen 3.6 and Gemma 4 implement <strong>Multi-Token Prediction (MTP)</strong>, predicting several future tokens per forward pass for substantial inference speed-ups. It is an emerging cross-model technique.</p>
     </div>
 
     <div class="card">
       <h3>Other open-weights players</h3>
-      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> is positioned for cost-efficiency but has been reported to hallucinate heavily on knowledge benchmarks such as AA-Omniscience &mdash; a useful warning that not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention &mdash; an architectural-innovation data point.</p>
+      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> is positioned for cost-efficiency but has been reported to hallucinate heavily on knowledge benchmarks such as AA-Omniscience; not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention.</p>
     </div>
 
   </div>
@@ -570,7 +570,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <!-- SECTION: WHAT BENCHMARKS DON'T TELL YOU -->
   <h2 class="section-title">&#128683; What Benchmarks Don&#39;t Tell You</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmark scores are easy to read and easy to compare. They give the illusion of an objective measure of capability. They are, in fact, a partial and contested measure &mdash; and three specific failures of benchmarks are worth knowing before you read any model announcement uncritically.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmark scores are easy to read and easy to compare. They give the illusion of an objective measure of capability. They are a partial and contested measure, and three specific failures of benchmarks are worth knowing before you read any model announcement uncritically.</p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">1. Goodhart&#39;s Law: Benchmarks Are Not Real-World Use</h3>
 
@@ -581,7 +581,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Charles Goodhart, a British economist, originally articulated the principle in 1975 in the context of monetary policy: any observed statistical regularity tends to collapse once pressure is placed upon it for control purposes. The popular formulation above is from anthropologist Marilyn Strathern in 1997.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The application to AI benchmarks is direct. The benchmarks were originally proxies for capability &mdash; if a model scores well on FrontierMath, that&#39;s evidence the model can do research-level mathematics. But once benchmarks become the public yardstick for model quality, labs train and tune <em>specifically to perform well on them</em>. The benchmark stops being a proxy for capability and becomes a target the model is optimised to hit. The resulting score is no longer a good measure of the underlying capability the benchmark was meant to track.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The application to AI benchmarks is direct. The benchmarks were originally proxies for capability: if a model scores well on FrontierMath, that&#39;s evidence the model can do research-level mathematics. But once benchmarks become the public yardstick for model quality, labs train and tune <em>specifically to perform well on them</em>. The benchmark stops being a proxy for capability and becomes a target the model is optimised to hit. The resulting score is no longer a good measure of the underlying capability the benchmark was meant to track.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A concrete consequence: a model that scores 87.6% on SWE-bench Verified is genuinely good at GitHub-issue-style coding tasks. It may or may not be good at the coding work <em>you</em> need to do. A model that scores 52.4% on FrontierMath is genuinely capable on Fields-medal-curated mathematics problems. It may or may not be useful for the specific mathematical questions in <em>your</em> field. The benchmark measures performance on the benchmark; that&#39;s all it can measure.</p>
 
@@ -591,35 +591,35 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <h4>&#128221; A Concrete Goodhart Illustration: SWE-Bench &rarr; ProgramBench</h4>
     <p>Frontier models score above 87% on SWE-bench Verified (Opus 4.7) and 85% on it (Kimi K2.6, GPT-5.5). The benchmark is approaching saturation. If you read those scores as a measure of &ldquo;the model is now good at software engineering,&rdquo; you would be making the Goodhart error.</p>
     <p>ProgramBench (May 2026) tests something different: given <em>only</em> a program and its documentation, can the model architect and implement a codebase from scratch that matches the reference behaviour? No method signatures to fill in, no class skeletons, no natural-language descriptions of file layout. 200 tasks sourced from real-world open-source GitHub repositories, with more than 248,000 behavioural tests.</p>
-    <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested &mdash; including Opus 4.7, GPT-5.4, Gemini 3.1 Pro &mdash; not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
+    <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested, including Opus 4.7, GPT-5.4 and Gemini 3.1 Pro, not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
     <p>The same models, the same general task family (software engineering), wildly different scores. SWE-bench measures &ldquo;can the model solve well-scoped patches to existing code given the issue description.&rdquo; It does not measure &ldquo;can the model architect and build a real piece of software.&rdquo; The benchmark you cite determines the capability claim you can make.</p>
     <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.03546" target="_blank" rel="noopener">ProgramBench: Can Language Models Rebuild Programs From Scratch? (arXiv:2605.03546, May 2026)</a></p>
   </div>
 
   <div class="case-study">
     <h4>&#128221; The Hidden Variable: Harness Engineering</h4>
-    <p>A second Goodhart-adjacent finding has been hardening across 2026: a model&#39;s benchmark score conflates two things &mdash; the model&#39;s underlying capability, and the engineering work done around the model (system prompt, tools, middleware, decomposition strategy, retrieval scaffolding). The community has started calling this latter component the <em>harness</em>, and the harness now often dominates.</p>
-    <p>The Agentic Harness Engineering paper documents the effect: the same model on Terminal-Bench 2 went from <strong>69.7% to 77.0%</strong> over ten iterations of pure harness improvement &mdash; beating a human-designed Codex-CLI baseline of 71.9% &mdash; while reducing token use on SWE-bench Verified by 12%. Other reports converge on the same observation: 10&ndash;20 point swings on tau2-bench depending on prompts and middleware, while the underlying model is identical. <em>Source: Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses</em>, <a href="https://arxiv.org/abs/2604.25850" target="_blank" rel="noopener">arXiv:2604.25850</a> (April 2026).</p>
+    <p>A second Goodhart-adjacent finding has been hardening across 2026: a model&#39;s benchmark score conflates two things, the model&#39;s underlying capability and the engineering work done around the model (system prompt, tools, middleware, decomposition strategy, retrieval scaffolding). The community has started calling this latter component the <em>harness</em>, and the harness now often dominates.</p>
+    <p>The Agentic Harness Engineering paper documents the effect: the same model on Terminal-Bench 2 went from <strong>69.7% to 77.0%</strong> over ten iterations of pure harness improvement (beating a human-designed Codex-CLI baseline of 71.9%) while reducing token use on SWE-bench Verified by 12%. Other reports converge on the same observation: 10&ndash;20 point swings on tau2-bench depending on prompts and middleware, while the underlying model is identical. <em>Source: Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses</em>, <a href="https://arxiv.org/abs/2604.25850" target="_blank" rel="noopener">arXiv:2604.25850</a> (April 2026).</p>
     <p>The implication for reading announcements: a 90% score on a benchmark may reflect a 75% model with a great harness, or an 85% model with a mediocre harness. When a lab announces SOTA on benchmark X, you cannot disentangle the harness contribution from the model contribution. For your own work, the corollary is that switching to the latest frontier model is often less impactful than improving the harness around the model you already use.</p>
   </div>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">2. Benchmark Contamination &mdash; Training-Data Leakage</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A benchmark only measures capability if the model hasn&#39;t already seen the answers. The internet contains most published benchmarks. Models trained on web-scale data have, in many cases, seen the benchmark questions and answers during training &mdash; producing inflated scores that don&#39;t reflect generalised capability.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A benchmark only measures capability if the model hasn&#39;t already seen the answers. The internet contains most published benchmarks. Models trained on web-scale data have, in many cases, seen the benchmark questions and answers during training, producing inflated scores that don&#39;t reflect generalised capability.</p>
 
   <div class="case-study">
     <h4>&#128221; The MMLU Contamination Evidence</h4>
     <p>Deng, C., Zhao, Y., Tang, X., Gerstein, M., &amp; Cohan, A. (2023). <em>Investigating Data Contamination in Modern Benchmarks for Large Language Models.</em> <a href="https://arxiv.org/abs/2311.09783" target="_blank" rel="noopener">arXiv:2311.09783</a>.</p>
     <p>Used a &ldquo;Testset Slot Guessing&rdquo; methodology: mask one wrong answer in an MMLU multiple-choice question and ask the model to fill it in. A model that has never seen the question should perform near chance. ChatGPT achieved <strong>52%</strong> exact-match on the masked options; GPT-4 achieved <strong>57%</strong>. Far above chance, and consistent with having seen the test set.</p>
-    <p>A subject-level scan of MMLU found contamination rates as high as <strong>66.7%</strong> in some subjects. Variations of the contamination methodology have been documented in dozens of papers since &mdash; benchmark contamination is now a recognised systematic problem, not a one-off finding. The <a href="https://github.com/lyy1994/awesome-data-contamination" target="_blank" rel="noopener">Awesome Data Contamination</a> repository tracks the literature.</p>
+    <p>A subject-level scan of MMLU found contamination rates as high as <strong>66.7%</strong> in some subjects. Variations of the contamination methodology have been documented in dozens of papers since. Benchmark contamination is now a recognised systematic problem rather than a one-off finding. The <a href="https://github.com/lyy1994/awesome-data-contamination" target="_blank" rel="noopener">Awesome Data Contamination</a> repository tracks the literature.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">The implication: a model&#39;s reported MMLU score may overstate its general reasoning ability, possibly substantially. Comparable concerns apply to AIME, GSM8K, HumanEval, and most popular benchmarks &mdash; all of which have appeared in training corpora.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">The implication: a model&#39;s reported MMLU score may overstate its general reasoning ability, possibly substantially. Comparable concerns apply to AIME, GSM8K, HumanEval, and most popular benchmarks, all of which have appeared in training corpora.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Three responses have emerged:</p>
 
   <ul class="styled-list">
-    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was deliberately constructed as 350 entirely new and unpublished problems. Of the 50 Tier-4 problems, 48 are non-public and <strong>20 are withheld even from OpenAI</strong> (the funder), so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
+    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was constructed as 350 entirely new and unpublished problems. Of the 50 Tier-4 problems, 48 are non-public and <strong>20 are withheld even from OpenAI</strong> (the funder), so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
     <li><strong>Cleaned and refreshed benchmarks.</strong> MMLU-Pro (Wang et al. 2024) increased question difficulty and expanded answer choices to make memorisation less helpful. MMLU-Redux (2025) cleaned ambiguous questions and incorrect answers from the original.</li>
     <li><strong>Dynamic benchmarks.</strong> Benchmarks regenerated continuously based on training cutoffs, so contamination is structurally impossible. <a href="https://arxiv.org/abs/2312.12343" target="_blank" rel="noopener">LatestEval (AAAI 2024)</a> is one example.</li>
   </ul>
@@ -628,23 +628,23 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">3. What Benchmarks Don&#39;t Test &mdash; Low-Resource Languages and African Contexts</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Almost every major benchmark in the table above &mdash; FrontierMath, GPQA Diamond, SWE-bench Verified, AIME, MCP-Atlas, HLE &mdash; is administered <strong>in English</strong>. A model that excels on these benchmarks is genuinely good at English-language reasoning on topics well-represented in English-language training data. The leaderboard scores tell you very little about how the model performs on questions in Setswana, on legal reasoning grounded in South African law, on medical questions framed for a Nigerian or Kenyan clinical context, or on mathematics problems written by African educators for African students.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Almost every major benchmark in the table above (FrontierMath, GPQA Diamond, SWE-bench Verified, AIME, MCP-Atlas, HLE) is administered <strong>in English</strong>. A model that excels on these benchmarks is genuinely good at English-language reasoning on topics well-represented in English-language training data. The leaderboard scores tell you very little about how the model performs on questions in Setswana, on legal reasoning grounded in South African law, on medical questions framed for a Nigerian or Kenyan clinical context, or on mathematics problems written by African educators for African students.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For UCT students, this matters directly: the benchmark scores you see in news coverage may not predict how the same model performs on your research questions, your students&#39; questions, or your local context.</p>
 
   <div class="case-study">
     <h4>&#128221; The Measured Gap</h4>
-    <p>The <em>Bridging the Gap</em> project (Alhanai, Kasumovic, Ghassemi, Zitzelberger, Lundin &amp; Chabot-Couture, AAAI 2025; <a href="https://arxiv.org/abs/2412.12417" target="_blank" rel="noopener">arXiv:2412.12417</a>) translated portions of MMLU and Winogrande into eight low-resource African languages (Amharic, Bambara, Igbo, Sepedi, Shona, Sesotho, Setswana, Tsonga) covering more than 160 million speakers. The paper reports &ldquo;previously unknown performance gaps&rdquo; between state-of-the-art LLMs in English and these African languages, and explores fine-tuning, cross-lingual transfer, and cultural-appropriateness adjustments as mitigations &mdash; achieving incremental improvements (5.6% from fine-tuning, 2.9% from cross-lingual transfer) that are notable precisely because the underlying gap is so substantial.</p>
+    <p>The <em>Bridging the Gap</em> project (Alhanai, Kasumovic, Ghassemi, Zitzelberger, Lundin &amp; Chabot-Couture, AAAI 2025; <a href="https://arxiv.org/abs/2412.12417" target="_blank" rel="noopener">arXiv:2412.12417</a>) translated portions of MMLU and Winogrande into eight low-resource African languages (Amharic, Bambara, Igbo, Sepedi, Shona, Sesotho, Setswana, Tsonga) covering more than 160 million speakers. The paper reports &ldquo;previously unknown performance gaps&rdquo; between state-of-the-art LLMs in English and these African languages, and explores fine-tuning, cross-lingual transfer, and cultural-appropriateness adjustments as mitigations. The improvements were incremental (5.6% from fine-tuning, 2.9% from cross-lingual transfer) against a gap that remains substantial.</p>
     <p>Even the &ldquo;multilingual&rdquo; benchmarks tend to under-cover Africa. <a href="https://mmluprox.github.io/" target="_blank" rel="noopener">MMLU-ProX</a> covers 29 languages including Wolof, Yoruba, and Zulu, but documents consistent performance degradation from high-resource to low-resource languages. Most African languages aren&#39;t covered at all.</p>
   </div>
 
   <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Africa-specific benchmarks have begun to emerge in response to the gap. They are useful but not yet widely cited in model announcements:</p>
 
   <ul class="styled-list">
-    <li><strong><a href="https://aclanthology.org/2025.findings-acl.976.pdf" target="_blank" rel="noopener">AfroBench (ACL 2025)</a></strong> &mdash; comprehensive evaluation of LLMs on African languages across multiple NLP tasks.</li>
-    <li><strong><a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">IrokoBench</a></strong> &mdash; benchmark designed specifically for African languages in the LLM era.</li>
-    <li><strong>AfriSpeech-Dialog (NAACL 2025)</strong> and <strong>Intron Sahara v2 (2026, 57 languages)</strong> &mdash; African-language ASR benchmarks (covered in Week 8).</li>
-    <li><strong>Nahabwe et al. (2025), <em>Benchmarking Automatic Speech Recognition Models for African Languages</em></strong>, arXiv:2512.10968 &mdash; covered in Week 8.</li>
+    <li><strong><a href="https://aclanthology.org/2025.findings-acl.976.pdf" target="_blank" rel="noopener">AfroBench (ACL 2025)</a></strong>: full evaluation of LLMs on African languages across multiple NLP tasks.</li>
+    <li><strong><a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">IrokoBench</a></strong>: benchmark designed specifically for African languages in the LLM era.</li>
+    <li><strong>AfriSpeech-Dialog (NAACL 2025)</strong> and <strong>Intron Sahara v2 (2026, 57 languages)</strong>: African-language ASR benchmarks (covered in Week 8).</li>
+    <li><strong>Nahabwe et al. (2025), <em>Benchmarking Automatic Speech Recognition Models for African Languages</em></strong>, arXiv:2512.10968 (covered in Week 8).</li>
   </ul>
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">The pattern: for well-represented African languages (Swahili, Hausa, Yoruba, Afrikaans), frontier models perform reasonably. For under-represented languages (Setswana, Sepedi, isiXhosa, isiZulu in many tasks), performance falls off substantially. <strong>Performance differences between languages are larger than performance differences between frontier models.</strong></p>
@@ -668,8 +668,8 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="case-study">
     <h4>&#128221; What Gowers reports</h4>
-    <p>Over roughly two hours of interaction, GPT-5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel &mdash; not retrieved from training data &mdash; and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
-    <p>Gowers&#39; broader claim is striking: <em>&ldquo;The lower bound for contributing to mathematics will now be to prove something that LLMs can&#39;t prove.&rdquo;</em></p>
+    <p>Over roughly two hours of interaction, GPT-5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel, not retrieved from training data, and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
+    <p>Gowers&#39; broader claim: <em>&ldquo;The lower bound for contributing to mathematics will now be to prove something that LLMs can&#39;t prove.&rdquo;</em></p>
     <p>He pairs this with a defence of human work: <em>&ldquo;by solving hard problems you get an insight&hellip;that you simply don&#39;t if all you do is read other people&#39;s solutions.&rdquo;</em></p>
   </div>
 
@@ -684,7 +684,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="highlight-box">
     <h3>Date-stamp every claim about AI capability</h3>
-    <p>From here on, when you encounter a claim about what AI can or cannot do &mdash; in this course, in published papers, in news articles, anywhere &mdash; reflexively check three things. <strong>Which model</strong> was tested? <strong>When</strong> was it tested? <strong>Has anyone retested</strong> with current frontier models?</p>
+    <p>From here on, when you encounter a claim about what AI can or cannot do, whether in this course, in published papers, in news articles, or anywhere else, check three things. <strong>Which model</strong> was tested? <strong>When</strong> was it tested? <strong>Has anyone retested</strong> with current frontier models?</p>
     <p>Without these three pieces of information, an AI capability claim has the same evidentiary status as a 2010 review of smartphone cameras. The category is right; the specifics are stale.</p>
     <p>Sub-lesson 9.2 takes this trajectory framing and applies it to specific failure modes. Some have been patched. Some have been reduced. Some are structural and likely permanent. Distinguishing them is the skill we are building.</p>
   </div>

@@ -345,9 +345,9 @@
             <!-- INTRO -->
             <div class="intro-text">
                 <h2>What We'll Cover</h2>
-                <p>One of the most exciting &mdash; and most dangerous &mdash; uses of generative AI in research is brainstorming. AI can generate dozens of research ideas in minutes, suggest connections across disciplines you would never have considered, and reframe problems in unexpected ways. Recent research suggests that AI-generated ideas can even be rated as more novel than those produced by human experts.</p>
-                <p style="margin-top: 12px;">But there is a dark side. AI brainstorming tools tend to converge on similar ideas, creating what researchers are calling an "idea monoculture." They anchor your thinking to their first suggestion. They make ideas feel novel simply because they are unexpected to you &mdash; even when the ideas are well-trodden in other fields. And they replace exactly the kinds of unstructured, serendipitous thinking that have historically produced the most transformative research breakthroughs.</p>
-                <p style="margin-top: 12px;">This session will teach you how to use AI effectively for research ideation &mdash; the prompting strategies that actually work, the evidence on whether AI ideas are any good, the risks you need to manage, and when to put the laptop away entirely and go for a long walk instead.</p>
+                <p>One of the most exciting, and most dangerous, uses of generative AI in research is brainstorming. AI can generate dozens of research ideas in minutes, suggest connections across disciplines you would never have considered, and reframe problems in unexpected ways. Recent research suggests that AI-generated ideas can even be rated as more novel than those produced by human experts.</p>
+                <p style="margin-top: 12px;">But there is a dark side. AI brainstorming tools tend to converge on similar ideas, creating what researchers are calling an "idea monoculture." They anchor your thinking to their first suggestion. They make ideas feel novel because they are unexpected to you, even when the ideas are well-trodden in other fields. And they replace the kinds of unstructured, serendipitous thinking that have historically produced the biggest research breakthroughs.</p>
+                <p style="margin-top: 12px;">This session will teach you how to use AI effectively for research ideation: the prompting strategies that work, the evidence on whether AI ideas are any good, the risks you need to manage, and when to put the laptop away entirely and go for a long walk instead.</p>
             </div>
 
             <!-- SECTION 1: PROMPT ENGINEERING FOR IDEATION -->
@@ -381,7 +381,7 @@
                         <div class="prompt-label">Example Prompt</div>
                         Generate five research ideas about [topic] that do NOT involve [most common approach]. None of the ideas should use [standard method] or focus on [usual population/context]. What alternatives exist?
                     </div>
-                    <p style="margin-top: 10px;">This is one of the most powerful ideation strategies. Most researchers are anchored to the dominant methods and populations in their field. By explicitly blocking them, you force both yourself and the AI to explore the margins where novel contributions are most likely.</p>
+                    <p style="margin-top: 10px;">Most researchers are anchored to the dominant methods and populations in their field. By blocking them, you force both yourself and the AI to explore the margins where novel contributions are most likely.</p>
                 </div>
                 <div class="card">
                     <h3>&#128065; Adversarial Prompting</h3>
@@ -390,21 +390,21 @@
                         <div class="prompt-label">Example Prompt</div>
                         What would a thoughtful critic say is fundamentally missing from current research on [topic]? What assumptions does the field take for granted that might be wrong? Where is the field most vulnerable to being overturned?
                     </div>
-                    <p style="margin-top: 10px;">Adversarial prompting is underused. Researchers tend to ask AI "What should I study?" when the better question is "What is everyone getting wrong?" The critique-first approach generates ideas that challenge existing paradigms rather than extending them incrementally.</p>
+                    <p style="margin-top: 10px;">Adversarial prompting is underused. Researchers tend to ask AI "What should I study?" when the better question is "What is everyone getting wrong?" Asking for critique first generates ideas that challenge existing paradigms rather than extending them incrementally.</p>
                 </div>
                 <div class="card">
                     <h3>&#127760; Cross-Disciplinary Prompting</h3>
-                    <p><strong>Purpose:</strong> Generates unexpected connections by applying frameworks from one discipline to another. Many breakthrough papers come from exactly this kind of cross-pollination.</p>
+                    <p><strong>Purpose:</strong> Generates unexpected connections by applying frameworks from one discipline to another. Many breakthrough papers come from this kind of cross-pollination.</p>
                     <div class="prompt-example">
                         <div class="prompt-label">Example Prompt</div>
                         How would a [physicist / economist / anthropologist / ecologist] approach the problem of [your research question]? What methods, frameworks, or theories from their field could offer a fresh perspective? Be specific about what they would do differently.
                     </div>
-                    <p style="margin-top: 10px;">This strategy leverages one of AI's genuine strengths: it has been trained on text from many disciplines and can identify structural analogies that a specialist might miss. The key is to ask for specifics, not vague gestures toward "interdisciplinarity."</p>
+                    <p style="margin-top: 10px;">This strategy uses one of AI's genuine strengths: it has been trained on text from many disciplines and can identify structural analogies that a specialist might miss. The key is to ask for specifics, not vague gestures toward "interdisciplinarity."</p>
                 </div>
             </div>
 
             <div class="info-box">
-                <strong>&#128161; A note on combining strategies:</strong> These strategies are most powerful when combined. Start with chain-of-thought to map the landscape, then use adversarial prompting to find gaps, then apply cross-disciplinary prompting to generate unexpected approaches to those gaps, and finally use constraint-based prompting to push beyond the first wave of obvious ideas. Run the same question through multiple strategies and compare the results &mdash; the differences will tell you which ideas are robust and which were artefacts of a particular framing.
+                <strong>&#128161; A note on combining strategies:</strong> These strategies are most powerful when combined. Start with chain-of-thought to map the area, then use adversarial prompting to find gaps, then apply cross-disciplinary prompting to generate unexpected approaches to those gaps, and finally use constraint-based prompting to push beyond the first wave of obvious ideas. Run the same question through multiple strategies and compare the results. The differences will tell you which ideas are solid and which were artefacts of a particular framing.
             </div>
 
             <!-- SECTION 2: THE EVIDENCE -->
@@ -415,9 +415,9 @@
             <div class="case-study">
                 <h3>&#128218; Key Study: Si et al. (2024) &mdash; "Can LLMs Generate Novel Research Ideas?"</h3>
                 <p>This is the most rigorous study to date on AI ideation quality. Over 100 NLP researchers participated in a large-scale evaluation. Human experts and an LLM (using Claude 3.5 Sonnet as the backbone) each generated research ideas, which were then blind-reviewed by other experts on dimensions including novelty, feasibility, and excitement.</p>
-                <p style="margin-top: 12px;"><strong>The headline finding:</strong> LLM-generated ideas were rated as significantly more novel than those produced by human experts. This surprised many in the research community &mdash; the AI was better at generating surprising, unexpected combinations of existing concepts.</p>
-                <p style="margin-top: 12px;"><strong>But the caveats are critical:</strong> While novelty scores were higher, AI ideas were rated as weaker on feasibility. The AI generated ideas that sounded exciting but were harder to actually execute. Perhaps most importantly, the AI-generated ideas were significantly less diverse than human ideas &mdash; they clustered around similar themes and approaches, even when prompted to be diverse.</p>
-                <p style="margin-top: 12px;"><strong>What this means for you:</strong> AI is good at producing surprising combinations of concepts &mdash; the kind of "What if we applied X to Y?" thinking that can spark genuine insight. But it is poor at judging whether those combinations will actually work in practice. The diversity problem is perhaps the most concerning finding: if you rely on AI for brainstorming, you may be exploring a narrower space than you think.</p>
+                <p style="margin-top: 12px;"><strong>The headline finding:</strong> LLM-generated ideas were rated as significantly more novel than those produced by human experts. This surprised many in the research community: the AI was better at generating surprising, unexpected combinations of existing concepts.</p>
+                <p style="margin-top: 12px;"><strong>The caveats:</strong> While novelty scores were higher, AI ideas were rated as weaker on feasibility. The AI generated ideas that sounded exciting but were harder to actually execute. The AI-generated ideas were also significantly less diverse than human ideas: they clustered around similar themes and approaches, even when prompted to be diverse.</p>
+                <p style="margin-top: 12px;"><strong>What this means for you:</strong> AI is good at producing surprising combinations of concepts, the kind of "What if we applied X to Y?" thinking that can spark genuine insight. But it is poor at judging whether those combinations will actually work in practice. The diversity problem matters here: if you rely on AI for brainstorming, you may be exploring a narrower space than you think.</p>
                 <p style="margin-top: 12px;"><a href="https://arxiv.org/abs/2409.04109" target="_blank" rel="noopener">Read the full paper: arXiv:2409.04109</a></p>
             </div>
 
@@ -425,18 +425,18 @@
                 <div class="card">
                     <h3>&#128200; What AI Does Well</h3>
                     <ul class="styled-list">
-                        <li>Generating a high volume of ideas quickly &mdash; useful in early-stage brainstorming</li>
+                        <li>Generating a high volume of ideas quickly, useful in early-stage brainstorming</li>
                         <li>Finding unexpected combinations across subfields within a discipline</li>
                         <li>Reframing problems using different theoretical lenses</li>
                         <li>Identifying structural analogies between different research areas</li>
-                        <li>Producing ideas that score well on "surprise" &mdash; things you would not have thought of yourself</li>
+                        <li>Producing ideas that score well on "surprise": things you would not have thought of yourself</li>
                     </ul>
                 </div>
                 <div class="card">
                     <h3>&#128201; What AI Does Poorly</h3>
                     <ul class="styled-list">
-                        <li>Assessing feasibility &mdash; whether an idea can actually be executed with available resources</li>
-                        <li>Generating genuinely diverse ideas &mdash; outputs tend to cluster around similar themes</li>
+                        <li>Assessing feasibility: whether an idea can actually be executed with available resources</li>
+                        <li>Generating genuinely diverse ideas, since outputs tend to cluster around similar themes</li>
                         <li>Understanding the practical constraints of a specific research context</li>
                         <li>Distinguishing between "novel to you" and "novel to the field"</li>
                         <li>Knowing when an idea has already been explored and failed</li>
@@ -447,7 +447,7 @@
             <div class="technical-detail">
                 <h3>&#9881;&#65039; Girotra et al. (2023): Quantity vs. Quality</h3>
                 <p>An earlier study by <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4526071" target="_blank" rel="noopener">Girotra, Meincke, Terwiesch, and Ulrich</a> (published via SSRN) examined AI idea generation in an innovation context. They found that AI systems generate substantially more ideas than human participants in the same timeframe. However, the quality assessment was mixed: while the best AI ideas were competitive with the best human ideas, the average quality was lower, and AI produced more ideas that were rated as poor or unworkable.</p>
-                <p style="margin-top: 12px;">An important caveat: this study used GPT-4 era models (2023). AI capabilities have advanced significantly since then, and a similar study conducted today might well find that average AI idea quality also exceeds average human quality. The diversity problem, however, appears to be more structural &mdash; it stems from how LLMs generate text through pattern completion, and improvements in raw capability do not necessarily address it.
+                <p style="margin-top: 12px;">One caveat: this study used GPT-4 era models (2023). AI capabilities have advanced significantly since then, and a similar study conducted today might well find that average AI idea quality also exceeds average human quality. The diversity problem, however, appears to be more structural. It stems from how LLMs generate text through pattern completion, and improvements in raw capability do not necessarily address it.
 
 <p style="margin-top: 12px;">The practical implication is that AI brainstorming requires heavy curation. You can use AI to generate a large pool of candidate ideas, but the work of evaluating, filtering, and developing those ideas remains fundamentally human. Think of AI as expanding the search space, not as replacing your judgement about what is worth pursuing.</p></p>
             </div>
@@ -455,7 +455,7 @@
             <!-- SECTION 3: IDEA MONOCULTURE -->
             <h2 class="section-title">&#127793; The Idea Monoculture Problem</h2>
 
-            <p>If every researcher uses the same AI tools to generate ideas, and those tools tend to converge on similar outputs, the result is a dangerous homogenisation of the research landscape. This is not a hypothetical concern &mdash; it is already happening.</p>
+            <p>If every researcher uses the same AI tools to generate ideas, and those tools tend to converge on similar outputs, the result is a dangerous homogenisation of research across the board. This is not a hypothetical concern. It is already happening.</p>
 
             <div class="card-grid">
                 <div class="card">
@@ -471,25 +471,25 @@
             </div>
 
             <ul class="styled-list">
-                <li><strong>The institutional pressure is real.</strong> As AI becomes embedded in research workflows, institutions increasingly reward speed and scale &mdash; the things AI is good at. This creates pressure to adopt AI-compatible methods and questions, sidelining research approaches that do not lend themselves to AI augmentation. Ethnographic fieldwork, long-term observational studies, and interpretive methods may be deprioritised not because they are less valuable, but because they are harder to accelerate with AI.</li>
-                <li><strong>The training data problem compounds the issue.</strong> All major LLMs are trained on broadly similar corpora of internet text and academic publications. They have absorbed the same biases, the same dominant framings, and the same blind spots. When ten researchers in different countries use different AI tools to brainstorm on the same topic, they will get more similar results than if those ten researchers had brainstormed independently. The tools are different, but the underlying data &mdash; and therefore the underlying patterns &mdash; are shared.</li>
+                <li><strong>The institutional pressure is real.</strong> As AI becomes embedded in research workflows, institutions increasingly reward speed and scale, the things AI is good at. This creates pressure to adopt AI-compatible methods and questions, sidelining research approaches that do not lend themselves to AI augmentation. Ethnographic fieldwork, long-term observational studies, and interpretive methods may be deprioritised not because they are less valuable, but because they are harder to accelerate with AI.</li>
+                <li><strong>The training data problem compounds the issue.</strong> All major LLMs are trained on broadly similar corpora of internet text and academic publications. They have absorbed the same biases, the same dominant framings, and the same blind spots. When ten researchers in different countries use different AI tools to brainstorm on the same topic, they will get more similar results than if those ten researchers had brainstormed independently. The tools are different, but the underlying data (and therefore the underlying patterns) are shared.</li>
                 <li><strong>Diversity of thought requires diversity of process.</strong> The most innovative research often comes from researchers who think differently because they have had different experiences, read different literatures, or work in different intellectual traditions. AI flattens these differences by channelling everyone through the same statistical patterns.</li>
             </ul>
 
             <div class="warning-box">
-                <strong>&#9888;&#65039; The core danger:</strong> If everyone uses the same AI to generate ideas, everyone will explore the same territory. The research frontier does not advance when thousands of researchers converge on the same set of AI-suggested hypotheses. It advances when researchers bring genuinely different perspectives, methods, and questions to the table. AI can be part of that process, but it cannot be the whole of it &mdash; and if it becomes the default starting point for every researcher, the result will be a narrower, less creative, less surprising body of knowledge.
+                <strong>&#9888;&#65039; The core danger:</strong> If everyone uses the same AI to generate ideas, everyone will explore the same territory. The research frontier does not advance when thousands of researchers converge on the same set of AI-suggested hypotheses. It advances when researchers bring genuinely different perspectives, methods, and questions to the table. AI can be part of that process, but it cannot be the whole of it. If it becomes the default starting point for every researcher, the result will be a narrower, less creative, less surprising body of knowledge.
             </div>
 
             <!-- SECTION 4: RISKS OF AI-ASSISTED IDEATION -->
             <h2 class="section-title">&#9888;&#65039; The Risks of AI-Assisted Ideation</h2>
 
-            <p>Beyond the systemic problem of monoculture, there are specific cognitive risks that affect individual researchers who use AI for brainstorming. These are not reasons to avoid AI entirely &mdash; but they are risks you must actively manage.</p>
+            <p>Beyond the systemic problem of monoculture, there are specific cognitive risks that affect individual researchers who use AI for brainstorming. None of these is a reason to avoid AI entirely, but each is a risk you must manage.</p>
 
             <div class="card-grid">
                 <div class="card">
                     <h3>&#9875; Anchoring</h3>
                     <p><strong>The risk:</strong> Once AI frames a problem or suggests an approach, it becomes the reference point for all subsequent thinking. You evaluate every other idea relative to the AI's first suggestion, rather than exploring the space freely.</p>
-                    <p style="margin-top: 8px;"><strong>How it manifests:</strong> You ask AI for research ideas, it suggests studying "the impact of social media on adolescent mental health using sentiment analysis," and now every idea you generate is a variation on that frame &mdash; different platforms, different age groups, different methods, but always the same basic shape. The AI has not helped you think; it has told you what to think about.</p>
+                    <p style="margin-top: 8px;"><strong>How it manifests:</strong> You ask AI for research ideas, it suggests studying "the impact of social media on adolescent mental health using sentiment analysis," and now every idea you generate is a variation on that frame: different platforms, different age groups, different methods, but always the same basic shape. The AI has not helped you think; it has told you what to think about.</p>
                     <p style="margin-top: 8px;"><strong>Mitigation:</strong> Always brainstorm on your own first, even briefly, before consulting AI. Write down your initial thoughts so you have an anchor-free baseline to return to.</p>
                 </div>
                 <div class="card">
@@ -512,9 +512,9 @@
                 </div>
                 <div class="card">
                     <h3>&#127922; Loss of Serendipity</h3>
-                    <p><strong>The risk:</strong> Some of the best research ideas in history came from unplanned encounters &mdash; the random conversation at a conference, the unexpected footnote in a paper you were reading for a different reason, the misheard comment that sparked a new line of thinking. AI cannot replicate the unplanned.</p>
-                    <p style="margin-top: 8px;"><strong>How it manifests:</strong> When AI becomes the default brainstorming tool, you spend less time in the unstructured states where serendipity occurs. You stop browsing library shelves. You stop attending talks outside your field. You stop having aimless conversations with colleagues. Each of these activities has a lower hit rate than AI brainstorming, but the hits are often more transformative.</p>
-                    <p style="margin-top: 8px;"><strong>Mitigation:</strong> Deliberately preserve unstructured time in your research practice. Attend seminars outside your discipline. Read journals you would not normally read. Have lunch with people from different departments. These are not inefficiencies to be optimised away; they are features of a creative research life.</p>
+                    <p><strong>The risk:</strong> Some of the best research ideas in history came from unplanned encounters: the random conversation at a conference, the unexpected footnote in a paper you were reading for a different reason, the misheard comment that sparked a new line of thinking. AI cannot replicate the unplanned.</p>
+                    <p style="margin-top: 8px;"><strong>How it manifests:</strong> When AI becomes the default brainstorming tool, you spend less time in the unstructured states where serendipity occurs. You stop browsing library shelves. You stop attending talks outside your field. You stop having aimless conversations with colleagues. Each of these activities has a lower hit rate than AI brainstorming, but the hits matter more.</p>
+                    <p style="margin-top: 8px;"><strong>Mitigation:</strong> Preserve unstructured time in your research practice. Attend seminars outside your discipline. Read journals you would not normally read. Have lunch with people from different departments. These are features of a creative research life, not inefficiencies to be optimised away.</p>
                 </div>
             </div>
 
@@ -524,15 +524,15 @@
             <p>We have spent most of this session discussing how to use AI well for ideation. But there are times when the best thing you can do for your research is to not use AI at all.</p>
 
             <div class="highlight-box">
-                <strong>The value of boredom, long walks, and unstructured time:</strong> Cognitive science research consistently shows that some of the most creative thinking happens during periods of low stimulation &mdash; when your mind is wandering, when you are bored, when you are not actively trying to solve a problem. This is when the brain makes unexpected connections between apparently unrelated ideas. AI usage occupies exactly the cognitive space that daydreaming needs. Every minute you spend prompting an AI is a minute you are not letting your own subconscious do its work.
+                <strong>The value of boredom, long walks, and unstructured time:</strong> Cognitive science research consistently shows that some of the most creative thinking happens during periods of low stimulation: when your mind is wandering, when you are bored, when you are not actively trying to solve a problem. This is when the brain makes unexpected connections between apparently unrelated ideas. AI usage occupies the cognitive space that daydreaming needs. Every minute you spend prompting an AI is a minute you are not letting your own subconscious do its work.
             </div>
 
             <ul class="styled-list">
                 <li><strong>When you are just starting to explore a new area.</strong> If you do not yet have a deep understanding of a field, AI ideas will overwhelm rather than inform. You need to read enough to develop your own intuitions before AI suggestions become useful rather than confusing. Use the literature review tools from Week 5 first. Build understanding before you brainstorm.</li>
                 <li><strong>When you need genuinely original framing.</strong> If your research contribution depends on seeing a problem in a way nobody else has, AI is unlikely to help. AI generates ideas by recombining patterns from existing text. It can produce novel combinations, but it cannot produce a genuinely new way of seeing. That kind of originality comes from deep engagement with a problem over time, from lived experience, and from intellectual traditions that the model may not adequately represent.</li>
-                <li><strong>When you are stuck in a rut.</strong> Counterintuitively, the moment you most want to use AI &mdash; when you feel stuck and frustrated &mdash; may be the worst time to do so. Being stuck is often a sign that you are about to have a breakthrough, if you sit with the discomfort long enough. Reaching for AI at this point short-circuits the process. Instead, go for a walk. Talk to a colleague. Read something unrelated. Sleep on it.</li>
+                <li><strong>When you are stuck in a rut.</strong> The moment you most want to use AI, when you feel stuck and frustrated, may be the worst time to do so. Being stuck is often a sign that you are about to have a breakthrough, if you sit with the discomfort long enough. Reaching for AI at this point short-circuits the process. Instead, go for a walk. Talk to a colleague. Read something unrelated. Sleep on it.</li>
                 <li><strong>When your research draws on local or indigenous knowledge.</strong> AI models are trained predominantly on English-language, Western academic text. If your research engages with local knowledge systems, community perspectives, or non-Western intellectual traditions, AI brainstorming will pull you toward the dominant framings and away from the perspectives that make your work distinctive and valuable.</li>
-                <li><strong>When the conversation matters more than the output.</strong> Some of the best research ideas emerge from conversations between people &mdash; the back-and-forth of challenge and response, the shared excitement of "what if," the social energy of collaborative thinking. AI cannot replicate the generative quality of a good conversation with a colleague who knows your work and pushes your thinking in unexpected directions.</li>
+                <li><strong>When the conversation matters more than the output.</strong> Some of the best research ideas emerge from conversations between people: the back-and-forth of challenge and response, the shared excitement of "what if," the social energy of collaborative thinking. AI cannot replicate the generative quality of a good conversation with a colleague who knows your work and pushes your thinking in unexpected directions.</li>
             </ul>
 
             <div class="info-box">
@@ -590,7 +590,7 @@
 
             <div class="resource-placeholder">
                 <h4>Sakana AI (2026). "Towards end-to-end automation of AI research." <em>Nature</em>.</h4>
-                <p>The AI Scientist: a system that generates research ideas, writes code, runs experiments, drafts papers in LaTeX, and performs its own peer review. One AI-generated paper passed peer review at the ICLR 2025 workshop, scoring higher than 55% of human papers &mdash; though none passed the main conference bar. A landmark demonstration of end-to-end automated research, raising profound questions about what "doing research" means.</p>
+                <p>The AI Scientist: a system that generates research ideas, writes code, runs experiments, drafts papers in LaTeX, and performs its own peer review. One AI-generated paper passed peer review at the ICLR 2025 workshop, scoring higher than 55% of human papers, though none passed the main conference bar. A landmark demonstration of end-to-end automated research, raising hard questions about what "doing research" means.</p>
                 <p style="margin-top: 8px;"><a href="https://www.nature.com/articles/s41586-026-10265-5" target="_blank" rel="noopener">Nature (2026)</a> | <a href="https://arxiv.org/abs/2408.06292" target="_blank" rel="noopener">arXiv:2408.06292</a></p>
             </div>
 
@@ -604,15 +604,15 @@
             <div class="intro-text" style="margin-top: 50px;">
                 <h2>Key Takeaways</h2>
                 <ul class="styled-list">
-                    <li><strong>Prompting strategy matters enormously.</strong> Generic prompts produce generic ideas. Chain-of-thought, role-playing, constraint-based, adversarial, and cross-disciplinary prompting each serve different purposes and produce different kinds of output. Use them deliberately and in combination.</li>
+                    <li><strong>Prompting strategy matters.</strong> Generic prompts produce generic ideas. Chain-of-thought, role-playing, constraint-based, adversarial, and cross-disciplinary prompting each serve different purposes and produce different kinds of output. Use them deliberately and in combination.</li>
                     <li><strong>AI-generated ideas can be surprisingly novel, but feasibility is a weakness.</strong> The Si et al. (2024) study showed that LLM ideas score higher on novelty than human expert ideas, but lower on feasibility and diversity. AI is better at "What if?" than "Will this actually work?"</li>
                     <li><strong>Idea monoculture is a real and growing problem.</strong> When everyone uses the same AI tools, everyone converges on the same ideas. Research on the homogenising effect of LLMs suggests that widespread AI adoption is narrowing rather than broadening the diversity of ideas in circulation.</li>
                     <li><strong>The cognitive risks are specific and manageable.</strong> Anchoring, confirmation bias, premature convergence, novelty illusion, and loss of serendipity are all real dangers. But each can be mitigated with deliberate practices: brainstorming alone first, using adversarial prompts, running multiple separate conversations, verifying novelty against the literature, and preserving unstructured time.</li>
-                    <li><strong>Sometimes the best tool is no tool at all.</strong> Long walks, boredom, conversations with colleagues, and reading outside your field have produced more transformative research ideas than any brainstorming method. Do not optimise away the unstructured thinking time that makes genuine creativity possible.</li>
+                    <li><strong>Sometimes the best tool is no tool at all.</strong> Long walks, boredom, conversations with colleagues, and reading outside your field have produced more important research ideas than any brainstorming method. Do not optimise away the unstructured thinking time that makes genuine creativity possible.</li>
                 </ul>
 
                 <div class="highlight-box" style="margin-top: 25px;">
-                    <strong>&#128073; Up next:</strong> In Sub-Lesson 3, we move from ideation to execution &mdash; AI writing tools. We will cover how AI can assist with drafting, editing, and structuring academic text, the risks of over-reliance on AI prose, and how to maintain your own voice and critical thinking throughout the writing process.
+                    <strong>&#128073; Up next:</strong> In Sub-Lesson 3, we move from ideation to execution: AI writing tools. We will cover how AI can assist with drafting, editing, and structuring academic text, the risks of over-reliance on AI prose, and how to maintain your own voice and critical thinking throughout the writing process.
                 </div>
             </div>
 

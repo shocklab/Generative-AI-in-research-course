@@ -421,25 +421,25 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Lesson&nbsp;A was about driving the tool. Lesson&nbsp;B is the reason the whole track exists: using Claude Code to make your research genuinely <em>reproducible</em> &mdash; the kind of work a stranger, or you in two years, can open up, inspect, and repeat.</p>
-    <p>This first page draws the distinction that the rest of the lesson hangs on: reproducibility is not the same as verification, and the two demand different things. Then it lays out the structure that makes reproducibility possible &mdash; the project folder as the unit of trustworthy research &mdash; and gives you a scaffold you can copy for your own work.</p>
+    <p>Lesson&nbsp;A was about driving the tool. Lesson&nbsp;B is the reason the whole track exists: using Claude Code to make your research genuinely <em>reproducible</em>, the kind of work a stranger, or you in two years, can open up, inspect, and repeat.</p>
+    <p>This first page draws the distinction that the rest of the lesson hangs on: reproducibility is not the same as verification, and the two demand different things. Then it lays out the structure that makes reproducibility possible, the project folder as the unit of trustworthy research, and gives you a scaffold you can copy for your own work.</p>
     <p>The two pages that follow turn that structure into practice: a <code>CLAUDE.md</code> that enforces good habits, pre-registration, and reusable Skills (B.2); then a full worked analysis from messy data to a reproducible result, how to verify it, and how the folder itself becomes your disclosure (B.3).</p>
   </div>
 
   <h2 class="section-title">&#9878;&#65039; Reproducibility Is Not Verification</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The course has taught <strong>verification</strong> thoroughly &mdash; Week&nbsp;9 was largely about it. Verification asks a question about an output: <em>is this correct?</em> Did the model hallucinate the citation, get the analysis right, reason soundly? Reproducibility asks a different question, about a process: <em>could someone else inspect what I did and repeat it?</em> They are siblings, and they are not the same. A result can be correct but irreproducible (you got the right answer but cannot say how), and a process can be perfectly reproducible but wrong (anyone can repeat your flawed analysis exactly). Good research needs both.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The course has taught <strong>verification</strong> thoroughly; Week&nbsp;9 was largely about it. Verification asks a question about an output: <em>is this correct?</em> Did the model hallucinate the citation, get the analysis right, reason soundly? Reproducibility asks a different question, about a process: <em>could someone else inspect what I did and repeat it?</em> They are siblings, and they are not the same. A result can be correct but irreproducible (you got the right answer but cannot say how), and a process can be perfectly reproducible but wrong (anyone can repeat your flawed analysis exactly). Good research needs both.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Agentic work cuts both ways here, and it is worth being honest about both edges. It makes reproducibility <em>harder</em>, because the agent does a great deal autonomously and the steps can be opaque &mdash; this is Mollick&#39;s &ldquo;wizard&rdquo; problem from Week&nbsp;11.1, where competence and opacity rise together: the more the agent does for you, the less you watched it do. But it also makes reproducibility <em>easier</em> in a way manual work never managed, because the agent can be instructed to document as it goes &mdash; to log every decision, name every source, and save every script, tirelessly, without the human tendency to think &ldquo;I&#39;ll write that up later.&rdquo;</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Agentic work cuts both ways here, on both edges at once. It makes reproducibility <em>harder</em>, because the agent does a great deal autonomously and the steps can be opaque: this is Mollick&#39;s &ldquo;wizard&rdquo; problem from Week&nbsp;11.1, where competence and opacity rise together, so the more the agent does for you, the less you watched it do. But it also makes reproducibility <em>easier</em> in a way manual work never managed, because the agent can be instructed to document as it goes, to log every decision, name every source, and save every script, tirelessly, without the human tendency to think &ldquo;I&#39;ll write that up later.&rdquo;</p>
 
   <div class="highlight-box">
     <h3>&#128161; The claim this lesson makes good on</h3>
-    <p>Used with discipline, Claude Code can produce research that is <em>more</em> reproducible than typical manual work &mdash; not less. The reason is simple: a human researcher documents their decisions when they remember to and have time; an agent told to log every consequential choice does it every time, by default. The opacity is real, but it is a problem you solve by <em>instructing the agent to leave a trail</em>, and the rest of this lesson is how.</p>
+    <p>Used with discipline, Claude Code can produce research that is <em>more</em> reproducible than typical manual work, not less. A human researcher documents their decisions when they remember to and have time; an agent told to log every consequential choice does it every time, by default. The opacity is real, but it is a problem you solve by <em>instructing the agent to leave a trail</em>, and the rest of this lesson is how.</p>
   </div>
 
   <h2 class="section-title">&#128193; The Project Folder as the Unit of Reproducible Work</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Lesson&nbsp;A&#39;s organising principle was <em>the chat is not the archive</em>. Its positive form is this: the <strong>project folder</strong> is the unit of reproducible work. Everything that matters &mdash; the raw data, the code, the outputs, the decisions, the standing instructions, the version history &mdash; lives in one inspectable place. Here is what a reproducible version of the Berg River project looks like once it is set up properly:</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Lesson&nbsp;A&#39;s organising principle was <em>the chat is not the archive</em>. Its positive form is this: the <strong>project folder</strong> is the unit of reproducible work. Everything that matters lives in one inspectable place: the raw data, the code, the outputs, the decisions, the standing instructions, the version history. Here is what a reproducible version of the Berg River project looks like once it is set up properly:</p>
 
   <pre class="code-block">berg-river-microplastics/
   CLAUDE.md                  <span class="cm"># the standing instructions (B.2)</span>
@@ -454,7 +454,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     data-inventory.md        <span class="cm"># what the data actually is</span>
   pre-registrations/         <span class="cm"># predictions + decision rules, before the compute (B.2)</span></pre>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Each part earns its place by answering a question a replicator would ask:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Each part answers a question a replicator would ask:</p>
 
   <div class="card-grid">
     <div class="card">
@@ -467,11 +467,11 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </div>
     <div class="card">
       <h3>outputs/ &mdash; derived, separate</h3>
-      <p>Figures, tables, and reports live apart from the data and the code that made them, so it is always clear what is source, what is method, and what is product. Nothing in <code>outputs/</code> is hand-edited &mdash; if it&#39;s wrong, you fix the script and regenerate.</p>
+      <p>Figures, tables, and reports live apart from the data and the code that made them, so it is always clear what is source, what is method, and what is product. Nothing in <code>outputs/</code> is hand-edited; if it&#39;s wrong, you fix the script and regenerate.</p>
     </div>
     <div class="card">
       <h3>notes/decision-log.md &mdash; the reasons</h3>
-      <p>The single most valuable file for reproducibility. Which outliers were excluded and why; how missing values were handled; which test was chosen. The decisions a reader most needs and most often cannot find. The agent appends to it as it works.</p>
+      <p>Which outliers were excluded and why; how missing values were handled; which test was chosen. The decisions a reader most needs and most often cannot find. The agent appends to it as it works.</p>
     </div>
     <div class="card">
       <h3>docs/data-inventory.md &mdash; what the data is</h3>
@@ -485,12 +485,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="info-box">
     <h4>&#9878;&#65039; Remember: discipline proportionate to stakes</h4>
-    <p>This is the full apparatus, for work whose results have to survive, be repeated, or be defended &mdash; the analysis behind a paper figure, say. It is deliberately heavy. As Lesson&nbsp;A.2 argued, you apply as much of it as the task in front of you deserves: an exploratory afternoon might need only a <code>data-inventory.md</code> and a saved script; the headline analysis of your thesis should have all of it. The structure here is what &ldquo;good&rdquo; looks like at the high-stakes end, not a ritual for every interaction.</p>
+    <p>This is the full apparatus, for work whose results have to survive, be repeated, or be defended: the analysis behind a paper figure, say. It is heavy by design. As Lesson&nbsp;A.2 argued, you apply as much of it as the task in front of you deserves: an exploratory afternoon might need only a <code>data-inventory.md</code> and a saved script; the main analysis of your thesis should have all of it. The structure here is what &ldquo;good&rdquo; looks like at the high-stakes end, not a ritual for every interaction.</p>
   </div>
 
   <div class="resource-placeholder">
     <h4>&#128229; Download: the reproducible-project scaffold</h4>
-    <p>An empty version of the structure above &mdash; the folders, a starter <code>CLAUDE.md</code>, and empty <code>decision-log.md</code> and <code>data-inventory.md</code> templates &mdash; ready to copy into your own project and adapt. <a href="files/reproducible-project-scaffold.zip">reproducible-project-scaffold.zip</a></p>
+    <p>An empty version of the structure above (the folders, a starter <code>CLAUDE.md</code>, and empty <code>decision-log.md</code> and <code>data-inventory.md</code> templates) ready to copy into your own project and adapt. <a href="files/reproducible-project-scaffold.zip">reproducible-project-scaffold.zip</a></p>
   </div>
 
   <div class="info-box">
@@ -498,11 +498,11 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p>None of this discipline is new with AI; agentic tools mainly make it easier to practise. It draws on two established literatures worth knowing in their own right:</p>
     <ul class="styled-list" style="margin-top: 0;">
       <li><strong>Why reproducibility matters.</strong> That a great deal of published research does not hold up is argued in Ioannidis, <em>Why Most Published Research Findings Are False</em> (<a href="https://doi.org/10.1371/journal.pmed.0020124" target="_blank" rel="noopener">2005, PLoS Medicine</a>); the Open Science Collaboration&#39;s mass replication of psychology studies (<a href="https://doi.org/10.1126/science.aac4716" target="_blank" rel="noopener">2015, Science</a>); and Baker&#39;s survey of 1,500 researchers (<a href="https://doi.org/10.1038/533452a" target="_blank" rel="noopener">2016, Nature</a>).</li>
-      <li><strong>How to do it in practice.</strong> The project-folder structure above is essentially an implementation of Sandve et&nbsp;al., <em>Ten Simple Rules for Reproducible Computational Research</em> (<a href="https://doi.org/10.1371/journal.pcbi.1003285" target="_blank" rel="noopener">2013, PLoS Computational Biology</a>) and Wilson et&nbsp;al., <em>Good Enough Practices in Scientific Computing</em> (<a href="https://doi.org/10.1371/journal.pcbi.1005510" target="_blank" rel="noopener">2017, PLoS Computational Biology</a>) &mdash; both short, practical, and worth reading in full.</li>
+      <li><strong>How to do it in practice.</strong> The project-folder structure above is essentially an implementation of Sandve et&nbsp;al., <em>Ten Simple Rules for Reproducible Computational Research</em> (<a href="https://doi.org/10.1371/journal.pcbi.1003285" target="_blank" rel="noopener">2013, PLoS Computational Biology</a>) and Wilson et&nbsp;al., <em>Good Enough Practices in Scientific Computing</em> (<a href="https://doi.org/10.1371/journal.pcbi.1005510" target="_blank" rel="noopener">2017, PLoS Computational Biology</a>), both short, practical, and worth reading in full.</li>
     </ul>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in B.2:</strong> the structure is the skeleton; the habits are what bring it to life. Next we write the <code>CLAUDE.md</code> that makes the agent keep the raw data sacred and the decision log current &mdash; the headline artefact of this track &mdash; then add pre-registration and reusable Skills.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in B.2:</strong> the structure is the skeleton; the habits are what bring it to life. Next we write the <code>CLAUDE.md</code> that makes the agent keep the raw data sacred and the decision log current, then add pre-registration and reusable Skills.</p>
 
 </div>
 </div>

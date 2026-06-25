@@ -347,68 +347,68 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <header>
   <div class="week-badge">Week 10 &bull; Sub-Lesson 4</div>
   <h1>&#128218; <span style="color: #ffffff;">RAG in 2026</span></h1>
-  <p>What changed since Week 5: long context vs retrieval, agentic RAG and Deep Research, evaluating it all &mdash; and why the researcher stays in the loop</p>
+  <p>What changed since Week 5: long context vs retrieval, agentic RAG and Deep Research, evaluating it all, and why the researcher stays in the loop</p>
 </header>
 
 <div class="content">
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Week 5 introduced retrieval-augmented generation (RAG) as the engine behind the AI literature tools &mdash; the technique of fetching relevant documents and feeding them to a model so its answer is grounded in real sources rather than its training data alone. Those tools and that technique are still central. But three things have shifted since Week 5, and this sub-lesson is about all three.</p>
-    <p>First, <strong>long context</strong>: frontier models now routinely accept a million tokens or more, which changes when you need retrieval at all. Second, <strong>agentic RAG</strong>: retrieval has moved from a single fetch-then-answer step to a loop in which the model plans, retrieves, reads, and retrieves again &mdash; and the Deep Research modes you have heard about are exactly this. Third, <strong>evaluation</strong>: we now have frameworks for measuring whether a RAG system is any good, though the hardest cases remain open.</p>
-    <p>The honest verdict, which we build to: for reading one long document, just use long context; for synthesising across many sources, agentic RAG still wins; and for anything you will cite, the Week 5 verification protocols apply regardless of which method produced the answer. None of this removes the researcher from the loop.</p>
+    <p>Week 5 introduced retrieval-augmented generation (RAG) as the engine behind the AI literature tools: the technique of fetching relevant documents and feeding them to a model so its answer is grounded in real sources rather than its training data alone. Those tools and that technique are still central. But three things have shifted since Week 5, and this sub-lesson is about all three.</p>
+    <p>First, <strong>long context</strong>: frontier models now routinely accept a million tokens or more, which changes when you need retrieval at all. Second, <strong>agentic RAG</strong>: retrieval has moved from a single fetch-then-answer step to a loop in which the model plans, retrieves, reads, and retrieves again, which is what the Deep Research modes you have heard about are doing. Third, <strong>evaluation</strong>: we now have frameworks for measuring whether a RAG system is any good, though the hardest cases remain open.</p>
+    <p>The verdict the lesson builds to: for reading one long document, just use long context; for synthesising across many sources, agentic RAG still wins; and for anything you will cite, the Week 5 verification protocols apply regardless of which method produced the answer. None of this removes the researcher from the loop.</p>
   </div>
 
   <h2 class="section-title">&#128214; Recap: What Week 5 Established</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week 5 mapped a landscape of AI literature tools &mdash; Elicit, Consensus, NotebookLM, Perplexity, Connected Papers, ResearchRabbit &mdash; and a hard warning: the hallucinated-citation crisis is real. Both still hold in 2026. The tools have improved; the warning has not expired.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week 5 mapped a landscape of AI literature tools (Elicit, Consensus, NotebookLM, Perplexity, Connected Papers, ResearchRabbit) and a hard warning: the hallucinated-citation crisis is real. Both still hold in 2026. The tools have improved; the warning has not expired.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In the Week 9 taxonomy, hallucinated citations are a <em>reduced-but-persistent</em> failure: far less common on well-covered topics than in 2023, but still present, and concentrated exactly where research lives &mdash; the niche, the recent, the long-tail. RAG was always partly a response to this: ground the model in retrieved sources and it has less need to invent them. That logic is intact. What has changed is how the grounding is done.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In the Week 9 taxonomy, hallucinated citations are a <em>reduced-but-persistent</em> failure: far less common on well-covered topics than in 2023, but still present, and concentrated where research lives, in the niche, the recent, the long-tail. RAG was always partly a response to this: ground the model in retrieved sources and it has less need to invent them. That logic is intact. What has changed is how the grounding is done.</p>
 
   <h2 class="section-title">&#128220; Change One: Long Context vs Retrieval</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In Week 5, a model&#39;s context window was small enough that you <em>had</em> to retrieve: you could not simply paste a stack of papers in. By 2026, frontier models accept a million tokens or more (the Gemini Pro tier from Week 8 being the standard example) &mdash; enough for hundreds of pages at once. So a fair question is whether retrieval is still needed at all, or whether you should just dump everything into the context window and ask.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In Week 5, a model&#39;s context window was small enough that you <em>had</em> to retrieve: you could not simply paste a stack of papers in. By 2026, frontier models accept a million tokens or more (the Gemini Pro tier from Week 8 being the standard example), enough for hundreds of pages at once. So a fair question is whether retrieval is still needed at all, or whether you should just dump everything into the context window and ask.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The most-cited study on this is Li et al. (2024), <em>Retrieval Augmented Generation or Long-Context LLMs?</em> (Google; EMNLP 2024). Their finding, in their words: <em>&ldquo;when resourced sufficiently, [long context] consistently outperforms RAG in terms of average performance. However, RAG&#39;s significantly lower cost remains a distinct advantage.&rdquo;</em> They proposed a hybrid, &ldquo;Self-Route&rdquo;, that routes each query to whichever approach suits it &mdash; cutting cost while keeping long-context quality.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The most-cited study on this is Li et al. (2024), <em>Retrieval Augmented Generation or Long-Context LLMs?</em> (Google; EMNLP 2024). Their finding, in their words: <em>&ldquo;when resourced sufficiently, [long context] consistently outperforms RAG in terms of average performance. However, RAG&#39;s significantly lower cost remains a distinct advantage.&rdquo;</em> They proposed a hybrid, &ldquo;Self-Route&rdquo;, that routes each query to whichever approach suits it, cutting cost while keeping long-context quality.</p>
 
   <div class="warning-box">
     <h4>&#9888;&#65039; Two caveats on the long-context win</h4>
-    <p>First, that study is from 2024, tested on the long-context models of the time. Treat it as evidence of the <em>shape</em> of the trade-off, not the current margins &mdash; the Week 9 &ldquo;which model, which date&rdquo; discipline applies.</p>
+    <p>First, that study is from 2024, tested on the long-context models of the time. Treat it as evidence of the <em>shape</em> of the trade-off, not the current margins; the Week 9 &ldquo;which model, which date&rdquo; discipline applies.</p>
     <p>Second, and more important: an advertised context length is not the same as reliable recall across the whole of it. A model that <em>accepts</em> a million tokens does not necessarily <em>use</em> all of them well; recall tends to sag in the middle of very long inputs, and practitioners in 2026 still report that a model&#39;s true working-memory across a giant context is well short of the advertised number. &ldquo;It fits&rdquo; is not &ldquo;it was read carefully.&rdquo;</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The practical upshot: for analysing a <em>single</em> long document where everything relevant is in front of the model, long context is simpler and usually better. For drawing on a large or open-ended body of sources &mdash; where you cannot fit it all, and where the model needs to decide what to look at next &mdash; you still want retrieval. And that is where the second change comes in.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The practical upshot: for analysing a <em>single</em> long document where everything relevant is in front of the model, long context is simpler and usually better. For drawing on a large or open-ended body of sources, where you cannot fit it all and the model needs to decide what to look at next, you still want retrieval. And that is where the second change comes in.</p>
 
   <h2 class="section-title">&#128257; Change Two: Agentic RAG</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Classic RAG is a single shot: retrieve a set of passages once, then generate an answer from them. Its weakness is obvious for real research questions &mdash; if the first retrieval misses, the answer is built on the wrong sources, and the system never reconsiders. <strong>Agentic RAG</strong> turns the single shot into a loop.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Classic RAG is a single shot: retrieve a set of passages once, then generate an answer from them. Its weakness is obvious for real research questions: if the first retrieval misses, the answer is built on the wrong sources, and the system never reconsiders. <strong>Agentic RAG</strong> turns the single shot into a loop.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The canonical reference is Singh et al. (2025), <em>Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG</em>, which describes how agentic RAG <em>&ldquo;transcends these limitations by embedding autonomous AI agents into the RAG pipeline.&rdquo;</em> In plain terms, the agent does what a careful researcher does:</p>
 
   <ul class="step-list">
-    <li><strong>Plan</strong> &mdash; break the question into sub-questions.</li>
-    <li><strong>Retrieve</strong> &mdash; search for sources on the first sub-question.</li>
-    <li><strong>Read and reflect</strong> &mdash; work out what was learned and what is still missing.</li>
-    <li><strong>Retrieve again</strong> &mdash; run follow-up searches based on what the first round turned up (this is the step classic RAG cannot do).</li>
-    <li><strong>Synthesise and check</strong> &mdash; assemble an answer and, in better systems, verify claims against the retrieved sources.</li>
+    <li><strong>Plan</strong>: break the question into sub-questions.</li>
+    <li><strong>Retrieve</strong>: search for sources on the first sub-question.</li>
+    <li><strong>Read and reflect</strong>: work out what was learned and what is still missing.</li>
+    <li><strong>Retrieve again</strong>: run follow-up searches based on what the first round turned up (this is the step classic RAG cannot do).</li>
+    <li><strong>Synthesise and check</strong>: assemble an answer and, in better systems, verify claims against the retrieved sources.</li>
   </ul>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">This loop is just the agent definition from 10.1 (model + tools + loop + memory) pointed at a retrieval tool. And it is not a research curiosity: <strong>the &ldquo;Deep Research&rdquo; modes</strong> in the major assistants &mdash; which take a question, spend several minutes searching and reading, and return a cited report &mdash; are agentic RAG in consumer form. When you use one, you are running a planner-retriever-synthesiser loop, with all the strengths and the 10.2 reliability caveats that implies. We compare the specific Deep Research tools, free tiers included, in 10.5.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">This loop is the agent definition from 10.1 (model + tools + loop + memory) pointed at a retrieval tool. And it is not a research curiosity: <strong>the &ldquo;Deep Research&rdquo; modes</strong> in the major assistants, which take a question, spend several minutes searching and reading, and return a cited report, are agentic RAG in consumer form. When you use one, you are running a planner-retriever-synthesiser loop, with all the strengths and the 10.2 reliability caveats that implies. We compare the specific Deep Research tools, free tiers included, in 10.5.</p>
 
   <h2 class="section-title">&#128207; Change Three: Can You Tell If It&#39;s Any Good?</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If a RAG system can retrieve the wrong sources and still produce a fluent answer, how do you measure quality? The most widely-adopted answer is <strong>RAGAS</strong> (Es, James, Espinosa-Anke &amp; Schockaert, 2023) &mdash; a framework that scores a RAG system without needing hand-written gold answers for every question. Its widely-used metrics separate the two places RAG can fail:</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If a RAG system can retrieve the wrong sources and still produce a fluent answer, how do you measure quality? The most widely-adopted answer is <strong>RAGAS</strong> (Es, James, Espinosa-Anke &amp; Schockaert, 2023), a framework that scores a RAG system without needing hand-written gold answers for every question. Its widely-used metrics separate the two places RAG can fail:</p>
 
   <ul class="styled-list">
-    <li><strong>Context precision &amp; context recall</strong> &mdash; did the <em>retrieval</em> step fetch the relevant passages, and only those?</li>
-    <li><strong>Faithfulness</strong> &mdash; is the <em>generated answer</em> actually supported by the retrieved passages, or did the model add unsupported claims?</li>
-    <li><strong>Answer relevancy</strong> &mdash; does the answer actually address the question asked?</li>
+    <li><strong>Context precision &amp; context recall</strong>: did the <em>retrieval</em> step fetch the relevant passages, and only those?</li>
+    <li><strong>Faithfulness</strong>: is the <em>generated answer</em> actually supported by the retrieved passages, or did the model add unsupported claims?</li>
+    <li><strong>Answer relevancy</strong>: does the answer actually address the question asked?</li>
   </ul>
 
   <div class="warning-box">
     <h4>&#9888;&#65039; What these metrics do and do not tell you</h4>
-    <p>The crucial limitation: <strong>faithfulness is not correctness</strong>. An answer can be perfectly faithful to its retrieved passages &mdash; inventing nothing beyond them &mdash; and still be wrong, because the passages themselves were wrong, outdated, or cherry-picked. RAGAS checks that the model did not hallucinate <em>beyond its sources</em>; it cannot check that the sources were right. That second check is yours.</p>
-    <p>Two further caveats: RAGAS uses a strong &ldquo;judge&rdquo; model to score, so it inherits that model&#39;s blind spots; and the hardest cases &mdash; multi-hop questions that require chaining several retrievals, and judging how well an agent compacted a huge context &mdash; remain operationally hard to evaluate even in 2026.</p>
+    <p>The key limitation: <strong>faithfulness is not correctness</strong>. An answer can be perfectly faithful to its retrieved passages, inventing nothing beyond them, and still be wrong, because the passages themselves were wrong, outdated, or cherry-picked. RAGAS checks that the model did not hallucinate <em>beyond its sources</em>; it cannot check that the sources were right. That second check is yours.</p>
+    <p>Two further caveats: RAGAS uses a strong &ldquo;judge&rdquo; model to score, so it inherits that model&#39;s blind spots; and the hardest cases (multi-hop questions that require chaining several retrievals, and judging how well an agent compacted a huge context) remain operationally hard to evaluate even in 2026.</p>
   </div>
 
   <h2 class="section-title">&#9878;&#65039; The Honest Verdict for May 2026</h2>
@@ -427,7 +427,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
       <tbody>
         <tr>
           <td>Analyse one long document (a thesis, a report, a contract)</td>
-          <td>Long context &mdash; paste it in</td>
+          <td>Long context (paste it in)</td>
           <td>Everything relevant fits; retrieval adds complexity for no gain.</td>
         </tr>
         <tr>
@@ -437,7 +437,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
         </tr>
         <tr>
           <td>Anything you will cite in your own work</td>
-          <td>Either &mdash; then verify by hand</td>
+          <td>Either, then verify by hand</td>
           <td>The Week 5 citation checks apply regardless of method. Faithful &ne; correct.</td>
         </tr>
         <tr>
@@ -451,14 +451,14 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="info-box">
     <h4>&#129504; A Week 9.4 warning that sharpens here</h4>
-    <p>Messeri &amp; Crockett warned (Week 9.4) that AI can create &ldquo;monocultures of knowing&rdquo; &mdash; everyone funnelled toward the same sources and framings. Agentic RAG intensifies the risk, because now the <em>agent</em> decides what to retrieve, what counts as relevant, and what to leave out &mdash; and it does so invisibly, in a loop you do not see. A Deep Research report that reads as comprehensive may rest on a narrow, agent-chosen slice of the literature. The friction that retrieval used to add &mdash; you, deciding what to read &mdash; was doing useful epistemic work. Automating it away is convenient and quietly costly.</p>
+    <p>Messeri &amp; Crockett warned (Week 9.4) that AI can create &ldquo;monocultures of knowing&rdquo;: everyone funnelled toward the same sources and framings. Agentic RAG intensifies the risk, because now the <em>agent</em> decides what to retrieve, what counts as relevant, and what to leave out, and it does so invisibly, in a loop you do not see. A Deep Research report that reads as comprehensive may rest on a narrow, agent-chosen slice of the literature. The friction that retrieval used to add, you deciding what to read, was doing useful epistemic work. Automating it away is convenient and quietly costly.</p>
   </div>
 
   <h2 class="section-title">&#127757; RAG, Local Corpora, and the Equity Angle</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">There is a genuinely hopeful version of RAG for African and other under-represented research contexts. Frontier models are trained predominantly on high-resource languages and well-digitised corpora; they know comparatively little about, say, isiXhosa scholarship or region-specific datasets. RAG offers a route around this: ground the model in a <em>local</em> corpus it was never trained well on, and it can work with material outside its training distribution.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The catch is in the retrieval layer. RAG works by converting text into embeddings (numerical representations) and matching on them &mdash; and the embedding models are themselves trained mostly on high-resource languages. If the embedding layer cannot represent isiXhosa or Setswana well, retrieval over an isiXhosa corpus will be poor no matter how good the generating model is. So the equity promise is real but conditional: <strong>RAG can ground frontier models in local knowledge only as well as the retrieval layer handles the local language</strong>, and as of 2026 most embedding models handle African languages poorly. This connects directly to the sovereign-capacity questions of Week 11 &mdash; the Esethu Framework (Rajab et al., 2025) argues for exactly this kind of locally-grounded infrastructure as a precondition for equitable AI, not an afterthought.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The catch is in the retrieval layer. RAG works by converting text into embeddings (numerical representations) and matching on them, and the embedding models are themselves trained mostly on high-resource languages. If the embedding layer cannot represent isiXhosa or Setswana well, retrieval over an isiXhosa corpus will be poor no matter how good the generating model is. So the equity promise is real but conditional: <strong>RAG can ground frontier models in local knowledge only as well as the retrieval layer handles the local language</strong>, and as of 2026 most embedding models handle African languages poorly. This connects directly to the sovereign-capacity questions of Week 11: the Esethu Framework (Rajab et al., 2025) argues for locally-grounded infrastructure as a precondition for equitable AI rather than an afterthought.</p>
 
   <div class="resource-placeholder">
     <h4>&#128214; Sources &amp; Further Reading</h4>
@@ -472,7 +472,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="intro-text" style="margin-top: 50px;">
     <h2>&#128073; What Comes Next</h2>
-    <p><strong>Sub-Lesson 10.5 &mdash; Advanced Research Tools: A Curated Tour.</strong> We have now built up the concepts (10.1&ndash;10.2) and the categories (10.3&ndash;10.4). The next sub-lesson is the practical pay-off: a tool-by-tool tour with an honest free-versus-paid split, including the Deep Research modes that implement the agentic RAG from this lesson, the Chinese free-tier options, and the MCP connectors that plug agents into your research tools &mdash; all framed by the question that runs through this week: what can you actually use, from here, for free?</p>
+    <p><strong>Sub-Lesson 10.5 &mdash; Advanced Research Tools: A Curated Tour.</strong> We have now built up the concepts (10.1&ndash;10.2) and the categories (10.3&ndash;10.4). The next sub-lesson is the practical pay-off: a tool-by-tool tour with an honest free-versus-paid split, including the Deep Research modes that implement the agentic RAG from this lesson, the Chinese free-tier options, and the MCP connectors that plug agents into your research tools, all framed by the question that runs through this week: what can you actually use, from here, for free?</p>
   </div>
 
 </div>

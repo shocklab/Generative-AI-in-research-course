@@ -414,50 +414,50 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <header>
   <div class="week-badge">Advanced Track &bull; Lesson A &bull; 1 of 3</div>
   <h1>&#128421;&#65039; <span style="color: #ffffff;">What Claude Code Actually Is</span></h1>
-  <p>An agent that lives in your project folder &mdash; where the model is the smallest part of what works for you</p>
+  <p>An agent that lives in your project folder, where the model is the smallest part of what works for you</p>
 </header>
 
 <div class="content">
 
   <div class="gate-banner">
-    <strong>&#9888;&#65039; This is the Advanced Track &mdash; it goes beyond the free tier.</strong> Everything in Weeks 1&ndash;12 was chosen so that you could do it on free tools, because access is not a detail (Week&nbsp;10) and most of the world&#39;s researchers do not have a paid AI budget (Week&nbsp;11.4). This track is the one deliberate exception. It uses <strong>Claude Code</strong>, which needs a paid Claude subscription and comfort with a terminal. It is genuinely optional, it sits <em>after</em> the Week&nbsp;12 capstone on purpose, and the next page makes the honest case for whether it is worth it to you &mdash; including what you can and cannot approximate without paying.
+    <strong>&#9888;&#65039; This is the Advanced Track &mdash; it goes beyond the free tier.</strong> Everything in Weeks 1&ndash;12 was chosen so that you could do it on free tools, because access is not a detail (Week&nbsp;10) and most of the world&#39;s researchers do not have a paid AI budget (Week&nbsp;11.4). This track is the one deliberate exception. It uses <strong>Claude Code</strong>, which needs a paid Claude subscription and comfort with a terminal. It is genuinely optional, it sits <em>after</em> the Week&nbsp;12 capstone on purpose, and the next page makes the honest case for whether it is worth it to you, including what you can and cannot approximate without paying.
   </div>
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>For most of this course, &ldquo;using AI&rdquo; has meant a chat window: you type, the model answers, you copy what is useful back into your own work. Claude Code is a different kind of thing, and the difference is the whole point of this track. It is an <em>agent</em> that works inside your real project folder &mdash; it reads your files, runs your code, edits your documents, uses version control, and can work on its own for long stretches.</p>
-    <p>This first lesson does three things: it says precisely what Claude Code is (and is not), using the model-versus-harness distinction from Week&nbsp;10; it draws the sharp line between chatting and working with an agent, around a single principle &mdash; <strong>the chat is not the archive</strong>; and it sets up the question the rest of Lesson A answers: what does it actually take to drive one of these well?</p>
-    <p>Lesson&nbsp;B then turns to the payoff this track exists for: using Claude Code to make your research genuinely <em>reproducible</em> &mdash; inspectable and repeatable by someone who is not you.</p>
+    <p>For most of this course, &ldquo;using AI&rdquo; has meant a chat window: you type, the model answers, you copy what is useful back into your own work. Claude Code is a different kind of thing, and the difference is the whole point of this track. It is an <em>agent</em> that works inside your real project folder. It reads your files, runs your code, edits your documents, uses version control, and can work on its own for long stretches.</p>
+    <p>This first lesson does three things. It says what Claude Code is (and is not), using the model-versus-harness distinction from Week&nbsp;10. It draws the line between chatting and working with an agent, around a single principle: <strong>the chat is not the archive</strong>. And it sets up the question the rest of Lesson A answers: what does it actually take to drive one of these well?</p>
+    <p>Lesson&nbsp;B then turns to the payoff this track exists for: using Claude Code to make your research genuinely <em>reproducible</em>, inspectable and repeatable by someone who is not you.</p>
   </div>
 
   <div class="info-box">
     <h4>&#128591; Sources and thanks</h4>
-    <p>This track&rsquo;s reproducibility framework owes a large and explicit debt to <strong>Dominik Luke&#353;</strong>&rsquo;s workshop <em>Using AI Agents for Reproducible Research</em> (Oxford e-Research Centre). The organising principle that the chat is not the archive, the model-versus-harness framing, the research-habits instruction file, and the &ldquo;inspect a messy folder&rdquo; first task are all adapted, with thanks, from that workshop and its accompanying skills. His materials are openly available: <a href="https://techczech.github.io/agents-for-reproducibility/" target="_blank" rel="noopener">techczech.github.io/agents-for-reproducibility</a> (the workshop guide) and <a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a> (his agent-skills collection, MIT-licensed). The <code>grill-with-docs</code> glossary practice is from Matt Pocock (AI&nbsp;Hero). What this track adds on top &mdash; the pre-registration gates, the worked Berg River example, and the instructor&rsquo;s own practice in the boxes below &mdash; builds on that foundation.</p>
+    <p>This track&rsquo;s reproducibility framework owes a large and explicit debt to <strong>Dominik Luke&#353;</strong>&rsquo;s workshop <em>Using AI Agents for Reproducible Research</em> (Oxford e-Research Centre). The organising principle that the chat is not the archive, the model-versus-harness framing, the research-habits instruction file, and the &ldquo;inspect a messy folder&rdquo; first task are all adapted, with thanks, from that workshop and its accompanying skills. His materials are openly available: <a href="https://techczech.github.io/agents-for-reproducibility/" target="_blank" rel="noopener">techczech.github.io/agents-for-reproducibility</a> (the workshop guide) and <a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a> (his agent-skills collection, MIT-licensed). The <code>grill-with-docs</code> glossary practice is from Matt Pocock (AI&nbsp;Hero). What this track adds on top (the pre-registration gates, the worked Berg River example, and the instructor&rsquo;s own practice in the boxes below) builds on that foundation.</p>
   </div>
 
   <h2 class="section-title">&#129518; The Model Is the Smallest Part</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week&nbsp;10.1 made an argument that is easy to nod along to and hard to feel until you see it: <strong>the harness is the product</strong>. The language model &mdash; Claude itself &mdash; is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week&nbsp;10.1 argued that <strong>the harness is the product</strong>. The language model, Claude itself, is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Put concretely: when you ask Claude in a browser tab to help with an analysis, the model is essentially all you get. It can reason about what you paste in and write text back. When you ask Claude Code the same thing, the model is the <em>smallest</em> part of what goes to work. The harness gives it your actual data files, a shell to run a script, the ability to read the error message that script produced, version control to record what changed, and standing instructions about how your project works. The intelligence is similar; the leverage is not.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">When you ask Claude in a browser tab to help with an analysis, the model is most of what you get. It can reason about what you paste in and write text back. When you ask Claude Code the same thing, the model is the <em>smallest</em> part of what goes to work. The harness gives it your actual data files, a shell to run a script, the ability to read the error message that script produced, version control to record what changed, and standing instructions about how your project works. The intelligence is similar; the leverage is not.</p>
 
   <div class="info-box">
     <h4>&#128161; The one-sentence version</h4>
-    <p>You are not talking to a smarter chatbot. You are driving a different kind of machine &mdash; a model with hands, working in your project folder. Almost everything that follows in this track is about driving it well, and about the discipline that makes its work trustworthy afterwards.</p>
+    <p>This is a different kind of machine from a smarter chatbot: a model with hands, working in your project folder. Almost everything that follows in this track is about driving it well, and about the discipline that makes its work trustworthy afterwards.</p>
   </div>
 
   <h2 class="section-title">&#128295; What Claude Code Can Actually Do</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Claude Code runs in your terminal and operates on a folder you point it at. Within that folder &mdash; and only within it, unless you say otherwise &mdash; it has a set of capabilities that are worth naming explicitly, because each one is a piece of the harness you will learn to use deliberately.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Claude Code runs in your terminal and operates on a folder you point it at. Within that folder, and only within it unless you say otherwise, it has a set of capabilities worth naming, because each one is a piece of the harness you will learn to use.</p>
 
   <div class="card-grid">
     <div class="card">
       <h3>Reads and writes your files</h3>
-      <p>It can open, read, and edit the actual documents, data files, and scripts in your project &mdash; not a copy you pasted, the real thing. This is powerful and is exactly why permission and raw-data rules matter (Lesson&nbsp;B).</p>
+      <p>It can open, read, and edit the actual documents, data files, and scripts in your project: not a copy you pasted, the real thing. This is powerful, and it is why permission and raw-data rules matter (Lesson&nbsp;B).</p>
     </div>
     <div class="card">
       <h3>Runs commands and code</h3>
-      <p>It can execute shell commands and run your analysis scripts, then read the output or the error and respond to it. The act&ndash;observe&ndash;act loop is what makes it an agent rather than a text generator.</p>
+      <p>It can execute shell commands and run your analysis scripts, then read the output or the error and respond to it. The act&ndash;observe&ndash;act loop is what makes it an agent and not a text generator.</p>
     </div>
     <div class="card">
       <h3>Uses version control</h3>
@@ -469,56 +469,56 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </div>
     <div class="card">
       <h3>Runs reusable Skills</h3>
-      <p>A Skill is a packaged, reusable workflow (a folder with a <code>SKILL.md</code>) the agent can invoke when it is relevant &mdash; a tested research procedure that travels across projects rather than being re-improvised each time (Lesson&nbsp;B.2).</p>
+      <p>A Skill is a packaged, reusable workflow (a folder with a <code>SKILL.md</code>) the agent can invoke when it is relevant: a tested research procedure that travels across projects instead of being re-improvised each time (Lesson&nbsp;B.2).</p>
     </div>
     <div class="card">
       <h3>Spawns subagents</h3>
-      <p>For a bounded job it can launch a separate, focused agent &mdash; for example, an independent check of an analysis it just produced. This connects directly to the adversarial-verification idea from Week&nbsp;9.</p>
+      <p>For a bounded job it can launch a separate, focused agent, for example an independent check of an analysis it just produced. This connects directly to the adversarial-verification idea from Week&nbsp;9.</p>
     </div>
     <div class="card">
       <h3>Connects to external tools (MCP)</h3>
-      <p>Through the Model Context Protocol it can reach approved external services and data sources &mdash; a reference database, a paper repository &mdash; the same MCP idea introduced in Week&nbsp;10.</p>
+      <p>Through the Model Context Protocol it can reach approved external services and data sources (a reference database, a paper repository): the same MCP idea introduced in Week&nbsp;10.</p>
     </div>
     <div class="card">
       <h3>Plans before it acts</h3>
-      <p>It has a read-only <em>plan mode</em>: it inspects and proposes a plan without changing anything, so you can approve the approach before a single file moves. This is your most important safety control, and we use it in A.3.</p>
+      <p>It has a read-only <em>plan mode</em>: it inspects and proposes a plan without changing anything, so you can approve the approach before a single file moves. It is a safety control we lean on, and we use it in A.3.</p>
     </div>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">None of these capabilities is exotic on its own &mdash; researchers have used shells, version control, and scripts for decades. What is new is that one system can use all of them <em>in a loop, on your behalf, from a plain-language request</em>. That is the capability Week&nbsp;11.1 called &ldquo;AI as a substantive collaborator,&rdquo; made operational. And as Week&nbsp;11.1 also insisted: the more the system can do unsupervised, the more the verification habit matters, not less.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">None of these capabilities is exotic on its own; researchers have used shells, version control, and scripts for decades. What is new is that one system can use all of them <em>in a loop, on your behalf, from a plain-language request</em>. That is the capability Week&nbsp;11.1 called &ldquo;AI as a substantive collaborator,&rdquo; made operational. And as Week&nbsp;11.1 also insisted: the more the system can do unsupervised, the more the verification habit matters, not less.</p>
 
   <h2 class="section-title">&#128202; Why This Is Categorically Different From Chat</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">It is tempting to file Claude Code under &ldquo;a more capable chatbot.&rdquo; That framing will mislead you. The difference is not capability; it is <em>where the work lives</em>.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">It is tempting to file Claude Code under &ldquo;a more capable chatbot.&rdquo; That framing will mislead you. What separates the two is <em>where the work lives</em>, not how capable each one is.</p>
 
   <div class="card-grid">
     <div class="card" style="border-left-color: #888;">
       <h3>In a chat window</h3>
-      <p>You paste context in. The model answers. The useful output, the reasoning, the decisions you made along the way &mdash; all of it lives in a conversation thread. Next week the thread is buried; next month you cannot reconstruct what you actually did, or why. The work is real but the <em>record</em> evaporates.</p>
+      <p>You paste context in. The model answers. The useful output, the reasoning, the decisions you made along the way: all of it lives in a conversation thread. Next week the thread is buried; next month you cannot reconstruct what you actually did, or why. The work is real but the <em>record</em> evaporates.</p>
     </div>
     <div class="card">
       <h3>In Claude Code</h3>
-      <p>The work lives in your files. The script it wrote is in <code>scripts/</code>. The output is in <code>outputs/</code>. The decision it made is in a log you told it to keep. The change is in the Git history. Six months later, you &mdash; or a stranger &mdash; can open the folder and see what happened.</p>
+      <p>The work lives in your files. The script it wrote is in <code>scripts/</code>. The output is in <code>outputs/</code>. The decision it made is in a log you told it to keep. The change is in the Git history. Six months later, you (or a stranger) can open the folder and see what happened.</p>
     </div>
   </div>
 
   <div class="highlight-box">
     <h3>&#128193; The chat is not the archive</h3>
-    <p>This is the organising principle of the whole track, so it is worth stating once, plainly: <strong>save your sources, notes, instructions, scripts, outputs, and decisions into files &mdash; not into a chat thread.</strong> The conversation is where the work is <em>commissioned</em>; the project folder is where the work <em>lives</em>. A chatbot session is a conversation you will lose. A project folder is the unit of reproducible research.</p>
-    <p>Everything Lesson&nbsp;B builds &mdash; the folder discipline, the decision log, the reproducible analysis &mdash; is a consequence of taking this one sentence seriously.</p>
+    <p>The organising principle of the whole track, stated plainly: <strong>save your sources, notes, instructions, scripts, outputs, and decisions into files, not into a chat thread.</strong> The conversation is where the work is <em>commissioned</em>; the project folder is where the work <em>lives</em>. A chatbot session is a conversation you will lose. A project folder is the unit of reproducible research.</p>
+    <p>Everything Lesson&nbsp;B builds (the folder discipline, the decision log, the reproducible analysis) follows from taking this one sentence seriously.</p>
   </div>
 
   <div class="info-box">
     <h4>&#9878;&#65039; This is not &ldquo;abandon chat&rdquo;</h4>
-    <p>Chat is still the right tool for a great deal: a quick question, a brainstorm, a one-off paragraph, thinking out loud. The honest distinction is about <em>durability</em>. Reach for chat when the value is in the answer you read right now. Reach for an agent in a project folder when the value is in work that has to survive, be repeated, or be defended later. Most researchers will use both, for different things, and knowing which is which is itself a skill.</p>
+    <p>Chat is still the right tool for a great deal: a quick question, a brainstorm, a one-off paragraph, thinking out loud. The distinction is about <em>durability</em>. Reach for chat when the value is in the answer you read right now. Reach for an agent in a project folder when the value is in work that has to survive, be repeated, or be defended later. Most researchers will use both, for different things, and knowing which is which is itself a skill.</p>
   </div>
 
   <div class="resource-placeholder">
     <h4>&#128214; Download: the companion guide</h4>
-    <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document &mdash; the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the natural companion to these two lessons and goes further than we can here. Many of its ideas &mdash; the reproducibility framework above all &mdash; come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a> &mdash; and the seven research <em>Skills</em> it documents are available as a separate download in Lesson&nbsp;B.2.</p>
+    <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document: the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the companion to these two lessons and goes further than we can here. Many of its ideas, the reproducibility framework above all, come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a>. The seven research <em>Skills</em> it documents are available as a separate download in Lesson&nbsp;B.2.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands &mdash; the move from <em>chatting</em> to <em>managing an agent</em>.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands: the move from <em>chatting</em> to <em>managing an agent</em>.</p>
 
 </div>
 </div>

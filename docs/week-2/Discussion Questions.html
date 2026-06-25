@@ -44,7 +44,7 @@ footer a { color: #003A70; }
 <div class="content">
 
   <div class="intro-text">
-    <p>These are <strong>example discussion points</strong> for you to think about before class. You are <em>not</em> expected to engage with all of them &mdash; pick the ones that speak most directly to your own research, and bring two or three rough answers to the in-class session. The full description of how to use these pages, including what the question tags mean, is on the <a href="../week-1/Discussion Questions.html" style="color: #003A70; font-weight: 600;">Week 1 Discussion page</a>.</p>
+    <p>These are <strong>example discussion points</strong> for you to think about before class. You are <em>not</em> expected to engage with all of them. Pick the ones that speak most directly to your own research, and bring two or three rough answers to the in-class session. The full description of how to use these pages, including what the question tags mean, is on the <a href="../week-1/Discussion Questions.html" style="color: #003A70; font-weight: 600;">Week 1 Discussion page</a>.</p>
   </div>
 
   <h2 class="part-title">Sub-lessons</h2>
@@ -52,7 +52,7 @@ footer a { color: #003A70; }
   <div class="question-set">
     <h3>Fine-Tuning, RLHF and Alignment</h3>
     <ol class="question-list">
-      <li><span class="q-tag">Calibrate</span> Pick a recent behaviour you have noticed in a chat model &mdash; a refusal, a flash of sycophancy, a particular tone, a hedged answer to a controversial question. Place it most plausibly in the SFT, RLHF, or post-deployment guardrail layer. What evidence would push it to a different layer?</li>
+      <li><span class="q-tag">Calibrate</span> Pick a recent behaviour you have noticed in a chat model: a refusal, a flash of sycophancy, a particular tone, a hedged answer to a controversial question. Place it most plausibly in the SFT, RLHF, or post-deployment guardrail layer. What evidence would push it to a different layer?</li>
       <li><span class="q-tag">Apply</span> For research use specifically, which alignment stage matters most for the quality of the AI assistance you get? Be concrete about a research task you actually do and which behavioural property (helpfulness, calibration, refusal patterns) you would want shaped by which stage.</li>
       <li><span class="q-tag">Critical</span> The lesson notes that labs are deliberately secretive about post-training. Which claims about model behaviour can you still make confidently <em>without</em> knowing the details, and where do you have to stop short and label the inference as speculative?</li>
       <li><span class="q-tag">Connect</span> Week 1 introduced LLMs and transformers as &ldquo;attention machines&rdquo; that learn from text. This lesson reframes them as systems that have been deliberately shaped by post-training. Which of the two framings is closer to the &ldquo;mental model&rdquo; you reach for when you sit down to use Claude or ChatGPT, and how does using both at once change what you would and would not delegate to the tool?</li>
@@ -64,7 +64,7 @@ footer a { color: #003A70; }
     <ol class="question-list">
       <li><span class="q-tag">Calibrate</span> After watching the video, write a one-sentence explanation of what a diffusion model actually does. Test the sentence against a recent image-generation model card or paper from your own field. Where does the sentence hold, and where does it stretch?</li>
       <li><span class="q-tag">Apply</span> For a researcher in your field, sketch one concrete <em>legitimate</em> use of image generation in your work, and one use that would cross into the territory of fabricating data. What is the principle that separates them?</li>
-      <li><span class="q-tag">Critical</span> The video explains image generation through visual analogy. Which of the underlying issues &mdash; training-data provenance, copyright, evaluation, downstream harm &mdash; does the pedagogical framing under-discuss, and what would have been lost if it had spent more time there?</li>
+      <li><span class="q-tag">Critical</span> The video explains image generation through visual analogy. Which of the underlying issues (training-data provenance, copyright, evaluation, downstream harm) does the pedagogical framing under-discuss, and what would have been lost if it had spent more time there?</li>
       <li><span class="q-tag">Connect</span> Image-generation models work differently from LLMs but face many of the same training-data, alignment, and evaluation questions. Pick two lessons from the LLM material this week that transfer cleanly to image models, and one that doesn&#39;t.</li>
     </ol>
   </div>
@@ -72,10 +72,10 @@ footer a { color: #003A70; }
   <div class="question-set">
     <h3>LLM Architecture Deep Dive</h3>
     <ol class="question-list">
-      <li><span class="q-tag">Calibrate</span> The lesson covers positional encoding (RoPE, ALiBi, etc.). Pick one concrete behaviour you have seen in a long-context LLM &mdash; performance degrading after some token count, lost-in-the-middle effects, sudden incoherence at the boundary &mdash; and trace it to a specific architectural choice. What evidence would confirm or refute the trace?</li>
+      <li><span class="q-tag">Calibrate</span> The lesson covers positional encoding (RoPE, ALiBi, etc.). Pick one concrete behaviour you have seen in a long-context LLM, such as performance degrading after some token count, lost-in-the-middle effects, or sudden incoherence at the boundary, and trace it to a specific architectural choice. What evidence would confirm or refute the trace?</li>
       <li><span class="q-tag">Apply</span> As a researcher, when does it matter that you understand the transformer architecture in detail, and when can you treat the model as a black box? Sketch a working decision rule for yourself.</li>
       <li><span class="q-tag">Critical</span> The lesson covers attention, positional encoding, and tokenisation as if they were a coherent family, but the actual implementations vary substantially across model families. Where can you safely generalise across families, and where should you stop?</li>
-      <li><span class="q-tag">Connect</span> Week 1 introduced transformers via 3Blue1Brown&#39;s visual analogy. Now that you have read the architectural deep dive, where does the visual analogy still hold and where does it break? Which framing &mdash; the visual one or the architectural one &mdash; does more work for you when you have to explain why a model behaves the way it does?</li>
+      <li><span class="q-tag">Connect</span> Week 1 introduced transformers via 3Blue1Brown&#39;s visual analogy. Now that you have read the architectural deep dive, where does the visual analogy still hold and where does it break? Which framing, the visual one or the architectural one, does more work for you when you have to explain why a model behaves the way it does?</li>
     </ol>
   </div>
 
@@ -83,7 +83,7 @@ footer a { color: #003A70; }
     <h3>Training Large Language Models</h3>
     <ol class="question-list">
       <li><span class="q-tag">Calibrate</span> The lesson introduces scaling laws as a way to predict model performance from compute, data, and parameters. Pick a recent model release and try to place its actual benchmark performance against what a scaling-laws prediction would have said. Where do they agree, and where do they diverge?</li>
-      <li><span class="q-tag">Apply</span> For your own research, when does training or fine-tuning a model from scratch make more sense than using a pre-trained API? Sketch the data, scale, and infrastructure conditions that would make that decision sensible &mdash; and the conditions under which it never would.</li>
+      <li><span class="q-tag">Apply</span> For your own research, when does training or fine-tuning a model from scratch make more sense than using a pre-trained API? Sketch the data, scale, and infrastructure conditions that would make that decision sensible, and the conditions under which it never would.</li>
       <li><span class="q-tag">Critical</span> The lesson covers data curation, scaling laws, and optimisation as if they were largely settled techniques. Which of the three is most likely to be substantially rewritten in the next two years, and what would such a rewrite mean for research planning you do now?</li>
       <li><span class="q-tag">Connect</span> Week 1&#39;s history-of-AI lesson covered earlier &ldquo;data eras&rdquo; (toy domains, hand-curated corpora, web crawls). Place the present scale-and-curation picture in that arc. Where does the present moment look like an extension of a long-running trend, and where does it look like a discontinuity?</li>
     </ol>

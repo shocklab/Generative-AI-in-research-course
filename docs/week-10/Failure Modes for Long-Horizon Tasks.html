@@ -347,26 +347,26 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <header>
   <div class="week-badge">Week 10 &bull; Sub-Lesson 2</div>
   <h1>&#129512; <span style="color: #ffffff;">Failure Modes for Long-Horizon Tasks</span></h1>
-  <p>Applying the Week 9 patched / reduced / structural taxonomy to agents &mdash; and the central finding that reliability is not accuracy</p>
+  <p>Applying the Week 9 patched / reduced / structural taxonomy to agents, and the finding that reliability is not accuracy</p>
 </header>
 
 <div class="content">
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Week 9 gave us a taxonomy for how AI fails: some failures have been <em>patched</em>, some are <em>reduced but persistent</em>, and some are <em>structural</em> &mdash; baked into how the systems work and unlikely to be fixed by the next release. That taxonomy was built for single-turn chatbots. This sub-lesson applies it to agents, which fail in genuinely new ways because they do not answer once and stop. They run for many steps, accumulate state, call tools, and act on whatever those tools return.</p>
-    <p>The single most important idea in this sub-lesson is a distinction: <strong>reliability is not accuracy</strong>. An agent can be more accurate than ever &mdash; better at any individual step &mdash; and still be unreliable, because reliability is about doing the whole multi-step task consistently, recovering from its own mistakes, and knowing when it is wrong. A February 2026 Princeton study put numbers on this: across 14 models and 18 months, accuracy improved substantially while reliability barely moved. For a researcher deciding whether to hand a task to an agent, the gap between those two things is exactly where the danger lives.</p>
-    <p>As always, the framing is the durable part and the examples are the snapshot. The specific failure stories below will date; the three-category question &mdash; <em>is this patched, reduced, or structural?</em> &mdash; will not.</p>
+    <p>Week 9 gave us a taxonomy for how AI fails: some failures have been <em>patched</em>, some are <em>reduced but persistent</em>, and some are <em>structural</em>, baked into how the systems work and unlikely to be fixed by the next release. That taxonomy was built for single-turn chatbots. This sub-lesson applies it to agents, which fail in genuinely new ways because they do not answer once and stop. They run for many steps, accumulate state, call tools, and act on whatever those tools return.</p>
+    <p>One distinction runs through the whole sub-lesson: <strong>reliability is not accuracy</strong>. An agent can be more accurate than ever, better at any individual step, and still be unreliable, because reliability is about doing the whole multi-step task consistently, recovering from its own mistakes, and knowing when it is wrong. A February 2026 Princeton study put numbers on this: across 14 models and 18 months, accuracy improved substantially while reliability barely moved. For a researcher deciding whether to hand a task to an agent, the gap between those two things is where the danger lives.</p>
+    <p>As always, the framing is the durable part and the examples are the snapshot. The specific failure stories below will date; the three-category question, <em>is this patched, reduced, or structural?</em>, will not.</p>
   </div>
 
   <h2 class="section-title">&#9201;&#65039; Why Agents Need Their Own Failure Lesson</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A chatbot makes one prediction and stops. If it is right 90% of the time, that is roughly your experience of it. An agent runs the model in a loop &mdash; dozens or hundreds of times for a single task &mdash; and three things change.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A chatbot makes one prediction and stops. If it is right 90% of the time, that is roughly your experience of it. An agent runs the model in a loop, dozens or hundreds of times for a single task, and three things change.</p>
 
   <ul class="styled-list">
-    <li><strong>Errors compound.</strong> If each step is 95% reliable and the task takes twenty independent steps, the probability that <em>every</em> step is correct is roughly 0.95<sup>20</sup> &mdash; about 36%. High per-step accuracy can still produce a task that usually fails. This is the agentic version of the Week 7 silent-error problem: each step looks plausible, the end result is wrong.</li>
-    <li><strong>State accumulates.</strong> The agent carries its own earlier outputs forward as context. An early mistake does not just cost one step &mdash; it poisons every step that depends on it, and the agent rarely notices.</li>
-    <li><strong>The agent acts.</strong> A chatbot that hallucinates wastes your time. An agent that hallucinates can delete a file, send an email, or spend money &mdash; because it has tools and permissions (the harness components from 10.1). The cost of a failure is no longer just a wrong answer.</li>
+    <li><strong>Errors compound.</strong> If each step is 95% reliable and the task takes twenty independent steps, the probability that <em>every</em> step is correct is roughly 0.95<sup>20</sup>, about 36%. High per-step accuracy can still produce a task that usually fails. This is the agentic version of the Week 7 silent-error problem: each step looks plausible, the end result is wrong.</li>
+    <li><strong>State accumulates.</strong> The agent carries its own earlier outputs forward as context. An early mistake does not just cost one step; it poisons every step that depends on it, and the agent rarely notices.</li>
+    <li><strong>The agent acts.</strong> A chatbot that hallucinates wastes your time. An agent that hallucinates can delete a file, send an email, or spend money, because it has tools and permissions (the harness components from 10.1). The cost of a failure is no longer just a wrong answer.</li>
   </ul>
 
   <div class="info-box">
@@ -385,7 +385,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <ul class="styled-list">
     <li><strong>Malformed tool calls.</strong> Early agents frequently emitted tool requests that did not parse. Structured tool-calling APIs and constrained decoding have largely fixed this.</li>
-    <li><strong>&ldquo;Forgetting&rdquo; available tools.</strong> Better system prompts and tool-discovery steps (exactly the harness changes in the LangChain worked example from 10.1) have substantially reduced this.</li>
+    <li><strong>&ldquo;Forgetting&rdquo; available tools.</strong> Better system prompts and tool-discovery steps (the harness changes in the LangChain worked example from 10.1) have substantially reduced this.</li>
     <li><strong>Trivially hallucinated tools.</strong> Calling a function that was never provided is now rare on short tasks, though it returns on long ones.</li>
   </ul>
 
@@ -399,7 +399,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="card-grid">
     <div class="card">
       <h3>Loop instability</h3>
-      <p>Agents get stuck repeating an edit, re-running a failing command, or oscillating between two states. Harnesses now ship explicit loop-detectors (again, see the LangChain recipe in 10.1) &mdash; which tells you the problem is real enough to need a dedicated mitigation.</p>
+      <p>Agents get stuck repeating an edit, re-running a failing command, or oscillating between two states. Harnesses now ship explicit loop-detectors (again, see the LangChain recipe in 10.1), which tells you the problem is real enough to need a dedicated mitigation.</p>
     </div>
     <div class="card">
       <h3>Over-eager action</h3>
@@ -418,37 +418,37 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <!-- CATEGORY C -->
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">&#129512; (c) Structural and Likely Persistent</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These follow from how agents work, not from fixable engineering gaps. They are the ones to design your workflow <em>around</em>, because the next model release will not remove them. Each gets its own section below: the reliability gap, long-horizon planning collapse, and prompt injection. Compositional brittleness &mdash; the compounding-error problem from the top of this lesson, and the same effect behind ProgramBench scoring 0% on whole-repository tasks in Week 9 &mdash; sits here too.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These follow from how agents work, not from fixable engineering gaps. They are the ones to design your workflow <em>around</em>, because the next model release will not remove them. Each gets its own section below: the reliability gap, long-horizon planning collapse, and prompt injection. Compositional brittleness sits here too: the compounding-error problem from the top of this lesson, and the same effect behind ProgramBench scoring 0% on whole-repository tasks in Week 9.</p>
 
   <h2 class="section-title">&#128201; Reliability Is Not Accuracy: The Princeton Finding</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The structural case is made most rigorously by a February 2026 paper from Princeton&#39;s Center for Information Technology Policy: <em>Towards a Science of AI Agent Reliability</em> (Rabanser, Kapoor, Kirgis, Liu, Utpala &amp; Narayanan). It is the agent-era counterpart to the Kalai et al. hallucination paper we met in Week 9 &mdash; a careful argument that a whole class of failure is structural, not a passing engineering problem.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The structural case is made in detail by a February 2026 paper from Princeton&#39;s Center for Information Technology Policy: <em>Towards a Science of AI Agent Reliability</em> (Rabanser, Kapoor, Kirgis, Liu, Utpala &amp; Narayanan). It is the agent-era counterpart to the Kalai et al. hallucination paper we met in Week 9, arguing that a whole class of failure is structural, not a passing engineering problem.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The authors evaluated 14 models from OpenAI, Google, and Anthropic spanning 18 months of releases, across roughly 500 benchmark runs. Their headline finding is the one in this section&#39;s title:</p>
 
   <div class="highlight-box">
     <h3>Accuracy went up. Reliability did not.</h3>
     <p><em>&ldquo;Reliability has improved only modestly over 18 months, while accuracy improved substantially.&rdquo;</em> Compressing an agent&#39;s behaviour into a single success score, the authors argue, hides the operational flaws that actually determine whether you can depend on it.</p>
-    <p>They decompose reliability into four dimensions &mdash; <strong>consistency, robustness, predictability, and safety</strong> &mdash; measured by twelve concrete metrics. The weakest, across the board, is <strong>predictability</strong>: <em>&ldquo;agents are not good at knowing when they&#39;re wrong.&rdquo;</em> On one benchmark, most models could not distinguish their own correct answers from their incorrect ones better than chance.</p>
+    <p>They decompose reliability into four dimensions (<strong>consistency, robustness, predictability, and safety</strong>) measured by twelve concrete metrics. The weakest, across the board, is <strong>predictability</strong>: <em>&ldquo;agents are not good at knowing when they&#39;re wrong.&rdquo;</em> On one benchmark, most models could not distinguish their own correct answers from their incorrect ones better than chance.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two numbers make this concrete. Outcome <strong>consistency</strong> scores ranged from <strong>30% to 75%</strong> across the models tested &mdash; meaning that running the same agent on the same task under identical conditions often produced different outcomes. And because predictability is so weak, you cannot use the agent&#39;s own confidence as a filter: the &ldquo;ask it only when it&#39;s sure&rdquo; strategy fails, because it is not reliably sure when it should be.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two numbers make this concrete. Outcome <strong>consistency</strong> scores ranged from <strong>30% to 75%</strong> across the models tested, meaning that running the same agent on the same task under identical conditions often produced different outcomes. And because predictability is so weak, you cannot use the agent&#39;s own confidence as a filter: the &ldquo;ask it only when it&#39;s sure&rdquo; strategy fails, because it is not reliably sure when it should be.</p>
 
   <div class="warning-box">
     <h4>&#9888;&#65039; What this means for delegating a task</h4>
-    <p>If you run an agent once and it succeeds, that is weak evidence it will succeed next time &mdash; outcome consistency can be as low as a coin flip. And you cannot lean on the agent to tell you when it has failed, because knowing-when-it&#39;s-wrong is its weakest skill. Both facts push in the same direction: <strong>the verification burden stays with you</strong>, and it is heavier for agents than for chatbots, not lighter. This is the Week 9 verification lesson, scaled up.</p>
+    <p>If you run an agent once and it succeeds, that is weak evidence it will succeed next time; outcome consistency can be as low as a coin flip. And you cannot lean on the agent to tell you when it has failed, because knowing-when-it&#39;s-wrong is its weakest skill. Both facts push in the same direction: <strong>the verification burden stays with you</strong>, and it is heavier for agents than for chatbots, not lighter. This is the Week 9 verification lesson, scaled up.</p>
   </div>
 
   <h2 class="section-title">&#129517; Long-Horizon Planning Collapse</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Why do long tasks fail so distinctively? A January 2026 paper, <em>Why Reasoning Fails to Plan</em> (Wang et al.), gives a structural answer that is worth understanding because it explains a failure you will see repeatedly.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Why do long tasks fail so distinctively? A January 2026 paper, <em>Why Reasoning Fails to Plan</em> (Wang et al.), gives a structural answer that explains a failure you will see repeatedly.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The argument: the step-by-step reasoning that makes models good at short tasks is, formally, a <em>greedy</em> strategy &mdash; it picks the locally best next step. Greedy strategies are fine over short horizons. Over long ones they fail, because an early choice that looks locally optimal commits the agent to a path whose costs only show up much later, and those early commitments get <em>amplified over time and are difficult to recover from</em>. The authors prove the gap is <strong>structural, not a matter of model capability</strong>: a more powerful reasoner making step-wise decisions is still fundamentally limited on long-horizon tasks.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The argument: the step-by-step reasoning that makes models good at short tasks is, formally, a <em>greedy</em> strategy that picks the locally best next step. Greedy strategies are fine over short horizons. Over long ones they fail, because an early choice that looks locally optimal commits the agent to a path whose costs only show up much later, and those early commitments get <em>amplified over time and are difficult to recover from</em>. The authors prove the gap is <strong>structural, not a matter of model capability</strong>: a more powerful reasoner making step-wise decisions is still fundamentally limited on long-horizon tasks.</p>
 
   <div class="case-study">
     <h4>&#128161; The counter-intuitive result: small + planning beats large + greedy</h4>
-    <p>The paper&#39;s most striking demonstration: with their lookahead method (FLARE), <em>&ldquo;LLaMA-8B with FLARE frequently outperforms GPT-4o with standard step-by-step reasoning&rdquo;</em> on long-horizon benchmarks. A small model that genuinely plans can beat a much larger model that merely reasons step by step.</p>
-    <p>The research lesson is not &ldquo;use LLaMA-8B&rdquo;. It is that <em>reasoning is not planning</em>. When you see an agent handle each individual step competently and still walk the task into a wall, you are watching greedy step-wise reasoning fail at planning &mdash; a structural limitation, not a bug that more model scale will fix.</p>
+    <p>One demonstration stands out: with their lookahead method (FLARE), <em>&ldquo;LLaMA-8B with FLARE frequently outperforms GPT-4o with standard step-by-step reasoning&rdquo;</em> on long-horizon benchmarks. A small model that genuinely plans can beat a much larger model that reasons step by step.</p>
+    <p>The research lesson is about <em>reasoning not being planning</em>, not about using LLaMA-8B. When you see an agent handle each individual step competently and still walk the task into a wall, you are watching greedy step-wise reasoning fail at planning: a structural limitation, not a bug that more model scale will fix.</p>
   </div>
 
   <h2 class="section-title">&#128200; Watching Agents Run Long: Two 2026 Benchmarks</h2>
@@ -458,30 +458,30 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="card-grid">
     <div class="card">
       <h3>YC-Bench &mdash; run a startup for a (simulated) year</h3>
-      <p>YC-Bench (arXiv:2604.01212) tasks an agent with running a simulated startup over a one-year horizon spanning hundreds of turns &mdash; managing employees, choosing contracts, and staying profitable while adversarial clients and rising payroll create compounding consequences. It is long-horizon planning made measurable.</p>
-      <p style="font-size: 0.95em; color: #003A70;">Top result: Claude Opus 4.6 at $1.27M average final funds &mdash; with the much cheaper GLM-5 (from China&#39;s Zhipu AI) close behind at $1.21M for roughly 11&times; lower inference cost. A preview of the lower-cost and Chinese-model story we develop in 10.5.</p>
+      <p>YC-Bench (arXiv:2604.01212) tasks an agent with running a simulated startup over a one-year horizon spanning hundreds of turns: managing employees, choosing contracts, and staying profitable while adversarial clients and rising payroll create compounding consequences. It is long-horizon planning made measurable.</p>
+      <p style="font-size: 0.95em; color: #003A70;">Top result: Claude Opus 4.6 at $1.27M average final funds, with the much cheaper GLM-5 (from China&#39;s Zhipu AI) close behind at $1.21M for roughly 11&times; lower inference cost. A preview of the lower-cost and Chinese-model story we develop in 10.5.</p>
     </div>
     <div class="card">
       <h3>The &ldquo;Meltdown Onset Point&rdquo;</h3>
-      <p><em>Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents</em> (arXiv:2603.29231) evaluated 10 models across 23,392 episodes and introduced metrics for how agents fall apart over time &mdash; including a <strong>Meltdown Onset Point</strong> that detects behavioural collapse by watching the agent&#39;s tool-call patterns become erratic.</p>
+      <p><em>Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents</em> (arXiv:2603.29231) evaluated 10 models across 23,392 episodes and introduced metrics for how agents fall apart over time, including a <strong>Meltdown Onset Point</strong> that detects behavioural collapse by watching the agent&#39;s tool-call patterns become erratic.</p>
       <p style="font-size: 0.95em; color: #003A70;">That a benchmark needs a dedicated &ldquo;meltdown&rdquo; metric tells you the phenomenon is common enough to formalise: past some task length, agents do not just get things wrong, they come apart.</p>
     </div>
   </div>
 
   <h2 class="section-title">&#128137; Prompt Injection: The Structural Security Hole</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One structural failure deserves singling out because it is a security problem, not just a reliability one. An agent reads tool output &mdash; web pages, file contents, emails, search results &mdash; and acts on it. If an attacker can place text in that content, they can try to issue instructions to your agent. This is <strong>prompt injection</strong>, and the practitioner who has tracked it most closely, Simon Willison, has made the uncomfortable point repeatedly: we have known about it since 2022 and still have no robust, general defence.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One structural failure is a security problem as much as a reliability one. An agent reads tool output (web pages, file contents, emails, search results) and acts on it. If an attacker can place text in that content, they can try to issue instructions to your agent. This is <strong>prompt injection</strong>, and the practitioner who has tracked it most closely, Simon Willison, has made the uncomfortable point repeatedly: we have known about it since 2022 and still have no robust, general defence.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For a researcher this is concrete. If you point an agent at the open web, or at a shared document, or at your inbox, you are trusting every piece of content it reads not to contain hostile instructions &mdash; and the agent has no reliable way to tell data from commands, because to a language model they are both just text. The mitigation is not technical cleverness on your side; it is the <em>permissions</em> dial from 10.1. An agent that can only read is far harder to weaponise than one that can also send, delete, or pay.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For a researcher this is concrete. If you point an agent at the open web, or at a shared document, or at your inbox, you are trusting every piece of content it reads not to contain hostile instructions, and the agent has no reliable way to tell data from commands, because to a language model they are both just text. The mitigation is not technical cleverness on your side; it is the <em>permissions</em> dial from 10.1. An agent that can only read is far harder to weaponise than one that can also send, delete, or pay.</p>
 
   <div class="info-box">
     <h4>&#127765; An African-context note: where the agent acts matters</h4>
-    <p>Prompt injection and the permissions dial are not abstractions when an agent touches real systems. An agent with access to a university inbox, a grant portal, or institutional data is acting inside systems governed by South Africa&#39;s Protection of Personal Information Act (POPIA). The structural insecurity of agents is one more reason the verification and permissioning burden cannot be delegated &mdash; a theme we return to concretely in the Week 10 activity, where you will be asked to state where your tools send data before you use them.</p>
+    <p>Prompt injection and the permissions dial are not abstractions when an agent touches real systems. An agent with access to a university inbox, a grant portal, or institutional data is acting inside systems governed by South Africa&#39;s Protection of Personal Information Act (POPIA). The structural insecurity of agents is one more reason the verification and permissioning burden cannot be delegated, a theme we return to in the Week 10 activity, where you will be asked to state where your tools send data before you use them.</p>
   </div>
 
   <h2 class="section-title">&#129519; Putting the Taxonomy to Work</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As in Week 9, the point of the taxonomy is action. When you observe an agent failure, locate it &mdash; the category tells you what to do.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As in Week 9, the point of the taxonomy is action. When you observe an agent failure, locate it; the category tells you what to do.</p>
 
   <div style="overflow-x: auto;">
     <table class="comparison-table">
@@ -547,7 +547,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="intro-text" style="margin-top: 50px;">
     <h2>&#128073; What Comes Next</h2>
-    <p><strong>Sub-Lesson 10.3 &mdash; The Current Tool Landscape (Including MCP).</strong> Having defined agents (10.1) and mapped how they fail (10.2), we get concrete about the tools themselves: the coding, computer-use, research, and general agents available in May 2026, and the Model Context Protocol (MCP) that increasingly connects them to your data. We carry the permissions-dial and reliability lessons straight into that tour &mdash; because choosing an agent tool is, in large part, choosing how much you are willing to let it do on your behalf.</p>
+    <p><strong>Sub-Lesson 10.3 &mdash; The Current Tool Landscape (Including MCP).</strong> Having defined agents (10.1) and mapped how they fail (10.2), we get concrete about the tools themselves: the coding, computer-use, research, and general agents available in May 2026, and the Model Context Protocol (MCP) that increasingly connects them to your data. We carry the permissions-dial and reliability lessons straight into that tour, because choosing an agent tool is, in large part, choosing how much you are willing to let it do on your behalf.</p>
   </div>
 
 </div>

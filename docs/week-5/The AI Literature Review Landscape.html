@@ -334,12 +334,12 @@
 <div class="intro-text">
 <h2>What We'll Cover</h2>
 <p>Literature review is arguably one of the most immediately useful applications of generative AI for researchers at every career stage. Whether you are a first-year Master's student trying to get your bearings in a new field or a seasoned academic keeping up with a fast-moving literature, AI tools can dramatically accelerate the process of finding, reading, and synthesising published work.</p>
-<p style="margin-top: 12px;">In this session, we map the landscape: what types of AI literature tools exist, what they actually do under the hood, and how to think about combining them into an effective workflow. We will also confront a critical limitation head-on — AI can find and summarise papers quickly, but it can also confidently cite papers that do not exist. Understanding why this happens (and how to protect yourself) is a theme we will return to throughout this week.</p>
+<p style="margin-top: 12px;">In this session, we map the landscape: what types of AI literature tools exist, what they actually do under the hood, and how to think about combining them into an effective workflow. We will also confront a serious limitation. AI can find and summarise papers quickly, but it can also confidently cite papers that do not exist. Understanding why this happens (and how to protect yourself) is a theme we will return to throughout this week.</p>
 <p style="margin-top: 12px;">By the end of this sub-lesson, you should be able to identify the major categories of AI literature tools, understand the mechanisms that power them, and begin thinking about which combination might work best for your own research.</p>
 </div>
 <!-- SECTION 1 -->
 <h2 class="section-title">🗺️ Why AI Changes Literature Review</h2>
-<p>Before diving into specific tools, it helps to understand what makes literature review so difficult in the first place — and how AI addresses each of those challenges. Traditional literature review has several well-known pain points, each of which AI tools tackle in different ways.</p>
+<p>Before we look at specific tools, it helps to understand what makes literature review so difficult in the first place, and how AI addresses each of those challenges. Traditional literature review has several well-known pain points, each of which AI tools tackle in different ways.</p>
 <div class="card-grid">
 <div class="card">
 <h3>⏰ Time and Scale</h3>
@@ -363,31 +363,31 @@
 </div>
 <div class="card">
 <h3>🔶 Coverage Gaps</h3>
-<p><strong>The problem:</strong> Keyword searches inevitably miss papers. You find what you know to look for, but the most important papers are sometimes the ones you did not know existed — especially papers in adjacent fields that use different vocabulary.</p>
+<p><strong>The problem:</strong> Keyword searches inevitably miss papers. You find what you know to look for, but the most important papers are sometimes the ones you did not know existed, especially papers in adjacent fields that use different vocabulary.</p>
 <p style="margin-top: 10px;"><strong>How AI helps:</strong> Citation-mapping tools like Connected Papers and Litmaps build visual networks showing how papers relate to each other through citations. These tools reveal clusters of related work that no keyword search would have found.</p>
 </div>
 <div class="card">
 <h3>📋 Synthesis Difficulty</h3>
-<p><strong>The problem:</strong> Finding papers is only half the battle. Synthesising findings across dozens of studies — comparing methods, reconciling conflicting results, identifying gaps — is cognitively demanding and prone to bias.</p>
+<p><strong>The problem:</strong> Finding papers is only half the battle. Synthesising findings across dozens of studies (comparing methods, reconciling conflicting results, identifying gaps) is cognitively demanding and prone to bias.</p>
 <p style="margin-top: 10px;"><strong>How AI helps:</strong> Grounded chat tools let you upload a collection of papers and ask questions across all of them. You can ask "What methods did these studies use?" or "Where do these papers disagree?" and get an answer that draws from your actual sources.</p>
 </div>
 </div>
-<div class="warning-box"><strong>⚠️ A critical caveat:</strong> AI tools address these pain points, but they do not eliminate them. Every AI literature tool has significant limitations — from incomplete coverage of databases to the persistent risk of hallucinated references. Think of these tools as powerful assistants, not replacements for your own critical judgment. We will explore specific failure modes in later sessions this week.</div>
+<div class="warning-box"><strong>⚠️ A critical caveat:</strong> AI tools address these pain points, but they do not eliminate them. Every AI literature tool has significant limitations, from incomplete coverage of databases to the persistent risk of hallucinated references. Think of these tools as powerful assistants, not replacements for your own critical judgment. We will explore specific failure modes in later sessions this week.</div>
 <!-- SECTION 2 -->
 <h2 class="section-title">🧩 Three Categories of AI Literature Tools</h2>
-<p>The landscape of AI-powered literature tools can feel overwhelming. New products launch every month, and many make similar-sounding claims. To cut through the noise, it helps to group these tools into three broad categories based on how they fundamentally work. Each category has distinct strengths and weaknesses.</p>
+<p>The landscape of AI-powered literature tools can feel overwhelming. New products launch every month, and many make similar-sounding claims. To cut through the noise, it helps to group these tools into three broad categories based on how they work. Each category has distinct strengths and weaknesses.</p>
 <div class="card-grid">
 <div class="card">
 <h3>🔗 1. Citation-Based Discovery Tools</h3>
 <p><strong>Examples:</strong> <a href="https://www.connectedpapers.com/" target="_blank" rel="noopener">Connected Papers</a>, <a href="https://www.researchrabbit.ai/" target="_blank" rel="noopener">ResearchRabbit</a>, <a href="https://jenni.ai/literature-reviews?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=23438701412&amp;utm_term=litmaps%20ia&amp;utm_content=791610294373&amp;cmc_adid=ga_791610294373_23438701412&amp;utm_group=195014744527&amp;tw_source=google&amp;tw_adid=791610294373&amp;tw_campaign=23438701412&amp;tw_kwdid=kwd-2420657330083&amp;gad_source=1&amp;gad_campaignid=23438701412&amp;gbraid=0AAAAAou4ae1yD6lXJUE3bxBOs3XDN2UB-&amp;gclid=Cj0KCQjw7IjOBhDyARIsAFzrWQwUueLxafJ0xqdW_cxXbXmOMG4GXW6AL_p_YWvnqhzjyNCg3AZu9kQaAl6mEALw_wcB" target="_blank" rel="noopener">Litmaps</a>, <a href="https://chromewebstore.google.com/detail/cocites-beta/kjnhiadmccnbfbfjkmkhinglkaolnhcj" target="_blank" rel="noopener">CoCites</a></p>
 <p style="margin-top: 10px;">These tools work by analysing citation chains and co-citation networks. Given a "seed" paper, they map out which other papers cite it, which papers it cites, and which papers frequently appear alongside it in reference lists. The result is a visual network of related work.</p>
-<p style="margin-top: 10px;"><strong>Key strength:</strong> They find papers you would never discover through keyword search alone — papers that are conceptually related because the research community treats them as related (by citing them together). This is fundamentally different from text-based search.</p>
-<p style="margin-top: 10px;"><strong>Important distinction:</strong> These tools typically rely on bibliometric data, not AI language models. Connected Papers uses co-citation analysis algorithms, not GPT. This means they do not hallucinate papers — every paper they show you is real and genuinely connected through the citation network.</p>
+<p style="margin-top: 10px;"><strong>Key strength:</strong> They find papers you would never discover through keyword search alone: papers that are conceptually related because the research community treats them as related (by citing them together). This is a different approach from text-based search.</p>
+<p style="margin-top: 10px;"><strong>Important distinction:</strong> These tools typically rely on bibliometric data, not AI language models. Connected Papers uses co-citation analysis algorithms, not GPT. This means they do not hallucinate papers: every paper they show you is real and genuinely connected through the citation network.</p>
 </div>
 <div class="card">
 <h3>🔬 2. Semantic Search &amp; Synthesis Tools</h3>
 <p><strong>Examples:</strong> <a href="https://elicit.com/" target="_blank" rel="noopener">Elicit</a>, <a href="https://consensus.app/" target="_blank" rel="noopener">Consensus</a>, <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a>, <a href="https://scispace.com/" target="_blank" rel="noopener">SciSpace</a>&nbsp;</p>
-<p style="margin-top: 10px;">These tools use AI language models to understand the meaning of your research question, not just the keywords. When you type a question like "Does mindfulness meditation reduce cortisol levels?", a semantic search tool interprets that question and finds papers whose content is conceptually relevant — even if they never use the word "mindfulness."</p>
+<p style="margin-top: 10px;">These tools use AI language models to understand the meaning of your research question, not just the keywords. When you type a question like "Does mindfulness meditation reduce cortisol levels?", a semantic search tool interprets that question and finds papers whose content is conceptually relevant, even if they never use the word "mindfulness."</p>
 <p style="margin-top: 10px;"><strong>Key strength:</strong> They can extract structured data from papers (sample sizes, methods, findings), summarise results across multiple studies, and even answer specific research questions grounded in the literature. Elicit, for example, can create a table comparing the methods and findings of 20 papers in minutes.</p>
 <p style="margin-top: 10px;"><strong>Key risk:</strong> Because these tools use language models, they can sometimes generate inaccurate summaries or misrepresent a paper's findings. The quality of the underlying model matters enormously. Always verify key claims against the original paper.</p>
 </div>
@@ -396,7 +396,7 @@
 <p><strong>Examples:</strong> <a href="https://workspace.google.com/products/notebooklm/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=1713698-Workspace-DR-EMEA-ZA-en-Google-BKWS-EXA-na&amp;utm_content=c-Hybrid+%7C+BKWS+-+EXA+%7C+Txt+-+Gemini+-+Notebook+LM-2153050522686&amp;utm_term=notebooklm&amp;gclsrc=aw.ds&amp;gad_source=1&amp;gad_campaignid=20830673235&amp;gclid=Cj0KCQjw7IjOBhDyARIsAFzrWQyqiUymLW36csT6GZtcaT_4-7YKeefUMNJI38u8jIeY2Zo91ZOMVq4aAuOeEALw_wcB" target="_blank" rel="noopener">NotebookLM</a> (Google), <a href="https://claude.ai/new" target="_blank" rel="noopener">Claude with uploaded papers,</a> <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a>, <a href="https://www.chatpdf.com/" target="_blank" rel="noopener">ChatPDF</a></p>
 <p style="margin-top: 10px;">These tools let you upload your own documents and have a conversation with them. They use a technique called Retrieval-Augmented Generation (RAG): when you ask a question, the tool searches through your uploaded documents for relevant passages, then uses a language model to compose an answer based on those specific passages.</p>
 <p style="margin-top: 10px;"><strong>Key strength:</strong> Responses are grounded in your actual sources. Rather than drawing on the model's general training data (which may contain errors), the model works directly with the text you provide. This significantly reduces hallucination risk, though it does not eliminate it entirely.</p>
-<p style="margin-top: 10px;"><strong>Key risk:</strong> The quality of the output depends on the quality and completeness of the documents you upload. If a crucial paper is missing from your collection, the tool cannot account for it. RAG tools can also occasionally misinterpret the source text, especially with complex statistical results or nuanced arguments.</p>
+<p style="margin-top: 10px;"><strong>Key risk:</strong> The quality of the output depends on the quality and completeness of the documents you upload. If a crucial paper is missing from your collection, the tool cannot account for it. RAG tools can also occasionally misinterpret the source text, especially with complex statistical results or subtle arguments.</p>
 </div>
 </div>
 <div class="info-box"><strong>💡 A note on overlap:</strong> Many tools increasingly span multiple categories. Semantic Scholar, for instance, offers both semantic search and citation graph exploration. Elicit combines semantic search with data extraction that uses RAG-like techniques. The categories above describe the primary mechanism each tool relies on, but the boundaries are blurring as the field evolves.</div>
@@ -406,13 +406,13 @@
 <div class="technical-detail">
 <h3>🔗 Citation-Based Tools: Graph Analysis</h3>
 <p>These tools operate on large citation databases. Semantic Scholar, for example, maintains a corpus of over 220 million academic papers with their citation relationships. When you provide a seed paper, the tool builds a graph where each node is a paper and each edge is a citation link.</p>
-<p style="margin-top: 10px;">The tool then uses graph analysis algorithms to find papers that are most strongly connected to your seed — not just papers that directly cite it, but papers that share many of the same references (co-citation analysis) or are frequently cited by the same later papers (bibliographic coupling). The result is a map of the "neighbourhood" of your research topic as defined by the research community's own citation behaviour.</p>
+<p style="margin-top: 10px;">The tool then uses graph analysis algorithms to find papers that are most strongly connected to your seed. These include papers that directly cite it, papers that share many of the same references (co-citation analysis), and papers frequently cited by the same later papers (bibliographic coupling). The result is a map of the "neighbourhood" of your research topic as defined by the research community's own citation behaviour.</p>
 <p style="margin-top: 10px;"><strong>When this works well:</strong> In established fields with mature citation networks. <strong>When this struggles:</strong> For very new topics (preprints haven't been cited yet), interdisciplinary work (citations may not cross field boundaries), or topics where key papers are in databases the tool doesn't index.</p>
 </div>
 <div class="technical-detail">
 <h3>🔬 Semantic Search Tools: Embeddings and Vector Similarity</h3>
-<p>Semantic search tools use embedding models — neural networks that convert text into high-dimensional numerical vectors (lists of numbers). The key property of these vectors is that texts with similar meanings end up with similar vectors, regardless of the specific words used.</p>
-<p style="margin-top: 10px;">When you type a research question, it gets converted into a vector. The tool then compares this vector against pre-computed vectors for millions of paper abstracts, finding the papers whose vectors are closest to yours in this mathematical space. This is why you can search for "Does exercise help depression?" and find papers titled "Physical activity as an intervention for major depressive disorder" — the meanings are close even though the words differ.</p>
+<p>Semantic search tools use embedding models, which are neural networks that convert text into high-dimensional numerical vectors (lists of numbers). The key property of these vectors is that texts with similar meanings end up with similar vectors, regardless of the specific words used.</p>
+<p style="margin-top: 10px;">When you type a research question, it gets converted into a vector. The tool then compares this vector against pre-computed vectors for millions of paper abstracts, finding the papers whose vectors are closest to yours in this mathematical space. This is why you can search for "Does exercise help depression?" and find papers titled "Physical activity as an intervention for major depressive disorder": the meanings are close even though the words differ.</p>
 <p style="margin-top: 10px;"><strong>When this works well:</strong> When your question is clear and the relevant literature uses broadly similar concepts. <strong>When this struggles:</strong> With highly technical or specialised queries where domain-specific nuance matters, or when the same term means different things in different fields (e.g., "bias" in statistics vs. psychology vs. electronics).</p>
 </div>
 <div class="technical-detail">
@@ -424,9 +424,9 @@
 <li><strong>Retrieval:</strong> When you ask a question, it is also converted into a vector. The system finds the chunks whose vectors are most similar to your question.</li>
 <li><strong>Generation:</strong> The retrieved chunks are provided to the language model as context, along with your question. The model generates an answer based specifically on this context.</li>
 </ul>
-<p style="margin-top: 10px;"><strong>When this works well:</strong> When your question can be answered by a specific passage in one of your documents. <strong>When this struggles:</strong> When the answer requires synthesising information spread across many different sections, when the chunking splits a key argument across two chunks, or when the question requires reasoning that goes beyond what is explicitly stated in the text.</p>
+<p style="margin-top: 10px;"><strong>When this works well:</strong> When your question can be answered by a specific passage in one of your documents. <strong>When this struggles:</strong> When the answer requires synthesising information spread across many different sections, when the chunking splits a key argument across two chunks, or when the question requires reasoning that goes beyond what is stated in the text.</p>
 </div>
-<div class="info-box"><strong>🧠 Why this matters for you:</strong> Understanding these mechanisms helps you become a more strategic user. If you know that citation tools rely on graph data, you will not expect them to find a preprint published yesterday. If you know that semantic search depends on embeddings, you will rephrase a failed query rather than just adding more keywords. If you know that RAG retrieves chunks, you will understand why it sometimes gives incomplete answers to broad questions — and know to break your broad question into smaller, more specific ones.</div>
+<div class="info-box"><strong>🧠 Why this matters for you:</strong> Understanding these mechanisms helps you become a more strategic user. If you know that citation tools rely on graph data, you will not expect them to find a preprint published yesterday. If you know that semantic search depends on embeddings, you will rephrase a failed query rather than just adding more keywords. If you know that RAG retrieves chunks, you will understand why it sometimes gives incomplete answers to broad questions, and know to break your broad question into smaller, more specific ones.</div>
 <!-- SECTION 4 -->
 <h2 class="section-title">🔄 Building a Combined Workflow</h2>
 <p>No single AI tool does everything well. Citation tools do not summarise. Semantic search tools do not let you have a conversation with your papers. RAG tools only know about the documents you upload. The most effective approach is to combine multiple tools strategically, using each where it is strongest.</p>
@@ -443,13 +443,13 @@
 <tbody>
 <tr>
 <td><strong>1. Landscape Scan</strong></td>
-<td>Start broad — search with your research question in plain language to understand what is out there and identify the main themes.</td>
+<td>Start broad. Search with your research question in plain language to understand what is out there and identify the main themes.</td>
 <td>Semantic Search</td>
 <td>Elicit, Consensus, Semantic Scholar</td>
 </tr>
 <tr>
 <td><strong>2. Identify Seeds</strong></td>
-<td>From your initial scan, identify 3–5 key papers that are central to your topic — highly cited, recent reviews, or foundational studies.</td>
+<td>From your initial scan, identify 3–5 key papers that are central to your topic: highly cited, recent reviews, or foundational studies.</td>
 <td>Your judgment</td>
 <td>(Manual selection)</td>
 </tr>
@@ -485,8 +485,8 @@
 </tr>
 </tbody>
 </table>
-<div class="highlight-box"><strong>🔑 Key insight:</strong> The most effective researchers don't rely on a single AI tool — they combine multiple tools strategically, using each where it is strongest, and always verifying against traditional databases. No AI tool currently has complete coverage of all published work, and no AI summary should be trusted without verification against the original source.</div>
-<div class="warning-box"><strong>⚠️ Step 5 is non-negotiable.</strong> It is tempting to skip verification when AI tools give you fluent, confident-sounding results. But AI language models can and do fabricate references — inventing plausible-sounding authors, journal names, and even DOIs. We will examine real examples of this failure mode in later sessions. For now, take this as a firm rule: every reference that enters your work must be independently verified.</div>
+<div class="highlight-box"><strong>🔑 Key insight:</strong> The most effective researchers combine multiple tools strategically, using each where it is strongest, and always verifying against traditional databases. No AI tool currently has complete coverage of all published work, and no AI summary should be trusted without verification against the original source.</div>
+<div class="warning-box"><strong>⚠️ Step 5 is non-negotiable.</strong> It is tempting to skip verification when AI tools give you fluent, confident-sounding results. But AI language models can and do fabricate references, inventing plausible-sounding authors, journal names, and even DOIs. We will examine real examples of this failure mode in later sessions. For now, take this as a firm rule: every reference that enters your work must be independently verified.</div>
 <!-- SECTION 5 -->
 <h2 class="section-title">📚 Readings for This Week</h2>
 <p>The following readings provide the evidence base and critical perspectives that underpin this week's sessions. The first three are core readings; the supplementary items are recommended for those who want to go deeper.</p>
@@ -494,7 +494,7 @@
 <div class="resource-placeholder">
 <h4>📄 Khraisha, Q., et al. (2024). "<a href="https://pubmed.ncbi.nlm.nih.gov/38484744/" target="_blank" rel="noopener">Can Large Language Models Replace Systematic Reviews</a>?"</h4>
 <p><em>Research Synthesis Methods.</em> Preprint available.</p>
-<p style="margin-top: 8px;">A careful evaluation of whether LLMs can perform the core tasks of systematic review — screening, extraction, synthesis — to the standard required. The answer is nuanced and instructive. <strong>Read at least the introduction and conclusion;</strong> this is both sobering and informative about the current state of AI capabilities in this domain.</p>
+<p style="margin-top: 8px;">A careful evaluation of whether LLMs can perform the core tasks of systematic review (screening, extraction, synthesis) to the standard required. The answer is qualified, and worth reading in full. <strong>Read at least the introduction and conclusion;</strong> this is both sobering and informative about the current state of AI capabilities in this domain.</p>
 </div>
 <div class="resource-placeholder">
 <h4>📄 van Dis, E.A.M., et al. (2023). "ChatGPT: Five Priorities for Research."</h4>
@@ -504,7 +504,7 @@
 <div class="resource-placeholder">
 <h4>📄 Wagner, G., et al. (2022). "<a href="https://journals.sagepub.com/doi/full/10.1177/02683962211048201" target="_blank" rel="noopener">Artificial Intelligence and the Conduct of Literature Reviews.</a>"</h4>
 <p><em>Journal of Information Technology</em>, 37(2). Open access.</p>
-<p style="margin-top: 8px;">A comprehensive overview of how AI was being applied to literature review processes before the current generative AI wave. Provides valuable context for understanding what has changed and what challenges remain. The framework they propose for thinking about AI-assisted review stages is still useful.</p>
+<p style="margin-top: 8px;">A thorough overview of how AI was being applied to literature review processes before the current generative AI wave. Provides valuable context for understanding what has changed and what challenges remain. The framework they propose for thinking about AI-assisted review stages is still useful.</p>
 </div>
 <h3 style="color: #003a70; margin-top: 30px; margin-bottom: 15px;">Supplementary Readings</h3>
 <div class="resource-placeholder">
@@ -513,7 +513,7 @@
 </div>
 <div class="resource-placeholder">
 <h4>Syriani, E., et al. (2023). "<a href="https://arxiv.org/abs/2307.06464" target="_blank" rel="noopener">Assessing the Ability of ChatGPT to Screen Articles for Systematic Reviews.</a>"</h4>
-<p>arXiv:2307.06464. Free. An empirical study testing ChatGPT's ability to perform title and abstract screening — one of the most time-consuming steps in systematic review. Useful data on accuracy, sensitivity, and specificity.</p>
+<p>arXiv:2307.06464. Free. An empirical study testing ChatGPT's ability to perform title and abstract screening, one of the most time-consuming steps in systematic review. Useful data on accuracy, sensitivity, and specificity.</p>
 </div>
 <div class="resource-placeholder">
 <h4>Mollick, E. .&nbsp;</h4>
@@ -532,12 +532,12 @@
 <h2>Key Takeaways</h2>
 <ul class="styled-list">
 <li>AI literature tools fall into three main categories: <strong>citation-based discovery</strong> (graph analysis), <strong>semantic search and synthesis</strong> (embeddings and language models), and <strong>grounded chat / RAG</strong> (conversation with your documents).</li>
-<li>Each category works through a fundamentally different mechanism, which determines when it will succeed and when it will fail. Understanding the mechanism helps you use the tool more effectively.</li>
+<li>Each category works through a different mechanism, which determines when it will succeed and when it will fail. Understanding the mechanism helps you use the tool more effectively.</li>
 <li>No single tool covers the full literature review workflow. The most effective approach combines multiple tools, using each where it is strongest.</li>
 <li>Verification against traditional databases and original sources is non-negotiable. AI tools can and do fabricate references, misrepresent findings, and miss important papers.</li>
-<li>The field is evolving rapidly. Tools that exist today may be superseded within months. The conceptual framework — understanding what types of tools exist and why — will remain useful even as specific products change.</li>
+<li>The field is evolving rapidly. Tools that exist today may be superseded within months. The conceptual framework (understanding what types of tools exist and why) will remain useful even as specific products change.</li>
 </ul>
-<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> In the next session, we take a deep dive into the free tools available — Semantic Scholar, Connected Papers, ResearchRabbit, NotebookLM, and Google Scholar — with hands-on exploration of what each does best and where each falls short.</div>
+<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> In the next session, we take a deep dive into the free tools available (Semantic Scholar, Connected Papers, ResearchRabbit, NotebookLM, and Google Scholar) with hands-on exploration of what each does best and where each falls short.</div>
 </div>
 </div>
 <!-- PAGE-NAV-START -->

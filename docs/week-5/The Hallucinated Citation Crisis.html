@@ -351,23 +351,23 @@
 <header>
 <div class="week-badge">Week 5 • Sub-Lesson 4</div>
 <h1>👻 <span style="color: #ffffff;">The Hallucinated Citation Crisis</span></h1>
-<p>When AI invents academic papers that don't exist — why it happens, how bad it is, and what you must do about it</p>
+<p>When AI invents academic papers that don't exist: why it happens, how bad it is, and what you must do about it</p>
 </header>
 <div class="content"><!-- INTRO -->
 <div class="intro-text">
 <h2>What We'll Cover</h2>
-<p>This is arguably the most important session of the week. AI tools can generate references that look completely real — correct formatting, plausible author names, real journal titles, convincing abstracts — but refer to papers that have never been published. This is not a rare edge case. Studies suggest that general-purpose LLMs hallucinate citations at alarming rates.</p>
+<p>AI tools can generate references that look completely real, with correct formatting, plausible author names, real journal titles, and convincing abstracts, yet refer to papers that have never been published. Studies suggest that general-purpose LLMs hallucinate citations at high rates.</p>
 <p style="margin-top: 12px;">In late 2025, the problem hit the highest levels of academic publishing, with consequences that are still unfolding. Hallucinated citations were found in papers at one of the most prestigious machine learning conferences in the world, forcing a reckoning across the research community about the reliability of AI-assisted scholarship.</p>
-<p style="margin-top: 12px;">This session covers the scope of the problem, why it happens at a technical level, real-world case studies that should concern every researcher, and — most importantly — the verification habits you must build to protect your own work. If you take one thing away from this entire week, let it be this: <strong>never include a citation in your work that you have not independently verified exists.</strong></p>
+<p style="margin-top: 12px;">This session covers the scope of the problem, why it happens at a technical level, real-world case studies that should concern every researcher, and the verification habits you must build to protect your own work. One rule sits above the rest: <strong>never include a citation in your work that you have not independently verified exists.</strong></p>
 <p style="margin-top: 12px;"><strong>An important note: While I was working on this section with Claude, it hallucinated a number of references. I went through everything to check for correctness and relevance.</strong></p>
 </div>
 <!-- SECTION 1: THE SCALE OF THE PROBLEM -->
 <h2 class="section-title">📊 The Scale of the Problem</h2>
-<p>Before we look at why hallucination happens, let us be clear about how widespread the problem is. This is not a theoretical concern or a niche failure mode — it is a systemic issue that affects every researcher who uses generative AI tools.</p>
+<p>Before we look at why hallucination happens, let us be clear about how widespread the problem is. It is a systemic issue that affects every researcher who uses generative AI tools.</p>
 <div class="card-grid">
 <div class="card">
 <h3>⚖️ Legal Citations: 1 in 6 queries give rise to hallucinations</h3>
-<p><a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">A Stanford HAI study</a> (Magesh et al., 2024) found that even purpose-built legal AI tools from LexisNexis and Thomson Reuters hallucinated between 17% and 34% of the time on benchmarking queries — despite marketing claims of being "hallucination-free." An earlier Stanford study found general-purpose chatbots hallucinated between 58% and 82% of the time on legal queries.</p>
+<p><a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">A Stanford HAI study</a> (Magesh et al., 2024) found that even purpose-built legal AI tools from LexisNexis and Thomson Reuters hallucinated between 17% and 34% of the time on benchmarking queries, despite marketing claims of being "hallucination-free." An earlier Stanford study found general-purpose chatbots hallucinated between 58% and 82% of the time on legal queries.</p>
 </div>
 <div class="card">
 <h3>📈 Academic Citations: 20–90%+</h3>
@@ -375,54 +375,54 @@
 </div>
 <div class="card">
 <h3>🔬 Worse in Specialised Fields</h3>
-<p><a href="https://mental.jmir.org/2025/1/e80371/" target="_blank" rel="noopener">The Linardon et al. (2025) </a>study demonstrated this directly: GPT-4o's citation fabrication rates were 28% for binge eating disorder and 29% for body dysmorphic disorder (less familiar topics), compared to just 6% for major depressive disorder (a well-studied topic). <a href="https://arxiv.org/html/2510.25378" target="_blank" rel="noopener">A 2025 study on</a> bibliographic hallucination confirmed that citation accuracy correlates strongly with how frequently a paper appears in training data — highly cited papers are reproduced faithfully, while niche work is fabricated.</p>
+<p><a href="https://mental.jmir.org/2025/1/e80371/" target="_blank" rel="noopener">The Linardon et al. (2025) </a>study demonstrated this directly: GPT-4o's citation fabrication rates were 28% for binge eating disorder and 29% for body dysmorphic disorder (less familiar topics), compared to just 6% for major depressive disorder (a well-studied topic). <a href="https://arxiv.org/html/2510.25378" target="_blank" rel="noopener">A 2025 study on</a> bibliographic hallucination confirmed that citation accuracy correlates strongly with how frequently a paper appears in training data. Highly cited papers are reproduced faithfully, while niche work is fabricated.</p>
 </div>
 <div class="card">
 <h3>🔎 Partial Hallucinations</h3>
-<p><a href="https://gptzero.me/news/neurips/" target="_blank" rel="noopener">The GPTZero analysis</a> of NeurIPS 2025 papers documented this pattern in detail: some hallucinated citations started from a real paper but made subtle changes — expanding an author's initials into a guessed first name, dropping or adding co-authors, or paraphrasing the title. These "uncanny valley" citations look entirely legitimate at first glance, making them harder to catch than completely fabricated references.</p>
+<p><a href="https://gptzero.me/news/neurips/" target="_blank" rel="noopener">The GPTZero analysis</a> of NeurIPS 2025 papers documented this pattern in detail: some hallucinated citations started from a real paper but made subtle changes: expanding an author's initials into a guessed first name, dropping or adding co-authors, or paraphrasing the title. These "uncanny valley" citations look entirely legitimate at first glance, making them harder to catch than completely fabricated references.</p>
 </div>
 </div>
-<div class="warning-box"><strong>⚠️ A crucial distinction:</strong> These hallucination rates are for general-purpose LLMs (ChatGPT, Claude, Gemini) used without retrieval augmentation. Tools specifically designed for literature search — Semantic Scholar, Elicit, Consensus — have much lower rates because they search actual databases and return real records. The distinction between <em>generating</em> a citation and <em>retrieving</em> a citation matters enormously. When you need to find papers, use retrieval tools. When you need to analyse or synthesise papers you have already found, generative tools become useful. Do not confuse the two use cases.</div>
+<div class="warning-box"><strong>⚠️ One distinction to hold onto:</strong> These hallucination rates are for general-purpose LLMs (ChatGPT, Claude, Gemini) used without retrieval augmentation. Tools designed for literature search (Semantic Scholar, Elicit, Consensus) have much lower rates because they search actual databases and return real records. There is a large gap between <em>generating</em> a citation and <em>retrieving</em> one. When you need to find papers, use retrieval tools. When you need to analyse or synthesise papers you have already found, generative tools become useful. Do not confuse the two use cases.</div>
 <!-- SECTION 2: WHY IT HAPPENS -->
 <h2 class="section-title">🔬 Why It Happens</h2>
 <p>Understanding why LLMs hallucinate citations is essential for knowing when to trust them and when not to. The explanation is not complicated, but it does require shifting how you think about what these systems are doing.</p>
 <ul class="styled-list">
-<li><strong>LLMs are pattern completion systems, not knowledge databases.</strong> They generate text that is statistically likely to follow the prompt. A citation that "looks right" is generated because the model has learned the pattern of what citations look like — not because it has looked up a real paper. The model is, in a very real sense, autocompleting the format of a reference list.</li>
-<li><strong>The model has no internal database of papers.</strong> It cannot check whether "Smith et al. (2023)" actually exists in any journal. It generates what seems plausible based on patterns in its training data. There is no verification step, no lookup, no fact-checking — just next-token prediction.</li>
+<li><strong>LLMs are pattern completion systems, not knowledge databases.</strong> They generate text that is statistically likely to follow the prompt. A citation that "looks right" is generated because the model has learned the pattern of what citations look like, having never looked up a real paper. The model is autocompleting the format of a reference list.</li>
+<li><strong>The model has no internal database of papers.</strong> It cannot check whether "Smith et al. (2023)" actually exists in any journal. It generates what seems plausible based on patterns in its training data. There is no verification step and no lookup, only next-token prediction.</li>
 <li><strong>Niche topics and pressure increase hallucination.</strong> Models are particularly likely to hallucinate when asked about niche topics, very recent papers, or when pressured to provide a specific number of references. Asking "Give me 10 references on this topic" virtually guarantees that some will be fabricated if the model does not have 10 real ones in its training data.</li>
-<li><strong>Partial hallucinations are especially dangerous.</strong> The model may combine real elements — a real author name, a real journal, a plausible-sounding title — into a citation that does not exist as a whole. Because each individual component checks out superficially, these fabrications are much harder to catch than completely invented references.</li>
+<li><strong>Partial hallucinations are especially dangerous.</strong> The model may combine real elements (a real author name, a real journal, a plausible-sounding title) into a citation that does not exist as a whole. Because each individual component checks out superficially, these fabrications are much harder to catch than completely invented references.</li>
 </ul>
 <div class="technical-detail">
 <h3>⚙️ Retrieval vs. Generation: The Critical Difference</h3>
-<p><strong>Retrieval-based tools</strong> (Semantic Scholar, Elicit, Consensus, Google Scholar) work by searching an actual database of indexed papers. When they return a result, that result exists in the database. The paper is real. The metadata comes from the publisher or indexing service. These tools can have coverage gaps — they might not include every paper ever published — but they do not fabricate papers.</p>
+<p><strong>Retrieval-based tools</strong> (Semantic Scholar, Elicit, Consensus, Google Scholar) work by searching an actual database of indexed papers. When they return a result, that result exists in the database. The paper is real. The metadata comes from the publisher or indexing service. These tools can have coverage gaps (they might not include every paper ever published) but they do not fabricate papers.</p>
 <p style="margin-top: 12px;"><strong>Generation-based tools</strong> (ChatGPT, Claude, Gemini when asked for references) produce text token by token without any database lookup. They generate text that follows the statistical patterns of what a citation should look like. There is no step in the process where the model checks a database to verify that the paper exists. The output may be correct (if the model's training data included that specific paper frequently enough), but there is no guarantee.</p>
-<p style="margin-top: 12px;"><strong>The practical implication:</strong> Use retrieval-based tools to <em>find</em> papers. Use generation-based tools to <em>analyse</em> and <em>discuss</em> papers you have already verified. This division of labour dramatically reduces the risk of hallucinated citations entering your work.</p>
+<p style="margin-top: 12px;"><strong>The practical implication:</strong> Use retrieval-based tools to <em>find</em> papers. Use generation-based tools to <em>analyse</em> and <em>discuss</em> papers you have already verified. This division of labour sharply reduces the risk of hallucinated citations entering your work.</p>
 </div>
 <!-- SECTION 3: THE NEURIPS 2025 SCANDAL -->
 <h2 class="section-title">💥 The NeurIPS 2025 Scandal</h2>
 <p>The theoretical risk of hallucinated citations became a very real crisis in late 2025, when the problem was discovered at one of the most prestigious venues in computer science.</p>
 <div class="case-study">
 <h3>📰 Case Study: <a href="https://gptzero.me/news/neurips/" target="_blank" rel="noopener">Hallucinated Citations at NeurIPS 2025</a></h3>
-<p>In late 2025 and early 2026, researchers and journalists discovered that over 100 hallucinated citations had made it through peer review and into papers published at NeurIPS 2025 — one of the most prestigious AI and machine learning conferences in the world.</p>
-<p style="margin-top: 12px;">Teams from institutions including Google, Harvard, Meta, and Cambridge were among those with papers containing fabricated references. These were not fringe submissions — they were papers from leading research groups at the top of the field.</p>
-<p style="margin-top: 12px;">The scandal exposed a systemic problem at every level of the publication pipeline. Authors were using AI tools to generate or polish their papers and not verifying the references. Peer reviewers — overwhelmed by the volume of submissions and often working under tight deadlines — were not checking whether cited papers actually existed. And the conference itself had no automated systems in place to catch fabricated references.</p>
-<p style="margin-top: 12px;">The discovery triggered a broader investigation that revealed widespread AI-generated content among submissions to NeurIPS 2025. The scope of the contamination was larger than anyone had initially feared.</p>
-<p style="margin-top: 12px;">The irony was not lost on anyone: <strong>papers about artificial intelligence were themselves corrupted by artificial intelligence.</strong> The very community that builds these models had failed to protect itself from their most well-known failure mode.</p>
+<p>In late 2025 and early 2026, researchers and journalists discovered that over 100 hallucinated citations had made it through peer review and into papers published at NeurIPS 2025, one of the most prestigious AI and machine learning conferences in the world.</p>
+<p style="margin-top: 12px;">Teams from institutions including Google, Harvard, Meta, and Cambridge were among those with papers containing fabricated references. These were papers from leading research groups at the top of the field, not fringe submissions.</p>
+<p style="margin-top: 12px;">The scandal exposed a systemic problem at every level of the publication pipeline. Authors were using AI tools to generate or polish their papers and not verifying the references. Peer reviewers, overwhelmed by the volume of submissions and often working under tight deadlines, were not checking whether cited papers actually existed. And the conference itself had no automated systems in place to catch fabricated references.</p>
+<p style="margin-top: 12px;">The discovery triggered a broader investigation that revealed widespread AI-generated content among submissions to NeurIPS 2025. The scope of the contamination was larger than anyone had feared.</p>
+<p style="margin-top: 12px;"><strong>Papers about artificial intelligence were themselves corrupted by artificial intelligence.</strong> The community that builds these models had failed to protect itself from their best-known failure mode.</p>
 </div>
-<div class="info-box"><strong>💡 The lesson for all of us:</strong> The NeurIPS scandal is a case study in what happens when verification fails at every level — the authors did not check, the reviewers did not check, and the conference did not have systems in place to catch fabricated references. If this can happen at the top of computer science, it can happen in any field. It is a lesson for all of us, not just the researchers involved. The responsibility for verification falls on <em>you</em>, the author. You cannot assume that peer review will catch what you miss.</div>
+<div class="info-box"><strong>💡 The lesson for all of us:</strong> The NeurIPS scandal shows what happens when verification fails at every level. The authors did not check, the reviewers did not check, and the conference did not have systems in place to catch fabricated references. If this can happen at the top of computer science, it can happen in any field. The responsibility for verification falls on <em>you</em>, the author. You cannot assume that peer review will catch what you miss.</div>
 <!-- SECTION 4: THE POLLUTION LOOP -->
 <h2 class="section-title">🔄 The Pollution Loop</h2>
 <p>The problem does not end when a hallucinated citation is published. It gets worse, because published citations feed back into the systems that generate future citations. This creates a compounding problem that threatens the integrity of the scholarly record itself.</p>
 <ul class="styled-list">
-<li><strong>Hallucinated citations in published papers get indexed by databases.</strong> Once a fake reference appears in a published paper, it becomes part of the metadata that databases like Google Scholar and Semantic Scholar index. The fake citation now has an apparent provenance — it was referenced in a real, peer-reviewed paper.</li>
+<li><strong>Hallucinated citations in published papers get indexed by databases.</strong> Once a fake reference appears in a published paper, it becomes part of the metadata that databases like Google Scholar and Semantic Scholar index. The fake citation now has an apparent provenance: it was referenced in a real, peer-reviewed paper.</li>
 <li><strong>AI models trained on updated data learn these fake citations as "real."</strong> When language models are trained or fine-tuned on new academic text, they absorb hallucinated citations as if they were genuine. The model becomes more confident about the fake paper's existence because it has now "seen" it referenced in a real publication.</li>
 <li><strong>Future AI outputs reference fake papers with more confidence.</strong> The next time someone asks a model about the topic, it may cite the hallucinated paper with greater certainty, because the paper now appears in its training data as a cited work. It may even generate a plausible abstract or summary of the fake paper.</li>
 <li><strong>This creates a self-reinforcing cycle of academic pollution.</strong> Each cycle makes the fake citation harder to detect and more deeply embedded in the literature. What started as a single hallucinated reference can, over time, become part of the accepted knowledge base of a field.</li>
 </ul>
-<div class="highlight-box"><strong>🚨 Why this matters now, not later:</strong> The pollution loop is why verification matters today, not at some hypothetical future point. Every hallucinated citation that makes it into a published paper degrades the ecosystem that all researchers — human and AI — depend on. Verification is not just good practice for your own work; it is a collective responsibility. When you verify your citations, you are protecting not only your own credibility but the integrity of the scholarly record that your entire field depends on.</div>
+<div class="highlight-box"><strong>🚨 Why this matters today:</strong> The pollution loop is why verification matters now, not at some hypothetical future point. Every hallucinated citation that makes it into a published paper degrades the ecosystem that all researchers, human and AI, depend on. Verification is good practice for your own work and a collective responsibility at the same time. When you verify your citations, you protect your own credibility and the integrity of the scholarly record that your whole field depends on.</div>
 <!-- SECTION 5: THE VERIFICATION TOOLKIT -->
 <h2 class="section-title">✅ The Verification Toolkit</h2>
-<p>The good news is that hallucinated citations are almost always detectable — if you know what to look for and have a systematic verification process. The problem is not that fake citations are undetectable; the problem is that researchers are not checking. This section gives you the tools and habits to be someone who always checks.</p>
+<p>The good news is that hallucinated citations are almost always detectable, provided you know what to look for and have a systematic verification process. Fake citations are catchable; the trouble is that researchers are not checking. This section gives you the tools and habits to be someone who always checks.</p>
 <div class="card-grid">
 <div class="card">
 <h3>📋 The Five-Point Citation Check</h3>
@@ -438,11 +438,11 @@
 <div class="card">
 <h3>🔧 Tools for Verification</h3>
 <ul class="styled-list">
-<li><strong>Google Scholar</strong> — Search the exact title in quotation marks. If it does not appear, the paper likely does not exist.</li>
-<li><strong>Semantic Scholar</strong> — Search by DOI, title, or author. Offers a clean API and good coverage.</li>
-<li><strong>CrossRef / doi.org</strong> — Enter a DOI to verify it resolves to a real paper. If the DOI does not resolve, the citation is fabricated.</li>
-<li><strong>Retraction Watch Database</strong> — Check whether a paper has been retracted after publication.</li>
-<li><strong>Scite.ai</strong> — See how a paper has been cited by others — whether supporting or contrasting its claims.</li>
+<li><strong>Google Scholar:</strong> search the exact title in quotation marks. If it does not appear, the paper likely does not exist.</li>
+<li><strong>Semantic Scholar:</strong> search by DOI, title, or author. Offers a clean API and good coverage.</li>
+<li><strong>CrossRef / doi.org:</strong> enter a DOI to verify it resolves to a real paper. If the DOI does not resolve, the citation is fabricated.</li>
+<li><strong>Retraction Watch Database:</strong> check whether a paper has been retracted after publication.</li>
+<li><strong>Scite.ai:</strong> see how a paper has been cited by others, whether supporting or contrasting its claims.</li>
 </ul>
 </div>
 <div class="card">
@@ -452,14 +452,14 @@
 <li>Papers supposedly published in very prestigious journals that you cannot find online</li>
 <li>Very round publication years (2020, 2023) for niche topics</li>
 <li>Multiple citations with suspiciously similar formatting patterns or phrasing</li>
-<li>Papers whose conclusions perfectly match what you asked the AI to support — real research is messier than that</li>
+<li>Papers whose conclusions perfectly match what you asked the AI to support; real research is messier than that</li>
 <li>DOIs that do not resolve when you enter them at doi.org</li>
 </ul>
 </div>
 <div class="card">
 <h3>🛠️ Building Good Habits</h3>
 <ul class="styled-list">
-<li><strong>Never include a citation you have not verified.</strong> This is the single most important rule. No exceptions.</li>
+<li><strong>Never include a citation you have not verified.</strong> No exceptions.</li>
 <li><strong>Keep a verification log.</strong> Document your checking process. This protects you if questions arise later.</li>
 <li><strong>Use the right tool for the right job.</strong> Use retrieval-based tools (Elicit, Semantic Scholar, Consensus) for <em>finding</em> papers. Use generative tools (ChatGPT, Claude) for <em>analysis and synthesis</em> of papers you have already verified.</li>
 <li><strong>When in doubt, search for the DOI.</strong> The Digital Object Identifier is the most reliable way to verify a citation. If a paper has a real DOI that resolves, it almost certainly exists.</li>
@@ -481,19 +481,19 @@
 <li><strong>Journal policies are evolving rapidly.</strong> Major publishers are updating their submission guidelines to require authors to declare AI tool usage and to verify all citations independently. Some journals are beginning to run automated citation checks as part of the editorial process.</li>
 <li><strong>Conference organisers are responding.</strong> In the wake of the NeurIPS scandal, major AI conferences are implementing new review guidelines that specifically address AI-generated content and citation verification.</li>
 </ul>
-<div class="info-box"><strong>💡 The bottom line:</strong> The ecosystem is adapting, but slowly. Automated tools for detecting hallucinated citations are improving, and policies are being updated. But right now, the primary line of defence is <em>you</em>. Your verification habits are what stand between a hallucinated citation and the published record. Do not wait for institutions to solve this problem — build the habits that protect your work today.</div>
+<div class="info-box"><strong>💡 The bottom line:</strong> The ecosystem is adapting, but slowly. Automated tools for detecting hallucinated citations are improving, and policies are being updated. But right now, the primary line of defence is <em>you</em>. Your verification habits are what stand between a hallucinated citation and the published record. Do not wait for institutions to solve this problem. Build the habits that protect your work today.</div>
 <!-- SUMMARY -->
 <div class="intro-text" style="margin-top: 50px;">
 <h2>Key Takeaways</h2>
 <ul class="styled-list">
-<li><strong>Hallucinated citations are common, not rare.</strong> General-purpose LLMs fabricate references at rates between 15% and 40% or higher. The citations look real — correct formatting, plausible authors, real-sounding journals — but the papers do not exist.</li>
+<li><strong>Hallucinated citations are common, not rare.</strong> General-purpose LLMs fabricate references at rates between 15% and 40% or higher. The citations look real, with correct formatting, plausible authors, and real-sounding journals, but the papers do not exist.</li>
 <li><strong>This happens because LLMs are pattern generators, not databases.</strong> They produce text that looks like a citation because they have learned what citations look like. There is no lookup step, no verification, no connection to any real database of papers.</li>
 <li><strong>The NeurIPS 2025 scandal proved this is not hypothetical.</strong> Over 100 hallucinated citations made it through peer review at one of the world's top conferences, from teams at leading institutions. If it can happen there, it can happen anywhere.</li>
 <li><strong>The pollution loop makes the problem worse over time.</strong> Hallucinated citations that are published get absorbed into databases and training data, making future hallucinations more confident and harder to detect.</li>
-<li><strong>This is a solvable problem if you build good habits.</strong> The Five-Point Citation Check, the right verification tools, and a commitment to never including an unverified citation — these habits will protect your work and contribute to the integrity of the scholarly record.</li>
+<li><strong>This is a solvable problem if you build good habits.</strong> The Five-Point Citation Check, the right verification tools, and a commitment to never including an unverified citation will protect your work and contribute to the integrity of the scholarly record.</li>
 <li><strong>Use retrieval tools for finding, generative tools for thinking.</strong> Semantic Scholar, Elicit, and Consensus search real databases. ChatGPT and Claude generate text. Use each where it is strong, and do not ask a generative tool to do a retrieval tool's job.</li>
 </ul>
-<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> We move from problems to solutions — building a personalised research workflow using Claude, including custom prompts and skills that enforce citation verification as part of the process. The goal is to make verification automatic, not optional.</div>
+<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> We move from problems to solutions, building a personalised research workflow using Claude, including custom prompts and skills that enforce citation verification as part of the process. The goal is to make verification automatic rather than optional.</div>
 </div>
 </div>
 <!-- PAGE-NAV-START -->

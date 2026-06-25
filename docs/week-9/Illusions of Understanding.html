@@ -374,12 +374,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>1. Illusion of Explanatory Breadth</h3>
-      <p>Researchers using AI to summarise a literature feel they&#39;ve covered the field comprehensively. They haven&#39;t. The AI summary reflects which sources are well-represented in training data, which papers attracted attention, which arguments propagate easily. Marginal voices, dissenting views, and recent work all systematically under-appear. The feeling of breadth is real; the breadth is not.</p>
+      <p>Researchers using AI to summarise a literature feel they&#39;ve covered the whole field. They haven&#39;t. The AI summary reflects which sources are well-represented in training data, which papers attracted attention, which arguments propagate easily. Marginal voices, dissenting views, and recent work all systematically under-appear. The feeling of breadth is real; the breadth is not.</p>
     </div>
 
     <div class="card">
       <h3>2. Illusion of Exploratory Objectivity</h3>
-      <p>AI outputs feel neutral &mdash; they don&#39;t come with a visible agenda. But they inherit the biases of training data, the values encoded by RLHF, the framings the model finds most natural. The neutrality is performative, not actual. A researcher using AI to generate hypotheses thinks they are exploring without prejudice; they are exploring the priors of the model.</p>
+      <p>AI outputs feel neutral; they don&#39;t come with a visible agenda. But they inherit the biases of training data, the values encoded by RLHF, the framings the model finds most natural. The neutrality is performative, not actual. A researcher using AI to generate hypotheses thinks they are exploring without prejudice; they are exploring the priors of the model.</p>
     </div>
 
     <div class="card">
@@ -389,7 +389,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>4. Doing More But Understanding Less</h3>
-      <p>AI accelerates output. More papers can be written, more analyses run, more literature reviewed. But the cognitive work that produces deep understanding &mdash; the slow grappling with a problem, the dead-ends that turn out to matter, the synthesis that emerges from struggle &mdash; can be skipped. Output rises; depth falls. Connect to Week 6&#39;s &ldquo;writing as thinking&rdquo; argument and Kosmyna et al. (2025)&#39;s MIT Media Lab study showing reduced neural engagement in AI-assisted essay writing.</p>
+      <p>AI accelerates output. More papers can be written, more analyses run, more literature reviewed. But the cognitive work that produces deep understanding (the slow grappling with a problem, the dead-ends that turn out to matter, the synthesis that emerges from struggle) can be skipped. Output rises; depth falls. Connect to Week 6&#39;s &ldquo;writing as thinking&rdquo; argument and Kosmyna et al. (2025)&#39;s MIT Media Lab study showing reduced neural engagement in AI-assisted essay writing.</p>
     </div>
 
   </div>
@@ -397,7 +397,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="case-study">
     <h4>&#128221; A 2026 Concrete Example: &ldquo;Vibe Coding&rdquo;</h4>
     <p>The term &ldquo;vibe coding&rdquo; has emerged in 2025&ndash;26 to describe a development style in which programmers describe what they want to an AI assistant in plain English and accept the output without deeply reading the resulting code. The AI handles the syntax; the human handles the intent.</p>
-    <p>For straightforward tasks &mdash; quick scripts, well-trodden patterns &mdash; this is genuinely productive. For research code, it produces exactly the illusion Messeri &amp; Crockett describe: <em>output rises (more analyses run, more pipelines built), depth falls (the developer&#39;s actual understanding of what the code is doing in detail is shallower than it would have been if they had written it themselves)</em>.</p>
+    <p>For straightforward tasks like quick scripts and well-trodden patterns, this is genuinely productive. For research code, it produces exactly the illusion Messeri &amp; Crockett describe: <em>output rises (more analyses run, more pipelines built), depth falls (the developer&#39;s actual understanding of what the code is doing in detail is shallower than it would have been if they had written it themselves)</em>.</p>
     <p>This connects directly to the &ldquo;silent error&rdquo; problem from Week 7: code that runs without errors but produces wrong results is precisely the failure mode that vibe coding amplifies. If you don&#39;t read the code closely, you don&#39;t catch the silent errors. The illusion of doing analysis is real; the analysis itself may not be.</p>
     <p>The pedagogical point: vibe coding is not <em>wrong</em>. It is a real productivity gain for many tasks. But applying it without verification (Sub-Lesson 9.5) to research-grade work is the contemporary face of doing-more-understanding-less.</p>
   </div>
@@ -405,13 +405,13 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <!-- WHY THIS MATTERS NOW -->
   <h2 class="section-title">&#128302; Why This Argument is More Important in 2026, Not Less</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A natural response to the 2024 paper is: well, that was when AI was unreliable. Now that frontier models are good at maths and physics (9.3), surely the illusions are less of a problem &mdash; the AI is more often right.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A natural response to the 2024 paper is: well, that was when AI was unreliable. Now that frontier models are good at maths and physics (9.3), surely the illusions are less of a problem, since the AI is more often right.</p>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The argument is precisely backwards. The illusions are <em>more</em> dangerous when the AI is more often right, because the surface fluency of AI outputs masks the remaining gaps more effectively. A model that&#39;s right 60% of the time is obviously to-be-checked. A model that&#39;s right 95% of the time looks trustworthy &mdash; and the 5% wrong is harder to spot because it doesn&#39;t come surrounded by other obvious errors.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The argument runs the other way. The illusions are <em>more</em> dangerous when the AI is more often right, because the surface fluency of AI outputs masks the remaining gaps more effectively. A model that&#39;s right 60% of the time is obviously to-be-checked. A model that&#39;s right 95% of the time looks trustworthy, and the 5% wrong is harder to spot because it doesn&#39;t come surrounded by other obvious errors.</p>
 
   <div class="info-box">
     <h4>&#9889; The Calibration Trap</h4>
-    <p>If your overall experience with a model is that it&#39;s usually right, you start trusting it more. Trust calibrated to overall accuracy is then mis-calibrated for the specific cases where the model fails &mdash; which by structural argument (9.2c) cluster in the long tail, exactly where novel research happens.</p>
+    <p>If your overall experience with a model is that it&#39;s usually right, you start trusting it more. Trust calibrated to overall accuracy is then mis-calibrated for the specific cases where the model fails, which by structural argument (9.2c) cluster in the long tail, where novel research happens.</p>
     <p>This is the AI version of the Dunning&ndash;Kruger trap: the less you know about a topic, the harder it is to spot the AI&#39;s errors in that topic, but the more useful the AI feels precisely <em>because</em> you couldn&#39;t do the work yourself. Both cuts of the knife point the same way.</p>
   </div>
 
@@ -457,7 +457,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
         </tr>
         <tr>
           <td>Week 7 (Silent errors)</td>
-          <td>AI-generated code that runs but produces wrong results &mdash; researcher feels they&#39;ve done analysis but hasn&#39;t verified meaning</td>
+          <td>AI-generated code that runs but produces wrong results; researcher feels they&#39;ve done analysis but hasn&#39;t verified meaning</td>
           <td>Doing more but understanding less</td>
         </tr>
         <tr>
@@ -469,7 +469,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </table>
   </div>
 
-  <p style="color: #555; font-size: 1.05em; margin-top: 20px; line-height: 1.8;">Each week of this course has been giving you fragments. Messeri &amp; Crockett is the unifying frame &mdash; and the reason the previous fragments matter even as the specific models change.</p>
+  <p style="color: #555; font-size: 1.05em; margin-top: 20px; line-height: 1.8;">Each week of this course has been giving you fragments. Messeri &amp; Crockett is the unifying frame, and the reason the previous fragments matter even as the specific models change.</p>
 
   <!-- WHAT TO DO -->
   <h2 class="section-title">&#129534; What to Do About It</h2>

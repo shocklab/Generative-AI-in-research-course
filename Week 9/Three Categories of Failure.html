@@ -355,19 +355,19 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>If &ldquo;what AI can&#39;t do&rdquo; is a moving target, you need a way of organising failures that doesn&#39;t go stale every time a new model drops. This sub-lesson offers one: three categories that classify failures by how durable they are, not by which specific model exhibited them.</p>
-    <p>The pay-off: when you encounter an AI failure in your own work, you can place it in the taxonomy. Failures in category (a) are diagnostic of model age &mdash; switch to a current frontier model and try again. Failures in category (b) require workflow design to manage. Failures in category (c) are structural and won&#39;t be fixed by the next release; they need verification protocols (Sub-Lesson 9.5).</p>
+    <p>The pay-off: when you encounter an AI failure in your own work, you can place it in the taxonomy. Failures in category (a) are diagnostic of model age, so switch to a current frontier model and try again. Failures in category (b) require workflow design to manage. Failures in category (c) are structural and won&#39;t be fixed by the next release; they need verification protocols (Sub-Lesson 9.5).</p>
   </div>
 
   <!-- CATEGORY A -->
   <h2 class="section-title">&#9989; (a) Patched / Largely Solved</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These were widely-cited failure modes in 2023&ndash;24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks &mdash; but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These were widely-cited failure modes in 2023&ndash;24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks, but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
 
   <div class="card-grid">
 
     <div class="card">
       <h3>The Reversal Curse</h3>
-      <p>In 2023, Berglund et al. showed that LLMs trained on facts of the form &ldquo;A is B&rdquo; failed to generalise to &ldquo;B is A&rdquo; &mdash; even when the inverse relationship was common in their training data. A model that knew &ldquo;Tom Cruise&#39;s mother is Mary Lee Pfeiffer&rdquo; would not reliably answer &ldquo;Who is Mary Lee Pfeiffer&#39;s son?&rdquo;</p>
+      <p>In 2023, Berglund et al. showed that LLMs trained on facts of the form &ldquo;A is B&rdquo; failed to generalise to &ldquo;B is A&rdquo;, even when the inverse relationship was common in their training data. A model that knew &ldquo;Tom Cruise&#39;s mother is Mary Lee Pfeiffer&rdquo; would not reliably answer &ldquo;Who is Mary Lee Pfeiffer&#39;s son?&rdquo;</p>
       <p>By 2026, this failure mode is no longer prominent in benchmark discussions. Training-data interventions and inference-time techniques have substantially mitigated it in frontier models. Still cited in the literature, but largely as a historical landmark.</p>
       <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2309.12288" target="_blank" rel="noopener">Berglund, L., Tong, M., Kaufmann, M., et al. (2023). The Reversal Curse. arXiv:2309.12288</a></p>
     </div>
@@ -380,7 +380,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Hallucinated Code on Common Tasks</h3>
-      <p>In 2023, asking a model for code in a popular library would frequently produce calls to functions that didn&#39;t exist. By 2026, frontier models pass SWE-bench Verified above 87% &mdash; meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
+      <p>In 2023, asking a model for code in a popular library would frequently produce calls to functions that didn&#39;t exist. By 2026, frontier models pass SWE-bench Verified above 87%, meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
     </div>
 
   </div>
@@ -400,18 +400,18 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Even frontier models in 2026 hallucinate citations on niche topics. The Week 5 evidence remains directly relevant:</p>
 
   <ul class="styled-list">
-    <li><strong>Magesh et al. (2024).</strong> <em>Hallucination-Free?</em> arXiv:2405.20362. Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17&ndash;33%</strong> hallucination on benchmarking queries &mdash; despite vendor marketing as &ldquo;hallucination-free&rdquo;.</li>
+    <li><strong>Magesh et al. (2024).</strong> <em>Hallucination-Free?</em> arXiv:2405.20362. Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17&ndash;33%</strong> hallucination on benchmarking queries, despite vendor marketing as &ldquo;hallucination-free&rdquo;.</li>
     <li><strong>Chelli et al. (2024).</strong> <em>JMIR</em> 26: e53164. GPT-3.5 39.6%, GPT-4 28.6%, Bard 91.4%.</li>
     <li><strong>Linardon et al. (2025).</strong> <em>JMIR Mental Health</em> 12: e80371. GPT-4o: 19.9% overall; <strong>28&ndash;29% on niche topics</strong>; 6% on well-studied. Citation hallucination correlates with how rare the topic is in training data.</li>
   </ul>
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">In 2026 these rates have dropped further on common topics but the long-tail problem persists: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A vivid current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong> (<a href="https://artificialanalysis.ai/articles/aa-omniscience-knowledge-hallucination-benchmark" target="_blank" rel="noopener">Artificial Analysis</a>; methodology paper <a href="https://arxiv.org/abs/2511.13029" target="_blank" rel="noopener">arXiv:2511.13029</a>). The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong> (<a href="https://artificialanalysis.ai/articles/aa-omniscience-knowledge-hallucination-benchmark" target="_blank" rel="noopener">Artificial Analysis</a>; methodology paper <a href="https://arxiv.org/abs/2511.13029" target="_blank" rel="noopener">arXiv:2511.13029</a>). The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong &mdash; a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong, a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
 
   <ul class="styled-list">
     <li><strong>Constitutional AI</strong> trains the model to evaluate its own outputs against principles including honesty and calibrated confidence (Week 2).</li>
@@ -419,19 +419,19 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Persona-vector interpretability methods</strong> extract activation patterns associated with traits like sycophancy and intervene at inference time.</li>
   </ul>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models &mdash; but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models, but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
 
   <div class="case-study" style="margin-top: 20px;">
     <h4>&#128221; A May 2026 anecdote: model overconfidence on a maths disagreement</h4>
-    <p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both &mdash; reconciled the formulas and explained why the apparent disagreement dissolved.</p>
-    <p>Anecdotal, single-case, not a benchmark. But it&#39;s a useful illustration that overconfident defence of wrong reasoning &mdash; the sycophancy/calibration failure mode &mdash; is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
+    <p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both, reconciling the formulas and explaining why the apparent disagreement dissolved.</p>
+    <p>Anecdotal, single-case, not a benchmark. But it shows that overconfident defence of wrong reasoning, the sycophancy/calibration failure mode, is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
   </div>
 
   <p style="font-size: 0.9em; color: #003A70; font-weight: 600; margin-top: 15px;">Original sycophancy paper: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Calibration</h3>
 
-  <p style="color: #555; line-height: 1.75;">Frontier models are still over-confident. The probability they assign to an answer being correct does not reliably match the actual accuracy. Calibration has improved over time, but a 90%-confident answer may be right 75% of the time, and a 60%-confident answer may be right 80%. This makes confidence-thresholded workflows less useful than you might hope &mdash; you can&#39;t simply &ldquo;ask the model only when it&#39;s sure&rdquo;.</p>
+  <p style="color: #555; line-height: 1.75;">Frontier models are still over-confident. The probability they assign to an answer being correct does not reliably match the actual accuracy. Calibration has improved over time, but a 90%-confident answer may be right 75% of the time, and a 60%-confident answer may be right 80%. This makes confidence-thresholded workflows less useful than you might hope. You can&#39;t simply &ldquo;ask the model only when it&#39;s sure&rdquo;.</p>
 
   <!-- CATEGORY C -->
   <h2 class="section-title">&#129518; (c) Structural and Likely Persistent</h2>
@@ -442,7 +442,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Hallucination as Statistical Pressure</h3>
-      <p>OpenAI&#39;s own analysis: hallucinations originate as binary-classification errors and persist because evaluations reward confident guessing over acknowledging uncertainty. The proposed fix is socio-technical &mdash; change how benchmarks score uncertainty &mdash; not architectural.</p>
+      <p>OpenAI&#39;s own analysis: hallucinations originate as binary-classification errors and persist because evaluations reward confident guessing over acknowledging uncertainty. The proposed fix is socio-technical (change how benchmarks score uncertainty) rather than architectural.</p>
       <p>The argument: <em>&ldquo;Hallucinations need not be mysterious &mdash; they originate simply as errors in binary classification.&rdquo;</em></p>
       <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). Why Language Models Hallucinate. arXiv:2509.04664</a></p>
     </div>
@@ -454,13 +454,13 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>The Long-Tail Problem</h3>
-      <p>Performance degrades on rare topics regardless of model scale. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones &mdash; exactly where novel research happens. Niimi (2025), cited in Week 5, demonstrated that bibliographic hallucination rates correlate strongly with how often a paper appears in training data. This effect compounds at the frontier of any field.</p>
+      <p>Performance degrades on rare topics regardless of model scale. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones, which is where novel research happens. Niimi (2025), cited in Week 5, demonstrated that bibliographic hallucination rates correlate strongly with how often a paper appears in training data. This effect compounds at the frontier of any field.</p>
     </div>
 
     <div class="card">
       <h3>Compositional Brittleness</h3>
       <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. This is not solved by making each step more accurate, because compositional errors compound multiplicatively. Long agentic chains amplify the problem.</p>
-      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro &mdash; competitive with the closed frontier on most single-step benchmarks &mdash; struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This is the failure mode that scales worst as agentic systems get longer.</p>
+      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro, competitive with the closed frontier on most single-step benchmarks, struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This failure mode scales worst as agentic systems get longer.</p>
     </div>
 
     <div class="card">
@@ -470,15 +470,15 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Training Data Dependence</h3>
-      <p>Models can only know what was in their training data. They will confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural &mdash; it doesn&#39;t go away with more parameters or better RLHF.</p>
+      <p>Models can only know what was in their training data. They will confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural; it doesn&#39;t go away with more parameters or better RLHF.</p>
     </div>
 
   </div>
 
   <div class="resource-placeholder">
     <h4>&#128214; Background Reading</h4>
-    <p><strong><a href="https://normaltech.ai/" target="_blank" rel="noopener">Kapoor, S., &amp; Narayanan, A. (ongoing). normaltech.ai</a></strong> &mdash; the blog formerly known as <em>AI Snake Oil</em>. The structural-failures position; argues that many AI capability claims are overstated and many failures are structural rather than version-specific. The 2024 Princeton UP book <em>AI Snake Oil</em> is a longer version of the argument.</p>
-    <p style="margin-top: 10px;"><strong><a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). <em>Why Language Models Hallucinate.</em> arXiv:2509.04664</a></strong> &mdash; OpenAI&#39;s technical paper on the structural origins of hallucination. Reading both Kapoor &amp; Narayanan and Kalai et al. gives you views from outside and inside the labs respectively.</p>
+    <p><strong><a href="https://normaltech.ai/" target="_blank" rel="noopener">Kapoor, S., &amp; Narayanan, A. (ongoing). normaltech.ai</a></strong>, the blog formerly known as <em>AI Snake Oil</em>. The structural-failures position; argues that many AI capability claims are overstated and many failures are structural rather than version-specific. The 2024 Princeton UP book <em>AI Snake Oil</em> is a longer version of the argument.</p>
+    <p style="margin-top: 10px;"><strong><a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). <em>Why Language Models Hallucinate.</em> arXiv:2509.04664</a></strong>, OpenAI&#39;s technical paper on the structural origins of hallucination. Reading both Kapoor &amp; Narayanan and Kalai et al. gives you views from outside and inside the labs respectively.</p>
   </div>
 
   <!-- DIAGNOSTIC TABLE -->

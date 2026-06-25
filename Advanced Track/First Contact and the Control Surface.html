@@ -421,13 +421,13 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Enough framing &mdash; this lesson gets your hands on the tool. We do a first real session against a deliberately messy research archive, the kind every researcher actually has. You will inspect it <em>without changing anything</em>, see exactly how Claude Code asks permission before it touches a file, run the debrief that turns the exercise into a lesson, and meet <code>CLAUDE.md</code> &mdash; the file that steers every session and becomes, in Lesson&nbsp;B, the device that enforces reproducible habits.</p>
-    <p>Setup is deliberately out of scope here: installation changes too often to print. Install Claude Code from the official documentation at <a href="https://docs.claude.com/en/docs/claude-code" target="_blank" rel="noopener">docs.claude.com</a>, confirm it runs, and come back.</p>
+    <p>Enough framing; this lesson gets your hands on the tool. We do a first real session against a deliberately messy research archive, the kind every researcher actually has. You will inspect it <em>without changing anything</em>, see how Claude Code asks permission before it touches a file, run the debrief that turns the exercise into a lesson, and meet <code>CLAUDE.md</code>, the file that steers every session and becomes, in Lesson&nbsp;B, the device that enforces reproducible habits.</p>
+    <p>Setup is out of scope here: installation changes too often to print. Install Claude Code from the official documentation at <a href="https://docs.claude.com/en/docs/claude-code" target="_blank" rel="noopener">docs.claude.com</a>, confirm it runs, and come back.</p>
   </div>
 
   <h2 class="section-title">&#128193; The Sample Project: A Messy Research Archive</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Throughout this track we use one fictional running example: <strong>the Berg River microplastics study</strong>. A postgraduate has collected water samples at three sites &mdash; upstream of a town, in the town, and downstream &mdash; and counted microplastic particles across a sampling season. Wherever you see &ldquo;microplastic counts,&rdquo; read your own measurements; the structure is what matters, not the subject.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Throughout this track we use one fictional running example: <strong>the Berg River microplastics study</strong>. A postgraduate has collected water samples at three sites (upstream of a town, in the town, and downstream) and counted microplastic particles across a sampling season. Wherever you see &ldquo;microplastic counts,&rdquo; read your own measurements; the structure is what matters, not the subject.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The starting archive is realistically messy, because real ones are. Inconsistent column names across files, counts at one site that are quietly wrong in a way only the field notes explain, a confusingly named &ldquo;final-v2&rdquo; file with no v1 in sight, a contaminated outlier and some missing values, free-text field notes that explain anomalies the spreadsheets don&rsquo;t, and a stale README referring to files that no longer exist:</p>
 
@@ -445,7 +445,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="resource-placeholder">
     <h4>&#128229; Download: the Berg River sample archive</h4>
-    <p>Grab the deliberately-messy starting files and open the folder in Claude Code to follow along: <a href="files/berg-river-microplastics.zip">berg-river-microplastics.zip</a>. The same archive drives the full reproducible analysis in Lesson&nbsp;B.3. Equally good for this first inspect-only exercise &mdash; and arguably better &mdash; is to point Claude Code at <em>a real messy folder of your own</em>, provided you have a backup and you keep the agent in inspect-only mode throughout.</p>
+    <p>Grab the deliberately-messy starting files and open the folder in Claude Code to follow along: <a href="files/berg-river-microplastics.zip">berg-river-microplastics.zip</a>. The same archive drives the full reproducible analysis in Lesson&nbsp;B.3. Equally good for this first inspect-only exercise, and arguably better, is to point Claude Code at <em>a real messy folder of your own</em>, provided you have a backup and you keep the agent in inspect-only mode throughout.</p>
   </div>
 
   <h2 class="section-title">&#128064; Your First Task: Inspect, Don&#39;t Change</h2>
@@ -455,20 +455,20 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <pre class="code-block">cd berg-river-microplastics
 claude</pre>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Then give it an inspection-only task. The wording matters &mdash; it explicitly forbids changes:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Then give it an inspection-only task. The wording matters, because it explicitly forbids changes:</p>
 
   <pre class="code-block"><span class="pr">&gt;</span> Inspect this folder before changing anything. Tell me what files
   are here, what each appears to contain, what you should not edit,
   and what you would recommend doing first. Do not move, rename, or
   edit anything yet.</pre>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Better still, put Claude Code into <strong>plan mode</strong> first (Claude Code lets you toggle a read-only planning mode in which it can look but cannot act). In plan mode the agent physically cannot edit a file &mdash; it can only inspect and propose. For a first encounter with a folder you care about, that guarantee is worth having rather than relying on the wording of your prompt alone.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Better still, put Claude Code into <strong>plan mode</strong> first (Claude Code lets you toggle a read-only planning mode in which it can look but cannot act). In plan mode the agent physically cannot edit a file; it can only inspect and propose. For a first encounter with a folder you care about, that guarantee is worth having rather than relying on the wording of your prompt alone.</p>
 
   <div class="info-box">
     <h4>&#128065; What to watch while it works</h4>
     <ul class="styled-list" style="margin-top: 0;">
       <li>Does it actually <em>read</em> the files before making claims about them, or does it guess from the names?</li>
-      <li>Does it separate what it observed from what it inferred &mdash; &ldquo;this column is labelled pH&rdquo; versus &ldquo;this is probably pH&rdquo;?</li>
+      <li>Does it separate what it observed from what it inferred: &ldquo;this column is labelled pH&rdquo; versus &ldquo;this is probably pH&rdquo;?</li>
       <li>Does it flag the contradictions (the field notes versus the CSVs) rather than silently picking one?</li>
       <li>When it wants to do something, does it propose it and wait, or just do it?</li>
       <li>Which permissions does it ask you for, and which did you grant?</li>
@@ -482,7 +482,7 @@ claude</pre>
   <div class="card-grid">
     <div class="card">
       <h3>Permission prompts</h3>
-      <p>By default, Claude Code asks before it does anything consequential &mdash; editing a file, running a command. You see what it intends and approve or decline. The default posture is &ldquo;ask first,&rdquo; and for research work you should keep it that way until you have reason not to.</p>
+      <p>By default, Claude Code asks before it does anything consequential, such as editing a file or running a command. You see what it intends and approve or decline. The default posture is &ldquo;ask first,&rdquo; and for research work you should keep it that way until you have reason not to.</p>
     </div>
     <div class="card">
       <h3>Plan mode</h3>
@@ -490,7 +490,7 @@ claude</pre>
     </div>
     <div class="card">
       <h3>Allowlists</h3>
-      <p>Once you trust a category of action &mdash; say, running your read-only inspection script &mdash; you can allow it without re-approving each time. The skill is allowlisting the genuinely safe and routine, never the destructive. (Your own projects, the survey showed, allowlist exact commands, not blanket access.)</p>
+      <p>Once you trust a category of action, say running your read-only inspection script, you can allow it without re-approving each time. The skill is allowlisting the genuinely safe and routine, never the destructive. (Your own projects, the survey showed, allowlist exact commands, not blanket access.)</p>
     </div>
     <div class="card">
       <h3>The sandbox boundary</h3>
@@ -500,21 +500,21 @@ claude</pre>
 
   <h2 class="section-title">&#128274; What Leaves Your Machine</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The permissions model governs what the agent may <em>do</em> to your files. There is a second question it does not answer, and for research data it is the more important one: what <em>leaves your machine</em>? Claude Code runs in your terminal, but the model does not. When the agent reads a file, that file&#39;s contents are sent to Anthropic&#39;s API for the model to process &mdash; that is how it &ldquo;sees&rdquo; them at all. Pointing the agent at a folder is, in effect, sending that folder&#39;s contents to a third party. For a great deal of research that is completely fine. For some of it, it is the whole question.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The permissions model governs what the agent may <em>do</em> to your files. There is a second question it does not answer, and for research data it is the more important one: what <em>leaves your machine</em>? Claude Code runs in your terminal, but the model does not. When the agent reads a file, that file&#39;s contents are sent to Anthropic&#39;s API for the model to process; that is how it &ldquo;sees&rdquo; them at all. Pointing the agent at a folder is, in effect, sending that folder&#39;s contents to a third party. For a great deal of research that is completely fine. For some of it, it is the whole question.</p>
 
   <div class="warning-box">
     <h4>&#9888;&#65039; Before you point an agent at confidential data</h4>
-    <p>If your data is human-subjects data under an ethics approval, personal data under POPIA or the GDPR, or covered by an NDA or a data-use agreement, you carry an obligation that is entirely separate from how good the tool is: <strong>establish whether sending it to a third-party service is permitted at all.</strong> Your ethics clearance or data agreement may forbid external processing, require de-identification first, or demand specific contractual terms. That is yours to confirm <em>before</em> the first <code>claude</code> in that folder &mdash; not the tool&#39;s, and not an afterthought.</p>
+    <p>If your data is human-subjects data under an ethics approval, personal data under POPIA or the GDPR, or covered by an NDA or a data-use agreement, you carry an obligation that is entirely separate from how good the tool is: <strong>establish whether sending it to a third-party service is permitted at all.</strong> Your ethics clearance or data agreement may forbid external processing, require de-identification first, or demand specific contractual terms. That is yours to confirm <em>before</em> the first <code>claude</code> in that folder, not the tool&#39;s, and not an afterthought.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two things are worth keeping separate. First, the <strong>provider&#39;s data-usage terms</strong> &mdash; whether your inputs are retained or used to improve models. For Anthropic&#39;s commercial and API products the default is that they are <em>not</em> used for training; the consumer subscription plans are governed separately, and those settings have changed over time. So apply the Week&nbsp;9 habit and read the <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" target="_blank" rel="noopener">current data-usage terms for your plan</a> rather than trusting a claim a course page wrote months ago. Second, and independent of that: <strong>your own obligations</strong>. Even a provider that never trains on your data is still a third party your ethics approval may not permit you to send participant data to. The training question and the permission-to-send question are different, and you have to clear both.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Two things are worth keeping separate. First, the <strong>provider&#39;s data-usage terms</strong>: whether your inputs are retained or used to improve models. For Anthropic&#39;s commercial and API products the default is that they are <em>not</em> used for training; the consumer subscription plans are governed separately, and those settings have changed over time. So apply the Week&nbsp;9 habit and read the <a href="https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training" target="_blank" rel="noopener">current data-usage terms for your plan</a> rather than trusting a claim a course page wrote months ago. Second, and independent of that: <strong>your own obligations</strong>. Even a provider that never trains on your data is still a third party your ethics approval may not permit you to send participant data to. The training question and the permission-to-send question are different, and you have to clear both.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In practice, a few habits keep you on the right side of this:</p>
 
   <div class="card-grid">
     <div class="card">
       <h3>State the data&#39;s status</h3>
-      <p>Put it at the very top of <code>CLAUDE.md</code> &mdash; &ldquo;real, human-subjects; do not share externally&rdquo; versus &ldquo;public; fine to process.&rdquo; It reminds you each session, and it tells the agent the stakes it is working under.</p>
+      <p>Put it at the very top of <code>CLAUDE.md</code>: &ldquo;real, human-subjects; do not share externally&rdquo; versus &ldquo;public; fine to process.&rdquo; It reminds you each session, and it tells the agent the stakes it is working under.</p>
     </div>
     <div class="card">
       <h3>Work on extracts, not the originals</h3>
@@ -526,7 +526,7 @@ claude</pre>
     </div>
     <div class="card">
       <h3>Mind what you commit</h3>
-      <p>Never commit participant data or credentials to a repository &mdash; especially a public one. A <code>.gitignore</code> covering <code>data/raw/</code> and any secrets stops one careless commit from becoming a permanent, published mistake.</p>
+      <p>Never commit participant data or credentials to a repository, especially a public one. A <code>.gitignore</code> covering <code>data/raw/</code> and any secrets stops one careless commit from becoming a permanent, published mistake.</p>
     </div>
   </div>
 
@@ -537,13 +537,13 @@ claude</pre>
   <pre class="code-block"><span class="pr">&gt;</span> What did you inspect, what did you infer, and what would you
   change only after my approval?</pre>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A good answer cleanly separates the three. <em>Inspected</em>: the files it actually opened and what they contained. <em>Inferred</em>: the educated guesses &mdash; that &ldquo;final-v2&rdquo; supersedes a missing v1, that two values are data-entry errors. <em>Would change only with approval</em>: every rename, merge, and correction it is recommending but has not done. If the agent blurs these together, that is itself the finding: it is exactly the &ldquo;evidence versus guess&rdquo; line that Week&nbsp;9 spent a whole sub-lesson on, now showing up in a tool instead of a chat.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A good answer cleanly separates the three. <em>Inspected</em>: the files it actually opened and what they contained. <em>Inferred</em>: the educated guesses, that &ldquo;final-v2&rdquo; supersedes a missing v1, that two values are data-entry errors. <em>Would change only with approval</em>: every rename, merge, and correction it is recommending but has not done. If the agent blurs these together, that is itself the finding: it is the &ldquo;evidence versus guess&rdquo; line that Week&nbsp;9 spent a whole sub-lesson on, now showing up in a tool instead of a chat.</p>
 
   <h2 class="section-title">&#128221; <code>CLAUDE.md</code>: The Control Surface</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">You will not want to retype &ldquo;don&#39;t touch the raw data, separate evidence from inference, ask before editing&rdquo; at the start of every session. You should not have to. That is what <code>CLAUDE.md</code> is for: a plain-Markdown file at the root of your project that Claude Code reads automatically at the start of every session. It is the standing instruction set &mdash; the single most important file for steering the agent, and the thing that makes the next session behave like the last one.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">You will not want to retype &ldquo;don&#39;t touch the raw data, separate evidence from inference, ask before editing&rdquo; at the start of every session. You should not have to. That is what <code>CLAUDE.md</code> is for: a plain-Markdown file at the root of your project that Claude Code reads automatically at the start of every session. It is the standing instruction set for steering the agent, and the thing that makes the next session behave like the last one.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">You can generate a starter with the <code>/init</code> command, which inspects the project and drafts a <code>CLAUDE.md</code> for you to edit. A minimal one for the Berg River project might begin:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">You can generate a starter with the <code>/init</code> command, which inspects the project and drafts a <code>CLAUDE.md</code> for you to edit. A minimal one for the Berg River project might begin like this:</p>
 
   <pre class="code-block"><span class="cm"># CLAUDE.md &mdash; Berg River microplastics study</span>
 
@@ -556,28 +556,28 @@ claude</pre>
 - Save scripts in scripts/ and generated outputs in outputs/.
 - Before you tell me a task is done, show me the diff.</pre>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">One piece of vocabulary, since it recurs: a <strong>diff</strong> (short for &ldquo;difference&rdquo;) is the set of exact lines that changed between the old and new version of a file &mdash; what was removed and what was added &mdash; rather than the whole file. So &ldquo;show me the diff&rdquo; means <em>show me precisely what you changed</em>, not a description of it. It is the cheapest way to see what an agent actually did, and how to use it well at scale is a question we return to in Lesson&nbsp;B.3.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">One piece of vocabulary, since it recurs: a <strong>diff</strong> (short for &ldquo;difference&rdquo;) is the set of exact lines that changed between the old and new version of a file, what was removed and what was added, rather than the whole file. So &ldquo;show me the diff&rdquo; means <em>show me what you changed</em>, not a description of it. It is the cheapest way to see what an agent actually did, and how to use it well at scale is a question we return to in Lesson&nbsp;B.3.</p>
 
   <div class="info-box">
-    <h4>&#128161; This is the hinge of the whole track</h4>
-    <p>Notice what just happened. Every one of those lines is a research-integrity habit this course already taught &mdash; &ldquo;do not fill the gap with a guess&rdquo; is the Week&nbsp;9 hallucination lesson; &ldquo;name which files you used&rdquo; is the Week&nbsp;5 citation lesson; &ldquo;show me the diff&rdquo; is verification. Written into <code>CLAUDE.md</code>, they stop being good intentions and become rules the agent follows every time. Lesson&nbsp;B turns this short file into the full <em>reproducibility-enforcement</em> template &mdash; the headline artefact of the track.</p>
+    <h4>&#128161; Where the course&#39;s habits become rules</h4>
+    <p>Every one of those lines is a research-integrity habit this course already taught. &ldquo;Do not fill the gap with a guess&rdquo; is the Week&nbsp;9 hallucination lesson; &ldquo;name which files you used&rdquo; is the Week&nbsp;5 citation lesson; &ldquo;show me the diff&rdquo; is verification. Written into <code>CLAUDE.md</code>, they stop being good intentions and become rules the agent follows every time. Lesson&nbsp;B turns this short file into the full <em>reproducibility-enforcement</em> template.</p>
   </div>
 
   <h2 class="section-title">&#129504; Sessions, Memory, and Starting Fresh</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One practical thing about how Claude Code behaves over a long task. A session has a finite <strong>context window</strong> &mdash; the amount it can hold in working memory at once. A morning&#39;s analysis can fill it, and as it fills, the agent starts to lose track of what was said early on. This sounds like a limitation, and in part it is. It is also where this track&#39;s organising principle quietly pays off.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One practical thing about how Claude Code behaves over a long task. A session has a finite <strong>context window</strong>, the amount it can hold in working memory at once. A morning&#39;s analysis can fill it, and as it fills, the agent starts to lose track of what was said early on. This sounds like a limitation, and in part it is. It is also where this track&#39;s organising principle pays off.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Because <em>the chat is not the archive</em>, you are never dependent on the conversation surviving. The project state lives on disk: the <code>CLAUDE.md</code> (re-read automatically at the start of every session), the decision log, the scripts, the Git history. So you can end a bloated, drifting session and start a clean one whenever you like &mdash; quit, run <code>claude</code> again, and the new session picks the project up <em>from the files</em>, not from a transcript you have lost. A fresh session pointed at a well-kept folder is often sharper than a long one that has wandered.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Because <em>the chat is not the archive</em>, you are never dependent on the conversation surviving. The project state lives on disk: the <code>CLAUDE.md</code> (re-read automatically at the start of every session), the decision log, the scripts, the Git history. So you can end a bloated, drifting session and start a clean one whenever you like: quit, run <code>claude</code> again, and the new session picks the project up <em>from the files</em>, not from a transcript you have lost. A fresh session pointed at a well-kept folder is often sharper than a long one that has wandered.</p>
 
   <div class="info-box">
     <h4>&#128161; The corollary of &ldquo;the chat is not the archive&rdquo;</h4>
-    <p>If losing the conversation would lose your work, your work is in the wrong place. In a well-kept project folder the conversation is disposable by design: you commission the work in the chat, it lands in the files, and the next session starts fresh from those files. This is also why committing at milestones matters &mdash; a brand-new session can read the Git history and the decision log and see exactly where things stand, with no memory of the chat required.</p>
+    <p>If losing the conversation would lose your work, your work is in the wrong place. In a well-kept project folder the conversation is disposable by design: you commission the work in the chat, it lands in the files, and the next session starts fresh from those files. This is also why committing at milestones matters: a brand-new session can read the Git history and the decision log and see exactly where things stand, with no memory of the chat required.</p>
   </div>
 
   <div class="highlight-box">
     <h3>&#9989; What to take from Lesson A</h3>
-    <p>Claude Code is a model with hands in your project folder &mdash; the harness, not the model, is what you are driving. The work lives in files, not in the chat. It costs money and excludes some researchers, and we said so. Using it well is a shift from prompting to <em>managing</em>: delegate, checkpoint, verify, and scaffold in proportion to the stakes. And <code>CLAUDE.md</code> is where your standing rules live.</p>
-    <p>Lesson&nbsp;B is the reason the track exists: turning all of this into research that someone else can inspect and repeat &mdash; reproducibility, made concrete.</p>
+    <p>Claude Code is a model with hands in your project folder, and the harness, not the model, is what you are driving. The work lives in files, not in the chat. It costs money and excludes some researchers, and we said so. Using it well is a shift from prompting to <em>managing</em>: delegate, checkpoint, verify, and scaffold in proportion to the stakes. And <code>CLAUDE.md</code> is where your standing rules live.</p>
+    <p>Lesson&nbsp;B is the reason the track exists: turning all of this into research that someone else can inspect and repeat, reproducibility made concrete.</p>
   </div>
 
 </div>

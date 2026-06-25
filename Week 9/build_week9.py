@@ -141,13 +141,13 @@ SL1_BODY = """
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The way researchers talk about &ldquo;what AI can&#39;t do&rdquo; goes stale faster than almost any other technical claim in the literature. A paper from 2023 documenting that ChatGPT failed at undergraduate mathematics is, by 2026, a historical artefact rather than a current diagnosis. A claim from 2024 that AI can&#39;t do scientific writing well no longer matches what frontier models produce today. The artefact under study has changed. The literature about it has not always kept up.</p>
-    <p>This sub-lesson does two things. First, it lays out the trajectory of LLM capabilities from 2019 to May 2026, so you have a calibrated sense of where the frontier sits right now. Second, it makes the central pedagogical move of the whole week explicit: every claim about AI limitations carries an implicit &ldquo;as of [date]&rdquo;. Reading the AI literature critically means asking which model, which date, and whether anyone has retested.</p>
+    <p>This sub-lesson does two things. First, it lays out the trajectory of LLM capabilities from 2019 to May 2026, so you have a calibrated sense of where the frontier sits right now. Second, it sets up a frame the rest of the week leans on: every claim about AI limitations carries an implicit &ldquo;as of [date]&rdquo;. Reading the AI literature critically means asking which model, which date, and whether anyone has retested.</p>
     <p>The week&#39;s centrepiece reading lives at the end of this sub-lesson: a May 2026 blog post by the Fields-medallist Tim Gowers reporting on his experience using GPT-5.5 Pro to extend bounds on an open problem in additive number theory. Read it before moving on to the next sub-lesson.</p>
   </div>
 
   <h2 class="section-title">&#128200; A Seven-Year Sweep</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The pace of capability change over the last seven years is worth pausing on. Below is a deliberately compressed history. Each row marks a moment when the answer to &ldquo;what can these systems do?&rdquo; shifted enough that the previous answer became wrong.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The pace of capability change over the last seven years is worth pausing on. Below is a compressed history. Each row marks a moment when the answer to &ldquo;what can these systems do?&rdquo; shifted enough that the previous answer became wrong.</p>
 
   <div style="overflow-x: auto;">
     <table class="comparison-table">
@@ -202,20 +202,20 @@ SL1_BODY = """
 
   <div class="info-box">
     <h4>&#128161; Why This Matters Now</h4>
-    <p>If you arrived in this course with a calibration of AI based on news coverage from 2023, you are in roughly the position of someone reading 2010 reviews of smartphone cameras. Some core observations still apply &mdash; cameras have lenses, smartphones have batteries &mdash; but the specifics are out of date.</p>
+    <p>If you arrived in this course with a calibration of AI based on news coverage from 2023, you are in roughly the position of someone reading 2010 reviews of smartphone cameras. Some core observations still apply (cameras have lenses, smartphones have batteries) but the specifics are out of date.</p>
     <p>The recalibration matters in two directions. Some things you might think AI can&#39;t do, it now can. Some things you might think AI can do reliably, it cannot. Both errors are common in published research right now. This sub-lesson and the next two address them in turn.</p>
   </div>
 
   <!-- SECTION: MAY 2026 LANDSCAPE -->
   <h2 class="section-title">&#128300; The May 2026 Frontier &mdash; Closed-Weights Models</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of mid-May 2026, the closed-weights frontier comprises six families of models, all from large well-resourced labs. Each has slightly different strengths, and the leaderboards shuffle every few weeks. The numbers below are accurate at time of writing and will be wrong within months &mdash; that itself is a teaching point.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of mid-May 2026, the closed-weights frontier comprises six families of models, all from large well-resourced labs. Each has slightly different strengths, and the leaderboards shuffle every few weeks. The numbers below are accurate at time of writing and will be wrong within months.</p>
 
   <div class="card-grid">
 
     <div class="card">
       <h3>Anthropic &mdash; Claude Mythos (Preview)</h3>
-      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. As of early May 2026, the UK AI Security Institute reported GPT-5.5 reaching rough parity with Mythos on offensive-cyber evaluations (GPT-5.5 71.4% vs Mythos 68.6% on multi-step attack simulations) &mdash; so Anthropic&#39;s earlier unique lead in this domain has narrowed. Available to limited partners via Project Glasswing.</p>
+      <p>Released as a limited preview in May 2026. Currently leads the GPQA Diamond reasoning benchmark at <strong>94.6%</strong> and HLE at <strong>64.7</strong>. Notable in security: autonomously identified and exploited a 17-year-old remote-code-execution vulnerability in FreeBSD with no human guidance after the initial request. As of early May 2026, the UK AI Security Institute reported GPT-5.5 reaching rough parity with Mythos on offensive-cyber evaluations (GPT-5.5 71.4% vs Mythos 68.6% on multi-step attack simulations), so Anthropic&#39;s earlier unique lead in this domain has narrowed. Available to limited partners via Project Glasswing.</p>
     </div>
 
     <div class="card">
@@ -230,7 +230,7 @@ SL1_BODY = """
 
     <div class="card">
       <h3>Google DeepMind &mdash; Gemini 3.1 Pro / Deep Think</h3>
-      <p>Achieved IMO 2025 gold medal: 5/6 problems solved, 35/42 points, end-to-end natural language within the competition&#39;s 4.5-hour window &mdash; up from a silver in 2024. Long context, multimodal, and the Deep Think variant powers the cosmic-string radiation result discussed in 9.3.</p>
+      <p>Achieved IMO 2025 gold medal: 5/6 problems solved, 35/42 points, end-to-end natural language within the competition&#39;s 4.5-hour window, up from a silver in 2024. Long context, multimodal, and the Deep Think variant powers the cosmic-string radiation result discussed in 9.3.</p>
     </div>
 
     <div class="card">
@@ -253,12 +253,12 @@ SL1_BODY = """
 
     <div class="card">
       <h3>DeepSeek V4 Pro</h3>
-      <p>Released 24 April 2026 under the MIT licence. Mixture-of-experts architecture: <strong>1.6 trillion total parameters with 49 billion active</strong> per token. <strong>1 million token context window</strong>. Codeforces rating <strong>3206</strong> &mdash; the highest competitive-programming score of any model, surpassing GPT-5.4&#39;s 3168. SWE-bench Verified 80.6%. Roughly 10&ndash;13&times; cheaper per output token than the closed frontier on most agentic benchmarks.</p>
+      <p>Released 24 April 2026 under the MIT licence. Mixture-of-experts architecture: <strong>1.6 trillion total parameters with 49 billion active</strong> per token. <strong>1 million token context window</strong>. Codeforces rating <strong>3206</strong>, the highest competitive-programming score of any model, surpassing GPT-5.4&#39;s 3168. SWE-bench Verified 80.6%. Roughly 10&ndash;13&times; cheaper per output token than the closed frontier on most agentic benchmarks.</p>
     </div>
 
     <div class="card">
       <h3>Kimi K2.6 (Moonshot AI)</h3>
-      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 85.4 %</strong> &mdash; effectively ties GPT-5.5 (85.1%) at roughly 80% lower cost per token. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue). A second open-weights model now matching closed-frontier coding capability is a notable trajectory data point.</p>
+      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 85.4 %</strong>, effectively tying GPT-5.5 (85.1%) at roughly 80% lower cost per token. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue). It is the second open-weights model to match closed-frontier coding capability.</p>
     </div>
 
     <div class="card">
@@ -268,12 +268,12 @@ SL1_BODY = """
 
     <div class="card">
       <h3>Qwen 3.6 (Alibaba) &amp; Gemma 4 (Google DeepMind)</h3>
-      <p>Qwen 3.6 27B (April 2026): Apache 2.0, 262K context window, native multimodal input, BF16 weights small enough to fit on a single H100. Top of Artificial Analysis&#39;s Intelligence Index for open-weights models under 150B parameters at 46. Hybrid thinking model (toggle chain-of-thought on/off). Reaches frontier on AIME 2026 (~91%). Both Qwen 3.6 and Gemma 4 implement <strong>Multi-Token Prediction (MTP)</strong> &mdash; predicting several future tokens per forward pass for substantial inference speed-ups, an emerging cross-model technique.</p>
+      <p>Qwen 3.6 27B (April 2026): Apache 2.0, 262K context window, native multimodal input, BF16 weights small enough to fit on a single H100. Top of Artificial Analysis&#39;s Intelligence Index for open-weights models under 150B parameters at 46. Hybrid thinking model (toggle chain-of-thought on/off). Reaches frontier on AIME 2026 (~91%). Both Qwen 3.6 and Gemma 4 implement <strong>Multi-Token Prediction (MTP)</strong>, predicting several future tokens per forward pass for substantial inference speed-ups. It is an emerging cross-model technique.</p>
     </div>
 
     <div class="card">
       <h3>Other open-weights players</h3>
-      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> is positioned for cost-efficiency but has been reported to hallucinate heavily on knowledge benchmarks such as AA-Omniscience &mdash; a useful warning that not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention &mdash; an architectural-innovation data point.</p>
+      <p>Tencent&#39;s <strong>Hy3-preview</strong> (295B/21B MoE, restricted commercial license) and xAI&#39;s <strong>Grok 4.3</strong> (~40&ndash;60% cheaper than Grok 4.20 v2) sit just below the frontier. Ant Group&#39;s <strong>Ling 2.6 1T</strong> is positioned for cost-efficiency but has been reported to hallucinate heavily on knowledge benchmarks such as AA-Omniscience; not all open-weights releases inherit the leading labs&#39; mitigations (see 9.2). The Mistral and Falcon families remain strong on European-deployment grounds. <strong>Zyphra ZAYA1-74B</strong> (May 2026) is a non-standard transformer architecture with hybrid attention.</p>
     </div>
 
   </div>
@@ -356,7 +356,7 @@ SL1_BODY = """
   <!-- SECTION: WHAT BENCHMARKS DON'T TELL YOU -->
   <h2 class="section-title">&#128683; What Benchmarks Don&#39;t Tell You</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmark scores are easy to read and easy to compare. They give the illusion of an objective measure of capability. They are, in fact, a partial and contested measure &mdash; and three specific failures of benchmarks are worth knowing before you read any model announcement uncritically.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmark scores are easy to read and easy to compare. They give the illusion of an objective measure of capability. They are a partial and contested measure, and three specific failures of benchmarks are worth knowing before you read any model announcement uncritically.</p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">1. Goodhart&#39;s Law: Benchmarks Are Not Real-World Use</h3>
 
@@ -367,7 +367,7 @@ SL1_BODY = """
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Charles Goodhart, a British economist, originally articulated the principle in 1975 in the context of monetary policy: any observed statistical regularity tends to collapse once pressure is placed upon it for control purposes. The popular formulation above is from anthropologist Marilyn Strathern in 1997.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The application to AI benchmarks is direct. The benchmarks were originally proxies for capability &mdash; if a model scores well on FrontierMath, that&#39;s evidence the model can do research-level mathematics. But once benchmarks become the public yardstick for model quality, labs train and tune <em>specifically to perform well on them</em>. The benchmark stops being a proxy for capability and becomes a target the model is optimised to hit. The resulting score is no longer a good measure of the underlying capability the benchmark was meant to track.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The application to AI benchmarks is direct. The benchmarks were originally proxies for capability: if a model scores well on FrontierMath, that&#39;s evidence the model can do research-level mathematics. But once benchmarks become the public yardstick for model quality, labs train and tune <em>specifically to perform well on them</em>. The benchmark stops being a proxy for capability and becomes a target the model is optimised to hit. The resulting score is no longer a good measure of the underlying capability the benchmark was meant to track.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A concrete consequence: a model that scores 87.6% on SWE-bench Verified is genuinely good at GitHub-issue-style coding tasks. It may or may not be good at the coding work <em>you</em> need to do. A model that scores 52.4% on FrontierMath is genuinely capable on Fields-medal-curated mathematics problems. It may or may not be useful for the specific mathematical questions in <em>your</em> field. The benchmark measures performance on the benchmark; that&#39;s all it can measure.</p>
 
@@ -377,35 +377,35 @@ SL1_BODY = """
     <h4>&#128221; A Concrete Goodhart Illustration: SWE-Bench &rarr; ProgramBench</h4>
     <p>Frontier models score above 87% on SWE-bench Verified (Opus 4.7) and 85% on it (Kimi K2.6, GPT-5.5). The benchmark is approaching saturation. If you read those scores as a measure of &ldquo;the model is now good at software engineering,&rdquo; you would be making the Goodhart error.</p>
     <p>ProgramBench (May 2026) tests something different: given <em>only</em> a program and its documentation, can the model architect and implement a codebase from scratch that matches the reference behaviour? No method signatures to fill in, no class skeletons, no natural-language descriptions of file layout. 200 tasks sourced from real-world open-source GitHub repositories, with more than 248,000 behavioural tests.</p>
-    <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested &mdash; including Opus 4.7, GPT-5.4, Gemini 3.1 Pro &mdash; not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
+    <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested, including Opus 4.7, GPT-5.4 and Gemini 3.1 Pro, not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
     <p>The same models, the same general task family (software engineering), wildly different scores. SWE-bench measures &ldquo;can the model solve well-scoped patches to existing code given the issue description.&rdquo; It does not measure &ldquo;can the model architect and build a real piece of software.&rdquo; The benchmark you cite determines the capability claim you can make.</p>
     <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.03546" target="_blank" rel="noopener">ProgramBench: Can Language Models Rebuild Programs From Scratch? (arXiv:2605.03546, May 2026)</a></p>
   </div>
 
   <div class="case-study">
     <h4>&#128221; The Hidden Variable: Harness Engineering</h4>
-    <p>A second Goodhart-adjacent finding has been hardening across 2026: a model&#39;s benchmark score conflates two things &mdash; the model&#39;s underlying capability, and the engineering work done around the model (system prompt, tools, middleware, decomposition strategy, retrieval scaffolding). The community has started calling this latter component the <em>harness</em>, and the harness now often dominates.</p>
-    <p>The Agentic Harness Engineering paper documents the effect: the same model on Terminal-Bench 2 went from <strong>69.7% to 77.0%</strong> over ten iterations of pure harness improvement &mdash; beating a human-designed Codex-CLI baseline of 71.9% &mdash; while reducing token use on SWE-bench Verified by 12%. Other reports converge on the same observation: 10&ndash;20 point swings on tau2-bench depending on prompts and middleware, while the underlying model is identical. <em>Source: Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses</em>, <a href="https://arxiv.org/abs/2604.25850" target="_blank" rel="noopener">arXiv:2604.25850</a> (April 2026).</p>
+    <p>A second Goodhart-adjacent finding has been hardening across 2026: a model&#39;s benchmark score conflates two things, the model&#39;s underlying capability and the engineering work done around the model (system prompt, tools, middleware, decomposition strategy, retrieval scaffolding). The community has started calling this latter component the <em>harness</em>, and the harness now often dominates.</p>
+    <p>The Agentic Harness Engineering paper documents the effect: the same model on Terminal-Bench 2 went from <strong>69.7% to 77.0%</strong> over ten iterations of pure harness improvement (beating a human-designed Codex-CLI baseline of 71.9%) while reducing token use on SWE-bench Verified by 12%. Other reports converge on the same observation: 10&ndash;20 point swings on tau2-bench depending on prompts and middleware, while the underlying model is identical. <em>Source: Agentic Harness Engineering: Observability-Driven Automatic Evolution of Coding-Agent Harnesses</em>, <a href="https://arxiv.org/abs/2604.25850" target="_blank" rel="noopener">arXiv:2604.25850</a> (April 2026).</p>
     <p>The implication for reading announcements: a 90% score on a benchmark may reflect a 75% model with a great harness, or an 85% model with a mediocre harness. When a lab announces SOTA on benchmark X, you cannot disentangle the harness contribution from the model contribution. For your own work, the corollary is that switching to the latest frontier model is often less impactful than improving the harness around the model you already use.</p>
   </div>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">2. Benchmark Contamination &mdash; Training-Data Leakage</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A benchmark only measures capability if the model hasn&#39;t already seen the answers. The internet contains most published benchmarks. Models trained on web-scale data have, in many cases, seen the benchmark questions and answers during training &mdash; producing inflated scores that don&#39;t reflect generalised capability.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A benchmark only measures capability if the model hasn&#39;t already seen the answers. The internet contains most published benchmarks. Models trained on web-scale data have, in many cases, seen the benchmark questions and answers during training, producing inflated scores that don&#39;t reflect generalised capability.</p>
 
   <div class="case-study">
     <h4>&#128221; The MMLU Contamination Evidence</h4>
     <p>Deng, C., Zhao, Y., Tang, X., Gerstein, M., &amp; Cohan, A. (2023). <em>Investigating Data Contamination in Modern Benchmarks for Large Language Models.</em> <a href="https://arxiv.org/abs/2311.09783" target="_blank" rel="noopener">arXiv:2311.09783</a>.</p>
     <p>Used a &ldquo;Testset Slot Guessing&rdquo; methodology: mask one wrong answer in an MMLU multiple-choice question and ask the model to fill it in. A model that has never seen the question should perform near chance. ChatGPT achieved <strong>52%</strong> exact-match on the masked options; GPT-4 achieved <strong>57%</strong>. Far above chance, and consistent with having seen the test set.</p>
-    <p>A subject-level scan of MMLU found contamination rates as high as <strong>66.7%</strong> in some subjects. Variations of the contamination methodology have been documented in dozens of papers since &mdash; benchmark contamination is now a recognised systematic problem, not a one-off finding. The <a href="https://github.com/lyy1994/awesome-data-contamination" target="_blank" rel="noopener">Awesome Data Contamination</a> repository tracks the literature.</p>
+    <p>A subject-level scan of MMLU found contamination rates as high as <strong>66.7%</strong> in some subjects. Variations of the contamination methodology have been documented in dozens of papers since. Benchmark contamination is now a recognised systematic problem rather than a one-off finding. The <a href="https://github.com/lyy1994/awesome-data-contamination" target="_blank" rel="noopener">Awesome Data Contamination</a> repository tracks the literature.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">The implication: a model&#39;s reported MMLU score may overstate its general reasoning ability, possibly substantially. Comparable concerns apply to AIME, GSM8K, HumanEval, and most popular benchmarks &mdash; all of which have appeared in training corpora.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">The implication: a model&#39;s reported MMLU score may overstate its general reasoning ability, possibly substantially. Comparable concerns apply to AIME, GSM8K, HumanEval, and most popular benchmarks, all of which have appeared in training corpora.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Three responses have emerged:</p>
 
   <ul class="styled-list">
-    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was deliberately constructed as 350 entirely new and unpublished problems. Of the 50 Tier-4 problems, 48 are non-public and <strong>20 are withheld even from OpenAI</strong> (the funder), so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
+    <li><strong>Held-out / private benchmarks.</strong> FrontierMath was constructed as 350 entirely new and unpublished problems. Of the 50 Tier-4 problems, 48 are non-public and <strong>20 are withheld even from OpenAI</strong> (the funder), so a private set remains for honest evaluation; the leaderboard scores reported in this lesson are evaluated on the private sets. CharXiv (Week 8) used a similar design.</li>
     <li><strong>Cleaned and refreshed benchmarks.</strong> MMLU-Pro (Wang et al. 2024) increased question difficulty and expanded answer choices to make memorisation less helpful. MMLU-Redux (2025) cleaned ambiguous questions and incorrect answers from the original.</li>
     <li><strong>Dynamic benchmarks.</strong> Benchmarks regenerated continuously based on training cutoffs, so contamination is structurally impossible. <a href="https://arxiv.org/abs/2312.12343" target="_blank" rel="noopener">LatestEval (AAAI 2024)</a> is one example.</li>
   </ul>
@@ -414,23 +414,23 @@ SL1_BODY = """
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 40px 0 15px;">3. What Benchmarks Don&#39;t Test &mdash; Low-Resource Languages and African Contexts</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Almost every major benchmark in the table above &mdash; FrontierMath, GPQA Diamond, SWE-bench Verified, AIME, MCP-Atlas, HLE &mdash; is administered <strong>in English</strong>. A model that excels on these benchmarks is genuinely good at English-language reasoning on topics well-represented in English-language training data. The leaderboard scores tell you very little about how the model performs on questions in Setswana, on legal reasoning grounded in South African law, on medical questions framed for a Nigerian or Kenyan clinical context, or on mathematics problems written by African educators for African students.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Almost every major benchmark in the table above (FrontierMath, GPQA Diamond, SWE-bench Verified, AIME, MCP-Atlas, HLE) is administered <strong>in English</strong>. A model that excels on these benchmarks is genuinely good at English-language reasoning on topics well-represented in English-language training data. The leaderboard scores tell you very little about how the model performs on questions in Setswana, on legal reasoning grounded in South African law, on medical questions framed for a Nigerian or Kenyan clinical context, or on mathematics problems written by African educators for African students.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For UCT students, this matters directly: the benchmark scores you see in news coverage may not predict how the same model performs on your research questions, your students&#39; questions, or your local context.</p>
 
   <div class="case-study">
     <h4>&#128221; The Measured Gap</h4>
-    <p>The <em>Bridging the Gap</em> project (Alhanai, Kasumovic, Ghassemi, Zitzelberger, Lundin &amp; Chabot-Couture, AAAI 2025; <a href="https://arxiv.org/abs/2412.12417" target="_blank" rel="noopener">arXiv:2412.12417</a>) translated portions of MMLU and Winogrande into eight low-resource African languages (Amharic, Bambara, Igbo, Sepedi, Shona, Sesotho, Setswana, Tsonga) covering more than 160 million speakers. The paper reports &ldquo;previously unknown performance gaps&rdquo; between state-of-the-art LLMs in English and these African languages, and explores fine-tuning, cross-lingual transfer, and cultural-appropriateness adjustments as mitigations &mdash; achieving incremental improvements (5.6% from fine-tuning, 2.9% from cross-lingual transfer) that are notable precisely because the underlying gap is so substantial.</p>
+    <p>The <em>Bridging the Gap</em> project (Alhanai, Kasumovic, Ghassemi, Zitzelberger, Lundin &amp; Chabot-Couture, AAAI 2025; <a href="https://arxiv.org/abs/2412.12417" target="_blank" rel="noopener">arXiv:2412.12417</a>) translated portions of MMLU and Winogrande into eight low-resource African languages (Amharic, Bambara, Igbo, Sepedi, Shona, Sesotho, Setswana, Tsonga) covering more than 160 million speakers. The paper reports &ldquo;previously unknown performance gaps&rdquo; between state-of-the-art LLMs in English and these African languages, and explores fine-tuning, cross-lingual transfer, and cultural-appropriateness adjustments as mitigations. The improvements were incremental (5.6% from fine-tuning, 2.9% from cross-lingual transfer) against a gap that remains substantial.</p>
     <p>Even the &ldquo;multilingual&rdquo; benchmarks tend to under-cover Africa. <a href="https://mmluprox.github.io/" target="_blank" rel="noopener">MMLU-ProX</a> covers 29 languages including Wolof, Yoruba, and Zulu, but documents consistent performance degradation from high-resource to low-resource languages. Most African languages aren&#39;t covered at all.</p>
   </div>
 
   <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;">Africa-specific benchmarks have begun to emerge in response to the gap. They are useful but not yet widely cited in model announcements:</p>
 
   <ul class="styled-list">
-    <li><strong><a href="https://aclanthology.org/2025.findings-acl.976.pdf" target="_blank" rel="noopener">AfroBench (ACL 2025)</a></strong> &mdash; comprehensive evaluation of LLMs on African languages across multiple NLP tasks.</li>
-    <li><strong><a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">IrokoBench</a></strong> &mdash; benchmark designed specifically for African languages in the LLM era.</li>
-    <li><strong>AfriSpeech-Dialog (NAACL 2025)</strong> and <strong>Intron Sahara v2 (2026, 57 languages)</strong> &mdash; African-language ASR benchmarks (covered in Week 8).</li>
-    <li><strong>Nahabwe et al. (2025), <em>Benchmarking Automatic Speech Recognition Models for African Languages</em></strong>, arXiv:2512.10968 &mdash; covered in Week 8.</li>
+    <li><strong><a href="https://aclanthology.org/2025.findings-acl.976.pdf" target="_blank" rel="noopener">AfroBench (ACL 2025)</a></strong>: full evaluation of LLMs on African languages across multiple NLP tasks.</li>
+    <li><strong><a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">IrokoBench</a></strong>: benchmark designed specifically for African languages in the LLM era.</li>
+    <li><strong>AfriSpeech-Dialog (NAACL 2025)</strong> and <strong>Intron Sahara v2 (2026, 57 languages)</strong>: African-language ASR benchmarks (covered in Week 8).</li>
+    <li><strong>Nahabwe et al. (2025), <em>Benchmarking Automatic Speech Recognition Models for African Languages</em></strong>, arXiv:2512.10968 (covered in Week 8).</li>
   </ul>
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">The pattern: for well-represented African languages (Swahili, Hausa, Yoruba, Afrikaans), frontier models perform reasonably. For under-represented languages (Setswana, Sepedi, isiXhosa, isiZulu in many tasks), performance falls off substantially. <strong>Performance differences between languages are larger than performance differences between frontier models.</strong></p>
@@ -454,8 +454,8 @@ SL1_BODY = """
 
   <div class="case-study">
     <h4>&#128221; What Gowers reports</h4>
-    <p>Over roughly two hours of interaction, GPT-5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel &mdash; not retrieved from training data &mdash; and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
-    <p>Gowers&#39; broader claim is striking: <em>&ldquo;The lower bound for contributing to mathematics will now be to prove something that LLMs can&#39;t prove.&rdquo;</em></p>
+    <p>Over roughly two hours of interaction, GPT-5.5 Pro produced an original construction using <em>h&sup2;-dissociated sets</em> that improved the bounds on a function <em>N(h, k)</em> from exponential to polynomial in <em>k</em>. The construction was novel, not retrieved from training data, and Gowers describes it as &ldquo;quite impressive&rdquo;. Isaac Rajagopal, the original researcher who had been working on the problem, confirmed that the improvement was &ldquo;almost certainly correct&rdquo; at the level of ideas, not merely line-by-line.</p>
+    <p>Gowers&#39; broader claim: <em>&ldquo;The lower bound for contributing to mathematics will now be to prove something that LLMs can&#39;t prove.&rdquo;</em></p>
     <p>He pairs this with a defence of human work: <em>&ldquo;by solving hard problems you get an insight&hellip;that you simply don&#39;t if all you do is read other people&#39;s solutions.&rdquo;</em></p>
   </div>
 
@@ -470,7 +470,7 @@ SL1_BODY = """
 
   <div class="highlight-box">
     <h3>Date-stamp every claim about AI capability</h3>
-    <p>From here on, when you encounter a claim about what AI can or cannot do &mdash; in this course, in published papers, in news articles, anywhere &mdash; reflexively check three things. <strong>Which model</strong> was tested? <strong>When</strong> was it tested? <strong>Has anyone retested</strong> with current frontier models?</p>
+    <p>From here on, when you encounter a claim about what AI can or cannot do, whether in this course, in published papers, in news articles, or anywhere else, check three things. <strong>Which model</strong> was tested? <strong>When</strong> was it tested? <strong>Has anyone retested</strong> with current frontier models?</p>
     <p>Without these three pieces of information, an AI capability claim has the same evidentiary status as a 2010 review of smartphone cameras. The category is right; the specifics are stale.</p>
     <p>Sub-lesson 9.2 takes this trajectory framing and applies it to specific failure modes. Some have been patched. Some have been reduced. Some are structural and likely permanent. Distinguishing them is the skill we are building.</p>
   </div>
@@ -490,19 +490,19 @@ SL2_BODY = """
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>If &ldquo;what AI can&#39;t do&rdquo; is a moving target, you need a way of organising failures that doesn&#39;t go stale every time a new model drops. This sub-lesson offers one: three categories that classify failures by how durable they are, not by which specific model exhibited them.</p>
-    <p>The pay-off: when you encounter an AI failure in your own work, you can place it in the taxonomy. Failures in category (a) are diagnostic of model age &mdash; switch to a current frontier model and try again. Failures in category (b) require workflow design to manage. Failures in category (c) are structural and won&#39;t be fixed by the next release; they need verification protocols (Sub-Lesson 9.5).</p>
+    <p>The pay-off: when you encounter an AI failure in your own work, you can place it in the taxonomy. Failures in category (a) are diagnostic of model age, so switch to a current frontier model and try again. Failures in category (b) require workflow design to manage. Failures in category (c) are structural and won&#39;t be fixed by the next release; they need verification protocols (Sub-Lesson 9.5).</p>
   </div>
 
   <!-- CATEGORY A -->
   <h2 class="section-title">&#9989; (a) Patched / Largely Solved</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These were widely-cited failure modes in 2023&ndash;24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks &mdash; but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These were widely-cited failure modes in 2023&ndash;24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks, but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
 
   <div class="card-grid">
 
     <div class="card">
       <h3>The Reversal Curse</h3>
-      <p>In 2023, Berglund et al. showed that LLMs trained on facts of the form &ldquo;A is B&rdquo; failed to generalise to &ldquo;B is A&rdquo; &mdash; even when the inverse relationship was common in their training data. A model that knew &ldquo;Tom Cruise&#39;s mother is Mary Lee Pfeiffer&rdquo; would not reliably answer &ldquo;Who is Mary Lee Pfeiffer&#39;s son?&rdquo;</p>
+      <p>In 2023, Berglund et al. showed that LLMs trained on facts of the form &ldquo;A is B&rdquo; failed to generalise to &ldquo;B is A&rdquo;, even when the inverse relationship was common in their training data. A model that knew &ldquo;Tom Cruise&#39;s mother is Mary Lee Pfeiffer&rdquo; would not reliably answer &ldquo;Who is Mary Lee Pfeiffer&#39;s son?&rdquo;</p>
       <p>By 2026, this failure mode is no longer prominent in benchmark discussions. Training-data interventions and inference-time techniques have substantially mitigated it in frontier models. Still cited in the literature, but largely as a historical landmark.</p>
       <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2309.12288" target="_blank" rel="noopener">Berglund, L., Tong, M., Kaufmann, M., et al. (2023). The Reversal Curse. arXiv:2309.12288</a></p>
     </div>
@@ -515,7 +515,7 @@ SL2_BODY = """
 
     <div class="card">
       <h3>Hallucinated Code on Common Tasks</h3>
-      <p>In 2023, asking a model for code in a popular library would frequently produce calls to functions that didn&#39;t exist. By 2026, frontier models pass SWE-bench Verified above 87% &mdash; meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
+      <p>In 2023, asking a model for code in a popular library would frequently produce calls to functions that didn&#39;t exist. By 2026, frontier models pass SWE-bench Verified above 87%, meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
     </div>
 
   </div>
@@ -535,18 +535,18 @@ SL2_BODY = """
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Even frontier models in 2026 hallucinate citations on niche topics. The Week 5 evidence remains directly relevant:</p>
 
   <ul class="styled-list">
-    <li><strong>Magesh et al. (2024).</strong> <em>Hallucination-Free?</em> arXiv:2405.20362. Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17&ndash;33%</strong> hallucination on benchmarking queries &mdash; despite vendor marketing as &ldquo;hallucination-free&rdquo;.</li>
+    <li><strong>Magesh et al. (2024).</strong> <em>Hallucination-Free?</em> arXiv:2405.20362. Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17&ndash;33%</strong> hallucination on benchmarking queries, despite vendor marketing as &ldquo;hallucination-free&rdquo;.</li>
     <li><strong>Chelli et al. (2024).</strong> <em>JMIR</em> 26: e53164. GPT-3.5 39.6%, GPT-4 28.6%, Bard 91.4%.</li>
     <li><strong>Linardon et al. (2025).</strong> <em>JMIR Mental Health</em> 12: e80371. GPT-4o: 19.9% overall; <strong>28&ndash;29% on niche topics</strong>; 6% on well-studied. Citation hallucination correlates with how rare the topic is in training data.</li>
   </ul>
 
   <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">In 2026 these rates have dropped further on common topics but the long-tail problem persists: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A vivid current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong> (<a href="https://artificialanalysis.ai/articles/aa-omniscience-knowledge-hallucination-benchmark" target="_blank" rel="noopener">Artificial Analysis</a>; methodology paper <a href="https://arxiv.org/abs/2511.13029" target="_blank" rel="noopener">arXiv:2511.13029</a>). The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong> (<a href="https://artificialanalysis.ai/articles/aa-omniscience-knowledge-hallucination-benchmark" target="_blank" rel="noopener">Artificial Analysis</a>; methodology paper <a href="https://arxiv.org/abs/2511.13029" target="_blank" rel="noopener">arXiv:2511.13029</a>). The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong &mdash; a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong, a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
 
   <ul class="styled-list">
     <li><strong>Constitutional AI</strong> trains the model to evaluate its own outputs against principles including honesty and calibrated confidence (Week 2).</li>
@@ -554,19 +554,19 @@ SL2_BODY = """
     <li><strong>Persona-vector interpretability methods</strong> extract activation patterns associated with traits like sycophancy and intervene at inference time.</li>
   </ul>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models &mdash; but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models, but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
 
   <div class="case-study" style="margin-top: 20px;">
     <h4>&#128221; A May 2026 anecdote: model overconfidence on a maths disagreement</h4>
-    <p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both &mdash; reconciled the formulas and explained why the apparent disagreement dissolved.</p>
-    <p>Anecdotal, single-case, not a benchmark. But it&#39;s a useful illustration that overconfident defence of wrong reasoning &mdash; the sycophancy/calibration failure mode &mdash; is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
+    <p>An informal but instructive comparison from researcher @giffmana: presented with a pair of mathematical formulas that appeared to disagree, three frontier models behaved very differently. Claude Opus 4.6 confidently defended a wrong proof and resisted correction even with pushback. ChatGPT Pro reconciled the two formulas correctly but offered the result without much interpretation. Muse Spark did both, reconciling the formulas and explaining why the apparent disagreement dissolved.</p>
+    <p>Anecdotal, single-case, not a benchmark. But it shows that overconfident defence of wrong reasoning, the sycophancy/calibration failure mode, is still surfacing in mid-2026 frontier models, and that the failure mode is not uniformly distributed across the frontier. If you want to detect it in your own work, ask the same question of multiple frontier models and notice where they disagree (cross-model triangulation, Sub-Lesson 9.5).</p>
   </div>
 
   <p style="font-size: 0.9em; color: #003A70; font-weight: 600; margin-top: 15px;">Original sycophancy paper: <a href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener">Sharma, M., Tong, M., Korbak, T., et al. (2023). Towards Understanding Sycophancy in Language Models. ICLR 2024 / arXiv:2310.13548</a></p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Calibration</h3>
 
-  <p style="color: #555; line-height: 1.75;">Frontier models are still over-confident. The probability they assign to an answer being correct does not reliably match the actual accuracy. Calibration has improved over time, but a 90%-confident answer may be right 75% of the time, and a 60%-confident answer may be right 80%. This makes confidence-thresholded workflows less useful than you might hope &mdash; you can&#39;t simply &ldquo;ask the model only when it&#39;s sure&rdquo;.</p>
+  <p style="color: #555; line-height: 1.75;">Frontier models are still over-confident. The probability they assign to an answer being correct does not reliably match the actual accuracy. Calibration has improved over time, but a 90%-confident answer may be right 75% of the time, and a 60%-confident answer may be right 80%. This makes confidence-thresholded workflows less useful than you might hope. You can&#39;t simply &ldquo;ask the model only when it&#39;s sure&rdquo;.</p>
 
   <!-- CATEGORY C -->
   <h2 class="section-title">&#129518; (c) Structural and Likely Persistent</h2>
@@ -577,7 +577,7 @@ SL2_BODY = """
 
     <div class="card">
       <h3>Hallucination as Statistical Pressure</h3>
-      <p>OpenAI&#39;s own analysis: hallucinations originate as binary-classification errors and persist because evaluations reward confident guessing over acknowledging uncertainty. The proposed fix is socio-technical &mdash; change how benchmarks score uncertainty &mdash; not architectural.</p>
+      <p>OpenAI&#39;s own analysis: hallucinations originate as binary-classification errors and persist because evaluations reward confident guessing over acknowledging uncertainty. The proposed fix is socio-technical (change how benchmarks score uncertainty) rather than architectural.</p>
       <p>The argument: <em>&ldquo;Hallucinations need not be mysterious &mdash; they originate simply as errors in binary classification.&rdquo;</em></p>
       <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). Why Language Models Hallucinate. arXiv:2509.04664</a></p>
     </div>
@@ -589,13 +589,13 @@ SL2_BODY = """
 
     <div class="card">
       <h3>The Long-Tail Problem</h3>
-      <p>Performance degrades on rare topics regardless of model scale. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones &mdash; exactly where novel research happens. Niimi (2025), cited in Week 5, demonstrated that bibliographic hallucination rates correlate strongly with how often a paper appears in training data. This effect compounds at the frontier of any field.</p>
+      <p>Performance degrades on rare topics regardless of model scale. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones, which is where novel research happens. Niimi (2025), cited in Week 5, demonstrated that bibliographic hallucination rates correlate strongly with how often a paper appears in training data. This effect compounds at the frontier of any field.</p>
     </div>
 
     <div class="card">
       <h3>Compositional Brittleness</h3>
       <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. This is not solved by making each step more accurate, because compositional errors compound multiplicatively. Long agentic chains amplify the problem.</p>
-      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro &mdash; competitive with the closed frontier on most single-step benchmarks &mdash; struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This is the failure mode that scales worst as agentic systems get longer.</p>
+      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro, competitive with the closed frontier on most single-step benchmarks, struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This failure mode scales worst as agentic systems get longer.</p>
     </div>
 
     <div class="card">
@@ -605,15 +605,15 @@ SL2_BODY = """
 
     <div class="card">
       <h3>Training Data Dependence</h3>
-      <p>Models can only know what was in their training data. They will confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural &mdash; it doesn&#39;t go away with more parameters or better RLHF.</p>
+      <p>Models can only know what was in their training data. They will confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural; it doesn&#39;t go away with more parameters or better RLHF.</p>
     </div>
 
   </div>
 
   <div class="resource-placeholder">
     <h4>&#128214; Background Reading</h4>
-    <p><strong><a href="https://normaltech.ai/" target="_blank" rel="noopener">Kapoor, S., &amp; Narayanan, A. (ongoing). normaltech.ai</a></strong> &mdash; the blog formerly known as <em>AI Snake Oil</em>. The structural-failures position; argues that many AI capability claims are overstated and many failures are structural rather than version-specific. The 2024 Princeton UP book <em>AI Snake Oil</em> is a longer version of the argument.</p>
-    <p style="margin-top: 10px;"><strong><a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). <em>Why Language Models Hallucinate.</em> arXiv:2509.04664</a></strong> &mdash; OpenAI&#39;s technical paper on the structural origins of hallucination. Reading both Kapoor &amp; Narayanan and Kalai et al. gives you views from outside and inside the labs respectively.</p>
+    <p><strong><a href="https://normaltech.ai/" target="_blank" rel="noopener">Kapoor, S., &amp; Narayanan, A. (ongoing). normaltech.ai</a></strong>, the blog formerly known as <em>AI Snake Oil</em>. The structural-failures position; argues that many AI capability claims are overstated and many failures are structural rather than version-specific. The 2024 Princeton UP book <em>AI Snake Oil</em> is a longer version of the argument.</p>
+    <p style="margin-top: 10px;"><strong><a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). <em>Why Language Models Hallucinate.</em> arXiv:2509.04664</a></strong>, OpenAI&#39;s technical paper on the structural origins of hallucination. Reading both Kapoor &amp; Narayanan and Kalai et al. gives you views from outside and inside the labs respectively.</p>
   </div>
 
   <!-- DIAGNOSTIC TABLE -->
@@ -686,8 +686,8 @@ SL3_BODY = """
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The trajectory frame from 9.1 cuts both ways. If you arrive thinking AI is more capable than it is, you over-rely on it. If you arrive thinking AI is less capable than it is, you miss things you could be doing. Both errors are common. This sub-lesson focuses on the second.</p>
-    <p>We look at concrete cases from 2025&ndash;26 where AI played a pivotal role in research-grade work in mathematics, theoretical physics, and beyond. The examples are deliberately drawn from fields where, two years ago, the consensus was that AI couldn&#39;t contribute meaningfully. The point is not that AI replaces researchers in these fields &mdash; in every case, human collaboration was essential and human verification was mandatory &mdash; but that the ceiling has moved.</p>
-    <p>A pedagogical caveat to flag now: these are <strong>selection-biased examples</strong>. They are the cases where AI worked. The ratio of attempts-to-successes is unknown. We close the sub-lesson with the caveats; read them.</p>
+    <p>We look at concrete cases from 2025&ndash;26 where AI played a key role in research-grade work in mathematics, theoretical physics, and beyond. The examples are drawn from fields where, two years ago, the consensus was that AI couldn&#39;t contribute meaningfully. The point is not that AI replaces researchers in these fields. In every case, human collaboration was essential and human verification was mandatory. The point is that the ceiling has moved.</p>
+    <p>One caveat up front: these are <strong>selection-biased examples</strong>. They are the cases where AI worked. The ratio of attempts-to-successes is unknown. The sub-lesson closes with the caveats; read them.</p>
   </div>
 
   <!-- MATHEMATICS -->
@@ -699,19 +699,19 @@ SL3_BODY = """
     <h4>&#128221; Erd&#337;s Problems Solved with Frontier Models</h4>
     <p>Since January 2026, <strong>15 Erd&#337;s problems have moved from &ldquo;open&rdquo; to &ldquo;solved&rdquo;</strong> on the canonical Erd&#337;s problem database, with <strong>11 of those crediting AI models</strong> as part of the process. The contributions are tracked at <a href="https://github.com/teorth/erdosproblems/wiki/AI-contributions-to-Erd%C5%91s-problems" target="_blank" rel="noopener">github.com/teorth/erdosproblems</a>.</p>
     <p><strong>Erd&#337;s Problem #1196.</strong> A 1968 conjecture from Erd&#337;s, S&aacute;rk&ouml;zy and Szemer&eacute;di on primitive sets. Solved by GPT-5.4 Pro on 13 April 2026, with a solution that includes a Lean formalisation. A peer-reviewed-track follow-up paper extends the result substantially: <strong><a href="https://arxiv.org/abs/2605.00301" target="_blank" rel="noopener">Alexeev, B., Barreto, K., Li, Y., Lichtman, J. D., Price, L., Shah, J. I., Tang, Q., &amp; Tao, T. (3 May 2026). <em>Primitive sets and von Mangoldt chains: Erd&#337;s Problem #1196 and beyond.</em> arXiv:2605.00301</a></strong>.</p>
-    <p><strong>Erd&#337;s Problem #728.</strong> Solved by GPT-5.4 Pro in approximately 80 minutes from a single prompt. Tao&#39;s commentary: <em>&ldquo;the proof reveals a previously undescribed connection between the anatomy of integers and Markov process theory.&rdquo;</em> A meaningful contribution to the field that goes well beyond the specific problem.</p>
+    <p><strong>Erd&#337;s Problem #728.</strong> Solved by GPT-5.4 Pro in approximately 80 minutes from a single prompt. Tao&#39;s commentary: <em>&ldquo;the proof reveals a previously undescribed connection between the anatomy of integers and Markov process theory.&rdquo;</em></p>
   </div>
 
   <div class="case-study">
     <h4>&#128221; Mathematical Exploration at Scale</h4>
     <p><strong><a href="https://arxiv.org/abs/2511.02864" target="_blank" rel="noopener">Georgiev, B., G&oacute;mez-Serrano, J., Tao, T., &amp; Wagner, A. Z. (3 November 2025). <em>Mathematical exploration and discovery at scale.</em> arXiv:2511.02864</a></strong></p>
-    <p>Tao and collaborators tested Google&#39;s AlphaEvolve &mdash; an evolutionary coding agent that combines an LLM with automated evaluation &mdash; on 67 mathematical problems across analysis, combinatorics, geometry, and number theory. The system rediscovered established solutions in most cases and identified <strong>improved solutions on several</strong>. The authors integrated AlphaEvolve with Deep Think and AlphaProof for proof generation. Tao&#39;s blog post on the paper at <a href="https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/" target="_blank" rel="noopener">terrytao.wordpress.com</a> is a useful accessible summary.</p>
+    <p>Tao and collaborators tested Google&#39;s AlphaEvolve (an evolutionary coding agent that combines an LLM with automated evaluation) on 67 mathematical problems across analysis, combinatorics, geometry, and number theory. The system rediscovered established solutions in most cases and identified <strong>improved solutions on several</strong>. The authors integrated AlphaEvolve with Deep Think and AlphaProof for proof generation. Tao&#39;s blog post on the paper at <a href="https://terrytao.wordpress.com/2025/11/05/mathematical-exploration-and-discovery-at-scale/" target="_blank" rel="noopener">terrytao.wordpress.com</a> is a useful accessible summary.</p>
   </div>
 
   <div class="case-study">
     <h4>&#128221; DeepMind&#39;s AI Co-Mathematician (May 2026)</h4>
     <p>Announced on 8 May 2026 by Pushmeet Kohli&#39;s team at Google DeepMind, the AI Co-Mathematician is a multi-agent system built on Gemini 3.1 Pro that actively collaborates with human mathematicians on open research problems.</p>
-    <p>On <strong>FrontierMath Tier 4</strong> &mdash; the hardest 50 problems in the benchmark, designed to take expert mathematicians hours or days &mdash; the system <strong>solved 23 of the 48 non-public problems (of the 50 Tier-4 problems, 48 are non-public and 20 are withheld even from OpenAI), a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark; the entire jump came from agentic scaffolding with parallel agents reviewing each other&#39;s work.</p>
+    <p>On <strong>FrontierMath Tier 4</strong>, the hardest 50 problems in the benchmark, designed to take expert mathematicians hours or days, the system <strong>solved 23 of the 48 non-public problems (of the 50 Tier-4 problems, 48 are non-public and 20 are withheld even from OpenAI), a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark; the entire jump came from agentic scaffolding with parallel agents reviewing each other&#39;s work.</p>
     <p>And it has already been used to close a real open problem: topologist Marc Lackenby used the system to close <strong>problem 21.10 from the Kourovka Notebook</strong>, an open compendium of group theory problems maintained continuously since 1965 in Novosibirsk.</p>
     <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.06651" target="_blank" rel="noopener">AI Co-Mathematician: Accelerating Mathematicians with Agentic AI (arXiv:2605.06651, 7 May 2026)</a></p>
   </div>
@@ -723,19 +723,19 @@ SL3_BODY = """
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Centrepiece reading (revisited)</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you have not yet read it, return to <strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers (May 2026), <em>A recent experience with GPT-5.5 Pro</em></a></strong>. The Gowers post is the single most useful piece of writing I know on the current state of frontier-model mathematics, partly because Gowers is one of the few people who can credibly assess the quality of the work himself.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you have not yet read it, return to <strong><a href="https://gowers.wordpress.com/2026/05/08/a-recent-experience-with-chatgpt-5-5-pro/" target="_blank" rel="noopener">Gowers (May 2026), <em>A recent experience with GPT-5.5 Pro</em></a></strong>. Gowers is one of the few people who can credibly assess the quality of the work himself, which is what makes his account worth your time on the current state of frontier-model mathematics.</p>
 
   <!-- THEORETICAL PHYSICS -->
   <h2 class="section-title">&#9883; Theoretical Physics</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The theoretical physics cases are particularly notable because they involve named senior physicists collaborating directly with AI on amplitude calculations. The work has appeared as preprints with credentialed authors, not as AI-lab demonstrations.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The theoretical physics cases involve named senior physicists collaborating directly with AI on amplitude calculations. The work has appeared as preprints with credentialed authors rather than as AI-lab demonstrations.</p>
 
   <div class="case-study">
     <h4>&#128221; Single-Minus Gluon Amplitudes &mdash; OpenAI &times; Strominger Group</h4>
     <p><strong><a href="https://arxiv.org/abs/2602.12176" target="_blank" rel="noopener">Guevara, A., Lupsasca, A., Skinner, D., Strominger, A., &amp; Weil, K. (12 February 2026). <em>Single-minus gluon tree amplitudes are nonzero.</em> arXiv:2602.12176</a></strong></p>
     <p>The paper&#39;s own abstract is explicit about the AI contribution:</p>
     <p style="font-style: italic; color: #444; margin: 15px 0; padding: 12px 18px; border-left: 3px solid #003A70; background: #f9f9f9;">&ldquo;The key formula was first conjectured by GPT-5.2 Pro and then proved by a new internal OpenAI model.&rdquo;</p>
-    <p>Human verification was mandatory: the proof was checked by hand using the Berends&ndash;Giele recursion and tested against multiple consistency conditions including Weinberg&#39;s soft theorem. The author list includes Andrew Strominger (Harvard) &mdash; among the most distinguished living theoretical physicists &mdash; and Kevin Weil on behalf of OpenAI. This is not an AI-lab demonstration; it is a real preprint with a real result.</p>
+    <p>Human verification was mandatory: the proof was checked by hand using the Berends&ndash;Giele recursion and tested against multiple consistency conditions including Weinberg&#39;s soft theorem. The author list includes Andrew Strominger (Harvard), among the most distinguished living theoretical physicists, and Kevin Weil on behalf of OpenAI. It is a real preprint with a real result, not an AI-lab demonstration.</p>
   </div>
 
   <div class="case-study">
@@ -746,13 +746,13 @@ SL3_BODY = """
   <div class="case-study">
     <h4>&#128221; Cosmic-String Gravitational Radiation</h4>
     <p><strong><a href="https://arxiv.org/abs/2603.04735" target="_blank" rel="noopener">Brenner, M. P., Cohen-Addad, V., &amp; Woodruff, D. (5 March 2026). <em>Solving an Open Problem in Theoretical Physics using AI-Assisted Discovery.</em> arXiv:2603.04735</a></strong></p>
-    <p>A neuro-symbolic system &mdash; Gemini Deep Think combined with a tree-search framework and automated numerical feedback &mdash; computed the power spectrum of gravitational radiation emitted by cosmic strings. The system discovered <strong>six different analytical methods</strong>; the most elegant uses Gegenbauer-polynomial expansions and is exact and efficient. Of growing relevance given recent Pulsar Timing Array observations of the stochastic gravitational background.</p>
+    <p>A neuro-symbolic system (Gemini Deep Think combined with a tree-search framework and automated numerical feedback) computed the power spectrum of gravitational radiation emitted by cosmic strings. The system discovered <strong>six different analytical methods</strong>; the most elegant uses Gegenbauer-polynomial expansions and is exact and efficient. Of growing relevance given recent Pulsar Timing Array observations of the stochastic gravitational background.</p>
   </div>
 
   <div class="case-study">
     <h4>&#128221; Quantum Many-Body Calculations</h4>
     <p><strong><a href="https://www.nature.com/articles/s42005-025-01956-y" target="_blank" rel="noopener">Pan, H., Mudur, N., Taranto, W., Tikhanovskaya, M., Venugopalan, S., Bahri, Y., Brenner, M. P., &amp; Kim, E.-A. (2025). <em>Quantum many-body physics calculations with large language models.</em> Communications Physics. DOI:10.1038/s42005-025-01956-y</a></strong></p>
-    <p>Tested GPT-4 on 15 quantum many-body papers from the past decade. With multi-step prompt templates, the model correctly derived the final Hartree&ndash;Fock Hamiltonian in <strong>13 of 15</strong> cases. The first systematic evaluation of LLMs on research-level physics calculations &mdash; and a result obtained even before the GPT-5 generation. Pre-registered prompt templates and step-by-step verification matter as much as model capability.</p>
+    <p>Tested GPT-4 on 15 quantum many-body papers from the past decade. With multi-step prompt templates, the model correctly derived the final Hartree&ndash;Fock Hamiltonian in <strong>13 of 15</strong> cases. The first systematic evaluation of LLMs on research-level physics calculations, and a result obtained even before the GPT-5 generation. Pre-registered prompt templates and step-by-step verification matter as much as model capability.</p>
   </div>
 
   <!-- OTHER PARADIGMS -->
@@ -764,7 +764,7 @@ SL3_BODY = """
 
     <div class="card">
       <h3>AI-Newton (Symbolic Discovery)</h3>
-      <p>Fang, Y.-L., Jian, D.-S., Li, X., &amp; Ma, Y.-Q. (April 2025). <em>AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge</em>. <a href="https://arxiv.org/abs/2504.01538" target="_blank" rel="noopener">arXiv:2504.01538</a>. From Peking University. Symbolic regression that, given experimental data, autonomously rediscovers Newton&#39;s second law, energy conservation, and the law of gravitation &mdash; without prior physics knowledge built in.</p>
+      <p>Fang, Y.-L., Jian, D.-S., Li, X., &amp; Ma, Y.-Q. (April 2025). <em>AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge</em>. <a href="https://arxiv.org/abs/2504.01538" target="_blank" rel="noopener">arXiv:2504.01538</a>. From Peking University. Symbolic regression that, given experimental data, autonomously rediscovers Newton&#39;s second law, energy conservation, and the law of gravitation, with no prior physics knowledge built in.</p>
     </div>
 
     <div class="card">
@@ -780,7 +780,7 @@ SL3_BODY = """
   <div class="case-study">
     <h4>&#128221; The AI Scientist v2 &mdash; First AI-Authored Peer-Reviewed Paper</h4>
     <p><strong><a href="https://www.nature.com/articles/s41586-026-10265-5" target="_blank" rel="noopener">Lu, C., Lu, C., Lange, R. T., et al. (26 March 2026). <em>Towards end-to-end automation of AI research.</em> Nature 651, 914&ndash;919. DOI:10.1038/s41586-026-10265-5</a></strong></p>
-    <p>Sakana AI&#39;s second-generation AI Scientist &mdash; agentic tree search, no human-authored code templates &mdash; produced three manuscripts that were submitted to a peer-reviewed workshop at ICLR 2025. <strong>One manuscript passed peer review with an average reviewer score of 6.33</strong>, placing it in roughly the top 45% of submissions. Sakana withdrew the paper before final publication, but the milestone &mdash; first fully AI-generated paper to pass rigorous human peer review &mdash; is real. Includes important caveats about generality and replicability.</p>
+    <p>Sakana AI&#39;s second-generation AI Scientist (agentic tree search, no human-authored code templates) produced three manuscripts that were submitted to a peer-reviewed workshop at ICLR 2025. <strong>One manuscript passed peer review with an average reviewer score of 6.33</strong>, placing it in roughly the top 45% of submissions. Sakana withdrew the paper before final publication, but the milestone is real: the first fully AI-generated paper to pass rigorous human peer review. Includes important caveats about generality and replicability.</p>
   </div>
 
   <!-- CODE AND OTHER DOMAINS -->
@@ -872,12 +872,12 @@ SL4_BODY = """
 
     <div class="card">
       <h3>1. Illusion of Explanatory Breadth</h3>
-      <p>Researchers using AI to summarise a literature feel they&#39;ve covered the field comprehensively. They haven&#39;t. The AI summary reflects which sources are well-represented in training data, which papers attracted attention, which arguments propagate easily. Marginal voices, dissenting views, and recent work all systematically under-appear. The feeling of breadth is real; the breadth is not.</p>
+      <p>Researchers using AI to summarise a literature feel they&#39;ve covered the whole field. They haven&#39;t. The AI summary reflects which sources are well-represented in training data, which papers attracted attention, which arguments propagate easily. Marginal voices, dissenting views, and recent work all systematically under-appear. The feeling of breadth is real; the breadth is not.</p>
     </div>
 
     <div class="card">
       <h3>2. Illusion of Exploratory Objectivity</h3>
-      <p>AI outputs feel neutral &mdash; they don&#39;t come with a visible agenda. But they inherit the biases of training data, the values encoded by RLHF, the framings the model finds most natural. The neutrality is performative, not actual. A researcher using AI to generate hypotheses thinks they are exploring without prejudice; they are exploring the priors of the model.</p>
+      <p>AI outputs feel neutral; they don&#39;t come with a visible agenda. But they inherit the biases of training data, the values encoded by RLHF, the framings the model finds most natural. The neutrality is performative, not actual. A researcher using AI to generate hypotheses thinks they are exploring without prejudice; they are exploring the priors of the model.</p>
     </div>
 
     <div class="card">
@@ -887,7 +887,7 @@ SL4_BODY = """
 
     <div class="card">
       <h3>4. Doing More But Understanding Less</h3>
-      <p>AI accelerates output. More papers can be written, more analyses run, more literature reviewed. But the cognitive work that produces deep understanding &mdash; the slow grappling with a problem, the dead-ends that turn out to matter, the synthesis that emerges from struggle &mdash; can be skipped. Output rises; depth falls. Connect to Week 6&#39;s &ldquo;writing as thinking&rdquo; argument and Kosmyna et al. (2025)&#39;s MIT Media Lab study showing reduced neural engagement in AI-assisted essay writing.</p>
+      <p>AI accelerates output. More papers can be written, more analyses run, more literature reviewed. But the cognitive work that produces deep understanding (the slow grappling with a problem, the dead-ends that turn out to matter, the synthesis that emerges from struggle) can be skipped. Output rises; depth falls. Connect to Week 6&#39;s &ldquo;writing as thinking&rdquo; argument and Kosmyna et al. (2025)&#39;s MIT Media Lab study showing reduced neural engagement in AI-assisted essay writing.</p>
     </div>
 
   </div>
@@ -895,7 +895,7 @@ SL4_BODY = """
   <div class="case-study">
     <h4>&#128221; A 2026 Concrete Example: &ldquo;Vibe Coding&rdquo;</h4>
     <p>The term &ldquo;vibe coding&rdquo; has emerged in 2025&ndash;26 to describe a development style in which programmers describe what they want to an AI assistant in plain English and accept the output without deeply reading the resulting code. The AI handles the syntax; the human handles the intent.</p>
-    <p>For straightforward tasks &mdash; quick scripts, well-trodden patterns &mdash; this is genuinely productive. For research code, it produces exactly the illusion Messeri &amp; Crockett describe: <em>output rises (more analyses run, more pipelines built), depth falls (the developer&#39;s actual understanding of what the code is doing in detail is shallower than it would have been if they had written it themselves)</em>.</p>
+    <p>For straightforward tasks like quick scripts and well-trodden patterns, this is genuinely productive. For research code, it produces exactly the illusion Messeri &amp; Crockett describe: <em>output rises (more analyses run, more pipelines built), depth falls (the developer&#39;s actual understanding of what the code is doing in detail is shallower than it would have been if they had written it themselves)</em>.</p>
     <p>This connects directly to the &ldquo;silent error&rdquo; problem from Week 7: code that runs without errors but produces wrong results is precisely the failure mode that vibe coding amplifies. If you don&#39;t read the code closely, you don&#39;t catch the silent errors. The illusion of doing analysis is real; the analysis itself may not be.</p>
     <p>The pedagogical point: vibe coding is not <em>wrong</em>. It is a real productivity gain for many tasks. But applying it without verification (Sub-Lesson 9.5) to research-grade work is the contemporary face of doing-more-understanding-less.</p>
   </div>
@@ -903,13 +903,13 @@ SL4_BODY = """
   <!-- WHY THIS MATTERS NOW -->
   <h2 class="section-title">&#128302; Why This Argument is More Important in 2026, Not Less</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A natural response to the 2024 paper is: well, that was when AI was unreliable. Now that frontier models are good at maths and physics (9.3), surely the illusions are less of a problem &mdash; the AI is more often right.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A natural response to the 2024 paper is: well, that was when AI was unreliable. Now that frontier models are good at maths and physics (9.3), surely the illusions are less of a problem, since the AI is more often right.</p>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The argument is precisely backwards. The illusions are <em>more</em> dangerous when the AI is more often right, because the surface fluency of AI outputs masks the remaining gaps more effectively. A model that&#39;s right 60% of the time is obviously to-be-checked. A model that&#39;s right 95% of the time looks trustworthy &mdash; and the 5% wrong is harder to spot because it doesn&#39;t come surrounded by other obvious errors.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The argument runs the other way. The illusions are <em>more</em> dangerous when the AI is more often right, because the surface fluency of AI outputs masks the remaining gaps more effectively. A model that&#39;s right 60% of the time is obviously to-be-checked. A model that&#39;s right 95% of the time looks trustworthy, and the 5% wrong is harder to spot because it doesn&#39;t come surrounded by other obvious errors.</p>
 
   <div class="info-box">
     <h4>&#9889; The Calibration Trap</h4>
-    <p>If your overall experience with a model is that it&#39;s usually right, you start trusting it more. Trust calibrated to overall accuracy is then mis-calibrated for the specific cases where the model fails &mdash; which by structural argument (9.2c) cluster in the long tail, exactly where novel research happens.</p>
+    <p>If your overall experience with a model is that it&#39;s usually right, you start trusting it more. Trust calibrated to overall accuracy is then mis-calibrated for the specific cases where the model fails, which by structural argument (9.2c) cluster in the long tail, where novel research happens.</p>
     <p>This is the AI version of the Dunning&ndash;Kruger trap: the less you know about a topic, the harder it is to spot the AI&#39;s errors in that topic, but the more useful the AI feels precisely <em>because</em> you couldn&#39;t do the work yourself. Both cuts of the knife point the same way.</p>
   </div>
 
@@ -955,7 +955,7 @@ SL4_BODY = """
         </tr>
         <tr>
           <td>Week 7 (Silent errors)</td>
-          <td>AI-generated code that runs but produces wrong results &mdash; researcher feels they&#39;ve done analysis but hasn&#39;t verified meaning</td>
+          <td>AI-generated code that runs but produces wrong results; researcher feels they&#39;ve done analysis but hasn&#39;t verified meaning</td>
           <td>Doing more but understanding less</td>
         </tr>
         <tr>
@@ -967,7 +967,7 @@ SL4_BODY = """
     </table>
   </div>
 
-  <p style="color: #555; font-size: 1.05em; margin-top: 20px; line-height: 1.8;">Each week of this course has been giving you fragments. Messeri &amp; Crockett is the unifying frame &mdash; and the reason the previous fragments matter even as the specific models change.</p>
+  <p style="color: #555; font-size: 1.05em; margin-top: 20px; line-height: 1.8;">Each week of this course has been giving you fragments. Messeri &amp; Crockett is the unifying frame, and the reason the previous fragments matter even as the specific models change.</p>
 
   <!-- WHAT TO DO -->
   <h2 class="section-title">&#129534; What to Do About It</h2>
@@ -1003,7 +1003,7 @@ SL5_BODY = """
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The previous sub-lessons established the trajectory (9.1), the failure taxonomy (9.2), the genuine capability cases (9.3), and the durable epistemic concerns (9.4). This sub-lesson is the practical pay-off: how do you actually verify AI output in your own research workflow, and how do you read claims about AI capability critically when the literature is always six to twelve months behind the artefact?</p>
-    <p>Two layers. First, verification of specific AI outputs &mdash; techniques you apply to a particular analysis, citation, or proof. Second, verification of <em>capability claims</em> &mdash; the meta-skill of reading the AI literature without being fooled by dated examples or selection bias. Both are required.</p>
+    <p>Two layers. First, verification of specific AI outputs: techniques you apply to a particular analysis, citation, or proof. Second, verification of <em>capability claims</em>, the meta-skill of reading the AI literature without being fooled by dated examples or selection bias. Both are required.</p>
   </div>
 
   <!-- LAYER 1: VERIFYING OUTPUTS -->
@@ -1015,12 +1015,12 @@ SL5_BODY = """
 
     <div class="card">
       <h3>Known-Answer Testing</h3>
-      <p>Run AI through tasks where you know the correct answer in advance &mdash; synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. The Week 7 silent-error problem &mdash; code that runs but is wrong &mdash; is detected here, nowhere else. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
+      <p>Run AI through tasks where you know the correct answer in advance: synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. The Week 7 silent-error problem, code that runs but is wrong, is detected here and nowhere else. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
     </div>
 
     <div class="card">
       <h3>Adversarial Prompting</h3>
-      <p>Deliberately try to break outputs. Ask trick questions, push back on initial answers, change framings to see whether responses are stable. The Hallucination Hunting activity in 9.6 is exactly this. The point is not to catch the AI being wrong once &mdash; it is to map where the AI is fragile in your domain.</p>
+      <p>Deliberately try to break outputs. Ask trick questions, push back on initial answers, change framings to see whether responses are stable. The Hallucination Hunting activity in 9.6 is exactly this. The aim is not to catch the AI being wrong once; it is to map where the AI is fragile in your domain.</p>
     </div>
 
     <div class="card">
@@ -1030,7 +1030,7 @@ SL5_BODY = """
 
     <div class="card">
       <h3>The &ldquo;Teach It Back&rdquo; Test</h3>
-      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it &mdash; and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are specifically about the gap between feeling you understand and actually understanding. The teach-it-back test closes the gap.</p>
+      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it, and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are about the gap between feeling you understand and actually understanding. The teach-it-back test closes the gap.</p>
     </div>
 
     <div class="card">
@@ -1045,7 +1045,7 @@ SL5_BODY = """
 
     <div class="card">
       <h3>Reproducibility Testing</h3>
-      <p>Does the same prompt produce the same answer on different runs? Different sessions? Different models in the same family? Variable outputs are a signal &mdash; either of model uncertainty (informative) or of stochasticity that may matter for your downstream conclusions. Test before relying on a single run.</p>
+      <p>Does the same prompt produce the same answer on different runs? Different sessions? Different models in the same family? Variable outputs are a signal, either of model uncertainty (informative) or of stochasticity that may matter for your downstream conclusions. Test before relying on a single run.</p>
     </div>
 
     <div class="card">
@@ -1058,16 +1058,16 @@ SL5_BODY = """
   <!-- LAYER 2: VERIFYING CAPABILITY CLAIMS -->
   <h2 class="section-title">&#128202; Layer 2: Verifying Capability Claims (the Dated-Research Trap)</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the meta-skill the rest of the week has been building towards. When you encounter a published claim about what AI can or cannot do &mdash; in a journal article, a conference paper, a news story, a textbook &mdash; treat it as a hypothesis about a system that has since been replaced.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the meta-skill the rest of the week has been building towards. When you encounter a published claim about what AI can or cannot do (in a journal article, a conference paper, a news story, a textbook) treat it as a hypothesis about a system that has since been replaced.</p>
 
   <div class="info-box">
     <h4>&#128221; The Three-Question Check</h4>
     <p><strong>1. Which model and version?</strong> A 2023 paper that says &ldquo;LLMs cannot do X&rdquo; tested GPT-3.5, GPT-4, or Claude 1. None of those is current. Without knowing which specific system was tested, the claim has no clear referent.</p>
     <p><strong>2. When was it tested?</strong> Anything pre-2024 is now historical. The artefact under study has been replaced two or three times since. Useful as a historical landmark; not useful as a current diagnosis.</p>
-    <p><strong>3. Has anyone retested with current frontier models?</strong> If yes, what did the retest find? If no, the claim is unproven on present systems &mdash; not falsified, just unproven. Treat with the same caution you would treat a 2010 claim about smartphone battery life applied to 2026 phones.</p>
+    <p><strong>3. Has anyone retested with current frontier models?</strong> If yes, what did the retest find? If no, the claim is unproven on present systems, not falsified, just unproven. Treat with the same caution you would treat a 2010 claim about smartphone battery life applied to 2026 phones.</p>
   </div>
 
-  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By May 2026, the same questions answered by GPT-5.5 Pro, Gemini Deep Think, or AlphaEvolve give very different answers (see 9.3). Citing Frieder et al. as if it described current AI is now an error &mdash; but the citation persists in the literature precisely because it was a good paper when published.</p>
+  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By May 2026, the same questions answered by GPT-5.5 Pro, Gemini Deep Think, or AlphaEvolve give very different answers (see 9.3). Citing Frieder et al. as if it described current AI is now an error, though the citation persists in the literature because it was a good paper when published.</p>
 
   <div class="case-study">
     <h4>&#128221; A Concrete Example: The Reversal Curse</h4>
@@ -1083,7 +1083,7 @@ SL5_BODY = """
 
   <ul class="styled-list">
     <li><strong>Verification as workflow component, not afterthought.</strong> Every AI-assisted analysis pipeline should have a verification step before any output leaves your workspace. Bake it into the workflow; don&#39;t leave it to memory or virtue.</li>
-    <li><strong>Retest cadence.</strong> When a new frontier model drops, your previous calibration may be wrong &mdash; in either direction. Re-run your known-answer test set. Re-test the failure cases that worried you. Re-test the capability cases that worked. The model that&#39;s frontier today is not the one you calibrated against six months ago.</li>
+    <li><strong>Retest cadence.</strong> When a new frontier model drops, your previous calibration may be wrong in either direction. Re-run your known-answer test set. Re-test the failure cases that worried you. Re-test the capability cases that worked. The model that&#39;s frontier today is not the one you calibrated against six months ago.</li>
     <li><strong>Write down what you found.</strong> Document the model, the date, the prompts, the outputs, the verification steps. This is partly for reproducibility, partly for your own future self when you wonder &ldquo;was that working back then or am I misremembering?&rdquo;, and partly so the field can learn from your domain-specific findings.</li>
   </ul>
 
@@ -1108,7 +1108,7 @@ SL5_BODY = """
   <div class="info-box">
     <h4>&#129504; A 2026 Open Question: &ldquo;Teaching Claude Why&rdquo;</h4>
     <p>In May 2026 Anthropic published research on training models not just to follow safety rules but to understand the <em>reasons</em> behind those rules. The thinking: a model that understands why a rule exists can navigate novel situations the rule-makers didn&#39;t anticipate, and can articulate trade-offs when rules conflict.</p>
-    <p>This raises a verification question that doesn&#39;t have a settled answer yet. <strong>If a model is being trained to understand <em>why</em> it should behave certain ways, does that change how we verify its outputs?</strong> Does understanding motivation make verification easier (the model can explain its reasoning) or harder (the model can construct plausible justifications for almost anything)? It is too early to say definitively. Worth tracking as the research develops &mdash; and worth thinking about for your own discipline: when AI systems can articulate <em>why</em> they reached a conclusion, what new verification opportunities and pitfalls emerge?</p>
+    <p>This raises a verification question that doesn&#39;t have a settled answer yet. <strong>If a model is being trained to understand <em>why</em> it should behave certain ways, does that change how we verify its outputs?</strong> Does understanding motivation make verification easier (the model can explain its reasoning) or harder (the model can construct plausible justifications for almost anything)? It is too early to say. Worth tracking as the research develops, and worth thinking about for your own discipline: when AI systems can articulate <em>why</em> they reached a conclusion, what new verification opportunities and pitfalls emerge?</p>
   </div>
 
   <div class="highlight-box">
@@ -1131,7 +1131,7 @@ SL5_BODY = """
 SL6_BODY = """
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Three activities that operationalise the trajectory frame in your own research domain, and a final assessment that asks you to produce a dated snapshot of AI capability and limitation in your field. The deliverable is explicitly time-stamped and is expected to go stale within months &mdash; that <em>is</em> the teaching move. Continuous re-calibration is the skill being taught, not the ability to write a static report.</p>
+    <p>Three activities that operationalise the trajectory frame in your own research domain, and a final assessment that asks you to produce a dated snapshot of AI capability and limitation in your field. The deliverable is explicitly time-stamped and is expected to go stale within months; that <em>is</em> the teaching move. Continuous re-calibration is the skill being taught, not the ability to write a static report.</p>
   </div>
 
   <!-- ACTIVITY 1: HALLUCINATION HUNTING -->
@@ -1157,7 +1157,7 @@ SL6_BODY = """
   <!-- ACTIVITY 2: CAPABILITY HUNTING -->
   <h2 class="section-title">&#128640; Activity 2: Capability Hunting</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The new activity. Hallucination hunting documents what AI fails at; capability hunting documents what it can do that you didn&#39;t expect. The pairing is the point &mdash; both halves of the calibration in one assessment.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The new activity. Hallucination hunting documents what AI fails at; capability hunting documents what it can do that you didn&#39;t expect. The two halves of the calibration belong in one assessment.</p>
 
   <div class="technical-detail">
     <h4>&#128221; Brief</h4>
@@ -1183,15 +1183,15 @@ SL6_BODY = """
     <h4>&#128221; Brief</h4>
     <p>Find a 2023 or 2024 paper, blog post, or news article that makes a specific empirical claim about an AI limitation. Quote the claim and the model(s) the claim was tested on. Examples to start from (you should find your own):</p>
     <ul class="styled-list">
-      <li>Frieder et al. (2023): GPT-4 cannot do graduate-level mathematics &mdash; retest on GPT-5.5 Pro and Gemini Deep Think</li>
-      <li>Berglund et al. (2023): the reversal curse on GPT-3.5 / GPT-4 &mdash; retest on Opus 4.7 and DeepSeek V4 Pro</li>
-      <li>Magesh et al. (2024): purpose-built legal AI tools hallucinate 17&ndash;33% &mdash; check whether updated versions still do</li>
+      <li>Frieder et al. (2023): GPT-4 cannot do graduate-level mathematics; retest on GPT-5.5 Pro and Gemini Deep Think</li>
+      <li>Berglund et al. (2023): the reversal curse on GPT-3.5 / GPT-4; retest on Opus 4.7 and DeepSeek V4 Pro</li>
+      <li>Magesh et al. (2024): purpose-built legal AI tools hallucinate 17&ndash;33%; check whether updated versions still do</li>
       <li>A claim from your own field, ideally one you&#39;ve cited in your own work</li>
     </ul>
     <p style="margin-top: 12px;">Run the test yourself with current frontier models. Document the results. Reflect on:</p>
     <ul class="styled-list">
       <li>Does the claim still hold? Partially? Has it been entirely superseded?</li>
-      <li>If superseded, what changed &mdash; better training, more parameters, different architecture, different prompting?</li>
+      <li>If superseded, what changed: better training, more parameters, different architecture, different prompting?</li>
       <li>What did the original paper get right structurally, even if the specific empirical claim is now dated?</li>
       <li>Should the original citation still appear in your literature review? With what framing?</li>
     </ul>
@@ -1229,7 +1229,7 @@ SL6_BODY = """
   <div class="info-box">
     <h4>&#127919; Why the Deliverable Acknowledges Its Own Future Obsolescence</h4>
     <p>The point of the snapshot is not the snapshot itself. The point is the practice of producing it: knowing which models you tested, when, with what prompts, with what verification, and being able to reproduce the exercise in six months and notice what has changed.</p>
-    <p>A static body of knowledge about &ldquo;what AI can do in my field&rdquo; is not what we&#39;re asking for. We are asking for a calibrated, dated, retestable starting point that you can update as the field changes &mdash; and the meta-skill of knowing how to update it.</p>
+    <p>We are not asking for a static body of knowledge about &ldquo;what AI can do in my field&rdquo;. We are asking for a calibrated, dated, retestable starting point that you can update as the field changes, and the meta-skill of knowing how to update it.</p>
   </div>
 
   <!-- WEEK SUMMARY -->
@@ -1239,7 +1239,7 @@ SL6_BODY = """
     <h3>What you should leave the week with</h3>
     <p><strong>A trajectory frame.</strong> Every claim about AI capability has an implicit &ldquo;as of [date]&rdquo;. From Sub-Lesson 9.1, you have a calibrated picture of where the May 2026 frontier sits.</p>
     <p><strong>A failure taxonomy.</strong> When you encounter an AI failure, you can locate it in patched / reduced-but-persistent / structural. From Sub-Lesson 9.2, you have the categories.</p>
-    <p><strong>A capability map.</strong> From Sub-Lesson 9.3, you have concrete evidence of where AI is now genuinely strong &mdash; including in fields where two years ago the consensus said it couldn&#39;t contribute.</p>
+    <p><strong>A capability map.</strong> From Sub-Lesson 9.3, you have concrete evidence of where AI is now genuinely strong, including in fields where two years ago the consensus said it couldn&#39;t contribute.</p>
     <p><strong>An epistemic frame that doesn&#39;t go stale.</strong> From Sub-Lesson 9.4, you have the Messeri &amp; Crockett four-illusion framework as a durable lens on what happens to your own understanding when AI does more of the cognitive work.</p>
     <p><strong>Verification protocols.</strong> From Sub-Lesson 9.5, you have practical techniques for checking specific outputs and for reading capability claims critically.</p>
     <p><strong>Practice in your own field.</strong> From Sub-Lesson 9.6&#39;s activities and assessment, you have a documented snapshot of AI in your discipline as of May 2026, and the meta-skill to update it.</p>
@@ -1274,7 +1274,7 @@ SUBLESSONS = [
         "badge": "Week 9 &bull; Sub-Lesson 1",
         "header_emoji": "&#128200;",  # chart with upwards trend
         "header_title": "The Trajectory of LLM Capabilities",
-        "header_subtitle": "From GPT-2 to the May 2026 frontier &mdash; why every claim about &ldquo;what AI can do&rdquo; carries a hidden date stamp",
+        "header_subtitle": "From GPT-2 to the May 2026 frontier: why every claim about &ldquo;what AI can do&rdquo; carries a hidden date stamp",
         "body": SL1_BODY,
     },
     {
@@ -1292,7 +1292,7 @@ SUBLESSONS = [
         "badge": "Week 9 &bull; Sub-Lesson 3",
         "header_emoji": "&#128640;",  # rocket
         "header_title": "Where AI Is Now Genuinely Strong",
-        "header_subtitle": "Concrete cases from 2026 in mathematics and theoretical physics &mdash; with the caveats that prevent miscalibration",
+        "header_subtitle": "Concrete cases from 2026 in mathematics and theoretical physics, with the caveats that prevent miscalibration",
         "body": SL3_BODY,
     },
     {
@@ -1319,7 +1319,7 @@ SUBLESSONS = [
         "badge": "Week 9 &bull; Sub-Lesson 6",
         "header_emoji": "&#127919;",  # bullseye
         "header_title": "Hands-On Activities and Assessment",
-        "header_subtitle": "Hallucination hunting, capability hunting, trajectory tracking &mdash; and a dated capability snapshot that explicitly acknowledges its own future obsolescence",
+        "header_subtitle": "Hallucination hunting, capability hunting, trajectory tracking, and a dated capability snapshot that explicitly acknowledges its own future obsolescence",
         "body": SL6_BODY,
     },
 ]

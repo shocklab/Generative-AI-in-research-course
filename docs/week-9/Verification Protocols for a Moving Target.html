@@ -355,7 +355,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The previous sub-lessons established the trajectory (9.1), the failure taxonomy (9.2), the genuine capability cases (9.3), and the durable epistemic concerns (9.4). This sub-lesson is the practical pay-off: how do you actually verify AI output in your own research workflow, and how do you read claims about AI capability critically when the literature is always six to twelve months behind the artefact?</p>
-    <p>Two layers. First, verification of specific AI outputs &mdash; techniques you apply to a particular analysis, citation, or proof. Second, verification of <em>capability claims</em> &mdash; the meta-skill of reading the AI literature without being fooled by dated examples or selection bias. Both are required.</p>
+    <p>Two layers. First, verification of specific AI outputs: techniques you apply to a particular analysis, citation, or proof. Second, verification of <em>capability claims</em>, the meta-skill of reading the AI literature without being fooled by dated examples or selection bias. Both are required.</p>
   </div>
 
   <!-- LAYER 1: VERIFYING OUTPUTS -->
@@ -367,12 +367,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Known-Answer Testing</h3>
-      <p>Run AI through tasks where you know the correct answer in advance &mdash; synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. The Week 7 silent-error problem &mdash; code that runs but is wrong &mdash; is detected here, nowhere else. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
+      <p>Run AI through tasks where you know the correct answer in advance: synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. The Week 7 silent-error problem, code that runs but is wrong, is detected here and nowhere else. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
     </div>
 
     <div class="card">
       <h3>Adversarial Prompting</h3>
-      <p>Deliberately try to break outputs. Ask trick questions, push back on initial answers, change framings to see whether responses are stable. The Hallucination Hunting activity in 9.6 is exactly this. The point is not to catch the AI being wrong once &mdash; it is to map where the AI is fragile in your domain.</p>
+      <p>Deliberately try to break outputs. Ask trick questions, push back on initial answers, change framings to see whether responses are stable. The Hallucination Hunting activity in 9.6 is exactly this. The aim is not to catch the AI being wrong once; it is to map where the AI is fragile in your domain.</p>
     </div>
 
     <div class="card">
@@ -382,7 +382,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>The &ldquo;Teach It Back&rdquo; Test</h3>
-      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it &mdash; and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are specifically about the gap between feeling you understand and actually understanding. The teach-it-back test closes the gap.</p>
+      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it, and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are about the gap between feeling you understand and actually understanding. The teach-it-back test closes the gap.</p>
     </div>
 
     <div class="card">
@@ -397,7 +397,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Reproducibility Testing</h3>
-      <p>Does the same prompt produce the same answer on different runs? Different sessions? Different models in the same family? Variable outputs are a signal &mdash; either of model uncertainty (informative) or of stochasticity that may matter for your downstream conclusions. Test before relying on a single run.</p>
+      <p>Does the same prompt produce the same answer on different runs? Different sessions? Different models in the same family? Variable outputs are a signal, either of model uncertainty (informative) or of stochasticity that may matter for your downstream conclusions. Test before relying on a single run.</p>
     </div>
 
     <div class="card">
@@ -410,16 +410,16 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <!-- LAYER 2: VERIFYING CAPABILITY CLAIMS -->
   <h2 class="section-title">&#128202; Layer 2: Verifying Capability Claims (the Dated-Research Trap)</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the meta-skill the rest of the week has been building towards. When you encounter a published claim about what AI can or cannot do &mdash; in a journal article, a conference paper, a news story, a textbook &mdash; treat it as a hypothesis about a system that has since been replaced.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the meta-skill the rest of the week has been building towards. When you encounter a published claim about what AI can or cannot do (in a journal article, a conference paper, a news story, a textbook) treat it as a hypothesis about a system that has since been replaced.</p>
 
   <div class="info-box">
     <h4>&#128221; The Three-Question Check</h4>
     <p><strong>1. Which model and version?</strong> A 2023 paper that says &ldquo;LLMs cannot do X&rdquo; tested GPT-3.5, GPT-4, or Claude 1. None of those is current. Without knowing which specific system was tested, the claim has no clear referent.</p>
     <p><strong>2. When was it tested?</strong> Anything pre-2024 is now historical. The artefact under study has been replaced two or three times since. Useful as a historical landmark; not useful as a current diagnosis.</p>
-    <p><strong>3. Has anyone retested with current frontier models?</strong> If yes, what did the retest find? If no, the claim is unproven on present systems &mdash; not falsified, just unproven. Treat with the same caution you would treat a 2010 claim about smartphone battery life applied to 2026 phones.</p>
+    <p><strong>3. Has anyone retested with current frontier models?</strong> If yes, what did the retest find? If no, the claim is unproven on present systems, not falsified, just unproven. Treat with the same caution you would treat a 2010 claim about smartphone battery life applied to 2026 phones.</p>
   </div>
 
-  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By May 2026, the same questions answered by GPT-5.5 Pro, Gemini Deep Think, or AlphaEvolve give very different answers (see 9.3). Citing Frieder et al. as if it described current AI is now an error &mdash; but the citation persists in the literature precisely because it was a good paper when published.</p>
+  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By May 2026, the same questions answered by GPT-5.5 Pro, Gemini Deep Think, or AlphaEvolve give very different answers (see 9.3). Citing Frieder et al. as if it described current AI is now an error, though the citation persists in the literature because it was a good paper when published.</p>
 
   <div class="case-study">
     <h4>&#128221; A Concrete Example: The Reversal Curse</h4>
@@ -435,7 +435,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <ul class="styled-list">
     <li><strong>Verification as workflow component, not afterthought.</strong> Every AI-assisted analysis pipeline should have a verification step before any output leaves your workspace. Bake it into the workflow; don&#39;t leave it to memory or virtue.</li>
-    <li><strong>Retest cadence.</strong> When a new frontier model drops, your previous calibration may be wrong &mdash; in either direction. Re-run your known-answer test set. Re-test the failure cases that worried you. Re-test the capability cases that worked. The model that&#39;s frontier today is not the one you calibrated against six months ago.</li>
+    <li><strong>Retest cadence.</strong> When a new frontier model drops, your previous calibration may be wrong in either direction. Re-run your known-answer test set. Re-test the failure cases that worried you. Re-test the capability cases that worked. The model that&#39;s frontier today is not the one you calibrated against six months ago.</li>
     <li><strong>Write down what you found.</strong> Document the model, the date, the prompts, the outputs, the verification steps. This is partly for reproducibility, partly for your own future self when you wonder &ldquo;was that working back then or am I misremembering?&rdquo;, and partly so the field can learn from your domain-specific findings.</li>
   </ul>
 
@@ -460,7 +460,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="info-box">
     <h4>&#129504; A 2026 Open Question: &ldquo;Teaching Claude Why&rdquo;</h4>
     <p>In May 2026 Anthropic published research on training models not just to follow safety rules but to understand the <em>reasons</em> behind those rules. The thinking: a model that understands why a rule exists can navigate novel situations the rule-makers didn&#39;t anticipate, and can articulate trade-offs when rules conflict.</p>
-    <p>This raises a verification question that doesn&#39;t have a settled answer yet. <strong>If a model is being trained to understand <em>why</em> it should behave certain ways, does that change how we verify its outputs?</strong> Does understanding motivation make verification easier (the model can explain its reasoning) or harder (the model can construct plausible justifications for almost anything)? It is too early to say definitively. Worth tracking as the research develops &mdash; and worth thinking about for your own discipline: when AI systems can articulate <em>why</em> they reached a conclusion, what new verification opportunities and pitfalls emerge?</p>
+    <p>This raises a verification question that doesn&#39;t have a settled answer yet. <strong>If a model is being trained to understand <em>why</em> it should behave certain ways, does that change how we verify its outputs?</strong> Does understanding motivation make verification easier (the model can explain its reasoning) or harder (the model can construct plausible justifications for almost anything)? It is too early to say. Worth tracking as the research develops, and worth thinking about for your own discipline: when AI systems can articulate <em>why</em> they reached a conclusion, what new verification opportunities and pitfalls emerge?</p>
   </div>
 
   <div class="highlight-box">

@@ -363,18 +363,18 @@
 <header>
 <div class="week-badge">Week 5 • Sub-Lesson 5</div>
 <h1>🛠️ <span style="color: #ffffff;">Building Your Research Workflow with Claude</span></h1>
-<p>From generic AI chat to a personalised research assistant — using Claude skills, custom prompts, and CLAUDE.md to supercharge your literature review</p>
+<p>From generic AI chat to a personalised research assistant, using Claude skills, custom prompts, and CLAUDE.md to improve your literature review</p>
 </header>
 <div class="content"><!-- INTRO -->
 <div class="intro-text">
 <h2>What We'll Cover</h2>
-<p>So far this week, we've surveyed the landscape of AI literature tools and confronted the hallucinated citation problem. In this session, we shift from surveying tools to <strong>building something personal</strong>: a Claude-based research workflow tailored to your specific needs.</p>
-<p style="margin-top: 12px;">We'll cover three levels of customisation — from simple prompting techniques anyone can use today, through Claude Projects for ongoing research, to Claude Code's "skills" system for those who want maximum control. You don't need programming experience for any of this, but we will show you what's possible for those who want to go further.</p>
+<p>So far this week, we've surveyed AI literature tools and confronted the hallucinated citation problem. In this session, we shift from surveying tools to <strong>building something personal</strong>: a Claude-based research workflow tailored to your specific needs.</p>
+<p style="margin-top: 12px;">We'll cover three levels of customisation, from simple prompting techniques anyone can use today, through Claude Projects for ongoing research, to Claude Code's "skills" system for those who want maximum control. You don't need programming experience for any of this, but we will show you what's possible for those who want to go further.</p>
 <p style="margin-top: 12px;">The goal is practical: by the end of this session, you should have at least one new technique you can apply to your research <em>today</em>.</p>
 </div>
 <!-- SECTION 1: BETTER PROMPTING -->
 <h2 class="section-title">💬 Level 1: Better Prompting for Literature Review</h2>
-<p>The single biggest improvement most researchers can make is writing better prompts. A vague prompt produces a vague answer. A structured prompt — one that tells Claude exactly what you need, what you don't want, and how to handle uncertainty — produces dramatically better results. Below are four prompt templates you can start using immediately, whether you're on Claude's free tier or any other plan.</p>
+<p>One of the most useful changes a researcher can make is writing better prompts. A vague prompt produces a vague answer. A structured prompt, one that tells Claude what you need, what you don't want, and how to handle uncertainty, produces much better results. Below are four prompt templates you can start using immediately, whether you're on Claude's free tier or any other plan.</p>
 <p>Note however, the first thing that you should do is to read the paper yourself. You won't always read the whole of every paper, but engage with it yourself first so that you can critically engage with the AI.</p>
 <div class="card-grid">
 <div class="card">
@@ -384,7 +384,7 @@
 </div>
 <div class="card">
 <h3>📊 The Synthesis Prompt</h3>
-<p>Use this after you've collected verified papers and uploaded them to Claude. This is where Claude shines — working with documents you've provided.</p>
+<p>Use this after you've collected verified papers and uploaded them to Claude. Claude works well with documents you've provided.</p>
 <div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I have uploaded <strong>[N]</strong> papers on <strong>[topic]</strong>. Please: 1. Identify the key points of agreement across these papers 2. Identify the key points of disagreement or tension 3. Note any methodological differences that might explain different findings 4. Identify gaps — what questions do these papers not address? 5. For every claim you make, cite the specific paper(s) from my uploaded documents using [Author, Year] format</div>
 </div>
 <div class="card">
@@ -404,39 +404,39 @@
 </ul>
 </div>
 </div>
-<div class="info-box"><strong>Why does this work?</strong> LLMs respond to structure. When you give Claude a numbered list of tasks, it addresses each one. When you set explicit constraints ("do not generate citations"), it follows them far more reliably than if you simply hope it won't hallucinate. Think of prompting as giving instructions to a highly capable but very literal research assistant.</div>
+<div class="info-box"><strong>Why does this work?</strong> LLMs respond to structure. When you give Claude a numbered list of tasks, it addresses each one. When you set explicit constraints ("do not generate citations"), it follows them far more reliably than if you hope it won't hallucinate. Think of prompting as giving instructions to a highly capable but very literal research assistant.</div>
 <!-- SECTION 2: CLAUDE PROJECTS -->
 <h2 class="section-title">📁 Level 2: Claude Projects for Ongoing Research</h2>
-<p>Individual prompts are powerful, but they're ephemeral — each new conversation starts from scratch. If you're working on a research project over weeks or months, you need something persistent. That's where <strong>Claude Projects</strong> come in.</p>
-<p style="margin-top: 15px;">Claude Projects (available with a Claude Pro subscription) let you create a dedicated workspace for a research topic. You can upload your key papers, your methodology documents, your research proposal — and set custom instructions that persist across every conversation in that Project. Instead of re-explaining your context every time, Claude already knows who you are, what you're working on, and how you want it to behave.</p>
+<p>Individual prompts are powerful, but they're ephemeral: each new conversation starts from scratch. If you're working on a research project over weeks or months, you need something persistent. <strong>Claude Projects</strong> are built for this.</p>
+<p style="margin-top: 15px;">Claude Projects (available with a Claude Pro subscription) let you create a dedicated workspace for a research topic. You can upload your key papers, your methodology documents and your research proposal, then set custom instructions that persist across every conversation in that Project. Instead of re-explaining your context every time, Claude already knows who you are, what you're working on, and how you want it to behave.</p>
 <div class="technical-detail">
 <h3>Setting Up a Research Project</h3>
 <p style="margin-bottom: 15px;">Here's how to structure an effective Claude Project for your research:</p>
 <ul class="styled-list">
-<li><strong>Create a Project</strong> with a clear name (e.g., "PhD — Water Governance in Cape Town")</li>
+<li><strong>Create a Project</strong> with a clear name (e.g., "PhD: Water Governance in Cape Town")</li>
 <li><strong>Upload your key documents:</strong> your research proposal, 10–20 of your most important papers, your methodology chapter or plan, any relevant data descriptions</li>
 <li><strong>Set custom instructions</strong> that define how Claude should work with you (see the example below)</li>
-<li><strong>Start conversations within the Project</strong> — each one will have access to your documents and follow your custom instructions</li>
+<li><strong>Start conversations within the Project.</strong> Each one will have access to your documents and follow your custom instructions</li>
 </ul>
 </div>
-<p style="margin-top: 20px;">The custom instructions are the key to making this work well. Here is an example you can adapt:</p>
+<p style="margin-top: 20px;">It is worth spending time on the custom instructions. Here is an example you can adapt:</p>
 <div class="technical-detail">
 <h3>Example Project Instructions</h3>
 <div class="prompt-example"><span class="prompt-label">CUSTOM INSTRUCTIONS</span> You are my research assistant for my PhD on <strong>[topic]</strong> in <strong>[department]</strong> at <strong>[university]</strong>. My research question is: <strong>[question]</strong> My methodology is: <strong>[approach]</strong> When helping me: - Always ground your responses in the papers I've uploaded to this project - When I ask about the literature, cite specific papers from my project using [Author, Year] - Never generate citations from memory — if I need new papers, direct me to search Semantic Scholar or Google Scholar - When I ask you to summarise, always note what a paper's methodology was, not just its findings - Flag when my uploaded papers disagree with each other - Be direct about limitations and gaps - If I ask something that my uploaded papers don't address, say so clearly</div>
 </div>
-<div class="info-box"><strong>Practical tip:</strong> Start small. Upload your 5 most important papers and your research proposal. As you find more relevant papers through your searches, add them to the Project over time. This creates a growing, curated knowledge base that Claude can draw on — and because every paper in it was found and verified by <em>you</em>, the citation problem is greatly reduced.</div>
+<div class="info-box"><strong>Practical tip:</strong> Start small. Upload your 5 most important papers and your research proposal. As you find more relevant papers through your searches, add them to the Project over time. This creates a growing, curated knowledge base that Claude can draw on, and because every paper in it was found and verified by <em>you</em>, the citation problem is greatly reduced.</div>
 <!-- SECTION 3: CLAUDE CODE SKILLS -->
 <h2 class="section-title">⚡ Level 3: Claude Code Skills (For the Adventurous)</h2>
-<p>This section is for those who want to go further. Most students won't need this right now, but understanding what's possible will help you decide how deep you want to go — and give you a sense of where these tools are heading.</p>
+<p>This section is for those who want to go further. Most students won't need this right now, but understanding what's possible will help you decide how deep you want to go, and give you a sense of where these tools are heading.</p>
 <div class="technical-detail">
 <h3>What is Claude Code?</h3>
-<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer — it can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. It's free to try with a Claude account.</p>
-<p style="margin-top: 10px;">You interact with it by typing commands in your terminal (the command line), and it responds by taking actions — reading your files, creating new ones, running searches, and reporting back what it found.</p>
+<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer. It can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. It's free to try with a Claude account.</p>
+<p style="margin-top: 10px;">You interact with it by typing commands in your terminal (the command line), and it responds by taking actions: reading your files, creating new ones, running searches, and reporting back what it found.</p>
 </div>
 <div class="technical-detail">
 <h3>What is CLAUDE.md?</h3>
-<p>A <code>CLAUDE.md</code> file is a special Markdown file that acts as <strong>persistent instructions</strong> for Claude Code. It's read automatically at the start of every session — like giving Claude a "constitution" for how to work with you. You place it in your project folder, and every time you start Claude Code in that folder, it reads the file and follows those instructions.</p>
-<p style="margin-top: 10px;">Think of it as the equivalent of Project instructions (Level 2), but stored as a file on your computer rather than in Claude's web interface — which means you can version-control it, share it with collaborators, and customise it to a much greater degree.</p>
+<p>A <code>CLAUDE.md</code> file is a special Markdown file that acts as <strong>persistent instructions</strong> for Claude Code. It's read automatically at the start of every session, like giving Claude a "constitution" for how to work with you. You place it in your project folder, and every time you start Claude Code in that folder, it reads the file and follows those instructions.</p>
+<p style="margin-top: 10px;">Think of it as the equivalent of Project instructions (Level 2), but stored as a file on your computer rather than in Claude's web interface. That means you can version-control it, share it with collaborators, and customise it to a much greater degree.</p>
 </div>
 <p style="margin-top: 20px;">Here is an example <code>CLAUDE.md</code> for a research project:</p>
 <div class="code-block"><span class="comment"># Research Project: [Your Topic]</span> <span class="comment">## My Research Context</span> - PhD student in [Department], UCT - Research question: [Your question] - Methodology: [Your approach] - Stage: Literature review phase <span class="comment">## Rules for Literature Work</span> - NEVER generate citations from memory - Always verify claims against uploaded sources - When I ask for papers, search Semantic Scholar API instead of guessing - Flag uncertainty with [UNVERIFIED] tags - Maintain my bibliography in Zotero-compatible format <span class="comment">## My Preferred Workflow</span> 1. I provide a research question or theme 2. You help me formulate search queries 3. I run the searches in Semantic Scholar/Elicit 4. I upload the papers I find 5. You help me synthesise and critically evaluate them</div>
@@ -453,19 +453,19 @@
 </ol>
 <p style="margin-top: 15px;">Instead of remembering and typing a long prompt each time, you simply type <code>/lit-review</code> and the skill guides you through the entire process.</p>
 </div>
-<div class="info-box"><strong><a href="https://www.chatprd.ai/how-i-ai/teresa-torres-claude-code-obsdian-task-management" target="_blank" rel="noopener">The Teresa Torres Approach</a>:</strong> Researcher Teresa Torres uses Claude Code with modular context files — separate files for different aspects of her research context, loaded as needed. Her daily workflow includes an automated research digest that surfaces new papers relevant to her predefined topics. This kind of setup takes time to build, but once in place it means new relevant research comes to you rather than you having to go looking for it.</div>
+<div class="info-box"><strong><a href="https://www.chatprd.ai/how-i-ai/teresa-torres-claude-code-obsdian-task-management" target="_blank" rel="noopener">The Teresa Torres Approach</a>:</strong> Researcher Teresa Torres uses Claude Code with modular context files, separate files for different aspects of her research context, loaded as needed. Her daily workflow includes an automated research digest that surfaces new papers relevant to her predefined topics. This kind of setup takes time to build, but once in place it means new relevant research comes to you rather than you having to go looking for it.</div>
 <!-- SECTION 4: PRIVACY AND DATA -->
 <h2 class="section-title">🔒 A Note on Privacy and Data</h2>
 <div class="warning-box"><strong>⚠️ Important:</strong> When you upload papers to Claude (or any AI tool), those papers are processed on external servers. Before uploading anything, consider the following:
 <ul style="margin-top: 12px; padding-left: 20px; line-height: 1.9;">
 <li><strong>Check your university's data policy</strong> and your ethics approval before uploading sensitive or restricted data</li>
 <li><strong>For sensitive research data,</strong> consider using Claude's API with appropriate data handling agreements, or use on-premise solutions if available through your institution</li>
-<li><strong>NotebookLM (Google) and Claude Projects</strong> each have their own data policies — read them before uploading</li>
-<li><strong>Never upload papers that are under confidential review</strong> (e.g., manuscripts you are reviewing for a journal — these are shared with you in confidence)</li>
-<li><strong>Be cautious with unpublished data</strong> — if your research involves participant data, interview transcripts, or other sensitive material, check whether uploading it to a cloud service is compliant with your ethics approval</li>
+<li><strong>NotebookLM (Google) and Claude Projects</strong> each have their own data policies; read them before uploading</li>
+<li><strong>Never upload papers that are under confidential review</strong> (e.g., manuscripts you are reviewing for a journal, which are shared with you in confidence)</li>
+<li><strong>Be cautious with unpublished data.</strong> If your research involves participant data, interview transcripts, or other sensitive material, check whether uploading it to a cloud service is compliant with your ethics approval</li>
 </ul>
 </div>
-<p style="margin-top: 15px;">This is not a reason to avoid these tools entirely — it is a reason to be thoughtful about <em>what</em> you upload and <em>where</em>. Published papers are generally safe to upload. Your own writing drafts are fine. Sensitive participant data or confidential manuscripts require more care.</p>
+<p style="margin-top: 15px;">None of this is a reason to avoid these tools entirely. It is a reason to be thoughtful about <em>what</em> you upload and <em>where</em>. Published papers are generally safe to upload. Your own writing drafts are fine. Sensitive participant data or confidential manuscripts require more care.</p>
 <!-- SECTION 5: CHOOSING YOUR LEVEL -->
 <h2 class="section-title">🎯 Choosing Your Level</h2>
 <p>There is no single right way to use AI in your research workflow. The best approach depends on how often you use these tools, what stage of research you're in, and how comfortable you are with technology. Here are the three levels summarised:</p>
@@ -474,7 +474,7 @@
 <div class="level-tag">Everyone</div>
 <h3>💬 Better Prompts</h3>
 <p><strong>Start today, no extra tools needed.</strong></p>
-<p style="margin-top: 8px;">Works with Claude's free tier (or any LLM). Use the structured prompt templates from Section 1 to get dramatically better results from every conversation. The key principles: be specific, set constraints, separate discovery from analysis.</p>
+<p style="margin-top: 8px;">Works with Claude's free tier (or any LLM). Use the structured prompt templates from Section 1 to get much better results from every conversation. The key principles: be specific, set constraints, separate discovery from analysis.</p>
 <p style="margin-top: 8px;"><strong>Best for:</strong> Everyone, regardless of experience level.</p>
 </div>
 <div class="card level-card">
@@ -492,21 +492,21 @@
 <p style="margin-top: 8px;"><strong>Best for:</strong> Researchers who want maximum control and are comfortable (or willing to learn) working in the terminal.</p>
 </div>
 </div>
-<div class="highlight-box"><strong>The most important thing is not which level you use</strong> — it's the principles behind all three: separate discovery from synthesis, ground everything in verified sources, build citation verification into your workflow from the start, and be explicit with AI about what you want and what you don't want it to do.</div>
+<div class="highlight-box"><strong>Which level you use matters less than the principles behind all three:</strong> separate discovery from synthesis, ground everything in verified sources, build citation verification into your workflow from the start, and be explicit with AI about what you want and what you don't want it to do.</div>
 <!-- SUMMARY -->
 <div class="intro-text" style="margin-top: 50px;">
 <h2>Summary &amp; Key Takeaways</h2>
-<p>In this session, we moved from understanding AI tools to actually building with them. The three levels of customisation — better prompts, Claude Projects, and Claude Code skills — give you a pathway from simple improvements you can make right now to sophisticated workflows you can grow into over time.</p>
+<p>In this session, we moved from understanding AI tools to building with them. The three levels of customisation (better prompts, Claude Projects, and Claude Code skills) give you a pathway from simple improvements you can make right now to more involved workflows you can grow into over time.</p>
 <p style="margin-top: 12px;"><strong>Key takeaways:</strong></p>
 <ul class="styled-list">
-<li><strong>Structure your prompts</strong> with numbered tasks, explicit constraints, and anti-hallucination safeguards — this alone will transform your results</li>
+<li><strong>Structure your prompts</strong> with numbered tasks, explicit constraints, and anti-hallucination safeguards, which on its own will improve your results</li>
 <li><strong>Separate finding papers from analysing them:</strong> use Semantic Scholar, Elicit, or Google Scholar to discover papers, then upload verified PDFs to Claude for synthesis</li>
-<li><strong>Claude Projects</strong> give you persistent context — upload your key papers once and have Claude remember your research context across sessions</li>
+<li><strong>Claude Projects</strong> give you persistent context: upload your key papers once and have Claude remember your research context across sessions</li>
 <li><strong>Claude Code and CLAUDE.md</strong> offer maximum customisation for those who want automated, repeatable research workflows</li>
 <li><strong>Always check data policies</strong> before uploading sensitive or confidential material to any AI tool</li>
 <li><strong>The principles matter more than the tools:</strong> verify sources, flag uncertainty, and never let AI-generated citations go unchecked</li>
 </ul>
-<p style="margin-top: 15px;"><strong>Next session:</strong> We put everything together with hands-on activities — a comparative search challenge, a citation verification exercise, and the weekly assessment. Come ready to work with your own research topic.</p>
+<p style="margin-top: 15px;"><strong>Next session:</strong> We put everything together with hands-on activities: a comparative search challenge, a citation verification exercise, and the weekly assessment. Come ready to work with your own research topic.</p>
 </div>
 </div>
 <!-- PAGE-NAV-START -->

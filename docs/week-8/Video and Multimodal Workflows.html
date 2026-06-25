@@ -83,7 +83,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="intro-text">
       <h2>What We'll Cover</h2>
-      <p>Video is the last frontier of multimodal AI for research &mdash; and in some ways the most powerful. Gemini&#39;s current Pro tier can process up to approximately one hour of video at standard settings in a single call (longer at lower FPS), simultaneously understanding the audio, the visual content, and any text that appears on screen. For researchers who work with recorded lectures, experimental footage, classroom observations, or video interviews, this represents a genuine workflow transformation.</p>
+      <p>Video is the last frontier of multimodal AI for research, and in some ways the most powerful. Gemini&#39;s current Pro tier can process up to approximately one hour of video at standard settings in a single call (longer at lower FPS), simultaneously understanding the audio, the visual content, and any text that appears on screen. For researchers who work with recorded lectures, experimental footage, classroom observations, or video interviews, this changes how the work gets done.</p>
       <p>But it also introduces compounded failure modes. When image understanding, audio transcription, and language reasoning all interact in a single analysis, errors from each layer can multiply. This sub-lesson covers what video AI can actually do, the architecture differences that matter, how to build reliable multimodal workflows, and the failure modes specific to video analysis.</p>
     </div>
 
@@ -93,11 +93,11 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="card-grid">
       <div class="card">
         <h3>Long-Form Processing</h3>
-        <p>Gemini&#39;s Pro tier currently processes up to 1&nbsp;million tokens &mdash; roughly one hour of video at standard resolution, more at lower FPS settings, or around 8&ndash;9 hours of audio-only content. For mostly-static content like lectures with slides, the low-FPS parameter processes one frame per second instead of the default, enabling substantially longer recordings at lower cost. Check current API documentation for precise media-duration equivalents, which vary by resolution and FPS settings.</p>
+        <p>Gemini&#39;s Pro tier currently processes up to 1&nbsp;million tokens: roughly one hour of video at standard resolution, more at lower FPS settings, or around 8&ndash;9 hours of audio-only content. For mostly-static content like lectures with slides, the low-FPS parameter processes one frame per second instead of the default, allowing much longer recordings at lower cost. Check current API documentation for precise media-duration equivalents, which vary by resolution and FPS settings.</p>
       </div>
       <div class="card">
         <h3>Simultaneous Audio + Visual Understanding</h3>
-        <p>Gemini's native multimodal architecture means the model jointly reasons over what is said and what is shown in the same pass. It can notice when a speaker's verbal claim conflicts with what is on the slide behind them &mdash; something a sequential pipeline (transcribe first, then analyse) would miss entirely.</p>
+        <p>Gemini's native multimodal architecture means the model jointly reasons over what is said and what is shown in the same pass. It can notice when a speaker's verbal claim conflicts with what is on the slide behind them, something a sequential pipeline (transcribe first, then analyse) would miss entirely.</p>
       </div>
       <div class="card">
         <h3>Temporal Reasoning</h3>
@@ -105,14 +105,14 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
       </div>
       <div class="card">
         <h3>Text in Video</h3>
-        <p>Identifying and reading text that appears on screen &mdash; slide content, whiteboard working, lab equipment labels, safety signage in fieldwork footage, captions and on-screen graphics. For educational researchers analysing recorded lectures, this means the model can work with slide text without requiring a separate slide deck.</p>
+        <p>Identifying and reading text that appears on screen: slide content, whiteboard working, lab equipment labels, safety signage in fieldwork footage, captions and on-screen graphics. For educational researchers analysing recorded lectures, this means the model can work with slide text without requiring a separate slide deck.</p>
       </div>
     </div>
 
     <!-- Section 2 -->
     <h2 class="section-title">&#128200; Research Use Cases</h2>
 
-    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">The table below maps common research video types to the most appropriate AI tools and flags the most important caveat for each application. No row is caveat-free.</p>
+    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">The table below maps common research video types to the most appropriate AI tools and flags the main caveat for each application. No row is caveat-free.</p>
 
     <table class="comparison-table">
       <thead>
@@ -173,18 +173,18 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <!-- Section 3 -->
     <h2 class="section-title">&#9881;&#65039; Native Multimodal vs. Text-Centric Architectures</h2>
 
-    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">This distinction matters for choosing the right tool &mdash; and for understanding what the tool can and cannot do.</p>
+    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">This distinction matters for choosing the right tool, and for understanding what the tool can and cannot do.</p>
 
     <div class="technical-detail">
       <h4>Two Different Architectures</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Text-centric models (current Claude versions, earlier text-only models):</strong> The model processes text. Images are converted to text descriptions; audio is transcribed to text; then the text model reasons over the result. Each conversion step loses information. Claude does not currently process audio or video natively &mdash; you transcribe audio first, then bring the transcript to Claude for analysis. This pipeline works well for many tasks, but the modalities are always handled sequentially, never jointly.</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Text-centric models (current Claude versions, earlier text-only models):</strong> The model processes text. Images are converted to text descriptions; audio is transcribed to text; then the text model reasons over the result. Each conversion step loses information. Claude does not currently process audio or video natively: you transcribe audio first, then bring the transcript to Claude for analysis. This pipeline works well for many tasks, but the modalities are always handled sequentially, never jointly.</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Natively multimodal models (Gemini, GPT family):</strong> Trained end-to-end on all modalities simultaneously. The model can reason about the relationship between what was said and what was shown without an intermediate text conversion. This is genuinely different &mdash; not just faster, but architecturally capable of cross-modal reasoning that a sequential pipeline cannot replicate.</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Natively multimodal models (Gemini, GPT family):</strong> Trained end-to-end on all modalities simultaneously. The model can reason about the relationship between what was said and what was shown without an intermediate text conversion. The difference is architectural, not just speed: these models can do cross-modal reasoning that a sequential pipeline cannot replicate.</p>
 
       <div class="info-box" style="margin-top: 10px;">
         <h4>&#128161; Practical Guidance</h4>
-        <p>If the <em>relationship</em> between audio and visual content matters &mdash; a speaker gesturing at a chart while explaining it, experimental footage where what you hear contextualises what you see &mdash; use a natively multimodal model. If the modalities can be analysed independently, sequential processing with Claude is often more predictable, more auditable, and easier to verify.</p>
+        <p>If the <em>relationship</em> between audio and visual content matters (a speaker gesturing at a chart while explaining it, experimental footage where what you hear contextualises what you see), use a natively multimodal model. If the modalities can be analysed independently, sequential processing with Claude is often more predictable, more auditable, and easier to verify.</p>
       </div>
     </div>
 
@@ -198,7 +198,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
       <li><strong>Use transcription to bridge audio to text.</strong> Run audio through Whisper or OpenAI transcription, review the transcript for obvious errors, then use the verified transcript in your text analysis pipeline. A reviewed transcript gives you a stable, auditable record that the audio alone does not.</li>
       <li><strong>For native video analysis, provide explicit context.</strong> Tell the model what the video is, what you are looking for, and what background knowledge it needs. Do not assume the model has domain-specific context. A classroom recording means something different to an education researcher than to a model with no information about the study context.</li>
       <li><strong>Cross-check across modalities.</strong> If you have both a transcript and a video recording, spot-check the AI's video-based analysis against the transcript. Consistent findings across modalities increase confidence; contradictions flag errors that require human review.</li>
-      <li><strong>Verify temporal claims.</strong> Any AI statement about "when" something happens in a video should be verified by jumping to that timestamp. Temporal reasoning is one of the weakest points of current video AI &mdash; models confidently place events at the wrong point in a recording.</li>
+      <li><strong>Verify temporal claims.</strong> Any AI statement about "when" something happens in a video should be verified by jumping to that timestamp. Temporal reasoning is one of the weakest points of current video AI; models confidently place events at the wrong point in a recording.</li>
     </ol>
 
     <!-- Section 5 -->
@@ -206,7 +206,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="warning-box">
       <h4>Compounding Errors</h4>
-      <p>Video analysis combines image understanding, audio transcription, and language reasoning. An error in any one layer propagates to the final output. A misheard word in the transcription can change the model's interpretation of a visual element that would otherwise have been understood correctly. This compounding effect means the overall error rate for video analysis is higher than for any single modality &mdash; even when each individual component performs well.</p>
+      <p>Video analysis combines image understanding, audio transcription, and language reasoning. An error in any one layer propagates to the final output. A misheard word in the transcription can change the model's interpretation of a visual element that would otherwise have been understood correctly. This compounding effect means the overall error rate for video analysis is higher than for any single modality, even when each individual component performs well.</p>
     </div>
 
     <div class="warning-box">
@@ -216,7 +216,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="warning-box">
       <h4>Attention Limits in Long Videos</h4>
-      <p>Despite the large context window, models do not attend equally to all parts of long videos. Important events in the middle of a long recording may receive less reliable analysis than those at the beginning or end. This is the "lost in the middle" problem applied to video &mdash; first documented for long text documents by Liu et al. (2024), a foundational finding that frontier models have partially addressed but not eliminated. For critical content in the middle of a long recording, consider submitting that segment separately and not relying on the model to find it unprompted.</p>
+      <p>Despite the large context window, models do not attend equally to all parts of long videos. Important events in the middle of a long recording may receive less reliable analysis than those at the beginning or end. This is the "lost in the middle" problem applied to video, first documented for long text documents by Liu et al. (2024), which frontier models have partially addressed but not eliminated. For critical content in the middle of a long recording, consider submitting that segment separately and not relying on the model to find it unprompted.</p>
     </div>
 
     <div class="warning-box">
@@ -229,7 +229,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="resource-placeholder">
       <h4>Supplementary Reading</h4>
-      <p>Gemini Pro tier documentation on video understanding &mdash; covers token limits, FPS parameters, and best-practice prompting for video analysis.<br>
+      <p>Gemini Pro tier documentation on video understanding. Covers token limits, FPS parameters, and best-practice prompting for video analysis.<br>
       <a href="https://developers.googleblog.com/en/gemini-2-5-video-understanding/" target="_blank" rel="noopener" style="color: #003A70;">developers.googleblog.com/en/gemini-2-5-video-understanding/</a></p>
     </div>
 
@@ -243,8 +243,8 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <!-- Summary -->
     <div class="intro-text" style="margin-top: 50px;">
       <h2>Summary</h2>
-      <p>Gemini's current video capabilities are genuinely impressive &mdash; up to ~1 hour of video at standard settings (longer at low FPS), simultaneous audio and visual understanding, temporal reasoning, and on-screen text reading. But the key architectural distinction is between natively multimodal models (which reason across modalities jointly) and text-centric models (which convert each modality to text sequentially). Neither approach is universally better &mdash; choose based on whether cross-modal relationships matter for your task.</p>
-      <p>A principled multimodal workflow starts with structured modalities, uses verified transcription as a text bridge, provides explicit context for video analysis, cross-checks across modalities, and always verifies temporal claims directly. The failure modes specific to video &mdash; compounding errors, temporal hallucination, middle-of-video attention drops, and imperfect speaker diarization &mdash; require active verification habits that go beyond what is needed for single-modality tasks.</p>
+      <p>Gemini's current video capabilities cover a lot of ground: up to ~1 hour of video at standard settings (longer at low FPS), simultaneous audio and visual understanding, temporal reasoning, and on-screen text reading. The architectural distinction is between natively multimodal models (which reason across modalities jointly) and text-centric models (which convert each modality to text sequentially). Choose based on whether cross-modal relationships matter for your task; neither approach wins everywhere.</p>
+      <p>A principled multimodal workflow starts with structured modalities, uses verified transcription as a text bridge, provides explicit context for video analysis, cross-checks across modalities, and always verifies temporal claims directly. The failure modes specific to video (compounding errors, temporal hallucination, middle-of-video attention drops, and imperfect speaker diarization) require active verification habits that go beyond what is needed for single-modality tasks.</p>
       <p><strong>Next:</strong> Sub-Lesson 6 puts all of this into practice with three hands-on activities and the weekly assessment.</p>
     </div>
 

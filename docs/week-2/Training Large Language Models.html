@@ -292,13 +292,13 @@
 <div class="content">
 <div class="intro-text">
 <h2>What We'll Cover</h2>
-<p>Last session, we dissected the transformer architecture—the <em>structure</em> of modern LLMs. But how do billions of parameters actually learn to generate coherent, knowledgeable text? This session covers the training process: how we go from random weights and massive text corpora to models that can write, reason, and assist with research.</p>
+<p>Last session, we dissected the transformer architecture, the <em>structure</em> of modern LLMs. But how do billions of parameters actually learn to generate coherent, knowledgeable text? This session covers the training process: how we go from random weights and massive text corpora to models that can write, reason, and assist with research.</p>
 <p>We'll explore the pre-training objective, the scale of data required, the optimization techniques that make training feasible, and the staggering computational costs involved. We'll also examine scaling laws that predict model performance and the parallelism strategies that enable training at unprecedented scales.</p>
-<p><strong>Key question:</strong> Why does training a frontier model cost tens of millions of dollars—and what are researchers buying with that money?</p>
+<p><strong>Key question:</strong> Why does training a frontier model cost tens of millions of dollars, and what are researchers buying with that money?</p>
 </div>
 <!-- SECTION 1: PRE-TRAINING OBJECTIVES -->
 <h2 class="section-title">🎯 Pre-Training Objectives</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Before we can train a model, we need a learning objective: what task should the model solve during training? Modern LLMs primarily use one deceptively simple objective.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Before we can train a model, we need a learning objective: what task should the model solve during training? Modern LLMs primarily use one simple objective.</p>
 <div class="highlight-box">
 <h3>🔑<span style="color: #ffffff;"> Next-Token Prediction</span></h3>
 <p>The dominant pre-training objective for modern decoder-only LLMs: given a sequence of tokens, predict the next token.</p>
@@ -328,7 +328,7 @@
 </ul>
 <div class="info-box" style="margin-top: 15px;">
 <h4>💡 Self-Supervised Learning</h4>
-<p>No human labels needed—the text itself provides supervision. This is why LLMs can train on very large corpora without manual annotation.</p>
+<p>No human labels needed: the text itself provides supervision. This is why LLMs can train on very large corpora without manual annotation.</p>
 </div>
 </div>
 <div class="card">
@@ -347,7 +347,7 @@
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bKdc5O54GiM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
 <!-- SECTION 2: TRAINING DATA -->
 <h2 class="section-title">📚 Training Data: Scale, Quality, and Curation</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The data you train on determines what your model can pick up. Modern LLMs are trained on enormous token counts from diverse sources—but data quality and composition matter as much as quantity.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The data you train on determines what your model can pick up. Modern LLMs are trained on enormous token counts from diverse sources, but data quality and composition matter as much as quantity.</p>
 <div class="technical-detail">
 <h4>📊 Data Scale Evolution</h4>
 <p style="margin-bottom: 15px;">Training data has grown dramatically:</p>
@@ -420,7 +420,7 @@
 </div>
 <div class="card">
 <h3>Data Composition Matters</h3>
-<p>It's not just volume—the mix of data types affects model behavior:</p>
+<p>The mix of data types, not just the volume, affects model behavior:</p>
 <ul class="styled-list">
 <li><strong>Code data:</strong> Often correlates with better performance on structured reasoning tasks (causal mechanism debated)</li>
 <li><strong>Mathematical text:</strong> Can improve symbolic/quantitative patterns (often still brittle)</li>
@@ -623,7 +623,7 @@
 </div>
 <!-- SECTION 5: SCALING LAWS -->
 <h2 class="section-title">📈 Scaling Laws: Predicting Performance</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Can we predict how good a model will be before spending millions on training? Scaling laws say yes—with important caveats.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Can we predict how good a model will be before spending millions on training? Scaling laws say yes, with important caveats.</p>
 <div class="highlight-box">
 <h3>🔮 <span style="color: #ffffff;">The Scaling Law Hypothesis</span></h3>
 <p><span style="color: #ffffff;">Model performance (often measured by loss on held-out data) follows predictable power laws as a function of:</span></p>
@@ -722,7 +722,7 @@
 <li><strong>Process:</strong> Different GPUs process different batches</li>
 <li><strong>Synchronization:</strong> Aggregate gradients across GPUs</li>
 <li><strong>Pros:</strong> Simple, good utilization</li>
-<li><strong>Cons:</strong> Memory-limited—very large models won’t fit on one GPU</li>
+<li><strong>Cons:</strong> Memory-limited; very large models won’t fit on one GPU</li>
 <li><strong>Used for:</strong> Smaller models or when combined with sharding</li>
 </ul>
 </div>
@@ -740,7 +740,7 @@
 </div>
 <div class="card">
 <h3>Pipeline Parallelism</h3>
-<p>Split model into stages—each GPU handles specific layers.</p>
+<p>Split model into stages, each GPU handling specific layers.</p>
 <ul class="styled-list">
 <li><strong>Setup:</strong> Layers partitioned into pipeline stages</li>
 <li><strong>Microbatching:</strong> Keeps all stages busy</li>
@@ -786,13 +786,13 @@
 <p>You now understand how LLMs are trained at scale:</p>
 <ul class="styled-list" style="margin-top: 15px;">
 <li><strong>Pre-training objective:</strong> Next-token prediction is the dominant driver for decoder-only LMs (sometimes with additional training tricks)</li>
-<li><strong>Training data:</strong> Massive corpora from curated web, books, code, papers—quality and composition matter</li>
+<li><strong>Training data:</strong> Massive corpora from curated web, books, code, papers; quality and composition matter</li>
 <li><strong>Optimization:</strong> AdamW + LR schedules + large global batches + stability techniques</li>
 <li><strong>Compute costs:</strong> Large-scale training requires enormous compute; exact costs depend on hardware and efficiency</li>
 <li><strong>Scaling laws:</strong> Loss often scales predictably with compute; Chinchilla emphasizes balancing model size and tokens</li>
 <li><strong>Parallelism:</strong> Data + tensor + pipeline parallelism distributes training across many GPUs</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session (Week 2.3):</strong> We'll explore what happens <em>after</em> pre-training—fine-tuning, RLHF, and alignment techniques that turn raw language models into helpful AI assistants.</p>
+<p style="margin-top: 20px;"><strong>Next session (Week 2.3):</strong> We'll explore what happens <em>after</em> pre-training: fine-tuning, RLHF, and alignment techniques that turn raw language models into helpful AI assistants.</p>
 </div>
 </div>
 <!-- PAGE-NAV-START -->
