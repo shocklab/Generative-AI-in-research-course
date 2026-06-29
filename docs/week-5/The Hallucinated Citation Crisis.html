@@ -192,11 +192,9 @@ html.hl .vbtn[data-m="l"] .ls{display:inline}
 html.hr .vbtn[data-m="r"] .lh{display:none}
 html.hr .vbtn[data-m="r"] .ls{display:inline}
 @media(min-width:981px){
-  html.hl .leftnav{display:none}
-  html.hr .rightrail{display:none}
-  html.hl .shell{grid-template-columns:minmax(0,1fr) 248px}
-  html.hr .shell{grid-template-columns:218px minmax(0,1fr)}
-  html.hl.hr .shell{grid-template-columns:minmax(0,1fr)}
+  /* keep the columns + gaps in place; just blank the sidebar content */
+  html.hl .leftnav{visibility:hidden}
+  html.hr .rightrail{visibility:hidden}
 }
 @media(max-width:980px){.sidebarctl{display:none}}
 @media print{.sidebarctl{display:none}}
