@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -392,7 +392,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <p style="margin-top: 8px"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener">Mineault, P. (2026). Claude Code for Scientists. NeuroAI.</a></p>
 </div>
 <div class="warning-box"><strong>Important limitations of Claude Code for data analysis:</strong>
-<ul style="margin-top: 10px; padding-left: 20px">
+<ul style="margin-top: 10px">
 <li>Claude Code sends information to Anthropic's servers. Do not use it with data that cannot leave your institution (see Privacy section below).</li>
 <li>Claude may modify files in your project directory. Always use version control (Git) so you can revert unwanted changes.</li>
 <li>The interactive workflow is excellent for exploration but may not meet reproducibility standards for final analyses. Export your final analytical pipeline as a standalone script.</li>
@@ -405,7 +405,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <div class="warning-box" style="border-left-color: #c62828"><strong>CRITICAL: Ethics Approval and Sensitive Data</strong>
 <p style="margin-top: 10px">If your research involves human participants, your ethics approval almost certainly includes conditions about how data is stored, processed, and shared. <strong>Using an AI chatbot or cloud-based AI tool to analyse participant data may violate your ethics approval</strong> unless this was explicitly included in your ethics application and consent forms.</p>
 <p style="margin-top: 12px">Before using any AI tool with research data, ask yourself:</p>
-<ul style="margin-top: 10px; padding-left: 20px">
+<ul style="margin-top: 10px">
 <li><strong>Does your ethics approval cover AI-assisted analysis?</strong> If your approved protocol says data will be stored on university servers and analysed using SPSS, sending that data to Claude or ChatGPT is a protocol violation. You may need an amendment.</li>
 <li><strong>Does your consent form mention AI processing?</strong> Participants consented to specific uses of their data. AI processing may not be covered. This matters most for qualitative data (interview transcripts, open-ended survey responses) where re-identification risks are higher.</li>
 <li><strong>Is the data identifiable?</strong> Even "anonymised" data may be re-identifiable when combined with other information. AI tools may retain data in logs or training sets. If there is any doubt, do not upload identifiable data to AI services.</li>

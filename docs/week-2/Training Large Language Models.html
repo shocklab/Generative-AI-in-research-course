@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -339,17 +339,17 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <div class="resource-placeholder"><section>
 <h2 style="margin: 0 0 0.5rem 0">Reading Resources: Data Curation, Scaling Laws, and Data Mixtures</h2>
 <h3 style="margin: 1.25rem 0 0.5rem 0">Core Papers</h3>
-<ol style="margin: 0 0 1rem 1.25rem; padding: 0">
+<ol style="margin: 0 0 1rem 1.25rem">
 <li style="margin: 0 0 0.75rem 0"><strong>Chinchilla scaling laws / compute-optimal training</strong><br><em>Training Compute-Optimal Large Language Models</em> (Hoffmann et al., 2022).<br>Key idea: for a fixed compute budget, many models are <strong>under-trained</strong> on too few tokens; compute-optimal regimes often favor training on more tokens per parameter.<br><a href="https://arxiv.org/abs/2203.15556" target="_blank" rel="noopener noreferrer">arXiv:2203.15556</a></li>
 <li style="margin: 0 0 0.75rem 0"><strong>Earlier scaling laws</strong><br><em>Scaling Laws for Neural Language Models</em> (Kaplan et al., 2020).<br>Establishes empirical scaling relationships and provides a baseline lens for thinking about compute/data/model size regimes (pre-Chinchilla).<br><a href="https://arxiv.org/abs/2001.08361" target="_blank" rel="noopener noreferrer">arXiv:2001.08361</a></li>
 <li style="margin: 0 0 0.75rem 0"><strong>GPT-3 data mixture</strong><br><em>Language Models are Few-Shot Learners</em> (Brown et al., 2020).<br>Describes the <strong>training data mixture</strong> (filtered Common Crawl + WebText2 + Books + Wikipedia) and why mixture design matters.<br><a href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener noreferrer">arXiv:2005.14165</a></li>
 <li style="margin: 0 0 0.75rem 0"><strong>LLaMA 2 data + filtering</strong><br><em>Llama 2: Open Foundation and Fine-Tuned Chat Models</em> (Touvron et al., 2023).<br>Data sources, filtering, and high-level curation choices from a major open model.<br><a href="https://arxiv.org/abs/2307.09288" target="_blank" rel="noopener noreferrer">arXiv:2307.09288</a></li>
 </ol>
-<ul style="margin: 0 0 1rem 1.25rem; padding: 0">
+<ul style="margin: 0 0 1rem 1.25rem">
 <li style="margin: 0 0 0.75rem 0"><strong>GPT-4 Technical Report</strong><br>Not detailed on datasets, but useful for seeing what major labs disclose and how they frame data/safety constraints at a high level.<br><a href="https://arxiv.org/abs/2303.08774" target="_blank" rel="noopener noreferrer">arXiv:2303.08774</a></li>
 </ul>
 <h3 style="margin: 1.25rem 0 0.5rem 0">Practical Guides / Hands-On References</h3>
-<ul style="margin: 0 0 1rem 1.25rem; padding: 0">
+<ul style="margin: 0 0 1rem 1.25rem">
 <li style="margin: 0 0 0.75rem 0"><strong>Hugging Face Course (data prep + tokenization basics)</strong><br>Tokenization, dataset preparation, and evaluation hygiene.<br><a href="https://huggingface.co/learn" target="_blank" rel="noopener noreferrer">huggingface.co/learn</a></li>
 <li style="margin: 0 0 0.75rem 0"><strong>Instruction-tuning dataset construction (for curation intuition)</strong><br>Alpaca-style pipelines illustrate balancing, formatting, and contamination pitfalls (more finetuning than pretraining).<br><a href="https://github.com/tatsu-lab/stanford_alpaca" target="_blank" rel="noopener noreferrer">Stanford Alpaca (GitHub)</a></li>
 </ul>
@@ -398,7 +398,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 </div>
 <div class="technical-detail"><h4>Preventing Training Instability</h4>
 <p style="margin-bottom: 15px">Training can diverge due to exploding gradients or numerical issues. Common mitigations:</p>
-<div style=" padding: 20px; border-radius: 10px; margin: 20px 0"><ol style="margin-left: 25px">
+<div style=" border-radius: 10px; margin: 20px 0"><ol style="margin-left: 25px">
 <li><strong>Gradient clipping:</strong> Cap gradient norm (often around 1.0, but not universal)</li>
 <li><strong>Mixed precision:</strong> Use lower precision for speed, with higher precision accumulation to reduce under/overflow</li>
 <li><strong>Normalization:</strong> LayerNorm/RMSNorm stabilizes activations</li>
@@ -619,7 +619,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 </div>
 <div class="technical-detail"><h4>Combining Parallelism: 3D Parallelism</h4>
 <p style="margin-bottom: 15px">Frontier training often combines multiple strategies:</p>
-<div style=" padding: 20px; border-radius: 10px; margin: 20px 0"><p style=" margin-bottom: 15px"><strong>Example: Training a 175B model on 1024 GPUs</strong></p>
+<div style=" border-radius: 10px; margin: 20px 0"><p style=" margin-bottom: 15px"><strong>Example: Training a 175B model on 1024 GPUs</strong></p>
 <ul style="margin-left: 25px">
 <li><strong>Data parallelism:</strong> 16-way</li>
 <li><strong>Pipeline parallelism:</strong> 8-way</li>

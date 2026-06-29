@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -581,11 +581,11 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <p style="margin-top: 8px">With 2.5 billion queries per day, the cumulative inference cost of ChatGPT dwarfs the one-time training cost within months of deployment. This is why statements like "training GPT-3 emitted X tonnes of CO₂" need to be placed in the context of ongoing inference costs.</p>
 </div>
 <!-- TRY THIS YOURSELF -->
-<div style=" border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
+<div style=" border-left: 5px solid #2f8f5b; border-radius: 12px; margin: 40px 0"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
 <p style=" margin-bottom: 12px">This page argues for calibrated numbers over both panic and dismissal. Here is a quick way to feel both the estimate <em>and</em> the opacity for yourself, in two short steps.</p>
-<ul style="list-style: none; padding-left: 0; margin: 0 0 12px">
-<li style="position: relative; padding-left: 24px; margin-bottom: 11px"><span style="position: absolute; left: 0">&#9656;</span><strong>Put a number on something real.</strong> Take one computation or AI task you actually ran recently and estimate its footprint, either with this lesson&#39;s per-interaction figures, or with a free calculator such as <a href="https://www.green-algorithms.org/" target="_blank" rel="noopener">Green Algorithms</a> (we return to these tools in 3.4). Notice how much the answer depends on assumptions you had to choose.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span><strong>Now hit the transparency wall.</strong> Pick one AI assistant you use and try to find its <em>official</em> per-query energy or water figure, a number from the company you could actually cite. Spend five minutes and then stop. The difficulty you just experienced <em>is</em> the &ldquo;transparency problem&rdquo; this page opened with: the figures you can cite are mostly third-party estimates, not disclosed measurements.</li>
+<ul style=" margin: 0 0 12px">
+<li style="position: relative; margin-bottom: 11px"><span style="position: absolute; left: 0">&#9656;</span><strong>Put a number on something real.</strong> Take one computation or AI task you actually ran recently and estimate its footprint, either with this lesson&#39;s per-interaction figures, or with a free calculator such as <a href="https://www.green-algorithms.org/" target="_blank" rel="noopener">Green Algorithms</a> (we return to these tools in 3.4). Notice how much the answer depends on assumptions you had to choose.</li>
+<li style="position: relative; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span><strong>Now hit the transparency wall.</strong> Pick one AI assistant you use and try to find its <em>official</em> per-query energy or water figure, a number from the company you could actually cite. Spend five minutes and then stop. The difficulty you just experienced <em>is</em> the &ldquo;transparency problem&rdquo; this page opened with: the figures you can cite are mostly third-party estimates, not disclosed measurements.</li>
 </ul>
 <p style=" margin-bottom: 0">The goal is to come away holding a defensible order-of-magnitude <em>and</em> an honest sense of how much the vendors are not telling you, rather than a precise total.</p>
 </div>

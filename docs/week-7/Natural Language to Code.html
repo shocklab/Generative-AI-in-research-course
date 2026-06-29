@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -218,7 +218,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 </div>
 <div class="case-study"><h4>A Concrete Example</h4>
 <p>Imagine you have a CSV file with survey data from 500 respondents. You want to know whether responses differ significantly between two groups. Here is what you might type into an AI coding tool:</p>
-<p style="margin-top: 15px; padding: 15px; border-radius: 8px">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
+<p style="margin-top: 15px; border-radius: 8px">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
 <p style="margin-top: 15px">A modern AI coding tool will generate working Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation. The entire process takes less than a minute.</p>
 <p style="margin-top: 15px">You described <em>what</em> you wanted rather than <em>how</em> to implement it. The AI translated your intent into specific technical instructions. This is what we mean by natural language as an interface to code.</p>
 </div>

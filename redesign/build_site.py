@@ -67,9 +67,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -246,7 +246,7 @@ def strip_heading_emoji(c):
     return re.sub(r'(<h[1-4][^>]*>)(.*?)(?=</h[1-4]>|<)', lambda m: m.group(1) + strip_emoji(m.group(2)).lstrip(), c)
 def strip_inline(c):
     def fix(m):
-        d = [x for x in m.group(1).split(';') if x.strip() and not re.match(r'\s*(color|background|background-color|font-family|font-size|line-height|font-weight)\s*:', x, re.I)]
+        d = [x for x in m.group(1).split(';') if x.strip() and not re.match(r'\s*(color|background[\w-]*|font-family|font-size|line-height|font-weight|list-style[\w-]*|padding[\w-]*)\s*:', x, re.I)]
         return (' style="' + ';'.join(d) + '"') if d else ''
     return re.sub(r'\s*style="([^"]*)"', fix, c)
 def inner_div(src, cls):
