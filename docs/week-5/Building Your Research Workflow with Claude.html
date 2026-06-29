@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -267,7 +267,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <div class="technical-detail"><h3>What are Skills?</h3>
 <p>Skills are reusable, multi-step workflows you can trigger with a <strong>slash command</strong> (e.g., <code>/lit-review</code>). They live in a <code>.claude/skills/</code> folder inside your project and can orchestrate complex research tasks that would otherwise require multiple separate prompts.</p>
 <p style="margin-top: 15px">For example, a <code>/lit-review</code> skill could:</p>
-<ol style="margin-top: 10px; padding-left: 20px">
+<ol style="margin-top: 10px">
 <li>Ask you for your research question</li>
 <li>Generate optimised search queries for Semantic Scholar</li>
 <li>Help you evaluate the papers you find</li>
@@ -280,7 +280,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <!-- SECTION 4: PRIVACY AND DATA -->
 <h2 class="section-title" id="s4">A Note on Privacy and Data</h2>
 <div class="warning-box"><strong>Important:</strong> When you upload papers to Claude (or any AI tool), those papers are processed on external servers. Before uploading anything, consider the following:
-<ul style="margin-top: 12px; padding-left: 20px">
+<ul style="margin-top: 12px">
 <li><strong>Check your university's data policy</strong> and your ethics approval before uploading sensitive or restricted data</li>
 <li><strong>For sensitive research data,</strong> consider using Claude's API with appropriate data handling agreements, or use on-premise solutions if available through your institution</li>
 <li><strong>NotebookLM (Google) and Claude Projects</strong> each have their own data policies; read them before uploading</li>

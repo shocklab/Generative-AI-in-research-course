@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -210,14 +210,14 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 </div>
 
 <h2 class="section-title" id="s1">What You'll Be Able to Do</h2>
-<div style=" border-left: 5px solid #003A70; border-radius: 12px; padding: 26px 30px; margin: 18px 0 10px"><p style=" margin-bottom: 16px">By the end of the twelve weeks, you should be able to:</p>
-<ul style="list-style: none; padding-left: 0; margin: 0">
-<li style="position: relative; padding-left: 26px; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Read AI claims calibratedly</strong>: take any claim about what AI can do for research and place it honestly as <em>real</em>, <em>overclaimed</em>, or <em>aspirational</em>, and check it against primary sources rather than press releases.</li>
-<li style="position: relative; padding-left: 26px; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Use AI across the research lifecycle</strong> (literature search, writing and ideation, data analysis and code, and multimodal material) while knowing where each use is genuinely strong and where it quietly fails.</li>
-<li style="position: relative; padding-left: 26px; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Verify AI output systematically</strong>: catch hallucinated citations, silent errors in an analysis, and confident-but-wrong reasoning, and build the verification into your normal workflow.</li>
-<li style="position: relative; padding-left: 26px; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Work ethically and transparently</strong>: apply an explicit ethical framework to your own AI use and disclose that use to the standard journals and funders now expect.</li>
-<li style="position: relative; padding-left: 26px; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Reason about cost and access</strong>: account for the material and environmental footprint of AI, and for the global inequities in who can actually use it.</li>
-<li style="position: relative; padding-left: 26px; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span><strong>Make and defend a judgement</strong>: decide where AI does and does not belong in <em>your</em> research, and articulate that position clearly enough to defend it (the Week&nbsp;12 capstone).</li>
+<div style=" border-left: 5px solid #003A70; border-radius: 12px; margin: 18px 0 10px"><p style=" margin-bottom: 16px">By the end of the twelve weeks, you should be able to:</p>
+<ul style=" margin: 0">
+<li style="position: relative; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Read AI claims calibratedly</strong>: take any claim about what AI can do for research and place it honestly as <em>real</em>, <em>overclaimed</em>, or <em>aspirational</em>, and check it against primary sources rather than press releases.</li>
+<li style="position: relative; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Use AI across the research lifecycle</strong> (literature search, writing and ideation, data analysis and code, and multimodal material) while knowing where each use is genuinely strong and where it quietly fails.</li>
+<li style="position: relative; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Verify AI output systematically</strong>: catch hallucinated citations, silent errors in an analysis, and confident-but-wrong reasoning, and build the verification into your normal workflow.</li>
+<li style="position: relative; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Work ethically and transparently</strong>: apply an explicit ethical framework to your own AI use and disclose that use to the standard journals and funders now expect.</li>
+<li style="position: relative; margin-bottom: 13px"><span style="position: absolute; left: 0">&#9656;</span><strong>Reason about cost and access</strong>: account for the material and environmental footprint of AI, and for the global inequities in who can actually use it.</li>
+<li style="position: relative; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span><strong>Make and defend a judgement</strong>: decide where AI does and does not belong in <em>your</em> research, and articulate that position clearly enough to defend it (the Week&nbsp;12 capstone).</li>
 </ul>
 </div>
 <p style=" margin: 14px 0 30px; font-style: italic">No single week delivers all of these; they accumulate. Calibrated reading runs through the other five and ties them together.</p>

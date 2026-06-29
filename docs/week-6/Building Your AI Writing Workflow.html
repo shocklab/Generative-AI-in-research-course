@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -338,7 +338,7 @@ Do not suggest improvements. Just show me what is there.
                     </li>
                     <li><strong>Compare to your intended structure</strong>
                         <p style="margin-top: 8px">Put the AI-extracted outline next to the outline you created in Step 2 of the workflow. Where do they match? Where do they diverge? Mismatches typically fall into three categories:</p>
-                        <ul style="margin-top: 8px; padding-left: 20px">
+                        <ul style="margin-top: 8px">
                             <li><strong>Missing claims:</strong> You intended to make a point but it did not make it into the prose</li>
                             <li><strong>Stray paragraphs:</strong> A paragraph exists that does not serve any claim in your outline</li>
                             <li><strong>Broken connections:</strong> Two paragraphs that should connect logically do not actually lead from one to the other</li>
@@ -359,7 +359,7 @@ Do not suggest improvements. Just show me what is there.
             <p>When AI is involved in your writing process, keeping track of who wrote what becomes both more important and more difficult. You need a system, not because anyone is necessarily checking, but because intellectual honesty requires it, and because you may need to explain your process at any point during examination, peer review, or a future audit.</p>
 
             <div class="info-box"><strong>Why version control matters for AI-assisted writing:</strong>
-                <ul style="margin-top: 12px; padding-left: 20px">
+                <ul style="margin-top: 12px">
                     <li><strong>For disclosure:</strong> Many journals now require you to describe how AI was used. A log makes this easy and accurate rather than a guess after the fact.</li>
                     <li><strong>For your own intellectual honesty:</strong> If you cannot tell which sentences are yours and which were AI-suggested, that is a sign you need more control over the process.</li>
                     <li><strong>For future questions:</strong> If your supervisor, examiner, or a journal editor asks how a particular passage was written, you want a clear answer.</li>

@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -243,15 +243,15 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <li><strong>Round 1, naive prompt:</strong> Ask AI: <em>"Generate 10 research ideas about [your area]."</em> Record all 10 ideas exactly as the AI produces them. Do not refine or follow up; this is your baseline.</li>
 <li><strong>Round 2, chain-of-thought:</strong> Ask AI: <em>"Think step by step about what gaps exist in current research on [your area], then generate 10 research ideas that address those gaps."</em> Record all 10 ideas.</li>
 <li><strong>Round 3, persona-based:</strong> Ask AI: <em>"You are a [specific expert type] with 20 years of experience in [adjacent field]. What research questions about [your area] would you find most interesting and worth investigating?"</em> Record the response.
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">Choose a persona from a field adjacent to yours, not your own field, so the cross-pollination has somewhere to come from</li>
-<li style="padding: 4px 0; counter-increment: none">For example, if you study ecology, try a data scientist persona; if you study education, try a behavioural economist</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">Choose a persona from a field adjacent to yours, not your own field, so the cross-pollination has somewhere to come from</li>
+<li style=" counter-increment: none">For example, if you study ecology, try a data scientist persona; if you study education, try a behavioural economist</li>
 </ul>
 </li>
 <li><strong>Round 4, constraint-based:</strong> Ask AI: <em>"Generate 10 research ideas about [your area] that do NOT involve [the most obvious approach in your field]. Focus on underexplored methodologies or populations."</em> Record all 10 ideas.
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">The constraint should exclude whatever the default or dominant methodology is in your area</li>
-<li style="padding: 4px 0; counter-increment: none">For example: "that do NOT involve surveys" or "that do NOT use regression analysis" or "that do NOT focus on WEIRD populations"</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">The constraint should exclude whatever the default or dominant methodology is in your area</li>
+<li style=" counter-increment: none">For example: "that do NOT involve surveys" or "that do NOT use regression analysis" or "that do NOT focus on WEIRD populations"</li>
 </ul>
 </li>
 </ol>
@@ -300,15 +300,15 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <li><strong>Choose a section</strong> of your research project to write: introduction, literature review, methods, or discussion. It should be a section where AI assistance is potentially useful. If you do not yet have a defined research project, choose a topic from your field and write the section as if it were part of a real paper.</li>
 <li><strong>Write the section (800 words)</strong> using AI tools as you see fit. You may use any combination of tools and strategies from this week: ChatGPT, Claude, Gemini, or any other AI writing tool. You may use AI for brainstorming, drafting, editing, restructuring, or any other purpose. There are no restrictions on how much or how little AI you use, but you must document everything honestly.</li>
 <li><strong>Include a Process Log (minimum 200 words, does not count toward 800):</strong> Document exactly how AI contributed at each stage of your writing process. What prompts did you use? What did the AI produce? What did you accept, modify, or reject? Where did you write without AI assistance? Be specific: include the actual prompts you used and describe the AI's responses.
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">Think of this as a lab notebook for your writing process</li>
-<li style="padding: 4px 0; counter-increment: none">Vague statements like "I used AI for editing" are not sufficient. Describe what you asked, what it suggested, and what you did with those suggestions</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">Think of this as a lab notebook for your writing process</li>
+<li style=" counter-increment: none">Vague statements like "I used AI for editing" are not sufficient. Describe what you asked, what it suggested, and what you did with those suggestions</li>
 </ul>
 </li>
 <li><strong>Include a Self-Audit (minimum 200 words, does not count toward 800):</strong> Identify at least 3 specific places where you corrected, overrode, or rejected AI suggestions. For each one, explain why you made that decision. What was wrong with the AI's suggestion? What did you replace it with and why?
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">Use the audit techniques from Sub-Lesson 4 and Activity 3</li>
-<li style="padding: 4px 0; counter-increment: none">If you cannot find 3 places to correct or override, that itself is worth reflecting on: did you engage critically enough with the AI output?</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">Use the audit techniques from Sub-Lesson 4 and Activity 3</li>
+<li style=" counter-increment: none">If you cannot find 3 places to correct or override, that itself is worth reflecting on: did you engage critically enough with the AI output?</li>
 </ul>
 </li>
 <li><strong>Include a Disclosure Statement</strong> as you would for a journal submission. Use one of the templates from Sub-Lesson 5, adapted to describe your actual use of AI in producing this piece. The statement should be specific enough that a reader could understand what role AI played in your writing.</li>

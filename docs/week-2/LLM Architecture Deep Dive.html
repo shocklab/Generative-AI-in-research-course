@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -370,7 +370,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 </div>
 <div class="technical-detail"><h4>Mixture of Experts (MoE)</h4>
 <p style="margin-bottom: 15px">MoE is one of the architectural changes shaping modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
-<div style=" padding: 20px; border-radius: 10px; margin: 20px 0"><h5 style=" margin-bottom: 10px">How MoE Works:</h5>
+<div style=" border-radius: 10px; margin: 20px 0"><h5 style=" margin-bottom: 10px">How MoE Works:</h5>
 <ol style="margin-left: 25px">
 <li><strong>Expert networks:</strong> Instead of one feed-forward network per layer, have 8-64 expert FFNs</li>
 <li><strong>Router network:</strong> Small learned network decides which experts process each token</li>
@@ -498,13 +498,13 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <h3 dir="auto">Understanding the current state of LLM scaling and the future of AI research</h3>
 </div>
 <!-- TRY THIS YOURSELF -->
-<div style=" border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
+<div style=" border-left: 5px solid #2f8f5b; border-radius: 12px; margin: 40px 0"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
 <p style=" margin-bottom: 12px">This page has been conceptual; here is a hands-on way to <em>see</em> tokenisation, which underpins everything above. Open a free tokeniser playground (for example the <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener">OpenAI tokenizer</a>) and paste in two or three sentences from your own field, including the messy bits: a piece of jargon, a chemical formula or equation, an author's name, a word in another language.</p>
 <p style=" margin-bottom: 12px">Then look at what happened:</p>
-<ul style="list-style: none; padding-left: 0; margin: 0 0 12px">
-<li style="position: relative; padding-left: 24px; margin-bottom: 9px"><span style="position: absolute; left: 0">&#9656;</span>How many tokens did your text become? Common English words are usually one token; rare or technical terms often shatter into several.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 9px"><span style="position: absolute; left: 0">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms: the model never sees your word as a single unit.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window, the limit this lesson&#39;s positional-encoding section is about.</li>
+<ul style=" margin: 0 0 12px">
+<li style="position: relative; margin-bottom: 9px"><span style="position: absolute; left: 0">&#9656;</span>How many tokens did your text become? Common English words are usually one token; rare or technical terms often shatter into several.</li>
+<li style="position: relative; margin-bottom: 9px"><span style="position: absolute; left: 0">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms: the model never sees your word as a single unit.</li>
+<li style="position: relative; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window, the limit this lesson&#39;s positional-encoding section is about.</li>
 </ul>
 <p style=" margin-bottom: 0">It is a small exercise, but it converts &ldquo;tokens&rdquo; from an abstraction into something you have watched happen to your own writing.</p>
 </div>

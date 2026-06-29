@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -213,13 +213,13 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <h4 style="margin-top: 25px">Setup</h4>
 <ol class="step-list">
 <li><strong>Obtain or create a messy dataset.</strong> Use a dataset from your own field if you have one, or create a small spreadsheet (50-100 rows, 6-8 columns) with deliberately planted errors. Your dataset should include a mix of the following problems:
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">Missing values: some blank cells, some coded as "N/A", some as "-999", some as "NA"</li>
-<li style="padding: 4px 0; counter-increment: none">Inconsistent formatting: dates in mixed formats (01/03/2024, 3 Jan 2024, 2024-01-03), inconsistent capitalisation in categories</li>
-<li style="padding: 4px 0; counter-increment: none">Outliers: a few values that are clearly impossible (e.g., an age of 350, a temperature of 9999)</li>
-<li style="padding: 4px 0; counter-increment: none">Duplicate rows: two or three exact or near-exact duplicates</li>
-<li style="padding: 4px 0; counter-increment: none">Unit inconsistencies: some values in metres and others in centimetres in the same column, or some weights in kilograms and others in pounds</li>
-<li style="padding: 4px 0; counter-increment: none">Encoding errors: garbled characters in text fields, trailing whitespace in category labels</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">Missing values: some blank cells, some coded as "N/A", some as "-999", some as "NA"</li>
+<li style=" counter-increment: none">Inconsistent formatting: dates in mixed formats (01/03/2024, 3 Jan 2024, 2024-01-03), inconsistent capitalisation in categories</li>
+<li style=" counter-increment: none">Outliers: a few values that are clearly impossible (e.g., an age of 350, a temperature of 9999)</li>
+<li style=" counter-increment: none">Duplicate rows: two or three exact or near-exact duplicates</li>
+<li style=" counter-increment: none">Unit inconsistencies: some values in metres and others in centimetres in the same column, or some weights in kilograms and others in pounds</li>
+<li style=" counter-increment: none">Encoding errors: garbled characters in text fields, trailing whitespace in category labels</li>
 </ul>
 </li>
 <li><strong>Record your planted errors.</strong> Before giving the dataset to AI, make a private list of every error you planted. This is your answer key: you will use it to evaluate how well the AI does.</li>
@@ -252,19 +252,19 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <li><strong>Choose a dataset and research question.</strong> Use a dataset you are familiar with, ideally from your own research, or a well-known public dataset in your field. Formulate a specific, answerable research question that requires at least two analytical steps (e.g., data transformation plus statistical test, or grouping plus visualisation).</li>
 <li><strong>Describe your analysis to the AI in plain language.</strong> Write a clear natural-language description of what you want to do with the data. Do not use technical statistical terms unless they are essential. Describe the analysis the way you would explain it to a colleague from a different field. For example: <em>"I want to compare the average response times between the three treatment groups, check whether the differences are statistically meaningful, and create a chart showing the distribution of response times in each group."</em></li>
 <li><strong>Receive and read the code before running it.</strong> When the AI generates code, read through it line by line before executing anything. Even if you are not fluent in the programming language, try to follow the logic. Note anything you do not understand; these are the places where errors are most likely to hide.
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">Ask the AI to add comments explaining each section if the code is not already well-commented</li>
-<li style="padding: 4px 0; counter-increment: none">If you cannot follow the logic at all, ask the AI to explain step by step what the code does</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">Ask the AI to add comments explaining each section if the code is not already well-commented</li>
+<li style=" counter-increment: none">If you cannot follow the logic at all, ask the AI to explain step by step what the code does</li>
 </ul>
 </li>
 <li><strong>Verify the code using at least three of the following techniques:</strong>
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none"><strong>Manual spot-check:</strong> Pick 3-5 specific data points and trace the calculation by hand. Does the code produce the same result you get with a calculator or spreadsheet?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Edge case testing:</strong> What happens with missing values, zeros, or extreme values? Does the code handle them correctly or crash?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Sanity check on output:</strong> Do the results make sense given what you know about the data? If the mean is supposed to be around 50 and the code reports 5000, something is wrong.</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Alternative implementation:</strong> Ask a different AI tool (or the same tool in a new conversation) to write code for the same analysis. Compare the two implementations: do they produce identical results?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Statistical assumption check:</strong> Does the code verify the assumptions of the statistical tests it uses? If it runs a t-test, does it check for normality and equal variances first?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Ask AI to critique itself:</strong> Paste the code back to the AI and ask: "What could go wrong with this analysis? What assumptions does this code make that might not hold for my data?"</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none"><strong>Manual spot-check:</strong> Pick 3-5 specific data points and trace the calculation by hand. Does the code produce the same result you get with a calculator or spreadsheet?</li>
+<li style=" counter-increment: none"><strong>Edge case testing:</strong> What happens with missing values, zeros, or extreme values? Does the code handle them correctly or crash?</li>
+<li style=" counter-increment: none"><strong>Sanity check on output:</strong> Do the results make sense given what you know about the data? If the mean is supposed to be around 50 and the code reports 5000, something is wrong.</li>
+<li style=" counter-increment: none"><strong>Alternative implementation:</strong> Ask a different AI tool (or the same tool in a new conversation) to write code for the same analysis. Compare the two implementations: do they produce identical results?</li>
+<li style=" counter-increment: none"><strong>Statistical assumption check:</strong> Does the code verify the assumptions of the statistical tests it uses? If it runs a t-test, does it check for normality and equal variances first?</li>
+<li style=" counter-increment: none"><strong>Ask AI to critique itself:</strong> Paste the code back to the AI and ask: "What could go wrong with this analysis? What assumptions does this code make that might not hold for my data?"</li>
 </ul>
 </li>
 <li><strong>Document every discrepancy.</strong> If any verification technique reveals a problem (a wrong result, a missing assumption check, an edge case that breaks the code), document it precisely. Then ask the AI to fix the issue and verify the fix.</li>
@@ -293,19 +293,19 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <ol class="step-list">
 <li><strong>Run an analysis on a dataset you understand well.</strong> Use the code from Activity 2, or run a fresh analysis on data from your field. The analysis should produce clear statistical output: means, p-values, confidence intervals, effect sizes, or similar quantitative results.</li>
 <li><strong>Generate four AI interpretations.</strong> Ask the AI to interpret the results four separate times, using four different prompts. Start a fresh conversation for each interpretation so that earlier responses do not influence later ones:
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none"><strong>Interpretation A:</strong> <em>"Here are my analysis results. What do they mean?"</em> (minimal context)</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Interpretation B:</strong> <em>"Here are my results. I expected to find [state your hypothesis]. Do the results support this?"</em> (leading prompt)</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Interpretation C:</strong> <em>"Here are my results. Please provide a critical interpretation, including what the results do NOT show and what alternative explanations exist."</em> (critical prompt)</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Interpretation D:</strong> <em>"Here are my results. Interpret them as if you were writing the discussion section of a peer-reviewed paper in [your field]."</em> (academic framing)</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none"><strong>Interpretation A:</strong> <em>"Here are my analysis results. What do they mean?"</em> (minimal context)</li>
+<li style=" counter-increment: none"><strong>Interpretation B:</strong> <em>"Here are my results. I expected to find [state your hypothesis]. Do the results support this?"</em> (leading prompt)</li>
+<li style=" counter-increment: none"><strong>Interpretation C:</strong> <em>"Here are my results. Please provide a critical interpretation, including what the results do NOT show and what alternative explanations exist."</em> (critical prompt)</li>
+<li style=" counter-increment: none"><strong>Interpretation D:</strong> <em>"Here are my results. Interpret them as if you were writing the discussion section of a peer-reviewed paper in [your field]."</em> (academic framing)</li>
 </ul>
 </li>
 <li><strong>Evaluate each interpretation.</strong> Read all four interpretations carefully and assess each one against the following criteria:
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none"><strong>Accuracy:</strong> Are all factual claims about the data correct? Does the interpretation correctly report what the numbers show?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Overclaiming:</strong> Does the interpretation claim more than the data supports? Does it confuse correlation with causation, or treat a non-significant trend as meaningful?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Completeness:</strong> Does it mention important limitations, alternative explanations, or caveats? Or does it present a single clean narrative?</li>
-<li style="padding: 4px 0; counter-increment: none"><strong>Bias:</strong> Does the interpretation change depending on how you framed the prompt? Did the leading prompt (B) produce a more confirmatory interpretation?</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none"><strong>Accuracy:</strong> Are all factual claims about the data correct? Does the interpretation correctly report what the numbers show?</li>
+<li style=" counter-increment: none"><strong>Overclaiming:</strong> Does the interpretation claim more than the data supports? Does it confuse correlation with causation, or treat a non-significant trend as meaningful?</li>
+<li style=" counter-increment: none"><strong>Completeness:</strong> Does it mention important limitations, alternative explanations, or caveats? Or does it present a single clean narrative?</li>
+<li style=" counter-increment: none"><strong>Bias:</strong> Does the interpretation change depending on how you framed the prompt? Did the leading prompt (B) produce a more confirmatory interpretation?</li>
 </ul>
 </li>
 <li><strong>Write your own interpretation.</strong> After evaluating all four AI versions, write your own interpretation of the results in 150-200 words. Draw on the best elements of the AI interpretations, correct the errors, and add the domain expertise that only you can provide.</li>
@@ -333,21 +333,21 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 <h4 style="margin-top: 25px">Requirements</h4>
 <ol class="step-list">
 <li><strong>Choose a dataset and formulate a research question.</strong> Use data from your own research, or select a publicly available dataset relevant to your field. The research question should require meaningful analysis that goes beyond descriptive statistics. You need to do something with the data that involves at least one inferential step (comparison, relationship, prediction, classification, or similar).
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">If using your own data, ensure you have appropriate ethical clearance for sharing it in a course context</li>
-<li style="padding: 4px 0; counter-increment: none">If using a public dataset, briefly explain why this dataset is appropriate for your question</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">If using your own data, ensure you have appropriate ethical clearance for sharing it in a course context</li>
+<li style=" counter-increment: none">If using a public dataset, briefly explain why this dataset is appropriate for your question</li>
 </ul>
 </li>
 <li><strong>Conduct the analysis using AI tools (1000 words + code).</strong> Write up the analysis as if it were part of a research paper: describe the data, explain your analytical approach, present the results (including at least one visualisation), and interpret the findings. Include the AI-generated code (annotated with comments) as an appendix. The 1000 words covers the written analysis only; code and figures are additional.
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">You may use any AI tools: ChatGPT, Claude, Gemini, Copilot, or specialised data analysis tools</li>
-<li style="padding: 4px 0; counter-increment: none">The write-up should follow standard academic structure: introduction to the question, methods, results, discussion</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">You may use any AI tools: ChatGPT, Claude, Gemini, Copilot, or specialised data analysis tools</li>
+<li style=" counter-increment: none">The write-up should follow standard academic structure: introduction to the question, methods, results, discussion</li>
 </ul>
 </li>
 <li><strong>Include a Verification Report (minimum 300 words, does not count toward 1000).</strong> Document how you verified the AI-generated code and results. You must apply at least three verification techniques from Activity 2. For each technique, describe what you checked, what you found, and what (if anything) you corrected.
-<ul style="margin-top: 10px; list-style: disc; padding-left: 20px">
-<li style="padding: 4px 0; counter-increment: none">Be specific: "I spot-checked the mean of column X by calculating it in a spreadsheet and got 47.3, which matched the code output" is far better than "I verified the results"</li>
-<li style="padding: 4px 0; counter-increment: none">If you found errors during verification, describe the original error, how you caught it, and how you fixed it</li>
+<ul style="margin-top: 10px">
+<li style=" counter-increment: none">Be specific: "I spot-checked the mean of column X by calculating it in a spreadsheet and got 47.3, which matched the code output" is far better than "I verified the results"</li>
+<li style=" counter-increment: none">If you found errors during verification, describe the original error, how you caught it, and how you fixed it</li>
 </ul>
 </li>
 <li><strong>Include a Critical Commentary (minimum 200 words, does not count toward 1000).</strong> Reflect on the limitations of your AI-assisted analysis. Address: What could the AI not do that you had to do yourself? Where did the AI's suggestions require domain knowledge to evaluate? What would you do differently next time? How confident are you in the results, and what residual uncertainties remain?</li>

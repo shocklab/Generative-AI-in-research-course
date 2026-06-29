@@ -43,9 +43,9 @@ img{max-width:100%}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
-.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
-.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
-.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol>li{counter-increment:li}
+.abody ol>li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
@@ -254,7 +254,7 @@ html.hr .vbtn[data-m="r"] .ls{display:inline}
 </div>
 <div class="technical-detail"><h4>What an Instruction Dataset Looks Like</h4>
 <p style="margin-bottom: 15px">Modern instruction datasets use a structured format with distinct roles. Here is a simplified example of what a training example might contain:</p>
-<div style=" padding: 20px; border-radius: 10px; margin: 15px 0"><p><strong>[System]</strong> You are a helpful research assistant. Be concise and accurate.</p>
+<div style=" border-radius: 10px; margin: 15px 0"><p><strong>[System]</strong> You are a helpful research assistant. Be concise and accurate.</p>
 <p style="margin-top: 10px"><strong>[User]</strong> What is the difference between a p-value and a confidence interval?</p>
 <p style="margin-top: 10px"><strong>[Assistant]</strong> A p-value is the probability of observing results at least as extreme as yours if the null hypothesis is true—it is a single number that summarises evidence against the null. A confidence interval gives a range of plausible values for the parameter of interest. They are related but convey different information: a 95% CI that excludes zero is consistent with p &lt; 0.05, but the CI also tells you about the magnitude and precision of the effect, which the p-value does not.</p>
 </div>
