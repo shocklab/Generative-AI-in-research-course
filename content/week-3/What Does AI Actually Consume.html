@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3.1 - The Cost of Every Prompt</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 15px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 10px auto 0;
+        }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 {
+            color: #2a5298;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-text h2::before { content: '🎯'; }
+
+        .intro-text p {
+            font-size: 1.1em;
+            color: #495057;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #2a5298;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #003A70;
+            font-weight: bold;
+        }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+
+        .highlight-box p {
+            font-size: 1.05em;
+            line-height: 1.8;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: #e65100;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box p { color: #555; line-height: 1.7; }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .resource-placeholder p { color: #666; font-style: italic; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 {
+            color: #2a5298;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th {
+            background: #003A70;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
+            color: #555;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 3 • Sub-Lesson 1</div>
+<h1>⚡ <span style="color: #ffffff;">The Cost of Every Prompt</span></h1>
+<p>Energy, water, and the environmental footprint of AI at the level of individual interactions</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Every time you send a message to an AI assistant, something physical happens: electricity flows through data-centre hardware on the other side of the world. This session puts numbers on that, so you can think clearly about its environmental implications as a researcher and as a citizen rather than feel guilty about using AI.</p>
+<p>We will look at energy consumption from the level of a single query up to the scale of global AI usage, at water (an environmental cost that receives less attention than carbon), and at why the numbers you read in the media should always be treated with careful scepticism.</p>
+<p>This is a topic where the data are genuinely uncertain and where companies have strong incentives to present their products in the best possible light. Part of our job here is to understand <em>why</em> the numbers are uncertain, not just what they are.</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ A Note on Numbers Throughout This Week</h4>
+<p>Almost all figures in this area come from one of three sources: company self-reports, independent academic estimates, or media extrapolations from those estimates. These often disagree substantially. Throughout these lessons we will flag where figures come from and what assumptions they rest on. Treat any specific number as an order-of-magnitude guide rather than a precise measurement.</p>
+</div>
+<!-- SECTION 1: THE TRANSPARENCY PROBLEM -->
+<h2 class="section-title">🔍 The Transparency Problem</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Before we look at any numbers, it is worth understanding why getting accurate figures is so difficult, because the answer shapes how we interpret everything that follows.</p>
+<div class="card-grid">
+<div class="card">
+<h3>What Companies Don't Disclose</h3>
+<p>Major AI developers — OpenAI, Google, Meta, Microsoft, Anthropic — do not publish detailed energy or emissions data for individual models. What is typically missing:</p>
+<ul class="styled-list">
+<li>Energy consumed per query (by model type or size)</li>
+<li>Data centre locations and their grid carbon intensity</li>
+<li>Water consumption at specific facilities</li>
+<li>Hardware lifecycle data (manufacturing emissions)</li>
+<li>Total annual compute for model training</li>
+</ul>
+<p style="margin-top: 12px; color: #666;">Some companies publish aggregate sustainability reports, but these cover their entire operations, not AI specifically, and rely on accounting methods that can obscure more than they reveal.</p>
+</div>
+<div class="card">
+<h3>What Researchers Can Estimate</h3>
+<p>In the absence of direct data, researchers use indirect methods to estimate AI's environmental footprint:</p>
+<ul class="styled-list">
+<li><strong>Hardware benchmarks:</strong> Measure energy use of known GPUs, estimate utilisation rates</li>
+<li><strong>Open-source proxies:</strong> Run open-weight models locally and measure directly</li>
+<li><strong>Architectural inference:</strong> Use known model sizes and FLOPs estimates to project energy</li>
+<li><strong>Company disclosures:</strong> Use reported figures with appropriate scepticism about representativeness</li>
+</ul>
+<p style="margin-top: 12px; color: #666;">This is why published estimates for the same model can differ by a factor of 10 or more.</p>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Key Reading: The Hidden Costs of AI</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.nature.com/articles/d41586-024-00478-x" target="_blank" rel="noopener"><strong>Nature (2024): "Generative AI&rsquo;s environmental costs are soaring &mdash; and mostly secret"</strong></a> — Nature's news team interviews researchers and industry figures on the difficulty of getting accurate data from companies. A good starting point for understanding the transparency problem.</p>
+</div>
+<!-- SECTION 2: ENERGY PER INTERACTION -->
+<h2 class="section-title">⚡ Energy per Interaction</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Let's start at the level of a single query. How much electricity does it take to generate one response?</p>
+<div class="technical-detail">
+<h4>📊 Energy Consumption by Task Type</h4>
+<p style="margin-bottom: 15px;">The table below combines company-reported figures and independent measurements from MIT Technology Review (2025). Note the wide ranges. They reflect genuine differences in model size, hardware, and methodology, well beyond simple uncertainty.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Task</th>
+<th>Energy Estimate</th>
+<th>Everyday Comparison</th>
+<th>Source / Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Google Search query</strong></td>
+<td>~0.3 Wh</td>
+<td>~11 seconds of a light bulb (LED)</td>
+<td>Google; moderate confidence</td>
+</tr>
+<tr>
+<td><strong>ChatGPT text prompt (reported)</strong></td>
+<td>0.34 Wh</td>
+<td>~13 seconds of a light bulb</td>
+<td>OpenAI blog, June 2025; likely best-case</td>
+</tr>
+<tr>
+<td><strong>Gemini text prompt (reported)</strong></td>
+<td>0.24 Wh</td>
+<td>~9 seconds of TV</td>
+<td>Google White Paper, 2025; likely best-case</td>
+</tr>
+<tr>
+<td><strong>Large model text prompt (independent)</strong></td>
+<td>0.1–8 Wh</td>
+<td>4 seconds – ~5 minutes of a microwave</td>
+<td>MIT Technology Review, 2025; measured on open-weight models</td>
+</tr>
+<tr>
+<td><strong>AI image generation</strong></td>
+<td>~2–5 Wh</td>
+<td>~1–3 minutes of a microwave</td>
+<td>Various; moderate confidence</td>
+</tr>
+<tr>
+<td><strong>AI video generation (5 seconds)</strong></td>
+<td>~3.4 MJ (~944 Wh)</td>
+<td>Approximately 1 hour of microwave use</td>
+<td>MIT Technology Review, 2025; ~700× image cost</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 12px; color: #666;"><strong>Key observation:</strong> Text generation and video generation differ by roughly three orders of magnitude. Company-reported figures for text prompts sit at the lower end of independent measurements, likely reflecting optimised infrastructure not available to all deployments.</p>
+</div>
+<div class="info-box">
+<h4>📹 Video Generation: A Different Category</h4>
+<p>The energy cost of generating a 5-second AI video (~944 Wh, per MIT Technology Review 2025) is not a typing error. High-resolution video generation involves running a very large diffusion model many times over — the equivalent of generating hundreds or thousands of images sequentially and combining them. This figure comes from measuring open-source video generation models; proprietary models like Sora may differ.</p>
+<p style="margin-top: 8px;">For context: 944 Wh is roughly one-seventh of what an average South African household uses in a day (around 6&ndash;7 kWh). That is a meaningful amount for a few seconds of video, though still a fraction of daily household use.</p>
+</div>
+<!-- SECTION 2b: THE AGENTIC MULTIPLIER -->
+<h2 class="section-title">🤖 The Agentic Multiplier: Tools Like Claude Code</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The figures above describe a single prompt: you ask, the model answers once. But the way many researchers now use AI is very different. Agentic tools (Claude Code, Codex, Cursor's agent mode, Gemini CLI) do not answer once. They run a <em>loop</em>: read files, call tools, run code, read the output, reason about it, and call the model again, often dozens of times to complete one task. Energy use scales roughly with the total number of tokens the model processes, so an agentic task can cost many times more than a single chat prompt. This section tries to put bounds on "how much more". As with everything in this lesson, the answer is a wide range.</p>
+<div class="warning-box">
+<h4>⚠️ This is an estimate built on other estimates</h4>
+<p>Every figure in this section is derived by chaining together numbers from earlier in the lesson with practitioner reports and vendor documentation. None of it is a direct measurement of a research workflow. We present each input with its source and give a <strong>central estimate with lower and upper bounds</strong> so you can see where the uncertainty enters. Treat the final numbers as order-of-magnitude guides, not precise figures.</p>
+</div>
+<div class="technical-detail">
+<h4>🎚️ What "effort" Means in Claude Code</h4>
+<p style="margin-bottom: 15px;">Claude's API exposes an <strong>effort</strong> setting that controls how many tokens the model is willing to spend on a task. Anthropic's documentation describes it as <em>"a behavioral signal, not a strict token budget"</em> — so it does not map onto a fixed energy figure, but it does directly change token use, and therefore energy. Effort affects <strong>all tokens</strong> in a response, including tool calls: lower effort means the model makes fewer tool calls and writes less; higher effort means more exploration, more tool calls, and deeper reasoning.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Effort level</th>
+<th>What Anthropic's docs say it is for</th>
+<th>Illustrative energy multiplier<br><small>(relative to <code>high</code> = 1×)</small></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>low</strong></td>
+<td>Simplest tasks, fastest, lowest cost; "scopes its work to what was asked"</td>
+<td>~0.3–0.5×</td>
+</tr>
+<tr>
+<td><strong>medium</strong></td>
+<td>Balanced; the "drop-in for the average workflow" where you want to reduce cost</td>
+<td>~0.6–0.8×</td>
+</tr>
+<tr>
+<td><strong>high</strong> (API default)</td>
+<td>Complex reasoning and agentic tasks; the "sweet spot" balancing quality and tokens</td>
+<td>1× (reference)</td>
+</tr>
+<tr>
+<td><strong>xhigh</strong> (Opus 4.7)</td>
+<td>Long-running agentic/coding tasks over 30 minutes; "token budgets in the millions"; "meaningfully higher token usage than high"</td>
+<td>~2–5×</td>
+</tr>
+<tr>
+<td><strong>max</strong></td>
+<td>"No constraints on token spending"; reserve for frontier problems — "significant cost for relatively small quality gains" and can "overthink"</td>
+<td>~3–10×</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 12px; color: #666;"><strong>Important:</strong> The "multiplier" column is <strong>our own illustrative estimate</strong>, inferred from the qualitative descriptions in Anthropic's documentation. Anthropic does <em>not</em> publish numeric energy or token multipliers for the effort levels. The short quoted phrases describing each level come directly from <a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener">Anthropic's Effort documentation</a>; the numbers attached to them do not. We include the multipliers only to make the rest of the calculation concrete; they could easily be off by a factor of two or more.</p>
+</div>
+<div class="technical-detail">
+<h4>🔢 The Calculation Ledger: Every Input and Its Source</h4>
+<p style="margin-bottom: 15px;">To estimate the footprint of a working day with an agentic tool, we need three quantities, each with a central value, a range, and a source. (How many calls make up a working day is a separate scenario assumption, stated below the table.)</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Input</th>
+<th>Lower</th>
+<th>Central</th>
+<th>Upper</th>
+<th>Source &amp; reasoning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A. Energy per model call</strong></td>
+<td>~1 Wh</td>
+<td>~3 Wh</td>
+<td>~8 Wh</td>
+<td>This lesson's table: 0.34 Wh (OpenAI, reported best-case) up to 8 Wh (MIT Tech Review 2025, large open-weight model). Agentic calls carry long contexts (file contents, tool outputs, accumulated reasoning), so they sit toward the upper end, and we centre on ~3 Wh.</td>
+</tr>
+<tr>
+<td><strong>B. Compute per task</strong><br><small>(simple-prompt-equivalents)</small></td>
+<td>~10×</td>
+<td>~30×</td>
+<td>~100×</td>
+<td>An agentic task is many model calls on large contexts. Analyses converge on roughly 5–30× the tokens of a single chat interaction for typical agents, rising to 100× or more for complex coding workflows (the <a href="https://digitaleconomy.stanford.edu/news/how-are-ai-agents-spending-your-tokens/" target="_blank" rel="noopener">Stanford Digital Economy Lab</a>; SWE-bench-style coding tasks average 1–3.5M tokens/task). We take 10–100× as a central band, possibly conservative at the top. Anthropic's docs confirm the direction ("token budgets in the millions" at xhigh) but give no number.</td>
+</tr>
+<tr>
+<td><strong>C. Grid carbon intensity</strong></td>
+<td colspan="3">0.386 kg CO₂/kWh (US grid average) &nbsp;|&nbsp; ~0.9 kg CO₂/kWh (South Africa)</td>
+<td>US figure as used elsewhere in this lesson; SA figure from the <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">2022 Grid Emission Factors Report</a> (~0.87–1.01 kg/kWh depending on methodology — SA's grid is ~80% coal).</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="technical-detail">
+<h4>📊 Putting the Inputs Together: A Day on <code>high</code> Effort</h4>
+<p style="margin-bottom: 15px;">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive calls</strong> rather than quick one-shot lookups, which cost far less. We hold the per-call energy (A) near its ~3 Wh midpoint and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 1–8 Wh band as well would widen these numbers further in both directions.)</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Lower</th>
+<th>Central estimate</th>
+<th>Upper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Energy per agentic task</strong> (A × B)</td>
+<td>~30 Wh</td>
+<td><strong>~100 Wh</strong></td>
+<td>~300 Wh</td>
+</tr>
+<tr>
+<td><strong>Energy for a 50-task day</strong> (× 50)</td>
+<td>~1.5 kWh</td>
+<td><strong>~5 kWh</strong></td>
+<td>~15 kWh</td>
+</tr>
+<tr>
+<td><strong>CO₂ — US grid</strong> (× 0.386)</td>
+<td>~0.6 kg</td>
+<td><strong>~1.9 kg</strong></td>
+<td>~5.8 kg</td>
+</tr>
+<tr>
+<td><strong>CO₂ — South African grid</strong> (× 0.9)</td>
+<td>~1.4 kg</td>
+<td><strong>~4.5 kg</strong></td>
+<td>~13.5 kg</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 12px; color: #666;">For perspective, the central ~5 kWh for a full day of agentic coding is roughly five times the 944 Wh of a single 5-second AI video, and more than ten thousand times a single reported text prompt. It is still a modest fraction of a household's daily electricity use. The footprint of <em>this kind</em> of AI use comes from the <strong>loop</strong> of many calls rather than from any one prompt.</p>
+</div>
+<div class="info-box">
+<h4>🚗 How Does This Compare to Driving a Car?</h4>
+<p>A "typical passenger vehicle" emits about <strong>400 g CO₂ per mile ≈ 0.25 kg CO₂ per km</strong> (<a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle" target="_blank" rel="noopener">US EPA</a>). Dividing the day's emissions by that figure gives an equivalent driving distance:</p>
+<ul class="styled-list" style="margin-top: 12px;">
+<li><strong>On the US grid:</strong> a full day ≈ <strong>~8 km</strong> of driving (range ~2–23 km)</li>
+<li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~18 km</strong> of driving (range ~5–54 km)</li>
+</ul>
+<p style="margin-top: 12px;">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a short commute. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances; the car comparison is itself a range.)</p>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h4>
+<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~5 kWh day, that puts a heavy max-effort day in the region of <strong>15–50 kWh</strong>, or roughly <strong>tens to over 150 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive calls; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">What This Means for You as a Researcher</span></h3>
+<p>The per-prompt footprint of AI is genuinely small. The footprint of <em>agentic</em> AI is larger because each task involves so many steps, even though no single step is expensive. The same property that makes these tools powerful for research (they keep working autonomously) is what drives their energy use.</p>
+<p style="margin-top: 15px;">This connects to the rebound problem we examine in the next session: as agentic tools make each task cheaper and easier, we tend to run far more of them. The individual cost falls; the total can still rise. The responsible move is to use the right effort level for the job, and to stay honest about how uncertain the numbers really are.</p>
+</div>
+<!-- SECTION 3: THE FLIGHT COMPARISON -->
+<h2 class="section-title">✈️ A Worked Example: The Flight Comparison</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A common comparison in media coverage: how does using AI compare to taking a transatlantic flight? How you do the calculation changes the answer a great deal, so it is worth working through with care.</p>
+<div class="technical-detail">
+<h4>🔢 Step-by-Step Calculation</h4>
+<p style="margin-bottom: 15px;"><strong>Reference point: one economy-class transatlantic flight (London → New York, ~5,540 km)</strong></p>
+<ul style="margin-left: 25px; color: #555; line-height: 2;">
+<li>CO₂ per passenger (direct emissions only): ~0.5 tonnes</li>
+<li>Including radiative forcing at altitude (contrails, water vapour): roughly doubles the climate impact</li>
+<li><strong>Commonly used estimate: ~1 tonne CO₂e per passenger</strong></li>
+<li>Note: figures from different calculators range from 0.5 to 1.5 tonnes — this is itself uncertain</li>
+</ul>
+<p style="margin-top: 20px; margin-bottom: 10px;"><strong>Carbon per ChatGPT text prompt:</strong></p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Energy assumption</th>
+<th>Source</th>
+<th>CO₂ per prompt<br><small>(US grid avg: 0.386 kg/kWh)</small></th>
+<th>Calls to match 1-tonne flight</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.34 Wh</td>
+<td>OpenAI (reported, 2025)</td>
+<td>0.13 g CO₂</td>
+<td><strong>~7.6 million</strong></td>
+</tr>
+<tr>
+<td>2 Wh</td>
+<td>Mid-range independent estimate</td>
+<td>0.77 g CO₂</td>
+<td><strong>~1.3 million</strong></td>
+</tr>
+<tr>
+<td>8 Wh</td>
+<td>Large model, independent measurement</td>
+<td>3.1 g CO₂</td>
+<td><strong>~323,000</strong></td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666;"><strong>What this tells us:</strong> Depending entirely on which figures you use, one transatlantic flight equals somewhere between 300,000 and 7.6 million ChatGPT text queries. That spread reflects the difference between company-optimised infrastructure and real-world large-model deployments, as well as genuine uncertainty about what "a ChatGPT query" even means in terms of model size and compute.</p>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">Why the Range Is the Lesson</span></h3>
+<p>This calculation produces answers spanning two orders of magnitude, and that spread is itself what to take away from it. Glib comparisons ("ChatGPT = X flights per day") depend almost entirely on unstated assumptions, and the opacity of AI companies makes it impossible to pin down a single honest answer.</p>
+<p style="margin-top: 15px;">As researchers, the appropriate response is to present the range honestly and to push for better disclosure, rather than picking the number that fits our preferred narrative.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Source for the energy figures above</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.technologyreview.com/2025/05/20/1116327/ai-energy-usage-climate-footprint-big-tech/" target="_blank" rel="noopener"><strong>MIT Technology Review (2025): "We did the math on AI&rsquo;s energy footprint. Here&rsquo;s the story you haven&rsquo;t heard."</strong></a> — independent measurements of open-source models providing a useful counterpoint to company-reported figures.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2311.16863" target="_blank" rel="noopener"><strong>Luccioni et al. (2023): "Power Hungry Processing: Watts Driving the Cost of AI Deployment?"</strong></a> — benchmarks inference energy across a wide range of NLP tasks and model types.</p>
+</div>
+<!-- SECTION 3b: MACRO SHARE -->
+<h2 class="section-title">🌍 Zooming Out: AI&rsquo;s Share of Global Emissions</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The per-query comparison above is useful for personal calibration, but it can&rsquo;t tell you what share of <em>global</em> emissions AI actually represents. For that, you have to layer estimates from primary sources and be honest about what is measured versus modelled.</p>
+<div class="technical-detail">
+<h4>📊 A back-of-envelope: AI vs aviation, with sources</h4>
+<p><strong>Step 1 &mdash; Inputs (primary sources):</strong></p>
+<ul>
+<li><strong>Data centres &asymp; 1.5% of global electricity</strong> (&asymp; 415 TWh in 2024) &mdash; IEA, <em><a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">Energy and AI</a></em> (2025).</li>
+<li><strong>AI-focused share &asymp; 0.5% of global electricity</strong> (2025) &mdash; Hannah Ritchie&rsquo;s estimate from the IEA inputs, <em><a href="https://www.sustainabilitybynumbers.com/p/ai-energy-demand" target="_blank" rel="noopener">Sustainability by Numbers</a></em> (2026).</li>
+<li>Electricity &amp; heat &asymp; 40% of energy-related CO<sub>2</sub>; energy-related CO<sub>2</sub> &asymp; 85&ndash;90% of total CO<sub>2</sub> &mdash; IEA / <a href="https://ourworldindata.org/emissions-by-sector" target="_blank" rel="noopener">Our World in Data</a> sectoral breakdown.</li>
+</ul>
+<p style="margin-top: 12px;"><strong>Step 2 &mdash; Calculation:</strong> If AI&rsquo;s electricity were at average grid carbon intensity, AI&rsquo;s share of energy-related CO<sub>2</sub> &asymp; 0.5% &times; 40% &asymp; <strong>0.2%</strong>. AI loads are concentrated in the US (gas-heavy) and China (coal-heavy), pushing intensity above average; the largest operators&rsquo; renewable and nuclear procurement pulls below it (though annual matching overstates hourly cleanliness). Net plausible range: <strong>0.2&ndash;0.4% of energy-related CO<sub>2</sub></strong>, or roughly <strong>0.15&ndash;0.35% of total CO<sub>2</sub> / GHG</strong> depending on denominator.</p>
+<p style="margin-top: 12px;"><strong>Step 3 &mdash; The aviation benchmark.</strong> Aviation accounted for <strong>2.5% of global energy-related CO<sub>2</sub> in 2023 (&asymp; 950 Mt)</strong> &mdash; IEA, <em><a href="https://www.iea.org/energy-system/transport/aviation" target="_blank" rel="noopener">Aviation</a></em>. Passenger flights are &asymp; 81% of that and freight &asymp; 19%, so passenger aviation &asymp; <strong>2% of global CO<sub>2</sub></strong>.</p>
+<p style="margin-top: 12px;"><strong>Headline:</strong> Passenger air travel emits roughly <strong>6&ndash;10&times; what AI does operationally</strong> right now. AI is around a tenth to a fifth of aviation&rsquo;s footprint at the system level.</p>
+</div>
+<p style="font-size: 1.05em; line-height: 1.75; margin-top: 25px;">Two caveats sharpen the comparison further:</p>
+<ul style="font-size: 1.05em; line-height: 1.75; margin-left: 25px;">
+<li style="margin-bottom: 12px;"><strong>Aviation&rsquo;s real impact is larger than the CO<sub>2</sub> alone.</strong> Non-CO<sub>2</sub> effects &mdash; contrails and NO<sub>x</sub> at altitude &mdash; push aviation&rsquo;s share of anthropogenic warming closer to <strong>3.5&ndash;4%</strong> (Lee et al. 2021, <em><a href="https://doi.org/10.1016/j.atmosenv.2020.117834" target="_blank" rel="noopener">Atmospheric Environment</a></em>). The gap on a warming basis is wider than the gap on a CO<sub>2</sub> basis.</li>
+<li style="margin-bottom: 12px;"><strong>Aviation is concentrated; AI use is broadly distributed.</strong> Only &asymp; 11% of the world&rsquo;s population flew in 2018, and the most frequent &asymp; 1% account for more than half of passenger-flight emissions (G&ouml;ssling &amp; Humpe 2020, <em><a href="https://doi.org/10.1016/j.gloenvcha.2020.102194" target="_blank" rel="noopener">Global Environmental Change</a></em>). AI use is becoming more broadly distributed, which makes the per-person picture genuinely different from the per-person flight picture even when the system-level numbers sit in the same neighbourhood.</li>
+</ul>
+<p style="font-size: 1.05em; line-height: 1.75; margin-top: 20px;">And the ratio is narrowing. The IEA projects data-centre electricity roughly doubling from <strong>&asymp; 485 TWh (2025) to &asymp; 950 TWh (2030, &asymp; 3% of global electricity)</strong>, with the AI-focused slice tripling, moving AI from &asymp; one-third toward &asymp; half of data-centre load. Even so, the IEA projects all data-centre CO<sub>2</sub> at only <strong>&asymp; 1% of energy-related CO<sub>2</sub> by 2030</strong>. AI would need several-fold growth relative to aviation to close the gap.</p>
+<div class="warning-box">
+<h4>⚠️ How to read these numbers</h4>
+<p>These are <strong>layered estimates, not audited measurements</strong>. The 0.2&ndash;0.4% calculation rests on three assumptions, each with its own uncertainty: (a) the IEA&rsquo;s 1.5% data-centre figure, (b) Hannah Ritchie&rsquo;s one-third allocation to AI specifically, and (c) average grid intensity. Treat the headline as a well-reasoned estimate from primary sources rather than a measurement. The same scepticism the rest of this lesson asks you to apply to vendor claims applies to careful third-party estimates too.</p>
+<p style="margin-top: 12px;">The figures also <strong>exclude embodied emissions</strong>: chip fabrication, server manufacture, data-centre construction (concrete, steel). 3.3 returns to those in detail, because lifecycle accounting can raise the operational number materially. And the definition of &ldquo;AI&rdquo; versus general accelerated compute is itself fuzzy: not every workload on a GPU is what most people mean by AI.</p>
+</div>
+<!-- SECTION 4: WATER -->
+<h2 class="section-title">💧 The Water Footprint</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Energy gets most of the attention, but water is the environmental cost of AI that is least reported and least understood. Data centres are thirsty in two distinct ways.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Direct Water Use: Cooling</h3>
+<p>Modern data centres generate enormous amounts of heat. The most common solution is evaporative cooling — running water over heat exchangers where it evaporates, carrying heat away.</p>
+<ul class="styled-list">
+<li><strong>Why water, not air?</strong> Evaporative cooling is far more energy-efficient than air cooling for the temperatures involved</li>
+<li><strong>Why filtered municipal water?</strong> Minerals in unfiltered water would corrode and clog sensitive hardware — most large data centres use high-quality drinking water</li>
+<li><strong>Estimate:</strong> A 100 MW data centre may consume the equivalent of ~2,600 households' daily water use (IEA estimate)</li>
+<li><strong>US total:</strong> Data centres directly consume roughly 17.5 billion gallons of water per year — about 0.3% of the US public water supply (Lawrence Berkeley National Laboratory, 2024)</li>
+</ul>
+</div>
+<div class="card">
+<h3>Indirect Water Use: Electricity</h3>
+<p>Generating electricity also consumes water, at the power plant rather than the data centre. This "indirect" water use is often larger than the direct cooling water.</p>
+<ul class="styled-list">
+<li>Thermal power plants (coal, gas, nuclear) use water for steam generation and cooling</li>
+<li>This water is often not returned to its source — it is evaporated or discharged at a different temperature</li>
+<li>A commonly cited estimate (Shaolei Ren, UC Riverside): a ~30-turn ChatGPT conversation = roughly 500 ml of water, of which only 12–13% is direct cooling water; the rest is from electricity generation</li>
+<li><strong>Geographic sensitivity:</strong> Water extracted in arid regions has very different consequences from the same volume extracted in water-abundant areas</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ Treating the 500 ml figure with care</h4>
+<p>The "500 ml per 30-turn conversation" figure (from Li et al., 2023 / Shaolei Ren) became widely cited in media coverage, often without key caveats: it is an estimate based on assumed data centre locations (US-average), a specific model generation (GPT-3 era), and indirect water attribution methods that are contested. Modern data centres vary widely in water efficiency, and some use closed-loop systems that recirculate water rather than evaporating it. Treat this as an order-of-magnitude estimate, not a precise measurement. The original paper acknowledges significant uncertainty.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Key Reading: AI Water Footprint</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2304.03271" target="_blank" rel="noopener"><strong>Li, Yang, Islam, Ren (2023): "Making AI Less Thirsty"</strong></a> — the most-cited quantitative analysis of AI water consumption. Read the paper, not just the media coverage of it.</p>
+</div>
+<!-- SECTION 5: SCALE -->
+<h2 class="section-title">📊 Putting It at Scale</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Individual query costs only matter if we multiply them by usage. Let's consider what the aggregate picture looks like.</p>
+<div class="technical-detail">
+<h4>🌍 AI Usage at Global Scale (2025)</h4>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Metric</th>
+<th>Figure</th>
+<th>Source / Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT queries per day</td>
+<td>~2.5 billion</td>
+<td>OpenAI (reported to Axios, 2025)</td>
+</tr>
+<tr>
+<td>Organisations using AI</td>
+<td>78% of surveyed organisations</td>
+<td>Stanford AI Index, 2025</td>
+</tr>
+<tr>
+<td>US data centre electricity (2023)</td>
+<td>~100 TWh/year</td>
+<td>Lawrence Berkeley National Laboratory, 2024 (tripled since 2014)</td>
+</tr>
+<tr>
+<td>Projected AI data centre electricity (2028)</td>
+<td>250–400 TWh/year</td>
+<td>Various analysts; high uncertainty</td>
+</tr>
+<tr>
+<td>US household electricity reference</td>
+<td>~1,200 TWh/year total</td>
+<td>US EIA; for comparison purposes</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 12px; color: #666;">If AI data centres reach 400 TWh by 2028, that would be roughly equivalent to one-third of all US household electricity consumption. These projections carry very high uncertainty — they depend on assumptions about AI adoption rates, hardware efficiency improvements, and grid composition.</p>
+</div>
+<div class="info-box">
+<h4>💡 Training vs. Inference: Where the Energy Goes</h4>
+<p>Much early coverage of AI's environmental cost focused on the energy required to <em>train</em> a model — the one-time compute cost of creating GPT-4 or Claude. But for widely-deployed models, <em>inference</em> (running the model to answer queries) can easily exceed training energy over the model's lifetime.</p>
+<p style="margin-top: 8px;">With 2.5 billion queries per day, the cumulative inference cost of ChatGPT dwarfs the one-time training cost within months of deployment. This is why statements like "training GPT-3 emitted X tonnes of CO₂" need to be placed in the context of ongoing inference costs.</p>
+</div>
+<!-- TRY THIS YOURSELF -->
+<div style="background: #eef7f0; border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0;">
+<h3 style="color: #1f6e43; font-size: 1.25em; margin-bottom: 12px;">🔬 Try this yourself (about 10 minutes)</h3>
+<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">This page argues for calibrated numbers over both panic and dismissal. Here is a quick way to feel both the estimate <em>and</em> the opacity for yourself, in two short steps.</p>
+<ul style="list-style: none; padding-left: 0; margin: 0 0 12px;">
+<li style="position: relative; padding-left: 24px; margin-bottom: 11px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span><strong>Put a number on something real.</strong> Take one computation or AI task you actually ran recently and estimate its footprint, either with this lesson&#39;s per-interaction figures, or with a free calculator such as <a href="https://www.green-algorithms.org/" target="_blank" rel="noopener" style="color: #1f6e43; font-weight: 600;">Green Algorithms</a> (we return to these tools in 3.4). Notice how much the answer depends on assumptions you had to choose.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 0; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span><strong>Now hit the transparency wall.</strong> Pick one AI assistant you use and try to find its <em>official</em> per-query energy or water figure, a number from the company you could actually cite. Spend five minutes and then stop. The difficulty you just experienced <em>is</em> the &ldquo;transparency problem&rdquo; this page opened with: the figures you can cite are mostly third-party estimates, not disclosed measurements.</li>
+</ul>
+<p style="color: #345; line-height: 1.75; margin-bottom: 0;">The goal is to come away holding a defensible order-of-magnitude <em>and</em> an honest sense of how much the vendors are not telling you, rather than a precise total.</p>
+</div>
+
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>Before we can have a productive conversation about AI's environmental impact, we need to understand the numbers and their limits:</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>Corporate opacity is the fundamental problem:</strong> AI companies don't disclose the data needed to calculate their environmental footprint, so all estimates involve assumptions</li>
+<li><strong>Text vs. video is not comparable:</strong> Video generation uses roughly 1,000× more energy than text generation; these are different categories of use</li>
+<li><strong>The flight comparison spans orders of magnitude:</strong> 300,000 to 7.6 million queries per flight, depending on model size and whose figures you trust</li>
+<li><strong>Water is underreported:</strong> Both direct cooling and indirect electricity generation consume significant water, with geographic implications</li>
+<li><strong>Scale is what matters:</strong> Individual query costs are small; billions of queries per day is not</li>
+<li><strong>Inference, not just training:</strong> The ongoing cost of running models at scale quickly exceeds one-time training costs</li>
+<li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~5 kWh: central estimate ~1.9 kg CO₂ (US grid) / ~4.5 kg (SA grid), comparable to driving ~8–18 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session (Week 3.2):</strong> We zoom out from individual queries to the infrastructure level: where does the electricity come from, how does manufacturing hardware fit in, and why do efficiency gains so often fail to reduce total energy use?</p>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-2/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+  <a class="page-nav-link" href="../week-3/Infrastructure Scale and the Rebound Problem.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Infrastructure, Scale, and the Rebound Problem</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

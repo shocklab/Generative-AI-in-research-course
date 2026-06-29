@@ -1,541 +1,260 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Advanced A.1 - What Claude Code Actually Is</title>
-  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-  <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Lato', sans-serif;
-    line-height: 1.6;
-    color: #2c3e50;
-    background: #f5f5f5;
-    padding: 20px;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    overflow: hidden;
-}
-.ai-notice {
-    background: #e8f4f8;
-    color: #003A70;
-    padding: 15px 30px;
-    text-align: center;
-    font-size: 0.9em;
-    border-bottom: 1px solid #d0e8f2;
-}
-header {
-    background: #003A70;
-    color: white;
-    padding: 50px 40px;
-    text-align: center;
-}
-.week-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    backdrop-filter: blur(10px);
-}
-header h1 {
-    font-size: 2.3em;
-    margin-bottom: 15px;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
-header p {
-    font-size: 1.1em;
-    opacity: 0.95;
-    max-width: 800px;
-    margin: 10px auto 0;
-}
-.content {
-    padding: 50px 40px;
-}
-.intro-text {
-    background: #f9f9f9;
-    padding: 35px;
-    border-radius: 15px;
-    border-left: 5px solid #003A70;
-    margin-bottom: 40px;
-}
-.intro-text h2 {
-    color: #2a5298;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.intro-text p {
-    font-size: 1.1em;
-    color: #495057;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-.intro-text p:last-child {
-    margin-bottom: 0;
-}
-.section-title {
-    font-size: 2em;
-    color: #2a5298;
-    margin: 50px 0 30px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #003A70;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 5px solid #003A70;
-    transition: all 0.3s ease;
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-.card h3 {
-    color: #2a5298;
-    font-size: 1.4em;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-.card p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-.styled-list {
-    list-style: none;
-    margin-top: 15px;
-}
-.styled-list li {
-    padding: 8px 0 8px 25px;
-    color: #555;
-    position: relative;
-    line-height: 1.6;
-}
-.styled-list li::before {
-    content: '\25B8';
-    position: absolute;
-    left: 0;
-    color: #003A70;
-    font-weight: bold;
-}
-.highlight-box {
-    background: #003A70;
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    margin: 40px 0;
-}
-.highlight-box h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-.highlight-box p {
-    font-size: 1.05em;
-    line-height: 1.8;
-    opacity: 0.95;
-    margin-bottom: 12px;
-}
-.highlight-box p:last-child {
-    margin-bottom: 0;
-}
-.warning-box {
-    background: #fff8e1;
-    border-left: 5px solid #f9a825;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-}
-.warning-box h4 {
-    color: #e65100;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-.warning-box p {
-    color: #555;
-    line-height: 1.7;
-}
-.info-box {
-    background: #f8f9fa;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-    border-left: 4px solid #003A70;
-}
-.info-box h4 {
-    color: #2a5298;
-    font-size: 1.2em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.info-box p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-.info-box p:last-child {
-    margin-bottom: 0;
-}
-.instructor-box {
-    background: #f3effa;
-    border-left: 5px solid #6a5da8;
-    border-radius: 12px;
-    padding: 22px 26px;
-    margin: 25px 0;
-}
-.instructor-box h4 {
-    color: #4f4391;
-    font-size: 1.15em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.instructor-box p {
-    color: #463f5e;
-    line-height: 1.75;
-    margin-bottom: 12px;
-    font-style: italic;
-}
-.instructor-box p:last-child {
-    margin-bottom: 0;
-}
-.technical-detail {
-    background: white;
-    border: 2px solid #d0e8f2;
-    border-radius: 12px;
-    padding: 25px;
-    margin: 20px 0;
-}
-.technical-detail h4 {
-    color: #2a5298;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-}
-.case-study {
-    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
-    border: 2px solid #003A70;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 25px 0;
-}
-.case-study h4 {
-    color: #003A70;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-}
-.case-study p {
-    color: #444;
-    line-height: 1.75;
-    margin-bottom: 12px;
-}
-.case-study p:last-child {
-    margin-bottom: 0;
-}
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.comparison-table th {
-    background: #003A70;
-    color: white;
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 0.95em;
-}
-.comparison-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #e9ecef;
-    color: #555;
-    font-size: 0.95em;
-    line-height: 1.5;
-}
-.comparison-table tr:last-child td {
-    border-bottom: none;
-}
-.comparison-table tr:hover {
-    background: #f9f9f9;
-}
-.step-list {
-    counter-reset: step-counter;
-    list-style: none;
-    margin: 20px 0;
-}
-.step-list > li {
-    counter-increment: step-counter;
-    padding: 15px 15px 15px 60px;
-    position: relative;
-    margin-bottom: 12px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    color: #444;
-    line-height: 1.7;
-}
-.step-list > li::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #003A70;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-.resource-placeholder {
-    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
-    border: 2px dashed #003A70;
-    border-radius: 15px;
-    padding: 30px;
-    margin: 25px 0;
-}
-.resource-placeholder h4 {
-    color: #2a5298;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-}
-.resource-placeholder p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-.resource-placeholder p:last-child {
-    margin-bottom: 0;
-}
-pre.code-block {
-    background: #11243d;
-    color: #e6edf3;
-    border-radius: 10px;
-    padding: 18px 22px;
-    margin: 20px 0;
-    overflow-x: auto;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.85em;
-    line-height: 1.65;
-    white-space: pre;
-}
-pre.code-block .cm {
-    color: #8aa0b6;
-}
-pre.code-block .pr {
-    color: #7fd1b9;
-}
-code {
-    background: #eef2f6;
-    color: #11407c;
-    padding: 2px 6px;
-    border-radius: 5px;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.86em;
-}
-pre.code-block code {
-    background: none;
-    color: inherit;
-    padding: 0;
-}
-.gate-banner {
-    background: #003A70;
-    color: white;
-    padding: 22px 28px;
-    border-radius: 12px;
-    margin-bottom: 30px;
-    font-size: 1.0em;
-    line-height: 1.7;
-}
-.gate-banner strong {
-    color: #ffffff;
-}
-@media (max-width: 768px) {
-    header h1 { font-size: 1.8em;
-    } .content { padding: 30px 20px;
-    } .card-grid { grid-template-columns: 1fr;
-    } .comparison-table { font-size: 0.85em;
-    } pre.code-block { font-size: 0.78em;
-    };
-}
-/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
-header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-.highlight-box strong, .highlight-box em, .highlight-box span,
-.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
-    color: #ffffff !important;
-}
-.highlight-box a, header a, .gate-banner a {
-    color: #ffffff !important;
-    text-decoration: underline;
-}
-  </style>
-  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
-<div class="container">
-
-<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
-
-<header>
-  <div class="week-badge">Advanced Track &bull; Lesson A &bull; 1 of 3</div>
-  <h1>&#128421;&#65039; <span style="color: #ffffff;">What Claude Code Actually Is</span></h1>
-  <p>An agent that lives in your project folder, where the model is the smallest part of what works for you</p>
-</header>
-
-<div class="content">
-
-  <div class="gate-banner">
-    <strong>&#9888;&#65039; This is the Advanced Track &mdash; it goes beyond the free tier.</strong> Everything in Weeks 1&ndash;12 was chosen so that you could do it on free tools, because access is not a detail (Week&nbsp;10) and most of the world&#39;s researchers do not have a paid AI budget (Week&nbsp;11.4). This track is the one deliberate exception. It uses <strong>Claude Code</strong>, which needs a paid Claude subscription and comfort with a terminal. It is genuinely optional, it sits <em>after</em> the Week&nbsp;12 capstone on purpose, and the next page makes the honest case for whether it is worth it to you, including what you can and cannot approximate without paying.
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>What Claude Code Actually Is — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Advanced Track — Agentic Research with Claude Code &middot; Advanced Track — Agentic Research with Claude Code</div><nav class="toc"><a class="lesson cur" href="Claude%20Code%20as%20a%20Research%20Environment.html">A.1 — What Claude Code Actually Is</a><div class="subs"><a href="#s1">The Model Is the Smallest Part</a><a href="#s2">What Claude Code Can Actually Do</a><a href="#s3">Why This Is Categorically Different From Chat</a></div><a class="lesson" href="The%20Honest%20Case%20-%20Cost%20Access%20and%20Disposition.html">A.2 — The Honest Case: Cost, Access, and the Disposition</a><a class="lesson" href="First%20Contact%20and%20the%20Control%20Surface.html">A.3 — First Contact and the Control Surface</a><a class="lesson" href="Reproducibility%20and%20the%20Project%20Folder.html">B.1 — Reproducibility, and the Reproducible Project Folder</a><a class="lesson" href="Encoding%20Good%20Habits%20-%20CLAUDE.md%20Pre-registration%20and%20Skills.html">B.2 — Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</a><a class="lesson" href="The%20Reproducible%20Workflow%20End%20to%20End.html">B.3 — The Reproducible Workflow, End to End</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>What Claude Code Actually Is</h1><div class="deck">An agent that lives in your project folder, where the model is the smallest part of what works for you</div></div><div class="abody"><div class="gate-banner"><strong>This is the Advanced Track &mdash; it goes beyond the free tier.</strong> Everything in Weeks 1&ndash;12 was chosen so that you could do it on free tools, because access is not a detail (Week&nbsp;10) and most of the world&#39;s researchers do not have a paid AI budget (Week&nbsp;11.4). This track is the one deliberate exception. It uses <strong>Claude Code</strong>, which needs a paid Claude subscription and comfort with a terminal. It is genuinely optional, it sits <em>after</em> the Week&nbsp;12 capstone on purpose, and the next page makes the honest case for whether it is worth it to you, including what you can and cannot approximate without paying.
   </div>
 
-  <div class="intro-text">
-    <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>For most of this course, &ldquo;using AI&rdquo; has meant a chat window: you type, the model answers, you copy what is useful back into your own work. Claude Code is a different kind of thing, and the difference is the whole point of this track. It is an <em>agent</em> that works inside your real project folder. It reads your files, runs your code, edits your documents, uses version control, and can work on its own for long stretches.</p>
+  <div class="intro-text"><h2>What We&#39;ll Cover</h2>
+    <p class="drop">For most of this course, &ldquo;using AI&rdquo; has meant a chat window: you type, the model answers, you copy what is useful back into your own work. Claude Code is a different kind of thing, and the difference is the whole point of this track. It is an <em>agent</em> that works inside your real project folder. It reads your files, runs your code, edits your documents, uses version control, and can work on its own for long stretches.</p>
     <p>This first lesson does three things. It says what Claude Code is (and is not), using the model-versus-harness distinction from Week&nbsp;10. It draws the line between chatting and working with an agent, around a single principle: <strong>the chat is not the archive</strong>. And it sets up the question the rest of Lesson A answers: what does it actually take to drive one of these well?</p>
     <p>Lesson&nbsp;B then turns to the payoff this track exists for: using Claude Code to make your research genuinely <em>reproducible</em>, inspectable and repeatable by someone who is not you.</p>
   </div>
 
-  <div class="info-box">
-    <h4>&#128591; Sources and thanks</h4>
+  <div class="info-box"><h4>Sources and thanks</h4>
     <p>This track&rsquo;s reproducibility framework owes a large and explicit debt to <strong>Dominik Luke&#353;</strong>&rsquo;s workshop <em>Using AI Agents for Reproducible Research</em> (Oxford e-Research Centre). The organising principle that the chat is not the archive, the model-versus-harness framing, the research-habits instruction file, and the &ldquo;inspect a messy folder&rdquo; first task are all adapted, with thanks, from that workshop and its accompanying skills. His materials are openly available: <a href="https://techczech.github.io/agents-for-reproducibility/" target="_blank" rel="noopener">techczech.github.io/agents-for-reproducibility</a> (the workshop guide) and <a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a> (his agent-skills collection, MIT-licensed). The <code>grill-with-docs</code> glossary practice is from Matt Pocock (AI&nbsp;Hero). What this track adds on top (the pre-registration gates, the worked Berg River example, and the instructor&rsquo;s own practice in the boxes below) builds on that foundation.</p>
   </div>
 
-  <h2 class="section-title">&#129518; The Model Is the Smallest Part</h2>
+  <h2 class="section-title" id="s1">The Model Is the Smallest Part</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week&nbsp;10.1 argued that <strong>the harness is the product</strong>. The language model, Claude itself, is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
+  <p style=" margin-bottom: 20px">Week&nbsp;10.1 argued that <strong>the harness is the product</strong>. The language model, Claude itself, is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">When you ask Claude in a browser tab to help with an analysis, the model is most of what you get. It can reason about what you paste in and write text back. When you ask Claude Code the same thing, the model is the <em>smallest</em> part of what goes to work. The harness gives it your actual data files, a shell to run a script, the ability to read the error message that script produced, version control to record what changed, and standing instructions about how your project works. The intelligence is similar; the leverage is not.</p>
+  <p style=" margin-bottom: 15px">When you ask Claude in a browser tab to help with an analysis, the model is most of what you get. It can reason about what you paste in and write text back. When you ask Claude Code the same thing, the model is the <em>smallest</em> part of what goes to work. The harness gives it your actual data files, a shell to run a script, the ability to read the error message that script produced, version control to record what changed, and standing instructions about how your project works. The intelligence is similar; the leverage is not.</p>
 
-  <div class="info-box">
-    <h4>&#128161; The one-sentence version</h4>
+  <div class="info-box"><h4>The one-sentence version</h4>
     <p>This is a different kind of machine from a smarter chatbot: a model with hands, working in your project folder. Almost everything that follows in this track is about driving it well, and about the discipline that makes its work trustworthy afterwards.</p>
   </div>
 
-  <h2 class="section-title">&#128295; What Claude Code Can Actually Do</h2>
+  <h2 class="section-title" id="s2">What Claude Code Can Actually Do</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Claude Code runs in your terminal and operates on a folder you point it at. Within that folder, and only within it unless you say otherwise, it has a set of capabilities worth naming, because each one is a piece of the harness you will learn to use.</p>
+  <p style=" margin-bottom: 20px">Claude Code runs in your terminal and operates on a folder you point it at. Within that folder, and only within it unless you say otherwise, it has a set of capabilities worth naming, because each one is a piece of the harness you will learn to use.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Reads and writes your files</h3>
+  <div class="card-grid"><div class="card"><h3>Reads and writes your files</h3>
       <p>It can open, read, and edit the actual documents, data files, and scripts in your project: not a copy you pasted, the real thing. This is powerful, and it is why permission and raw-data rules matter (Lesson&nbsp;B).</p>
     </div>
-    <div class="card">
-      <h3>Runs commands and code</h3>
+    <div class="card"><h3>Runs commands and code</h3>
       <p>It can execute shell commands and run your analysis scripts, then read the output or the error and respond to it. The act&ndash;observe&ndash;act loop is what makes it an agent and not a text generator.</p>
     </div>
-    <div class="card">
-      <h3>Uses version control</h3>
+    <div class="card"><h3>Uses version control</h3>
       <p>It can initialise Git, commit changes, show you diffs, and read the history. Used well, this turns into a reproducibility trace (Lesson&nbsp;B.3), not just a software habit.</p>
     </div>
-    <div class="card">
-      <h3>Reads standing instructions</h3>
+    <div class="card"><h3>Reads standing instructions</h3>
       <p>A <code>CLAUDE.md</code> file in the project is loaded at the start of every session. It is how you tell the agent the rules of <em>your</em> project once, instead of re-explaining every time. We meet it properly in A.3.</p>
     </div>
-    <div class="card">
-      <h3>Runs reusable Skills</h3>
+    <div class="card"><h3>Runs reusable Skills</h3>
       <p>A Skill is a packaged, reusable workflow (a folder with a <code>SKILL.md</code>) the agent can invoke when it is relevant: a tested research procedure that travels across projects instead of being re-improvised each time (Lesson&nbsp;B.2).</p>
     </div>
-    <div class="card">
-      <h3>Spawns subagents</h3>
+    <div class="card"><h3>Spawns subagents</h3>
       <p>For a bounded job it can launch a separate, focused agent, for example an independent check of an analysis it just produced. This connects directly to the adversarial-verification idea from Week&nbsp;9.</p>
     </div>
-    <div class="card">
-      <h3>Connects to external tools (MCP)</h3>
+    <div class="card"><h3>Connects to external tools (MCP)</h3>
       <p>Through the Model Context Protocol it can reach approved external services and data sources (a reference database, a paper repository): the same MCP idea introduced in Week&nbsp;10.</p>
     </div>
-    <div class="card">
-      <h3>Plans before it acts</h3>
+    <div class="card"><h3>Plans before it acts</h3>
       <p>It has a read-only <em>plan mode</em>: it inspects and proposes a plan without changing anything, so you can approve the approach before a single file moves. It is a safety control we lean on, and we use it in A.3.</p>
     </div>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">None of these capabilities is exotic on its own; researchers have used shells, version control, and scripts for decades. What is new is that one system can use all of them <em>in a loop, on your behalf, from a plain-language request</em>. That is the capability Week&nbsp;11.1 called &ldquo;AI as a substantive collaborator,&rdquo; made operational. And as Week&nbsp;11.1 also insisted: the more the system can do unsupervised, the more the verification habit matters, not less.</p>
+  <p style=" margin-bottom: 15px">None of these capabilities is exotic on its own; researchers have used shells, version control, and scripts for decades. What is new is that one system can use all of them <em>in a loop, on your behalf, from a plain-language request</em>. That is the capability Week&nbsp;11.1 called &ldquo;AI as a substantive collaborator,&rdquo; made operational. And as Week&nbsp;11.1 also insisted: the more the system can do unsupervised, the more the verification habit matters, not less.</p>
 
-  <h2 class="section-title">&#128202; Why This Is Categorically Different From Chat</h2>
+  <h2 class="section-title" id="s3">Why This Is Categorically Different From Chat</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">It is tempting to file Claude Code under &ldquo;a more capable chatbot.&rdquo; That framing will mislead you. What separates the two is <em>where the work lives</em>, not how capable each one is.</p>
+  <p style=" margin-bottom: 20px">It is tempting to file Claude Code under &ldquo;a more capable chatbot.&rdquo; That framing will mislead you. What separates the two is <em>where the work lives</em>, not how capable each one is.</p>
 
-  <div class="card-grid">
-    <div class="card" style="border-left-color: #888;">
-      <h3>In a chat window</h3>
+  <div class="card-grid"><div class="card" style="border-left-color: #888"><h3>In a chat window</h3>
       <p>You paste context in. The model answers. The useful output, the reasoning, the decisions you made along the way: all of it lives in a conversation thread. Next week the thread is buried; next month you cannot reconstruct what you actually did, or why. The work is real but the <em>record</em> evaporates.</p>
     </div>
-    <div class="card">
-      <h3>In Claude Code</h3>
+    <div class="card"><h3>In Claude Code</h3>
       <p>The work lives in your files. The script it wrote is in <code>scripts/</code>. The output is in <code>outputs/</code>. The decision it made is in a log you told it to keep. The change is in the Git history. Six months later, you (or a stranger) can open the folder and see what happened.</p>
     </div>
   </div>
 
-  <div class="highlight-box">
-    <h3>&#128193; The chat is not the archive</h3>
+  <div class="highlight-box"><h3>The chat is not the archive</h3>
     <p>The organising principle of the whole track, stated plainly: <strong>save your sources, notes, instructions, scripts, outputs, and decisions into files, not into a chat thread.</strong> The conversation is where the work is <em>commissioned</em>; the project folder is where the work <em>lives</em>. A chatbot session is a conversation you will lose. A project folder is the unit of reproducible research.</p>
     <p>Everything Lesson&nbsp;B builds (the folder discipline, the decision log, the reproducible analysis) follows from taking this one sentence seriously.</p>
   </div>
 
-  <div class="info-box">
-    <h4>&#9878;&#65039; This is not &ldquo;abandon chat&rdquo;</h4>
+  <div class="info-box"><h4>This is not &ldquo;abandon chat&rdquo;</h4>
     <p>Chat is still the right tool for a great deal: a quick question, a brainstorm, a one-off paragraph, thinking out loud. The distinction is about <em>durability</em>. Reach for chat when the value is in the answer you read right now. Reach for an agent in a project folder when the value is in work that has to survive, be repeated, or be defended later. Most researchers will use both, for different things, and knowing which is which is itself a skill.</p>
   </div>
 
-  <div class="resource-placeholder">
-    <h4>&#128214; Download: the companion guide</h4>
+  <div class="resource-placeholder"><h4>Download: the companion guide</h4>
     <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document: the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the companion to these two lessons and goes further than we can here. Many of its ideas, the reproducibility framework above all, come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a>. The seven research <em>Skills</em> it documents are available as a separate download in Lesson&nbsp;B.2.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands: the move from <em>chatting</em> to <em>managing an agent</em>.</p>
-
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-12/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
-  <a class="page-nav-link" href="../advanced/The Honest Case - Cost Access and Disposition.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">A.2 — The Honest Case: Cost, Access, and the Disposition</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+  <p style=" margin-top: 25px; margin-bottom: 15px"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands: the move from <em>chatting</em> to <em>managing an agent</em>.</p></div><div class="prevnext"><a href="../week-12/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="The%20Honest%20Case%20-%20Cost%20Access%20and%20Disposition.html"><span class="d">Next &rarr;</span><span class="pt">A.2 — The Honest Case: Cost, Access, and the Disposition</span></a></div></div><div class="rightrail"><div class="rmeta">Advanced Track — Agentic Research with Claude Code<br>8 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Agent (AI)</div>A language model placed in a loop so it can act repeatedly (calling tools, running code, reading results, deciding next steps) until a task is done, rather than answering once.</div><div class="snote"><div class="sk">Harness</div>The software wrapped around a language model to make it an agent: the tools it can call, the files it can see, the loop that runs it repeatedly, the memory across steps, and the permissions that limit it.</div><div class="snote"><div class="sk">MCP (Model Context Protocol)</div>An open standard, introduced by Anthropic in 2024, that lets an AI agent connect to external tools and data sources (databases, file storage, reference managers) through one consistent interface rather than custom wiring for each.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

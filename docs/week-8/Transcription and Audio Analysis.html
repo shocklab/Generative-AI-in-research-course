@@ -1,99 +1,192 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 8.4 - Transcription and Audio Analysis</title>
-  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
-    .container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-    .ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
-    header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
-    .week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
-    header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-    header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-    .content { padding: 50px 40px; }
-    .intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
-    .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-    .intro-text h2::before { content: '\1F3AF'; }
-    .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-    .section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-    .card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-    .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-    .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-    .styled-list { list-style: none; margin-top: 15px; }
-    .styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
-    .styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-    .highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
-    .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-    .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-    .warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
-    .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
-    .warning-box p { color: #555; line-height: 1.7; }
-    .info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
-    .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-    .info-box p { color: #555; line-height: 1.7; }
-    .technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
-    .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-    .case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
-    .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
-    .comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-    .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-    .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-    .comparison-table tr:last-child td { border-bottom: none; }
-    .comparison-table tr:hover { background: #f9f9f9; }
-    .step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
-    .step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
-    .step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
-    .resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
-    .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-    .resource-placeholder p { color: #666; }
-    .sa-highlight { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(0,100,60,0.04) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; }
-    .sa-highlight h4 { color: #003A70; font-size: 1.4em; margin-bottom: 15px; }
-    .wer-table { width: 100%; border-collapse: collapse; margin: 15px 0; border-radius: 8px; overflow: hidden; }
-    .wer-table th { background: #2a5298; color: white; padding: 12px 15px; text-align: left; font-weight: 600; font-size: 0.95em; }
-    .wer-table td { padding: 10px 15px; border-bottom: 1px solid #e9ecef; color: #555; font-size: 0.95em; }
-    .wer-table tr:last-child td { border-bottom: none; }
-    .wer-table tr:hover { background: #f5f8ff; }
-    @media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } .wer-table { font-size: 0.82em; } }
-      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><div class="container">
-
-<div class="ai-notice"><strong>Note:</strong> This page&rsquo;s design, presentation and content have been created and enhanced using Claude (Anthropic&rsquo;s AI assistant) to improve visual quality and educational experience.</div>
-
-<header>
-  <div class="week-badge">Week 8 &bull; Sub-Lesson 4</div>
-  <h1>&#127908; <span style="color: #ffffff;">Transcription and Audio Analysis</span></h1>
-  <p>AI transcription for research interviews, focus groups, and fieldwork: what it gets wrong, and what it means for South African research contexts</p>
-</header>
-
-<div class="content">
-
-  <!-- INTRO -->
-  <div class="intro-text">
-    <h2>Overview</h2>
-    <p>Qualitative researchers, oral historians, social scientists, and educators all work with audio: interviews, focus groups, fieldwork recordings, classroom observations. AI transcription has changed this work, with tasks that once took hours of manual transcription now finishing in minutes. But transcription AI also hallucinates, inventing words, sentences, and sometimes entire passages that were never spoken. For research that depends on accurate verbatim records, this is not a minor inconvenience.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Transcription and Audio Analysis — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 8 &middot; Multimodal AI for Research</div><nav class="toc"><a class="lesson" href="What%20Multimodal%20AI%20Can%20See%20Hear%20and%20Read.html">What Multimodal AI Can See, Hear, and Read</a><a class="lesson" href="AI%20and%20Scientific%20Images.html">AI and Scientific Images</a><a class="lesson" href="Document%20Intelligence.html">Document Intelligence</a><a class="lesson cur" href="Transcription%20and%20Audio%20Analysis.html">Transcription and Audio Analysis</a><div class="subs"><a href="#s1">The Transcription Landscape</a><a href="#s2">Accuracy — What the Numbers Mean</a><a href="#s3">Transcription Hallucination — The Critical Warning</a><a href="#s4">South African and African Language Transcription</a><a href="#s5">AI-Assisted Qualitative Analysis</a><a href="#s6">A Conversational Workflow for Interview Analysis</a><a href="#s7">Privacy and Data Governance</a><a href="#s8">Readings</a></div><a class="lesson" href="Video%20and%20Multimodal%20Workflows.html">Video and Multimodal Workflows</a><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Transcription and Audio Analysis</h1><div class="deck">AI transcription for research interviews, focus groups, and fieldwork: what it gets wrong, and what it means for South African research contexts</div></div><div class="abody"><!-- INTRO -->
+  <div class="intro-text"><h2>Overview</h2>
+    <p class="drop">Qualitative researchers, oral historians, social scientists, and educators all work with audio: interviews, focus groups, fieldwork recordings, classroom observations. AI transcription has changed this work, with tasks that once took hours of manual transcription now finishing in minutes. But transcription AI also hallucinates, inventing words, sentences, and sometimes entire passages that were never spoken. For research that depends on accurate verbatim records, this is not a minor inconvenience.</p>
     <p>This sub-lesson covers the real capabilities, the real failure modes, and what these tools do and do not do with South African and other African languages. We then look at AI-assisted qualitative analysis tools and close with guidance on data privacy for audio recordings.</p>
   </div>
 
   <!-- SECTION 1: THE TRANSCRIPTION LANDSCAPE -->
-  <h2 class="section-title">&#127908; The Transcription Landscape</h2>
+  <h2 class="section-title" id="s1">The Transcription Landscape</h2>
 
-  <p style="color:#555; line-height:1.8; margin-bottom:20px;">The current transcription tool landscape is split between open-source models (primarily the Whisper family) that run locally, commercial cloud APIs that offer enhanced accuracy and features, and specialist providers focused on African language support.</p>
+  <p style=" margin-bottom:20px">The current transcription tool landscape is split between open-source models (primarily the Whisper family) that run locally, commercial cloud APIs that offer enhanced accuracy and features, and specialist providers focused on African language support.</p>
 
   <table class="comparison-table">
     <thead>
@@ -159,12 +252,11 @@
   </table>
 
   <!-- SECTION 2: ACCURACY — WHAT THE NUMBERS MEAN -->
-  <h2 class="section-title">&#128200; Accuracy &mdash; What the Numbers Mean</h2>
+  <h2 class="section-title" id="s2">Accuracy &mdash; What the Numbers Mean</h2>
 
-  <div class="technical-detail">
-    <h4>&#128270; Understanding Word Error Rate (WER)</h4>
-    <p style="color:#555; line-height:1.8; margin-bottom:15px;"><strong>WER (Word Error Rate)</strong> is the standard metric for transcription accuracy. A 10% WER means 1 in every 10 words is incorrect. For a 1-hour interview of approximately 8,000 words, a 10% WER represents around 800 errors. For academic research, a 10% error rate means every transcript requires careful human review before coding or analysis. The metric combines substitutions (wrong word), deletions (dropped word), and insertions (invented word) into a single number.</p>
-    <p style="color:#555; line-height:1.8; margin-bottom:10px;">Whisper large-v3 performance across audio conditions (recent benchmarks):</p>
+  <div class="technical-detail"><h4>Understanding Word Error Rate (WER)</h4>
+    <p style=" margin-bottom:15px"><strong>WER (Word Error Rate)</strong> is the standard metric for transcription accuracy. A 10% WER means 1 in every 10 words is incorrect. For a 1-hour interview of approximately 8,000 words, a 10% WER represents around 800 errors. For academic research, a 10% error rate means every transcript requires careful human review before coding or analysis. The metric combines substitutions (wrong word), deletions (dropped word), and insertions (invented word) into a single number.</p>
+    <p style=" margin-bottom:10px">Whisper large-v3 performance across audio conditions (recent benchmarks):</p>
     <table class="wer-table">
       <thead>
         <tr>
@@ -201,55 +293,46 @@
         </tr>
       </tbody>
     </table>
-    <p style="color:#555; line-height:1.8; margin-top:15px;">The &ldquo;clean read speech&rdquo; benchmark (LibriSpeech) represents near-ideal conditions: studio recordings of people reading prepared text aloud. Most research audio is far closer to the &ldquo;real-world mixed audio&rdquo; or &ldquo;meeting audio&rdquo; conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the Whisper large-v3 model card reports approximately 2.0% on clean audio. Neither figure is representative of typical research use.</p>
+    <p style=" margin-top:15px">The &ldquo;clean read speech&rdquo; benchmark (LibriSpeech) represents near-ideal conditions: studio recordings of people reading prepared text aloud. Most research audio is far closer to the &ldquo;real-world mixed audio&rdquo; or &ldquo;meeting audio&rdquo; conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the Whisper large-v3 model card reports approximately 2.0% on clean audio. Neither figure is representative of typical research use.</p>
   </div>
 
   <!-- SECTION 3: TRANSCRIPTION HALLUCINATION -->
-  <h2 class="section-title">&#9888;&#65039; Transcription Hallucination &mdash; The Critical Warning</h2>
+  <h2 class="section-title" id="s3">Transcription Hallucination &mdash; The Critical Warning</h2>
 
-  <div class="warning-box">
-    <h4>&#9888;&#65039; Transcription Hallucination Is a Real and Documented Problem</h4>
+  <div class="warning-box"><h4>Transcription Hallucination Is a Real and Documented Problem</h4>
     <p>Investigative reporting in 2024 (Associated Press, TechCrunch) surfaced cases where Whisper hallucinated in approximately 80% of public meeting transcriptions tested by researchers. A separate peer-reviewed study, Koenecke et al. (FAccT 2024, &ldquo;Careless Whisper&rdquo;), analysed hallucinations in clinical interview transcriptions and found that 38% included explicit harms such as perpetuating violence, inventing associations, or implying false authority. Together these findings confirm that transcription hallucination is a systematic feature of how language model-based transcription works, not an occasional glitch.</p>
-    <p style="margin-top:12px;"><strong>What transcription hallucination looks like:</strong></p>
+    <p style="margin-top:12px"><strong>What transcription hallucination looks like:</strong></p>
   </div>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>&#10060; Invented Sentences</h3>
+  <div class="card-grid"><div class="card"><h3>Invented Sentences</h3>
       <p>Complete sentences that were never spoken appear in the transcript. Sometimes they are plausible-sounding extensions of what was said, sometimes entirely unrelated to the audio content. The model fills silence or uncertain audio with generated text.</p>
     </div>
-    <div class="card">
-      <h3>&#128259; Wrong Words</h3>
+    <div class="card"><h3>Wrong Words</h3>
       <p>Homophones and phonetically similar sequences produce substitution errors. &ldquo;Their&rdquo; becomes &ldquo;there&rdquo;, technical terms are replaced with common words that sound similar. These errors are often plausible in context, making them harder to detect on first reading.</p>
     </div>
-    <div class="card">
-      <h3>&#128065;&#65039; Fabricated Proper Nouns</h3>
+    <div class="card"><h3>Fabricated Proper Nouns</h3>
       <p>Names of people, places, and organisations that the model does not recognise from its training data are sometimes replaced with invented approximations, so a real person&rsquo;s name becomes a different name that sounds similar. Technical vocabulary and field-specific jargon are particularly vulnerable.</p>
     </div>
-    <div class="card">
-      <h3>&#128683; Dropped Content</h3>
+    <div class="card"><h3>Dropped Content</h3>
       <p>Entire sentences are omitted silently with no indication in the transcript that anything was missed. Deletion errors are often harder to detect than substitution errors because there is no visible evidence of the omission unless you are following along with the audio.</p>
     </div>
   </div>
 
-  <div class="info-box">
-    <h4>&#128204; When Hallucination Is Most Likely</h4>
+  <div class="info-box"><h4>When Hallucination Is Most Likely</h4>
     <p>Low-quality audio, background noise, or cross-talk between speakers increases hallucination rates substantially. Unusual terminology (technical vocabulary, field-specific jargon, specialist terms not represented in training data), accented speech that differs significantly from training data, quiet or mumbled speech, and multiple overlapping speakers all increase risk. Research interviews, especially fieldwork recordings in non-studio conditions, routinely combine several of these risk factors at once.</p>
   </div>
 
-  <div class="warning-box">
-    <h4>&#128205; The Verification Imperative</h4>
+  <div class="warning-box"><h4>The Verification Imperative</h4>
     <p>Every transcription used for academic analysis must be reviewed by a human with access to the original audio. Spot-checking 10% of the transcript is not sufficient for verbatim accuracy. For critical passages (any passage you intend to quote directly, any passage that forms the evidential basis of an analytical claim) full verification against the audio is required. This is not optional for publishable research.</p>
   </div>
 
   <!-- SECTION 4: SOUTH AFRICAN AND AFRICAN LANGUAGE TRANSCRIPTION -->
-  <h2 class="section-title">&#127482;&#127466; South African and African Language Transcription</h2>
+  <h2 class="section-title" id="s4">South African and African Language Transcription</h2>
 
-  <div class="sa-highlight">
-    <h4>&#127758; The South African Research Context</h4>
-    <p style="color:#555; line-height:1.8; margin-bottom:20px;">Standard transcription tools are trained predominantly on English and major European languages. Their performance on South African languages, and on South African English accents, is significantly lower than the headline accuracy figures suggest. This section gives you the performance picture, the tools designed to address this gap, and practical guidance for researchers working in multilingual South African contexts.</p>
+  <div class="sa-highlight"><h4>The South African Research Context</h4>
+    <p style=" margin-bottom:20px">Standard transcription tools are trained predominantly on English and major European languages. Their performance on South African languages, and on South African English accents, is significantly lower than the headline accuracy figures suggest. This section gives you the performance picture, the tools designed to address this gap, and practical guidance for researchers working in multilingual South African contexts.</p>
 
-    <p style="color:#555; line-height:1.8; margin-bottom:15px;"><strong>Representative ASR performance on South African languages, W2v-BERT model with 1 hour vs 50 hours of fine-tuning (Nahabwe et al., 2025, <a href="https://arxiv.org/abs/2512.10968" style="color:#2a5298;" target="_blank" rel="noopener">arXiv:2512.10968</a>):</strong></p>
+    <p style=" margin-bottom:15px"><strong>Representative ASR performance on South African languages, W2v-BERT model with 1 hour vs 50 hours of fine-tuning (Nahabwe et al., 2025, <a href="https://arxiv.org/abs/2512.10968" target="_blank" rel="noopener">arXiv:2512.10968</a>):</strong></p>
     <table class="wer-table">
       <thead>
         <tr>
@@ -280,33 +363,29 @@
         </tr>
       </tbody>
     </table>
-    <p style="color:#555; line-height:1.8; margin-top:15px;">These figures are from Nahabwe et al. (2025, Deep Learning Indaba 2025), which benchmarks several architectures (Whisper, W2v-BERT, XLS-R, MMS) on African languages. Other models in the same study reach broadly comparable or better WER at 50 hours: Whisper Afrikaans at 50h is approximately 2.11%. The dramatic improvement from fine-tuning on 1&ndash;50 hours of target language data applies across architectures; the practical barrier is the requirement for labelled audio data in the target language, which remains scarce for many African languages. With only 1 hour of fine-tuning, a WER of ~28% on Zulu means roughly 1 in every 3.5 words is wrong, a level of error that makes automated analysis unreliable.</p>
+    <p style=" margin-top:15px">These figures are from Nahabwe et al. (2025, Deep Learning Indaba 2025), which benchmarks several architectures (Whisper, W2v-BERT, XLS-R, MMS) on African languages. Other models in the same study reach broadly comparable or better WER at 50 hours: Whisper Afrikaans at 50h is approximately 2.11%. The dramatic improvement from fine-tuning on 1&ndash;50 hours of target language data applies across architectures; the practical barrier is the requirement for labelled audio data in the target language, which remains scarce for many African languages. With only 1 hour of fine-tuning, a WER of ~28% on Zulu means roughly 1 in every 3.5 words is wrong, a level of error that makes automated analysis unreliable.</p>
   </div>
 
-  <div class="technical-detail">
-    <h4>&#127758; Dedicated African Language Tools</h4>
-    <p style="color:#555; line-height:1.8; margin-bottom:15px;">Several tools have been developed specifically to address the performance gap for African languages:</p>
+  <div class="technical-detail"><h4>Dedicated African Language Tools</h4>
+    <p style=" margin-bottom:15px">Several tools have been developed specifically to address the performance gap for African languages:</p>
     <ul class="styled-list">
-      <li><strong>Intron Sahara v2 (2026):</strong> Covers 57 languages total (24 newly added in v2, including Zulu, Xhosa, and Afrikaans), with support for over 500 African English accent variants. Developed by Intron, a Nigerian (Lagos-based) AI company. Commercial API. <a href="https://intron.ai" style="color:#2a5298;">https://intron.ai</a></li>
-      <li><strong>Lelapa AI:</strong> South African language specialist. Focuses on Zulu, Xhosa, Sotho, and Afrikaans. Developed with African language experts and linguists. <a href="https://lelapa.ai" style="color:#2a5298;">https://lelapa.ai</a></li>
+      <li><strong>Intron Sahara v2 (2026):</strong> Covers 57 languages total (24 newly added in v2, including Zulu, Xhosa, and Afrikaans), with support for over 500 African English accent variants. Developed by Intron, a Nigerian (Lagos-based) AI company. Commercial API. <a href="https://intron.ai">https://intron.ai</a></li>
+      <li><strong>Lelapa AI:</strong> South African language specialist. Focuses on Zulu, Xhosa, Sotho, and Afrikaans. Developed with African language experts and linguists. <a href="https://lelapa.ai">https://lelapa.ai</a></li>
       <li><strong>Microsoft PazaBench:</strong> The first independent leaderboard for low-resource African language ASR (Automatic Speech Recognition), covering 39 languages and 52 models. Use this to compare current model performance across languages before committing to a tool.</li>
       <li><strong>AfriSpeech-Dialog (NAACL 2025):</strong> Benchmark for spontaneous conversational speech in African-accented English. This matches the kind of accented English speech found in South African research interviews and focus groups, where participants code-switch or speak English as a second language.</li>
     </ul>
   </div>
 
-  <div class="info-box">
-    <h4>&#128161; Practical Guidance for South African Research Contexts</h4>
+  <div class="info-box"><h4>Practical Guidance for South African Research Contexts</h4>
     <p>Standard Whisper large-v3 is a reasonable starting point for Afrikaans in quiet, clean recording conditions. For Zulu and Xhosa, especially in the naturalistic, spontaneous speech typical of qualitative interviews, fine-tuned variants or specialist tools (Intron Sahara v2, Lelapa AI) are strongly preferred over standard Whisper. For research that will be published or cited, budget for human verification of all transcripts regardless of the tool used. The performance gap between African languages and major European languages in standard tools is a data problem rather than a fixed property, and it is improving as more labeled audio data becomes available. Check current benchmark leaderboards before beginning a new research project.</p>
   </div>
 
   <!-- SECTION 5: AI-ASSISTED QUALITATIVE ANALYSIS -->
-  <h2 class="section-title">&#128269; AI-Assisted Qualitative Analysis</h2>
+  <h2 class="section-title" id="s5">AI-Assisted Qualitative Analysis</h2>
 
-  <p style="color:#555; line-height:1.8; margin-bottom:25px;">Several qualitative data analysis (QDA) tools have integrated AI capabilities since 2023&ndash;2025. The integrations range from AI-suggested codes to conversational querying of your document corpus. Understanding what these features do and do not do is essential for using them responsibly.</p>
+  <p style=" margin-bottom:25px">Several qualitative data analysis (QDA) tools have integrated AI capabilities since 2023&ndash;2025. The integrations range from AI-suggested codes to conversational querying of your document corpus. Understanding what these features do and do not do is essential for using them responsibly.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>&#128187; ATLAS.ti (Lumivero)</h3>
+  <div class="card-grid"><div class="card"><h3><a href="https://atlasti.com" target="_blank" rel="noopener">ATLAS.ti</a> (Lumivero)</h3>
       <p>The most AI-integrated qualitative data analysis tool currently available. Includes AI transcription, AI-suggested codes, AI-generated summaries, and conversational querying across your document corpus.</p>
       <ul class="styled-list">
         <li>AI coding suggestions are a starting point, not a final answer</li>
@@ -315,8 +394,7 @@
         <li>Conversational querying is powerful for finding relevant passages quickly</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>&#128202; NVivo 15.3 (Lumivero)</h3>
+    <div class="card"><h3><a href="https://lumivero.com/products/nvivo/" target="_blank" rel="noopener">NVivo</a> 15.3 (Lumivero)</h3>
       <p>AI-generated summaries, AI auto-coding, and integration with statistical analysis. The Lumivero acquisition of ATLAS.ti (September 2024) has brought both tools under the same corporate umbrella, with increasing feature convergence across the two products.</p>
       <ul class="styled-list">
         <li>AI auto-coding integrates with NVivo&rsquo;s node structure</li>
@@ -324,8 +402,7 @@
         <li>Statistical integration supports mixed-methods research designs</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>&#128196; MAXQDA Analytics Pro</h3>
+    <div class="card"><h3><a href="https://www.maxqda.com" target="_blank" rel="noopener">MAXQDA</a> Analytics Pro</h3>
       <p>AI coding suggestions, document summarisation, and paraphrasing. Lower AI integration than ATLAS.ti but more affordable for individual researchers or small teams. Well-suited to projects where you want AI support without full dependency on AI-generated outputs.</p>
       <ul class="styled-list">
         <li>AI paraphrasing useful for memo writing</li>
@@ -333,8 +410,7 @@
         <li>Good export options for integration with other tools</li>
       </ul>
     </div>
-    <div class="card">
-      <h3>&#128172; Insight7</h3>
+    <div class="card"><h3><a href="https://insight7.io" target="_blank" rel="noopener">Insight7</a></h3>
       <p>Specialised platform for analysing interview transcripts and focus groups at scale. Extracts themes, sentiment, and key insights from audio, video, or text. Designed primarily for UX research and market research, but applicable to academic qualitative work where you need to process many interviews quickly.</p>
       <ul class="styled-list">
         <li>Handles audio, video, and text input in a single workflow</li>
@@ -344,15 +420,14 @@
     </div>
   </div>
 
-  <div class="info-box">
-    <h4>&#9888;&#65039; What AI Auto-Coding Does and Does Not Do</h4>
+  <div class="info-box"><h4>What AI Auto-Coding Does and Does Not Do</h4>
     <p>AI can identify passages related to themes you specify, flag sentiment, and suggest codes based on semantic similarity to your existing codes or to prompts you provide. It cannot apply your theoretical framework, distinguish between a participant citing a concept and genuinely expressing it, or make the interpretive judgments that are the core of qualitative research. AI coding finds passages efficiently; your own judgment determines what those passages mean within your analytical framework.</p>
   </div>
 
   <!-- SECTION 6: THE CAAI WORKFLOW -->
-  <h2 class="section-title">&#128203; A Conversational Workflow for Interview Analysis</h2>
+  <h2 class="section-title" id="s6">A Conversational Workflow for Interview Analysis</h2>
 
-  <p style="color:#555; line-height:1.8; margin-bottom:20px;">The following workflow is informed by Friese&#39;s (2025) Conversational Analysis with AI (CAAI) framework, which replaces traditional line-by-line qualitative coding with structured dialogic interaction between the researcher and a large language model (Friese, S., 2025, &ldquo;From Coding to Conversation: A New Methodological Framework for AI-Assisted Qualitative Analysis,&rdquo; SSRN 5232579). It is designed for qualitative researchers who want to use AI to accelerate analysis without sacrificing interpretive rigour.</p>
+  <p style=" margin-bottom:20px">The following workflow is informed by Friese&#39;s (2025) Conversational Analysis with AI (CAAI) framework, which replaces traditional line-by-line qualitative coding with structured dialogic interaction between the researcher and a large language model (Friese, S., 2025, &ldquo;From Coding to Conversation: A New Methodological Framework for AI-Assisted Qualitative Analysis,&rdquo; SSRN 5232579). It is designed for qualitative researchers who want to use AI to accelerate analysis without sacrificing interpretive rigour.</p>
 
   <ol class="step-list">
     <li><strong>Familiarisation via AI-generated summaries.</strong> Use AI to produce a structured summary of each interview before your first read. This orients you to the content (the key topics discussed, the approximate emotional register, the main positions taken) without replacing close reading. Treat it as a map, not a substitute for the territory.</li>
@@ -363,78 +438,48 @@
   </ol>
 
   <!-- PRIVACY WARNING -->
-  <h2 class="section-title">&#128274; Privacy and Data Governance</h2>
+  <h2 class="section-title" id="s7">Privacy and Data Governance</h2>
 
-  <div class="warning-box">
-    <h4>&#9888;&#65039; Audio Recordings of Research Participants Are Sensitive Data</h4>
+  <div class="warning-box"><h4>Audio Recordings of Research Participants Are Sensitive Data</h4>
     <p>Before uploading audio recordings to any cloud-based transcription service (including Whisper API, AssemblyAI, Deepgram, or any QDA tool with cloud transcription) you must check three things:</p>
   </div>
 
-  <div class="technical-detail">
-    <h4>&#128274; Three-Point Data Governance Check</h4>
+  <div class="technical-detail"><h4>Three-Point Data Governance Check</h4>
     <ul class="styled-list">
       <li><strong>Your institution&rsquo;s data governance policy:</strong> Many universities require that personal data (which includes voice recordings of identifiable individuals) be processed only on approved platforms or servers within specified jurisdictions. The UCT Research Data Management Policy is the relevant document for students and staff at this institution.</li>
       <li><strong>Your ethics approval:</strong> Your ethics certificate specifies how data may be collected, stored, and processed. If it does not explicitly authorise cloud-based processing, you may need an amendment before uploading recordings.</li>
       <li><strong>Your consent forms:</strong> Participants who consented to an interview did not necessarily consent to their voice being processed by a commercial AI service in a foreign jurisdiction. If your consent form does not cover this use, you cannot assume consent applies.</li>
     </ul>
-    <p style="color:#555; line-height:1.8; margin-top:15px;"><strong>Local processing tools (Whisper running on your own machine) avoid this concern entirely:</strong> audio never leaves your device. WhisperX, Whisper.cpp, and Faster-Whisper all run locally and produce output comparable to the cloud Whisper API. For sensitive research data, local processing is the default recommendation.</p>
+    <p style=" margin-top:15px"><strong>Local processing tools (Whisper running on your own machine) avoid this concern entirely:</strong> audio never leaves your device. WhisperX, Whisper.cpp, and Faster-Whisper all run locally and produce output comparable to the cloud Whisper API. For sensitive research data, local processing is the default recommendation.</p>
   </div>
 
   <!-- READINGS -->
-  <h2 class="section-title">&#128218; Readings</h2>
+  <h2 class="section-title" id="s8">Readings</h2>
 
-  <div class="resource-placeholder">
-    <h4>&#127908; Core Reading 1</h4>
-    <p>arXiv:2510.01145 (2025). &ldquo;Automatic Speech Recognition for African Low-Resource Languages: A Systematic Literature Review.&rdquo;<br>
-    <a href="https://arxiv.org/abs/2510.01145" style="color:#2a5298; font-weight:600;">https://arxiv.org/abs/2510.01145</a></p>
-    <p style="margin-top:10px; color:#888; font-size:0.9em;">A thorough systematic review covering the current state of ASR for African languages, data availability, benchmark performance, and research gaps.</p>
+  <div class="resource-placeholder"><h4>Core Reading 1</h4>
+    <p>arXiv:2510.01145 (2025). &ldquo;Automatic Speech Recognition for African Low-Resource Languages: A Systematic Literature Review.&rdquo;<br><a href="https://arxiv.org/abs/2510.01145">https://arxiv.org/abs/2510.01145</a></p>
+    <p style="margin-top:10px">A thorough systematic review covering the current state of ASR for African languages, data availability, benchmark performance, and research gaps.</p>
   </div>
 
-  <div class="resource-placeholder">
-    <h4>&#127908; Core Reading 2</h4>
-    <p>Nahabwe et al. (2025). &ldquo;Benchmarking Automatic Speech Recognition Models for African Languages.&rdquo; Deep Learning Indaba 2025.<br>
-    <a href="https://arxiv.org/abs/2512.10968" style="color:#2a5298; font-weight:600;">https://arxiv.org/abs/2512.10968</a></p>
-    <p style="margin-top:10px; color:#888; font-size:0.9em;">Systematic comparison of Whisper, W2v-BERT, XLS-R, and MMS across African languages with varying amounts of fine-tuning data. The source for the WER tables in this sub-lesson.</p>
+  <div class="resource-placeholder"><h4>Core Reading 2</h4>
+    <p>Nahabwe et al. (2025). &ldquo;Benchmarking Automatic Speech Recognition Models for African Languages.&rdquo; Deep Learning Indaba 2025.<br><a href="https://arxiv.org/abs/2512.10968">https://arxiv.org/abs/2512.10968</a></p>
+    <p style="margin-top:10px">Systematic comparison of Whisper, W2v-BERT, XLS-R, and MMS across African languages with varying amounts of fine-tuning data. The source for the WER tables in this sub-lesson.</p>
   </div>
 
-  <div class="resource-placeholder">
-    <h4>&#127760; Supplementary: Intron Sahara v2</h4>
-    <p>Explore the language coverage and accuracy claims for this Nigerian-developed ASR system. Sahara v2 (2026) covers 57 languages total, with 500+ accent variants.<br>
-    <a href="https://intron.ai" style="color:#2a5298; font-weight:600;">https://intron.ai</a></p>
+  <div class="resource-placeholder"><h4>Supplementary: Intron Sahara v2</h4>
+    <p>Explore the language coverage and accuracy claims for this Nigerian-developed ASR system. Sahara v2 (2026) covers 57 languages total, with 500+ accent variants.<br><a href="https://intron.ai">https://intron.ai</a></p>
   </div>
 
-  <div class="resource-placeholder">
-    <h4>&#127760; Supplementary: Lelapa AI</h4>
-    <p>South African language AI specialist. Review their Zulu, Xhosa, Sotho, and Afrikaans capabilities and the approach they take to developing models with African language expertise.<br>
-    <a href="https://lelapa.ai" style="color:#2a5298; font-weight:600;">https://lelapa.ai</a></p>
+  <div class="resource-placeholder"><h4>Supplementary: Lelapa AI</h4>
+    <p>South African language AI specialist. Review their Zulu, Xhosa, Sotho, and Afrikaans capabilities and the approach they take to developing models with African language expertise.<br><a href="https://lelapa.ai">https://lelapa.ai</a></p>
   </div>
 
   <!-- SUMMARY -->
-  <div class="highlight-box">
-    <h3>&#9989; Sub-Lesson 4 Summary</h3>
+  <div class="highlight-box"><h3>Sub-Lesson 4 Summary</h3>
     <p><strong>Accuracy landscape:</strong> Whisper large-v3 achieves approximately 2.0% WER on clean read speech but 11.5%+ on meeting audio. Real research audio is rarely clean. Always treat headline accuracy figures with caution.</p>
     <p><strong>Transcription hallucination:</strong> Documented across multiple studies. Informal testing found hallucinations in approximately 80% of public meeting transcriptions; Koenecke et al. (FAccT 2024) found 38% of hallucinations in clinical transcriptions involved explicit harms. Invented sentences, fabricated proper nouns, and dropped content are all real failure modes. Every transcript used in research requires human verification against the original audio.</p>
     <p><strong>African language tools:</strong> Standard Whisper shows 22&ndash;28% WER on Afrikaans, Zulu, and Xhosa. Fine-tuning drops this dramatically. Intron Sahara v2 and Lelapa AI are specialist tools developed for African language contexts and should be the first consideration for research involving these languages.</p>
     <p><strong>Qualitative analysis software:</strong> ATLAS.ti, NVivo, MAXQDA, and Insight7 all now offer AI coding and summarisation. AI finds passages; you determine what they mean.</p>
     <p><strong>Privacy:</strong> Audio recordings of participants require explicit ethics approval and consent cover before cloud processing. Use local tools (Whisper, WhisperX) for sensitive data.</p>
     <p><strong>Up next &mdash; Sub-Lesson 5:</strong> Video analysis and multimodal AI, combining audio, visual, and text modalities in research workflows.</p>
-  </div>
-
-</div><!-- /content -->
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-8/Document Intelligence.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Document Intelligence</div></a>
-  <a class="page-nav-link" href="../week-8/Video and Multimodal Workflows.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Video and Multimodal Workflows</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div><!-- /container -->
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+  </div></div><div class="prevnext"><a href="Document%20Intelligence.html"><span class="d">&larr; Previous</span><span class="pt">Document Intelligence</span></a><a class="next" href="Video%20and%20Multimodal%20Workflows.html"><span class="d">Next &rarr;</span><span class="pt">Video and Multimodal Workflows</span></a></div></div><div class="rightrail"><div class="rmeta">Week 8<br>Lesson 4<br>13 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">WER (word error rate)</div>The standard measure of transcription accuracy: the percentage of words that are wrong (substituted, deleted, or inserted) against the correct reference text. A 10% WER means about one word in ten is incorrect.</div><div class="snote"><div class="sk">Transcription hallucination</div>A failure in AI transcription where the model generates text that was never spoken, inventing sentences, fabricating names, or silently dropping content, rather than faithfully converting the audio.</div><div class="snote"><div class="sk">ASR (automatic speech recognition)</div>Technology that converts spoken audio into written text automatically. Modern systems use neural networks trained on large speech collections, so accuracy varies sharply by language and accent.</div><div class="snote"><div class="sk">Speaker diarisation</div>The automated process of labelling who said which words in a multi-speaker recording. AI diarisation remains imperfect, and incorrect speaker attribution can corrupt qualitative analysis, so it requires manual verification.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

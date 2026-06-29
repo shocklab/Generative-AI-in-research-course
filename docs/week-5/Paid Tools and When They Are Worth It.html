@@ -1,487 +1,202 @@
-﻿<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 5.3 - Paid Tools and When They Are Worth It</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Lato', sans-serif;
-        line-height: 1.6;
-        color: #2c3e50;
-        background: #f5f5f5;
-        padding: 20px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-    }
-
-    .ai-notice {
-        background: #e8f4f8;
-        color: #003A70;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 0.9em;
-        border-bottom: 1px solid #d0e8f2;
-    }
-
-    .ai-notice strong {
-        font-weight: 600;
-    }
-
-    header {
-        background: #003A70;
-        color: white;
-        padding: 50px 40px;
-        text-align: center;
-    }
-
-    .week-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        margin-bottom: 15px;
-        backdrop-filter: blur(10px);
-    }
-
-    header h1 {
-        font-size: 2.3em;
-        margin-bottom: 15px;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
-
-    header p {
-        font-size: 1.1em;
-        opacity: 0.95;
-        max-width: 800px;
-        margin: 10px auto 0;
-    }
-
-    .content {
-        padding: 50px 40px;
-    }
-
-    .intro-text {
-        background: #f9f9f9;
-        padding: 35px;
-        border-radius: 15px;
-        border-left: 5px solid #003A70;
-        margin-bottom: 40px;
-    }
-
-    .intro-text h2 {
-        color: #2a5298;
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .intro-text h2::before {
-        content: '🎯';
-    }
-
-    .intro-text p {
-        font-size: 1.1em;
-        color: #495057;
-        line-height: 1.8;
-        margin-bottom: 15px;
-    }
-
-    .section-title {
-        font-size: 2em;
-        color: #2a5298;
-        margin: 50px 0 30px;
-        padding-bottom: 15px;
-        border-bottom: 3px solid #003A70;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin: 30px 0;
-    }
-
-    .card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid #003A70;
-        transition: all 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h3 {
-        color: #2a5298;
-        font-size: 1.4em;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
-
-    .card p {
-        color: #555;
-        line-height: 1.7;
-        margin-bottom: 15px;
-    }
-
-    .styled-list {
-        list-style: none;
-        margin-top: 15px;
-    }
-
-    .styled-list li {
-        padding: 8px 0 8px 25px;
-        color: #555;
-        position: relative;
-        line-height: 1.6;
-    }
-
-    .styled-list li::before {
-        content: '▸';
-        position: absolute;
-        left: 0;
-        color: #003A70;
-        font-weight: bold;
-    }
-
-    .highlight-box {
-        background: #003A70;
-        color: white;
-        padding: 30px;
-        border-radius: 15px;
-        margin: 40px 0;
-    }
-
-    .highlight-box h3 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    .highlight-box p {
-        font-size: 1.05em;
-        line-height: 1.8;
-        opacity: 0.95;
-        margin-bottom: 12px;
-    }
-
-    .warning-box {
-        background: #fff8e1;
-        border-left: 5px solid #f9a825;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-    }
-
-    .warning-box h4 {
-        color: #e65100;
-        font-size: 1.1em;
-        margin-bottom: 10px;
-    }
-
-    .warning-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .info-box {
-        background: #f8f9fa;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-        border-left: 4px solid #003A70;
-    }
-
-    .info-box h4 {
-        color: #2a5298;
-        font-size: 1.2em;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .info-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .resource-placeholder {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-        border: 2px dashed #003A70;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 25px 0;
-        text-align: center;
-    }
-
-    .resource-placeholder h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 10px;
-    }
-
-    .resource-placeholder p {
-        color: #666;
-    }
-
-    .technical-detail {
-        background: white;
-        border: 2px solid #d0e8f2;
-        border-radius: 12px;
-        padding: 25px;
-        margin: 20px 0;
-    }
-
-    .technical-detail h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .comparison-table th {
-        background: #003A70;
-        color: white;
-        padding: 15px;
-        text-align: left;
-        font-weight: 600;
-    }
-
-    .comparison-table td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #e9ecef;
-        color: #555;
-    }
-
-    .comparison-table tr:last-child td {
-        border-bottom: none;
-    }
-
-    .comparison-table tr:hover {
-        background: #f9f9f9;
-    }
-
-    .case-study {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-        border: 2px solid #003A70;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 25px 0;
-    }
-
-    .case-study h4 {
-        color: #003A70;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .decision-framework {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-        border: 2px solid #003A70;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-    }
-
-    .decision-framework h4 {
-        color: #003A70;
-        font-size: 1.4em;
-        margin-bottom: 20px;
-    }
-
-    .tool-card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-top: 5px solid #003A70;
-        transition: all 0.3s ease;
-        margin-bottom: 30px;
-    }
-
-    .tool-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .tool-card h3 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 8px;
-    }
-
-    .tool-card .tool-url {
-        font-size: 0.9em;
-        color: #003A70;
-        margin-bottom: 12px;
-    }
-
-    .tool-card p {
-        color: #555;
-        line-height: 1.7;
-        margin-bottom: 10px;
-    }
-
-    .tool-card .tool-pricing {
-        display: inline-block;
-        background: #e8f4f8;
-        color: #003A70;
-        padding: 4px 14px;
-        border-radius: 15px;
-        font-size: 0.85em;
-        font-weight: 600;
-        margin-bottom: 15px;
-    }
-
-    .tool-card .verdict {
-        background: #f9f9f9;
-        border-radius: 10px;
-        padding: 15px;
-        margin-top: 15px;
-    }
-
-    .tool-card .verdict-yes {
-        border-left: 4px solid #2e7d32;
-    }
-
-    .tool-card .verdict-no {
-        border-left: 4px solid #c62828;
-    }
-
-    .step-list {
-        counter-reset: step-counter;
-        list-style: none;
-        margin: 20px 0;
-    }
-
-    .step-list li {
-        counter-increment: step-counter;
-        padding: 15px 15px 15px 60px;
-        position: relative;
-        margin-bottom: 12px;
-        background: #f9f9f9;
-        border-radius: 10px;
-        color: #444;
-        line-height: 1.7;
-    }
-
-    .step-list li::before {
-        content: counter(step-counter);
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #003A70;
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 0.9em;
-    }
-
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 1.8em;
-        }
-
-        .content {
-            padding: 30px 20px;
-        }
-
-        .card-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .comparison-table {
-            font-size: 0.85em;
-        }
-
-        .comparison-table th, .comparison-table td {
-            padding: 8px 10px;
-        }
-    }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 5 • Sub-Lesson 3</div>
-<h1>💰 <span style="color: #ffffff;">Paid Tools &amp; When They're Worth It</span></h1>
-<p>An assessment of premium AI research tools: what they add, what they cost, and whether the investment makes sense for your research</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>The free tools covered in the previous session are powerful, but they have limitations. This session examines the paid (or freemium with meaningful paid tiers) AI literature tools. We'll be honest about what each adds over the free alternatives, and about where they fall short.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Paid Tools &amp; When They&#x27;re Worth It — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 5 &middot; AI-Assisted Literature Reviews</div><nav class="toc"><a class="lesson" href="The%20AI%20Literature%20Review%20Landscape.html">The AI Literature Review Landscape</a><a class="lesson" href="Free%20Tools%20Deep%20Dive.html">Free Tools Deep Dive</a><a class="lesson cur" href="Paid%20Tools%20and%20When%20They%20Are%20Worth%20It.html">Paid Tools and When They Are Worth It</a><div class="subs"><a href="#s1">Elicit</a><a href="#s2">Consensus</a><a href="#s3">Scite.ai</a><a href="#s4">SciSpace</a><a href="#s5">Litmaps (Premium)</a><a href="#s6">The Honest Comparison</a></div><a class="lesson" href="The%20Hallucinated%20Citation%20Crisis.html">The Hallucinated Citation Crisis</a><a class="lesson" href="Building%20Your%20Research%20Workflow%20with%20Claude.html">Building Your Research Workflow with Claude</a><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Paid Tools &amp; When They&#x27;re Worth It</h1><div class="deck">An assessment of premium AI research tools: what they add, what they cost, and whether the investment makes sense for your research</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">The free tools covered in the previous session are powerful, but they have limitations. This session examines the paid (or freemium with meaningful paid tiers) AI literature tools. We'll be honest about what each adds over the free alternatives, and about where they fall short.</p>
 <p>Not every researcher needs paid tools, and not every paid tool is worth the money. The goal here is to help you make an informed decision about where to invest any limited research budget. For each tool, we'll assess its standout feature, its limitations, and the specific situations where paying makes sense.</p>
 <p>This is also where disparity rears its head. Those who can afford these tools will be ahead, so we need to keep questioning how we can get more equitable access.</p>
 </div>
 <!-- SECTION 1: ELICIT -->
-<h2 class="section-title">🔬 Elicit</h2>
-<div class="tool-card">
-<h3>AI Research Assistant for Systematic Literature Work</h3>
+<h2 class="section-title" id="s1">Elicit</h2>
+<div class="tool-card"><h3>AI Research Assistant for Systematic Literature Work</h3>
 <div class="tool-url"><a href="https://elicit.com/" target="_blank" rel="noopener">elicit.com</a></div>
 <span class="tool-pricing">Free tier (limited) | Plus ~$12/month | Institutional plans available</span>
 <p>Elicit is an AI research assistant focused on systematic literature work. It uses language models to search, extract data, and synthesise findings across papers. Originally built by a non-profit (Ought), it has evolved into one of the most focused AI literature tools available.</p>
 <p><strong>What the paid tier adds:</strong> Unlimited searches, full data extraction across papers, systematic review workflows, and the ability to extract specific data points from hundreds of papers into structured tables. Elicit claims 99.4% accuracy for its data extraction, which, if it holds up in your field, is impressive.</p>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Strengths</h4>
 <ul class="styled-list">
 <li>The data extraction feature is unusual: you can ask "what was the sample size and effect size?" across 200 papers and get a structured table back. No other tool does this as well.</li>
 <li>Excellent for systematic and scoping reviews where you need to compare data points across many studies.</li>
 <li>Transparent about its methods. You can see which papers it found and how it extracted information.</li>
 <li>Good at handling empirical literature with structured findings (sample sizes, effect sizes, methodologies).</li>
 </ul>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Limitations</h4>
 <ul class="styled-list">
 <li>Can still miss nuance in complex papers, especially qualitative or mixed-methods work.</li>
 <li>Not great for very recent papers that haven't yet been indexed in its database.</li>
@@ -489,131 +204,116 @@
 <li>The interface has a learning curve; it takes a few sessions to use effectively.</li>
 <li>Best suited for empirical and quantitative literature. If your field is primarily interpretive or theoretical, the payoff drops significantly.</li>
 </ul>
-<div class="verdict verdict-yes">
-<p><strong>Worth it when:</strong> You're doing a systematic review, scoping review, or meta-analysis. The data extraction feature alone can save weeks of manual work pulling numbers from individual papers.</p>
+<div class="verdict verdict-yes"><p><strong>Worth it when:</strong> You're doing a systematic review, scoping review, or meta-analysis. The data extraction feature alone can save weeks of manual work pulling numbers from individual papers.</p>
 </div>
-<div class="verdict verdict-no">
-<p><strong>Not worth it when:</strong> You're doing a narrative review in the humanities, or you only need occasional literature searches. The free tier or Semantic Scholar will serve you just as well for exploratory reading.</p>
+<div class="verdict verdict-no"><p><strong>Not worth it when:</strong> You're doing a narrative review in the humanities, or you only need occasional literature searches. The free tier or Semantic Scholar will serve you just as well for exploratory reading.</p>
 </div>
 </div>
 <!-- SECTION 2: CONSENSUS -->
-<h2 class="section-title">📊 Consensus</h2>
-<div class="tool-card">
-<h3>AI-Powered Academic Search with a Consensus Meter</h3>
+<h2 class="section-title" id="s2">Consensus</h2>
+<div class="tool-card"><h3>AI-Powered Academic Search with a Consensus Meter</h3>
 <div class="tool-url"><a href="https://consensus.app/" target="_blank" rel="noopener">consensus.app</a></div>
 <span class="tool-pricing">Free tier (limited searches) | Premium ~$10/month</span>
 <p>Consensus is an AI-powered academic search engine that answers research questions with evidence drawn from peer-reviewed papers. Its standout feature is the "Consensus Meter", a visual indicator showing how much the literature agrees or disagrees on a given question.</p>
 <p><strong>What the paid tier adds:</strong> Unlimited searches, AI-powered summaries of results, full Consensus Meter access, study snapshots that pull key findings from each paper, and bookmark lists for organising your research.</p>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Strengths</h4>
 <ul class="styled-list">
 <li>The Consensus Meter gives you a quick visual sense of scientific consensus on a question. Useful for rapidly assessing how settled a topic is.</li>
 <li>Good for answering specific empirical questions: "Does mindfulness reduce cortisol levels?" or "Is there a relationship between sleep duration and academic performance?"</li>
 <li>Only searches peer-reviewed literature, with no blog posts, news articles, or preprints muddying the results.</li>
 <li>Clean, intuitive interface that requires almost no learning curve.</li>
 </ul>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Limitations</h4>
 <ul class="styled-list">
 <li>Works best for questions with yes/no or quantitative answers. Less useful for subtle theoretical questions or debates where "consensus" is not the right framing.</li>
 <li>The database is large but doesn't cover everything. Niche fields and non-English journals may be underrepresented.</li>
 <li>The Consensus Meter can be misleading if the papers it finds aren't representative of the broader literature. A small sample of papers agreeing doesn't mean the field agrees.</li>
 <li>Less useful for research areas where the interesting question is <em>why</em> the literature disagrees, not whether it agrees.</li>
 </ul>
-<div class="verdict verdict-yes">
-<p><strong>Worth it when:</strong> You frequently need to check what the literature says about specific empirical claims. Particularly useful in health sciences, psychology, education, and other fields with large empirical bases.</p>
+<div class="verdict verdict-yes"><p><strong>Worth it when:</strong> You frequently need to check what the literature says about specific empirical claims. Particularly useful in health sciences, psychology, education, and other fields with large empirical bases.</p>
 </div>
-<div class="verdict verdict-no">
-<p><strong>Not worth it when:</strong> Your research is primarily theoretical, qualitative, or in fields with limited coverage on the platform. Also not worth it if you only need this kind of check occasionally; the free tier may suffice.</p>
+<div class="verdict verdict-no"><p><strong>Not worth it when:</strong> Your research is primarily theoretical, qualitative, or in fields with limited coverage on the platform. Also not worth it if you only need this kind of check occasionally; the free tier may suffice.</p>
 </div>
 </div>
 <!-- SECTION 3: SCITE.AI -->
-<h2 class="section-title">📎 Scite.ai</h2>
-<div class="tool-card">
-<h3>Smart Citation Analysis — Supporting vs. Contrasting Evidence</h3>
+<h2 class="section-title" id="s3">Scite.ai</h2>
+<div class="tool-card"><h3>Smart Citation Analysis — Supporting vs. Contrasting Evidence</h3>
 <div class="tool-url"><a href="https://scite.ai/" target="_blank" rel="noopener">scite.ai</a></div>
 <span class="tool-pricing">~$12/month for individual researchers | No meaningful free tier</span>
 <p>Scite.ai is a citation analysis tool with an unusual feature: "smart citations" that classify how each paper is cited, as supporting evidence, contrasting evidence, or just mentioned. This is something no other tool offers in a systematic way.</p>
 <p><strong>What the paid tier adds:</strong> Everything; this is a paid-only tool. Smart citation classifications, citation dashboards showing the full reception of a paper, an AI assistant for literature questions, and a reference checker that can scan your paper's bibliography.</p>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Strengths</h4>
 <ul class="styled-list">
 <li>The supporting/contrasting citation classification tells you not just <em>who</em> cites a paper, but <em>whether they agree with it</em> .</li>
 <li>The reference checker can scan your paper's bibliography and flag retracted or problematic citations, a valuable safety net before submission.</li>
 <li>Excellent for understanding how a specific claim holds up in the broader literature. If you find a paper making a strong claim, Scite shows you whether subsequent research supported or challenged it.</li>
 <li>Good for identifying contested findings: papers with high contrasting citation counts are worth examining closely.</li>
 </ul>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Limitations</h4>
 <ul class="styled-list">
 <li>No free tier means you have to commit money upfront before you know whether it works for your field.</li>
 <li>Classification accuracy isn't perfect, and context can be missed. A paper might cite another to say "Smith (2020) found X, but our context was different" and Scite may classify that as "contrasting" when it's really just contextual.</li>
 <li>Coverage varies by field. Well-covered fields (biomedical, psychology) have rich citation data; smaller fields may have limited coverage.</li>
 <li>Less useful for very new papers that haven't accumulated enough citations to analyse meaningfully.</li>
 </ul>
-<div class="verdict verdict-yes">
-<p><strong>Worth it when:</strong> You need to understand the reception of specific claims or findings. The supporting/contrasting classification is something no other tool offers. Excellent for literature reviews where you need to assess the strength of evidence for a claim.</p>
+<div class="verdict verdict-yes"><p><strong>Worth it when:</strong> You need to understand the reception of specific claims or findings. The supporting/contrasting classification is something no other tool offers. Excellent for literature reviews where you need to assess the strength of evidence for a claim.</p>
 </div>
-<div class="verdict verdict-no">
-<p><strong>Not worth it when:</strong> You're in early stages of literature discovery and haven't yet identified key papers to evaluate. Scite is better for <em>evaluating</em> literature you've already found than for <em>finding</em> new literature.</p>
+<div class="verdict verdict-no"><p><strong>Not worth it when:</strong> You're in early stages of literature discovery and haven't yet identified key papers to evaluate. Scite is better for <em>evaluating</em> literature you've already found than for <em>finding</em> new literature.</p>
 </div>
 </div>
 <!-- SECTION 4: SCISPACE -->
-<h2 class="section-title">🔭 SciSpace</h2>
-<div class="tool-card">
-<h3>All-in-One AI Research Platform</h3>
+<h2 class="section-title" id="s4">SciSpace</h2>
+<div class="tool-card"><h3>All-in-One AI Research Platform</h3>
 <div class="tool-url"><a href="https://scispace.com/" target="_blank" rel="noopener">scispace.com</a></div>
 <span class="tool-pricing">Free tier (limited) | Premium ~$12/month</span>
 <p>SciSpace is an all-in-one AI research platform with over 150 integrated tools. Features include AI chat with papers, literature review generation, citation analysis, and paraphrasing. It tries to be a single platform for the entire research workflow.</p>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Strengths</h4>
 <ul class="styled-list">
 <li>Breadth of features. It tries to be a one-stop shop for research tasks, from reading papers to writing literature reviews.</li>
 <li>Good AI copilot for reading papers: it can explain complex sections, simplify jargon, and answer questions about a paper you're reading.</li>
 <li>Literature review generation feature can produce a first draft structure based on a set of papers.</li>
 <li>Integration with multiple databases gives it broad coverage.</li>
 </ul>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Limitations</h4>
 <ul class="styled-list">
 <li>Jack of all trades, master of none: individual features are often not as strong as the specialised tools that focus on one thing well. The citation analysis isn't as good as Scite's, the search isn't as focused as Elicit's, the consensus feature isn't as developed as Consensus's.</li>
 <li>Can feel overwhelming with the sheer number of features. It takes time to figure out which ones are actually useful for your workflow.</li>
 <li>AI explanations sometimes oversimplify, which can be problematic if you're in a field with important technical nuances.</li>
 <li>The quality of literature review generation varies a lot: it's a useful starting scaffold, not a finished product.</li>
 </ul>
-<div class="verdict verdict-yes">
-<p><strong>Worth it when:</strong> You want a single integrated platform and don't want to switch between multiple tools. Good for researchers who prefer an all-in-one approach and don't need the absolute best in any single category.</p>
+<div class="verdict verdict-yes"><p><strong>Worth it when:</strong> You want a single integrated platform and don't want to switch between multiple tools. Good for researchers who prefer an all-in-one approach and don't need the absolute best in any single category.</p>
 </div>
-<div class="verdict verdict-no">
-<p><strong>Not worth it when:</strong> You prefer best-in-class tools for each task and are comfortable combining them. If you're already using Semantic Scholar for search and NotebookLM for reading, SciSpace's premium doesn't add enough to justify the cost.</p>
+<div class="verdict verdict-no"><p><strong>Not worth it when:</strong> You prefer best-in-class tools for each task and are comfortable combining them. If you're already using Semantic Scholar for search and NotebookLM for reading, SciSpace's premium doesn't add enough to justify the cost.</p>
 </div>
 </div>
 <!-- SECTION 5: LITMAPS -->
-<h2 class="section-title">🗺️ Litmaps (Premium)</h2>
-<div class="tool-card">
-<h3>Citation Mapping with Superior Timeline Visualisations</h3>
+<h2 class="section-title" id="s5">Litmaps (Premium)</h2>
+<div class="tool-card"><h3>Citation Mapping with Superior Timeline Visualisations</h3>
 <div class="tool-url"><a href="https://www.litmaps.com/" target="_blank" rel="noopener">litmaps.com</a></div>
 <span class="tool-pricing">Paid (with limited free tier) | Pricing varies, but about $10 per month</span>
 <p>Litmaps is a citation mapping tool with superior timeline visualisations. Its graphs use publication date and citation count as axes, making it easy to spot recent impactful papers at a glance. Now partnered with ResearchRabbit following their October 2025 merger.</p>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Strengths</h4>
 <ul class="styled-list">
 <li>The date/citation axes make patterns immediately visible. You can see at a glance which papers are seminal, which are recent and gaining traction, and where gaps exist.</li>
 <li>Semantic search option uses AI-driven matching (not just citation links), which can surface related work that doesn't directly cite your seed papers.</li>
 <li>Excellent for seeing how a topic evolved over time. The timeline view tells a story that pure citation networks don't capture.</li>
 <li>Discover Feeds for tracking new papers in your area of interest.</li>
 </ul>
-<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<h4 style=" margin-top: 20px; margin-bottom: 10px">Limitations</h4>
 <ul class="styled-list">
 <li>Paid for full access. The free tier is limited in the number of maps and papers you can work with.</li>
 <li>The ResearchRabbit merger means the ecosystem is in transition, and features and pricing may change as the platforms integrate. What you see today may not be what you get in six months.</li>
 <li>Smaller user base compared to Semantic Scholar or Google Scholar means less community support and fewer shared maps.</li>
 </ul>
-<div class="verdict verdict-yes">
-<p><strong>Worth it when:</strong> You're building a thesis or major literature review and want the best visualisation of how your field developed. The timeline view can help you identify important shifts and trends.</p>
+<div class="verdict verdict-yes"><p><strong>Worth it when:</strong> You're building a thesis or major literature review and want the best visualisation of how your field developed. The timeline view can help you identify important shifts and trends.</p>
 </div>
-<div class="verdict verdict-no">
-<p><strong>Not worth it when:</strong> Your needs are met by Connected Papers or ResearchRabbit's free features. For quick citation mapping, the free alternatives are good enough.</p>
+<div class="verdict verdict-no"><p><strong>Not worth it when:</strong> Your needs are met by Connected Papers or ResearchRabbit's free features. For quick citation mapping, the free alternatives are good enough.</p>
 </div>
 </div>
 <!-- SECTION 6: THE HONEST COMPARISON -->
-<h2 class="section-title">⚖️ The Honest Comparison</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Here's the side-by-side. Every tool has a standout feature and a free alternative that gets you most of the way there. The question is whether the gap between "most of the way" and "all the way" justifies the cost for your specific research.</p>
-<div style="overflow-x: auto;">
-<table class="comparison-table">
+<h2 class="section-title" id="s6">The Honest Comparison</h2>
+<p style=" margin-bottom: 25px">Here's the side-by-side. Every tool has a standout feature and a free alternative that gets you most of the way there. The question is whether the gap between "most of the way" and "all the way" justifies the cost for your specific research.</p>
+<div style="overflow-x: auto"><table class="comparison-table">
 <thead>
 <tr>
 <th>Tool</th>
@@ -663,46 +363,24 @@
 </table>
 </div>
 <!-- WARNING BOX: INSTITUTIONAL ACCESS -->
-<div class="warning-box">
-<h4>⚠️ A Note on Institutional Access</h4>
+<div class="warning-box"><h4>A Note on Institutional Access</h4>
 <p>Before paying individually, check whether your university has institutional subscriptions. Many universities are currently negotiating site licences for tools like Elicit and Scite. At UCT, we currently don't have institutional access to these tools, but if we keep asking, we may be able to. Institutional subscriptions are becoming more common as libraries recognise these tools as research infrastructure, and paying individually for something your institution already provides is money wasted.</p>
 </div>
 <!-- HIGHLIGHT BOX: THE HONEST BOTTOM LINE -->
-<div class="highlight-box">
-<h3>💡 The Honest Bottom Line</h3>
+<div class="highlight-box"><h3>The Honest Bottom Line</h3>
 <p>For most postgraduate researchers, the free tools (Semantic Scholar + Connected Papers or ResearchRabbit + NotebookLM + Google Scholar) are sufficient for the majority of literature review work. They cover discovery, mapping, reading, and synthesis well enough for most projects.</p>
 <p>Paid tools become worth it in specific situations: <strong>Elicit</strong> for systematic reviews where you need structured data extraction. <strong>Scite</strong> for understanding contested claims and checking whether evidence has been supported or challenged. <strong>Consensus</strong> for quickly checking empirical consensus on specific questions.</p>
 <p>Don't pay for breadth; pay for the specific capability you need most. And if you only need that capability for one project, consider paying for just the months you'll actively use it rather than committing to an annual plan.</p>
 </div>
 <!-- INFO BOX: SHIFTING LANDSCAPE -->
-<div class="info-box">
-<h4>📌 The Landscape Is Shifting Fast</h4>
+<div class="info-box"><h4>The Landscape Is Shifting Fast</h4>
 <p>The AI literature tool landscape is evolving rapidly. The October 2025 merger between ResearchRabbit and Litmaps is one example: these tools are consolidating, adding features, and changing pricing regularly. New tools emerge frequently, and existing tools pivot or add capabilities with each update. Before committing to any paid subscription, check current pricing and features on the tool's website. What we describe here reflects the state of play as of early 2026, but details may have shifted by the time you read this. Your faculty librarian can also help you evaluate the current options.</p>
 </div>
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>Key Takeaways</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Key Takeaways</h2>
 <p><strong>Not every paid tool is worth the money.</strong> The gap between free and paid varies enormously. Scite's citation classification and Elicit's data extraction offer capabilities you won't find elsewhere. SciSpace's premium offers breadth you can replicate with free tools.</p>
 <p><strong>Match the tool to the task.</strong> Systematic review? Elicit. Contested claims? Scite. Quick consensus check? Consensus. General literature exploration? The free tools are enough.</p>
 <p><strong>Check institutional access first.</strong> Your university may already be paying for tools you'd otherwise buy individually. A five-minute conversation with your librarian could save you hundreds of rands per year.</p>
 <p><strong>Pay monthly, not annually, unless you're sure.</strong> These tools are changing fast. A monthly subscription lets you evaluate whether the tool improves your workflow before committing long-term.</p>
 <p><strong>Next session:</strong> We confront a serious problem in AI-assisted literature review, the hallucinated citation crisis, where AI generates plausible-sounding references to papers that don't exist. It is a major risk of using AI for literature work, and worth understanding before you rely on any of these tools.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-5/Free Tools Deep Dive.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Free Tools Deep Dive</div></a>
-  <a class="page-nav-link" href="../week-5/The Hallucinated Citation Crisis.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">The Hallucinated Citation Crisis</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+</div></div><div class="prevnext"><a href="Free%20Tools%20Deep%20Dive.html"><span class="d">&larr; Previous</span><span class="pt">Free Tools Deep Dive</span></a><a class="next" href="The%20Hallucinated%20Citation%20Crisis.html"><span class="d">Next &rarr;</span><span class="pt">The Hallucinated Citation Crisis</span></a></div></div><div class="rightrail"><div class="rmeta">Week 5<br>Lesson 3<br>12 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Systematic review</div>A structured survey of all available research on a question, using documented, reproducible search criteria and explicit rules for selecting and comparing studies, as opposed to a narrative review based on the author's judgment.</div><div class="snote"><div class="sk">Smart citations</div>A feature of Scite.ai that classifies each citation as supporting, contrasting, or merely mentioning the original paper, letting you see at a glance whether later research agreed with or challenged a finding.</div><div class="snote"><div class="sk">Consensus Meter</div>A visual indicator in the Consensus search engine that aggregates how peer-reviewed papers answer a specific research question, showing whether the literature broadly agrees, disagrees, or is divided.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

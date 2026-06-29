@@ -1,228 +1,190 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 3.2 - Infrastructure, Scale and the Rebound Problem</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-
-        .ai-notice strong { font-weight: 600; }
-
-        header {
-            background: #003A70;
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .week-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-
-        .content { padding: 50px 40px; }
-
-        .intro-text {
-            background: #f9f9f9;
-            padding: 35px;
-            border-radius: 15px;
-            border-left: 5px solid #003A70;
-            margin-bottom: 40px;
-        }
-
-        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .intro-text h2::before { content: '🎯'; }
-        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-
-        .section-title {
-            font-size: 2em;
-            color: #2a5298;
-            margin: 50px 0 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #003A70;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-
-        .styled-list { list-style: none; margin-top: 15px; }
-
-        .styled-list li {
-            padding: 8px 0 8px 25px;
-            color: #555;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-
-        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-
-        .warning-box {
-            background: #fff8e1;
-            border-left: 5px solid #f9a825;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-
-        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
-        .warning-box p { color: #555; line-height: 1.7; }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #003A70;
-        }
-
-        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .info-box p { color: #555; line-height: 1.7; }
-
-        .resource-placeholder {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-            border: 2px dashed #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-        }
-
-        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-        .resource-placeholder p { color: #666; font-style: italic; }
-
-        .technical-detail {
-            background: white;
-            border: 2px solid #d0e8f2;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-        .comparison-table tr:last-child td { border-bottom: none; }
-        .comparison-table tr:hover { background: #f9f9f9; }
-
-        .case-study {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-
-        .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .content { padding: 30px 20px; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 3 • Sub-Lesson 2</div>
-<h1>🏭 <span style="color: #ffffff;">Infrastructure, Scale &amp; the Rebound Problem</span></h1>
-<p>Where the electricity comes from, what manufacturing costs, and why efficiency gains keep disappearing</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>In the previous session we looked at what individual AI queries cost. This session zooms out to the infrastructure level: what powers the data centres that run AI, what it costs to build the hardware in the first place, and why the story of AI's environmental impact is more complicated than any single number can capture.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Infrastructure, Scale &amp; the Rebound Problem — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><a class="lesson cur" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><div class="subs"><a href="#s1">What&#x27;s Inside a Data Centre</a><a href="#s2">Where the Electricity Comes From</a><a href="#s3">Embodied Carbon: The Cost of Making the Hardware</a><a href="#s4">The Growth Trajectory</a><a href="#s5">The Rebound Problem: Jevons Paradox</a><a href="#s6">What Companies Are (and Aren&#x27;t) Doing</a></div><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Infrastructure, Scale &amp; the Rebound Problem</h1><div class="deck">Where the electricity comes from, what manufacturing costs, and why efficiency gains keep disappearing</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">In the previous session we looked at what individual AI queries cost. This session zooms out to the infrastructure level: what powers the data centres that run AI, what it costs to build the hardware in the first place, and why the story of AI's environmental impact is more complicated than any single number can capture.</p>
 <p>We will also engage with an uncomfortable idea in sustainability economics: the Jevons paradox. The history of energy technology suggests that making a system more efficient does not necessarily reduce its total energy consumption. Understanding why this keeps happening, and whether AI might be different, is essential to thinking clearly about sustainable AI.</p>
 </div>
 <!-- SECTION 1: DATA CENTRES -->
-<h2 class="section-title">🏗️ What's Inside a Data Centre</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">To understand AI's energy footprint, it helps to understand what a data centre actually is and where the energy goes.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Compute: GPUs and Servers</h3>
+<h2 class="section-title" id="s1">What's Inside a Data Centre</h2>
+<p style=" margin-bottom: 30px">To understand AI's energy footprint, it helps to understand what a data centre actually is and where the energy goes.</p>
+<div class="card-grid"><div class="card"><h3>Compute: GPUs and Servers</h3>
 <p>The energy-intensive heart of AI infrastructure is GPU-accelerated servers, specifically the NVIDIA H100 and H200 chips that dominate AI training and inference.</p>
 <ul class="styled-list">
 <li>A single H100 GPU has a thermal design power (TDP) of ~700W, roughly like running a small electric heater continuously</li>
@@ -231,8 +193,7 @@
 <li>GPUs are the primary driver of recent data centre energy growth: the Lawrence Berkeley National Laboratory (2024) attributes most of the tripling of US data centre electricity use since 2014 to GPU adoption</li>
 </ul>
 </div>
-<div class="card">
-<h3>Cooling: The Water-Energy Trade-off</h3>
+<div class="card"><h3>Cooling: The Water-Energy Trade-off</h3>
 <p>All that compute generates heat. Cooling is typically the second-largest energy consumer in a data centre after compute itself.</p>
 <ul class="styled-list">
 <li><strong>Air cooling:</strong> Energy-intensive but uses little water; standard in older data centres</li>
@@ -241,8 +202,7 @@
 <li><strong>Power Usage Effectiveness (PUE):</strong> Industry metric for cooling efficiency; 1.0 = perfect (all energy to compute), 1.5 = 50% overhead for cooling. Modern hyperscaler data centres achieve ~1.1–1.2; older facilities often 1.4–2.0</li>
 </ul>
 </div>
-<div class="card">
-<h3>Power: Getting Electricity In</h3>
+<div class="card"><h3>Power: Getting Electricity In</h3>
 <p>Large data centres require substations, high-voltage transmission lines, and often dedicated utility agreements.</p>
 <ul class="styled-list">
 <li>A 100 MW data centre is roughly equivalent to a small town's electricity demand; getting this connected to the grid takes years and significant infrastructure investment</li>
@@ -252,11 +212,10 @@
 </div>
 </div>
 <!-- SECTION 2: POWER SOURCES -->
-<h2 class="section-title">🔌 Where the Electricity Comes From</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The carbon footprint of AI electricity use depends entirely on how that electricity is generated, and this varies enormously by geography and by time of day.</p>
-<div class="technical-detail">
-<h4>📊 Carbon Intensity of Electricity: Why Location Matters</h4>
-<p style="margin-bottom: 15px;">The "carbon intensity" of electricity, how much CO₂ is emitted per kilowatt-hour, varies enormously depending on the local grid's energy mix:</p>
+<h2 class="section-title" id="s2">Where the Electricity Comes From</h2>
+<p style=" margin-bottom: 30px">The carbon footprint of AI electricity use depends entirely on how that electricity is generated, and this varies enormously by geography and by time of day.</p>
+<div class="technical-detail"><h4>Carbon Intensity of Electricity: Why Location Matters</h4>
+<p style="margin-bottom: 15px">The "carbon intensity" of electricity, how much CO₂ is emitted per kilowatt-hour, varies enormously depending on the local grid's energy mix:</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -303,38 +262,33 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 12px; color: #666;"><strong>Practical implication:</strong> Research by Dodge et al. (2022, Allen Institute for AI) found that choosing a low-carbon cloud region over a high-carbon one can reduce the carbon footprint of an identical AI workload by up to 80%, with zero change to the model or code. Few researchers use this lever, and it is available to most of them.</p>
+<p style="margin-top: 12px"><strong>Practical implication:</strong> Research by Dodge et al. (2022, Allen Institute for AI) found that choosing a low-carbon cloud region over a high-carbon one can reduce the carbon footprint of an identical AI workload by up to 80%, with zero change to the model or code. Few researchers use this lever, and it is available to most of them.</p>
 </div>
-<div class="info-box">
-<h4>💡 Renewable Energy Claims: What They Mean (and Don't)</h4>
+<div class="info-box"><h4>Renewable Energy Claims: What They Mean (and Don't)</h4>
 <p>Major tech companies (Google, Microsoft, Amazon) claim to run on 100% renewable energy. This is technically accurate but requires careful interpretation.</p>
-<ul class="styled-list" style="margin-top: 10px;">
+<ul class="styled-list" style="margin-top: 10px">
 <li><strong>Energy Attribute Certificates (EACs):</strong> Companies often purchase certificates that say a renewable source generated a certain amount of electricity, but the renewable electricity may be generated at a different time or place than when the AI is running</li>
 <li><strong>24/7 matching:</strong> A more rigorous standard, where renewable supply is matched to consumption hour by hour. Google has committed to this; others have not</li>
 <li><strong>Additionality:</strong> Does the company's purchase actually cause new renewable capacity to be built, or does it just buy existing credits? The former is more meaningful</li>
 <li><strong>The grid still matters:</strong> Even with renewable certificates, if a data centre draws from a coal-heavy grid at peak demand, it is still causing fossil fuel generation to run</li>
 </ul>
 </div>
-<div class="case-study">
-<h4>🔍 Case Study: Nuclear and the AI Energy Rush</h4>
+<div class="case-study"><h4>Case Study: Nuclear and the AI Energy Rush</h4>
 <p>The scale of AI's electricity demands is forcing AI companies to think creatively, and sometimes controversially, about power supply:</p>
-<ul class="styled-list" style="margin-top: 10px;">
+<ul class="styled-list" style="margin-top: 10px">
 <li><strong>Three Mile Island (Microsoft):</strong> Microsoft signed a 20-year power purchase agreement with Constellation Energy to restart Unit 1 of the Three Mile Island nuclear plant in Pennsylvania (closed since 2019) specifically to power its AI data centres. September 2024 marked that <em>announcement</em>, not a restart: the reactor (to be renamed the Crane Clean Energy Center) is scheduled to come back online around 2027, after an estimated $1.6&nbsp;billion refurbishment and pending Nuclear Regulatory Commission approval.</li>
 <li><strong>xAI in Memphis:</strong> Elon Musk's xAI company operated a data centre on gas turbine generators while awaiting grid connection permits. Reports in 2024 indicated generators running at significant capacity before permanent utility power was connected.</li>
 <li><strong>What this tells us:</strong> When grid connection is too slow or too carbon-heavy, AI companies are willing to invest in or restart generation capacity directly. They view electricity supply as a serious constraint on AI growth.</li>
 </ul>
 </div>
 <!-- SECTION 3: EMBODIED CARBON -->
-<h2 class="section-title">🏭 Embodied Carbon: The Cost of Making the Hardware</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Almost all analyses of AI's carbon footprint focus on electricity consumption during operation. But there is another carbon cost that is often omitted: the emissions released when manufacturing the hardware in the first place.</p>
-<div class="highlight-box">
-<h3>🔩 <span style="color: #ffffff;">The Manufacturing Iceberg</span></h3>
+<h2 class="section-title" id="s3">Embodied Carbon: The Cost of Making the Hardware</h2>
+<p style=" margin-bottom: 30px">Almost all analyses of AI's carbon footprint focus on electricity consumption during operation. But there is another carbon cost that is often omitted: the emissions released when manufacturing the hardware in the first place.</p>
+<div class="highlight-box"><h3><span>The Manufacturing Iceberg</span></h3>
 <p>Semiconductor manufacturing is one of the most energy and materials-intensive industrial processes in existence. Fabricating a modern AI chip requires hundreds of processing steps, ultrapure water, specialised gases, and enormous amounts of electricity, typically from grids that are not carbon-neutral.</p>
-<p style="margin-top: 15px;">Research by Gupta et al. (2021, Harvard/Meta) found that for computing hardware overall, <strong>embodied emissions, the carbon released in manufacturing, can represent 50–80% of the total lifecycle carbon footprint</strong>. This matters most for AI hardware, because GPUs are replaced on rapid cycles as new, more powerful chips become available.</p>
+<p style="margin-top: 15px">Research by Gupta et al. (2021, Harvard/Meta) found that for computing hardware overall, <strong>embodied emissions, the carbon released in manufacturing, can represent 50–80% of the total lifecycle carbon footprint</strong>. This matters most for AI hardware, because GPUs are replaced on rapid cycles as new, more powerful chips become available.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>What Embodied Carbon Includes</h3>
+<div class="card-grid"><div class="card"><h3>What Embodied Carbon Includes</h3>
 <ul class="styled-list">
 <li><strong>Chip fabrication:</strong> Semiconductor fabs (TSMC, Samsung, Intel) consume enormous electricity and specialised chemicals</li>
 <li><strong>Rare earth minerals:</strong> Mining and refining of materials used in chips and cooling systems</li>
@@ -343,8 +297,7 @@
 <li><strong>Transport:</strong> Global supply chains for components</li>
 </ul>
 </div>
-<div class="card">
-<h3>Why Rapid Hardware Turnover Matters</h3>
+<div class="card"><h3>Why Rapid Hardware Turnover Matters</h3>
 <p>AI companies are replacing GPU generations very rapidly: NVIDIA releases new flagship architectures roughly every 1–2 years (Ampere → Hopper → Blackwell).</p>
 <ul class="styled-list">
 <li>Each replacement cycle requires manufacturing new hardware and disposing of old hardware</li>
@@ -354,15 +307,13 @@
 </ul>
 </div>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Key Reading: Embodied Carbon in Computing</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2011.02839" target="_blank" rel="noopener"><strong>Gupta et al. (2021): "Chasing Carbon: The Elusive Environmental Footprint of Computing"</strong></a> — IEEE HPCA peer-reviewed paper introducing a lifecycle framework for computing's carbon cost. It explains why operational energy figures understate the true footprint.</p>
+<div class="resource-placeholder"><h4>Key Reading: Embodied Carbon in Computing</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2011.02839" target="_blank" rel="noopener"><strong>Gupta et al. (2021): "Chasing Carbon: The Elusive Environmental Footprint of Computing"</strong></a> — IEEE HPCA peer-reviewed paper introducing a lifecycle framework for computing's carbon cost. It explains why operational energy figures understate the true footprint.</p>
 </div>
 <!-- SECTION 4: GROWTH TRAJECTORY -->
-<h2 class="section-title">📈 The Growth Trajectory</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Individual query costs and per-data-centre figures only tell part of the story. The trajectory of AI energy demand matters as much as the current level.</p>
-<div class="technical-detail">
-<h4>📊 US Data Centre Electricity Demand: Past and Projected</h4>
+<h2 class="section-title" id="s4">The Growth Trajectory</h2>
+<p style=" margin-bottom: 30px">Individual query costs and per-data-centre figures only tell part of the story. The trajectory of AI energy demand matters as much as the current level.</p>
+<div class="technical-detail"><h4>US Data Centre Electricity Demand: Past and Projected</h4>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -389,30 +340,26 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 12px; color: #666;">For global context: the IEA's 2024 Electricity report projected that global data centres could consume ~1,000 TWh by 2026, roughly equivalent to Japan's entire electricity consumption.</p>
+<p style="margin-top: 12px">For global context: the IEA's 2024 Electricity report projected that global data centres could consume ~1,000 TWh by 2026, roughly equivalent to Japan's entire electricity consumption.</p>
 </div>
-<div class="info-box" style="margin-top: 25px;">
-<h4>📈 The IEA's updated 2025 trajectory: doubling by 2030</h4>
+<div class="info-box" style="margin-top: 25px"><h4>The IEA's updated 2025 trajectory: doubling by 2030</h4>
 <p>The IEA's dedicated <em><a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">Energy and AI</a></em> report (2025) gives the current global picture. The headline projections:</p>
-<ul style="margin-left: 25px; margin-top: 12px; line-height: 1.7;">
+<ul style="margin-left: 25px; margin-top: 12px">
 <li>Global data-centre electricity roughly <strong>doubling from &asymp; 485 TWh (2025) to &asymp; 950 TWh (2030, &asymp; 3% of global electricity)</strong>.</li>
 <li>The AI-focused slice <strong>tripling</strong> within that, moving AI from &asymp; one-third toward &asymp; half of data-centre load by 2030.</li>
 <li>All data-centre CO<sub>2</sub> projected at <strong>&asymp; 1% of energy-related CO<sub>2</sub> by 2030</strong>.</li>
 </ul>
-<p style="margin-top: 12px;">For comparison, Hannah Ritchie's analysis of the same IEA inputs (<em><a href="https://www.sustainabilitybynumbers.com/p/ai-energy-demand" target="_blank" rel="noopener">Sustainability by Numbers</a></em>, 2026) notes that the projected increase in electricity demand attributable to AI by 2030 (&asymp; 223 TWh) is roughly equivalent to South Africa's current annual electricity use. That is a real number, but smaller than the 2030 projected increase from air conditioning (&asymp; 697 TWh) or electric vehicles (&asymp; 854 TWh). The trajectory is steep on its own terms; on its own it is not steep enough to dominate the broader electricity-demand picture.</p>
+<p style="margin-top: 12px">For comparison, Hannah Ritchie's analysis of the same IEA inputs (<em><a href="https://www.sustainabilitybynumbers.com/p/ai-energy-demand" target="_blank" rel="noopener">Sustainability by Numbers</a></em>, 2026) notes that the projected increase in electricity demand attributable to AI by 2030 (&asymp; 223 TWh) is roughly equivalent to South Africa's current annual electricity use. That is a real number, but smaller than the 2030 projected increase from air conditioning (&asymp; 697 TWh) or electric vehicles (&asymp; 854 TWh). The trajectory is steep on its own terms; on its own it is not steep enough to dominate the broader electricity-demand picture.</p>
 </div>
 <!-- SECTION 5: JEVONS PARADOX -->
-<h2 class="section-title">🔄 The Rebound Problem: Jevons Paradox</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A concept for thinking clearly about AI's long-term environmental trajectory, and one that optimistic narratives about AI efficiency improvements tend to skip over.</p>
-<div class="highlight-box">
-<h3>⚡ <span style="color: #ffffff;">What is the Jevons Paradox?</span></h3>
+<h2 class="section-title" id="s5">The Rebound Problem: Jevons Paradox</h2>
+<p style=" margin-bottom: 30px">A concept for thinking clearly about AI's long-term environmental trajectory, and one that optimistic narratives about AI efficiency improvements tend to skip over.</p>
+<div class="highlight-box"><h3><span>What is the Jevons Paradox?</span></h3>
 <p>In 1865, the economist William Stanley Jevons observed that improvements in the efficiency of steam engines did not reduce coal consumption in Britain. They increased it, because lower operating costs made steam power affordable for more applications.</p>
-<p style="margin-top: 15px;">The general principle: <strong>when a resource becomes cheaper or more efficient to use, consumption tends to increase rather than decrease, because efficiency opens up new uses and new users.</strong> The cost savings from efficiency gains are "rebounded" into increased consumption.</p>
-<p style="margin-top: 15px;">It has been documented repeatedly across transport, computing, lighting, heating, and manufacturing over the past two centuries.</p>
+<p style="margin-top: 15px">The general principle: <strong>when a resource becomes cheaper or more efficient to use, consumption tends to increase rather than decrease, because efficiency opens up new uses and new users.</strong> The cost savings from efficiency gains are "rebounded" into increased consumption.</p>
+<p style="margin-top: 15px">It has been documented repeatedly across transport, computing, lighting, heating, and manufacturing over the past two centuries.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Jevons in AI: The Evidence So Far</h3>
+<div class="card-grid"><div class="card"><h3>Jevons in AI: The Evidence So Far</h3>
 <p>AI hardware has become dramatically more efficient over time: NVIDIA estimates roughly 1,000× improvement in energy per AI task over a decade. Yet total AI energy consumption has grown over the same period.</p>
 <ul class="styled-list">
 <li><strong>More efficient chips → larger models:</strong> As inference becomes cheaper per query, companies build larger, more capable models that cost more per query</li>
@@ -421,8 +368,7 @@
 <li><strong>The net result:</strong> Total energy consumption has grown alongside the efficiency improvements rather than falling because of them</li>
 </ul>
 </div>
-<div class="card">
-<h3>The Optimist Response</h3>
+<div class="card"><h3>The Optimist Response</h3>
 <p>Not everyone agrees that Jevons necessarily applies to AI in the long run. Some arguments on the other side:</p>
 <ul class="styled-list">
 <li><strong>Grid decarbonisation:</strong> If electricity supply becomes predominantly renewable, then growth in AI electricity demand no longer implies growth in carbon emissions</li>
@@ -430,25 +376,21 @@
 <li><strong>Algorithmic efficiency:</strong> Improvements in model architecture (like MoE) reduce the compute required to achieve a given capability level</li>
 <li><strong>Policy intervention:</strong> Regulation could constrain growth in a way that market forces do not</li>
 </ul>
-<p style="margin-top: 10px; color: #666;">These are genuine possibilities, but they require assumptions about the future that are far from certain.</p>
+<p style="margin-top: 10px">These are genuine possibilities, but they require assumptions about the future that are far from certain.</p>
 </div>
 </div>
-<div class="warning-box">
-<h4>⚠️ Reading the Efficiency Claims Critically</h4>
+<div class="warning-box"><h4>Reading the Efficiency Claims Critically</h4>
 <p>When AI companies or optimistic commentators cite efficiency improvements (e.g. "our new model uses 44% less energy per query"), this is valuable information, but it does not tell you what happens to <em>total</em> energy use if deployment grows faster than efficiency improves. Always ask: what is the denominator? Efficiency per query, or total annual energy consumption?</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Key Readings: Efficiency vs. Rebound</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2309.02065" target="_blank" rel="noopener"><strong>Wright et al. (2023): "Efficiency is Not Enough: A Critical Perspective of Environmentally Sustainable AI"</strong></a> — argues that efficiency gains in AI are routinely offset by growth in scale and deployment. It treats the rebound effect in AI head-on.</p>
-<p style="font-style: normal; margin-top: 12px;"><a href="https://arxiv.org/abs/2204.05149" target="_blank" rel="noopener"><strong>Patterson et al. (2022): "The Carbon Footprint of Machine Learning Training Will Plateau, Then Shrink"</strong></a> (Google) — the optimist case, written by Google researchers. Read alongside Wright et al. for a balanced picture.</p>
-<p style="margin-top: 8px; color: #555;"><strong>Note on the Patterson et al. paper:</strong> The authors are Google employees writing partly about Google's own practices and infrastructure. The paper's conclusions rely on advantages (access to TPUs, renewable purchasing, efficient cooling) that are not available to most researchers or smaller AI deployments.</p>
+<div class="resource-placeholder"><h4>Key Readings: Efficiency vs. Rebound</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2309.02065" target="_blank" rel="noopener"><strong>Wright et al. (2023): "Efficiency is Not Enough: A Critical Perspective of Environmentally Sustainable AI"</strong></a> — argues that efficiency gains in AI are routinely offset by growth in scale and deployment. It treats the rebound effect in AI head-on.</p>
+<p style="font-style: normal; margin-top: 12px"><a href="https://arxiv.org/abs/2204.05149" target="_blank" rel="noopener"><strong>Patterson et al. (2022): "The Carbon Footprint of Machine Learning Training Will Plateau, Then Shrink"</strong></a> (Google) — the optimist case, written by Google researchers. Read alongside Wright et al. for a balanced picture.</p>
+<p style="margin-top: 8px"><strong>Note on the Patterson et al. paper:</strong> The authors are Google employees writing partly about Google's own practices and infrastructure. The paper's conclusions rely on advantages (access to TPUs, renewable purchasing, efficient cooling) that are not available to most researchers or smaller AI deployments.</p>
 </div>
 <!-- SECTION 6: WHAT COMPANIES ARE DOING -->
-<h2 class="section-title">🌱 What Companies Are (and Aren't) Doing</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Understanding what AI companies are actually doing, set against what they say they're doing, is essential background for any researcher or policymaker engaging with this topic.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Genuine Actions</h3>
+<h2 class="section-title" id="s6">What Companies Are (and Aren't) Doing</h2>
+<p style=" margin-bottom: 30px">Understanding what AI companies are actually doing, set against what they say they're doing, is essential background for any researcher or policymaker engaging with this topic.</p>
+<div class="card-grid"><div class="card"><h3>Genuine Actions</h3>
 <ul class="styled-list">
 <li><strong>Renewable energy purchasing:</strong> Major tech companies are among the world's largest corporate buyers of renewable energy, which does contribute to new renewable capacity</li>
 <li><strong>Data centre efficiency:</strong> Google, Microsoft and Meta have made real improvements in PUE (cooling efficiency) over time</li>
@@ -457,8 +399,7 @@
 <li><strong>Architectural innovations:</strong> Mixture-of-Experts, quantisation, and other techniques reduce compute per query</li>
 </ul>
 </div>
-<div class="card">
-<h3>The Limits and the Gaps</h3>
+<div class="card"><h3>The Limits and the Gaps</h3>
 <ul class="styled-list">
 <li><strong>Total demand is growing faster than renewable supply:</strong> Even large renewable purchases don't keep pace with AI electricity demand growth</li>
 <li><strong>Disclosure is voluntary and inconsistent:</strong> Companies choose what to report and how; independent verification is rare</li>
@@ -469,9 +410,8 @@
 </div>
 </div>
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>📚 Summary &amp; Key Takeaways</h2>
-<ul class="styled-list" style="margin-top: 15px;">
+<div class="intro-text" style="margin-top: 50px"><h2>Summary &amp; Key Takeaways</h2>
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>Location determines carbon impact:</strong> An identical AI workload can have 80% different carbon emissions depending on where it runs, which is the largest lever an individual researcher controls</li>
 <li><strong>Embodied carbon is systematically ignored:</strong> Manufacturing GPUs and building data centres releases significant carbon that is absent from most reported figures</li>
 <li><strong>US grid is ~60% fossil fuels:</strong> Company "100% renewable" claims use accounting methods that do not change this physical reality at the point of consumption</li>
@@ -479,23 +419,5 @@
 <li><strong>Jevons paradox is the central challenge:</strong> Efficiency gains in AI hardware and algorithms have so far been outpaced by growth in deployment and model scale</li>
 <li><strong>Companies are doing real things, but not enough:</strong> Renewable purchasing and efficiency improvements are genuine but insufficient to keep pace with demand growth</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session (Week 3.3):</strong>&nbsp;Before we reach practical solutions, there's another layer to the AI environmental story: the raw materials that make AI hardware possible at all. We'll look at critical minerals, supply chain geopolitics, and what the rush for AI chips means for communities and ecosystems around the world.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-3/What Does AI Actually Consume.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">What Does AI Actually Consume?</div></a>
-  <a class="page-nav-link" href="../week-3/Critical Minerals and AI.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Critical Minerals and AI</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next session (Week 3.3):</strong>&nbsp;Before we reach practical solutions, there's another layer to the AI environmental story: the raw materials that make AI hardware possible at all. We'll look at critical minerals, supply chain geopolitics, and what the rush for AI chips means for communities and ecosystems around the world.</p>
+</div></div><div class="prevnext"><a href="What%20Does%20AI%20Actually%20Consume.html"><span class="d">&larr; Previous</span><span class="pt">What Does AI Actually Consume?</span></a><a class="next" href="Critical%20Minerals%20and%20AI.html"><span class="d">Next &rarr;</span><span class="pt">Critical Minerals and AI</span></a></div></div><div class="rightrail"><div class="rmeta">Week 3<br>Lesson 2<br>12 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Jevons paradox</div>The observation that making a resource cheaper or more efficient tends to increase total consumption rather than reduce it, because lower costs open new uses. Named after economist William Stanley Jevons.</div><div class="snote"><div class="sk">Power Usage Effectiveness (PUE)</div>A ratio of how efficiently a data centre uses electricity: a PUE of 1.0 means all power reaches the computers, while higher values like 1.5 mean cooling and other overhead consume extra energy on top of the compute.</div><div class="snote"><div class="sk">Embodied carbon</div>The greenhouse-gas emissions released when manufacturing a physical object; for AI, the carbon cost of making chips, servers, and data centres, as distinct from emissions from the electricity used during operation.</div><div class="snote"><div class="sk">Carbon intensity</div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

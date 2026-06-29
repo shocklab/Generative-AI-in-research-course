@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced B.3 - The Reproducible Workflow, End to End</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.instructor-box {
+    background: #f3effa;
+    border-left: 5px solid #6a5da8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+}
+.instructor-box h4 {
+    color: #4f4391;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.instructor-box p {
+    color: #463f5e;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.instructor-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+pre.code-block {
+    background: #11243d;
+    color: #e6edf3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.65;
+    white-space: pre;
+}
+pre.code-block .cm {
+    color: #8aa0b6;
+}
+pre.code-block .pr {
+    color: #7fd1b9;
+}
+code {
+    background: #eef2f6;
+    color: #11407c;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.86em;
+}
+pre.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.gate-banner {
+    background: #003A70;
+    color: white;
+    padding: 22px 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.0em;
+    line-height: 1.7;
+}
+.gate-banner strong {
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    } pre.code-block { font-size: 0.78em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span,
+.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
+    color: #ffffff !important;
+}
+.highlight-box a, header a, .gate-banner a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Advanced Track &bull; Lesson B &bull; 3 of 3</div>
+  <h1>&#128300; <span style="color: #ffffff;">The Reproducible Workflow, End to End</span></h1>
+  <p>A full analysis from messy data to a result a stranger could reproduce, then verifying it, and disclosing it</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>Everything so far has been apparatus. This page runs it for real: a complete analysis of the messy Berg River data, from the first inspection to a result and a folder that someone else could open and reproduce. Then the two things that keep it honest, verifying work an agent did largely on its own, and disclosing what the AI actually did, where we find that the reproducible folder is itself the best disclosure you can give.</p>
+  </div>
+
+  <h2 class="section-title">&#128257; Git as a Reproducibility Trace</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">One piece of the structure deserves a word before the worked example, because it is the part most researchers skip. <strong>Git</strong>, the version-control system, records the state of your project over time. Each commit is a labelled snapshot; the history is a record of how the work actually evolved. You do not need to become a software engineer to benefit: even committing at a few milestones (&ldquo;raw data inventoried,&rdquo; &ldquo;cleaning done,&rdquo; &ldquo;analysis complete&rdquo;) gives you a trace that says what the project looked like at each stage, and lets you see exactly what changed between them.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Claude Code can do the Git work for you, initialising the repository, showing you what changed, committing with a message, so the mechanics are not a barrier. What matters is the habit of using the history as a <em>research record</em>, not just a backup: a commit message like &ldquo;halved upstream counts (double-counting fault, per field note); excluded contaminated D-03&rdquo; turns the version history into a narrated account of your decisions. Used this way, Git is reproducibility infrastructure, not a developer&#39;s indulgence.</p>
+
+  <h2 class="section-title">&#128300; A Worked Reproducible Analysis</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Here is the Berg River study, start to finish, with the discipline of the previous pages applied. The dataset is the same deliberately-messy archive from Lesson&nbsp;A.3, downloadable below, and it has real problems planted in it: inconsistent column names, a systematic counting fault at one site, a contaminated outlier, missing values, and field notes that explain anomalies the spreadsheets don&rsquo;t. The structure turns that mess into something inspectable, and one of the corrections along the way decides the answer.</p>
+
+  <ol class="step-list">
+    <li><strong>Put the <code>CLAUDE.md</code> in place.</strong> The research-habits template from B.2 goes in the project root before anything else, so every rule (don&#39;t touch <code>data/raw/</code>, log decisions, don&#39;t guess) is active from the first action.</li>
+    <li><strong>Inspect and inventory.</strong> In plan mode, the agent reads every raw file and writes <code>docs/data-inventory.md</code>: the columns (and the fact that the three site files name them differently), the units, the row counts, the missing values, and the anomalies. Among them: upstream counts that sit suspiciously close to the town&rsquo;s (surprising for a site <em>above</em> the town), and one downstream value far higher than its neighbours. The <code>field-notes.md</code> file explains both: the upstream counter double-counted all season, and the high downstream sample (D-03) was contaminated and should be discarded.</li>
+    <li><strong>Pre-register the question.</strong> Before running the comparison, the prediction and decision rule from B.2 go into <code>pre-registrations/</code> and are committed. The standard is set while there is nothing to defend.</li>
+    <li><strong>Plan the analysis; you review it.</strong> Still in plan mode, the agent proposes the cleaning and analysis steps. You read the plan, the checkpoint, and approve it before a single file is written.</li>
+    <li><strong>Clean, and log every decision.</strong> The agent writes a cleaning script to <code>scripts/</code> that harmonises the column names, <strong>halves the upstream counts</strong> because the field notes record that the upstream counter double-counted all season, excludes the contaminated D-03, and handles the missing values by the pre-registered rule. <em>Each of these choices is appended to <code>notes/decision-log.md</code>, dated, with its reason and its source.</em> The raw files are never touched; the cleaned data lands in <code>data/processed/</code>. The upstream halving is the decision that changes the answer.</li>
+    <li><strong>Run the analysis to a committed log.</strong> The analysis script runs the pre-registered Mann-Whitney test, prints its result to <code>outputs/analysis_run.log</code> (committed), and saves the figure and summary table to <code>outputs/</code>.</li>
+    <li><strong>Record assumptions and uncertainty.</strong> The agent notes what it assumed and what remains uncertain (the small sample after exclusions, the reliance on a single field note for the upstream correction that drives the result) rather than presenting a clean result as if nothing were in doubt.</li>
+    <li><strong>Commit.</strong> A Git commit snapshots the whole state, with a message that narrates the decisions.</li>
+  </ol>
+
+  <div class="case-study">
+    <h4>&#129510; The test that matters: hand it to a stranger</h4>
+    <p>Now the question reproducibility actually asks. Give the finished folder to someone who was not there. Can they reconstruct what happened? Yes, and not because they trust you: because the evidence is all present. The untouched raw data, the script that transforms it, the decision log explaining every judgement call (why the upstream counts were halved, why D-03 was dropped), the pre-registration showing the standard was set in advance, the outputs, and the run log proving what was executed. They can re-run the script and get the same result, and they can <em>disagree</em> with a decision because they can see it.</p>
+    <p>The decision log is what carries the weight here. Without the upstream correction, if a hurried researcher never opened the field notes, this same analysis concludes that the town has <em>no</em> measurable effect: town and upstream read almost identically (a median difference of 2 particles/L, not remotely significant). With the correction, the town is clearly and significantly higher (a difference of 36, p&nbsp;&asymp;&nbsp;0.00002). One logged decision, sourced to a single field note, is the entire difference between the right answer and the wrong one. A reader of the folder can see exactly where the result turns; a chat transcript would have buried it.</p>
+    <p>Contrast the same analysis done in a chat window. The model gives you the same answer, perhaps in the same minute. But the cleaning decisions are scattered through a conversation you will lose; the upstream halving is a thing the model did somewhere in the middle that nobody recorded; and next month there is no folder to hand anyone, only a number you once obtained and can no longer account for. Same model, same answer, wholly different research.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128229; Download: the Berg River sample archive</h4>
+    <p>The deliberately-messy starting files (the three inconsistent CSVs with their planted errors, the contradicting field notes, the stale README, and the metadata) so you can run this whole workflow yourself. <a href="files/berg-river-microplastics.zip">berg-river-microplastics.zip</a></p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#9989; Download: the worked solution (model answer)</h4>
+    <p>The completed, reproducible folder: a filled <code>CLAUDE.md</code>, the pre-registration, the data inventory, the cleaning-and-analysis script, the decision log, the processed data, and the outputs (summary table, run log, and a figure). Running <code>python3 scripts/analyse.py</code> regenerates every output from the raw data, so you can watch the whole chain work and confirm the result for yourself. Do the exercise first; reach for this when you want to check your structure against a model answer. <a href="files/berg-river-microplastics-worked-solution.zip">berg-river-microplastics-worked-solution.zip</a></p>
+  </div>
+
+  <h2 class="section-title">&#128270; Verifying Agentic Work</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">When the agent runs for an hour and makes a hundred changes you did not watch, the instinct is to inspect each one, to read every diff as it happens. That does not scale, and pretending it does is the fastest route to a false sense of safety. The volume <em>is</em> the problem: when so much is changing all the time, there often isn&#39;t a chance to check each change, and any carefulness that depends on watching every one will quietly fail. So the move is to take verification <em>off</em> the per-change axis. Don&#39;t try to catch every mistake as it happens; instead make mistakes survivable, encode what must stay true so a machine checks it, and verify the few things that actually matter. Week&nbsp;9&#39;s protocols and Week&nbsp;10&#39;s Princeton reliability finding (<a href="https://arxiv.org/abs/2602.16666" target="_blank" rel="noopener">Rabanser et&nbsp;al., 2026</a>) still bite, since the burden is real and it grows, but the response is to automate and target verification, not to watch harder.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>1. Make mistakes recoverable</h3>
+      <p>With <code>data/raw/</code> read-only, everything regenerable from raw plus scripts, and all of it under Git, any bad change can be rolled back and any output rebuilt. You are no longer reviewing to prevent disaster, since disaster is structurally off the table, so you can safely <em>not</em> watch every step, and find errors later, in batch.</p>
+    </div>
+    <div class="card">
+      <h3>2. Automate the checks</h3>
+      <p>Write down what must stay true (row counts didn&#39;t drop, values stay in physical range, a known sub-result still holds) and have the agent assert it after changes. A Claude Code <em>hook</em> can run your check script automatically after every edit, so a silently-dropped column trips an assertion with no diff-reading at all. You read a one-line pass or fail, not the change.</p>
+    </div>
+    <div class="card">
+      <h3>3. Verify the result, not every step</h3>
+      <p>You cannot check every edit, but you can check the end against ground truth: re-derive the one number that matters, trace a few output values back to the raw data by hand, sanity-check against what you know of the domain. A hundred edits collapse into a handful of checks on the thing you actually care about.</p>
+    </div>
+    <div class="card">
+      <h3>4. Let the decision log choose your diffs</h3>
+      <p>You don&#39;t read every diff; you read the consequential ones. The &ldquo;log every consequential decision&rdquo; rule means the agent surfaces the handful that mattered (halved the double-counted upstream counts; excluded the contaminated D-03); those are the few worth your eyes, and the boilerplate you let go. The log is a high-signal substitute for the full diff.</p>
+    </div>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These layers catch different failures, and it helps to see which catches which. A <em>wrong-direction</em> failure, the agent confidently pursuing the wrong goal because it inferred the wrong intent and taking you on a tangent for days, is invisible to any amount of diff-reading, because no single change is wrong; the <em>question</em> is wrong. That is what the pre-registration <em>gates</em> from B.2 are for: a closed gate stops the tangent early. A <em>quiet-correctness</em> failure, a dropped column or a plausible default you didn&#39;t notice, is what the automated assertions catch. And reviewing at the <em>checkpoint</em> (the commit boundary) rather than at every keystroke is how human review stays in the loop without becoming a full-time job. Verification scales when it is layered, not when it is heroic.</p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; What stays human, honestly</h4>
+    <p>The structure verifies the <em>process</em>; it does not verify the <em>judgement</em>. Is this the right analysis for the question? Does the result make physical sense for a river? Is the effect real or an artefact of the small sample after exclusions? Those are research judgements, and no amount of logging makes them the agent&#39;s job. The Week&nbsp;7 silent-error problem and the Week&nbsp;9 plausible-but-wrong problem do not disappear because the work is well-documented: a beautifully reproducible analysis can still be reproducibly wrong. And there is a cost to all of this: tokens, time, and the genuine review effort every agentic result demands. Budget for it.</p>
+  </div>
+
+  <div class="instructor-box">
+    <h4>&#128100; From the instructor&#39;s own practice</h4>
+    <p>&ldquo;In my earlier workflows I could go off on tangents for days, sometimes weeks, thinking that something was interesting, when in fact we were just chasing a bug in another paper. In this case the agent thought that the bug-chasing was the interesting thing we were trying to do, and I didn&rsquo;t have the right checks in place to understand that that&rsquo;s what it thought. No amount of looking at individual changes would have caught that: nothing was wrong with any one line; the whole direction was wrong.&rdquo;</p>
+    <p>&ldquo;I&rsquo;ve had lots of smaller errors too, and the genuine issue is that when so much is changing all the time, you often can&rsquo;t check each change as it happens (as you wouldn&rsquo;t if you were supervising a student). So I&rsquo;ve stopped trying to be careful by watching everything. The carefulness has to live somewhere else. It&rsquo;s in the gates I set at the start so a tangent gets stopped early, in keeping the structure so that any mistake can be undone, and in checking the things that actually matter rather than every step along the way. I&rsquo;m still trying to figure out how to do this well at the volume the tools now make possible.&rdquo;</p>
+  </div>
+
+  <h2 class="section-title">&#128196; Disclosure: The Reproducible Folder Is the Disclosure</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week&nbsp;4 and Week&nbsp;11.3 asked you to disclose your AI use. Week&nbsp;11.3 also delivered the bracing finding that, against roughly 70% of journals having an AI policy, only about 0.1% of papers actually disclose (<a href="https://doi.org/10.1073/pnas.2526734123" target="_blank" rel="noopener">He &amp; Bu, 2026, PNAS</a>). Most disclosure, where it happens at all, is a vague sentence: &ldquo;AI tools were used in the preparation of this work.&rdquo; That sentence tells a reader almost nothing.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A reproducible project folder flips the problem. You do not need a sentence that gestures at what the AI did, because the folder <em>shows</em> it: the <code>CLAUDE.md</code> states the rules the agent worked under; the decision log records every judgement and who made it; the scripts are the method; the Git history is the sequence of events; the pre-registration proves the standard predated the result. The honest answer to &ldquo;what did the AI do, and what did you decide?&rdquo; is &ldquo;here is the folder.&rdquo; That is what good disclosure actually looks like, and it is a higher standard than almost any journal currently asks for.</p>
+
+  <div class="info-box">
+    <h4>&#127891; The capstone connection</h4>
+    <p>If you took this track alongside the course, the Week&nbsp;12 capstone is where it can land: a reproducible project folder is the natural form for the concrete piece of work the capstone asks you to commit to. You do more than argue that you would use AI responsibly in your research; you show the structure in which you would.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>&#9989; What to take from the Advanced Track</h3>
+    <p>Claude Code is a model with hands in your project folder, and the work lives in files, not in the chat. Reproducibility is a different goal from verification, and the agent can be instructed to serve it, logging decisions, keeping raw data sacred, holding you to a pre-registration, better than unaided human discipline usually manages.</p>
+    <p>The <code>CLAUDE.md</code> research-habits template is where the course&#39;s integrity becomes a rule the agent follows. Pre-registration is where you refuse to fool yourself. The reproducible folder is where verification, disclosure, and trust all meet: the same folder answers all three.</p>
+    <p>And the disposition underneath has not changed since Lesson&nbsp;A: delegate, then verify; the tool amplifies your practice rather than replacing your judgement; and you scaffold in proportion to what the work has to bear. Use the heavy machinery where the stakes are real, lightly where they are not, and honestly everywhere.</p>
+  </div>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../advanced/Encoding Good Habits - CLAUDE.md Pre-registration and Skills.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">B.2 — Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</div></a>
+  <span style="flex:1 1 240px;"></span>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

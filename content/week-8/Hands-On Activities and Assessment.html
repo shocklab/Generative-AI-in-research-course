@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.6 - Hands-On: Activities &amp; Assessment</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text h2::before { content: '\1F3AF'; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #666; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head>
+<body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+  <div class="ai-notice">
+    This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.
+  </div>
+
+  <header>
+    <div class="week-badge">Week 8 &bull; Sub-Lesson 6</div>
+    <h1><span style="color: #ffffff;">&#129514; Hands-On: Activities &amp; Assessment</span></h1>
+    <p>Three practical activities testing multimodal AI across images, audio, and documents, plus your weekly assessment</p>
+  </header>
+
+  <div class="content">
+
+    <div class="intro-text">
+      <h2>What We'll Cover</h2>
+      <p>This session applies everything from the week: multimodal AI capabilities, the specific failure modes in each modality, and what verification looks like when AI is working with non-text data. Each activity is designed to produce a specific kind of learning. The aim is to move you past "I used the tool" to "I understand where this tool can mislead me."</p>
+      <p>You will work through three structured activities (figure analysis, transcription verification, and document extraction), then complete the weekly assessment which asks you to apply multimodal AI to your own research materials and document what you find.</p>
+    </div>
+
+    <!-- Activity 1 -->
+    <h2 class="section-title">&#128202; Activity 1: Figure Analysis Challenge</h2>
+
+    <div class="case-study">
+      <h4>&#128270; "Reading vs. Understanding"</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will use three publicly available scientific figures of increasing complexity. Instructions are provided for finding suitable figures from open-access papers in your field. Choose figures that represent the types of visualisations common in your research area: a simple bar chart, a multi-line plot with several series, and a complex figure (heatmap, network diagram, or multi-panel figure).</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task, for each figure:</strong></p>
+      <ol class="step-list">
+        <li>Use Claude or GPT (or equivalent frontier multimodal model) to describe what the figure shows. Record the AI's output verbatim.</li>
+        <li>Use the AI to extract specific numerical values visible in the figure: axis values, data points, percentages, sample sizes. Record these alongside the values you read from the figure yourself.</li>
+        <li>Verify the extracted values against the figure's underlying data where possible (the paper's methods section, supplementary data, or the figure's own axis labels).</li>
+        <li>Ask the AI to explain the main finding the figure is communicating. Compare its interpretation with the paper's own discussion of that figure.</li>
+      </ol>
+
+      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to look for:</strong></p>
+      <ul class="styled-list">
+        <li>Where does the AI describe qualitative patterns accurately but misread quantitative details?</li>
+        <li>Does it read the scale and axis labels correctly? Does it handle logarithmic scales?</li>
+        <li>Does it confuse different series in a multi-line chart or misidentify which colour corresponds to which group?</li>
+        <li>Does its "main finding" interpretation match what the authors actually say in the paper?</li>
+      </ul>
+
+      <div class="info-box" style="margin-top: 20px;">
+        <h4>&#128172; Discussion Prompt</h4>
+        <p>When CharXiv launched in 2024, leading models scored 47.1% on scientific chart reasoning vs. 80.5% for humans. Frontier model scores have improved substantially since, so the headline gap will not match what you see today. The question for your forum post is this: <em>which features of your test charts did the AI handle reliably, and which did it still get wrong?</em> Bring specific examples and note the model and date you tested.</p>
+      </div>
+    </div>
+
+    <!-- Activity 2 -->
+    <h2 class="section-title">&#127908; Activity 2: Transcription and Verification</h2>
+
+    <div class="case-study">
+      <h4>&#128269; "The Hallucination Hunt &mdash; Test It On Yourself"</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">This exercise asks you to record your own voice and transcribe it. The lesson&#39;s claims about Whisper&#39;s performance on African-accented English stay abstract until you hear your own words come back wrong. You will also generate your own ground truth (the script you wrote and read aloud), so verification is genuine.</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 1: Write a script (~3 minutes when read aloud, around 400&ndash;500 words).</strong> Treat it as if you are explaining a piece of your research to a colleague. Include the following challenge features, which are the things Whisper is most likely to mishandle:</p>
+
+      <ul class="styled-list">
+        <li><strong>Technical jargon from your field:</strong> at least 5&ndash;10 specialist terms (e.g. <em>haematopoiesis</em>, <em>heteroskedasticity</em>, <em>phenomenology</em>, <em>k-means clustering</em>)</li>
+        <li><strong>Proper nouns:</strong> 3&ndash;5 researcher surnames you would cite; 2&ndash;3 South African place names (Khayelitsha, Stellenbosch, Mthatha, Polokwane); your own institution name spelled out</li>
+        <li><strong>Acronyms read as acronyms:</strong> UCT, SARS-CoV-2, fMRI, ANOVA, NRF</li>
+        <li><strong>At least three homophone pairs in context:</strong> their/there, principal/principle, affect/effect, complement/compliment</li>
+        <li><strong>One number-heavy sentence:</strong> e.g. "The 2024 cohort included 1,247 participants across 16 sites in eight provinces."</li>
+        <li><strong>One sentence in your second language</strong> if you have one (Afrikaans, isiZulu, isiXhosa, Sesotho). Even a few words is enough to surface what Whisper does with code-switching</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 2: Record yourself reading the script.</strong> Use your phone or laptop microphone. Read at normal pace; do not over-articulate. Save the recording as a single audio file (<code>.wav</code>, <code>.mp3</code>, or <code>.m4a</code>). Aim for around 3 minutes of audio. If you have a quiet room, use it; if you do not, that is also useful data, since background noise is one of the hallucination triggers covered in Sub-Lesson 4.</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 3: Transcribe with Whisper.</strong> Two options, both free:</p>
+      <ul class="styled-list">
+        <li><strong>Option A, Hugging Face Space (no install):</strong> upload your audio to <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener" style="color: #003A70;">huggingface.co/spaces/openai/whisper</a> and select <code>large-v3</code> as the model. Output appears in the browser.</li>
+        <li><strong>Option B, Google Colab notebook:</strong> follow the course-provided notebook, which runs <code>whisper</code> on a free GPU. Slightly more setup, but you can save the output and re-run. Notebook URL in the course resources.</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 4: Compare line by line against your own script (your ground truth).</strong> Read both aloud if needed. Mark every difference. Categorise each error:</p>
+      <ul class="styled-list">
+        <li><strong>Substitution:</strong> wrong word in place of the right one</li>
+        <li><strong>Deletion:</strong> word or phrase missing from the transcript</li>
+        <li><strong>Insertion:</strong> hallucinated content not present in the audio, the category that does the most damage to downstream analysis</li>
+        <li><strong>Other:</strong> punctuation, capitalisation, formatting</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 15px;"><strong>Step 5: Calculate your own WER.</strong> WER = (substitutions + deletions + insertions) / total words in ground truth, expressed as a percentage. Compare your number to the headline benchmarks in Sub-Lesson 4 (~2.0% on clean read speech). If your number is much higher, what features of your script and recording explain the difference?</p>
+
+      <div class="info-box" style="margin-top: 20px;">
+        <h4>&#129760; Reflection (for your forum post)</h4>
+        <p>Three questions to address: (1) Which of your challenge features tripped Whisper? Were homophones, jargon, proper nouns, or your second-language sentence the worst? (2) Did Whisper insert anything that was not said? Be specific and quote the inserted text. (3) If you had used this transcript for qualitative coding without checking it against your script, would your analysis have been corrupted in ways a reader could not detect from the transcript alone?</p>
+      </div>
+
+      <div class="warning-box" style="margin-top: 20px;">
+        <h4>&#127482;&#127466; Why This Matters for South African Research</h4>
+        <p>South African English exists in many varieties, and most postgraduate students at UCT will speak some combination of accented English with code-switching from one or more African languages. The course materials cite published numbers; this exercise lets you measure them on yourself. If your Whisper output is materially worse than the headline 2.0% figure (and for many South African accents it will be), the numbers in published benchmarks are not your numbers.</p>
+      </div>
+    </div>
+
+    <!-- Activity 3 -->
+    <h2 class="section-title">&#128196; Activity 3: Document Extraction Challenge</h2>
+
+    <div class="case-study">
+      <h4>&#128203; "The Table Problem"</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Source paper:</strong> The COPCOV trial of hydroxychloroquine/chloroquine for COVID-19 prevention, an open-access randomised controlled trial published in <em>PLOS Medicine</em> (2024). Download the PDF directly from the publisher: <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428" target="_blank" rel="noopener" style="color: #003A70;">journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428</a></p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">You will extract two tables from this single PDF. Both look superficially tractable (neither has merged column headers or nested column groups), yet both contain the kinds of structural features that everyday research tables actually have, and that AI extraction tools quietly mishandle. The exercise tests what your tool does with the features that show up in real papers rather than the rare textbook-complex cases.</p>
+
+      <ul class="styled-list">
+        <li><strong>Table 1: Demographic details of COPCOV study participants.</strong> Three data columns (HCQ/CQ arm, Placebo arm, Total). Watch for: bold section headers spanning all columns (<em>Existing comorbidities</em>, <em>Baseline symptoms</em>) that are visual organisers rather than data rows; implicit category grouping under labels like &ldquo;Sex, n (%)&rdquo; and &ldquo;Smoking, n (%)&rdquo;; embedded italics in row labels (<em>n</em>, <em>N</em>, IQR); en-dash ranges in cell values (e.g. 23&ndash;39); and a <strong>page break in the middle of the table</strong> with a &ldquo;(Continued)&rdquo; marker.</li>
+        <li><strong>Table 2: Prespecified endpoints in the intention-to-treat population.</strong> Five data columns (Outcome, HCQ/CQ, Placebo, Risk ratio, p-value). Watch for: <strong>multi-line cell content</strong>, where each endpoint cell stacks the n/N count and the percentage with 95% CI on two visual lines but they are one logical cell; section divider rows (<em>Secondary endpoints:</em>) that span all data columns; bold sub-categorisation in row labels (<em>Primary endpoint:</em>, <em>Tertiary endpoint:</em>); footnote markers in cells (<code>*</code> after &ldquo;All-cause respiratory illness&rdquo;, <code>**</code> after the p-value 0.0002); mixed CI delimiters (mostly &ldquo;to&rdquo;, but one cell uses an en-dash); and text wrapping in narrow columns that splits values across visual lines for layout reasons only.</li>
+      </ul>
+
+      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Task:</strong></p>
+      <ol class="step-list">
+        <li>Extract Table 1 using a tool of your choice. Suggested options: Docling for local processing (free, open-source, <code>pip install docling</code>), or direct upload of the PDF to Claude or GPT with a prompt asking for the table content as Markdown or CSV. Note which tool you used and any relevant settings.</li>
+        <li>Repeat for Table 2 using the <em>same</em> tool, so the comparison isolates the effect of table content rather than tool choice.</li>
+        <li>For each table, open the original PDF alongside the extracted output and verify cell by cell.</li>
+        <li>Calculate cell-level accuracy for each: what percentage of cells were correctly extracted, counting correct content, correct position in the structure, and correct relationship to row and column headers?</li>
+        <li>Identify which specific structural features in each table caused extraction failures, and whether the failure modes differ between the two tables.</li>
+      </ol>
+
+      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to document for your forum post:</strong></p>
+      <ul class="styled-list">
+        <li><strong>Section headers as data rows:</strong> Did your tool treat <em>Existing comorbidities</em>, <em>Baseline symptoms</em>, and <em>Secondary endpoints:</em> as data rows, drop them silently, or mark them as headers? Each of these failure modes corrupts downstream analysis differently.</li>
+        <li><strong>Page break (Table 1):</strong> Did the tool recognise that the table continues across the page break, or did it produce two disconnected tables? Was the &ldquo;(Continued)&rdquo; marker left in the output as if it were data?</li>
+        <li><strong>Multi-line cells (Table 2):</strong> Were the n/N counts and the percentage-with-CI kept together as one logical cell, or split into separate rows? A split here corrupts the numbers a meta-analysis would pull from this kind of table.</li>
+        <li><strong>Footnote markers:</strong> Were the <code>*</code> and <code>**</code> retained in the output? If retained, were they linked to their footnote text below the table, or left as orphan symbols?</li>
+        <li><strong>Formatting fidelity:</strong> Were italics (<em>n</em>, <em>N</em>, IQR) preserved? Were en-dash ranges (23&ndash;39) preserved as ranges, or converted to other characters?</li>
+        <li><strong>Cell-level accuracy gap:</strong> What is the gap between Table 1 and Table 2 with the <em>same</em> tool, and which structural features account for the difference?</li>
+        <li><strong>The trust question:</strong> Would you use either extraction for quantitative meta-analysis without manual verification? Which kind of error would be hardest for a reader to detect after the fact?</li>
+      </ul>
+    </div>
+
+    <!-- Assessment -->
+    <h2 class="section-title">&#128221; Weekly Assessment</h2>
+
+    <div class="highlight-box">
+      <h3>Multimodal Analysis Report &mdash; 1000 Words</h3>
+      <p>Use multimodal AI to process research materials relevant to your own research domain. You must use at least two different modalities (for example: an image and an audio recording; a PDF table and a scientific figure; a video and a document).</p>
+      <p><strong>Your report should address:</strong></p>
+      <p>1. <strong>What you did:</strong> which tools, which materials, what tasks you asked the AI to perform.</p>
+      <p>2. <strong>What it got right:</strong> where the AI's output was accurate and useful. Be specific about what it handled well.</p>
+      <p>3. <strong>What it got wrong:</strong> document at least three specific errors or limitations you observed, with examples from your actual output.</p>
+      <p>4. <strong>Verification approach:</strong> how did you verify the AI's output? What would you have missed if you had not checked?</p>
+      <p>5. <strong>Research workflow implications:</strong> how would you integrate these tools into your research practice? What safeguards would you build in?</p>
+      <p><strong>Submission:</strong> via Amathuba by [date].</p>
+      <p><strong>Grading criteria:</strong> Accuracy of tool use (25%), quality of error documentation (30%), depth of verification practice (25%), research workflow integration (20%).</p>
+    </div>
+
+    <!-- Full Week Summary -->
+    <h2 class="section-title">&#128218; Full Week Summary</h2>
+
+    <div class="intro-text" style="margin-top: 0;">
+      <h2>What You Have Learned This Week</h2>
+      <p>AI can now see images, read documents, transcribe audio, and process hours of video. Even so, "reading" and "understanding" remain distinct. The gap between impressive demonstrations and reliable research use is large, and this week has been about measuring that gap.</p>
+      <p>The CharXiv benchmark (introduced in 2024 with leading models at 47.1% vs. 80.5% for humans) established the pattern that runs through this week: real-world performance lags simplified benchmarks. Frontier model scores on CharXiv have improved substantially since, but the underlying gap shows up again in each modality and is the framing to carry forward. Transcription hallucination is pervasive: every transcript used in research requires full human verification rather than spot-checking. African language ASR has a real performance gap relative to English, but specialist tools (Intron Sahara, Lelapa AI) and fine-tuning significantly close it. Complex tables remain the hardest document AI problem: merged cells and multi-level headers cause extraction failures that are invisible without side-by-side verification.</p>
+      <p>Video AI compounds failure modes from each modality. Verify temporal claims especially, and do not assume that a large context window means equal attention across the full recording. The "lost in the middle" problem applies to video as much as to long documents.</p>
+      <p>The skill of the week is less about memorising which tool to use and more about the verification habits that make multimodal AI trustworthy for research: checking every extracted number, reviewing every transcript against audio, verifying every timestamp, and documenting what you checked and how.</p>
+      <p><strong>Next week, Week 9:</strong> We turn to sycophancy, reasoning failures, and the specific ways AI misleads even when it is not hallucinating. The question shifts from "did the AI get the data right?" to "did the AI reason about the data correctly?"</p>
+    </div>
+
+  </div><!-- /content -->
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-8/Video and Multimodal Workflows.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Video and Multimodal Workflows</div></a>
+  <a class="page-nav-link" href="../week-8/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div><!-- /container -->
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body>
+</html>

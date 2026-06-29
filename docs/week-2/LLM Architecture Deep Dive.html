@@ -1,352 +1,194 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 2.1 - LLM Architecture Deep Dive</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-        
-        .ai-notice strong {
-            font-weight: 600;
-        }
-        
-        header {
-            background: #003A70;
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-        }
-        
-        .week-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        header h1 {
-            font-size: 2.3em;
-            margin-bottom: 15px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        
-        header p {
-            font-size: 1.1em;
-            opacity: 0.95;
-            max-width: 800px;
-            margin: 10px auto 0;
-        }
-        
-        .content {
-            padding: 50px 40px;
-        }
-        
-        .intro-text {
-            background: #f9f9f9;
-            padding: 35px;
-            border-radius: 15px;
-            border-left: 5px solid #003A70;
-            margin-bottom: 40px;
-        }
-        
-        .intro-text h2 {
-            color: #2a5298;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .intro-text h2::before {
-            content: '🎯';
-        }
-        
-        .intro-text p {
-            font-size: 1.1em;
-            color: #495057;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-        
-        .section-title {
-            font-size: 2em;
-            color: #2a5298;
-            margin: 50px 0 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #003A70;
-            transition: all 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .card h3 {
-            color: #2a5298;
-            font-size: 1.4em;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .card p {
-            color: #555;
-            line-height: 1.7;
-            margin-bottom: 15px;
-        }
-        
-        .styled-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-        
-        .styled-list li {
-            padding: 8px 0 8px 25px;
-            color: #555;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        .styled-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: #003A70;
-            font-weight: bold;
-        }
-        
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-        
-        .highlight-box h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-        
-        .highlight-box p {
-            font-size: 1.05em;
-            line-height: 1.8;
-            opacity: 0.95;
-            margin-bottom: 12px;
-        }
-        
-        .info-box {
-            background: #f8f9fa;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #003A70;
-        }
-        
-        .info-box h4 {
-            color: #2a5298;
-            font-size: 1.2em;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .info-box p {
-            color: #555;
-            line-height: 1.7;
-        }
-        
-        .resource-placeholder {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-            border: 2px dashed #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-        }
-        
-        .resource-placeholder h4 {
-            color: #2a5298;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-        
-        .resource-placeholder p {
-            color: #666;
-            font-style: italic;
-        }
-        
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin: 30px 0;
-        }
-        
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: 15px;
-        }
-        
-        .technical-detail {
-            background: white;
-            border: 2px solid #d0e8f2;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-        
-        .technical-detail h4 {
-            color: #2a5298;
-            font-size: 1.3em;
-            margin-bottom: 15px;
-        }
-        
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        
-        .comparison-table th {
-            background: #003A70;
-            color: white;
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        
-        .comparison-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e9ecef;
-            color: #555;
-        }
-        
-        .comparison-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        .comparison-table tr:hover {
-            background: #f9f9f9;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-            
-            .content {
-                padding: 30px 20px;
-            }
-            
-            .card-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 2 • Sub-Lesson 1</div>
-<h1>🏗️ <span style="color: #ffffff;">LLM Architecture Deep Dive</span></h1>
-<p>Understanding the technical foundations of modern large language models</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>In Week 1, we introduced transformers as "attention machines" and explored a little how they differ from earlier architectures. This session goes deeper: we'll return to the transformer architecture that powers models like GPT, Claude, and Gemini, understand how attention mechanisms actually work, and explore innovations like Mixture of Experts that make modern models more efficient.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>LLM Architecture Deep Dive — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 2 &middot; LLM Deep Dive</div><nav class="toc"><a class="lesson cur" href="LLM%20Architecture%20Deep%20Dive.html">LLM Architecture Deep Dive</a><div class="subs"><a href="#s1">Transformer Architecture Fundamentals</a><a href="#s2">Attention Mechanisms in Detail</a><a href="#s3">Positional Encoding: Teaching Position</a><a href="#s4">Modern Architectural Innovations</a><a href="#s5">Understanding Model Scale</a></div><a class="lesson" href="Training%20Large%20Language%20Models.html">Training Large Language Models</a><a class="lesson" href="Fine-Tuning%20RLHF%20and%20Alignment.html">Fine-Tuning, RLHF and Alignment</a><a class="lesson" href="How%20AI%20Image%20Generation%20Works.html">How AI Image Generation Works</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>LLM Architecture Deep Dive</h1><div class="deck">Understanding the technical foundations of modern large language models</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">In Week 1, we introduced transformers as "attention machines" and explored a little how they differ from earlier architectures. This session goes deeper: we'll return to the transformer architecture that powers models like GPT, Claude, and Gemini, understand how attention mechanisms actually work, and explore innovations like Mixture of Experts that make modern models more efficient.</p>
 <p>By the end of this session you should have a greater appreciation of <em>how</em>&nbsp;LLMs work, and why architectural choices matter for research applications.</p>
 <p>Some of this may feel uncomfortably mathematical, so if you find yourself worrying about this, you can try to just get the overall gist of what is going on.</p>
 </div>
 <!-- SECTION 1: TRANSFORMER FUNDAMENTALS -->
-<h2 class="section-title">🧩 Transformer Architecture Fundamentals</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Let's revisit the transformer architecture with more technical depth. While Week 1 gave us the intuition, here we'll understand the actual mechanisms.</p>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">This video is in addition to the videos from last week and is also a little technical, but it does give a slightly different description of the 3blue1brown explanations.</p>
-<div class="resource-placeholder">
-<h4>📹 Take a look at the 3Blue1Brown videos before this one, but here is a lecture series on the transformer architecture.</h4>
+<h2 class="section-title" id="s1">Transformer Architecture Fundamentals</h2>
+<p style=" margin-bottom: 30px">Let's revisit the transformer architecture with more technical depth. While Week 1 gave us the intuition, here we'll understand the actual mechanisms.</p>
+<p style=" margin-bottom: 30px">This video is in addition to the videos from last week and is also a little technical, but it does give a slightly different description of the 3blue1brown explanations.</p>
+<div class="resource-placeholder"><h4>Take a look at the 3Blue1Brown videos before this one, but here is a lecture series on the transformer architecture.</h4>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/Ub3GoFaUcds" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
-<div class="card-grid">
-<div class="card">
-<h3>The Core Components</h3>
+<div class="card-grid"><div class="card"><h3>The Core Components</h3>
 <ul class="styled-list">
 <li><strong>Token embeddings:</strong> Converting discrete tokens into continuous vector representations</li>
 <li><strong>Positional encoding:</strong> Injecting information about token position in the sequence</li>
@@ -356,8 +198,7 @@
 <li><strong>Residual connections:</strong> Allowing gradients to flow through many layers</li>
 </ul>
 </div>
-<div class="card">
-<h3>Decoder-Only Architecture</h3>
+<div class="card"><h3>Decoder-Only Architecture</h3>
 <p>Modern LLMs (GPT, Claude, LLaMA) use <strong>decoder-only</strong> architectures rather than the original encoder-decoder design.</p>
 <ul class="styled-list">
 <li><strong>Autoregressive generation:</strong> Predict one token at a time, left to right</li>
@@ -365,21 +206,19 @@
 <li><strong>Simpler architecture:</strong> No cross-attention needed</li>
 <li><strong>Unified pre-training:</strong> Single objective (next-token prediction) for all training</li>
 </ul>
-<div class="info-box" style="margin-top: 15px;">
-<h4>💡 Why decoder-only?</h4>
+<div class="info-box" style="margin-top: 15px"><h4>Why decoder-only?</h4>
 <p>Decoder-only models proved more scalable and effective for general-purpose language understanding and generation. The encoder-decoder design is still used for specific tasks like translation.</p>
 </div>
 </div>
 </div>
-<div class="technical-detail">
-<h4>📐 The Forward Pass: Input to Output</h4>
-<p style="margin-bottom: 15px;">Here's what happens when you send text to an LLM:</p>
-<ol style="margin-left: 25px; color: #555; line-height: 1.8;">
+<div class="technical-detail"><h4>The Forward Pass: Input to Output</h4>
+<p style="margin-bottom: 15px">Here's what happens when you send text to an LLM:</p>
+<ol style="margin-left: 25px">
 <li><strong>Tokenization:</strong> Text → token IDs (e.g., "The cat" → [464, 3797])</li>
 <li><strong>Embedding lookup:</strong> Each token ID → dense vector (e.g., 4096 dimensions)</li>
 <li><strong>Positional encoding:</strong> Add position information to each token vector</li>
 <li><strong>Transformer layers (repeated N times):</strong>
-<ul style="margin-left: 20px; margin-top: 8px;">
+<ul style="margin-left: 20px; margin-top: 8px">
 <li>Multi-head self-attention: tokens attend to previous context</li>
 <li>Feed-forward network: process attended representations</li>
 <li>Residual connections + layer norm after each sub-layer</li>
@@ -390,20 +229,16 @@
 <li><strong>Sampling:</strong> Choose next token based on probability distribution</li>
 </ol>
 </div>
-<div class="resource-placeholder">
-<p style="margin-top: 10px; font-size: 0.9em;">Here is the original paper itself, in case you are feeling particularly brave: "<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>" (Vaswani et al., 2017)&nbsp;</p>
+<div class="resource-placeholder"><p style="margin-top: 10px">Here is the original paper itself, in case you are feeling particularly brave: "<a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">Attention Is All You Need</a>" (Vaswani et al., 2017)&nbsp;</p>
 </div>
 <!-- SECTION 2: ATTENTION MECHANISMS -->
-<h2 class="section-title">👁️ Attention Mechanisms in Detail</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Attention is the innovation that makes transformers work. Let's look at the different types and how they've evolved.</p>
-<div class="highlight-box">
-<h3>🔑<span style="color: #ffffff;"> The Attention Intuition</span></h3>
+<h2 class="section-title" id="s2">Attention Mechanisms in Detail</h2>
+<p style=" margin-bottom: 30px">Attention is the innovation that makes transformers work. Let's look at the different types and how they've evolved.</p>
+<div class="highlight-box"><h3><span> The Attention Intuition</span></h3>
 <p>When you read "The animal didn't cross the street because it was too tired," your brain automatically knows "it" refers to "the animal," not "the street." You <em>attend</em> to relevant context.</p>
-<p style="margin-top: 15px;">Self-attention mechanisms let transformers do the same thing: for each token, learn which other tokens in the context are relevant, and weight them accordingly when building representations.</p>
+<p style="margin-top: 15px">Self-attention mechanisms let transformers do the same thing: for each token, learn which other tokens in the context are relevant, and weight them accordingly when building representations.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Self-Attention</h3>
+<div class="card-grid"><div class="card"><h3>Self-Attention</h3>
 <p>The core mechanism: each token computes attention scores with every other token in the sequence.</p>
 <ul class="styled-list">
 <li><strong>Query, Key, Value:</strong> Each token produces three vectors through learned projections</li>
@@ -411,13 +246,11 @@
 <li><strong>Softmax normalization:</strong> Convert scores to probability distribution</li>
 <li><strong>Weighted sum:</strong> Combine Values using attention weights</li>
 </ul>
-<div class="info-box" style="margin-top: 15px;">
-<h4>🔍 Scaled Dot-Product</h4>
+<div class="info-box" style="margin-top: 15px"><h4>Scaled Dot-Product</h4>
 <p>Attention scores are scaled by √d_k (square root of key dimension) to prevent extremely small gradients in softmax for large embedding sizes.</p>
 </div>
 </div>
-<div class="card">
-<h3>Multi-Head Attention</h3>
+<div class="card"><h3>Multi-Head Attention</h3>
 <p>Instead of one attention mechanism, use many in parallel, each learning different patterns.</p>
 <ul class="styled-list">
 <li><strong>Multiple heads:</strong> 32-96 attention heads in modern LLMs</li>
@@ -426,8 +259,7 @@
 <li><strong>Richer representations:</strong> Capture multiple types of dependencies simultaneously</li>
 </ul>
 </div>
-<div class="card">
-<h3>Cross-Attention</h3>
+<div class="card"><h3>Cross-Attention</h3>
 <p>Used in encoder-decoder models (and multimodal systems): attend to a different sequence.</p>
 <ul class="styled-list">
 <li><strong>Query from decoder:</strong> "What am I trying to generate?"</li>
@@ -437,12 +269,10 @@
 </ul>
 </div>
 </div>
-<div class="resource-placeholder">
-<h4>📹 I don't think that you can do much better than 3Blue1Brown to understand attention</h4>
+<div class="resource-placeholder"><h4>I don't think that you can do much better than 3Blue1Brown to understand attention</h4>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eMlx5fFNoYc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
-<div class="technical-detail">
-<h4>⚡ Modern Attention Variants</h4>
-<p style="margin-bottom: 15px;">Standard multi-head attention is computationally expensive. Modern models use optimized variants:</p>
+<div class="technical-detail"><h4>Modern Attention Variants</h4>
+<p style="margin-bottom: 15px">Standard multi-head attention is computationally expensive. Modern models use optimized variants:</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -473,14 +303,12 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 15px; color: #666;"><strong>Research implication:</strong> GQA has become the dominant choice for new models: it provides most of MHA's quality with much better inference efficiency.</p>
+<p style="margin-top: 15px"><strong>Research implication:</strong> GQA has become the dominant choice for new models: it provides most of MHA's quality with much better inference efficiency.</p>
 </div>
 <!-- SECTION 3: POSITIONAL ENCODING -->
-<h2 class="section-title">📍 Positional Encoding: Teaching Position</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Transformers process all tokens in parallel (unlike RNNs which are sequential). But word order matters! Positional encoding solves this problem.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Absolute Positional Encoding</h3>
+<h2 class="section-title" id="s3">Positional Encoding: Teaching Position</h2>
+<p style=" margin-bottom: 30px">Transformers process all tokens in parallel (unlike RNNs which are sequential). But word order matters! Positional encoding solves this problem.</p>
+<div class="card-grid"><div class="card"><h3>Absolute Positional Encoding</h3>
 <p>Original approach: add a position-specific vector to each token embedding.</p>
 <ul class="styled-list">
 <li><strong>Sinusoidal encoding:</strong> Original transformer used sin/cos functions of different frequencies</li>
@@ -489,8 +317,7 @@
 <li><strong>Issue:</strong> Doesn't extrapolate well to longer sequences</li>
 </ul>
 </div>
-<div class="card">
-<h3>Relative Positional Encoding</h3>
+<div class="card"><h3>Relative Positional Encoding</h3>
 <p>Modern approach: encode the <em>distance</em> between tokens rather than absolute position.</p>
 <ul class="styled-list">
 <li><strong>RoPE (Rotary Position Embedding):</strong> Rotate Q and K vectors based on position; used in LLaMA, Mistral, GPT-NeoX</li>
@@ -500,34 +327,29 @@
 </ul>
 </div>
 </div>
-<div class="info-box">
-<h4>💡 Why RoPE Dominates</h4>
+<div class="info-box"><h4>Why RoPE Dominates</h4>
 <p>RoPE (Rotary Position Embedding) has become the standard for new LLMs because it:</p>
-<ul class="styled-list" style="margin-top: 10px;">
+<ul class="styled-list" style="margin-top: 10px">
 <li>Encodes relative positions naturally through rotation in complex space</li>
 <li>Allows models to extrapolate to longer contexts than seen in training</li>
 <li>Maintains computational efficiency (applied during Q/K computation)</li>
 <li>Empirically outperforms alternatives on long-context tasks</li>
 </ul>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Again, this is a little mathsy, but see if you can use this, along with ChatGPT to understand positional encodings</h4>
-<h1><a href="https://towardsdatascience.com/positional-embeddings-in-transformers-a-math-guide-to-rope-alibi/" target="_blank" rel="noopener"><span style="font-size: 24px;">Positional Embeddings in Transformers: A Math Guide to RoPE &amp; ALiBi</span></a></h1>
+<div class="resource-placeholder"><h4>Again, this is a little mathsy, but see if you can use this, along with ChatGPT to understand positional encodings</h4>
+<h1><a href="https://towardsdatascience.com/positional-embeddings-in-transformers-a-math-guide-to-rope-alibi/" target="_blank" rel="noopener"><span>Positional Embeddings in Transformers: A Math Guide to RoPE &amp; ALiBi</span></a></h1>
 </div>
 <!-- SECTION 4: MODERN INNOVATIONS - MoE -->
-<h2 class="section-title">🔀 Modern Architectural Innovations</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The frontier of LLM architecture is about making models <em>smarter</em>, not only bigger. Here are the innovations driving 2024-2026 models.</p>
-<div class="highlight-box">
-<h3>💡 <span style="color: #ffffff;">The Efficiency Revolution</span></h3>
+<h2 class="section-title" id="s4">Modern Architectural Innovations</h2>
+<p style=" margin-bottom: 30px">The frontier of LLM architecture is about making models <em>smarter</em>, not only bigger. Here are the innovations driving 2024-2026 models.</p>
+<div class="highlight-box"><h3><span>The Efficiency Revolution</span></h3>
 <p>Modern LLM research focuses on <strong>parameter efficiency</strong>: getting better performance without proportionally increasing compute costs. Not every parameter needs to activate for every input.</p>
-<p style="margin-top: 15px;">This shift, from "bigger is better" to "smarter is better", is driven by Mixture of Experts architectures, attention optimizations, and clever training techniques.</p>
+<p style="margin-top: 15px">This shift, from "bigger is better" to "smarter is better", is driven by Mixture of Experts architectures, attention optimizations, and clever training techniques.</p>
 </div>
-<div class="technical-detail">
-<h4>🎯 Mixture of Experts (MoE)</h4>
-<p style="margin-bottom: 15px;">MoE is one of the architectural changes shaping modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
-<div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
-<h5 style="color: #2a5298; margin-bottom: 10px;">How MoE Works:</h5>
-<ol style="margin-left: 25px; color: #555; line-height: 1.8;">
+<div class="technical-detail"><h4>Mixture of Experts (MoE)</h4>
+<p style="margin-bottom: 15px">MoE is one of the architectural changes shaping modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
+<div style=" padding: 20px; border-radius: 10px; margin: 20px 0"><h5 style=" margin-bottom: 10px">How MoE Works:</h5>
+<ol style="margin-left: 25px">
 <li><strong>Expert networks:</strong> Instead of one feed-forward network per layer, have 8-64 expert FFNs</li>
 <li><strong>Router network:</strong> Small learned network decides which experts process each token</li>
 <li><strong>Sparse activation:</strong> Only top-K experts (typically 2-8) activate per token</li>
@@ -535,9 +357,7 @@
 <li><strong>Combination:</strong> Outputs from active experts weighted and summed</li>
 </ol>
 </div>
-<div class="card-grid" style="margin-top: 25px;">
-<div class="card">
-<h3>MoE Benefits</h3>
+<div class="card-grid" style="margin-top: 25px"><div class="card"><h3>MoE Benefits</h3>
 <ul class="styled-list">
 <li><strong>Massive parameter count:</strong> 100B+ total parameters with only 10-20B active per token</li>
 <li><strong>Inference efficiency:</strong> Computational cost based on active parameters, not total</li>
@@ -545,8 +365,7 @@
 <li><strong>Scaling:</strong> Add more experts without proportional compute increase</li>
 </ul>
 </div>
-<div class="card">
-<h3>MoE Challenges</h3>
+<div class="card"><h3>MoE Challenges</h3>
 <ul class="styled-list">
 <li><strong>Training complexity:</strong> Load balancing is tricky; some experts might be underutilized</li>
 <li><strong>Memory requirements:</strong> All experts must fit in GPU memory even if only few are active</li>
@@ -556,25 +375,20 @@
 </div>
 </div>
 </div>
-<div class="info-box">
-<h4>📊 MoE in Production Models</h4>
+<div class="info-box"><h4>MoE in Production Models</h4>
 <p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → performs like 47B dense model at cost of 13B</p>
-<p style="margin-top: 8px;"><strong>DeepSeek-V3:</strong> 256 experts, 8 active per token → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
-<p style="margin-top: 8px;"><strong>GPT-4 (rumored):</strong> Speculated to use MoE with 8-16 experts, explaining its size vs. inference speed</p>
+<p style="margin-top: 8px"><strong>DeepSeek-V3:</strong> 256 experts, 8 active per token → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
+<p style="margin-top: 8px"><strong>GPT-4 (rumored):</strong> Speculated to use MoE with 8-16 experts, explaining its size vs. inference speed</p>
 </div>
-<div class="resource-placeholder">
-<h4>📹 Mixture of Experts explanation</h4>
+<div class="resource-placeholder"><h4>Mixture of Experts explanation</h4>
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/sOPDGQjFcuM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen="allowfullscreen"></iframe></div>
-<div class="resource-placeholder">
-<h4>📄 <a href="https://github.com/deepseek-ai/DeepSeek-V3" target="_blank" rel="noopener">DeepSeek-V3 Github repo</a></h4>
+<div class="resource-placeholder"><h4><a href="https://github.com/deepseek-ai/DeepSeek-V3" target="_blank" rel="noopener">DeepSeek-V3 Github repo</a></h4>
 <p>Here is an open-weights Mixture of Experts model that you can, in theory, download and run (though I wouldn't do this on your laptop.</p>
 </div>
 <!-- SECTION 5: MODEL SCALE -->
-<h2 class="section-title">📏 Understanding Model Scale</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When we say "GPT-4 has 1.76 trillion parameters" (a widely-circulated but unconfirmed third-party estimate, never officially disclosed by OpenAI) or "LLaMA 3 70B," what do these numbers actually mean? And is bigger always better?</p>
-<div class="card-grid">
-<div class="card">
-<h3>Parameter Count Breakdown</h3>
+<h2 class="section-title" id="s5">Understanding Model Scale</h2>
+<p style=" margin-bottom: 30px">When we say "GPT-4 has 1.76 trillion parameters" (a widely-circulated but unconfirmed third-party estimate, never officially disclosed by OpenAI) or "LLaMA 3 70B," what do these numbers actually mean? And is bigger always better?</p>
+<div class="card-grid"><div class="card"><h3>Parameter Count Breakdown</h3>
 <p>Parameters are the learned weights in the neural network. They're distributed across:</p>
 <ul class="styled-list">
 <li><strong>Embedding layers:</strong> Token + position embeddings (vocab_size × embedding_dim)</li>
@@ -582,13 +396,11 @@
 <li><strong>Feed-forward networks:</strong> Two linear layers per transformer layer (typically 4× hidden size)</li>
 <li><strong>Layer norms:</strong> Small contribution (scale + shift per layer)</li>
 </ul>
-<div class="info-box" style="margin-top: 15px;">
-<h4>🔢 Quick Math</h4>
+<div class="info-box" style="margin-top: 15px"><h4>Quick Math</h4>
 <p>A 7B parameter model might have: 32 layers × (12 attention heads × 4096 dim + 4× FFN expansion) ≈ 7 billion parameters</p>
 </div>
 </div>
-<div class="card">
-<h3>Parameters vs. Active Parameters</h3>
+<div class="card"><h3>Parameters vs. Active Parameters</h3>
 <p>For MoE models, these are different concepts:</p>
 <ul class="styled-list">
 <li><strong>Total parameters:</strong> All weights in all experts (what's reported as "model size")</li>
@@ -597,8 +409,7 @@
 <li><strong>Inference cost:</strong> Determined by active parameters, not total</li>
 </ul>
 </div>
-<div class="card">
-<h3>Dense vs. Sparse Architectures</h3>
+<div class="card"><h3>Dense vs. Sparse Architectures</h3>
 <ul class="styled-list">
 <li><strong>Dense models:</strong> All parameters active for every input (GPT-3, Claude, LLaMA 2)</li>
 <li><strong>Sparse models (MoE):</strong> Subset of parameters active per input (Mixtral, DeepSeek-V3, Switch Transformer)</li>
@@ -607,9 +418,8 @@
 </ul>
 </div>
 </div>
-<div class="technical-detail">
-<h4>🎯 When Bigger ≠ Better</h4>
-<p style="margin-bottom: 15px;">The relationship between model size and performance is more subtle:</p>
+<div class="technical-detail"><h4>When Bigger ≠ Better</h4>
+<p style="margin-bottom: 15px">The relationship between model size and performance is more subtle:</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -621,93 +431,71 @@
 <tbody>
 <tr>
 <td><strong>Latency-sensitive applications</strong></td>
-<td>✓ Faster inference, lower latency</td>
-<td>✗ Slower, requires more compute</td>
+<td> Faster inference, lower latency</td>
+<td> Slower, requires more compute</td>
 </tr>
 <tr>
 <td><strong>Resource-constrained deployment</strong></td>
-<td>✓ Runs on smaller GPUs, edge devices</td>
-<td>✗ Needs high-end infrastructure</td>
+<td> Runs on smaller GPUs, edge devices</td>
+<td> Needs high-end infrastructure</td>
 </tr>
 <tr>
 <td><strong>Narrow domain tasks</strong></td>
-<td>✓ Can be fine-tuned effectively</td>
+<td> Can be fine-tuned effectively</td>
 <td>Diminishing returns</td>
 </tr>
 <tr>
 <td><strong>Complex reasoning</strong></td>
 <td>Limited capability</td>
-<td>✓ Better at multi-step problems</td>
+<td> Better at multi-step problems</td>
 </tr>
 <tr>
 <td><strong>Rare/specialized knowledge</strong></td>
 <td>Likely to hallucinate</td>
-<td>✓ More knowledge encoded in parameters</td>
+<td> More knowledge encoded in parameters</td>
 </tr>
 <tr>
 <td><strong>Few-shot learning</strong></td>
 <td>Requires more examples</td>
-<td>✓ Better in-context learning</td>
+<td> Better in-context learning</td>
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 15px; color: #666;"><strong>Research principle:</strong> Match model size to your task. A well-trained 7B model often outperforms a poorly-prompted 70B model. And for many research tasks (data analysis, writing assistance, literature review), mid-size models are sufficient.</p>
+<p style="margin-top: 15px"><strong>Research principle:</strong> Match model size to your task. A well-trained 7B model often outperforms a poorly-prompted 70B model. And for many research tasks (data analysis, writing assistance, literature review), mid-size models are sufficient.</p>
 </div>
-<div class="highlight-box">
-<h3>🔮<span style="color: #202122;"> <span style="color: #ffffff;">The Current Frontier (Feb 2026)</span></span></h3>
+<div class="highlight-box"><h3><span> <span>The Current Frontier (Feb 2026)</span></span></h3>
 <p><strong>A caveat first:</strong> The sizes and architectures of proprietary frontier models are <em>not</em> officially disclosed by their makers. Every parameter figure below for a closed model is a third-party <em>estimate</em>: informed guesses, not facts.</p>
-<p style="margin-top: 15px;"><strong>Claude Opus (4.x):</strong> Anthropic does not publish Claude&#39;s architecture or parameter count. Stanford&#39;s Foundation Model Transparency Index records both as <a href="https://crfm.stanford.edu/fmti/May-2024/company-reports/Anthropic_Claude%203.html" target="_blank" rel="noopener">&ldquo;not disclosed&rdquo;</a>. Where people speculate, the guess leans <em>dense</em> (every parameter active per token) rather than Mixture-of-Experts. This is unconfirmed, and no specific size should be cited.</p>
-<p style="margin-top: 15px;"><strong>Mixture-of-Experts, the documented cases:</strong> The clearest MoE examples are the open ones. DeepSeek-V3 is a <a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">671B-total / 37B-activated MoE</a> (DeepSeek-AI, 2024), and Mixtral routes each token through 2 of 8 experts: <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">47B total but only ~13B active per token</a> (Jiang et al., 2024). Because these are published, the figures are verifiable.</p>
-<p style="margin-top: 15px;"><strong>GPT-4 (reported ~1.8T, MoE):</strong> Per an unofficial industry report by <a href="https://semianalysis.com/2023/07/10/gpt-4-architecture-infrastructure/" target="_blank" rel="noopener">SemiAnalysis (Patel &amp; Wong, July 2023)</a>, GPT-4 is ~1.8 trillion parameters using 16 experts, a <a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" rel="noopener">leak, not an OpenAI disclosure</a>.</p>
-<p style="margin-top: 15px;"><strong>GPT-4o (estimated ~200B):</strong> Third-party estimates put GPT-4o roughly an order of magnitude smaller than GPT-4. A Microsoft / Univ. of Washington benchmark paper lists GPT-4o at <a href="https://arxiv.org/abs/2412.19260" target="_blank" rel="noopener">~200B and GPT-4 at ~1.76T</a> (Ben Abacha et al., 2025), explicitly noting these are mined from public articles and unverified; <a href="https://epoch.ai/gradient-updates/frontier-language-models-have-become-much-smaller" target="_blank" rel="noopener">Epoch AI independently estimates ~200B</a> (and warns it &ldquo;could easily be off by a factor of 2&rdquo;).</p>
-<p style="margin-top: 15px;"><strong>Small models:</strong> Open models in the 7B&ndash;13B range (e.g. Llama, Mistral) are genuinely disclosed and run on modest hardware: the figures here are real, not estimated.</p>
-<p style="margin-top: 15px;"><strong>The trend:</strong> The frontier has shifted from chasing raw parameter count toward architectural efficiency: sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
+<p style="margin-top: 15px"><strong>Claude Opus (4.x):</strong> Anthropic does not publish Claude&#39;s architecture or parameter count. Stanford&#39;s Foundation Model Transparency Index records both as <a href="https://crfm.stanford.edu/fmti/May-2024/company-reports/Anthropic_Claude%203.html" target="_blank" rel="noopener">&ldquo;not disclosed&rdquo;</a>. Where people speculate, the guess leans <em>dense</em> (every parameter active per token) rather than Mixture-of-Experts. This is unconfirmed, and no specific size should be cited.</p>
+<p style="margin-top: 15px"><strong>Mixture-of-Experts, the documented cases:</strong> The clearest MoE examples are the open ones. DeepSeek-V3 is a <a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">671B-total / 37B-activated MoE</a> (DeepSeek-AI, 2024), and Mixtral routes each token through 2 of 8 experts: <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">47B total but only ~13B active per token</a> (Jiang et al., 2024). Because these are published, the figures are verifiable.</p>
+<p style="margin-top: 15px"><strong>GPT-4 (reported ~1.8T, MoE):</strong> Per an unofficial industry report by <a href="https://semianalysis.com/2023/07/10/gpt-4-architecture-infrastructure/" target="_blank" rel="noopener">SemiAnalysis (Patel &amp; Wong, July 2023)</a>, GPT-4 is ~1.8 trillion parameters using 16 experts, a <a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" rel="noopener">leak, not an OpenAI disclosure</a>.</p>
+<p style="margin-top: 15px"><strong>GPT-4o (estimated ~200B):</strong> Third-party estimates put GPT-4o roughly an order of magnitude smaller than GPT-4. A Microsoft / Univ. of Washington benchmark paper lists GPT-4o at <a href="https://arxiv.org/abs/2412.19260" target="_blank" rel="noopener">~200B and GPT-4 at ~1.76T</a> (Ben Abacha et al., 2025), explicitly noting these are mined from public articles and unverified; <a href="https://epoch.ai/gradient-updates/frontier-language-models-have-become-much-smaller" target="_blank" rel="noopener">Epoch AI independently estimates ~200B</a> (and warns it &ldquo;could easily be off by a factor of 2&rdquo;).</p>
+<p style="margin-top: 15px"><strong>Small models:</strong> Open models in the 7B&ndash;13B range (e.g. Llama, Mistral) are genuinely disclosed and run on modest hardware: the figures here are real, not estimated.</p>
+<p style="margin-top: 15px"><strong>The trend:</strong> The frontier has shifted from chasing raw parameter count toward architectural efficiency: sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄<a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>
+<div class="resource-placeholder"><h4><a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>
 <h3 dir="auto">Understanding the current state of LLM scaling and the future of AI research</h3>
 </div>
 <!-- TRY THIS YOURSELF -->
-<div style="background: #eef7f0; border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0;">
-<h3 style="color: #1f6e43; font-size: 1.25em; margin-bottom: 12px;">🔬 Try this yourself (about 10 minutes)</h3>
-<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">This page has been conceptual; here is a hands-on way to <em>see</em> tokenisation, which underpins everything above. Open a free tokeniser playground (for example the <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener" style="color: #1f6e43; font-weight: 600;">OpenAI tokenizer</a>) and paste in two or three sentences from your own field, including the messy bits: a piece of jargon, a chemical formula or equation, an author's name, a word in another language.</p>
-<p style="color: #345; line-height: 1.75; margin-bottom: 12px;">Then look at what happened:</p>
-<ul style="list-style: none; padding-left: 0; margin: 0 0 12px;">
-<li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>How many tokens did your text become? Common English words are usually one token; rare or technical terms often shatter into several.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 9px; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms: the model never sees your word as a single unit.</li>
-<li style="position: relative; padding-left: 24px; margin-bottom: 0; color: #345; line-height: 1.65;"><span style="position: absolute; left: 0; color: #2f8f5b; font-weight: 700;">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window, the limit this lesson&#39;s positional-encoding section is about.</li>
+<div style=" border-left: 5px solid #2f8f5b; border-radius: 12px; padding: 24px 28px; margin: 40px 0"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
+<p style=" margin-bottom: 12px">This page has been conceptual; here is a hands-on way to <em>see</em> tokenisation, which underpins everything above. Open a free tokeniser playground (for example the <a href="https://platform.openai.com/tokenizer" target="_blank" rel="noopener">OpenAI tokenizer</a>) and paste in two or three sentences from your own field, including the messy bits: a piece of jargon, a chemical formula or equation, an author's name, a word in another language.</p>
+<p style=" margin-bottom: 12px">Then look at what happened:</p>
+<ul style="list-style: none; padding-left: 0; margin: 0 0 12px">
+<li style="position: relative; padding-left: 24px; margin-bottom: 9px"><span style="position: absolute; left: 0">&#9656;</span>How many tokens did your text become? Common English words are usually one token; rare or technical terms often shatter into several.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 9px"><span style="position: absolute; left: 0">&#9656;</span>Where did your specialist vocabulary fragment most? That fragmentation is part of why models sometimes mishandle domain-specific terms: the model never sees your word as a single unit.</li>
+<li style="position: relative; padding-left: 24px; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span>Now imagine a whole paper at this token rate. That total is what has to fit inside the context window, the limit this lesson&#39;s positional-encoding section is about.</li>
 </ul>
-<p style="color: #345; line-height: 1.75; margin-bottom: 0;">It is a small exercise, but it converts &ldquo;tokens&rdquo; from an abstraction into something you have watched happen to your own writing.</p>
+<p style=" margin-bottom: 0">It is a small exercise, but it converts &ldquo;tokens&rdquo; from an abstraction into something you have watched happen to your own writing.</p>
 </div>
 
 <!-- SUMMARY AND NEXT STEPS -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>📚 Summary &amp; Key Takeaways</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Summary &amp; Key Takeaways</h2>
 <p>You now understand the technical architecture of modern LLMs:</p>
-<ul class="styled-list" style="margin-top: 15px;">
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>Transformer fundamentals:</strong> Decoder-only architecture, layer structure, residual connections</li>
 <li><strong>Attention mechanisms:</strong> Self-attention, multi-head variants (MHA/MQA/GQA), how tokens learn relevance</li>
 <li><strong>Positional encoding:</strong> RoPE and ALiBi enable models to understand sequence order and extrapolate length</li>
 <li><strong>Mixture of Experts:</strong> Sparse activation allows massive models with efficient inference</li>
 <li><strong>Scale considerations:</strong> Bigger isn't always better; match model to task, consider active vs. total parameters</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session (Week 2.2):</strong> We'll explore how these architectures are <em>trained</em>: the pre-training process, optimization techniques, and the computational resources required to create LLMs from scratch.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-1/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
-  <a class="page-nav-link" href="../week-2/Training Large Language Models.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Training Large Language Models</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next session (Week 2.2):</strong> We'll explore how these architectures are <em>trained</em>: the pre-training process, optimization techniques, and the computational resources required to create LLMs from scratch.</p>
+</div></div><div class="prevnext"><a href="../week-1/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Training%20Large%20Language%20Models.html"><span class="d">Next &rarr;</span><span class="pt">Training Large Language Models</span></a></div></div><div class="rightrail"><div class="rmeta">Week 2<br>Lesson 1<br>11 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Token</div>The basic unit of text a language model reads and produces — roughly a word or word-fragment (e.g. "unbelievable" may split into "un", "believe", "able"). Models process text one token at a time.</div><div class="snote"><div class="sk">Attention mechanism</div>A component of transformer models that lets the system weigh, for each word it processes, which other words in the text are most relevant, rather than treating all context as equally important.</div><div class="snote"><div class="sk">Positional encoding</div>Information added to each token before processing to tell the model where in the sequence that token sits, since transformers otherwise treat all positions as equivalent.</div><div class="snote"><div class="sk">Mixture of experts (MoE)</div>An architecture where a large model is split into many specialised sub-networks (experts), but each input is routed through only a small subset, keeping computation per query low despite a very large total parameter count.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

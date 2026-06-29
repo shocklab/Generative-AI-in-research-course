@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4.3 - Transparency, Authorship and Integrity</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .intro-text h2::before { content: '🎯'; }
+        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+        .warning-box p { color: #555; line-height: 1.7; }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+        .resource-placeholder p { color: #666; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        .decision-framework {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .decision-framework h4 { color: #003A70; font-size: 1.4em; margin-bottom: 20px; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 4 • Sub-Lesson 3</div>
+<h1>🔍 <span style="color: #ffffff;">Transparency, Authorship &amp; Integrity</span></h1>
+<p>Disclosure norms, the AI authorship debate, bias, privacy, and the academic integrity spectrum</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>This session moves from ethical theory to the practical questions every researcher using AI tools must navigate: When and how should you disclose AI use? Can AI be listed as an author? How does bias manifest in AI-assisted research? What happens to your data when you use cloud-based AI? Where does legitimate tool use end and academic misconduct begin?</p>
+<p>These are questions with evolving answers. Journal policies, institutional guidelines, and legal frameworks are all in flux. Rather than definitive rules, the goal is to equip you to make informed, defensible decisions as the field shifts.</p>
+</div>
+<!-- SECTION 1: TRANSPARENCY -->
+<h2 class="section-title">📝 Transparency: When and How to Disclose AI Use</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Disclosure is the foundation of trust in AI-assisted research. But what should you disclose, and where?</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Case for Disclosure</h3>
+<ul class="styled-list">
+<li><strong>Reproducibility:</strong> Other researchers need to know what tools were used to evaluate and replicate your work. "AI-assisted" covers a vast range of practices</li>
+<li><strong>Trust:</strong> Readers assess credibility differently when they know AI was involved. Undisclosed AI use, if later discovered, damages trust far more than transparent use</li>
+<li><strong>Accountability:</strong> If AI-generated content contains errors, biases, or fabrications, disclosure clarifies who is responsible (the researcher who chose to use and present the output)</li>
+<li><strong>Norm-setting:</strong> Current disclosure practices establish the expectations that will govern AI use in your field for years to come</li>
+</ul>
+</div>
+<div class="card">
+<h3>What and How to Disclose</h3>
+<p><strong>What to include:</strong></p>
+<ul class="styled-list">
+<li>Which AI tool(s) were used (name, version if known, date of use)</li>
+<li>What they were used for (ideation, drafting, editing, analysis, coding, literature search)</li>
+<li>The degree of human modification of AI outputs</li>
+<li>Any prompts used (increasingly expected in some fields)</li>
+</ul>
+<p style="margin-top: 15px;"><strong>Where to disclose:</strong></p>
+<ul class="styled-list">
+<li>Methods section (for substantive AI use in research process)</li>
+<li>Acknowledgements (for editorial assistance)</li>
+<li>Author contribution statements (where applicable)</li>
+<li>Supplementary materials (for detailed prompts or interaction logs)</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ A Moving Target</h4>
+<p>Disclosure norms are evolving rapidly. What is considered adequate disclosure today may be considered insufficient in a year. Always check your target journal's most recent author guidelines before submission. Policies are updated frequently, and cached or secondary sources may be outdated.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Key Reading</h4>
+</div>
+<!-- SECTION 2: JOURNAL POLICIES -->
+<h2 class="section-title">📋 Journal Policies: The Current Landscape</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Major publishers have issued AI use policies, but they differ in specifics. The table below captures the current state. Check for updates before relying on it.</p>
+<div class="technical-detail">
+<h4>📊 AI Policies of Major Publishers (as of early 2026)</h4>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Publisher / Journal</th>
+<th>AI Authorship?</th>
+<th>Disclosure Required?</th>
+<th>Key Policy Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nature / Springer Nature</strong></td>
+<td>No</td>
+<td>Yes, in Methods</td>
+<td>AI tools cannot be credited as authors. Use must be documented in methods or acknowledgements. Authors take full responsibility for AI-assisted content.</td>
+</tr>
+<tr>
+<td><strong>Science / AAAS</strong></td>
+<td>No</td>
+<td>Yes, in Methods</td>
+<td>Text generated by AI must be disclosed. AI cannot fulfil the role of author. Figures and data generated by AI must be clearly identified.</td>
+</tr>
+<tr>
+<td><strong>IEEE</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>Detailed guidance on disclosure. AI-generated text must be clearly attributed. Authors must verify all AI-assisted content for accuracy.</td>
+</tr>
+<tr>
+<td><strong>ACM</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>2024 policy with specific requirements. Authors must describe the nature and extent of AI use. AI cannot meet authorship criteria.</td>
+</tr>
+<tr>
+<td><strong>Elsevier</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>AI and AI-assisted technologies cannot be listed as authors. Use must be disclosed. Authors are responsible for the accuracy of AI-generated content.</td>
+</tr>
+<tr>
+<td><strong>PLOS</strong></td>
+<td>No</td>
+<td>Yes</td>
+<td>Requires specific language about AI use in methods section. Authors must take responsibility for AI-assisted work.</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 15px; color: #666; font-size: 0.95em;"><em>Note: All major publishers have converged on two points: (1) AI cannot be listed as an author, and (2) AI use must be disclosed. The specifics of how to disclose vary. Always check the most recent version of author guidelines.</em></p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Key Readings</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1038/d41586-023-00191-1" target="_blank" rel="noopener"><strong>Nature Editorial (2023): "Tools Such as ChatGPT Threaten Transparent Science; Here Are Our Ground Rules"</strong></a> — The influential early statement that shaped many subsequent policies.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener"><strong>ACM (2024): "Policy on Authorship and Use of Generative AI and Large Language Models"</strong></a> — A detailed, discipline-specific policy worth examining closely as a model.</p>
+</div>
+<div class="info-box">
+<h4>📝 Activity: Journal Policy Audit</h4>
+<p>Survey the AI disclosure policies of the top 5 journals in your field. For each journal: find the current AI/LLM policy (or note its absence), document what is required for disclosure, note the authorship rules, and identify anything ambiguous or missing. This exercise will be discussed in class, so bring your findings.</p>
+</div>
+<!-- SECTION 3: AI AUTHORSHIP -->
+<h2 class="section-title">✍️ Can AI Be an Author?</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The authorship question has generated intense debate. The current consensus is clear, and the reasoning behind it repays a close look.</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Case Against AI Authorship</h3>
+<p>The dominant position, reflected in all major publisher policies:</p>
+<ul class="styled-list">
+<li><strong>Accountability:</strong> Authorship implies legal and ethical responsibility for the work. AI cannot be held accountable for errors, fabrications, or misconduct</li>
+<li><strong>ICMJE criteria:</strong> The widely adopted criteria require (1) substantial contribution, (2) drafting or critical revision, (3) final approval, and (4) accountability for accuracy and integrity. AI fails criterion 4 definitively</li>
+<li><strong>Credit:</strong> Authorship confers academic credit: citations, h-index, career advancement. AI does not benefit from or need these</li>
+<li><strong>Precedent:</strong> Listing AI as an author normalises the idea that non-human entities can bear scholarly responsibility, a precedent with uncertain consequences</li>
+</ul>
+</div>
+<div class="card">
+<h3>The Complications</h3>
+<p>Even if the current consensus is correct, the reasoning repays interrogation:</p>
+<ul class="styled-list">
+<li><strong>Substantial contribution:</strong> In some workflows, AI makes genuinely substantial intellectual contributions: structuring arguments, identifying patterns, generating hypotheses. The "tool" framing may understate this</li>
+<li><strong>Ghostwriting precedent:</strong> Human ghostwriting, where the named author did not write the text, is accepted in some contexts (political speeches, some medical writing). How is AI-generated text categorically different?</li>
+<li><strong>Contribution statements:</strong> Rather than authorship, detailed contribution statements could honestly record what AI did and what humans did. This is more transparent than either listing AI as author or pretending it played no role</li>
+<li><strong>Evolving capabilities:</strong> As AI systems become more capable, the assumptions behind current policies may need revisiting</li>
+</ul>
+</div>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">Where Things Stand</span></h3>
+<p>The current consensus (2025–2026) is clear: AI cannot be listed as an author on academic publications. Every major publisher has taken this position. The reasoning behind it, centred on accountability and the nature of authorship itself, rests on assumptions that may need updating as AI capabilities evolve and as our understanding of human-AI collaboration deepens.</p>
+<p>For now, the practical advice is straightforward: do not list AI as an author. Use disclosure statements and contribution descriptions to be transparent about AI's role.</p>
+</div>
+<!-- SECTION 4: BIAS -->
+<h2 class="section-title">⚖️ Bias in AI-Assisted Research</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">"Bias in, bias out." In research contexts, the manifestations can be subtle and the consequences significant.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Sources of Bias</h3>
+<p>AI systems trained on large datasets inherit and can amplify the biases present in that data:</p>
+<ul class="styled-list">
+<li><strong>Language bias:</strong> Training data overwhelmingly in English, underrepresenting non-English scholarship and perspectives</li>
+<li><strong>Geographic bias:</strong> Data disproportionately from the Global North (US, Europe, and East Asia)</li>
+<li><strong>Temporal bias:</strong> Training data has a cutoff date; recent developments may be absent or underrepresented</li>
+<li><strong>Demographic bias:</strong> Underrepresentation of minority groups, indigenous communities, and marginalised populations</li>
+<li><strong>Publication bias:</strong> Models trained on published work inherit the biases of what gets published: positive results, established methodologies, dominant theoretical frameworks</li>
+</ul>
+</div>
+<div class="card">
+<h3>How Bias Manifests in Research</h3>
+<ul class="styled-list">
+<li><strong>Literature review:</strong> AI may systematically overlook non-English sources, regional journals, or scholarship from underrepresented communities</li>
+<li><strong>Coding and analysis:</strong> AI may apply analytical categories developed in one context (typically Western, English-speaking) to data from another</li>
+<li><strong>Writing:</strong> AI tends to adopt dominant discourse patterns, potentially flattening disciplinary and cultural diversity in how research is communicated</li>
+<li><strong>Recommendations:</strong> AI may reinforce mainstream approaches over novel, interdisciplinary, or locally grounded methodologies</li>
+<li><strong>Data interpretation:</strong> AI may impose patterns or categories that do not fit the data, producing confident but misleading analyses</li>
+</ul>
+</div>
+<div class="card">
+<h3>Mitigation Strategies</h3>
+<ul class="styled-list">
+<li><strong>Awareness:</strong> Know what biases are likely in your tools. This requires understanding how they were trained (which is often only partially disclosed)</li>
+<li><strong>Cross-checking:</strong> Use multiple AI tools and compare results with manual methods. Where they diverge, investigate why</li>
+<li><strong>Diverse prompting:</strong> Explicitly ask for non-dominant perspectives, non-English sources, alternative frameworks</li>
+<li><strong>Domain expertise:</strong> Human judgment remains essential for detecting bias, since AI cannot reliably identify its own blind spots</li>
+<li><strong>Transparency:</strong> Report which AI tools were used so that readers and reviewers can assess bias risk in your specific context</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ The Invisible Risk</h4>
+<p>AI-generated bias is not always visible. AI can produce confident, well-structured, fluent output that contains systematic omissions or distortions. The risk is high in qualitative research, where AI may impose interpretive categories that do not fit the data, and the researcher may not notice because the output reads so convincingly. Treat AI outputs with the same critical scrutiny you would apply to any research assistant's work, and more, because the assistant's biases are structural rather than idiosyncratic.</p>
+</div>
+<!-- SECTION 5: PRIVACY -->
+<h2 class="section-title">🔒 Privacy: What Happens to Your Data?</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When you paste text into a cloud-based AI tool, where does it go, and who else might see it?</p>
+<div class="card-grid">
+<div class="card">
+<h3>Data Handling by AI Providers</h3>
+<p>Policies vary across providers and tiers, and change frequently. Key considerations:</p>
+<ul class="styled-list">
+<li><strong>Training use:</strong> Some consumer-tier services may use conversation data to improve their models (unless the user opts out). Enterprise and API tiers typically have stronger protections</li>
+<li><strong>Data retention:</strong> Providers retain conversation data for varying periods, from 30 days to indefinitely, depending on the service and tier</li>
+<li><strong>No guaranteed deletion:</strong> Even when providers offer deletion, it may not apply to data already incorporated into model training</li>
+<li><strong>Jurisdictional issues:</strong> Your data may be processed and stored in a different country, subject to different privacy laws</li>
+</ul>
+</div>
+<div class="card">
+<h3>Implications for Researchers</h3>
+<p>The privacy question has real consequences for research practice:</p>
+<ul class="styled-list">
+<li><strong>Participant data:</strong> Pasting interview transcripts, survey responses, or medical records into consumer AI tools may violate your ethics approval and data protection commitments</li>
+<li><strong>Unpublished findings:</strong> Entering draft manuscripts or preliminary results into AI tools exposes them to potential data breaches before publication</li>
+<li><strong>Proprietary data:</strong> Industry-funded research may involve confidentiality agreements that prohibit sharing data with third-party AI services</li>
+<li><strong>IRB/ethics implications:</strong> Your ethics committee likely did not anticipate AI tool use when they approved your protocol, so you may need to seek amended approval</li>
+</ul>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Practical Guidance</h4>
+<p>For sensitive research data: use enterprise tiers with explicit data protection guarantees; anonymise data before using AI tools; check your university's data handling policy and your ethics approval conditions; consider running local/open-weight models for sensitive analysis (e.g., LLaMA, Mistral on your own hardware); and when in doubt, ask your ethics committee before proceeding.</p>
+</div>
+<!-- SECTION 6: ACADEMIC INTEGRITY -->
+<h2 class="section-title">🎓 The Academic Integrity Spectrum</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI use in research is rarely binary, legitimate or illegitimate. It exists on a spectrum, with a large grey zone that requires judgment.</p>
+<div class="decision-framework">
+<h4>The Spectrum of AI Use in Research</h4>
+<table class="comparison-table" style="margin-top: 15px;">
+<thead>
+<tr>
+<th>Category</th>
+<th>Examples</th>
+<th>Key Consideration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong style="color: #2e7d32;">Generally Accepted</strong></td>
+<td>Grammar and spell checking; code debugging and syntax help; brainstorming and ideation; literature search and discovery; translation assistance</td>
+<td>These uses are widely considered analogous to existing tools (spell checkers, search engines). Disclosure is good practice but the ethical risk is low.</td>
+</tr>
+<tr>
+<td><strong style="color: #f57f17;">Grey Zone</strong></td>
+<td>Drafting sections that are then heavily edited; generating initial analyses that are verified and refined; restructuring arguments; summarising literature; code generation for novel analyses</td>
+<td>These uses involve more substantial AI contribution. Disclosure is essential. The key question: does the researcher maintain genuine intellectual command of the work?</td>
+</tr>
+<tr>
+<td><strong style="color: #c62828;">Generally Problematic</strong></td>
+<td>Submitting AI-generated text as one's own without disclosure; fabricating or augmenting data using AI; using AI to bypass learning objectives; allowing AI to make substantive research decisions without human oversight</td>
+<td>These uses involve misrepresentation, fabrication, or abdication of intellectual responsibility. Most institutions and publishers would consider these misconduct.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="info-box">
+<h4>💡 The Key Distinction</h4>
+<p>The question is not "did you use AI?" but "did you use AI honestly and transparently, maintaining your intellectual responsibility for the work?" A researcher who uses AI to draft text, carefully verifies and revises it, and discloses the process is acting with integrity. A researcher who submits AI output as their own work, unchecked and undisclosed, is not, regardless of how good the output is.</p>
+</div>
+<!-- SECTION 7: INTELLECTUAL PROPERTY -->
+<h2 class="section-title">⚙️ Intellectual Property: Who Owns AI-Generated Content?</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The legal landscape around AI-generated content and copyright is evolving rapidly and remains largely unsettled.</p>
+<div class="card-grid">
+<div class="card">
+<h3>The Current Legal Landscape</h3>
+<ul class="styled-list">
+<li><strong>US Copyright Office:</strong> Content generated by AI without human authorship is not copyrightable. However, human-directed AI use, where the human exercises substantial creative control, may produce copyrightable work</li>
+<li><strong>The boundary is unclear:</strong> How much human creative input is needed to make AI-assisted work copyrightable? Courts are still working this out</li>
+<li><strong>Other jurisdictions:</strong> The EU, UK, and other jurisdictions are developing their own approaches, which may differ significantly from the US position</li>
+<li><strong>Rapid evolution:</strong> Multiple court cases are currently in progress that could reshape the legal landscape significantly</li>
+</ul>
+</div>
+<div class="card">
+<h3>Implications for Researchers</h3>
+<ul class="styled-list">
+<li><strong>Copyright claims:</strong> If your AI-assisted work is not copyrightable, this could affect publication agreements, licensing, and IP ownership disputes</li>
+<li><strong>University IP policies:</strong> Many university IP policies were written before AI-generated content was a consideration, so they may not clearly address who owns AI-assisted research outputs</li>
+<li><strong>Practical advice:</strong> Ensure sufficient human creative input and intellectual direction to maintain copyright claims. Document your creative process</li>
+<li><strong>Training data concerns:</strong> Separate from output copyright, there are ongoing legal disputes about whether AI companies had the right to use copyrighted material in training data</li>
+</ul>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1002/asi.24750" target="_blank" rel="noopener"><strong>Lund, B.D., et al. (2023): "ChatGPT and a New Academic Reality"</strong></a> — <em>JASIST</em>. A thorough overview of the academic integrity and authorship debates around AI.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1038/d41586-023-00288-7" target="_blank" rel="noopener"><strong>van Dis, E.A.M., et al. (2023): "ChatGPT: Five Priorities for Research"</strong></a> — <em>Nature</em>, 614. Short, actionable priorities for the research community.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>This session covered the practical ethical landscape that every researcher using AI must navigate.</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>Disclosure is foundational:</strong> Transparency about AI use builds trust and enables reproducibility. Norms are converging toward more, not less, disclosure</li>
+<li><strong>Journal policies are converging:</strong> All major publishers agree that AI cannot be an author, and that AI use must be disclosed. The specifics of how to disclose vary</li>
+<li><strong>The authorship consensus is clear (for now):</strong> AI cannot meet the accountability requirement for authorship. But the reasoning is worth examining because the underlying assumptions may need updating</li>
+<li><strong>Bias is systematic and subtle:</strong> AI-assisted research can contain invisible distortions (language bias, geographic bias, publication bias) that require active mitigation</li>
+<li><strong>Privacy requires institutional attention:</strong> Sensitive research data should not be entered into consumer AI tools without careful consideration of data handling policies and ethics approval</li>
+<li><strong>Integrity is a spectrum:</strong> The question is not whether you used AI, but whether you used it honestly, transparently, and with genuine intellectual responsibility</li>
+<li><strong>IP law is uncertain:</strong> The copyright status of AI-assisted work remains legally unsettled, so document your creative process and ensure substantial human input</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session:</strong> We put all of this into practice, working through four detailed case studies using the ethical lenses from Sub-Lesson 1 and the practical knowledge from this session, and beginning your personal ethical framework.</p>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-4/Ubuntu Relational Ethics and the Just AI Framework.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Ubuntu, Relational Ethics and the Just AI Framework</div></a>
+  <a class="page-nav-link" href="../week-4/Applying Ethics Case Studies and Your Framework.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Applying Ethics: Case Studies and Your Framework</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

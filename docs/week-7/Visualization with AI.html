@@ -1,396 +1,190 @@
-﻿<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 7.3 - Visualization with AI</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Lato', sans-serif;
-        line-height: 1.6;
-        color: #2c3e50;
-        background: #f5f5f5;
-        padding: 20px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-    }
-
-    .ai-notice {
-        background: #e8f4f8;
-        color: #003A70;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 0.9em;
-        border-bottom: 1px solid #d0e8f2;
-    }
-
-    .ai-notice strong {
-        font-weight: 600;
-    }
-
-    header {
-        background: #003A70;
-        color: white;
-        padding: 50px 40px;
-        text-align: center;
-    }
-
-    .week-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        margin-bottom: 15px;
-        backdrop-filter: blur(10px);
-    }
-
-    header h1 {
-        font-size: 2.3em;
-        margin-bottom: 15px;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
-
-    header p {
-        font-size: 1.1em;
-        opacity: 0.95;
-        max-width: 800px;
-        margin: 10px auto 0;
-    }
-
-    .content {
-        padding: 50px 40px;
-    }
-
-    .intro-text {
-        background: #f9f9f9;
-        padding: 35px;
-        border-radius: 15px;
-        border-left: 5px solid #003A70;
-        margin-bottom: 40px;
-    }
-
-    .intro-text h2 {
-        color: #2a5298;
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .intro-text h2::before {
-        content: '\1F3AF';
-    }
-
-    .intro-text p {
-        font-size: 1.1em;
-        color: #495057;
-        line-height: 1.8;
-        margin-bottom: 15px;
-    }
-
-    .section-title {
-        font-size: 2em;
-        color: #2a5298;
-        margin: 50px 0 30px;
-        padding-bottom: 15px;
-        border-bottom: 3px solid #003A70;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin: 30px 0;
-    }
-
-    .card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid #003A70;
-        transition: all 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h3 {
-        color: #2a5298;
-        font-size: 1.4em;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
-
-    .card p {
-        color: #555;
-        line-height: 1.7;
-        margin-bottom: 15px;
-    }
-
-    .styled-list {
-        list-style: none;
-        margin-top: 15px;
-    }
-
-    .styled-list li {
-        padding: 8px 0 8px 25px;
-        color: #555;
-        position: relative;
-        line-height: 1.6;
-    }
-
-    .styled-list li::before {
-        content: '\25B8';
-        position: absolute;
-        left: 0;
-        color: #003A70;
-        font-weight: bold;
-    }
-
-    .highlight-box {
-        background: #003A70;
-        color: white;
-        padding: 30px;
-        border-radius: 15px;
-        margin: 40px 0;
-    }
-
-    .highlight-box h3 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    .highlight-box p {
-        font-size: 1.05em;
-        line-height: 1.8;
-        opacity: 0.95;
-        margin-bottom: 12px;
-    }
-
-    .warning-box {
-        background: #fff8e1;
-        border-left: 5px solid #f9a825;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-    }
-
-    .warning-box h4 {
-        color: #e65100;
-        font-size: 1.1em;
-        margin-bottom: 10px;
-    }
-
-    .warning-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .info-box {
-        background: #f8f9fa;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-        border-left: 4px solid #003A70;
-    }
-
-    .info-box h4 {
-        color: #2a5298;
-        font-size: 1.2em;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .info-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .technical-detail {
-        background: white;
-        border: 2px solid #d0e8f2;
-        border-radius: 12px;
-        padding: 25px;
-        margin: 20px 0;
-    }
-
-    .technical-detail h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .comparison-table th {
-        background: #003A70;
-        color: white;
-        padding: 15px;
-        text-align: left;
-        font-weight: 600;
-    }
-
-    .comparison-table td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #e9ecef;
-        color: #555;
-    }
-
-    .comparison-table tr:last-child td {
-        border-bottom: none;
-    }
-
-    .comparison-table tr:hover {
-        background: #f9f9f9;
-    }
-
-    .case-study {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-        border: 2px solid #003A70;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 25px 0;
-    }
-
-    .case-study h4 {
-        color: #003A70;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .decision-framework {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-        border: 2px solid #003A70;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-    }
-
-    .decision-framework h4 {
-        color: #003A70;
-        font-size: 1.4em;
-        margin-bottom: 20px;
-    }
-
-    .step-list {
-        counter-reset: step-counter;
-        list-style: none;
-        margin: 20px 0;
-    }
-
-    .step-list > li {
-        counter-increment: step-counter;
-        padding: 15px 15px 15px 60px;
-        position: relative;
-        margin-bottom: 12px;
-        background: #f9f9f9;
-        border-radius: 10px;
-        color: #444;
-        line-height: 1.7;
-    }
-
-    .step-list > li::before {
-        content: counter(step-counter);
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: #003A70;
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 0.9em;
-    }
-
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 1.8em;
-        }
-
-        .content {
-            padding: 30px 20px;
-        }
-
-        .card-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .comparison-table {
-            font-size: 0.85em;
-        }
-
-        .comparison-table th, .comparison-table td {
-            padding: 8px 10px;
-        }
-    }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body><div class="container">
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 7 • Sub-Lesson 3</div>
-<h1>📊 <span style="color: #ffffff;">Visualisation with AI</span></h1>
-<p>How AI tools generate charts and figures, what they get wrong by default, and how to turn AI-generated plots into publication-ready, accessible visualisations</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>AI can now generate a complete data visualisation from a single natural-language prompt. You describe what you want to see, and within seconds you have a chart. This is powerful, and it is dangerous. The speed at which AI produces plots means you can explore data faster than ever before, but it also means you can publish misleading figures faster than ever before.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Visualisation with AI — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 7 &middot; AI for Data, Code &amp; Computation</div><nav class="toc"><a class="lesson" href="Natural%20Language%20to%20Code.html">Natural Language to Code — The New Interface</a><a class="lesson" href="AI-Assisted%20Data%20Analysis%20in%20Practice.html">AI-Assisted Data Analysis in Practice</a><a class="lesson cur" href="Visualization%20with%20AI.html">Visualization with AI</a><div class="subs"><a href="#s1">What AI Can Generate</a><a href="#s2">Good Visualisation Principles AI Often Violates (unless you prompt it to look out for them)</a><a href="#s3">When AI Visualisation Helps vs. When It Misleads</a><a href="#s4">Accessibility in Data Visualisation</a><a href="#s5">A Practical Five-Step Workflow</a><a href="#s6">Readings for This Session</a></div><a class="lesson" href="Verification%20of%20AI-Generated%20Code.html">Verification of AI-Generated Code</a><a class="lesson" href="Building%20Your%20Data%20Analysis%20Workflow.html">Building Your Data Analysis Workflow</a><a class="lesson" href="Agentic%20Data%20Analysis.html">Agentic Data Analysis: Giving AI Tools, Not Just Questions</a><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Visualisation with AI</h1><div class="deck">How AI tools generate charts and figures, what they get wrong by default, and how to turn AI-generated plots into publication-ready, accessible visualisations</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">AI can now generate a complete data visualisation from a single natural-language prompt. You describe what you want to see, and within seconds you have a chart. This is powerful, and it is dangerous. The speed at which AI produces plots means you can explore data faster than ever before, but it also means you can publish misleading figures faster than ever before.</p>
 <p>This session covers what AI visualisation tools can actually do, the specific ways their default outputs violate good visualisation principles, how to work with AI to audit and refine figures before they reach a reader, and why accessibility is not optional. By the end, you will have a practical five-step workflow for going from AI-generated draft to publication-quality figure, increasingly in conversation with the AI rather than after it.</p>
 </div>
 <!-- SECTION 1: WHAT AI CAN GENERATE -->
-<h2 class="section-title">🤖 What AI Can Generate</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The range of AI-assisted visualisation tools has grown quickly. Several now let you describe a chart in plain English and receive working code or a rendered image in return. The underlying approach varies, but the result is the same: you no longer need to memorise matplotlib syntax or ggplot grammar to produce a chart. You do, however, still need to know whether the chart is any good.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Claude Code (or OpenAI Codex) with matplotlib</h3>
+<h2 class="section-title" id="s1">What AI Can Generate</h2>
+<p style=" margin-bottom: 25px">The range of AI-assisted visualisation tools has grown quickly. Several now let you describe a chart in plain English and receive working code or a rendered image in return. The underlying approach varies, but the result is the same: you no longer need to memorise matplotlib syntax or ggplot grammar to produce a chart. You do, however, still need to know whether the chart is any good.</p>
+<div class="card-grid"><div class="card"><h3>Claude Code (or OpenAI Codex) with matplotlib</h3>
 <p>Claude can write and execute Python code directly, including full matplotlib, seaborn, and plotly visualisations. You describe what you want, provide your data (or point to a file), and Claude generates the code, runs it, and shows you the result, all in one conversation.</p>
 <ul class="styled-list">
 <li>Full control over every aspect of the plot via Python code</li>
@@ -400,8 +194,7 @@
 <li>Best for researchers who want to learn plotting alongside using it</li>
 </ul>
 </div>
-<div class="card">
-<h3>ChatGPT Code Interpreter</h3>
+<div class="card"><h3>ChatGPT Code Interpreter</h3>
 <p>OpenAI's Code Interpreter (available in ChatGPT Plus) lets you upload data files and ask for visualisations in natural language. It runs Python in a sandboxed environment, produces charts, and lets you download the results. The experience is similar to Claude Code but runs in a browser-based sandbox.</p>
 <ul class="styled-list">
 <li>Upload CSV, Excel, or other data files directly</li>
@@ -411,8 +204,7 @@
 <li>Less transparent about the code it runs unless you ask to see it</li>
 </ul>
 </div>
-<div class="card">
-<h3>LIDA (Language-Independent Data Analysis)</h3>
+<div class="card"><h3>LIDA (Language-Independent Data Analysis)</h3>
 <p>LIDA, developed by Microsoft Research and introduced by <a href="https://arxiv.org/abs/2303.02927" target="_blank" rel="noopener">Dibia (2023)</a> , is a research tool that automates the entire visualisation pipeline: data summarisation, goal generation, chart creation, and even infographic styling. It uses LLMs to generate visualisation code from natural-language descriptions of data.</p>
 <ul class="styled-list">
 <li>Automatically suggests visualisation goals based on your data</li>
@@ -422,8 +214,7 @@
 <li>Represents the research frontier of automated visualisation</li>
 </ul>
 </div>
-<div class="card">
-<h3>Google Colab AI</h3>
+<div class="card"><h3>Google Colab AI</h3>
 <p>Google Colab now includes AI-assisted code generation that can help write plotting code within Jupyter notebooks. You type a comment describing what you want, and Colab suggests the code to produce it. This integrates AI assistance into a workflow many researchers already use.</p>
 <ul class="styled-list">
 <li>Works inside the familiar Jupyter/Colab notebook environment</li>
@@ -434,20 +225,16 @@
 </ul>
 </div>
 </div>
-<div class="info-box">
-<h4>📌 What All These Tools Share</h4>
+<div class="info-box"><h4>What All These Tools Share</h4>
 <p>Every AI visualisation tool ultimately generates code (usually Python) that calls a plotting library. The AI is not drawing pixels. It is writing instructions for matplotlib, seaborn, plotly, or a similar library. This means the output is only as good as the code the AI writes, and that code reflects the defaults and conventions baked into those libraries. That is why AI-generated charts so often need fixing.</p>
 </div>
-<div class="info-box">
-<h4>🚀 A Capability Worth Knowing About</h4>
+<div class="info-box"><h4>A Capability Worth Knowing About</h4>
 <p>Modern agentic tools, particularly Claude Code, can view the plots they generate. When they produce a chart, they can inspect the rendered image, identify problems ("the y-axis starts at 94 which exaggerates the difference," "the legend overlaps the data"), and revise the code accordingly. If you ask Claude Code to critique its own visualisation for publication quality, colourblind safety, and clarity, it will often catch many of the issues described in this lesson and fix them autonomously. This does not eliminate your need to check the final output, but it does mean your starting point can be substantially better than raw matplotlib defaults.</p>
 </div>
 <!-- SECTION 2: GOOD VISUALISATION PRINCIPLES AI OFTEN VIOLATES -->
-<h2 class="section-title">⚠️ Good Visualisation Principles AI Often Violates (unless you prompt it to look out for them)</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">AI tools are trained on code from the internet, which means they reproduce the most common plotting patterns rather than the best ones. The defaults in matplotlib and seaborn were designed for quick exploratory analysis, not for publication. When AI generates a chart, it almost always produces something that looks reasonable at first glance but violates one or more principles of effective data communication. Here are the six most common problems.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Misleading Axes</h3>
+<h2 class="section-title" id="s2">Good Visualisation Principles AI Often Violates (unless you prompt it to look out for them)</h2>
+<p style=" margin-bottom: 25px">AI tools are trained on code from the internet, which means they reproduce the most common plotting patterns rather than the best ones. The defaults in matplotlib and seaborn were designed for quick exploratory analysis, not for publication. When AI generates a chart, it almost always produces something that looks reasonable at first glance but violates one or more principles of effective data communication. Here are the six most common problems.</p>
+<div class="card-grid"><div class="card"><h3>Misleading Axes</h3>
 <p>AI-generated charts frequently use axis ranges that exaggerate or minimise differences in the data. A bar chart with a y-axis starting at 95 instead of 0 can make a 2% difference look like a 50% difference. Conversely, an axis range that is too wide can flatten meaningful variation into invisibility.</p>
 <ul class="styled-list">
 <li>Bar charts should almost always start at zero</li>
@@ -456,8 +243,7 @@
 <li>Dual y-axes are another common AI default that can mislead readers into seeing correlations that do not exist</li>
 </ul>
 </div>
-<div class="card">
-<h3>Poor Colour Choices</h3>
+<div class="card"><h3>Poor Colour Choices</h3>
 <p>Default colour palettes in most plotting libraries were not designed with colourblind readers in mind, and AI tools rarely switch away from these defaults. The classic matplotlib blue-orange-green palette is problematic for the roughly 8% of men and 0.5% of women with colour vision deficiency. Beyond accessibility, AI often uses too many colours or applies colour without informational purpose.</p>
 <ul class="styled-list">
 <li>Default palettes fail common colourblindness tests</li>
@@ -466,8 +252,7 @@
 <li>No consideration of whether the chart will be printed in greyscale</li>
 </ul>
 </div>
-<div class="card">
-<h3>Overplotting</h3>
+<div class="card"><h3>Overplotting</h3>
 <p>When AI generates scatter plots or dense line charts, it rarely accounts for overlapping data points. A scatter plot with 10,000 points where most overlap into an opaque blob tells you nothing about the distribution underneath. AI tools default to plotting every point at full opacity, obscuring the very patterns you are trying to reveal.</p>
 <ul class="styled-list">
 <li>Scatter plots with many points need transparency (alpha), jittering, or density plots</li>
@@ -476,8 +261,7 @@
 <li>Hexbin plots, contour plots, or violin plots are often better choices that AI rarely suggests on its own</li>
 </ul>
 </div>
-<div class="card">
-<h3>Wrong Chart Type</h3>
+<div class="card"><h3>Wrong Chart Type</h3>
 <p>AI tends to reach for the chart type most commonly associated with a keyword rather than the type best suited to the data. Ask for "a comparison" and you will likely get a bar chart, even when a dot plot, slope chart, or small multiples display would be more effective. Ask for "a trend" and you get a line chart, even when the data is not continuous.</p>
 <ul class="styled-list">
 <li>Pie charts for more than 3–4 categories (humans are poor at comparing angles)</li>
@@ -486,8 +270,7 @@
 <li>Stacked bar charts when the middle segments are impossible to compare</li>
 </ul>
 </div>
-<div class="card">
-<h3>Missing Context</h3>
+<div class="card"><h3>Missing Context</h3>
 <p>A chart without proper labels, units, a clear title, and source attribution is a chart that cannot be interpreted. AI-generated plots routinely omit axis units, use generic titles like "Data Plot," leave out sample sizes, and provide no indication of statistical uncertainty. A figure in a paper must stand alone: a reader should understand it without reading the surrounding text.</p>
 <ul class="styled-list">
 <li>Axis labels missing units (is that kilometres, miles, or arbitrary units?)</li>
@@ -496,8 +279,7 @@
 <li>No error bars, confidence intervals, or uncertainty indicators</li>
 </ul>
 </div>
-<div class="card">
-<h3>Chartjunk</h3>
+<div class="card"><h3>Chartjunk</h3>
 <p>Edward Tufte coined the term "chartjunk" for visual elements that do not convey information: gratuitous gridlines, heavy borders, decorative backgrounds, 3D effects, and redundant legends. AI-generated charts often include all of these because the training data is full of them. Every non-data element in a chart competes for the reader's attention and should earn its place.</p>
 <ul class="styled-list">
 <li>Heavy gridlines that dominate the data</li>
@@ -507,15 +289,13 @@
 </ul>
 </div>
 </div>
-<div class="warning-box">
-<h4>⚠️ The Core Problem</h4>
+<div class="warning-box"><h4>The Core Problem</h4>
 <p>AI tools optimise for producing a chart that looks complete, not a chart that communicates accurately. A chart can be technically correct (the data points are in the right places) and still be misleading because of how it is framed. The visual choices (axis range, colour, chart type, annotations) are as important as the data itself, and these are the choices AI handles poorly by default.</p>
 </div>
 <!-- SECTION 3: HELP VS MISLEAD -->
-<h2 class="section-title">⚖️ When AI Visualisation Helps vs. When It Misleads</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The gap between an AI-generated draft plot and a publication-quality figure is not trivial. Any researcher using AI to create visualisations needs to understand where that gap lies, and how easy it is to miss.</p>
-<div class="case-study">
-<h4>The Default Settings Trap</h4>
+<h2 class="section-title" id="s3">When AI Visualisation Helps vs. When It Misleads</h2>
+<p style=" margin-bottom: 25px">The gap between an AI-generated draft plot and a publication-quality figure is not trivial. Any researcher using AI to create visualisations needs to understand where that gap lies, and how easy it is to miss.</p>
+<div class="case-study"><h4>The Default Settings Trap</h4>
 <p>AI-generated visualisations are dangerous because they look professional enough to use immediately. A matplotlib chart with default settings has clean lines, a white background, and properly rendered text. It looks like a finished product. But "looks finished" and "communicates accurately" are different things.</p>
 <p>Consider what happens when you ask an AI to plot quarterly revenue data. The AI will likely produce a clean bar chart with sensible colours and axis labels. What it will not do, unless you specifically ask, is:</p>
 <ul class="styled-list">
@@ -526,33 +306,29 @@
 <li>Include uncertainty or variance indicators</li>
 <li>Choose colours that work in greyscale for journal printing</li>
 </ul>
-<p style="margin-top: 15px;">The trap is that the chart is technically correct but communicatively incomplete. Researchers who accept AI defaults without review risk publishing figures that mislead readers through omission and poor framing rather than through fabrication.</p>
+<p style="margin-top: 15px">The trap is that the chart is technically correct but communicatively incomplete. Researchers who accept AI defaults without review risk publishing figures that mislead readers through omission and poor framing rather than through fabrication.</p>
 </div>
-<div class="highlight-box">
-<h3><span style="color: #ffffff;">Publication Quality Is a Different Standard</span></h3>
+<div class="highlight-box"><h3><span>Publication Quality Is a Different Standard</span></h3>
 <p>Journal reviewers and readers expect figures that meet specific standards: vector formats (PDF or SVG) rather than rasterised PNG, consistent font sizes across all figures in a paper, colour palettes that work for colourblind readers, axis labels with units, informative captions, and appropriate statistical annotations.</p>
 <p>AI tools do not produce this by default, but modern agentic tools like Claude Code can get close when prompted well. Claude Code can generate a plot, <em>view the output itself</em> , critique what it sees ("the axis labels are too small," "this palette is not colourblind-safe"), and iterate on the code accordingly. This is a capability leap over earlier tools. With good prompting (specifying colourblind-safe palettes, vector export, accessible fonts, and annotation requirements upfront) you can often reach near-publication quality in a single conversation.</p>
 <p>That said, there are things AI cannot judge on your behalf: whether this chart type is the right choice for your argument, whether the framing is honest, whether the figure will stand alone for a reader who has not read your paper. Those are communication design decisions that require your judgment rather than just your approval.</p>
 </div>
-<div class="info-box">
-<h4>📌 Where AI Genuinely Helps</h4>
+<div class="info-box"><h4>Where AI Genuinely Helps</h4>
 <p>AI visualisation tools are excellent for <strong>exploration</strong> . When you are trying to understand your data (looking for patterns, checking distributions, comparing groups) the speed of AI-generated plots changes how much ground you can cover. You can produce twenty different views of your data in the time it would take to hand-code two. The danger comes when you skip the step of turning exploratory plots into carefully designed communication tools before publishing them.</p>
 </div>
 <!-- SECTION 4: ACCESSIBILITY -->
-<h2 class="section-title">♿️ Accessibility in Data Visualisation</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Accessibility in data visualisation is a professional obligation. Roughly 8% of men and 0.5% of women worldwide have some form of colour vision deficiency. In a lecture hall of 100 students or a conference room of 50 researchers, the odds are high that someone cannot distinguish the colours in your chart. If your figure relies on colour alone to convey information, you have excluded those readers from understanding your work.</p>
-<div class="technical-detail">
-<h4>Colourblind-Safe Palettes</h4>
+<h2 class="section-title" id="s4">Accessibility in Data Visualisation</h2>
+<p style=" margin-bottom: 25px">Accessibility in data visualisation is a professional obligation. Roughly 8% of men and 0.5% of women worldwide have some form of colour vision deficiency. In a lecture hall of 100 students or a conference room of 50 researchers, the odds are high that someone cannot distinguish the colours in your chart. If your figure relies on colour alone to convey information, you have excluded those readers from understanding your work.</p>
+<div class="technical-detail"><h4>Colourblind-Safe Palettes</h4>
 <p>Switching from the default colour palette to a colourblind-safe alternative does more for any AI-generated chart than almost any other single change. Several well-tested palettes exist:</p>
 <ul class="styled-list">
 <li><strong>ColorBrewer palettes:</strong> Developed by cartographer Cynthia Brewer, these palettes have been rigorously tested for perceptual uniformity and colourblind safety. The <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer 2.0</a> tool lets you select palettes filtered by colourblind-safe options. In matplotlib, use <code>plt.get_cmap('Set2')</code> or the seaborn <code>colorblind</code> palette.</li>
 <li><strong>Viridis family:</strong> The viridis, magma, inferno, and plasma colour maps in matplotlib were specifically designed to be perceptually uniform and colourblind-safe. They work well for continuous data and are readable in greyscale.</li>
 <li><strong>Okabe-Ito palette:</strong> An 8-colour categorical palette designed by Masataka Okabe and Kei Ito that is distinguishable under all common forms of colour vision deficiency.</li>
 </ul>
-<p style="margin-top: 15px;">When prompting AI to generate visualisations, explicitly request a colourblind-safe palette. Without this instruction, AI will almost always use the library default, which is rarely optimised for accessibility.</p>
+<p style="margin-top: 15px">When prompting AI to generate visualisations, explicitly request a colourblind-safe palette. Without this instruction, AI will almost always use the library default, which is rarely optimised for accessibility.</p>
 </div>
-<div class="technical-detail">
-<h4>Beyond Colour: Redundant Encoding</h4>
+<div class="technical-detail"><h4>Beyond Colour: Redundant Encoding</h4>
 <p>The gold standard for accessible visualisation is redundant encoding: using multiple visual channels (colour, shape, pattern, position, line style) to convey the same information. If your scatter plot uses colour to distinguish groups, also use different marker shapes. If your line chart uses colour for different series, also use different line styles (solid, dashed, dotted).</p>
 <ul class="styled-list">
 <li>Combine colour with shape (circles, squares, triangles) for scatter plots</li>
@@ -562,8 +338,7 @@
 <li>Test your figures in a colourblindness simulator (Coblis or Color Oracle are free tools)</li>
 </ul>
 </div>
-<div class="case-study">
-<h4>Alt Text for Figures</h4>
+<div class="case-study"><h4>Alt Text for Figures</h4>
 <p>Every figure in a digital publication should have meaningful alternative text (alt text) that describes what the figure shows for readers using screen readers. This is a basic web accessibility requirement that academic publishing has been slow to adopt, but it is increasingly expected by journals and funding bodies.</p>
 <p>Good alt text for a data visualisation should include:</p>
 <ul class="styled-list">
@@ -572,17 +347,15 @@
 <li><strong>Data summary:</strong> The main trend, difference, or pattern visible in the chart</li>
 <li><strong>Scale:</strong> Approximate range of values, especially if the finding depends on magnitude</li>
 </ul>
-<p style="margin-top: 15px;">AI can help write alt text. Describe your figure to Claude or ChatGPT and ask for alt text, then verify that the description accurately reflects what the figure actually shows. AI-generated alt text can hallucinate trends or misstate values just as easily as AI-generated prose can hallucinate citations.</p>
+<p style="margin-top: 15px">AI can help write alt text. Describe your figure to Claude or ChatGPT and ask for alt text, then verify that the description accurately reflects what the figure actually shows. AI-generated alt text can hallucinate trends or misstate values just as easily as AI-generated prose can hallucinate citations.</p>
 </div>
-<div class="warning-box">
-<h4>⚠️ The 8% You Cannot Ignore</h4>
+<div class="warning-box"><h4>The 8% You Cannot Ignore</h4>
 <p>Approximately 8% of men have some form of colour vision deficiency, predominantly red-green colour blindness (deuteranopia and protanopia). This is not a rare condition. In any sizeable academic audience, multiple people will struggle with figures that rely on red-green distinctions. The default colour palettes in matplotlib and many other tools use these problematic colour combinations. Switching to a colourblind-safe palette costs you nothing and includes a meaningful fraction of your audience. There is no good reason not to do it.</p>
 </div>
 <!-- SECTION 5: PRACTICAL WORKFLOW -->
-<h2 class="section-title">🛠️ A Practical Five-Step Workflow</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The following workflow takes you from raw data to a publication-ready, accessible figure using AI as your drafting tool. Each step builds on the previous one, and skipping any step risks publishing a figure that misleads or excludes readers.</p>
-<div class="decision-framework">
-<h4>From AI Draft to Publication-Ready Figure</h4>
+<h2 class="section-title" id="s5">A Practical Five-Step Workflow</h2>
+<p style=" margin-bottom: 25px">The following workflow takes you from raw data to a publication-ready, accessible figure using AI as your drafting tool. Each step builds on the previous one, and skipping any step risks publishing a figure that misleads or excludes readers.</p>
+<div class="decision-framework"><h4>From AI Draft to Publication-Ready Figure</h4>
 <ol class="step-list">
 <li><strong>Explore with AI: generate multiple views.</strong> Start by asking the AI to produce several different visualisations of your data. Do not commit to the first chart it gives you. Ask for a bar chart, a box plot, a scatter plot, and a small multiples display of the same data. Compare them. Which one reveals the pattern most honestly? Which one would mislead a reader? This exploratory phase is where AI speed is most valuable. Generate ten plots in ten minutes, then think carefully about which one to develop.</li>
 <li><strong>Audit the defaults: check every visual choice.</strong> Take the most promising chart and systematically check: Does the axis start at an appropriate value? Are the units labelled? Is the title informative (describing the finding, not just the data)? Is the chart type appropriate for the data? Are there error bars or uncertainty indicators where needed? Does the colour palette serve a purpose, or is it decorative? Would this chart make sense to someone who has not read the surrounding text? Fix every issue you find.</li>
@@ -591,22 +364,19 @@
 <li><strong>Verify against the data: the final sanity check.</strong> Before submitting, verify that the figure accurately represents the underlying data. Check specific values: does the tallest bar correspond to the largest number in your data? Do the axis limits include all data points? Are any outliers hidden by the axis range? This step catches errors introduced during formatting and is especially important when AI has transformed or aggregated data during the plotting process.</li>
 </ol>
 </div>
-<div class="info-box">
-<h4>📌 Prompting Tip</h4>
+<div class="info-box"><h4>Prompting Tip</h4>
 <p>When asking AI to generate a visualisation, include your quality requirements in the initial prompt. Instead of "plot this data," try: "Create a publication-quality scatter plot of X vs Y. Use the Okabe-Ito colourblind-safe palette. Include axis labels with units, a descriptive title, and error bars for the mean values. Export as SVG." The more specific your prompt, the less fixing you need to do afterward.</p>
 </div>
 <!-- SECTION 6: READINGS -->
-<h2 class="section-title">📚 Readings for This Session</h2>
-<div class="technical-detail">
-<h4>Core Readings</h4>
+<h2 class="section-title" id="s6">Readings for This Session</h2>
+<div class="technical-detail"><h4>Core Readings</h4>
 <ol class="step-list">
 <li><strong>Dibia (2023).</strong> "LIDA: A Tool for Automatic Generation of Grammar-Agnostic Visualizations and Infographics using Large Language Models." <em>arXiv preprint</em> . <a href="https://arxiv.org/abs/2303.02927" target="_blank" rel="noopener">Read on arXiv</a>. The foundational paper on using LLMs to automate the full visualisation pipeline, from data summarisation through goal generation to chart creation. Introduces the LIDA framework and demonstrates what automated visualisation can and cannot achieve.</li>
 <li><strong>Wilke (2019).</strong> <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures.</em> O'Reilly Media. <a href="https://clauswilke.com/dataviz/" target="_blank" rel="noopener">Read online (free)</a>. A practical guide to data visualisation principles for researchers. Covers chart selection, colour use, axis design, and annotation with clear examples of what works and what does not. The full text is freely available online.</li>
 <li><strong>ColorBrewer 2.0.</strong> <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">colorbrewer2.org</a>. A widely used tool for selecting colourblind-safe, print-friendly colour palettes. Originally designed for cartography but used across all data visualisation. Experiment with different palette types (sequential, diverging, qualitative) and filter for colourblind safety.</li>
 </ol>
 </div>
-<div class="technical-detail">
-<h4>Supplementary Resources</h4>
+<div class="technical-detail"><h4>Supplementary Resources</h4>
 <ul class="styled-list">
 <li><strong>Tufte, E. (2001).</strong> <em>The Visual Display of Quantitative Information.</em> 2nd ed. Graphics Press. The classic text on visualisation design. Introduces the concepts of chartjunk, data-ink ratio, and small multiples that remain central to good visualisation practice.</li>
 <li><strong>Coblis Colour Blindness Simulator:</strong> <a href="https://www.color-blindness.com/coblis-color-blindness-simulator/" target="_blank" rel="noopener">color-blindness.com/coblis</a>. Upload your figures and see how they appear under different forms of colour vision deficiency. A quick and free way to test accessibility before publication.</li>
@@ -614,29 +384,10 @@
 </ul>
 </div>
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>Key Takeaways</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Key Takeaways</h2>
 <p><strong>AI makes chart generation fast, and modern tools can critique their own output.</strong> Tools like Claude Code can generate a visualisation, view the rendered result, identify problems, and iterate, all without manual code-pasting. With good prompting, you can get close to publication quality in one conversation. But "close" and "publication-ready" are still different things, and the gap increasingly lives in communication design decisions rather than technical defaults.</p>
 <p><strong>Six common failures to watch for.</strong> Misleading axes, poor colour choices, overplotting, wrong chart types, missing context, and chartjunk are the most frequent problems in AI-generated visualisations. Knowing these failure modes means you know exactly what to check every time AI gives you a chart.</p>
 <p><strong>Accessibility is not optional.</strong> With approximately 8% of men affected by colour vision deficiency, any figure that relies on colour alone to convey information excludes a substantial portion of your audience. Colourblind-safe palettes, redundant encoding, and alt text are baseline requirements for professional work.</p>
 <p><strong>Use AI as a collaborative design partner, not only as a code generator.</strong> The five-step workflow (explore, audit, fix accessibility, polish, verify) can now happen in conversation with the AI rather than purely after it. Ask Claude Code to critique its own charts, specify quality requirements upfront, and iterate in dialogue. The AI handles the syntax and can flag many technical issues; you handle the scientific and communication design decisions that no tool can make for you.</p>
 <p><strong>Next session:</strong> Sub-Lesson 4 brings together everything from this week with hands-on activities and your weekly assessment. You will practice the full workflow from data to publication-ready figure, audit AI-generated visualisations for the problems discussed here, and build the habits that distinguish effective data communication from pretty pictures.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-7/AI-Assisted Data Analysis in Practice.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">AI-Assisted Data Analysis in Practice</div></a>
-  <a class="page-nav-link" href="../week-7/Verification of AI-Generated Code.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Verification of AI-Generated Code</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+</div></div><div class="prevnext"><a href="AI-Assisted%20Data%20Analysis%20in%20Practice.html"><span class="d">&larr; Previous</span><span class="pt">AI-Assisted Data Analysis in Practice</span></a><a class="next" href="Verification%20of%20AI-Generated%20Code.html"><span class="d">Next &rarr;</span><span class="pt">Verification of AI-Generated Code</span></a></div></div><div class="rightrail"><div class="rmeta">Week 7<br>Lesson 3<br>18 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Chartjunk</div>Visual elements in a chart (heavy gridlines, decorative backgrounds, 3D effects, redundant legends) that take up space without conveying information. The concept was coined by Edward Tufte.</div><div class="snote"><div class="sk">Overplotting</div>A problem in dense charts where many data points are drawn over each other at full opacity, creating an opaque mass that hides the underlying distribution rather than revealing it.</div><div class="snote"><div class="sk">Redundant encoding</div>Using two or more visual channels, such as colour and shape, to convey the same information, so readers who cannot distinguish one channel can still read the chart using another.</div><div class="snote"><div class="sk">Colourblind-safe palette</div>A set of colours chosen so the distinctions stay visible under common colour-vision deficiencies, which affect roughly 8% of men. Examples include the Okabe-Ito palette and the viridis colour map.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

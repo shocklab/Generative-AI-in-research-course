@@ -1,0 +1,708 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5.3 - Paid Tools and When They Are Worth It</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '🎯';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .decision-framework {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+    }
+
+    .decision-framework h4 {
+        color: #003A70;
+        font-size: 1.4em;
+        margin-bottom: 20px;
+    }
+
+    .tool-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #003A70;
+        transition: all 0.3s ease;
+        margin-bottom: 30px;
+    }
+
+    .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .tool-card h3 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 8px;
+    }
+
+    .tool-card .tool-url {
+        font-size: 0.9em;
+        color: #003A70;
+        margin-bottom: 12px;
+    }
+
+    .tool-card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 10px;
+    }
+
+    .tool-card .tool-pricing {
+        display: inline-block;
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 4px 14px;
+        border-radius: 15px;
+        font-size: 0.85em;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    .tool-card .verdict {
+        background: #f9f9f9;
+        border-radius: 10px;
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    .tool-card .verdict-yes {
+        border-left: 4px solid #2e7d32;
+    }
+
+    .tool-card .verdict-no {
+        border-left: 4px solid #c62828;
+    }
+
+    .step-list {
+        counter-reset: step-counter;
+        list-style: none;
+        margin: 20px 0;
+    }
+
+    .step-list li {
+        counter-increment: step-counter;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 12px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        color: #444;
+        line-height: 1.7;
+    }
+
+    .step-list li::before {
+        content: counter(step-counter);
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #003A70;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .comparison-table {
+            font-size: 0.85em;
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 5 • Sub-Lesson 3</div>
+<h1>💰 <span style="color: #ffffff;">Paid Tools &amp; When They're Worth It</span></h1>
+<p>An assessment of premium AI research tools: what they add, what they cost, and whether the investment makes sense for your research</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>The free tools covered in the previous session are powerful, but they have limitations. This session examines the paid (or freemium with meaningful paid tiers) AI literature tools. We'll be honest about what each adds over the free alternatives, and about where they fall short.</p>
+<p>Not every researcher needs paid tools, and not every paid tool is worth the money. The goal here is to help you make an informed decision about where to invest any limited research budget. For each tool, we'll assess its standout feature, its limitations, and the specific situations where paying makes sense.</p>
+<p>This is also where disparity rears its head. Those who can afford these tools will be ahead, so we need to keep questioning how we can get more equitable access.</p>
+</div>
+<!-- SECTION 1: ELICIT -->
+<h2 class="section-title">🔬 Elicit</h2>
+<div class="tool-card">
+<h3>AI Research Assistant for Systematic Literature Work</h3>
+<div class="tool-url"><a href="https://elicit.com/" target="_blank" rel="noopener">elicit.com</a></div>
+<span class="tool-pricing">Free tier (limited) | Plus ~$12/month | Institutional plans available</span>
+<p>Elicit is an AI research assistant focused on systematic literature work. It uses language models to search, extract data, and synthesise findings across papers. Originally built by a non-profit (Ought), it has evolved into one of the most focused AI literature tools available.</p>
+<p><strong>What the paid tier adds:</strong> Unlimited searches, full data extraction across papers, systematic review workflows, and the ability to extract specific data points from hundreds of papers into structured tables. Elicit claims 99.4% accuracy for its data extraction, which, if it holds up in your field, is impressive.</p>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<ul class="styled-list">
+<li>The data extraction feature is unusual: you can ask "what was the sample size and effect size?" across 200 papers and get a structured table back. No other tool does this as well.</li>
+<li>Excellent for systematic and scoping reviews where you need to compare data points across many studies.</li>
+<li>Transparent about its methods. You can see which papers it found and how it extracted information.</li>
+<li>Good at handling empirical literature with structured findings (sample sizes, effect sizes, methodologies).</li>
+</ul>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<ul class="styled-list">
+<li>Can still miss nuance in complex papers, especially qualitative or mixed-methods work.</li>
+<li>Not great for very recent papers that haven't yet been indexed in its database.</li>
+<li>Data extraction accuracy depends on how well-formatted the papers are. Poorly structured PDFs produce poorer results.</li>
+<li>The interface has a learning curve; it takes a few sessions to use effectively.</li>
+<li>Best suited for empirical and quantitative literature. If your field is primarily interpretive or theoretical, the payoff drops significantly.</li>
+</ul>
+<div class="verdict verdict-yes">
+<p><strong>Worth it when:</strong> You're doing a systematic review, scoping review, or meta-analysis. The data extraction feature alone can save weeks of manual work pulling numbers from individual papers.</p>
+</div>
+<div class="verdict verdict-no">
+<p><strong>Not worth it when:</strong> You're doing a narrative review in the humanities, or you only need occasional literature searches. The free tier or Semantic Scholar will serve you just as well for exploratory reading.</p>
+</div>
+</div>
+<!-- SECTION 2: CONSENSUS -->
+<h2 class="section-title">📊 Consensus</h2>
+<div class="tool-card">
+<h3>AI-Powered Academic Search with a Consensus Meter</h3>
+<div class="tool-url"><a href="https://consensus.app/" target="_blank" rel="noopener">consensus.app</a></div>
+<span class="tool-pricing">Free tier (limited searches) | Premium ~$10/month</span>
+<p>Consensus is an AI-powered academic search engine that answers research questions with evidence drawn from peer-reviewed papers. Its standout feature is the "Consensus Meter", a visual indicator showing how much the literature agrees or disagrees on a given question.</p>
+<p><strong>What the paid tier adds:</strong> Unlimited searches, AI-powered summaries of results, full Consensus Meter access, study snapshots that pull key findings from each paper, and bookmark lists for organising your research.</p>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<ul class="styled-list">
+<li>The Consensus Meter gives you a quick visual sense of scientific consensus on a question. Useful for rapidly assessing how settled a topic is.</li>
+<li>Good for answering specific empirical questions: "Does mindfulness reduce cortisol levels?" or "Is there a relationship between sleep duration and academic performance?"</li>
+<li>Only searches peer-reviewed literature, with no blog posts, news articles, or preprints muddying the results.</li>
+<li>Clean, intuitive interface that requires almost no learning curve.</li>
+</ul>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<ul class="styled-list">
+<li>Works best for questions with yes/no or quantitative answers. Less useful for subtle theoretical questions or debates where "consensus" is not the right framing.</li>
+<li>The database is large but doesn't cover everything. Niche fields and non-English journals may be underrepresented.</li>
+<li>The Consensus Meter can be misleading if the papers it finds aren't representative of the broader literature. A small sample of papers agreeing doesn't mean the field agrees.</li>
+<li>Less useful for research areas where the interesting question is <em>why</em> the literature disagrees, not whether it agrees.</li>
+</ul>
+<div class="verdict verdict-yes">
+<p><strong>Worth it when:</strong> You frequently need to check what the literature says about specific empirical claims. Particularly useful in health sciences, psychology, education, and other fields with large empirical bases.</p>
+</div>
+<div class="verdict verdict-no">
+<p><strong>Not worth it when:</strong> Your research is primarily theoretical, qualitative, or in fields with limited coverage on the platform. Also not worth it if you only need this kind of check occasionally; the free tier may suffice.</p>
+</div>
+</div>
+<!-- SECTION 3: SCITE.AI -->
+<h2 class="section-title">📎 Scite.ai</h2>
+<div class="tool-card">
+<h3>Smart Citation Analysis — Supporting vs. Contrasting Evidence</h3>
+<div class="tool-url"><a href="https://scite.ai/" target="_blank" rel="noopener">scite.ai</a></div>
+<span class="tool-pricing">~$12/month for individual researchers | No meaningful free tier</span>
+<p>Scite.ai is a citation analysis tool with an unusual feature: "smart citations" that classify how each paper is cited, as supporting evidence, contrasting evidence, or just mentioned. This is something no other tool offers in a systematic way.</p>
+<p><strong>What the paid tier adds:</strong> Everything; this is a paid-only tool. Smart citation classifications, citation dashboards showing the full reception of a paper, an AI assistant for literature questions, and a reference checker that can scan your paper's bibliography.</p>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<ul class="styled-list">
+<li>The supporting/contrasting citation classification tells you not just <em>who</em> cites a paper, but <em>whether they agree with it</em> .</li>
+<li>The reference checker can scan your paper's bibliography and flag retracted or problematic citations, a valuable safety net before submission.</li>
+<li>Excellent for understanding how a specific claim holds up in the broader literature. If you find a paper making a strong claim, Scite shows you whether subsequent research supported or challenged it.</li>
+<li>Good for identifying contested findings: papers with high contrasting citation counts are worth examining closely.</li>
+</ul>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<ul class="styled-list">
+<li>No free tier means you have to commit money upfront before you know whether it works for your field.</li>
+<li>Classification accuracy isn't perfect, and context can be missed. A paper might cite another to say "Smith (2020) found X, but our context was different" and Scite may classify that as "contrasting" when it's really just contextual.</li>
+<li>Coverage varies by field. Well-covered fields (biomedical, psychology) have rich citation data; smaller fields may have limited coverage.</li>
+<li>Less useful for very new papers that haven't accumulated enough citations to analyse meaningfully.</li>
+</ul>
+<div class="verdict verdict-yes">
+<p><strong>Worth it when:</strong> You need to understand the reception of specific claims or findings. The supporting/contrasting classification is something no other tool offers. Excellent for literature reviews where you need to assess the strength of evidence for a claim.</p>
+</div>
+<div class="verdict verdict-no">
+<p><strong>Not worth it when:</strong> You're in early stages of literature discovery and haven't yet identified key papers to evaluate. Scite is better for <em>evaluating</em> literature you've already found than for <em>finding</em> new literature.</p>
+</div>
+</div>
+<!-- SECTION 4: SCISPACE -->
+<h2 class="section-title">🔭 SciSpace</h2>
+<div class="tool-card">
+<h3>All-in-One AI Research Platform</h3>
+<div class="tool-url"><a href="https://scispace.com/" target="_blank" rel="noopener">scispace.com</a></div>
+<span class="tool-pricing">Free tier (limited) | Premium ~$12/month</span>
+<p>SciSpace is an all-in-one AI research platform with over 150 integrated tools. Features include AI chat with papers, literature review generation, citation analysis, and paraphrasing. It tries to be a single platform for the entire research workflow.</p>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<ul class="styled-list">
+<li>Breadth of features. It tries to be a one-stop shop for research tasks, from reading papers to writing literature reviews.</li>
+<li>Good AI copilot for reading papers: it can explain complex sections, simplify jargon, and answer questions about a paper you're reading.</li>
+<li>Literature review generation feature can produce a first draft structure based on a set of papers.</li>
+<li>Integration with multiple databases gives it broad coverage.</li>
+</ul>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<ul class="styled-list">
+<li>Jack of all trades, master of none: individual features are often not as strong as the specialised tools that focus on one thing well. The citation analysis isn't as good as Scite's, the search isn't as focused as Elicit's, the consensus feature isn't as developed as Consensus's.</li>
+<li>Can feel overwhelming with the sheer number of features. It takes time to figure out which ones are actually useful for your workflow.</li>
+<li>AI explanations sometimes oversimplify, which can be problematic if you're in a field with important technical nuances.</li>
+<li>The quality of literature review generation varies a lot: it's a useful starting scaffold, not a finished product.</li>
+</ul>
+<div class="verdict verdict-yes">
+<p><strong>Worth it when:</strong> You want a single integrated platform and don't want to switch between multiple tools. Good for researchers who prefer an all-in-one approach and don't need the absolute best in any single category.</p>
+</div>
+<div class="verdict verdict-no">
+<p><strong>Not worth it when:</strong> You prefer best-in-class tools for each task and are comfortable combining them. If you're already using Semantic Scholar for search and NotebookLM for reading, SciSpace's premium doesn't add enough to justify the cost.</p>
+</div>
+</div>
+<!-- SECTION 5: LITMAPS -->
+<h2 class="section-title">🗺️ Litmaps (Premium)</h2>
+<div class="tool-card">
+<h3>Citation Mapping with Superior Timeline Visualisations</h3>
+<div class="tool-url"><a href="https://www.litmaps.com/" target="_blank" rel="noopener">litmaps.com</a></div>
+<span class="tool-pricing">Paid (with limited free tier) | Pricing varies, but about $10 per month</span>
+<p>Litmaps is a citation mapping tool with superior timeline visualisations. Its graphs use publication date and citation count as axes, making it easy to spot recent impactful papers at a glance. Now partnered with ResearchRabbit following their October 2025 merger.</p>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Strengths</h4>
+<ul class="styled-list">
+<li>The date/citation axes make patterns immediately visible. You can see at a glance which papers are seminal, which are recent and gaining traction, and where gaps exist.</li>
+<li>Semantic search option uses AI-driven matching (not just citation links), which can surface related work that doesn't directly cite your seed papers.</li>
+<li>Excellent for seeing how a topic evolved over time. The timeline view tells a story that pure citation networks don't capture.</li>
+<li>Discover Feeds for tracking new papers in your area of interest.</li>
+</ul>
+<h4 style="color: #2a5298; margin-top: 20px; margin-bottom: 10px;">Limitations</h4>
+<ul class="styled-list">
+<li>Paid for full access. The free tier is limited in the number of maps and papers you can work with.</li>
+<li>The ResearchRabbit merger means the ecosystem is in transition, and features and pricing may change as the platforms integrate. What you see today may not be what you get in six months.</li>
+<li>Smaller user base compared to Semantic Scholar or Google Scholar means less community support and fewer shared maps.</li>
+</ul>
+<div class="verdict verdict-yes">
+<p><strong>Worth it when:</strong> You're building a thesis or major literature review and want the best visualisation of how your field developed. The timeline view can help you identify important shifts and trends.</p>
+</div>
+<div class="verdict verdict-no">
+<p><strong>Not worth it when:</strong> Your needs are met by Connected Papers or ResearchRabbit's free features. For quick citation mapping, the free alternatives are good enough.</p>
+</div>
+</div>
+<!-- SECTION 6: THE HONEST COMPARISON -->
+<h2 class="section-title">⚖️ The Honest Comparison</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Here's the side-by-side. Every tool has a standout feature and a free alternative that gets you most of the way there. The question is whether the gap between "most of the way" and "all the way" justifies the cost for your specific research.</p>
+<div style="overflow-x: auto;">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Tool</th>
+<th>Monthly Cost</th>
+<th>Killer Feature</th>
+<th>Free Alternative</th>
+<th>Worth Paying For?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Elicit</strong></td>
+<td>~$12/month</td>
+<td>Structured data extraction across hundreds of papers</td>
+<td>Semantic Scholar + manual extraction</td>
+<td>Yes, if doing systematic reviews or meta-analyses. The time savings are substantial.</td>
+</tr>
+<tr>
+<td><strong>Consensus</strong></td>
+<td>~$10/month</td>
+<td>Consensus Meter showing agreement across literature</td>
+<td>Google Scholar + reading abstracts yourself</td>
+<td>Maybe. Novel concept, but the free tier handles occasional use. Pay only if you check consensus regularly.</td>
+</tr>
+<tr>
+<td><strong>Scite.ai</strong></td>
+<td>~$12/month</td>
+<td>Supporting vs. contrasting citation classification</td>
+<td>Nothing comparable: manual citation reading</td>
+<td>Yes, for evaluating contested claims. No free tool replicates this. The reference checker alone may justify it pre-submission.</td>
+</tr>
+<tr>
+<td><strong>SciSpace</strong></td>
+<td>~$12/month</td>
+<td>All-in-one platform with AI paper reading</td>
+<td>Semantic Scholar + NotebookLM + Connected Papers</td>
+<td>Rarely. The free tool combination is usually stronger. Pay only if you strongly prefer a single interface.</td>
+</tr>
+<tr>
+<td><strong>Litmaps</strong></td>
+<td>~$10/month</td>
+<td>Timeline visualisation with date/citation axes</td>
+<td>Connected Papers + ResearchRabbit (free)</td>
+<td>Sometimes. The visualisations are best-in-class but Connected Papers and ResearchRabbit cover most needs.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- WARNING BOX: INSTITUTIONAL ACCESS -->
+<div class="warning-box">
+<h4>⚠️ A Note on Institutional Access</h4>
+<p>Before paying individually, check whether your university has institutional subscriptions. Many universities are currently negotiating site licences for tools like Elicit and Scite. At UCT, we currently don't have institutional access to these tools, but if we keep asking, we may be able to. Institutional subscriptions are becoming more common as libraries recognise these tools as research infrastructure, and paying individually for something your institution already provides is money wasted.</p>
+</div>
+<!-- HIGHLIGHT BOX: THE HONEST BOTTOM LINE -->
+<div class="highlight-box">
+<h3>💡 The Honest Bottom Line</h3>
+<p>For most postgraduate researchers, the free tools (Semantic Scholar + Connected Papers or ResearchRabbit + NotebookLM + Google Scholar) are sufficient for the majority of literature review work. They cover discovery, mapping, reading, and synthesis well enough for most projects.</p>
+<p>Paid tools become worth it in specific situations: <strong>Elicit</strong> for systematic reviews where you need structured data extraction. <strong>Scite</strong> for understanding contested claims and checking whether evidence has been supported or challenged. <strong>Consensus</strong> for quickly checking empirical consensus on specific questions.</p>
+<p>Don't pay for breadth; pay for the specific capability you need most. And if you only need that capability for one project, consider paying for just the months you'll actively use it rather than committing to an annual plan.</p>
+</div>
+<!-- INFO BOX: SHIFTING LANDSCAPE -->
+<div class="info-box">
+<h4>📌 The Landscape Is Shifting Fast</h4>
+<p>The AI literature tool landscape is evolving rapidly. The October 2025 merger between ResearchRabbit and Litmaps is one example: these tools are consolidating, adding features, and changing pricing regularly. New tools emerge frequently, and existing tools pivot or add capabilities with each update. Before committing to any paid subscription, check current pricing and features on the tool's website. What we describe here reflects the state of play as of early 2026, but details may have shifted by the time you read this. Your faculty librarian can also help you evaluate the current options.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<p><strong>Not every paid tool is worth the money.</strong> The gap between free and paid varies enormously. Scite's citation classification and Elicit's data extraction offer capabilities you won't find elsewhere. SciSpace's premium offers breadth you can replicate with free tools.</p>
+<p><strong>Match the tool to the task.</strong> Systematic review? Elicit. Contested claims? Scite. Quick consensus check? Consensus. General literature exploration? The free tools are enough.</p>
+<p><strong>Check institutional access first.</strong> Your university may already be paying for tools you'd otherwise buy individually. A five-minute conversation with your librarian could save you hundreds of rands per year.</p>
+<p><strong>Pay monthly, not annually, unless you're sure.</strong> These tools are changing fast. A monthly subscription lets you evaluate whether the tool improves your workflow before committing long-term.</p>
+<p><strong>Next session:</strong> We confront a serious problem in AI-assisted literature review, the hallucinated citation crisis, where AI generates plausible-sounding references to papers that don't exist. It is a major risk of using AI for literature work, and worth understanding before you rely on any of these tools.</p>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-5/Free Tools Deep Dive.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Free Tools Deep Dive</div></a>
+  <a class="page-nav-link" href="../week-5/The Hallucinated Citation Crisis.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">The Hallucinated Citation Crisis</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

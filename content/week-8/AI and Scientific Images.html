@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.2 - AI and Scientific Images</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text h2::before { content: '\1F3AF'; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #666; }
+.stat-row { display: flex; gap: 20px; margin: 25px 0; flex-wrap: wrap; }
+.stat-box { flex: 1; min-width: 160px; background: #003A70; color: white; border-radius: 12px; padding: 20px; text-align: center; }
+.stat-box .stat-number { font-size: 2.4em; font-weight: 700; display: block; margin-bottom: 6px; }
+.stat-box .stat-label { font-size: 0.85em; opacity: 0.9; line-height: 1.4; }
+.stat-box.alt { background: #2a5298; }
+.stat-box.light { background: #f8f9fa; color: #003A70; border: 2px solid #003A70; }
+.stat-box.light .stat-label { color: #555; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } .stat-row { flex-direction: column; } }
+      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 8 &bull; Sub-Lesson 2</div>
+  <h1>&#128202; <span style="color: #ffffff;">AI and Scientific Images</span></h1>
+  <p>Charts, figures, microscopy, and the gap between impressive-looking outputs and reliable scientific image analysis</p>
+</header>
+
+<div class="content">
+
+  <!-- INTRO -->
+  <div class="intro-text">
+    <h2>The Most Important Lesson of the Week</h2>
+    <p>From the CharXiv benchmark (2024): on real scientific charts from actual published papers, the best model at publication achieved <strong>47.1%</strong> on reasoning questions versus <strong>80.5%</strong> for humans. Frontier model scores have improved since, but the benchmark has been updated to keep pace. The lesson stands: real-world performance on actual scientific figures consistently and substantially lags performance on the simplified benchmarks used in marketing claims.</p>
+    <p>That finding coexists with models that genuinely help with certain scientific image tasks. The 47% problem does not mean &ldquo;never use AI with images.&rdquo; It means you need to be clear about <em>which</em> tasks AI does reliably and which it does not.</p>
+    <p>This sub-lesson covers: what AI can genuinely help with, the CharXiv finding and its root cause, the correct-answer-wrong-reasoning problem, domain-specific vs. general-purpose tools, demographic bias in image AI, and a practical five-step workflow for using AI with scientific images safely.</p>
+  </div>
+
+  <!-- KEY STATISTICS -->
+  <div class="stat-row">
+    <div class="stat-box">
+      <span class="stat-number">47.1%</span>
+      <span class="stat-label">GPT-4o on CharXiv at launch (2024 baseline; frontier models have since improved, but real-world gaps persist)</span>
+    </div>
+    <div class="stat-box alt">
+      <span class="stat-number">80.5%</span>
+      <span class="stat-label">Human performance on the same CharXiv reasoning questions (2024 benchmark)</span>
+    </div>
+    <div class="stat-box light">
+      <span class="stat-number">34.5pp</span>
+      <span class="stat-label">Benchmark-to-real-chart drop for open-source models</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">58.07%</span>
+      <span class="stat-label">Average model score on simple geometric reasoning tasks (VLMs Are Blind)</span>
+    </div>
+    <div class="stat-box alt">
+      <span class="stat-number">35.5%</span>
+      <span class="stat-label">Correct medical image answers where GPT-4V&#39;s visual reasoning was demonstrably flawed</span>
+    </div>
+  </div>
+
+  <!-- SECTION 1: WHAT AI CAN GENUINELY HELP WITH -->
+  <h2 class="section-title">&#10003; What AI Can Genuinely Help With</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 25px; line-height: 1.8;">The 47% problem should make you cautious about quantitative reading of charts. It should not make you dismiss AI-assisted image work entirely. There is a class of image tasks where current multimodal AI performs reliably and adds genuine value to research workflows.</p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>&#128221; Accessibility and Documentation</h3>
+      <p>Generating alt text and descriptive figure captions is one of the most reliable uses of multimodal AI. The model produces fluent natural-language descriptions of visual content, which is where its language-side strength applies.</p>
+      <ul class="styled-list">
+        <li>Alt text generation for journal figures</li>
+        <li>Figure captions from a visual description</li>
+        <li>Descriptive documentation of microscopy images</li>
+        <li>Labelling and cataloguing image datasets</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>&#128200; Qualitative Chart Interpretation</h3>
+      <p>Asking AI to explain <em>what a figure shows</em> in plain language, without relying on it to read specific values, is generally reliable. Models can identify chart types, describe main trends, and summarise the stated conclusion of a figure.</p>
+      <ul class="styled-list">
+        <li>&ldquo;This figure shows a positive trend between X and Y&rdquo;</li>
+        <li>Identifying the type of visualisation</li>
+        <li>Describing the main visual pattern or trend</li>
+        <li>Summarising the figure&#39;s stated purpose or title</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>&#128247; Visual Comparison</h3>
+      <p>Comparing two images for obvious, large-scale visual differences is within the reliable range. This includes before/after pairs, comparing specimens, or identifying gross structural differences between two images.</p>
+      <ul class="styled-list">
+        <li>Before/after comparisons (treatment vs. control)</li>
+        <li>Identifying large structural differences between specimens</li>
+        <li>Describing obvious changes between two versions of a figure</li>
+        <li>Spotting gross formatting or layout issues in a figure</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>&#128295; Figure Design Feedback</h3>
+      <p>AI can provide useful qualitative feedback on chart design choices: whether a colour palette is likely to cause accessibility issues, whether a chart type suits the data, whether labels are readable. This is a description task, not a reading task.</p>
+      <ul class="styled-list">
+        <li>Accessibility checks (colour, contrast)</li>
+        <li>Chart type appropriateness for the data shown</li>
+        <li>Label clarity and axis readability</li>
+        <li>Consistency of design across a figure set</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>&#128269; Image Classification (Qualitative)</h3>
+      <p>Broad categorical classification (identifying what type of specimen or structure is shown, flagging an image as likely belonging to a category) is more reliable than precise measurement or quantitative reading.</p>
+      <ul class="styled-list">
+        <li>Identifying the general category of a biological specimen</li>
+        <li>Classifying image type (bar chart, scatter plot, micrograph)</li>
+        <li>Flagging images that appear anomalous for human review</li>
+        <li>Tagging images by content for search and retrieval</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>&#9999;&#65039; Writing Support for Figures</h3>
+      <p>Given a description of what a figure shows, AI can draft the figure caption, suggest legend text, or help revise the written description of results that reference a figure. The model works from the text you provide, not from the image itself.</p>
+      <ul class="styled-list">
+        <li>Drafting figure captions from a description you write</li>
+        <li>Revising results-section text about a figure</li>
+        <li>Suggesting more precise language for visual descriptions</li>
+        <li>Checking that caption text matches the description you provided</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="info-box">
+    <h4>&#128161; The Reliable Zone: Description Tasks</h4>
+    <p>A useful heuristic: AI is most reliable when the task is a <strong>description task</strong> (what does this image show, qualitatively?) rather than a <strong>value-extraction task</strong> (what is the exact value at this point on the chart?). Keep AI in the description zone and verify any specific quantitative claims against the underlying data.</p>
+  </div>
+
+  <!-- SECTION 2: CHARXIV FINDING -->
+  <h2 class="section-title">&#128202; The CharXiv Finding &mdash; When Benchmarks Lie</h2>
+
+  <div class="case-study">
+    <h4>&#128202; Case Study: CharXiv &mdash; NeurIPS 2024</h4>
+    <p>The CharXiv benchmark was constructed by researchers at Princeton University specifically to address a known flaw in prior chart-understanding benchmarks: they used simplified, purpose-built test charts rather than charts from real scientific papers. Real scientific charts are more complex, more varied in design, and more likely to require genuine reasoning rather than pattern-matching to common formats.</p>
+
+    <p style="margin-top: 15px;"><strong>Dataset:</strong> 2,323 diverse charts extracted from actual papers on arXiv, spanning 16 scientific domains including mathematics, physics, computer science, and biology.</p>
+
+    <p style="margin-top: 10px;"><strong>Question types:</strong> Two categories, descriptive questions (what is shown) and reasoning questions (what does the data mean, what can be inferred). The gap between AI and human performance is much larger on reasoning questions.</p>
+    <p style="margin-top: 10px; color: #666; font-style: italic;"><strong>Note:</strong> The scores below are 2024 baselines from the original CharXiv paper. Frontier model performance on the benchmark has improved substantially since publication, and the benchmark has been updated to maintain difficulty. The pedagogical point (real-world performance lags simplified benchmark scores) remains well-supported.</p>
+
+    <div style="margin: 20px 0; overflow-x: auto;">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>CharXiv Reasoning Score</th>
+            <th>Standard Benchmark Score (ChartQA / AI2D)</th>
+            <th>Drop</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>GPT-4o</strong></td>
+            <td style="color: #c62828; font-weight: 600;">47.1%</td>
+            <td>~85&ndash;90%+</td>
+            <td style="color: #c62828;">~38&ndash;43pp</td>
+          </tr>
+          <tr>
+            <td><strong>Claude 3.5 Sonnet</strong></td>
+            <td style="color: #e65100; font-weight: 600;">~60%</td>
+            <td>94.7% (AI2D), 90.8% (ChartQA)</td>
+            <td style="color: #c62828;">~30&ndash;35pp</td>
+          </tr>
+          <tr>
+            <td><strong>Open-source leaders</strong></td>
+            <td style="color: #c62828; font-weight: 600;">Varies; drops up to 34.5pp</td>
+            <td>Often 80&ndash;90%+ on standard benchmarks</td>
+            <td style="color: #c62828;">Up to 34.5pp</td>
+          </tr>
+          <tr>
+            <td><strong>Human baseline</strong></td>
+            <td style="color: #2e7d32; font-weight: 600;">80.5%</td>
+            <td>N/A</td>
+            <td>&mdash;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Why does this happen?</strong> The companion paper &ldquo;Vision Language Models Are Blind&rdquo; (Rahmanzadehgervi et al., ACCV 2024) tested models on tasks that should be trivial for any visual system: do two circles overlap? how many lines intersect at this point? Models averaged 58.07% on these tasks, close to chance on some sub-tasks. The models are reading the axis labels, title text, and captions (the language surrounding the chart) and using that text to generate plausible descriptions. They are not processing the geometry of the chart itself.</p>
+
+    <p style="margin-top: 15px;"><strong>The practical implication:</strong> Never trust AI-extracted numerical values from charts without verification against the underlying data. The model&#39;s description of what a chart shows may sound authoritative while being numerically wrong. Frontier model scores on CharXiv have improved substantially since 2024, but evaluations of newer models continue to show gaps between performance on real scientific figures and performance on simplified benchmarks. The headline gap has narrowed; the underlying pattern is durable.</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>The Benchmark Paradox</h3>
+    <p>A model that scores 94%+ on AI2D but substantially less on CharXiv is not being dishonestly marketed. The two numbers reflect the fact that AI2D tests charts that look like AI2D charts: standardised, simple, purpose-built for evaluation. CharXiv tests charts that look like real published science: complex, varied, and requiring genuine reasoning. This pattern holds across benchmark generations: as models improve, the gap between simplified and real-world benchmarks shrinks more slowly than headline scores suggest.</p>
+    <p>When you read a press release or product page claiming high accuracy on chart understanding, the first question should be: <em>what benchmark, and how does that benchmark compare to the images I actually need to analyse?</em> The answer almost always favours the marketing claim. The CharXiv-style real-world performance is usually not in the headline.</p>
+    <p>The same epistemological problem runs through the entire week: AI performance in research contexts is almost always lower than AI performance on the benchmarks used to market the model.</p>
+  </div>
+
+  <!-- SECTION 3: CORRECT ANSWER, WRONG REASONING -->
+  <h2 class="section-title">&#9888;&#65039; The Correct Answer, Wrong Reasoning Problem</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The CharXiv finding shows that AI gets scientific chart questions wrong. A separate problem is harder to catch: AI gets the right answer for the wrong reason. This is documented in medical image analysis, but the pattern generalises.</p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; GPT-4V in Clinical Image Challenges: Right Answer, Wrong Reasoning</h4>
+    <p><strong>Source:</strong> Jin et al., <em>npj Digital Medicine</em>, July 2024. &ldquo;Hidden flaws behind expert-level accuracy of multimodal GPT-4 vision in medicine.&rdquo;</p>
+    <p style="margin-top: 10px;"><strong>The headline finding:</strong> GPT-4V achieved 81.6% accuracy on NEJM Image Challenges vs. 77.8% for human physicians. On the face of it, this looks like AI exceeding human performance.</p>
+    <p style="margin-top: 10px;"><strong>The hidden problem:</strong> In <strong>35.5% of correct answers</strong>, the visual reasoning rationale provided by the model was demonstrably flawed. The image comprehension error rate was approximately <strong>27%</strong>. The model was sometimes arriving at correct diagnoses while citing visual features that were not actually present in the image, guessing correctly and then confabulating a justification.</p>
+    <p style="margin-top: 10px;"><strong>Why this matters beyond medicine:</strong> You cannot detect this problem by looking at accuracy metrics alone. You have to read the reasoning. A model that explains a figure convincingly but incorrectly will mislead reviewers, supervisors, and students, especially students who do not yet have the domain knowledge to recognise that the explanation is wrong. The model&#39;s confident, fluent prose creates the impression of genuine understanding where there is none.</p>
+    <p style="margin-top: 10px;"><strong>The practical consequence:</strong> When using AI to interpret a scientific image, ask it to explain its reasoning, then check whether that reasoning actually describes what is in the image. The answer may be right. The reasoning may be fabricated. You need to verify both separately.</p>
+  </div>
+
+  <div class="technical-detail">
+    <h4>Why Fluency Is Not a Signal of Accuracy</h4>
+    <p>Modern language models are trained to produce fluent, coherent, contextually appropriate text. This training objective is independent of whether the content is factually accurate. A model describing a scientific image is optimising for a description that reads plausibly given the image and its context, not for one that is pixel-accurately correct.</p>
+    <p style="margin-top: 12px;">This means the most fluent, confident-sounding description of a figure is not necessarily the most accurate one. In practice, models are often most confidently wrong when they are in familiar territory: a bar chart that looks like the many bar charts in their training data, where the pattern-matching is strong and the reasoning is not needed.</p>
+    <p style="margin-top: 12px;">The corollary: when a model hedges, expresses uncertainty, or says it cannot read a specific value, that is a more trustworthy signal than confident fluency. Treat calibrated uncertainty as a feature.</p>
+  </div>
+
+  <!-- SECTION 4: DOMAIN-SPECIFIC IMAGE AI -->
+  <h2 class="section-title">&#127919; Domain-Specific Image AI</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">General-purpose LLMs (Claude, GPT, Gemini) are not the only class of image AI available to researchers. In several scientific domains, purpose-built models trained specifically on domain data substantially outperform general-purpose tools on well-defined classification tasks.</p>
+
+  <div class="card-grid">
+
+    <div class="card" style="border-left-color: #c62828;">
+      <h3>&#128138; Medical and Microscopy Imaging</h3>
+      <p>Domain-trained CNN and vision-transformer architectures report <strong>97&ndash;99% accuracy</strong> on the standard NIH thin-blood-smear malaria cell-image dataset (Mujahid et al., 2024, <em>Scientific Reports</em>; CNN&ndash;ViT ensembles reach ~99.6% in 2025 work). These are curated benchmark figures, not field-deployment accuracy, and have not been formally compared against expert pathologist performance on the same images. Real-world clinical accuracy is typically lower.</p>
+      <p>General-purpose LLMs are not substitutes for these systems in diagnostic or clinical research contexts. As the Journal of Nuclear Medicine DREAM Report (2025) documents, applying general-purpose language models to domain-specific image interpretation produces systematic hallucination failures that are qualitatively different from those seen in general text tasks.</p>
+      <ul class="styled-list">
+        <li>Use domain-trained models for classification tasks</li>
+        <li>Use general-purpose LLMs for description and documentation</li>
+        <li>Never use LLMs as a substitute for clinical image analysis</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left-color: #2e7d32;">
+      <h3>&#127759; Satellite and Geospatial Imagery</h3>
+      <p>This is one of the most active areas of AI for science, with a layered ecosystem worth understanding before picking a tool.</p>
+      <p style="margin-top: 12px;"><strong>Pretrained foundation models for Earth observation:</strong> weights trained on satellite data, used as backbones for downstream tasks. <strong>Prithvi / Prithvi-EO-2.0</strong> (IBM/NASA, on Harmonized Landsat Sentinel data) is the most established and the most widely used in research; <strong>Clay</strong> (ClayFM, 2024) is a generalist Earth-observation foundation model with growing adoption; <strong>SatMAE</strong> (Stanford, NeurIPS 2022) and <strong>Scale-MAE</strong> (2023) are masked-autoencoder approaches; <strong>SatCLIP</strong> (Microsoft/ETH, 2024) aligns satellite imagery with text in CLIP style. These are <em>backbones</em>: you load the weights through a framework rather than running them directly.</p>
+      <p style="margin-top: 12px;"><strong>Frameworks to run them:</strong> the Python libraries that handle data loading, fine-tuning, and inference. <strong>TerraTorch</strong> (IBM) is purpose-built for Prithvi and other geospatial foundation models and is the closest thing to a research-ready default. <strong>torchgeo</strong> (Microsoft) is the established PyTorch library for geospatial datasets and models. <strong>geoai-py</strong> (Wu, JOSS 2026) is a broader Python toolkit aimed at lowering the barrier to entry.</p>
+      <p style="margin-top: 12px;"><strong>Cloud APIs:</strong> Google&#39;s Geospatial Reasoning with Gemini applies a general-purpose multimodal model to geospatial data. Useful for description, qualitative reasoning, and rapid prototyping; less reliable for precise classification than purpose-trained satellite models.</p>
+      <ul class="styled-list">
+        <li><strong>Where to start:</strong> TerraTorch + Prithvi-EO-2.0 for research-grade Earth observation work</li>
+        <li><strong>Quick exploration:</strong> Gemini Geospatial Reasoning</li>
+        <li><strong>Caveat:</strong> the field is moving fast, so check current benchmarks before committing</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left-color: #2a5298;">
+      <h3>&#128302; The General Rule</h3>
+      <p>If your field has domain-trained models available, use them for precision tasks: classification, detection, measurement. Use general-purpose LLMs for description, documentation, and qualitative interpretation.</p>
+      <p>The two categories complement each other. A domain-trained model can classify cells with high accuracy on a curated benchmark; a general-purpose LLM can explain what the classification means to a non-specialist, draft the methods section describing how the model was used, or help write the figure caption. Neither tool does everything.</p>
+      <ul class="styled-list">
+        <li>Precision tasks &#8594; domain-trained models</li>
+        <li>Description and communication &#8594; general LLMs</li>
+        <li>The two categories complement each other</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- SECTION 5: BIAS IN IMAGE RECOGNITION -->
+  <h2 class="section-title">&#9878;&#65039; Bias in Image Recognition</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Researchers whose image data involves human subjects need to be aware of systematic bias in image AI systems. The disparities documented in this area are large enough to invalidate research conclusions if not accounted for.</p>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; Demographic Disparities in Facial Recognition</h4>
+    <p>The MIT Media Lab Gender Shades study (Buolamwini &amp; Gebru, 2018) documented gender-classification error rates of approximately <strong>0.8% for light-skinned men</strong> vs. approximately <strong>34.7% for dark-skinned women</strong> on commercial systems of that era, a roughly 43-fold gap. Note that this was a gender-classification audit on 2017-vintage APIs, not modern face recognition.</p>
+    <p style="margin-top: 10px;">More current evidence comes from NIST&#39;s Face Recognition Vendor Test (FRVT) demographic evaluations (NISTIR 8429; <a href="https://pages.nist.gov/frvt/html/frvt_demographics.html" style="color:#003A70;" target="_blank" rel="noopener">pages.nist.gov/frvt/html/frvt_demographics.html</a>): in 1:1 verification, <strong>false-positive rates</strong> for African and East Asian subjects are commonly <strong>10&ndash;100&times; higher</strong> than for White subjects, while <strong>false-negative rates</strong> differ by up to roughly <strong>3&times;</strong>. Differentials vary substantially by algorithm, image quality, and dynamic range. The best-performing systems have narrowed these gaps considerably since 2018, though they have not closed them.</p>
+    <p style="margin-top: 10px;"><strong>For UCT researchers:</strong> If you are using AI to analyse images of people (in social science, public health, education research, community health) do not assume accuracy from published benchmarks, which frequently underrepresent darker-skinned subjects. Test accuracy across demographic groups on your specific dataset. This is not a hypothetical concern at a South African university.</p>
+    <p style="margin-top: 10px;"><strong>The practical step:</strong> Before applying any image AI system to a dataset involving human subjects, run it on a stratified subsample where you know the ground truth, broken down by relevant demographic variables. Report the stratified accuracy in your methods section.</p>
+  </div>
+
+  <div class="warning-box">
+    <h4>&#9888;&#65039; AI-Generated Images of STEM Professionals</h4>
+    <p>Studies published in 2025 (Scientific Reports) documented significant racial and gender homogenisation in AI-generated images of scientists. When prompted to generate images of researchers, scientists, or STEM professionals, major image generation models disproportionately produce images of white, male, older individuals, reinforcing existing stereotypes about who belongs in science rather than challenging them.</p>
+    <p style="margin-top: 10px;">For researchers producing educational materials, public communication, or visual content about their field: be explicit about prompting for diversity, and audit outputs before publication. The default outputs of image generation models are not demographically neutral.</p>
+    <p style="margin-top: 10px;">For researchers studying representation in science communication: these tools are generating real-world data you can study. The bias is consistent, measurable, and varies across models and prompt formulations.</p>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128161; Broader Bias Principle</h4>
+    <p>The facial recognition and image generation findings are the most documented, but the underlying principle is general: AI image systems reflect the demographic distribution of their training data. In any domain where your research population differs from the typical composition of large image datasets (which are often heavily US- and Europe-weighted), you should explicitly test for differential accuracy before trusting aggregate benchmark scores.</p>
+  </div>
+
+  <!-- SECTION 6: PRACTICAL WORKFLOW -->
+  <h2 class="section-title">&#9881;&#65039; A Practical Workflow for Scientific Images</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Given the limitations documented above, here is a five-step workflow for using AI with scientific images in research. Each step is designed to catch a specific failure mode before it propagates into your analysis.</p>
+
+  <ol class="step-list">
+    <li>
+      <strong>Use AI for description and qualitative interpretation, not numerical reading.</strong> Ask the model to explain what the figure shows in plain language: what type of chart is it, what is the main trend or pattern, what is the stated relationship between variables. Stay in the description zone. Do not ask it to read specific values from axes or data points.
+    </li>
+    <li>
+      <strong>Never trust AI-extracted numbers without verification.</strong> If your analysis requires specific values from a chart (data points, y-axis values, slopes, percentages) go back to the underlying data, the figure&#39;s data table if one is provided, or the paper&#39;s supplementary materials. Treat any number the AI reads from a chart as a hypothesis to be checked, not a fact to be used.
+    </li>
+    <li>
+      <strong>Read the reasoning, not just the answer.</strong> Ask the AI to explain how it reached its interpretation of a figure. Check whether that reasoning actually describes what is visually present in the image. If the model cites visual features that are not there, the answer is unreliable even if it sounds plausible. This is the direct mitigation for the Jin et al. finding: verification requires reading the explanation, not just the conclusion.
+    </li>
+    <li>
+      <strong>Use domain-trained tools for precision tasks.</strong> If your field has specialist image AI (clinical imaging tools, satellite analysis platforms, microscopy classification systems) use those for any task that requires measurement, classification, or detection. General-purpose LLMs are not substitutes for tools trained specifically on your image type.
+    </li>
+    <li>
+      <strong>Test on images where you know the answer before scaling up.</strong> Before applying AI image analysis to your full dataset, run it on a subset where you have ground truth, whether from prior labelling, independent expert review, or the underlying data. Measure accuracy on that subsample. Only scale up if accuracy on the subsample is acceptable for your research context. This step will catch most CharXiv-style failures before they become research errors.
+    </li>
+  </ol>
+
+  <!-- READINGS -->
+  <h2 class="section-title">&#128218; Core Readings</h2>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>Wang et al. (2024)</h3>
+      <p><strong>CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs</strong></p>
+      <p><em>NeurIPS 2024, Princeton University.</em> The definitive benchmark study for AI chart understanding on real scientific figures. Establishes the 47% finding, provides a root-cause analysis, and includes a human baseline. Essential reading before using any AI tool with scientific charts.</p>
+      <ul class="styled-list">
+        <li>2,323 real scientific charts from arXiv papers</li>
+        <li>Descriptive vs. reasoning question analysis</li>
+        <li>Human performance baseline</li>
+      </ul>
+      <p style="margin-top: 15px;"><a href="https://arxiv.org/abs/2406.18521" style="color: #003A70; font-weight: 600; font-size: 0.95em;">arxiv.org/abs/2406.18521 &#8599;</a></p>
+    </div>
+
+    <div class="card">
+      <h3>Rahmanzadehgervi et al. (2024)</h3>
+      <p><strong>Vision Language Models Are Blind</strong></p>
+      <p><em>ACCV 2024.</em> Tests models on trivially simple geometric tasks: overlapping circles, intersecting lines. Average model score: 58.07%. Provides the mechanistic explanation for the CharXiv result: models are reading text labels, not processing image geometry. A short, accessible paper with significant implications.</p>
+      <ul class="styled-list">
+        <li>Seven simple geometric task categories</li>
+        <li>4 state-of-the-art VLMs evaluated</li>
+        <li>Clear failure mode taxonomy</li>
+      </ul>
+      <p style="margin-top: 15px;"><a href="https://arxiv.org/abs/2407.06581" style="color: #003A70; font-weight: 600; font-size: 0.95em;">arxiv.org/abs/2407.06581 &#8599;</a></p>
+    </div>
+
+    <div class="card">
+      <h3>Jin et al. (2024)</h3>
+      <p><strong>Hidden flaws behind expert-level accuracy of multimodal GPT-4 vision in medicine</strong></p>
+      <p><em>npj Digital Medicine, July 2024.</em> GPT-4V achieves 81.6% on NEJM Image Challenges vs. 77.8% for physicians, but in 35.5% of correct answers, the reasoning was demonstrably flawed, with an image comprehension error rate of approximately 27%. Documents the correct-answer-wrong-reasoning problem in a rigorous clinical evaluation. The implications extend well beyond medicine.</p>
+      <ul class="styled-list">
+        <li>NEJM Image Challenge evaluation dataset</li>
+        <li>Detailed reasoning error analysis</li>
+        <li>Comparison with expert physician performance</li>
+      </ul>
+      <p style="margin-top: 15px;"><a href="https://www.nature.com/articles/s41746-024-01185-7" style="color: #003A70; font-weight: 600; font-size: 0.95em;">nature.com &#8599;</a></p>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <h2 class="section-title">&#9989; Summary and What&#39;s Next</h2>
+
+  <div class="intro-text">
+    <h2>Key Takeaways from Sub-Lesson 2</h2>
+    <p><strong>The 47% finding</strong> (CharXiv, NeurIPS 2024) is the central result: on real scientific charts from actual published papers, the best general-purpose AI achieves 47.1% on reasoning questions vs. 80.5% for humans. A gap that size means you cannot trust AI to reliably read specific information from scientific figures. The root cause is that models are reading text labels and captions, not processing chart geometry.</p>
+    <p><strong>The correct-answer-wrong-reasoning problem</strong> (Jin et al., npj Digital Medicine, 2024) adds a second layer: even when the model&#39;s answer is correct, the visual reasoning behind it may be fabricated. Verification requires reading the explanation, not just checking the answer.</p>
+    <p><strong>Domain-specific vs. general-purpose tools:</strong> For precision classification tasks in medical imaging, satellite analysis, or microscopy, domain-trained models substantially outperform general-purpose LLMs. Use general-purpose LLMs for description and documentation; use domain tools for measurement and classification.</p>
+    <p><strong>Bias:</strong> NIST FRVT demographic evaluations show that face-recognition systems still produce false-positive rates 10&ndash;100&times; higher and false-negative rates up to ~3&times; higher for African and East Asian subjects than for White subjects in 1:1 verification, though differentials vary substantially by algorithm. For South African researchers, this is a direct methodological concern that requires stratified accuracy testing on your own dataset.</p>
+    <p><strong>The practical workflow</strong> (five steps above) operationalises these findings: stay in the description zone, verify all numbers independently, read the reasoning not just the answer, use domain tools for precision tasks, and test on a labelled subsample before scaling.</p>
+    <p style="margin-top: 10px;"><strong>Next:</strong> Sub-Lesson 3 covers documents and tables, where many of the same principles apply but with additional complexity from structured data extraction, OCR, and PDF table parsing. The reading-vs-understanding gap shows up there too, with different failure modes.</p>
+  </div>
+
+</div><!-- end .content -->
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-8/What Multimodal AI Can See Hear and Read.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">What Multimodal AI Can See, Hear, and Read</div></a>
+  <a class="page-nav-link" href="../week-8/Document Intelligence.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Document Intelligence</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div><!-- end .container -->
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

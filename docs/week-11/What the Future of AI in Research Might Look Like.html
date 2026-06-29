@@ -1,502 +1,309 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 11.1 - What the Future of AI in Research Might Look Like</title>
-  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-  <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Lato', sans-serif;
-    line-height: 1.6;
-    color: #2c3e50;
-    background: #f5f5f5;
-    padding: 20px;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    overflow: hidden;
-}
-.ai-notice {
-    background: #e8f4f8;
-    color: #003A70;
-    padding: 15px 30px;
-    text-align: center;
-    font-size: 0.9em;
-    border-bottom: 1px solid #d0e8f2;
-}
-header {
-    background: #003A70;
-    color: white;
-    padding: 50px 40px;
-    text-align: center;
-}
-.week-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    backdrop-filter: blur(10px);
-}
-header h1 {
-    font-size: 2.3em;
-    margin-bottom: 15px;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
-header p {
-    font-size: 1.1em;
-    opacity: 0.95;
-    max-width: 800px;
-    margin: 10px auto 0;
-}
-.content {
-    padding: 50px 40px;
-}
-.intro-text {
-    background: #f9f9f9;
-    padding: 35px;
-    border-radius: 15px;
-    border-left: 5px solid #003A70;
-    margin-bottom: 40px;
-}
-.intro-text h2 {
-    color: #2a5298;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.intro-text p {
-    font-size: 1.1em;
-    color: #495057;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-.intro-text p:last-child {
-    margin-bottom: 0;
-}
-.section-title {
-    font-size: 2em;
-    color: #2a5298;
-    margin: 50px 0 30px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #003A70;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 5px solid #003A70;
-    transition: all 0.3s ease;
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-.card h3 {
-    color: #2a5298;
-    font-size: 1.4em;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-.card p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-.styled-list {
-    list-style: none;
-    margin-top: 15px;
-}
-.styled-list li {
-    padding: 8px 0 8px 25px;
-    color: #555;
-    position: relative;
-    line-height: 1.6;
-}
-.styled-list li::before {
-    content: '\25B8';
-    position: absolute;
-    left: 0;
-    color: #003A70;
-    font-weight: bold;
-}
-.highlight-box {
-    background: #003A70;
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    margin: 40px 0;
-}
-.highlight-box h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-.highlight-box p {
-    font-size: 1.05em;
-    line-height: 1.8;
-    opacity: 0.95;
-    margin-bottom: 12px;
-}
-.highlight-box p:last-child {
-    margin-bottom: 0;
-}
-.warning-box {
-    background: #fff8e1;
-    border-left: 5px solid #f9a825;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-}
-.warning-box h4 {
-    color: #e65100;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-.warning-box p {
-    color: #555;
-    line-height: 1.7;
-}
-.info-box {
-    background: #f8f9fa;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-    border-left: 4px solid #003A70;
-}
-.info-box h4 {
-    color: #2a5298;
-    font-size: 1.2em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.info-box p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-.info-box p:last-child {
-    margin-bottom: 0;
-}
-.technical-detail {
-    background: white;
-    border: 2px solid #d0e8f2;
-    border-radius: 12px;
-    padding: 25px;
-    margin: 20px 0;
-}
-.technical-detail h4 {
-    color: #2a5298;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-}
-.case-study {
-    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
-    border: 2px solid #003A70;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 25px 0;
-}
-.case-study h4 {
-    color: #003A70;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-}
-.case-study p {
-    color: #444;
-    line-height: 1.75;
-    margin-bottom: 12px;
-}
-.case-study p:last-child {
-    margin-bottom: 0;
-}
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.comparison-table th {
-    background: #003A70;
-    color: white;
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 0.95em;
-}
-.comparison-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #e9ecef;
-    color: #555;
-    font-size: 0.95em;
-    line-height: 1.5;
-}
-.comparison-table tr:last-child td {
-    border-bottom: none;
-}
-.comparison-table tr:hover {
-    background: #f9f9f9;
-}
-.step-list {
-    counter-reset: step-counter;
-    list-style: none;
-    margin: 20px 0;
-}
-.step-list > li {
-    counter-increment: step-counter;
-    padding: 15px 15px 15px 60px;
-    position: relative;
-    margin-bottom: 12px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    color: #444;
-    line-height: 1.7;
-}
-.step-list > li::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #003A70;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-.resource-placeholder {
-    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
-    border: 2px dashed #003A70;
-    border-radius: 15px;
-    padding: 30px;
-    margin: 25px 0;
-}
-.resource-placeholder h4 {
-    color: #2a5298;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-}
-.resource-placeholder p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-.resource-placeholder p:last-child {
-    margin-bottom: 0;
-}
-@media (max-width: 768px) {
-    header h1 { font-size: 1.8em;
-    } .content { padding: 30px 20px;
-    } .card-grid { grid-template-columns: 1fr;
-    } .comparison-table { font-size: 0.85em;
-    };
-}
-/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
-header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-.highlight-box strong, .highlight-box em, .highlight-box span {
-    color: #ffffff !important;
-}
-.highlight-box a, header a {
-    color: #ffffff !important;
-    text-decoration: underline;
-}
-  </style>
-  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
-<div class="container">
-
-<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
-
-<header>
-  <div class="week-badge">Week 11 &bull; Part A &bull; Sub-Lesson 1</div>
-  <h1>&#128302; <span style="color: #ffffff;">What the Future of AI in Research Might Look Like</span></h1>
-  <p>A calibrated reading of what is shipping, what is overclaimed, and what is purely aspirational &mdash; with three worked cases</p>
-</header>
-
-<div class="content">
-
-  <div style="background: #003A70; color: white; padding: 14px 22px; border-radius: 10px; margin-bottom: 25px; font-size: 0.95em;">
-    <strong>Week 11 is organised in two parts.</strong> Sub-lessons 11.1&ndash;11.3 (<em>Part A</em>) examine the future of AI in research and the institutional response to it. Sub-lessons 11.4&ndash;11.6 (<em>Part B</em>) turn to the parallel question of Africa&#39;s sovereign AI capacity. The two parts can be read independently &mdash; though by the end of the week the connection between them is where the Week 12 capstone lives.
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>What the Future of AI in Research Might Look Like — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 11 &middot; Future of AI in Research &amp; Africa&#x27;s Sovereign AI Capacity</div><nav class="toc"><a class="lesson cur" href="What%20the%20Future%20of%20AI%20in%20Research%20Might%20Look%20Like.html">What the Future of AI in Research Might Look Like</a><div class="subs"><a href="#s1">A Working Framework: Real / Overclaimed / Aspirational</a><a href="#s2">Real: What Is Actually Shipping in Research-AI</a><a href="#s3">Overclaimed: A Detailed Case Study</a><a href="#s4">Aspirational: What Is Not Happening Yet</a><a href="#s5">What This Means for Your Research Trajectory</a><a href="#s6">A Short Exercise</a><a href="#s7">Sources &amp; Further Reading</a></div><a class="lesson" href="Speculative%20Futures%20-%20A%20Reading%20Guide.html">Speculative Futures: A Reading Guide</a><a class="lesson" href="The%20Shifting%20Research%20Landscape.html">The Shifting Research Landscape: Policy, Peer Review, Integrity</a><a class="lesson" href="Sovereign%20AI%20Capacity%20and%20Why%20Compute%20Is%20the%20Floor.html">Sovereign AI Capacity, and Why Compute Is the Floor</a><a class="lesson" href="Data%20Languages%20and%20African%20Model-Building.html">Data, Languages and African Model-Building</a><a class="lesson" href="Policy%20Institutions%20and%20Talent.html">Policy, Institutions, and Talent</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>What the Future of AI in Research Might Look Like</h1><div class="deck">A calibrated reading of what is shipping, what is overclaimed, and what is purely aspirational — with three worked cases</div></div><div class="abody"><div style=" padding: 14px 22px; border-radius: 10px; margin-bottom: 25px"><strong>Week 11 is organised in two parts.</strong> Sub-lessons 11.1&ndash;11.3 (<em>Part A</em>) examine the future of AI in research and the institutional response to it. Sub-lessons 11.4&ndash;11.6 (<em>Part B</em>) turn to the parallel question of Africa&#39;s sovereign AI capacity. The two parts can be read independently &mdash; though by the end of the week the connection between them is where the Week 12 capstone lives.
   </div>
-  <div class="intro-text">
-    <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Most public commentary about &ldquo;the future of AI in research&rdquo; is a mixture of three very different claims: things that are demonstrably happening; things that are technically real but loudly oversold; and things that are not happening at all but are presented as imminent. The most useful thing a postgraduate researcher can take away from a futures discussion is not a list of predictions but a habit: <strong>before you accept a claim about what AI is doing for science, ask which of those three buckets it falls into.</strong></p>
+  <div class="intro-text"><h2>What We&#39;ll Cover</h2>
+    <p class="drop">Most public commentary about &ldquo;the future of AI in research&rdquo; is a mixture of three very different claims: things that are demonstrably happening; things that are technically real but loudly oversold; and things that are not happening at all but are presented as imminent. The most useful thing a postgraduate researcher can take away from a futures discussion is not a list of predictions but a habit: <strong>before you accept a claim about what AI is doing for science, ask which of those three buckets it falls into.</strong></p>
     <p>This sub-lesson does that exercise on the most prominent recent claims from the period running up to May 2026. We will look in turn at the genuinely shipping work (AlphaFold-family structure prediction; autonomous materials discovery; biomedical hypothesis systems with wet-lab validation), at one bounded case study of how a real result gets repackaged into an overclaimed one (the Sakana AI Scientist <em>Nature</em> paper), and at the things that are not happening yet despite confident pronouncements (end-to-end autonomous science, recursive self-improving research systems, AI as the primary author of high-impact papers).</p>
     <p>The point is not to predict five years out, which nobody can do, but to give you the disposition you need to read AI-research news for the rest of your career without being captured by either hype or anti-hype. Sub-Lesson 11.2 extends the same exercise into the genuinely <em>speculative</em> end of the literature; 11.3 then turns to a connected question: what the institutions around you (journals, funders, peer-review) have done in response to all this, and whether their responses are working.</p>
   </div>
 
-  <h2 class="section-title">&#129518; A Working Framework: Real / Overclaimed / Aspirational</h2>
+  <h2 class="section-title" id="s1">A Working Framework: Real / Overclaimed / Aspirational</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">We have been using a version of this three-bucket frame throughout Weeks 9 and 10. Week 9.3 distinguished what AI is now genuinely strong at from what it merely performs convincingly. Week 10.3 separated agentic capabilities that ship from those that exist mainly in vendor demos. The frame is the same here. The three buckets are not graded by quality (an aspirational claim is not necessarily a dishonest one) but by their relationship to evidence.</p>
+  <p style=" margin-bottom: 20px">We have been using a version of this three-bucket frame throughout Weeks 9 and 10. Week 9.3 distinguished what AI is now genuinely strong at from what it merely performs convincingly. Week 10.3 separated agentic capabilities that ship from those that exist mainly in vendor demos. The frame is the same here. The three buckets are not graded by quality (an aspirational claim is not necessarily a dishonest one) but by their relationship to evidence.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>&#9989; Real</h3>
+  <div class="card-grid"><div class="card"><h3>Real</h3>
       <p>A capability that is documented in peer-reviewed literature or independently replicated, with the scope of the claim carefully bounded by the people who made it. Almost always narrower than the headline.</p>
-      <p style="color: #888; font-size: 0.95em;">Test: would a working researcher in the field describe the result the same way the press does? If yes, it is real.</p>
+      <p>Test: would a working researcher in the field describe the result the same way the press does? If yes, it is real.</p>
     </div>
-    <div class="card">
-      <h3>&#9888;&#65039; Overclaimed</h3>
+    <div class="card"><h3>Overclaimed</h3>
       <p>A real underlying result that has been rounded up. The paper exists, the experiment worked &mdash; but the framing, the headline, or the press release strips away the caveats that the authors themselves wrote into the discussion section.</p>
-      <p style="color: #888; font-size: 0.95em;">Test: does the abstract say something noticeably more careful than the press release? If yes, the press release is overclaimed.</p>
+      <p>Test: does the abstract say something noticeably more careful than the press release? If yes, the press release is overclaimed.</p>
     </div>
-    <div class="card">
-      <h3>&#128640; Aspirational</h3>
+    <div class="card"><h3>Aspirational</h3>
       <p>A claim about the future presented as if it were the present. Often grounded in real trend lines but extrapolated past where the evidence ends. Includes timelines for AGI, &ldquo;by 2027&rdquo; predictions, and the recurring claim that AI scientists will replace PhDs.</p>
-      <p style="color: #888; font-size: 0.95em;">Test: is the claim supported by anything other than a graph of past trends and a confident sentence? If not, treat as aspirational.</p>
+      <p>Test: is the claim supported by anything other than a graph of past trends and a confident sentence? If not, treat as aspirational.</p>
     </div>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The rest of this sub-lesson is a worked example of the frame in action. We will take three concrete cases, one in each bucket, and trace each one from its primary source to its public reception.</p>
+  <p style=" margin-bottom: 15px">The rest of this sub-lesson is a worked example of the frame in action. We will take three concrete cases, one in each bucket, and trace each one from its primary source to its public reception.</p>
 
-  <h2 class="section-title">&#9989; Real: What Is Actually Shipping in Research-AI</h2>
+  <h2 class="section-title" id="s2">Real: What Is Actually Shipping in Research-AI</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Four lines of work, all peer-reviewed, all with humans verifying outputs in a laboratory, give the clearest <em>publishable</em> picture of what AI is currently contributing to active scientific research. They are not the whole picture (we return below to a second, more diffuse, and arguably larger category of AI-as-collaborator that does not yet fit inside a single headline paper) but they are a good place to anchor a discussion of what is actually working.</p>
+  <p style=" margin-bottom: 20px">Four lines of work, all peer-reviewed, all with humans verifying outputs in a laboratory, give the clearest <em>publishable</em> picture of what AI is currently contributing to active scientific research. They are not the whole picture (we return below to a second, more diffuse, and arguably larger category of AI-as-collaborator that does not yet fit inside a single headline paper) but they are a good place to anchor a discussion of what is actually working.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Protein structure prediction</h3>
+  <div class="card-grid"><div class="card"><h3>Protein structure prediction</h3>
       <p>The AlphaFold lineage is an AI capability that is now infrastructure. AlphaFold 3 (Abramson et al., <em>Nature</em>, May 2024) extended the protein-only prediction of AlphaFold 2 to complexes including nucleic acids, small molecules and ions; code and weights were opened to academic users in November 2024. Structural biologists no longer treat predicted structures as exotic.</p>
-      <p style="color: #888; font-size: 0.95em;">Real-bucket marker: a working scientist in the field uses it without thinking about it.</p>
+      <p>Real-bucket marker: a working scientist in the field uses it without thinking about it.</p>
     </div>
-    <div class="card">
-      <h3>Autonomous materials synthesis</h3>
+    <div class="card"><h3>Autonomous materials synthesis</h3>
       <p>The GNoME / A-Lab work (Merchant et al., Szymanski et al., <em>Nature</em> 2023) generated 2.2 million candidate crystal structures, filtered them to 381,000 predicted to be stable, and then ran an autonomous laboratory at Lawrence Berkeley that synthesised dozens of novel materials with minimal human intervention. The synthesis success rate (about 71%) is the measured number; the &ldquo;381,000 stable materials&rdquo; figure is a prediction.</p>
-      <p style="color: #888; font-size: 0.95em;">Real-bucket marker: a closed loop from AI prediction to physical experiment, peer-reviewed.</p>
+      <p>Real-bucket marker: a closed loop from AI prediction to physical experiment, peer-reviewed.</p>
     </div>
-    <div class="card">
-      <h3>Biomedical hypothesis-and-validation</h3>
+    <div class="card"><h3>Biomedical hypothesis-and-validation</h3>
       <p>Google&#39;s AI Co-Scientist (Gottweis et al., <em>Nature</em>, May 2026) is the most carefully validated recent example. It paired computational hypothesis generation with three wet-lab biomedical validations carried out by named academic collaborators. We treat this case in detail below.</p>
-      <p style="color: #888; font-size: 0.95em;">Real-bucket marker: AI-generated hypotheses tested in physical experiments by humans, with the negatives reported alongside the positives.</p>
+      <p>Real-bucket marker: AI-generated hypotheses tested in physical experiments by humans, with the negatives reported alongside the positives.</p>
     </div>
-    <div class="card">
-      <h3>End-to-end candidate-to-lab pipelines</h3>
+    <div class="card"><h3>End-to-end candidate-to-lab pipelines</h3>
       <p>FutureHouse&#39;s <em>Robin</em> (arXiv:2505.13400, May 2025) identified ripasudil as a candidate for dry age-related macular degeneration and ran phagocytosis assays showing a 7.5&times; increase <em>in vitro</em>. FutureHouse spun out Edison Scientific in November 2025; its successor system <em>Kosmos</em> reportedly processes 1,500 papers plus tens of thousands of lines of analysis code per run.</p>
-      <p style="color: #888; font-size: 0.95em;">Real-bucket marker: published preprint with replicable wet-lab numbers, not just a chat transcript.</p>
+      <p>Real-bucket marker: published preprint with replicable wet-lab numbers, not just a chat transcript.</p>
     </div>
   </div>
 
-  <div class="technical-detail">
-    <h4>&#129516; A worked example: Google&#39;s AI Co-Scientist, primary-source version</h4>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The peer-reviewed <em>Nature</em> paper (Gottweis et al., DOI 10.1038/s41586-026-10644-y) describes a multi-agent system built on Gemini, evaluated against OpenAI o1, o3-mini-high, DeepSeek R1, and Gemini 2.0 Pro Experimental on 203 research goals. On an 11-goal expert-evaluated subset, Co-Scientist outputs received a mean preference rank of 2.36 and ratings of 3.64/5 for novelty and 3.09/5 for impact. So far, so benchmark.</p>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Then there are the three wet-lab biomedical validations published alongside:</p>
-    <ul class="styled-list" style="margin-top: 0;">
+  <div class="technical-detail"><h4>A worked example: Google&#39;s AI Co-Scientist, primary-source version</h4>
+    <p style=" margin-bottom: 12px">The peer-reviewed <em>Nature</em> paper (Gottweis et al., DOI 10.1038/s41586-026-10644-y) describes a multi-agent system built on Gemini, evaluated against OpenAI o1, o3-mini-high, DeepSeek R1, and Gemini 2.0 Pro Experimental on 203 research goals. On an 11-goal expert-evaluated subset, Co-Scientist outputs received a mean preference rank of 2.36 and ratings of 3.64/5 for novelty and 3.09/5 for impact. So far, so benchmark.</p>
+    <p style=" margin-bottom: 12px">Then there are the three wet-lab biomedical validations published alongside:</p>
+    <ul class="styled-list" style="margin-top: 0">
       <li><strong>Drug repurposing for acute myeloid leukaemia.</strong> Binimetinib (already approved for melanoma) showed a half-maximal inhibitory concentration as low as 2&nbsp;nM in AML cell lines, against around 180&nbsp;nM in a non-AML control. The genuinely novel candidate KIRA6, an IRE1&alpha; inhibitor for which no prior preclinical AML evidence existed, showed an 18-fold selectivity window between leukaemic and control cells.</li>
       <li><strong>Liver fibrosis epigenetic targets.</strong> Two of three Co-Scientist-predicted compounds, including the already-FDA-approved drug Vorinostat, showed significant anti-fibrotic activity in human hepatic organoids with no observed cellular toxicity (published as Guan et al., <em>Advanced Science</em>, 2025).</li>
       <li><strong>A bacterial-evolution mechanism.</strong> Co-Scientist proposed, in two days and with only minimal background information, that capsid-forming phage-inducible chromosomal islands interact with diverse phage tails to expand bacterial host range, matching the primary discovery of an independent, co-timed experimental study from the Pen&aacute;d&eacute;s group at the Fleming Initiative / Imperial College London (Pen&aacute;d&eacute;s et al., <em>Cell</em> 188(23), 6654&ndash;6665, 2025) before peer review of either was complete.</li>
     </ul>
-    <p style="color: #444; line-height: 1.75; margin-top: 12px;">What made this work: AI-generated hypotheses, prioritised by oncologists and microbiologists, validated in physical experiments by named human collaborators, with the failures (drugs that didn&#39;t work, hypotheses that were rejected) reported alongside the successes.</p>
+    <p style=" margin-top: 12px">What made this work: AI-generated hypotheses, prioritised by oncologists and microbiologists, validated in physical experiments by named human collaborators, with the failures (drugs that didn&#39;t work, hypotheses that were rejected) reported alongside the successes.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The Co-Scientist paper&#39;s own limitations section is worth reading for its calibration. The authors flag that the system&#39;s knowledge is constrained by open-access literature, that there is a systemic lack of access to negative experimental results, and that the validation reported is preliminary. The closing warning, that improper use of such systems without rigorous peer review and guardrails could worsen the scientific reproducibility crisis through low-quality scientific artefacts, is from the authors themselves, in <em>Nature</em>. Most press coverage of the same work does not read that way.</p>
+  <p style=" margin-bottom: 15px">The Co-Scientist paper&#39;s own limitations section is worth reading for its calibration. The authors flag that the system&#39;s knowledge is constrained by open-access literature, that there is a systemic lack of access to negative experimental results, and that the validation reported is preliminary. The closing warning, that improper use of such systems without rigorous peer review and guardrails could worsen the scientific reproducibility crisis through low-quality scientific artefacts, is from the authors themselves, in <em>Nature</em>. Most press coverage of the same work does not read that way.</p>
 
-  <div class="technical-detail">
-    <h4>&#129504; Beyond the headline papers: AI as a workflow-level collaborator</h4>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The four examples above are the clearest <em>publishable</em> demonstrations of what AI now contributes to research. They share a property that makes them legible: each one fits inside a single paper, with a single primary result. There is also a second category of &ldquo;AI as collaborator&rdquo; that is harder to point at in headline form and arguably bigger in aggregate effect.</p>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Agentic coding tools (<em>Claude Code</em>, <em>Codex</em>, <em>Cursor</em>&#39;s agent modes) have moved over the last twelve months from completing one line of code at a time to running for hours on complex, multi-step research tasks. Used by individual researchers with strong domain judgement and the verification habits covered in Weeks 9 and 10, these tools now support experimental code drafting, multi-stage data analysis, theoretical reasoning, debugging across substantial codebases, and large parts of manuscript construction, well beyond the literature search and code completion the early framing of &ldquo;AI as narrow-task assistant&rdquo; suggested. Practitioners report that intellectually demanding work which previously took months can sometimes be compressed into days or weeks. Much of the active researcher community now describes agentic coding tools as the largest change AI has made to their day-to-day research practice.</p>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">This category is harder to evaluate than the four lab-scale examples because the productivity depends substantially on the researcher: their existing domain skill, their willingness to verify outputs at every meaningful junction, and their judgement about which parts of the work they will and will not delegate. Two researchers using identical tools can have wildly different experiences. The bottleneck for many active researchers is no longer the tool&#39;s capability but their own practice around it. For students reading this from the start of their research careers, getting the practice right is now a first-order skill.</p>
-    <p style="color: #444; line-height: 1.75;">Sources worth reading first-hand on what this looks like in practice:</p>
-    <ul class="styled-list" style="margin-top: 0;">
+  <div class="technical-detail"><h4>Beyond the headline papers: AI as a workflow-level collaborator</h4>
+    <p style=" margin-bottom: 12px">The four examples above are the clearest <em>publishable</em> demonstrations of what AI now contributes to research. They share a property that makes them legible: each one fits inside a single paper, with a single primary result. There is also a second category of &ldquo;AI as collaborator&rdquo; that is harder to point at in headline form and arguably bigger in aggregate effect.</p>
+    <p style=" margin-bottom: 12px">Agentic coding tools (<em>Claude Code</em>, <em>Codex</em>, <em>Cursor</em>&#39;s agent modes) have moved over the last twelve months from completing one line of code at a time to running for hours on complex, multi-step research tasks. Used by individual researchers with strong domain judgement and the verification habits covered in Weeks 9 and 10, these tools now support experimental code drafting, multi-stage data analysis, theoretical reasoning, debugging across substantial codebases, and large parts of manuscript construction, well beyond the literature search and code completion the early framing of &ldquo;AI as narrow-task assistant&rdquo; suggested. Practitioners report that intellectually demanding work which previously took months can sometimes be compressed into days or weeks. Much of the active researcher community now describes agentic coding tools as the largest change AI has made to their day-to-day research practice.</p>
+    <p style=" margin-bottom: 12px">This category is harder to evaluate than the four lab-scale examples because the productivity depends substantially on the researcher: their existing domain skill, their willingness to verify outputs at every meaningful junction, and their judgement about which parts of the work they will and will not delegate. Two researchers using identical tools can have wildly different experiences. The bottleneck for many active researchers is no longer the tool&#39;s capability but their own practice around it. For students reading this from the start of their research careers, getting the practice right is now a first-order skill.</p>
+    <p>Sources worth reading first-hand on what this looks like in practice:</p>
+    <ul class="styled-list" style="margin-top: 0">
       <li><strong>Patrick Mineault, <em>Claude Code for Scientists</em></strong> (2026). The single best practitioner write-up of how agentic coding has changed day-to-day neuroscience research workflow, from a working scientist. <a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener">neuroai.science</a>.</li>
       <li><strong>Anthropic, <em>Coding Agents in the Social Sciences</em></strong> (March 2026). The baseline survey wave of an ongoing randomised study, sampling 1,260 quantitative social scientists. The headline numbers as of the baseline: 20% of surveyed researchers use coding agents regularly; 97% of those users apply them to data-analysis code; users report starting more projects than non-users at the same career stage. <a href="https://www.anthropic.com/research/coding-agents-social-sciences" target="_blank" rel="noopener">anthropic.com</a>.</li>
       <li><strong>Ethan Mollick, three essays on One Useful Thing</strong> track the recent shift from human-AI &ldquo;co-intelligence&rdquo; (humans and AI prompting back-and-forth) to humans managing autonomous agents. <em>On Working with Wizards</em> (11 September 2025) introduces the &ldquo;wizard&rdquo; frame (AI systems that produce sophisticated outputs through opaque processes), with the line <em>&ldquo;competence and opacity rise together&rdquo;</em>. Mollick&#39;s worked example is using GPT-5 Pro to critique his own published job-market paper; the system ran its own verification code (including Monte Carlo analysis) and found a previously unnoticed error linking two tables in the paper that no human reviewer had spotted. <em>Claude Code and What Comes Next</em> (8 January 2026) is the most directly relevant essay for postgraduate researchers experimenting with agentic coding tools, and quotes Andrej Karpathy: <em>&ldquo;the profession is being dramatically refactored as the bits contributed by the programmer are increasingly sparse and between. I have a sense that I could be 10X more powerful if I just properly string together what has become available over the last ~year and a failure to claim the boost feels decidedly like skill issue.&rdquo;</em> <em>The Shape of the Thing</em> (12 March 2026) sets out the broader trajectory and the StrongDM &ldquo;Software Factory&rdquo; case: a three-person team running an AI-only production-software pipeline under two pre-commitments (&ldquo;Code must not be written by humans&rdquo; / &ldquo;Code must not be reviewed by humans&rdquo;), with each human engineer spending roughly $1,000 per day on AI tokens. Mollick&#39;s 2024 book <em>Co-Intelligence: Living and Working with AI</em> (Penguin) is the standing single-volume background. <a href="https://www.oneusefulthing.org/p/on-working-with-wizards" target="_blank" rel="noopener">Wizards</a> &middot; <a href="https://www.oneusefulthing.org/p/claude-code-and-what-comes-next" target="_blank" rel="noopener">Claude Code</a> &middot; <a href="https://www.oneusefulthing.org/p/the-shape-of-the-thing" target="_blank" rel="noopener">Shape of the Thing</a>.</li>
     </ul>
-    <p style="color: #444; line-height: 1.75; margin-top: 12px;">A useful empirical complement: across recent industry-scale studies (Stack Overflow Developer Survey 2025, JetBrains AI Pulse January 2026, Google DORA 2025), controlled measurements of time savings from agentic coding tools cluster in the <strong>13&ndash;55% range</strong> on real work tasks rather than toy benchmarks. The headline benchmark trajectory (the original SWE-bench scoring ~2% of issues in 2023, with SWE-bench Verified reaching ~88% by 2026) provides the capability ceiling; the developer surveys provide the operational reality.</p>
+    <p style=" margin-top: 12px">A useful empirical complement: across recent industry-scale studies (Stack Overflow Developer Survey 2025, JetBrains AI Pulse January 2026, Google DORA 2025), controlled measurements of time savings from agentic coding tools cluster in the <strong>13&ndash;55% range</strong> on real work tasks rather than toy benchmarks. The headline benchmark trajectory (the original SWE-bench scoring ~2% of issues in 2023, with SWE-bench Verified reaching ~88% by 2026) provides the capability ceiling; the developer surveys provide the operational reality.</p>
   </div>
 
-  <div class="info-box">
-    <h4>&#128270; What &ldquo;real&rdquo; looks like up close</h4>
+  <div class="info-box"><h4>What &ldquo;real&rdquo; looks like up close</h4>
     <p>When a paper makes a striking AI-in-science claim, read the <em>limitations</em> section before reading the abstract. Authors usually mark the boundary of their own claim honestly. Press coverage strips that boundary out. The gap between what the discussion section says and what the headline says is a reliable signal for separating real from overclaimed.</p>
   </div>
 
-  <h2 class="section-title">&#9888;&#65039; Overclaimed: A Detailed Case Study</h2>
+  <h2 class="section-title" id="s3">Overclaimed: A Detailed Case Study</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Now we take a single, recent, high-profile result, the Sakana AI &ldquo;AI Scientist&rdquo; paper in <em>Nature</em> in March 2026, and trace what it actually says, what the public coverage said it said, and what the gap between those two looks like. This is a worked exercise, not a takedown. The underlying paper is interesting and the authors are careful. The point is that even careful, peer-reviewed work gets routinely rounded up in transit.</p>
+  <p style=" margin-bottom: 20px">Now we take a single, recent, high-profile result, the Sakana AI &ldquo;AI Scientist&rdquo; paper in <em>Nature</em> in March 2026, and trace what it actually says, what the public coverage said it said, and what the gap between those two looks like. This is a worked exercise, not a takedown. The underlying paper is interesting and the authors are careful. The point is that even careful, peer-reviewed work gets routinely rounded up in transit.</p>
 
-  <div class="case-study">
-    <h4>&#128209; What the Sakana paper actually claims</h4>
+  <div class="case-study"><h4>What the Sakana paper actually claims</h4>
     <p>Lu, C., Lu, C., Lange, R. T., Yamada, Y. et al. (2026). <em>Towards end-to-end automation of AI research.</em> <em>Nature</em> 651, 914&ndash;919, DOI 10.1038/s41586-026-10265-5. CC&nbsp;BY 4.0 open access. Note the actual title. The lab blog framing was &ldquo;<em>The AI Scientist: Towards Fully Automated AI Research</em>&rdquo;; the published title is the more modest <em>Towards end-to-end automation of AI research</em>.</p>
     <p>The headline result, as written in the paper itself, is this: <strong>one of three</strong> AI-generated manuscripts that the team submitted to the <em>ICLR 2025 ICBINB workshop</em> received average reviewer scores of 6.33 on the ICLR 1&ndash;10 scale (individual scores 6, 7, 6) and was ranked in the top 45% of submissions. The workshop&#39;s acceptance rate was <strong>70%</strong>. The acceptance rate of the main ICLR 2025 conference was 32%. The paper that &ldquo;passed&rdquo; reported a negative result, aligned with the workshop&#39;s focus on interesting negative findings.</p>
     <p><strong>All three submissions were withdrawn per the pre-arranged ethics protocol</strong> with the workshop organisers and the University of British Columbia&#39;s Research Ethics Board. Nothing was actually published. The team also conducted their own internal review and concluded, in their own words, that one of the papers met the bar for workshop publication but <em>none</em> met the higher bar for a main ICLR conference paper.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">That is the real claim, and it is a perfectly interesting one. A fully AI-generated machine-learning paper now reaches the lower bar of a top-venue workshop with measurable consistency. The team&#39;s separate &ldquo;Automated Reviewer&rdquo; (an LLM judging machine-learning papers) shows balanced accuracy of 66&ndash;69% against historical accept/reject decisions, comparable to or modestly above human inter-reviewer consistency. The paper also documents a correlation (R&sup2; = 0.517, P &lt; 0.00001) between underlying model release date and generated-paper quality, sometimes loosely called a &ldquo;scaling law of science&rdquo;, though it is a correlation across a handful of models, not a physics-style law.</p>
+  <p style=" margin-bottom: 15px">That is the real claim, and it is a perfectly interesting one. A fully AI-generated machine-learning paper now reaches the lower bar of a top-venue workshop with measurable consistency. The team&#39;s separate &ldquo;Automated Reviewer&rdquo; (an LLM judging machine-learning papers) shows balanced accuracy of 66&ndash;69% against historical accept/reject decisions, comparable to or modestly above human inter-reviewer consistency. The paper also documents a correlation (R&sup2; = 0.517, P &lt; 0.00001) between underlying model release date and generated-paper quality, sometimes loosely called a &ldquo;scaling law of science&rdquo;, though it is a correlation across a handful of models, not a physics-style law.</p>
 
-  <div class="warning-box">
-    <h4>&#128221; Where the rounding happens</h4>
+  <div class="warning-box"><h4>Where the rounding happens</h4>
     <p>Compare what the paper says with three things you will see in coverage of it:</p>
-    <ul class="styled-list" style="margin-top: 8px;">
+    <ul class="styled-list" style="margin-top: 8px">
       <li>&ldquo;<em>An AI wrote a paper that passed peer review.</em>&rdquo; True only at workshop level (70% acceptance), at a venue specifically designed for negative results, and the paper was withdrawn.</li>
       <li>&ldquo;<em>The first fully AI-generated paper to pass a rigorous human peer-review process.</em>&rdquo; Strips out &ldquo;workshop&rdquo;, strips out &ldquo;one of three&rdquo;, and strips out &ldquo;withdrawn per protocol&rdquo;.</li>
       <li>&ldquo;<em>AI Scientists are here.</em>&rdquo; The paper&#39;s own limitations section states that the system &ldquo;cannot yet meet the standards of top-tier publications nor even do so consistently for workshops.&rdquo; Common failure modes named by the authors include hallucinated citations, naive ideas, and lack of methodological rigour.</li>
     </ul>
-    <p style="margin-top: 12px;">There is also an independent critical evaluation (arXiv:2502.14297, &ldquo;Bold Claims, Mixed Results&rdquo;) of the system, which is worth reading as a counterweight before forming your own opinion.</p>
+    <p style="margin-top: 12px">There is also an independent critical evaluation (arXiv:2502.14297, &ldquo;Bold Claims, Mixed Results&rdquo;) of the system, which is worth reading as a counterweight before forming your own opinion.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The discipline this case teaches is not cynicism but the habit of pulling a primary source and reading its own discussion section before forming an opinion about what it means. The Sakana team behaved very honestly: they obtained ethics approval, they pre-committed to withdraw any accepted paper, they reported one acceptance and two rejections out of three submissions, and they wrote a careful limitations section. The rounding happened later, in transit, in summaries written by people who had not read the paper. As a postgraduate researcher in 2026, that &ldquo;in transit&rdquo; layer is where most of the AI-in-research claims you will encounter will live. Read past it.</p>
+  <p style=" margin-bottom: 15px">The discipline this case teaches is not cynicism but the habit of pulling a primary source and reading its own discussion section before forming an opinion about what it means. The Sakana team behaved very honestly: they obtained ethics approval, they pre-committed to withdraw any accepted paper, they reported one acceptance and two rejections out of three submissions, and they wrote a careful limitations section. The rounding happened later, in transit, in summaries written by people who had not read the paper. As a postgraduate researcher in 2026, that &ldquo;in transit&rdquo; layer is where most of the AI-in-research claims you will encounter will live. Read past it.</p>
 
-  <h2 class="section-title">&#128640; Aspirational: What Is Not Happening Yet</h2>
+  <h2 class="section-title" id="s4">Aspirational: What Is Not Happening Yet</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The aspirational bucket needs to be made explicit, because confident claims about the near future are usually presented as if they were claims about the present. Three of the most prominent are worth naming and bounding.</p>
+  <p style=" margin-bottom: 20px">The aspirational bucket needs to be made explicit, because confident claims about the near future are usually presented as if they were claims about the present. Three of the most prominent are worth naming and bounding.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>End-to-end autonomous science</h3>
+  <div class="card-grid"><div class="card"><h3>End-to-end autonomous science</h3>
       <p>The picture in which an AI system formulates an original research question, designs experiments to answer it, runs them, interprets results, writes the paper, and submits it, with no human in the loop, is not happening, and is not on a credible near-term trajectory. Every system we have looked at above (Co-Scientist, Robin, GNoME/A-Lab, the AI Scientist) was steered by named human collaborators at every critical step. The Co-Scientist paper&#39;s own framing is &ldquo;scientist-in-the-loop&rdquo;.</p>
-      <p style="color: #888; font-size: 0.95em;">Aspirational marker: every demonstration of &ldquo;autonomy&rdquo; turns out, on inspection, to have humans selecting research goals, prioritising hypotheses, and verifying outputs.</p>
+      <p>Aspirational marker: every demonstration of &ldquo;autonomy&rdquo; turns out, on inspection, to have humans selecting research goals, prioritising hypotheses, and verifying outputs.</p>
     </div>
-    <div class="card">
-      <h3>Recursive self-improvement</h3>
+    <div class="card"><h3>Recursive self-improvement</h3>
       <p>The idea that an AI research system substantially improves <em>itself</em>, designing better versions of its own architecture and then using those better versions to design better-still versions, remains a hypothetical capability. Real systems improve when humans deploy better models, write better harnesses, or curate better training data (the Week 10.1 lesson that the harness is the product). A coding agent helping its developers ship faster (as Claude Code reportedly does at Anthropic) is real and useful; it is not the same thing as recursive self-improvement of capability.</p>
-      <p style="color: #888; font-size: 0.95em;">Aspirational marker: claims rely on extrapolating compute curves, not on any system that has demonstrably bootstrapped itself.</p>
+      <p>Aspirational marker: claims rely on extrapolating compute curves, not on any system that has demonstrably bootstrapped itself.</p>
     </div>
-    <div class="card">
-      <h3>AI as primary author of high-impact papers</h3>
+    <div class="card"><h3>AI as primary author of high-impact papers</h3>
       <p>The journals you would want to publish in (<em>Nature</em>, <em>Science</em>, the medical journals, the African Journal of Marine Science) do not permit AI to be listed as an author, and have ethics policies under the International Committee of Medical Journal Editors and the Committee on Publication Ethics that make AI authorship a misconduct matter (we look at these in 11.3). Even the Sakana paper&#39;s headline AI-generated workshop manuscript was withdrawn rather than published. The notion of AI as first author is not a near-term operational reality.</p>
-      <p style="color: #888; font-size: 0.95em;">Aspirational marker: the institutional rules have, if anything, moved in the opposite direction.</p>
+      <p>Aspirational marker: the institutional rules have, if anything, moved in the opposite direction.</p>
     </div>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Listing the aspirational claims is not the same as dismissing them. Some of them may turn out to be true on a five-or-ten-year horizon. The point is the same as in Weeks 9 and 10: when you read a confident sentence about what AI &ldquo;will&rdquo; do for science, the useful question is not whether it is plausible but whether you would be willing to plan a research project on the assumption. If not, it belongs in the aspirational bucket, and you should make decisions about your own work using the present, not the projected future, as what you have to work with.</p>
+  <p style=" margin-bottom: 15px">Listing the aspirational claims is not the same as dismissing them. Some of them may turn out to be true on a five-or-ten-year horizon. The point is the same as in Weeks 9 and 10: when you read a confident sentence about what AI &ldquo;will&rdquo; do for science, the useful question is not whether it is plausible but whether you would be willing to plan a research project on the assumption. If not, it belongs in the aspirational bucket, and you should make decisions about your own work using the present, not the projected future, as what you have to work with.</p>
 
-  <h2 class="section-title">&#127757; What This Means for Your Research Trajectory</h2>
+  <h2 class="section-title" id="s5">What This Means for Your Research Trajectory</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If you are starting a research project in 2026, you are scoping work that you will be defending at a viva in 2027 or 2028, and publishing from for some years after. Most of what this sub-lesson describes is happening <em>now</em>, or will land inside the next twelve months. Five years out is a different category: genuinely unknowable, and things could be radically different by 2030 in either direction. The relevant horizon for present decisions is the one immediately in front of you, not a hedge across half a decade. Three implications follow from that picture.</p>
+  <p style=" margin-bottom: 20px">If you are starting a research project in 2026, you are scoping work that you will be defending at a viva in 2027 or 2028, and publishing from for some years after. Most of what this sub-lesson describes is happening <em>now</em>, or will land inside the next twelve months. Five years out is a different category: genuinely unknowable, and things could be radically different by 2030 in either direction. The relevant horizon for present decisions is the one immediately in front of you, not a hedge across half a decade. Three implications follow from that picture.</p>
 
   <ul class="styled-list">
     <li><strong>AI now works as a substantive research collaborator, well beyond a narrow-task assistant.</strong> The picture set out in the four cards above plus the workflow-level shift discussed in the &ldquo;Beyond the headline papers&rdquo; box means that, for researchers prepared to use the tools well, AI is now participating across literature, ideation, code, analysis, theoretical reasoning, and manuscript construction, not only at particular stages. Practitioner reports (Mineault, Mollick) and the early findings of the Anthropic social-sciences study point the same way. The Week 5&ndash;10 tools are worth integrating across your workflow, not just at the edges. The decision is not <em>whether</em> to use them but <em>where</em> verification has to happen, and that decision is per task, not per tool.</li>
@@ -504,15 +311,14 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>The questions worth scoping around are about leverage, not capability.</strong> &ldquo;Can I use AI to do this?&rdquo; is now usually a yes. The more useful question is: <em>where in my research is my own context, data, language, or relationships giving me a distinctive angle that an AI scaling up generic literature does not have?</em> For the African-led second half of this week, that question has a particular sharp answer.</li>
   </ul>
 
-  <div class="highlight-box">
-    <h3>&#128161; <span style="color: #ffffff;">The disposition this sub-lesson is asking for</span></h3>
+  <div class="highlight-box"><h3><span>The disposition this sub-lesson is asking for</span></h3>
     <p>You do not need a confident prediction about whether AI will replace researchers in 2030. You need a habit: when you read a claim about what AI is doing for science, ask which bucket it belongs in (real, overclaimed, or aspirational) and pull the primary source if you cannot tell.</p>
     <p>If you carry only that into the rest of your research career, you will read AI-research news the way an experienced scientist reads any other field&#39;s news: looking for the limitations section, suspicious of press releases, willing to be impressed by carefully bounded results, and not willing to be hurried by aspirational ones.</p>
   </div>
 
-  <h2 class="section-title">&#9999;&#65039; A Short Exercise</h2>
+  <h2 class="section-title" id="s6">A Short Exercise</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 15px; line-height: 1.8;">Before the in-class session, do this exercise. It should take 30&ndash;45 minutes.</p>
+  <p style=" margin-bottom: 15px">Before the in-class session, do this exercise. It should take 30&ndash;45 minutes.</p>
 
   <ol class="step-list">
     <li><strong>Pick one of the four real-bucket cases above</strong> (AlphaFold 3, GNoME/A-Lab, AI Co-Scientist, or Robin/Kosmos) <strong>or one from your own field</strong> if you know it better.</li>
@@ -522,12 +328,11 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Bring all three to class.</strong> We will pool them across the cohort.</li>
   </ol>
 
-  <h2 class="section-title">&#128218; Sources &amp; Further Reading</h2>
+  <h2 class="section-title" id="s7">Sources &amp; Further Reading</h2>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Primary sources used in this sub-lesson:</p>
+  <p style=" margin-bottom: 15px">Primary sources used in this sub-lesson:</p>
 
-  <div class="resource-placeholder">
-    <h4>&#128196; The peer-reviewed papers</h4>
+  <div class="resource-placeholder"><h4>The peer-reviewed papers</h4>
     <p><strong>DeepMind AI Co-Scientist</strong> &mdash; Gottweis, J. et al. (2026). <em>Accelerating scientific discovery with Co-Scientist.</em> <em>Nature</em>. <a href="https://doi.org/10.1038/s41586-026-10644-y" target="_blank" rel="noopener">DOI 10.1038/s41586-026-10644-y</a>. Accepted 11 May 2026; published online 19 May 2026.</p>
     <p><strong>Liver fibrosis follow-up</strong> &mdash; Guan, Y. et al. (2025). <em>AI-assisted drug re-purposing for human liver fibrosis.</em> <em>Advanced Science</em>, e08751.</p>
     <p><strong>cf-PICI mechanism</strong> &mdash; Pen&aacute;d&eacute;s, J. R. et al. (2025). <em>AI mirrors experimental science to uncover a novel mechanism of gene transfer crucial to bacterial evolution.</em> <em>Cell</em> 188(23), 6654&ndash;6665.</p>
@@ -541,24 +346,4 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p><strong>Mollick, E.</strong> Three essays on One Useful Thing tracking the shift from human-AI co-intelligence to humans managing autonomous agents: <em>On Working with Wizards</em> (11 September 2025), <a href="https://www.oneusefulthing.org/p/on-working-with-wizards" target="_blank" rel="noopener">link</a>; <em>Claude Code and What Comes Next</em> (8 January 2026), <a href="https://www.oneusefulthing.org/p/claude-code-and-what-comes-next" target="_blank" rel="noopener">link</a>; <em>The Shape of the Thing</em> (12 March 2026), <a href="https://www.oneusefulthing.org/p/the-shape-of-the-thing" target="_blank" rel="noopener">link</a>. Background book: <em>Co-Intelligence: Living and Working with AI</em> (Penguin, 2024).</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.2:</strong> a reading guide for the genuinely <em>speculative</em> end of the AI-in-research literature: frameworks (Krenn, Wang, Morris), falsifiable forecasts (METR), institutional visioning (Royal Society, Africa Declaration), and wild speculation (Clune, <em>AI 2027</em>, Russell), with the same calibration habit applied throughout. 11.3 then turns from speculation to the institutional present: what journals and funders have actually <em>done</em> in response to AI in research, and the gap between policy and practice.</p>
-
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-10/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
-  <a class="page-nav-link" href="../week-11/Speculative Futures - A Reading Guide.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Speculative Futures: A Reading Guide</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+  <p style=" margin-top: 20px; margin-bottom: 15px"><strong>Coming up in 11.2:</strong> a reading guide for the genuinely <em>speculative</em> end of the AI-in-research literature: frameworks (Krenn, Wang, Morris), falsifiable forecasts (METR), institutional visioning (Royal Society, Africa Declaration), and wild speculation (Clune, <em>AI 2027</em>, Russell), with the same calibration habit applied throughout. 11.3 then turns from speculation to the institutional present: what journals and funders have actually <em>done</em> in response to AI in research, and the gap between policy and practice.</p></div><div class="prevnext"><a href="../week-10/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Speculative%20Futures%20-%20A%20Reading%20Guide.html"><span class="d">Next &rarr;</span><span class="pt">Speculative Futures: A Reading Guide</span></a></div></div><div class="rightrail"><div class="rmeta">Week 11<br>Lesson 1<br>21 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Agentic coding tool</div>An AI coding assistant that works across multiple steps autonomously, writing code, running it, reading the output or error, and fixing it, without the user copying results back and forth.</div><div class="snote"><div class="sk">Wet-lab validation</div>Physical laboratory experiments using cells, chemicals, or living organisms that test whether a prediction holds in the real world, as distinct from a purely computational result.</div><div class="snote"><div class="sk">Preprint</div>A research paper shared publicly before completing peer review, typically posted on a repository such as arXiv. Preprints are citable but have not yet been checked by independent referees.</div><div class="snote"><div class="sk">Multi-agent system</div>An AI setup in which several specialised components work together, each handling a different sub-task, rather than one model doing everything alone.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

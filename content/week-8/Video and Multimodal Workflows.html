@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 8.5 - Video and Multimodal Workflows</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
+.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
+header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
+.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
+header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+.content { padding: 50px 40px; }
+.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
+.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.intro-text h2::before { content: '\1F3AF'; }
+.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+.styled-list { list-style: none; margin-top: 15px; }
+.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
+.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
+.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
+.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+.warning-box p { color: #555; line-height: 1.7; }
+.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
+.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.info-box p { color: #555; line-height: 1.7; }
+.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
+.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
+.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+.comparison-table tr:last-child td { border-bottom: none; }
+.comparison-table tr:hover { background: #f9f9f9; }
+.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
+.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
+.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
+.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
+.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+.resource-placeholder p { color: #666; }
+@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
+      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head>
+<body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+  <div class="ai-notice">
+    This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.
+  </div>
+
+  <header>
+    <div class="week-badge">Week 8 &bull; Sub-Lesson 5</div>
+    <h1><span style="color: #ffffff;">&#127916; Video and Multimodal Workflows</span></h1>
+    <p>Long-form video processing, combining modalities, and choosing the right tool for multimodal research workflows</p>
+  </header>
+
+  <div class="content">
+
+    <div class="intro-text">
+      <h2>What We'll Cover</h2>
+      <p>Video is the last frontier of multimodal AI for research, and in some ways the most powerful. Gemini&#39;s current Pro tier can process up to approximately one hour of video at standard settings in a single call (longer at lower FPS), simultaneously understanding the audio, the visual content, and any text that appears on screen. For researchers who work with recorded lectures, experimental footage, classroom observations, or video interviews, this changes how the work gets done.</p>
+      <p>But it also introduces compounded failure modes. When image understanding, audio transcription, and language reasoning all interact in a single analysis, errors from each layer can multiply. This sub-lesson covers what video AI can actually do, the architecture differences that matter, how to build reliable multimodal workflows, and the failure modes specific to video analysis.</p>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 class="section-title">&#127916; What Video AI Can Actually Do</h2>
+
+    <div class="card-grid">
+      <div class="card">
+        <h3>Long-Form Processing</h3>
+        <p>Gemini&#39;s Pro tier currently processes up to 1&nbsp;million tokens: roughly one hour of video at standard resolution, more at lower FPS settings, or around 8&ndash;9 hours of audio-only content. For mostly-static content like lectures with slides, the low-FPS parameter processes one frame per second instead of the default, allowing much longer recordings at lower cost. Check current API documentation for precise media-duration equivalents, which vary by resolution and FPS settings.</p>
+      </div>
+      <div class="card">
+        <h3>Simultaneous Audio + Visual Understanding</h3>
+        <p>Gemini's native multimodal architecture means the model jointly reasons over what is said and what is shown in the same pass. It can notice when a speaker's verbal claim conflicts with what is on the slide behind them, something a sequential pipeline (transcribe first, then analyse) would miss entirely.</p>
+      </div>
+      <div class="card">
+        <h3>Temporal Reasoning</h3>
+        <p>Asking questions about events in sequence: "What happened between minute 12 and minute 18?", identifying when a topic was first introduced, tracking how an argument develops across a long recording, or flagging the moment a methodology is described. These tasks require understanding the video as a time-ordered narrative, not a static document.</p>
+      </div>
+      <div class="card">
+        <h3>Text in Video</h3>
+        <p>Identifying and reading text that appears on screen: slide content, whiteboard working, lab equipment labels, safety signage in fieldwork footage, captions and on-screen graphics. For educational researchers analysing recorded lectures, this means the model can work with slide text without requiring a separate slide deck.</p>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <h2 class="section-title">&#128200; Research Use Cases</h2>
+
+    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">The table below maps common research video types to the most appropriate AI tools and flags the main caveat for each application. No row is caveat-free.</p>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Research Type</th>
+          <th>Video Content</th>
+          <th>AI Task</th>
+          <th>Best Tool</th>
+          <th>Key Caveat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Education research</td>
+          <td>Classroom recordings</td>
+          <td>Instructional coding, teacher&ndash;student interaction analysis</td>
+          <td>Gemini (family) / ClassMind</td>
+          <td>Temporal reasoning errors; verify coded events</td>
+        </tr>
+        <tr>
+          <td>Qualitative research</td>
+          <td>Video interviews</td>
+          <td>Transcription + non-verbal cue annotation</td>
+          <td>Gemini (family) + Whisper</td>
+          <td>Hallucination risk; verify transcription</td>
+        </tr>
+        <tr>
+          <td>Laboratory science</td>
+          <td>Experimental footage</td>
+          <td>Protocol adherence checking, event detection</td>
+          <td>Gemini (family)</td>
+          <td>Model may miss subtle visual details</td>
+        </tr>
+        <tr>
+          <td>Oral history</td>
+          <td>Long recorded interviews</td>
+          <td>Transcription, thematic segmentation</td>
+          <td>Whisper + <a href="https://atlasti.com" target="_blank" rel="noopener">ATLAS.ti</a></td>
+          <td>African language accuracy; human review required</td>
+        </tr>
+        <tr>
+          <td>Field research</td>
+          <td>Fieldwork video</td>
+          <td>Scene description, activity coding</td>
+          <td>GPT (family) / Gemini (family)</td>
+          <td>Contextual knowledge required for interpretation</td>
+        </tr>
+        <tr>
+          <td>Lecture analysis</td>
+          <td>Recorded lectures</td>
+          <td>Content segmentation, key point extraction</td>
+          <td>Gemini (Pro tier, low FPS)</td>
+          <td>Verify factual claims extracted from lecture content</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 3 -->
+    <h2 class="section-title">&#9881;&#65039; Native Multimodal vs. Text-Centric Architectures</h2>
+
+    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">This distinction matters for choosing the right tool, and for understanding what the tool can and cannot do.</p>
+
+    <div class="technical-detail">
+      <h4>Two Different Architectures</h4>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Text-centric models (current Claude versions, earlier text-only models):</strong> The model processes text. Images are converted to text descriptions; audio is transcribed to text; then the text model reasons over the result. Each conversion step loses information. Claude does not currently process audio or video natively: you transcribe audio first, then bring the transcript to Claude for analysis. This pipeline works well for many tasks, but the modalities are always handled sequentially, never jointly.</p>
+
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong style="color: #2a5298;">Natively multimodal models (Gemini, GPT family):</strong> Trained end-to-end on all modalities simultaneously. The model can reason about the relationship between what was said and what was shown without an intermediate text conversion. The difference is architectural, not just speed: these models can do cross-modal reasoning that a sequential pipeline cannot replicate.</p>
+
+      <div class="info-box" style="margin-top: 10px;">
+        <h4>&#128161; Practical Guidance</h4>
+        <p>If the <em>relationship</em> between audio and visual content matters (a speaker gesturing at a chart while explaining it, experimental footage where what you hear contextualises what you see), use a natively multimodal model. If the modalities can be analysed independently, sequential processing with Claude is often more predictable, more auditable, and easier to verify.</p>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <h2 class="section-title">&#128279; Combining Modalities in Research Workflows</h2>
+
+    <p style="color: #555; margin-bottom: 20px; line-height: 1.7;">Even when using a natively multimodal model, the design of your workflow matters. These five steps describe a principled approach to multimodal research analysis.</p>
+
+    <ol class="step-list">
+      <li><strong>Start with the most structured modality first.</strong> If your material has both a text document and audio, process the document first to establish context before analysing the audio. Priming the model with structured information improves its handling of less-structured input.</li>
+      <li><strong>Use transcription to bridge audio to text.</strong> Run audio through Whisper or OpenAI transcription, review the transcript for obvious errors, then use the verified transcript in your text analysis pipeline. A reviewed transcript gives you a stable, auditable record that the audio alone does not.</li>
+      <li><strong>For native video analysis, provide explicit context.</strong> Tell the model what the video is, what you are looking for, and what background knowledge it needs. Do not assume the model has domain-specific context. A classroom recording means something different to an education researcher than to a model with no information about the study context.</li>
+      <li><strong>Cross-check across modalities.</strong> If you have both a transcript and a video recording, spot-check the AI's video-based analysis against the transcript. Consistent findings across modalities increase confidence; contradictions flag errors that require human review.</li>
+      <li><strong>Verify temporal claims.</strong> Any AI statement about "when" something happens in a video should be verified by jumping to that timestamp. Temporal reasoning is one of the weakest points of current video AI; models confidently place events at the wrong point in a recording.</li>
+    </ol>
+
+    <!-- Section 5 -->
+    <h2 class="section-title">&#9888;&#65039; Failure Modes Specific to Video</h2>
+
+    <div class="warning-box">
+      <h4>Compounding Errors</h4>
+      <p>Video analysis combines image understanding, audio transcription, and language reasoning. An error in any one layer propagates to the final output. A misheard word in the transcription can change the model's interpretation of a visual element that would otherwise have been understood correctly. This compounding effect means the overall error rate for video analysis is higher than for any single modality, even when each individual component performs well.</p>
+    </div>
+
+    <div class="warning-box">
+      <h4>Temporal Hallucination</h4>
+      <p>Models sometimes assign events to wrong time periods, confuse the sequence of events, or hallucinate the existence of content that was discussed but not actually shown. If you ask "at what point does the presenter introduce the main finding?", the model may give you a timestamp that is plausible but wrong. Always jump to the timestamp before recording it as data.</p>
+    </div>
+
+    <div class="warning-box">
+      <h4>Attention Limits in Long Videos</h4>
+      <p>Despite the large context window, models do not attend equally to all parts of long videos. Important events in the middle of a long recording may receive less reliable analysis than those at the beginning or end. This is the "lost in the middle" problem applied to video, first documented for long text documents by Liu et al. (2024), which frontier models have partially addressed but not eliminated. For critical content in the middle of a long recording, consider submitting that segment separately and not relying on the model to find it unprompted.</p>
+    </div>
+
+    <div class="warning-box">
+      <h4>Speaker Diarization</h4>
+      <p>Distinguishing between multiple speakers in a video remains imperfect. In group discussions, panel recordings, or multi-person interviews, incorrect speaker attribution can corrupt qualitative analysis. If speaker identity matters for your research, verify attributions manually rather than relying on AI assignment.</p>
+    </div>
+
+    <!-- Readings -->
+    <h2 class="section-title">&#128218; Readings</h2>
+
+    <div class="resource-placeholder">
+      <h4>Supplementary Reading</h4>
+      <p>Gemini Pro tier documentation on video understanding. Covers token limits, FPS parameters, and best-practice prompting for video analysis.<br>
+      <a href="https://developers.googleblog.com/en/gemini-2-5-video-understanding/" target="_blank" rel="noopener" style="color: #003A70;">developers.googleblog.com/en/gemini-2-5-video-understanding/</a></p>
+    </div>
+
+    <div class="resource-placeholder">
+      <h4>Supplementary Reading</h4>
+      <p>Liu, N. F., Lin, K., Hewitt, J., Paranjape, A., Bevilacqua, M., Petroni, F., &amp; Liang, P. (2024). Lost in the middle: How language models use long contexts. <em>Transactions of the Association for Computational Linguistics</em>, 12, 157&ndash;173.<br>
+      <a href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener" style="color: #003A70;">arxiv.org/abs/2307.03172</a><br>
+      <em>Originally a document study, but the attention distribution problem applies directly to long video analysis.</em></p>
+    </div>
+
+    <!-- Summary -->
+    <div class="intro-text" style="margin-top: 50px;">
+      <h2>Summary</h2>
+      <p>Gemini's current video capabilities cover a lot of ground: up to ~1 hour of video at standard settings (longer at low FPS), simultaneous audio and visual understanding, temporal reasoning, and on-screen text reading. The architectural distinction is between natively multimodal models (which reason across modalities jointly) and text-centric models (which convert each modality to text sequentially). Choose based on whether cross-modal relationships matter for your task; neither approach wins everywhere.</p>
+      <p>A principled multimodal workflow starts with structured modalities, uses verified transcription as a text bridge, provides explicit context for video analysis, cross-checks across modalities, and always verifies temporal claims directly. The failure modes specific to video (compounding errors, temporal hallucination, middle-of-video attention drops, and imperfect speaker diarization) require active verification habits that go beyond what is needed for single-modality tasks.</p>
+      <p><strong>Next:</strong> Sub-Lesson 6 puts all of this into practice with three hands-on activities and the weekly assessment.</p>
+    </div>
+
+  </div><!-- /content -->
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-8/Transcription and Audio Analysis.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Transcription and Audio Analysis</div></a>
+  <a class="page-nav-link" href="../week-8/Hands-On Activities and Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Activities and Assessment</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div><!-- /container -->
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body>
+</html>

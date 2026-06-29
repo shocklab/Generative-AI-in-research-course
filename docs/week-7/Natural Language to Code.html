@@ -1,477 +1,258 @@
-﻿<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 7.1 - Natural Language to Code</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Lato', sans-serif;
-        line-height: 1.6;
-        color: #2c3e50;
-        background: #f5f5f5;
-        padding: 20px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-    }
-
-    .ai-notice {
-        background: #e8f4f8;
-        color: #003A70;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 0.9em;
-        border-bottom: 1px solid #d0e8f2;
-    }
-
-    .ai-notice strong {
-        font-weight: 600;
-    }
-
-    header {
-        background: #003A70;
-        color: white;
-        padding: 50px 40px;
-        text-align: center;
-    }
-
-    .week-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        margin-bottom: 15px;
-        backdrop-filter: blur(10px);
-    }
-
-    header h1 {
-        font-size: 2.3em;
-        margin-bottom: 15px;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
-
-    header p {
-        font-size: 1.1em;
-        opacity: 0.95;
-        max-width: 800px;
-        margin: 10px auto 0;
-    }
-
-    .content {
-        padding: 50px 40px;
-    }
-
-    .intro-text {
-        background: #f9f9f9;
-        padding: 35px;
-        border-radius: 15px;
-        border-left: 5px solid #003A70;
-        margin-bottom: 40px;
-    }
-
-    .intro-text h2 {
-        color: #2a5298;
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .intro-text h2::before {
-        content: '\1F3AF';
-    }
-
-    .intro-text p {
-        font-size: 1.1em;
-        color: #495057;
-        line-height: 1.8;
-        margin-bottom: 15px;
-    }
-
-    .section-title {
-        font-size: 2em;
-        color: #2a5298;
-        margin: 50px 0 30px;
-        padding-bottom: 15px;
-        border-bottom: 3px solid #003A70;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin: 30px 0;
-    }
-
-    .card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid #003A70;
-        transition: all 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h3 {
-        color: #2a5298;
-        font-size: 1.4em;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
-
-    .card p {
-        color: #555;
-        line-height: 1.7;
-        margin-bottom: 15px;
-    }
-
-    .styled-list {
-        list-style: none;
-        margin-top: 15px;
-    }
-
-    .styled-list li {
-        padding: 8px 0 8px 25px;
-        color: #555;
-        position: relative;
-        line-height: 1.6;
-    }
-
-    .styled-list li::before {
-        content: '\25B8';
-        position: absolute;
-        left: 0;
-        color: #003A70;
-        font-weight: bold;
-    }
-
-    .highlight-box {
-        background: #003A70;
-        color: white;
-        padding: 30px;
-        border-radius: 15px;
-        margin: 40px 0;
-    }
-
-    .highlight-box h3 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    .highlight-box p {
-        font-size: 1.05em;
-        line-height: 1.8;
-        opacity: 0.95;
-        margin-bottom: 12px;
-    }
-
-    .warning-box {
-        background: #fff8e1;
-        border-left: 5px solid #f9a825;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-    }
-
-    .warning-box h4 {
-        color: #e65100;
-        font-size: 1.1em;
-        margin-bottom: 10px;
-    }
-
-    .warning-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .info-box {
-        background: #f8f9fa;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-        border-left: 4px solid #003A70;
-    }
-
-    .info-box h4 {
-        color: #2a5298;
-        font-size: 1.2em;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .info-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .resource-placeholder {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-        border: 2px dashed #003A70;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 25px 0;
-        text-align: center;
-    }
-
-    .resource-placeholder h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 10px;
-    }
-
-    .resource-placeholder p {
-        color: #666;
-    }
-
-    .technical-detail {
-        background: white;
-        border: 2px solid #d0e8f2;
-        border-radius: 12px;
-        padding: 25px;
-        margin: 20px 0;
-    }
-
-    .technical-detail h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .case-study {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-        border: 2px solid #003A70;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 25px 0;
-    }
-
-    .case-study h4 {
-        color: #003A70;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
-
-    .comparison-table th {
-        background: #003A70;
-        color: white;
-        padding: 15px;
-        text-align: left;
-        font-weight: 600;
-    }
-
-    .comparison-table td {
-        padding: 12px 15px;
-        border-bottom: 1px solid #e9ecef;
-        color: #555;
-    }
-
-    .comparison-table tr:last-child td {
-        border-bottom: none;
-    }
-
-    .comparison-table tr:hover {
-        background: #f9f9f9;
-    }
-
-    .step-list {
-        list-style: none;
-        counter-reset: steps;
-        margin: 20px 0;
-    }
-
-    .step-list > li {
-        counter-increment: steps;
-        padding: 15px 15px 15px 60px;
-        position: relative;
-        margin-bottom: 15px;
-        background: #f8f9fa;
-        border-radius: 12px;
-    }
-
-    .step-list > li::before {
-        content: counter(steps);
-        position: absolute;
-        left: 15px;
-        top: 22px;
-        width: 35px;
-        height: 35px;
-        background: #003A70;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 1.8em;
-        }
-
-        .content {
-            padding: 30px 20px;
-        }
-
-        .card-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .comparison-table {
-            font-size: 0.85em;
-        }
-
-        .comparison-table th, .comparison-table td {
-            padding: 8px 10px;
-        }
-    }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body><div class="container">
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 7 • Sub-Lesson 1</div>
-<h1>💻 <span style="color: #ffffff;">Natural Language to Code — The New Interface</span></h1>
-<p>How describing what you want in plain English has become a viable way to produce working code, and what you still need to understand to use it responsibly</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>Something genuinely revolutionary has happened in the past two years. Researchers with no programming background can now describe an analysis in plain English and receive working Python, R, or MATLAB code in return. You can say "load this CSV file, calculate summary statistics for each column, and plot a histogram of the age variable" and get a script that actually runs.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Natural Language to Code — The New Interface — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 7 &middot; AI for Data, Code &amp; Computation</div><nav class="toc"><a class="lesson cur" href="Natural%20Language%20to%20Code.html">Natural Language to Code — The New Interface</a><div class="subs"><a href="#s1">The Paradigm Shift</a><a href="#s2">The Tools Landscape</a><a href="#s3">Free vs Paid — The Quality Gap</a><a href="#s4">&quot;Vibe Coding&quot; — Promise and Peril</a><a href="#s5">What You Need to Know Even Without Programming</a><a href="#s6">Readings</a></div><a class="lesson" href="AI-Assisted%20Data%20Analysis%20in%20Practice.html">AI-Assisted Data Analysis in Practice</a><a class="lesson" href="Visualization%20with%20AI.html">Visualization with AI</a><a class="lesson" href="Verification%20of%20AI-Generated%20Code.html">Verification of AI-Generated Code</a><a class="lesson" href="Building%20Your%20Data%20Analysis%20Workflow.html">Building Your Data Analysis Workflow</a><a class="lesson" href="Agentic%20Data%20Analysis.html">Agentic Data Analysis: Giving AI Tools, Not Just Questions</a><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Natural Language to Code — The New Interface</h1><div class="deck">How describing what you want in plain English has become a viable way to produce working code, and what you still need to understand to use it responsibly</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">Something genuinely revolutionary has happened in the past two years. Researchers with no programming background can now describe an analysis in plain English and receive working Python, R, or MATLAB code in return. You can say "load this CSV file, calculate summary statistics for each column, and plot a histogram of the age variable" and get a script that actually runs.</p>
 <p>This is not a gimmick. It is a fundamental change in who can do computational research. Tasks that previously required months of programming courses, or hiring a programmer, or spending days on Stack Overflow, can now be accomplished in minutes through conversation. For many of you in this room, this is among the most practical things you will learn in this course.</p>
 <p>You do not need to become a programmer, but you <strong>do</strong> need to understand what the code is doing. Modern agentic tools like Claude Code are remarkably good at catching and fixing their own syntax errors through autonomous iteration: they run the code, see what failed, and fix it without you lifting a finger. What they cannot reliably catch is code that runs perfectly but uses the wrong statistical method, the wrong variable, or the wrong analytical logic for your research question. This session will orient you to the tools, the quality gap between free and paid versions, the emerging practice of "vibe coding," and the minimum level of scientific literacy you need to use these tools responsibly.</p>
 </div>
 <!-- SECTION 1: THE PARADIGM SHIFT -->
-<h2 class="section-title">🚀 The Paradigm Shift</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">For decades, the barrier between having a research question and being able to answer it computationally was <em>programming skill</em> . That barrier has not disappeared, but it has been dramatically lowered.</p>
-<div class="card-grid">
-<div class="card">
-<h3>What Has Changed</h3>
+<h2 class="section-title" id="s1">The Paradigm Shift</h2>
+<p style=" margin-bottom: 30px">For decades, the barrier between having a research question and being able to answer it computationally was <em>programming skill</em> . That barrier has not disappeared, but it has been dramatically lowered.</p>
+<div class="card-grid"><div class="card"><h3>What Has Changed</h3>
 <p>Until recently, if you wanted to analyse a dataset, you had two options: learn to program, or find someone who could program to do it for you. Both options introduced delays, dependencies, and friction. Many valuable research questions went unanswered because the researcher asking them did not have the technical skills to answer them.</p>
 <p>Large language models have created a third option: describe what you want in natural language, and let the AI generate the code. This works because modern LLMs have been trained on millions of code repositories and documentation pages. They have seen almost every common programming pattern, library call, and data analysis workflow that exists.</p>
 </div>
-<div class="card">
-<h3>What This Means for You</h3>
+<div class="card"><h3>What This Means for You</h3>
 <p><strong>If you have no coding background:</strong> This is genuinely democratising. Tasks that were previously impossible for you (loading datasets, running statistical tests, creating visualisations, cleaning messy data) are now accessible through conversation. You are not pretending to be a programmer. You are using a new kind of interface to achieve the same results.</p>
 <p><strong>If you already code:</strong> This changes your workflow but not your need for expertise. You will write code faster, explore approaches more quickly, and spend less time on boilerplate. But your understanding of algorithms, data structures, and domain-specific methods remains essential. The AI accelerates your work; it does not replace your judgment.</p>
 </div>
 </div>
-<div class="case-study">
-<h4>🧪 A Concrete Example</h4>
+<div class="case-study"><h4>A Concrete Example</h4>
 <p>Imagine you have a CSV file with survey data from 500 respondents. You want to know whether responses differ significantly between two groups. Here is what you might type into an AI coding tool:</p>
-<p style="margin-top: 15px; font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 8px; color: #333;">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
-<p style="margin-top: 15px;">A modern AI coding tool will generate working Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation. The entire process takes less than a minute.</p>
-<p style="margin-top: 15px;">You described <em>what</em> you wanted rather than <em>how</em> to implement it. The AI translated your intent into specific technical instructions. This is what we mean by natural language as an interface to code.</p>
+<p style="margin-top: 15px; padding: 15px; border-radius: 8px">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
+<p style="margin-top: 15px">A modern AI coding tool will generate working Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation. The entire process takes less than a minute.</p>
+<p style="margin-top: 15px">You described <em>what</em> you wanted rather than <em>how</em> to implement it. The AI translated your intent into specific technical instructions. This is what we mean by natural language as an interface to code.</p>
 </div>
-<div class="highlight-box">
-<h3>💡 <span style="color: #ffffff;">The Critical Caveat</span></h3>
+<div class="highlight-box"><h3><span>The Critical Caveat</span></h3>
 <p>Modern agentic tools like Claude Code are excellent at catching their own programming errors. They iterate autonomously, fix syntax issues, and can even inspect their own visualisation outputs. This is a capability leap from earlier AI coding tools. But there is a category of error these tools do not reliably catch: code that runs perfectly but uses the wrong statistical test, the wrong variable, or the wrong analytical logic for your research question.</p>
-<p style="margin-top: 12px;">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may be wrong. No amount of autonomous iteration catches this, because from the code's perspective, nothing failed. You do not need to write code, but you do need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
+<p style="margin-top: 12px">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may be wrong. No amount of autonomous iteration catches this, because from the code's perspective, nothing failed. You do not need to write code, but you do need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
 </div>
 <!-- SECTION 2: THE TOOLS LANDSCAPE -->
-<h2 class="section-title">🛠️ The Tools Landscape</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The ecosystem of AI coding tools has expanded rapidly. Each tool has a different approach, different strengths, and a different trade-off between ease of use and capability. Here is what matters for researchers.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Claude Code</h3>
+<h2 class="section-title" id="s2">The Tools Landscape</h2>
+<p style=" margin-bottom: 30px">The ecosystem of AI coding tools has expanded rapidly. Each tool has a different approach, different strengths, and a different trade-off between ease of use and capability. Here is what matters for researchers.</p>
+<div class="card-grid"><div class="card"><h3>Claude Code</h3>
 <p><strong>What it is:</strong> A terminal-based, agentic coding tool from Anthropic. It runs in your computer's command line and can read and write files on your system, execute code, and iterate on results, all through natural language conversation.</p>
 <p><strong>Key strengths:</strong> Strongest reasoning capabilities of any current coding tool. Can work with your actual files and project structure. Agentic mode means it can plan multi-step tasks, run code, check results, and fix errors autonomously.</p>
 <p><strong>Limitations:</strong> Requires comfort with the terminal (command line). The free tier is limited in usage. Steeper learning curve than chat-based alternatives.</p>
 <p><strong>Pricing:</strong> Free tier limited. Pro tier $20/month.</p>
 </div>
-<div class="card">
-<h3>ChatGPT Code Interpreter</h3>
+<div class="card"><h3>ChatGPT Code Interpreter</h3>
 <p><strong>What it is:</strong> OpenAI's built-in Python execution environment inside ChatGPT. You can upload data files directly, and it will write and run Python code in a sandboxed environment, returning results and visualisations in the chat.</p>
 <p><strong>Key strengths:</strong> Extremely easy to use, with no setup required. Upload a CSV and start asking questions. Generates visualisations inline. Good for exploratory analysis and quick data tasks.</p>
 <p><strong>Limitations:</strong> Python only (no R or MATLAB). The sandbox environment has limited libraries. Cannot access your local files or other systems. Session state can be lost.</p>
 <p><strong>Pricing:</strong> Free tier available. Plus $20/month.</p>
 </div>
-<div class="card">
-<h3>GitHub Copilot</h3>
+<div class="card"><h3>GitHub Copilot</h3>
 <p><strong>What it is:</strong> An AI autocomplete tool that integrates directly into code editors like VS Code and JetBrains. As you type code, it suggests completions, from single lines to entire functions, based on the context of what you are writing.</p>
 <p><strong>Key strengths:</strong> Smooth integration into the coding workflow. Excellent for writing code faster if you already know how to code. Supports virtually every programming language. The inline suggestion model feels natural once you get used to it.</p>
 <p><strong>Limitations:</strong> Requires a code editor and some coding knowledge to use effectively. It completes code rather than having a conversation with you about your analysis goals. Less useful for complete beginners.</p>
 <p><strong>Pricing:</strong> Free tier for students and educators. Pro $10/month.</p>
 </div>
-<div class="card">
-<h3>Cursor</h3>
+<div class="card"><h3>Cursor</h3>
 <p><strong>What it is:</strong> An AI-first code editor built on VS Code. It combines the familiar editing experience with deep AI integration: you can chat with your codebase, make multi-file edits through natural language, and run up to eight parallel AI agents on different tasks.</p>
 <p><strong>Key strengths:</strong> The most powerful AI integration of any code editor. Multi-file awareness means it understands your entire project. Natural language commands for editing and refactoring. Parallel agents for complex tasks.</p>
 <p><strong>Limitations:</strong> Still a code editor. More approachable than a raw terminal, but still oriented toward people who work with code regularly. The free tier is quite limited.</p>
 <p><strong>Pricing:</strong> Free tier limited. Pro $20/month.</p>
 </div>
-<div class="card">
-<h3>Google Colab AI</h3>
+<div class="card"><h3>Google Colab AI</h3>
 <p><strong>What it is:</strong> AI assistance built directly into Google Colaboratory, a free cloud-based Jupyter notebook environment. You can write natural language prompts in code cells and get AI-generated code suggestions.</p>
 <p><strong>Key strengths:</strong> Free with any Google account. Runs in the browser, with no installation needed. Access to free GPU/TPU resources for machine learning tasks. Familiar notebook interface for iterative analysis. Easy to share and collaborate.</p>
 <p><strong>Limitations:</strong> AI features are less sophisticated than dedicated tools. Python-only. Session timeouts can lose your work. The free tier has limited compute resources.</p>
 <p><strong>Pricing:</strong> Free with Google account. Colab Pro from $10/month for more resources.</p>
 </div>
-<div class="card">
-<h3>Gemini Code Assist</h3>
+<div class="card"><h3>Gemini Code Assist</h3>
 <p><strong>What it is:</strong> Google's AI coding assistant, integrated into various IDEs including VS Code and JetBrains, as well as Google Cloud tools. Uses Google's Gemini models for code generation, completion, and explanation.</p>
 <p><strong>Key strengths:</strong> Strong integration with the Google Cloud ecosystem. Good at working with Google-specific tools and services. Supports multiple languages. Codebase-aware for context-appropriate suggestions.</p>
 <p><strong>Limitations:</strong> Less established than Copilot in terms of community adoption. Some features are tied to Google Cloud Platform. Quality can be variable depending on the language and framework.</p>
 <p><strong>Pricing:</strong> Free tier available. Enterprise pricing varies.</p>
 </div>
 </div>
-<div class="info-box">
-<h4>📋 Which Tool Should You Start With?</h4>
+<div class="info-box"><h4>Which Tool Should You Start With?</h4>
 <p><strong>If you have never written code before:</strong> Start with ChatGPT Code Interpreter or Google Colab AI. Both let you upload data and start asking questions immediately, with zero setup. You will hit limitations eventually, but they are the gentlest way in.</p>
 <p><strong>If you have some coding experience:</strong> Try Cursor or GitHub Copilot. Both integrate into the coding workflow you already know and will accelerate it significantly.</p>
 <p><strong>If you want maximum power and are willing to learn:</strong> Claude Code offers the strongest reasoning and most autonomous capabilities, but requires comfort with command-line tools.</p>
 </div>
 <!-- SECTION 3: FREE VS PAID -->
-<h2 class="section-title">💰 Free vs Paid — The Quality Gap</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Many of you will be using free tiers of these tools, and you need an honest assessment of what free versions can and cannot do. The quality gap in AI coding tools is real, and pretending otherwise would be a disservice.</p>
-<div class="technical-detail">
-<h4>Where the Differences Lie</h4>
+<h2 class="section-title" id="s3">Free vs Paid — The Quality Gap</h2>
+<p style=" margin-bottom: 30px">Many of you will be using free tiers of these tools, and you need an honest assessment of what free versions can and cannot do. The quality gap in AI coding tools is real, and pretending otherwise would be a disservice.</p>
+<div class="technical-detail"><h4>Where the Differences Lie</h4>
 <p>The gap between free and paid AI coding tools goes beyond speed or convenience. It affects the quality of the code you receive and, by extension, the reliability of your research analysis. Here are the key dimensions:</p>
 <ul class="styled-list">
 <li><strong>Context window:</strong> Free tiers typically offer much smaller context windows, meaning the amount of information the AI can consider at once. This matters a great deal when working with data. If the AI cannot see your entire dataset structure, your full script, or the error messages alongside your code, it will produce less accurate and less relevant suggestions. Paid tiers may offer 100,000+ tokens of context versus 8,000–32,000 on free tiers.</li>
@@ -480,9 +261,7 @@
 <li><strong>File access and code execution:</strong> Some free tiers cannot read your files or run code at all. You are reduced to copy-pasting snippets back and forth, which introduces errors, loses context, and makes multi-step analysis painfully slow. Paid tiers often include direct file access and execution environments.</li>
 </ul>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Where Free Is Sufficient</h3>
+<div class="card-grid"><div class="card"><h3>Where Free Is Sufficient</h3>
 <p>Free tiers are genuinely useful for many common research tasks, and you should not feel that paid access is required to benefit from AI coding assistance:</p>
 <ul class="styled-list">
 <li><strong>Simple code generation:</strong> Writing a function to calculate a specific metric, converting between data formats, or generating boilerplate code</li>
@@ -492,8 +271,7 @@
 <li><strong>Understanding error messages:</strong> Pasting an error message and getting a clear explanation of what went wrong and how to fix it, often one of the most valuable uses of AI for beginners</li>
 </ul>
 </div>
-<div class="card">
-<h3>Where Paid Makes a Real Difference</h3>
+<div class="card"><h3>Where Paid Makes a Real Difference</h3>
 <p>The gap becomes apparent in more demanding scenarios, particularly those common in research:</p>
 <ul class="styled-list">
 <li><strong>Complex multi-step analysis:</strong> When your analysis requires loading data, cleaning it, merging datasets, running statistical models, and generating publication-quality figures as a single coherent workflow, paid tools handle this dramatically better</li>
@@ -504,8 +282,7 @@
 </ul>
 </div>
 </div>
-<div class="info-box">
-<h4>💡 Strategies for Maximising Free Tier Value</h4>
+<div class="info-box"><h4>Strategies for Maximising Free Tier Value</h4>
 <p>If you are working within free tiers, which is perfectly reasonable, these strategies will help you get the most out of them:</p>
 <ul class="styled-list">
 <li><strong>Break tasks into small pieces:</strong> Instead of asking for an entire analysis pipeline, ask for one step at a time. This works within smaller context windows and produces more reliable code</li>
@@ -514,8 +291,7 @@
 <li><strong>Save your prompts:</strong> When a prompt produces good results, save it. Building a personal library of effective prompts is like building a toolkit: it compounds over time and reduces the number of requests you need to make</li>
 </ul>
 </div>
-<div class="warning-box">
-<h4>⚠️ The Honest Assessment</h4>
+<div class="warning-box"><h4>The Honest Assessment</h4>
 <p>The quality gap between free and paid AI coding tools is larger than in any other category we have covered in this course. If your research depends heavily on computational analysis, a paid tier may be one of the most cost-effective investments you can make: a single month's subscription costs less than a textbook and can save dozens of hours. But you should know what you are paying for and what the free alternatives can still do. Do not let marketing convince you that free tools are useless, and do not let optimism convince you that they are equivalent to paid ones. The truth sits in between, and where you fall depends on the complexity of your work.</p>
 </div>
 <table class="comparison-table">
@@ -567,17 +343,14 @@
 </tbody>
 </table>
 <!-- SECTION 4: VIBE CODING -->
-<h2 class="section-title">🎵 "Vibe Coding" — Promise and Peril</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A term emerged in early 2025 for this new way of writing code by describing what you want rather than specifying how to implement it. It captures both the appeal and the danger of the approach.</p>
-<div class="technical-detail">
-<h4>What Is Vibe Coding?</h4>
+<h2 class="section-title" id="s4">"Vibe Coding" — Promise and Peril</h2>
+<p style=" margin-bottom: 30px">A term emerged in early 2025 for this new way of writing code by describing what you want rather than specifying how to implement it. It captures both the appeal and the danger of the approach.</p>
+<div class="technical-detail"><h4>What Is Vibe Coding?</h4>
 <p>The term "vibe coding" was coined in 2025 to describe a style of programming where you guide AI through natural language descriptions, accepting or modifying what it produces based on whether the output "feels right" rather than verifying every line. You describe the vibe of what you want, and the AI fills in the technical details.</p>
-<p style="margin-top: 15px;">At its best, vibe coding is a powerful rapid prototyping technique. At its worst, it produces code that <em>appears</em> to work but answers the wrong question. The distinction between these outcomes depends almost entirely on whether you verify the scientific correctness of the analysis, beyond checking that the code runs.</p>
-<p style="margin-top: 15px;">One caveat for 2026: modern agentic tools have largely eliminated the old "paste error message back and forth" problem. Claude Code, Codex, and similar tools run code autonomously, read the error, fix it, and iterate, often without any human intervention. They can also view their own plot outputs and critique them. This is a real improvement over earlier tools. But this capability addresses <em>programming errors</em> . It does not address <em>scientific errors</em> , and those are the ones that matter most for research.</p>
+<p style="margin-top: 15px">At its best, vibe coding is a powerful rapid prototyping technique. At its worst, it produces code that <em>appears</em> to work but answers the wrong question. The distinction between these outcomes depends almost entirely on whether you verify the scientific correctness of the analysis, beyond checking that the code runs.</p>
+<p style="margin-top: 15px">One caveat for 2026: modern agentic tools have largely eliminated the old "paste error message back and forth" problem. Claude Code, Codex, and similar tools run code autonomously, read the error, fix it, and iterate, often without any human intervention. They can also view their own plot outputs and critique them. This is a real improvement over earlier tools. But this capability addresses <em>programming errors</em> . It does not address <em>scientific errors</em> , and those are the ones that matter most for research.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>When Vibe Coding Works Well</h3>
+<div class="card-grid"><div class="card"><h3>When Vibe Coding Works Well</h3>
 <p>There are legitimate, productive uses of the vibe coding approach in research:</p>
 <ul class="styled-list">
 <li><strong>Prototyping:</strong> When you want to quickly test whether an approach is feasible before investing time in a careful implementation. If the prototype works, you can then verify and refine the code</li>
@@ -586,8 +359,7 @@
 <li><strong>Quick utility scripts:</strong> Renaming files, converting formats, reorganising data, tasks where the correctness is obvious from the output</li>
 </ul>
 </div>
-<div class="card">
-<h3>When Vibe Coding Is Dangerous</h3>
+<div class="card"><h3>When Vibe Coding Is Dangerous</h3>
 <p>The same approach becomes risky when the stakes are higher:</p>
 <ul class="styled-list">
 <li><strong>Analysis for publication:</strong> Code that produces results you will report in a paper must be verified, not vibed. A wrong statistical test or a subtle data filtering error can invalidate your findings</li>
@@ -597,46 +369,38 @@
 </ul>
 </div>
 </div>
-<div class="highlight-box">
-<h3>💡 <span style="color: #ffffff;">The Parallel to AI Writing</span></h3>
+<div class="highlight-box"><h3><span>The Parallel to AI Writing</span></h3>
 <p>There is a direct connection to what we discussed in Week 6. Just as AI can write prose that <em>sounds right</em> but says something subtly wrong, it can write code that <em>looks right</em> but computes something subtly wrong. In both cases, the surface quality masks potential problems underneath. And in both cases, the solution is the same: you need to understand what the output is doing well enough to catch errors, rather than just well enough to accept it.</p>
 <p>The "explain this paragraph" test from Week 6 has an exact analogue in code: can you explain what each section of the AI-generated code does and why? If not, you are vibe coding, and you should not trust the output for anything that matters.</p>
 </div>
-<div class="warning-box">
-<h4>⚠️ The Remaining Problem</h4>
+<div class="warning-box"><h4>The Remaining Problem</h4>
 <p>The vibe coding risk has shifted. In 2024, the danger was code that crashed halfway through your analysis. Today, with agentic tools handling iteration autonomously, that risk is largely gone. The danger is now more subtle: a script that runs without errors, produces a polished plot, and returns a confident p-value, all while using the wrong test for your data type, silently excluding observations in a way that biases your results, or modelling the wrong relationship entirely. These are scientific errors, not programming errors, and no amount of autonomous code iteration will catch them. The only defence is understanding what the analysis is doing and whether it matches your research question.</p>
 </div>
 <!-- SECTION 5: WHAT YOU NEED TO KNOW -->
-<h2 class="section-title">📖 What You Need to Know Even Without Programming</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">You do not need to write code from scratch. But you do need to <strong>read</strong> code well enough to verify that AI-generated scripts are doing what you intend. Here is the minimum set of concepts that every AI-assisted researcher should understand.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Variables and Data Types</h3>
+<h2 class="section-title" id="s5">What You Need to Know Even Without Programming</h2>
+<p style=" margin-bottom: 30px">You do not need to write code from scratch. But you do need to <strong>read</strong> code well enough to verify that AI-generated scripts are doing what you intend. Here is the minimum set of concepts that every AI-assisted researcher should understand.</p>
+<div class="card-grid"><div class="card"><h3>Variables and Data Types</h3>
 <p>A variable is a named container that holds a value. When AI-generated code says <code>mean_score = df['satisfaction'].mean()</code> , you should understand that <code>mean_score</code> is storing the average of the 'satisfaction' column, and <code>df</code> is the dataset.</p>
 <p>Data types matter because operations that work on one type may fail or behave unexpectedly on another. A column of numbers stored as text will not compute a correct average, and AI-generated code does not always catch this. Knowing the difference between numeric, text, and categorical data is essential.</p>
 </div>
-<div class="card">
-<h3>Functions and Libraries</h3>
+<div class="card"><h3>Functions and Libraries</h3>
 <p>A function is a reusable block of code that takes input and produces output. <code>t_test(group_a, group_b)</code> takes two sets of values and returns a test result. You do not need to know how the t-test is implemented, but you need to know what it expects as input and what it returns.</p>
 <p>Libraries (also called packages) are collections of pre-written functions. When code starts with <code>import pandas as pd</code> or <code>library(tidyverse)</code> , it is loading tools that other programmers have built. Understanding which libraries are standard for your type of analysis helps you judge whether the AI is making sensible choices.</p>
 </div>
-<div class="card">
-<h3>Loops and Conditionals</h3>
+<div class="card"><h3>Loops and Conditionals</h3>
 <p>A loop repeats an operation multiple times, for example processing each row in a dataset or running an analysis on each subgroup. When you see <code>for group in groups:</code> , the code inside will execute once for each group.</p>
 <p>A conditional executes code only when a condition is true. <code>if p_value &lt; 0.05:</code> means the indented code only runs when the p-value is below the threshold. These are the basic building blocks of any analysis logic, and understanding them helps you trace what AI-generated code is actually doing step by step.</p>
 </div>
-<div class="card">
-<h3>Reading Error Messages</h3>
+<div class="card"><h3>Reading Error Messages</h3>
 <p>When code fails, it produces an error message. These messages are not written for beginners, but they contain valuable information. A typical Python error tells you: which line failed, what type of error occurred, and often a description of the problem.</p>
 <p>The most practical skill you can develop is learning to <strong>copy the error message into an AI tool and ask for an explanation</strong> . This is one area where even free-tier AI tools excel, translating cryptic error messages into plain English and suggesting fixes. You do not need to memorise error types. You need to know that the error message is the starting point for fixing the problem, not a reason to give up.</p>
 </div>
 </div>
-<div class="case-study">
-<h4>🧪 The Difference Between "Runs" and "Correct"</h4>
+<div class="case-study"><h4>The Difference Between "Runs" and "Correct"</h4>
 <p>Consider this scenario: you ask AI to compare satisfaction scores between two groups. The AI generates code that runs perfectly and produces a p-value of 0.03. You conclude the groups are significantly different.</p>
-<p style="margin-top: 15px;">But look closer at the code. The AI used a standard t-test, which assumes your data is normally distributed. Your satisfaction scores are on a 1–5 Likert scale, so they are ordinal, not normally distributed. A Mann-Whitney U test would have been more appropriate. The "correct" code might give you a p-value of 0.08, which is not significant.</p>
-<p style="margin-top: 15px;">The code ran. It produced a result. That result was wrong, not because the AI made a programming error, but because it chose an inappropriate statistical method for your data type. This is the kind of error that vibe coding will miss and that a basic understanding of your analysis can catch.</p>
-<p style="margin-top: 15px;">Always ask yourself whether the code is doing the right analysis, or just <em>an</em> analysis. If you are unsure, describe your data and the test the AI chose to a second AI tool and ask whether the choice is appropriate. Cross-checking between tools is one of the most effective strategies available to non-programmers.</p>
+<p style="margin-top: 15px">But look closer at the code. The AI used a standard t-test, which assumes your data is normally distributed. Your satisfaction scores are on a 1–5 Likert scale, so they are ordinal, not normally distributed. A Mann-Whitney U test would have been more appropriate. The "correct" code might give you a p-value of 0.08, which is not significant.</p>
+<p style="margin-top: 15px">The code ran. It produced a result. That result was wrong, not because the AI made a programming error, but because it chose an inappropriate statistical method for your data type. This is the kind of error that vibe coding will miss and that a basic understanding of your analysis can catch.</p>
+<p style="margin-top: 15px">Always ask yourself whether the code is doing the right analysis, or just <em>an</em> analysis. If you are unsure, describe your data and the test the AI chose to a second AI tool and ask whether the choice is appropriate. Cross-checking between tools is one of the most effective strategies available to non-programmers.</p>
 </div>
 <ol class="step-list">
 <li><strong>Describe your goal clearly.</strong> Be specific about your data (types, size, structure), what question you are trying to answer, and what you expect the output to look like. Vague prompts produce vague code.</li>
@@ -646,58 +410,34 @@
 <li><strong>Read the output critically.</strong> Do the numbers make sense? Is the range plausible? Are there obvious anomalies? Your domain expertise is a powerful debugging tool: you have a rough idea of what the answer should look like even before running the analysis.</li>
 </ol>
 <!-- SECTION 6: READINGS -->
-<h2 class="section-title">📚 Readings</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Three core readings for this sub-lesson. The first two are practical guides aimed at researchers using AI coding tools. The third is an empirical evaluation of how well AI performs as a data analyst.</p>
-<div class="resource-placeholder">
-<h4>📄 Core Reading 1</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener"> <strong>Mineault, P. (2026). "Claude Code for Scientists."</strong> </a>. A practical guide by a neuroscientist on how Claude Code fits into a scientific workflow. Covers setup, common use cases, and the balance between AI assistance and scientific rigour. Particularly relevant for researchers who want to understand the agentic approach to AI-assisted coding.</p>
+<h2 class="section-title" id="s6">Readings</h2>
+<p style=" margin-bottom: 30px">Three core readings for this sub-lesson. The first two are practical guides aimed at researchers using AI coding tools. The third is an empirical evaluation of how well AI performs as a data analyst.</p>
+<div class="resource-placeholder"><h4>Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener"> <strong>Mineault, P. (2026). "Claude Code for Scientists."</strong> </a>. A practical guide by a neuroscientist on how Claude Code fits into a scientific workflow. Covers setup, common use cases, and the balance between AI assistance and scientific rigour. Particularly relevant for researchers who want to understand the agentic approach to AI-assisted coding.</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Core Reading 2</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.dataquest.io/blog/getting-started-with-claude-code-for-data-scientists/" target="_blank" rel="noopener"> <strong>Dataquest (2025). "Getting Started with Claude Code for Data Scientists."</strong> </a>. A step-by-step introduction to using Claude Code for data analysis tasks. Good for understanding the practical workflow: how you interact with the tool, what kinds of tasks it handles well, and where it needs guidance.</p>
+<div class="resource-placeholder"><h4>Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.dataquest.io/blog/getting-started-with-claude-code-for-data-scientists/" target="_blank" rel="noopener"> <strong>Dataquest (2025). "Getting Started with Claude Code for Data Scientists."</strong> </a>. A step-by-step introduction to using Claude Code for data analysis tasks. Good for understanding the practical workflow: how you interact with the tool, what kinds of tasks it handles well, and where it needs guidance.</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Core Reading 3</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener"> <strong>Cheng, L., Li, X., &amp; Bing, L. (2023). "Is GPT-4 a Good Data Analyst?" arXiv:2305.15038</strong> </a>. An empirical evaluation of GPT-4's capabilities as a data analyst, testing it on real-world data analysis tasks. The findings are mixed: strong on standard tasks, weaker on edge cases and domain-specific judgment. Essential reading for understanding both the capabilities and limitations of AI-assisted data analysis.</p>
+<div class="resource-placeholder"><h4>Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener"> <strong>Cheng, L., Li, X., &amp; Bing, L. (2023). "Is GPT-4 a Good Data Analyst?" arXiv:2305.15038</strong> </a>. An empirical evaluation of GPT-4's capabilities as a data analyst, testing it on real-world data analysis tasks. The findings are mixed: strong on standard tasks, weaker on edge cases and domain-specific judgment. Essential reading for understanding both the capabilities and limitations of AI-assisted data analysis.</p>
 </div>
-<p style="font-size: 1.1em; color: #555; margin-top: 40px; margin-bottom: 20px;"><strong>Supplementary readings</strong> for those who want to go deeper:</p>
-<div class="resource-placeholder">
-<h4>📄 Supplementary Reading 1</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://r4ds.hadley.nz/" target="_blank" rel="noopener"> <strong> Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for Data Science</em> , 2nd Edition. </strong> </a>. Free online. Even if you plan to use Python, this book is one of the best introductions to thinking about data analysis systematically. The concepts transfer across languages, and AI tools can help you translate R patterns into Python or vice versa.</p>
+<p style=" margin-top: 40px; margin-bottom: 20px"><strong>Supplementary readings</strong> for those who want to go deeper:</p>
+<div class="resource-placeholder"><h4>Supplementary Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://r4ds.hadley.nz/" target="_blank" rel="noopener"> <strong>Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for Data Science</em> , 2nd Edition. </strong> </a>. Free online. Even if you plan to use Python, this book is one of the best introductions to thinking about data analysis systematically. The concepts transfer across languages, and AI tools can help you translate R patterns into Python or vice versa.</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Supplementary Reading 2</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2402.18679" target="_blank" rel="noopener"> <strong>Hong, S., et al. (2024). "Data Interpreter: An LLM Agent for Data Science." arXiv:2402.18679</strong> </a>. A research paper on building LLM-based agents specifically for data science tasks. Relevant for understanding where the field is heading: AI tools that plan, execute, and iteratively refine entire analysis pipelines rather than only generating code.</p>
+<div class="resource-placeholder"><h4>Supplementary Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2402.18679" target="_blank" rel="noopener"> <strong>Hong, S., et al. (2024). "Data Interpreter: An LLM Agent for Data Science." arXiv:2402.18679</strong> </a>. A research paper on building LLM-based agents specifically for data science tasks. Relevant for understanding where the field is heading: AI tools that plan, execute, and iteratively refine entire analysis pipelines rather than only generating code.</p>
 </div>
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>📚 Summary &amp; What Comes Next</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Summary &amp; What Comes Next</h2>
 <p>This session introduced the paradigm shift that AI coding tools represent for researchers: the ability to describe analysis in natural language and receive working code. We surveyed the tools available, from beginner-friendly options like ChatGPT Code Interpreter and Google Colab to power tools like Claude Code and Cursor.</p>
 <p>We addressed the quality gap between free and paid tiers honestly: free tools are genuinely useful for many tasks, but the difference in complex analysis scenarios is substantial. We examined "vibe coding" as both a useful prototyping approach and a dangerous habit when applied to research that will be published. And we outlined the minimum code literacy that every AI-assisted researcher needs, which is not the ability to write code but the ability to read it well enough to verify that it does what you intend.</p>
-<ul class="styled-list" style="margin-top: 15px;">
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>Natural language to code is real and practical:</strong> You can describe what you want and get working code. This is a genuine democratisation of computational research</li>
 <li><strong>The tools vary significantly:</strong> Choose based on your experience level, your needs, and whether free tiers are sufficient for your work</li>
 <li><strong>Free vs paid matters:</strong> The gap is real, especially for complex analysis. Use strategies to maximise free tier value, and consider paid tiers as a research investment if computation is central to your work</li>
 <li><strong>Vibe coding has its place:</strong> For prototyping and exploration, it is useful. For publication-quality analysis, it is dangerous. Know the difference</li>
 <li><strong>You need code literacy, not coding skill:</strong> Reading code, understanding error messages, and verifying statistical choices are the essential skills for AI-assisted research</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session:</strong> In Sub-Lesson 2 (AI-Assisted Data Analysis in Practice), we move from concepts to hands-on work: loading real datasets, generating analysis code, debugging errors, and producing visualisations using the tools and principles introduced today.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-6/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
-  <a class="page-nav-link" href="../week-7/AI-Assisted Data Analysis in Practice.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">AI-Assisted Data Analysis in Practice</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next session:</strong> In Sub-Lesson 2 (AI-Assisted Data Analysis in Practice), we move from concepts to hands-on work: loading real datasets, generating analysis code, debugging errors, and producing visualisations using the tools and principles introduced today.</p>
+</div></div><div class="prevnext"><a href="../week-6/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="AI-Assisted%20Data%20Analysis%20in%20Practice.html"><span class="d">Next &rarr;</span><span class="pt">AI-Assisted Data Analysis in Practice</span></a></div></div><div class="rightrail"><div class="rmeta">Week 7<br>Lesson 1<br>24 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Agentic coding tool</div>An AI coding assistant that works across multiple steps autonomously, writing code, running it, reading the output or error, and fixing it, without the user copying results back and forth.</div><div class="snote"><div class="sk">Context window</div>The maximum amount of text an AI model can hold in view at once, measured in tokens. Once a long session fills the window, the model starts losing track of earlier exchanges.</div><div class="snote"><div class="sk">Vibe coding</div>A style of AI-assisted programming where the user describes what they want in natural language and accepts or adjusts the output based on whether the result looks right, rather than verifying every line in detail.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced A.1 - What Claude Code Actually Is</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.instructor-box {
+    background: #f3effa;
+    border-left: 5px solid #6a5da8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+}
+.instructor-box h4 {
+    color: #4f4391;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.instructor-box p {
+    color: #463f5e;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.instructor-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+pre.code-block {
+    background: #11243d;
+    color: #e6edf3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.65;
+    white-space: pre;
+}
+pre.code-block .cm {
+    color: #8aa0b6;
+}
+pre.code-block .pr {
+    color: #7fd1b9;
+}
+code {
+    background: #eef2f6;
+    color: #11407c;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.86em;
+}
+pre.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.gate-banner {
+    background: #003A70;
+    color: white;
+    padding: 22px 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.0em;
+    line-height: 1.7;
+}
+.gate-banner strong {
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    } pre.code-block { font-size: 0.78em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span,
+.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
+    color: #ffffff !important;
+}
+.highlight-box a, header a, .gate-banner a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Advanced Track &bull; Lesson A &bull; 1 of 3</div>
+  <h1>&#128421;&#65039; <span style="color: #ffffff;">What Claude Code Actually Is</span></h1>
+  <p>An agent that lives in your project folder, where the model is the smallest part of what works for you</p>
+</header>
+
+<div class="content">
+
+  <div class="gate-banner">
+    <strong>&#9888;&#65039; This is the Advanced Track &mdash; it goes beyond the free tier.</strong> Everything in Weeks 1&ndash;12 was chosen so that you could do it on free tools, because access is not a detail (Week&nbsp;10) and most of the world&#39;s researchers do not have a paid AI budget (Week&nbsp;11.4). This track is the one deliberate exception. It uses <strong>Claude Code</strong>, which needs a paid Claude subscription and comfort with a terminal. It is genuinely optional, it sits <em>after</em> the Week&nbsp;12 capstone on purpose, and the next page makes the honest case for whether it is worth it to you, including what you can and cannot approximate without paying.
+  </div>
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>For most of this course, &ldquo;using AI&rdquo; has meant a chat window: you type, the model answers, you copy what is useful back into your own work. Claude Code is a different kind of thing, and the difference is the whole point of this track. It is an <em>agent</em> that works inside your real project folder. It reads your files, runs your code, edits your documents, uses version control, and can work on its own for long stretches.</p>
+    <p>This first lesson does three things. It says what Claude Code is (and is not), using the model-versus-harness distinction from Week&nbsp;10. It draws the line between chatting and working with an agent, around a single principle: <strong>the chat is not the archive</strong>. And it sets up the question the rest of Lesson A answers: what does it actually take to drive one of these well?</p>
+    <p>Lesson&nbsp;B then turns to the payoff this track exists for: using Claude Code to make your research genuinely <em>reproducible</em>, inspectable and repeatable by someone who is not you.</p>
+  </div>
+
+  <div class="info-box">
+    <h4>&#128591; Sources and thanks</h4>
+    <p>This track&rsquo;s reproducibility framework owes a large and explicit debt to <strong>Dominik Luke&#353;</strong>&rsquo;s workshop <em>Using AI Agents for Reproducible Research</em> (Oxford e-Research Centre). The organising principle that the chat is not the archive, the model-versus-harness framing, the research-habits instruction file, and the &ldquo;inspect a messy folder&rdquo; first task are all adapted, with thanks, from that workshop and its accompanying skills. His materials are openly available: <a href="https://techczech.github.io/agents-for-reproducibility/" target="_blank" rel="noopener">techczech.github.io/agents-for-reproducibility</a> (the workshop guide) and <a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a> (his agent-skills collection, MIT-licensed). The <code>grill-with-docs</code> glossary practice is from Matt Pocock (AI&nbsp;Hero). What this track adds on top (the pre-registration gates, the worked Berg River example, and the instructor&rsquo;s own practice in the boxes below) builds on that foundation.</p>
+  </div>
+
+  <h2 class="section-title">&#129518; The Model Is the Smallest Part</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Week&nbsp;10.1 argued that <strong>the harness is the product</strong>. The language model, Claude itself, is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">When you ask Claude in a browser tab to help with an analysis, the model is most of what you get. It can reason about what you paste in and write text back. When you ask Claude Code the same thing, the model is the <em>smallest</em> part of what goes to work. The harness gives it your actual data files, a shell to run a script, the ability to read the error message that script produced, version control to record what changed, and standing instructions about how your project works. The intelligence is similar; the leverage is not.</p>
+
+  <div class="info-box">
+    <h4>&#128161; The one-sentence version</h4>
+    <p>This is a different kind of machine from a smarter chatbot: a model with hands, working in your project folder. Almost everything that follows in this track is about driving it well, and about the discipline that makes its work trustworthy afterwards.</p>
+  </div>
+
+  <h2 class="section-title">&#128295; What Claude Code Can Actually Do</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Claude Code runs in your terminal and operates on a folder you point it at. Within that folder, and only within it unless you say otherwise, it has a set of capabilities worth naming, because each one is a piece of the harness you will learn to use.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Reads and writes your files</h3>
+      <p>It can open, read, and edit the actual documents, data files, and scripts in your project: not a copy you pasted, the real thing. This is powerful, and it is why permission and raw-data rules matter (Lesson&nbsp;B).</p>
+    </div>
+    <div class="card">
+      <h3>Runs commands and code</h3>
+      <p>It can execute shell commands and run your analysis scripts, then read the output or the error and respond to it. The act&ndash;observe&ndash;act loop is what makes it an agent and not a text generator.</p>
+    </div>
+    <div class="card">
+      <h3>Uses version control</h3>
+      <p>It can initialise Git, commit changes, show you diffs, and read the history. Used well, this turns into a reproducibility trace (Lesson&nbsp;B.3), not just a software habit.</p>
+    </div>
+    <div class="card">
+      <h3>Reads standing instructions</h3>
+      <p>A <code>CLAUDE.md</code> file in the project is loaded at the start of every session. It is how you tell the agent the rules of <em>your</em> project once, instead of re-explaining every time. We meet it properly in A.3.</p>
+    </div>
+    <div class="card">
+      <h3>Runs reusable Skills</h3>
+      <p>A Skill is a packaged, reusable workflow (a folder with a <code>SKILL.md</code>) the agent can invoke when it is relevant: a tested research procedure that travels across projects instead of being re-improvised each time (Lesson&nbsp;B.2).</p>
+    </div>
+    <div class="card">
+      <h3>Spawns subagents</h3>
+      <p>For a bounded job it can launch a separate, focused agent, for example an independent check of an analysis it just produced. This connects directly to the adversarial-verification idea from Week&nbsp;9.</p>
+    </div>
+    <div class="card">
+      <h3>Connects to external tools (MCP)</h3>
+      <p>Through the Model Context Protocol it can reach approved external services and data sources (a reference database, a paper repository): the same MCP idea introduced in Week&nbsp;10.</p>
+    </div>
+    <div class="card">
+      <h3>Plans before it acts</h3>
+      <p>It has a read-only <em>plan mode</em>: it inspects and proposes a plan without changing anything, so you can approve the approach before a single file moves. It is a safety control we lean on, and we use it in A.3.</p>
+    </div>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">None of these capabilities is exotic on its own; researchers have used shells, version control, and scripts for decades. What is new is that one system can use all of them <em>in a loop, on your behalf, from a plain-language request</em>. That is the capability Week&nbsp;11.1 called &ldquo;AI as a substantive collaborator,&rdquo; made operational. And as Week&nbsp;11.1 also insisted: the more the system can do unsupervised, the more the verification habit matters, not less.</p>
+
+  <h2 class="section-title">&#128202; Why This Is Categorically Different From Chat</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">It is tempting to file Claude Code under &ldquo;a more capable chatbot.&rdquo; That framing will mislead you. What separates the two is <em>where the work lives</em>, not how capable each one is.</p>
+
+  <div class="card-grid">
+    <div class="card" style="border-left-color: #888;">
+      <h3>In a chat window</h3>
+      <p>You paste context in. The model answers. The useful output, the reasoning, the decisions you made along the way: all of it lives in a conversation thread. Next week the thread is buried; next month you cannot reconstruct what you actually did, or why. The work is real but the <em>record</em> evaporates.</p>
+    </div>
+    <div class="card">
+      <h3>In Claude Code</h3>
+      <p>The work lives in your files. The script it wrote is in <code>scripts/</code>. The output is in <code>outputs/</code>. The decision it made is in a log you told it to keep. The change is in the Git history. Six months later, you (or a stranger) can open the folder and see what happened.</p>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>&#128193; The chat is not the archive</h3>
+    <p>The organising principle of the whole track, stated plainly: <strong>save your sources, notes, instructions, scripts, outputs, and decisions into files, not into a chat thread.</strong> The conversation is where the work is <em>commissioned</em>; the project folder is where the work <em>lives</em>. A chatbot session is a conversation you will lose. A project folder is the unit of reproducible research.</p>
+    <p>Everything Lesson&nbsp;B builds (the folder discipline, the decision log, the reproducible analysis) follows from taking this one sentence seriously.</p>
+  </div>
+
+  <div class="info-box">
+    <h4>&#9878;&#65039; This is not &ldquo;abandon chat&rdquo;</h4>
+    <p>Chat is still the right tool for a great deal: a quick question, a brainstorm, a one-off paragraph, thinking out loud. The distinction is about <em>durability</em>. Reach for chat when the value is in the answer you read right now. Reach for an agent in a project folder when the value is in work that has to survive, be repeated, or be defended later. Most researchers will use both, for different things, and knowing which is which is itself a skill.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128214; Download: the companion guide</h4>
+    <p>The instructor has written a short guide, <em>Claude Code as a Co-Scientist</em>, that gathers this track&rsquo;s territory into a single document: the model-versus-harness mental model, the human work an agent must never touch, the reproducibility conventions of Lesson&nbsp;B, and a reference for the research <em>Skills</em> that build on them. It is the companion to these two lessons and goes further than we can here. Many of its ideas, the reproducibility framework above all, come from <strong>Dominik Luke&#353;</strong>&rsquo;s work, credited at the top of this lesson; the guide builds openly on that foundation and is shared in the same spirit. <a href="files/co-scientist-guide.pdf" target="_blank" rel="noopener">co-scientist-guide.pdf</a>. The seven research <em>Skills</em> it documents are available as a separate download in Lesson&nbsp;B.2.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in A.2:</strong> the honest case. Before you invest time learning to drive this, you deserve a straight account of what it costs, who it excludes, what you can approximate for free, and the genuine shift in how you work that it demands: the move from <em>chatting</em> to <em>managing an agent</em>.</p>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-12/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+  <a class="page-nav-link" href="../advanced/The Honest Case - Cost Access and Disposition.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">A.2 — The Honest Case: Cost, Access, and the Disposition</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

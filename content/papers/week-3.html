@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 Papers &mdash; Environmental Implications of AI</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    .back-bar {
+        background: #f0f4f8;
+        padding: 12px 30px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .back-bar a {
+        color: #003A70;
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+    .back-bar a:hover { text-decoration: underline; }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 10px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 10px auto 0;
+    }
+    .week-pill {
+        display: inline-block;
+        background: rgba(255,255,255,0.2);
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+    .content { padding: 50px 40px; }
+    .intro-text {
+        background: #f9f9f9;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+    .intro-text p { color: #444; line-height: 1.8; margin-bottom: 10px; }
+    .intro-text p:last-child { margin-bottom: 0; }
+    .section { margin-bottom: 45px; }
+    .section-title {
+        color: #2a5298;
+        font-size: 1.4em;
+        font-weight: 600;
+        margin-bottom: 6px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #003A70;
+    }
+    .section-subtitle { color: #888; font-size: 0.9em; margin-bottom: 18px; font-style: italic; }
+    .section p { color: #444; line-height: 1.8; margin-bottom: 14px; }
+    .section a { color: #003A70; font-weight: 600; }
+    .paper-card {
+        background: white;
+        border: 1px solid #e0e6ed;
+        border-left: 5px solid #003A70;
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-bottom: 16px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .paper-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 58, 112, 0.08);
+    }
+    .paper-title { color: #2a5298; font-weight: 600; font-size: 1.05em; margin-bottom: 4px; line-height: 1.4; }
+    .paper-meta { color: #666; font-size: 0.9em; margin-bottom: 10px; }
+    .paper-meta em { color: #555; }
+    .paper-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+    .download-btn {
+        display: inline-block;
+        background: #003A70;
+        color: white !important;
+        padding: 7px 16px;
+        border-radius: 6px;
+        text-decoration: none !important;
+        font-size: 0.88em;
+        font-weight: 600;
+        transition: background 0.15s ease;
+    }
+    .download-btn:hover { background: #002550; }
+    .source-link {
+        color: #003A70 !important;
+        font-size: 0.88em;
+        text-decoration: none !important;
+        font-weight: 600;
+        padding: 7px 14px;
+        border: 1px solid #003A70;
+        border-radius: 6px;
+    }
+    .source-link:hover { background: #f0f4f8; }
+    .empty-note {
+        color: #888;
+        font-style: italic;
+        margin: 8px 0 4px;
+    }
+    .styled-list { list-style: none; padding-left: 0; margin: 12px 0 14px; }
+    .styled-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 8px;
+        color: #444;
+        line-height: 1.7;
+    }
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: 700;
+    }
+    .paywalled-section {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 10px;
+        margin-top: 30px;
+    }
+    .paywalled-section h3 {
+        color: #b86400;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+    .paywalled-item {
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #f0e0b0;
+    }
+    .paywalled-item:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .paywalled-item .citation { color: #444; font-size: 0.95em; line-height: 1.6; }
+    .paywalled-item .access { color: #777; font-size: 0.85em; line-height: 1.6; margin-top: 6px; }
+    .paywalled-item .access a { color: #003A70; }
+    .paywalled-item .sublesson-tag {
+        display: inline-block;
+        background: rgba(0, 58, 112, 0.08);
+        color: #003A70;
+        padding: 2px 10px;
+        border-radius: 12px;
+        font-size: 0.78em;
+        margin-left: 6px;
+        font-weight: 600;
+    }
+    /* Index page */
+    .week-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+    }
+    .week-card {
+        background: white;
+        border: 1px solid #e0e6ed;
+        border-radius: 12px;
+        padding: 22px;
+        text-decoration: none;
+        color: inherit;
+        transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+        display: block;
+    }
+    .week-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 22px rgba(0, 58, 112, 0.12);
+        border-color: #003A70;
+    }
+    .week-card.empty { opacity: 0.7; }
+    .week-card .num {
+        display: inline-block;
+        background: #003A70;
+        color: white;
+        width: 36px;
+        height: 36px;
+        line-height: 36px;
+        text-align: center;
+        border-radius: 50%;
+        font-weight: 700;
+        margin-right: 12px;
+    }
+    .week-card .topic {
+        color: #2a5298;
+        font-weight: 600;
+        font-size: 1.05em;
+        margin-bottom: 8px;
+        line-height: 1.3;
+    }
+    .week-card .count {
+        background: #003A70;
+        color: white;
+        font-size: 0.78em;
+        padding: 2px 10px;
+        border-radius: 10px;
+        font-weight: 600;
+    }
+    .week-card.empty .count { background: #aaa; }
+    .week-card p { color: #555; font-size: 0.9em; line-height: 1.55; margin-top: 10px; }
+    footer {
+        background: #f9f9f9;
+        padding: 22px 30px;
+        text-align: center;
+        color: #888;
+        font-size: 0.85em;
+        border-top: 1px solid #eee;
+        font-family: 'Lato', sans-serif;
+    }
+    footer a { color: #003A70; }
+    @media (max-width: 768px) {
+        header h1 { font-size: 1.6em; }
+        .content { padding: 30px 20px; }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="back-bar"><a href="../index.html">&larr; Back to Course Contents</a> &middot; <a href="index.html">&larr; All Papers</a></div>
+
+    <header>
+        <div class="week-pill">Week 3</div>
+        <h1><span style="color:#fff;">Environmental Implications of AI</span></h1>
+        <p>Energy, water, hardware lifecycle, and the rebound problem</p>
+    </header>
+    <div class="content">
+        <div class="intro-text">
+            <p>9 papers covering AI energy and water consumption, embodied carbon, the Jevons rebound, sustainable AI practice, and the token cost of agentic coding. The OECD policy report and several agentic-energy references are link-only.</p>
+            <p style="margin-top:8px; color:#666; font-size:0.92em;">Each entry links to the canonical version of the paper, on arXiv, the journal, or the publisher. Where a paper is paywalled, the DOI is given for UCT-library access.</p>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">3.1 &middot; What Does AI Actually Consume?</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">Making AI Less &lsquo;Thirsty&rsquo;: Uncovering and Addressing the Secret Water Footprint of AI Models</div>
+        <div class="paper-meta">Li, P., Yang, J., Islam, M. A., & Ren, S. (2023)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2304.03271" target="_blank" rel="noopener">View source &middot; arXiv:2304.03271</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Power Hungry Processing: Watts Driving the Cost of AI Deployment?</div>
+        <div class="paper-meta">Luccioni, S., Jernite, Y., & Strubell, E. (2024) &mdash; <em>FAccT &rsquo;24</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2311.16863" target="_blank" rel="noopener">View source &middot; arXiv:2311.16863</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks</div>
+        <div class="paper-meta">Stanford Digital Economy Lab &amp; Microsoft Research (2026) &mdash; <em>supports the agentic-multiplier estimate in 3.1</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2604.22750" target="_blank" rel="noopener">View source &middot; arXiv:2604.22750</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">3.2 &middot; Infrastructure, Scale and the Rebound Problem</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">Chasing Carbon: The Elusive Environmental Footprint of Computing</div>
+        <div class="paper-meta">Gupta, U., et al. (2021) &mdash; <em>IEEE HPCA 2021</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2011.02839" target="_blank" rel="noopener">View source &middot; arXiv:2011.02839</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Efficiency is Not Enough: A Critical Perspective of Environmentally Sustainable AI</div>
+        <div class="paper-meta">Wright, D., Igel, C., Samuel, G., & Selvan, R. (2023)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2309.02065" target="_blank" rel="noopener">View source &middot; arXiv:2309.02065</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">The Carbon Footprint of Machine Learning Training Will Plateau, Then Shrink</div>
+        <div class="paper-meta">Patterson, D., et al. (2022)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2204.05149" target="_blank" rel="noopener">View source &middot; arXiv:2204.05149</a>
+        </div>
+    </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">3.3 &middot; Critical Minerals and AI</h2>
+            <p class="empty-note">Sub-lesson uses news reporting and policy documents (CHIPS Act, EU CRMA, US Geological Survey) which aren&rsquo;t redistributable PDFs.</p>
+        </div>
+        <div class="section">
+            <h2 class="section-title">3.4 &middot; Sustainable AI: What Can Be Done?</h2>
+            
+    <div class="paper-card">
+        <div class="paper-title">Green AI</div>
+        <div class="paper-meta">Schwartz, R., Dodge, J., Smith, N. A., & Etzioni, O. (2019)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/1907.10597" target="_blank" rel="noopener">View source &middot; arXiv:1907.10597</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Tackling Climate Change with Machine Learning</div>
+        <div class="paper-meta">Rolnick, D., et al. (2019)</div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/1906.05433" target="_blank" rel="noopener">View source &middot; arXiv:1906.05433</a>
+        </div>
+    </div>
+
+    <div class="paper-card">
+        <div class="paper-title">Measuring the Carbon Intensity of AI in Cloud Instances</div>
+        <div class="paper-meta">Dodge, J., et al. (2022) &mdash; <em>FAccT &rsquo;22</em></div>
+        <div class="paper-actions">
+            <a class="source-link" href="https://arxiv.org/abs/2206.05229" target="_blank" rel="noopener">View source &middot; arXiv:2206.05229</a>
+        </div>
+    </div>
+        </div>
+        
+            <p>The agentic-energy estimate in Sub-Lesson 3.1 also draws on these non-paper sources (reports and documentation rather than academic papers):</p>
+            <ul class="styled-list">
+                <li>Stanford Digital Economy Lab (2026). <em>How are AI agents spending your tokens?</em> &mdash; <a href="https://digitaleconomy.stanford.edu/news/how-are-ai-agents-spending-your-tokens/" target="_blank" rel="noopener">analysis</a> of the token-consumption study above.</li>
+                <li>Anthropic (2026). <em>Effort</em> documentation (Claude effort levels: low / medium / high / xhigh / max) &mdash; <a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener">platform.claude.com</a></li>
+                <li>US EPA. <em>Greenhouse Gas Emissions from a Typical Passenger Vehicle</em> (~0.25&nbsp;kg&nbsp;CO&#8322;/km) &mdash; <a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle" target="_blank" rel="noopener">epa.gov</a></li>
+                <li>Republic of South Africa (2024). <em>2022 Grid Emission Factors Report</em> (~0.9&nbsp;kg&nbsp;CO&#8322;/kWh) &mdash; <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">gov.za PDF</a></li>
+            </ul>
+        
+        
+    <div class="paywalled-section">
+        <h3>Linked but not redistributed</h3>
+        
+        <div class="paywalled-item">
+            <div class="citation">OECD (2022). <em>Measuring the environmental impacts of artificial intelligence compute and applications.</em> <a href="https://doi.org/10.1787/7babf571-en" target="_blank" rel="noopener">DOI:10.1787/7babf571-en</a> <span class="sublesson-tag">3.4</span></div>
+            <div class="access">Open-access on the OECD library. It is included as a link rather than a downloaded copy because the OECD URL changes occasionally.</div>
+        </div>
+    </div>
+    </div>
+    <footer>
+        &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>
+        <p style="margin-top: 8px;">Each reference links to its canonical source. The papers themselves remain under their original licences and copyright holders.</p>
+    </footer>
+</div>
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body>
+</html>

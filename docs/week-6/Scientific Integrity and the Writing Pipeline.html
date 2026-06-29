@@ -1,414 +1,220 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 6.4 - Scientific Integrity and the Writing Pipeline</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Lato', sans-serif;
-        line-height: 1.6;
-        color: #2c3e50;
-        background: #f5f5f5;
-        padding: 20px;
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        overflow: hidden;
-    }
-
-    .ai-notice {
-        background: #e8f4f8;
-        color: #003A70;
-        padding: 15px 30px;
-        text-align: center;
-        font-size: 0.9em;
-        border-bottom: 1px solid #d0e8f2;
-    }
-
-    .ai-notice strong {
-        font-weight: 600;
-    }
-
-    header {
-        background: #003A70;
-        color: white;
-        padding: 50px 40px;
-        text-align: center;
-    }
-
-    .week-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-size: 0.9em;
-        margin-bottom: 15px;
-        backdrop-filter: blur(10px);
-    }
-
-    header h1 {
-        font-size: 2.3em;
-        margin-bottom: 15px;
-        font-weight: 300;
-        letter-spacing: 1px;
-    }
-
-    header p {
-        font-size: 1.1em;
-        opacity: 0.95;
-        max-width: 800px;
-        margin: 10px auto 0;
-    }
-
-    .content {
-        padding: 50px 40px;
-    }
-
-    .intro-text {
-        background: #f9f9f9;
-        padding: 35px;
-        border-radius: 15px;
-        border-left: 5px solid #003A70;
-        margin-bottom: 40px;
-    }
-
-    .intro-text h2 {
-        color: #2a5298;
-        font-size: 1.8em;
-        margin-bottom: 15px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .intro-text h2::before {
-        content: '\1F3AF';
-    }
-
-    .intro-text p {
-        font-size: 1.1em;
-        color: #495057;
-        line-height: 1.8;
-        margin-bottom: 15px;
-    }
-
-    .section-title {
-        font-size: 2em;
-        color: #2a5298;
-        margin: 50px 0 30px;
-        padding-bottom: 15px;
-        border-bottom: 3px solid #003A70;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 25px;
-        margin: 30px 0;
-    }
-
-    .card {
-        background: white;
-        border-radius: 15px;
-        padding: 25px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        border-left: 5px solid #003A70;
-        transition: all 0.3s ease;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .card h3 {
-        color: #2a5298;
-        font-size: 1.4em;
-        margin-bottom: 15px;
-        font-weight: 600;
-    }
-
-    .card p {
-        color: #555;
-        line-height: 1.7;
-        margin-bottom: 15px;
-    }
-
-    .styled-list {
-        list-style: none;
-        margin-top: 15px;
-    }
-
-    .styled-list li {
-        padding: 8px 0 8px 25px;
-        color: #555;
-        position: relative;
-        line-height: 1.6;
-    }
-
-    .styled-list li::before {
-        content: '\25B8';
-        position: absolute;
-        left: 0;
-        color: #003A70;
-        font-weight: bold;
-    }
-
-    .highlight-box {
-        background: #003A70;
-        color: white;
-        padding: 30px;
-        border-radius: 15px;
-        margin: 40px 0;
-    }
-
-    .highlight-box h3 {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    .highlight-box p {
-        font-size: 1.05em;
-        line-height: 1.8;
-        opacity: 0.95;
-        margin-bottom: 12px;
-    }
-
-    .warning-box {
-        background: #fff8e1;
-        border-left: 5px solid #f9a825;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-    }
-
-    .warning-box h4 {
-        color: #e65100;
-        font-size: 1.1em;
-        margin-bottom: 10px;
-    }
-
-    .warning-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .info-box {
-        background: #f8f9fa;
-        padding: 20px 25px;
-        border-radius: 12px;
-        margin: 20px 0;
-        border-left: 4px solid #003A70;
-    }
-
-    .info-box h4 {
-        color: #2a5298;
-        font-size: 1.2em;
-        margin-bottom: 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .info-box p {
-        color: #555;
-        line-height: 1.7;
-    }
-
-    .resource-placeholder {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-        border: 2px dashed #003A70;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 25px 0;
-        text-align: center;
-    }
-
-    .resource-placeholder h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 10px;
-    }
-
-    .resource-placeholder p {
-        color: #666;
-    }
-
-    .technical-detail {
-        background: white;
-        border: 2px solid #d0e8f2;
-        border-radius: 12px;
-        padding: 25px;
-        margin: 20px 0;
-    }
-
-    .technical-detail h4 {
-        color: #2a5298;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .case-study {
-        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-        border: 2px solid #003A70;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 25px 0;
-    }
-
-    .case-study h4 {
-        color: #003A70;
-        font-size: 1.3em;
-        margin-bottom: 15px;
-    }
-
-    .comparison-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-    .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-    .comparison-table tr:last-child td { border-bottom: none; }
-    .comparison-table tr:hover { background: #f9f9f9; }
-
-    .step-list {
-        list-style: none;
-        counter-reset: steps;
-        margin: 20px 0;
-    }
-    .step-list > li {
-        counter-increment: steps;
-        padding: 15px 15px 15px 60px;
-        position: relative;
-        margin-bottom: 15px;
-        background: #f8f9fa;
-        border-radius: 12px;
-    }
-    .step-list > li::before {
-        content: counter(steps);
-        position: absolute;
-        left: 15px;
-        top: 22px;
-        width: 35px;
-        height: 35px;
-        background: #003A70;
-        color: white;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-    }
-
-    .risk-low { border-left-color: #4caf50; }
-    .risk-medium { border-left-color: #ff9800; }
-    .risk-high { border-left-color: #f44336; }
-
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 1.8em;
-        }
-
-        .content {
-            padding: 30px 20px;
-        }
-
-        .card-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .comparison-table { font-size: 0.85em; }
-        .comparison-table th, .comparison-table td { padding: 8px 10px; }
-    }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body><div class="container">
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">← Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 6 &bull; Sub-Lesson 4</div>
-<h1>&#x1F6E1;&#xFE0F; <span style="color: #ffffff;">Scientific Integrity and the Writing Pipeline</span></h1>
-<p>Where AI writing assistance meets research integrity: navigating the spectrum from helpful to harmful, understanding journal policies, and building honest disclosure practices</p>
-</header>
-<div class="content">
-
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>In Week 5, we examined how AI can hallucinate citations, generating references that look real but point to papers that do not exist. This session tackles the parallel problem on the writing side: how AI-assisted writing can compromise scientific integrity in ways that range from subtle to severe.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Scientific Integrity and the Writing Pipeline — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 6 &middot; AI for Writing, Communication &amp; Research Ideation</div><nav class="toc"><a class="lesson" href="Writing%20as%20Thinking.html">Writing as Thinking — Why the Process Matters</a><a class="lesson" href="Research%20Ideation%20with%20AI.html">Research Ideation with AI</a><a class="lesson" href="AI%20Writing%20Tools%20Landscape%20and%20Honest%20Assessment.html">AI Writing Tools — Landscape and Honest Assessment</a><a class="lesson cur" href="Scientific%20Integrity%20and%20the%20Writing%20Pipeline.html">Scientific Integrity and the Writing Pipeline</a><div class="subs"><a href="#s1">The Integrity Spectrum</a><a href="#s2">Updated Journal Policies (2025–2026)</a><a href="#s3">AI Detection — The Unreliable Arms Race</a><a href="#s4">Practical Auditing Techniques</a><a href="#s5">Data Integrity and AI-Enabled Fabrication</a><a href="#s6">Disclosure Templates</a><a href="#s7">Readings</a></div><a class="lesson" href="Building%20Your%20AI%20Writing%20Workflow.html">Building Your AI Writing Workflow</a><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Using%20AI%20to%20Review%20Your%20Own%20Work.html">Using AI to Review Your Own Work (Supplementary)</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Scientific Integrity and the Writing Pipeline</h1><div class="deck">Where AI writing assistance meets research integrity: navigating the spectrum from helpful to harmful, understanding journal policies, and building honest disclosure practices</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">In Week 5, we examined how AI can hallucinate citations, generating references that look real but point to papers that do not exist. This session tackles the parallel problem on the writing side: how AI-assisted writing can compromise scientific integrity in ways that range from subtle to severe.</p>
 <p>The core tension is straightforward. AI can genuinely help you communicate your research more clearly. It can also produce text that sounds authoritative while misrepresenting your data, overstating your claims, or presenting arguments you do not actually understand. The line between these outcomes is not always obvious, and it shifts depending on how you use the tool and how honest you are with yourself about the process.</p>
 <p>We will map the integrity spectrum from low-risk to high-risk uses, examine what major publishers now require, confront the limitations of AI detection tools, and give you practical techniques for auditing your own AI-assisted work. The goal is to help you use AI for writing in ways you can defend with confidence, not to scare you away from it.</p>
 </div>
 
 <!-- SECTION 1: THE INTEGRITY SPECTRUM -->
-<h2 class="section-title">&#x1F4CA; The Integrity Spectrum</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Not all AI writing assistance carries the same ethical weight. The following spectrum moves from minimal integrity concern to serious risk of research misconduct. Where you draw your personal line matters, but you need to understand the full spectrum first.</p>
+<h2 class="section-title" id="s1">The Integrity Spectrum</h2>
+<p style=" margin-bottom: 30px">Not all AI writing assistance carries the same ethical weight. The following spectrum moves from minimal integrity concern to serious risk of research misconduct. Where you draw your personal line matters, but you need to understand the full spectrum first.</p>
 
-<div class="card-grid">
-<div class="card risk-low">
-<h3>Grammar and Spelling Fixes</h3>
+<div class="card-grid"><div class="card risk-low"><h3>Grammar and Spelling Fixes</h3>
 <p><strong>Risk level:</strong> Minimal</p>
 <p>Using AI to catch typos, fix subject-verb agreement, or correct punctuation is the digital equivalent of a spellchecker. The content, arguments, and meaning remain entirely yours. No intellectual contribution shifts to the AI. This is where most researchers feel comfortable, and most journal policies explicitly permit it.</p>
 <p>The key principle: surface-level corrections that do not alter meaning carry negligible integrity risk.</p>
 </div>
 
-<div class="card risk-low">
-<h3>Paraphrasing Your Own Text</h3>
+<div class="card risk-low"><h3>Paraphrasing Your Own Text</h3>
 <p><strong>Risk level:</strong> Low to moderate</p>
 <p>Asking AI to rephrase a sentence you have already written for clarity or concision is generally low-risk, <em>provided the meaning stays the same</em>. The concern rises when AI paraphrasing shifts your claims. A sentence that said "our results suggest X" might become "our results demonstrate X", a small change that carries large scientific implications. Always read the AI's version against your original meaning, not just for fluency.</p>
 </div>
 
-<div class="card risk-medium">
-<h3>Restructuring Arguments</h3>
+<div class="card risk-medium"><h3>Restructuring Arguments</h3>
 <p><strong>Risk level:</strong> Medium</p>
 <p>When AI reorganises the flow of your discussion section or reorders your argument, the <em>structure</em> of your reasoning is no longer entirely yours. Argument structure is not neutral. The order in which you present evidence shapes how readers weigh it. If AI restructures your argument and you accept the new order without understanding why it is better, you have ceded part of your intellectual contribution.</p>
 <p>The test: can you explain <em>why</em> this structure is better than your original, or did you just accept it because it reads more smoothly?</p>
 </div>
 
-<div class="card risk-high">
-<h3>Generating Text from Your Notes</h3>
+<div class="card risk-high"><h3>Generating Text from Your Notes</h3>
 <p><strong>Risk level:</strong> High</p>
 <p>Here the boundary blurs. You provide bullet points, outlines, or rough notes, and AI generates polished prose. The ideas may have started with you, but the expression, emphasis, and framing are the AI's. In academic writing, how you say something is often inseparable from what you mean. If you cannot rewrite the AI-generated paragraph from scratch, expressing the same ideas in your own words, then the AI has contributed more to the intellectual work than it may appear.</p>
 </div>
 
-<div class="card risk-high">
-<h3>Generating Arguments</h3>
+<div class="card risk-high"><h3>Generating Arguments</h3>
 <p><strong>Risk level:</strong> Very high</p>
 <p>When AI generates the arguments themselves, producing lines of reasoning you had not considered rather than expressing your ideas more clearly, the intellectual contribution has shifted. These are no longer your scholarly contributions in any meaningful sense. Using AI-generated arguments without disclosure is analogous to using a ghostwriter: someone (or something) else did the intellectual heavy lifting, and you are presenting the result as your own thinking.</p>
 </div>
 
-<div class="card risk-high">
-<h3>Generating Data Descriptions</h3>
+<div class="card risk-high"><h3>Generating Data Descriptions</h3>
 <p><strong>Risk level:</strong> Variable, depends entirely on context</p>
 <p>This use case turns on context more than any other on the spectrum. It requires distinguishing two very different scenarios:</p>
 <p><strong>The good news:</strong> Modern AI models are better at this than many people assume. If you ask a well-designed model "I conducted a randomised controlled trial of a mindfulness intervention on undergraduate stress levels with 120 participants, describe the results," it will typically push back and ask for the actual data, the outcome measures, the effect sizes, and the statistical tests. It will not fabricate a results section. Earlier models would.</p>
@@ -419,27 +225,25 @@
 <li><strong>Silent gap-filling:</strong> AI may have partial information and fill in gaps without flagging that it is doing so. This is harder to catch than outright invention.</li>
 <li><strong>Missing what matters:</strong> AI describes what is statistically obvious in the data, not what a domain expert would recognise as scientifically interesting or problematic.</li>
 </ul>
-<p style="margin-top: 15px;"><strong>With full data access</strong> (e.g. through Claude Code, a Jupyter notebook, or uploading files), AI can produce genuinely useful draft descriptions. The quality improves with the amount of context you provide: experimental setup, research questions, field conventions, known confounders. But even with perfect context, your judgment as the domain expert still does the work no tool can.</p>
+<p style="margin-top: 15px"><strong>With full data access</strong> (e.g. through Claude Code, a Jupyter notebook, or uploading files), AI can produce genuinely useful draft descriptions. The quality improves with the amount of context you provide: experimental setup, research questions, field conventions, known confounders. But even with perfect context, your judgment as the domain expert still does the work no tool can.</p>
 </div>
 </div>
 
-<div class="warning-box">
-<h4>&#x26A0;&#xFE0F; When AI Knows More Than You</h4>
+<div class="warning-box"><h4>When AI Knows More Than You</h4>
 <p>There is another dimension to consider: AI may genuinely know more than you about certain aspects of your subject. It has been trained on more papers than any human can read. This cuts both ways:</p>
 <p><strong>The positive side:</strong> AI can spot connections to literature you haven't encountered, suggest interpretations from adjacent fields, and fill gaps in your training. For early-career researchers, these can be genuinely valuable moments of learning.</p>
 <p><strong>The dangerous side:</strong> AI states everything with equal confidence, whether it's well-established consensus or something it's confabulating. If it "knows more than you," you are in the worst position to evaluate whether what it's telling you is correct. It can construct compelling narratives that sound authoritative but are subtly wrong, and if you lack the expertise to spot the error, you'll build on a flawed foundation.</p>
 <p><strong>The lesson:</strong> When AI teaches you something new, treat it as a <em>starting point for verification</em>. The more you learn from AI, the more you need to verify independently, because you're operating in the zone where you cannot easily distinguish correct from plausible. This connects directly to Week 4's virtue ethics: are you using AI to genuinely develop your understanding, or to create the <em>appearance</em> of understanding?</p>
 </div>
 
-<div class="highlight-box">
-<h3>&#x1F4A1; <span style="color: #ffffff;">The Key Principle</span></h3>
+<div class="highlight-box"><h3><span>The Key Principle</span></h3>
 <p>As you move down the spectrum, the AI's contribution shifts from <strong>form</strong> (how something is said) to <strong>substance</strong> (what is being said). Integrity concern scales with this shift. Improving form is assistance. Generating substance is co-authorship, or, without disclosure, misconduct.</p>
 <p>A useful heuristic: if you removed the AI's contribution entirely, would the intellectual content of your paper change? If yes, the AI's role requires disclosure at minimum, and may require rethinking your approach entirely.</p>
 </div>
 
 <!-- SECTION 2: JOURNAL POLICIES -->
-<h2 class="section-title">&#x1F4DC; Updated Journal Policies (2025&ndash;2026)</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Publishing practice has moved rapidly since early 2023. Major publishers have now established explicit policies on AI use, though they vary widely in strictness. As a researcher, you are expected to know and comply with the policies of your target journal <em>before</em> submission.</p>
+<h2 class="section-title" id="s2">Updated Journal Policies (2025&ndash;2026)</h2>
+<p style=" margin-bottom: 30px">Publishing practice has moved rapidly since early 2023. Major publishers have now established explicit policies on AI use, though they vary widely in strictness. As a researcher, you are expected to know and comply with the policies of your target journal <em>before</em> submission.</p>
 
 <table class="comparison-table">
 <thead>
@@ -497,118 +301,99 @@
 </tbody>
 </table>
 
-<div class="info-box">
-<h4>&#x1F4CB; The Converging Baseline</h4>
+<div class="info-box"><h4>The Converging Baseline</h4>
 <p>Despite differences in strictness, a clear consensus is emerging across publishers: <strong>(1)</strong> AI cannot be listed as an author because it cannot take responsibility for content. <strong>(2)</strong> Disclosure of AI use is required or strongly recommended. <strong>(3)</strong> Human authors bear full responsibility for everything in the manuscript, including any AI-assisted content. <strong>(4)</strong> Violations are treated as breaches of publication ethics. If you follow these four principles, you will be compliant with most current policies.</p>
 </div>
 
-<div class="warning-box">
-<h4>&#x26A0;&#xFE0F; Policies Are Moving Targets</h4>
+<div class="warning-box"><h4>Policies Are Moving Targets</h4>
 <p>The policies summarised above reflect the state of play in early 2026. They will continue to evolve. Before submitting to any journal, check its <em>current</em> AI policy directly. Many publishers update their guidelines without issuing prominent announcements. The cost of non-compliance (retraction, investigation, reputational damage) vastly exceeds the cost of checking.</p>
 </div>
 
 <!-- SECTION 3: AI DETECTION -->
-<h2 class="section-title">&#x1F50D; AI Detection &mdash; The Unreliable Arms Race</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">If journal policies represent the rules, AI detection tools represent the enforcement mechanism. Unfortunately, that mechanism is deeply flawed.</p>
+<h2 class="section-title" id="s3">AI Detection &mdash; The Unreliable Arms Race</h2>
+<p style=" margin-bottom: 30px">If journal policies represent the rules, AI detection tools represent the enforcement mechanism. Unfortunately, that mechanism is deeply flawed.</p>
 
-<div class="technical-detail">
-<h4>How Detection Tools Work</h4>
+<div class="technical-detail"><h4>How Detection Tools Work</h4>
 <p>AI detection tools analyse text for statistical patterns associated with machine-generated writing. The two most common metrics are:</p>
 <ul class="styled-list">
 <li><strong>Perplexity:</strong> How "surprising" the word choices are. AI tends to choose highly probable next words, producing text with low perplexity. Human writing is more variable and less predictable.</li>
 <li><strong>Burstiness:</strong> The variation in sentence complexity. Human writing naturally alternates between short, punchy sentences and longer, more complex ones. AI-generated text tends to be more uniform in its sentence structure.</li>
 </ul>
-<p style="margin-top: 15px;">The problem: modern LLMs have become sophisticated enough to mimic human variation in both perplexity and burstiness. As models improve, the statistical signatures that detection tools rely on become less distinctive. It is a classic arms race, and detection tools are losing ground.</p>
+<p style="margin-top: 15px">The problem: modern LLMs have become sophisticated enough to mimic human variation in both perplexity and burstiness. As models improve, the statistical signatures that detection tools rely on become less distinctive. It is a classic arms race, and detection tools are losing ground.</p>
 </div>
 
-<div class="resource-placeholder">
-<h4>&#x1F4C4; Key Reading on Detection</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.pangram.com/blog/the-state-of-academic-integrity-and-ai-detection-2025" target="_blank" rel="noopener"><strong>Pangram Labs (2025): "The State of Academic Integrity &amp; AI Detection"</strong></a> &mdash; A thorough overview of the current state of AI detection in academic settings, including accuracy rates, failure modes, and the limitations of current approaches.</p>
+<div class="resource-placeholder"><h4>Key Reading on Detection</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.pangram.com/blog/the-state-of-academic-integrity-and-ai-detection-2025" target="_blank" rel="noopener"><strong>Pangram Labs (2025): "The State of Academic Integrity &amp; AI Detection"</strong></a> &mdash; A thorough overview of the current state of AI detection in academic settings, including accuracy rates, failure modes, and the limitations of current approaches.</p>
 </div>
 
-<div class="card-grid">
-<div class="card">
-<h3>False Positives</h3>
+<div class="card-grid"><div class="card"><h3>False Positives</h3>
 <p>Detection tools flag human-written text as AI-generated more often than most people realise. Formal academic writing, in particular, shares many statistical features with AI output: measured tone, structured argumentation, standard disciplinary phrasing. Non-native English speakers are disproportionately affected because their writing sometimes uses simpler, more predictable sentence structures, the same patterns detection tools associate with AI.</p>
 <p>The consequence: students and researchers can be wrongly accused of AI use, with serious academic consequences, based on unreliable tools.</p>
 </div>
 
-<div class="card">
-<h3>False Negatives</h3>
+<div class="card"><h3>False Negatives</h3>
 <p>Conversely, AI-generated text that has been lightly edited by a human often evades detection entirely. Simple techniques (changing a few words per paragraph, varying sentence length, introducing deliberate imperfections) can push AI-generated text below detection thresholds. The more sophisticated the writer, the easier it is to defeat detection.</p>
 <p>The consequence: detection tools create a false sense of security. Institutions that rely on them as their primary defence against misuse are building on an unstable foundation.</p>
 </div>
 
-<div class="card">
-<h3>Bias Against Non-Native Speakers</h3>
+<div class="card"><h3>Bias Against Non-Native Speakers</h3>
 <p>Multiple studies have shown that AI detection tools have higher false positive rates for text written by non-native English speakers. This creates a structural equity problem: researchers from non-Anglophone backgrounds are more likely to be wrongly flagged, investigated, and penalised. In a global academic community, a detection system that disproportionately punishes people based on their first language is a biased one.</p>
 </div>
 </div>
 
-<div class="warning-box">
-<h4>&#x26A0;&#xFE0F; The Real Risk Is Not Getting Caught</h4>
+<div class="warning-box"><h4>The Real Risk Is Not Getting Caught</h4>
 <p>It is tempting to frame AI writing integrity as a detection problem: how do we catch people who use AI without disclosure? But that framing leaves out where most of the damage happens, which is <strong>self-deception</strong>: submitting AI-polished work that you do not fully understand, defending claims you did not fully reason through, and presenting arguments you cannot independently reproduce. Detection tools cannot measure understanding. Only you can assess whether you truly own the intellectual content of your work. Integrity here comes down to honest engagement with your own research, not evading detection.</p>
 </div>
 
-<div class="highlight-box">
-<h3>&#x1F4A1; <span style="color: #ffffff;">Detection Is Not the Defence</span></h3>
+<div class="highlight-box"><h3><span>Detection Is Not the Defence</span></h3>
 <p>AI detection should not be the primary mechanism for maintaining research integrity. Detection tools are too unreliable, too biased, and too easily circumvented to serve as a trustworthy enforcement mechanism. The defence that works is cultural: building norms of honest disclosure, developing personal integrity practices, and creating academic environments where transparent AI use is supported rather than punished.</p>
 <p>Integrity comes from the writer, not the detector.</p>
 </div>
 
 <!-- SECTION 4: AUDITING TECHNIQUES -->
-<h2 class="section-title">&#x1F50E; Practical Auditing Techniques</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Rather than relying on detection tools, develop personal auditing practices that ensure you genuinely own every part of your AI-assisted writing. These techniques work regardless of which AI tool you used or how sophisticated detection technology becomes.</p>
+<h2 class="section-title" id="s4">Practical Auditing Techniques</h2>
+<p style=" margin-bottom: 30px">Rather than relying on detection tools, develop personal auditing practices that ensure you genuinely own every part of your AI-assisted writing. These techniques work regardless of which AI tool you used or how sophisticated detection technology becomes.</p>
 
-<div class="card-grid">
-<div class="card">
-<h3>The Read-Aloud Test</h3>
+<div class="card-grid"><div class="card"><h3>The Read-Aloud Test</h3>
 <p><strong>Method:</strong> Read your AI-assisted text out loud, slowly.</p>
 <p>Does it sound like you? Would a colleague recognise your voice in this writing? AI-generated prose often has a distinctive quality: fluent but generic, correct but impersonal. If the text sounds like it could have been written by anyone in your field, it probably was not written by you in any meaningful sense. Your writing should carry your perspective, your emphasis, and your way of connecting ideas.</p>
 <p><strong>What to look for:</strong> Phrases you would never naturally use. Arguments structured in a way that does not match how you think. A level of polish that exceeds what you can produce independently.</p>
 </div>
 
-<div class="card">
-<h3>The "Explain This Paragraph" Test</h3>
+<div class="card"><h3>The "Explain This Paragraph" Test</h3>
 <p><strong>Method:</strong> Point to any paragraph in your text at random. Without looking at the text, explain the reasoning behind it.</p>
 <p>If you wrote or deeply engaged with every paragraph, you should be able to explain the logic, the evidence, and the connection to surrounding paragraphs from memory. If you find yourself needing to re-read the paragraph to understand what it says, you did not write it in any intellectually honest sense. You accepted it.</p>
 </div>
 
-<div class="card">
-<h3>Source Verification</h3>
+<div class="card"><h3>Source Verification</h3>
 <p><strong>Method:</strong> Check every factual claim against your actual sources.</p>
 <p>This connects directly to the hallucination crisis we examined in Week 5. AI-assisted writing can introduce subtle factual errors: slightly wrong statistics, misattributed findings, overstated conclusions. Every claim in your text should trace back to a source you have actually read. If AI suggested a claim and you cannot find it in your sources, it may not be true, regardless of how plausible it sounds.</p>
 </div>
 
-<div class="card">
-<h3>Internal Consistency Check</h3>
+<div class="card"><h3>Internal Consistency Check</h3>
 <p><strong>Method:</strong> Verify that all sections of your paper agree with each other.</p>
 <p>When different sections are written or revised at different times, especially with AI assistance, internal inconsistencies can creep in. Does your methods section describe the same procedure your results section reports? Does your introduction promise what your conclusion delivers? Do the limitations you acknowledge actually correspond to the methods you used? AI does not maintain awareness across your entire manuscript. You must.</p>
 </div>
 
-<div class="card">
-<h3>The "Defend It" Test</h3>
+<div class="card"><h3>The "Defend It" Test</h3>
 <p><strong>Method:</strong> Imagine a sceptical reviewer challenging every claim in your manuscript.</p>
 <p>For each claim, can you explain the evidence, address obvious counterarguments, and defend your interpretation from your own understanding? This test mirrors what actually happens during peer review and thesis defence. If you used AI to generate an argument and cannot defend it under questioning, the normal processes of academic scrutiny will expose you, no detection tool required.</p>
 </div>
 </div>
 
-<div class="info-box">
-<h4>&#x1F527; Making Auditing a Habit</h4>
+<div class="info-box"><h4>Making Auditing a Habit</h4>
 <p>These techniques are most effective when they become routine rather than afterthoughts. Consider building auditing into your writing workflow: after each AI-assisted revision round, run through these five checks before moving on. The time investment is modest compared to the cost of submitting work you cannot fully defend.</p>
 </div>
 
 <!-- SECTION 5: DATA INTEGRITY -->
-<h2 class="section-title">&#x1F4BE; Data Integrity and AI-Enabled Fabrication</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Beyond writing, AI introduces new risks to data integrity that the research community is only beginning to reckon with. The tools that make research more efficient can also make fabrication more sophisticated and harder to detect.</p>
+<h2 class="section-title" id="s5">Data Integrity and AI-Enabled Fabrication</h2>
+<p style=" margin-bottom: 30px">Beyond writing, AI introduces new risks to data integrity that the research community is only beginning to reckon with. The tools that make research more efficient can also make fabrication more sophisticated and harder to detect.</p>
 
-<div class="resource-placeholder">
-<h4>&#x1F4C4; Key Reading on AI and Scientific Integrity</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> &mdash; An overview of how AI is being used both to commit and to detect scientific misconduct, covering synthetic data generation, image manipulation, statistical fabrication, and emerging detection methods.</p>
+<div class="resource-placeholder"><h4>Key Reading on AI and Scientific Integrity</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> &mdash; An overview of how AI is being used both to commit and to detect scientific misconduct, covering synthetic data generation, image manipulation, statistical fabrication, and emerging detection methods.</p>
 </div>
 
-<div class="technical-detail">
-<h4>The Fabrication Problem</h4>
+<div class="technical-detail"><h4>The Fabrication Problem</h4>
 <p>AI-enabled fabrication is becoming more sophisticated across multiple dimensions of research output:</p>
 <ul class="styled-list">
 <li><strong>Synthetic data generation:</strong> AI can produce datasets that exhibit realistic statistical properties (appropriate distributions, plausible correlations, expected effect sizes) without any underlying experimental observation. These datasets can be extremely difficult to distinguish from real data through conventional review.</li>
@@ -618,9 +403,7 @@
 </ul>
 </div>
 
-<div class="card-grid">
-<div class="card">
-<h3>Detection Tools for Data Integrity</h3>
+<div class="card-grid"><div class="card"><h3>Detection Tools for Data Integrity</h3>
 <p>A growing ecosystem of tools is emerging to combat AI-enabled fabrication:</p>
 <ul class="styled-list">
 <li><strong>Statcheck:</strong> Automatically checks whether reported statistics (test statistics, degrees of freedom, p-values) are internally consistent. Cannot detect fabrication directly, but catches many errors and inconsistencies.</li>
@@ -630,79 +413,67 @@
 <p>These tools are useful but imperfect. The most effective defence remains rigorous self-auditing and honest research practice.</p>
 </div>
 
-<div class="card">
-<h3>The Broader Picture</h3>
+<div class="card"><h3>The Broader Picture</h3>
 <p>AI-enabled fabrication is also a symptom of systemic pressures, not only a technology problem. When academic careers depend on publication volume, when funding is tied to producing results, and when the costs of fabrication seem low relative to the rewards, the availability of sophisticated AI tools makes fabrication easier and more tempting.</p>
 <p>Addressing this requires more than better detection. It requires examining the incentive structures that make fabrication attractive in the first place, and building research cultures where transparency and honest null results are valued.</p>
 </div>
 </div>
 
-<div class="case-study">
-<h4>&#x1F9EA; Try It Yourself: The Fabrication Demonstration</h4>
+<div class="case-study"><h4>Try It Yourself: The Fabrication Demonstration</h4>
 <p>To understand how easily AI can fabricate plausible-sounding results, try this exercise with any general-purpose chatbot:</p>
-<p style="margin-top: 10px;"><strong>Prompt:</strong> "I conducted a randomised controlled trial of a mindfulness intervention on undergraduate stress levels, with 120 participants. Describe the results."</p>
-<p style="margin-top: 10px;">The AI will generate a complete results section with specific effect sizes, p-values, group comparisons, and statistical conclusions, all of it fabricated. It will sound authoritative because it has learned the patterns of how results sections are written. But it has no access to any actual data. Every number it produces is a hallucination dressed up as a finding.</p>
-<p style="margin-top: 10px;">This is why generating data descriptions with AI sits at the extreme end of the integrity spectrum. It is fabrication, not assistance.</p>
+<p style="margin-top: 10px"><strong>Prompt:</strong> "I conducted a randomised controlled trial of a mindfulness intervention on undergraduate stress levels, with 120 participants. Describe the results."</p>
+<p style="margin-top: 10px">The AI will generate a complete results section with specific effect sizes, p-values, group comparisons, and statistical conclusions, all of it fabricated. It will sound authoritative because it has learned the patterns of how results sections are written. But it has no access to any actual data. Every number it produces is a hallucination dressed up as a finding.</p>
+<p style="margin-top: 10px">This is why generating data descriptions with AI sits at the extreme end of the integrity spectrum. It is fabrication, not assistance.</p>
 </div>
 
 <!-- SECTION 6: DISCLOSURE TEMPLATES -->
-<h2 class="section-title">&#x1F4DD; Disclosure Templates</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Transparent disclosure is the practical foundation of AI writing integrity. The following templates provide starting points for different levels of AI use. Adapt them to match your actual usage and your target journal's specific requirements.</p>
+<h2 class="section-title" id="s6">Disclosure Templates</h2>
+<p style=" margin-bottom: 30px">Transparent disclosure is the practical foundation of AI writing integrity. The following templates provide starting points for different levels of AI use. Adapt them to match your actual usage and your target journal's specific requirements.</p>
 
-<div class="resource-placeholder">
-<h4>&#x1F4C4; Disclosure Guidance</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.tandfonline.com/doi/full/10.1080/0142159X.2025.2607513" target="_blank" rel="noopener"><strong>AMEE Guide No.192 (2025): "When and how to disclose AI use in academic publishing"</strong></a> &mdash; A thorough guide to AI disclosure in academic contexts, including when disclosure is necessary, what to include, and how to frame it. Provides structured templates that many journals are beginning to reference.</p>
+<div class="resource-placeholder"><h4>Disclosure Guidance</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.tandfonline.com/doi/full/10.1080/0142159X.2025.2607513" target="_blank" rel="noopener"><strong>AMEE Guide No.192 (2025): "When and how to disclose AI use in academic publishing"</strong></a> &mdash; A thorough guide to AI disclosure in academic contexts, including when disclosure is necessary, what to include, and how to frame it. Provides structured templates that many journals are beginning to reference.</p>
 </div>
 
-<div class="info-box">
-<h4>&#x2705; Template 1: Minimal Use (Grammar and Proofreading)</h4>
+<div class="info-box"><h4>Template 1: Minimal Use (Grammar and Proofreading)</h4>
 <p><em>"[Tool name, e.g., ChatGPT-4o / Claude 3.5 Sonnet / Grammarly] was used for grammar checking and proofreading of this manuscript. All intellectual content, including research design, data analysis, interpretation of results, and argumentation, was produced entirely by the authors. No AI-generated text was incorporated into the substantive content of this work."</em></p>
 </div>
 
-<div class="info-box">
-<h4>&#x1F4D0; Template 2: Moderate Use (Structuring, Feedback, Language Polishing)</h4>
+<div class="info-box"><h4>Template 2: Moderate Use (Structuring, Feedback, Language Polishing)</h4>
 <p><em>"The authors used [tool name and version] during the preparation of this manuscript for the following purposes: [list specific uses, e.g., improving clarity of expression, suggesting structural revisions to the discussion section, language polishing for non-native English expression]. All AI-assisted text was reviewed, verified, and substantially revised by the authors. The authors take full responsibility for the content of this publication, including any portions that were refined with AI assistance. [If applicable: Prompts used are available in the supplementary materials.]"</em></p>
 </div>
 
-<div class="info-box">
-<h4>&#x1F4D1; Template 3: Substantial Use (Drafting Assistance, Ideation)</h4>
+<div class="info-box"><h4>Template 3: Substantial Use (Drafting Assistance, Ideation)</h4>
 <p><em>"[Tool name and version] was used substantially during the preparation of this manuscript, including [list specific uses, e.g., generating initial draft text from author-provided outlines, brainstorming argument structures, synthesising literature themes]. All AI-generated content was critically reviewed, verified against primary sources, and revised by the authors. Sections that involved significant AI contribution include [specify sections]. The authors affirm that they understand and can defend all content in this manuscript, and take full responsibility for its accuracy and integrity. Complete prompts and AI interaction logs are available upon request / in the supplementary materials."</em></p>
 </div>
 
-<div class="info-box">
-<h4>&#x1F4A1; Practice What We Preach</h4>
+<div class="info-box"><h4>Practice What We Preach</h4>
 <p>It is worth noting that these course materials themselves fall under Template 3. As stated at the top of every page: this content has been created and enhanced using Claude. The structure, research, and drafting involved substantial AI assistance, while the intellectual direction, pedagogical decisions, verification of all claims, and final editorial judgment remained with the course instructor. We are transparent about our own AI use, and we encourage you to adopt the same standard.</p>
 </div>
 
-<div class="warning-box">
-<h4>&#x26A0;&#xFE0F; Disclosure Is Not Absolution</h4>
+<div class="warning-box"><h4>Disclosure Is Not Absolution</h4>
 <p>A disclosure statement does not automatically make any level of AI use acceptable. Some journals (Science among them) prohibit AI-generated text regardless of disclosure. Others may accept disclosed use but still expect the intellectual contribution to be demonstrably the authors'. Disclosure is necessary but not sufficient. You must also ensure that your use of AI is consistent with your target journal's specific policy and with the norms of your discipline.</p>
 </div>
 
 <!-- SECTION 7: READINGS -->
-<h2 class="section-title">&#x1F4DA; Readings</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Three core readings for this sub-lesson, all freely accessible.</p>
+<h2 class="section-title" id="s7">Readings</h2>
+<p style=" margin-bottom: 30px">Three core readings for this sub-lesson, all freely accessible.</p>
 
-<div class="resource-placeholder">
-<h4>&#x1F4C4; Core Reading 1</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener"><strong>Elsevier (2025): Generative AI policies for journals</strong></a> &mdash; One of the most detailed publisher-level AI policies currently available. Read it as a model for understanding what publishers expect, and as a reference point for your own disclosure practices.</p>
+<div class="resource-placeholder"><h4>Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener"><strong>Elsevier (2025): Generative AI policies for journals</strong></a> &mdash; One of the most detailed publisher-level AI policies currently available. Read it as a model for understanding what publishers expect, and as a reference point for your own disclosure practices.</p>
 </div>
 
-<div class="resource-placeholder">
-<h4>&#x1F4C4; Core Reading 2</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.tandfonline.com/doi/full/10.1080/0142159X.2025.2607513" target="_blank" rel="noopener"><strong>AMEE Guide No.192 (2025): "When and how to disclose AI use in academic publishing"</strong></a> &mdash; Practical guidance on the mechanics of AI disclosure: when it is required, what to include, how to format it, and how to make disclosure meaningful rather than performative.</p>
+<div class="resource-placeholder"><h4>Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.tandfonline.com/doi/full/10.1080/0142159X.2025.2607513" target="_blank" rel="noopener"><strong>AMEE Guide No.192 (2025): "When and how to disclose AI use in academic publishing"</strong></a> &mdash; Practical guidance on the mechanics of AI disclosure: when it is required, what to include, how to format it, and how to make disclosure meaningful rather than performative.</p>
 </div>
 
-<div class="resource-placeholder">
-<h4>&#x1F4C4; Core Reading 3</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> &mdash; An overview of the dual role AI plays in scientific integrity, both as a source of new risks and as a tool for detecting misconduct. Useful for understanding the broader field of AI and research integrity.</p>
+<div class="resource-placeholder"><h4>Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> &mdash; An overview of the dual role AI plays in scientific integrity, both as a source of new risks and as a tool for detecting misconduct. Useful for understanding the broader field of AI and research integrity.</p>
 </div>
 
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>&#x1F4DA; Summary &amp; Key Takeaways</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Summary &amp; Key Takeaways</h2>
 <p>This session mapped the territory where AI writing assistance intersects with scientific integrity, from the low-risk terrain of grammar fixes to the high-risk zone of data fabrication.</p>
-<ul class="styled-list" style="margin-top: 15px;">
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>The integrity spectrum is real:</strong> Not all AI writing assistance carries the same ethical weight. Understanding where your use falls on the spectrum, from surface-level corrections to substantive content generation, is the first step toward honest practice</li>
 <li><strong>Journal policies are converging:</strong> No major publisher accepts AI as an author. Most require disclosure. All hold human authors responsible for every word. Know your target journal's specific policy before you submit</li>
 <li><strong>Detection tools are unreliable:</strong> AI detection is too inaccurate, too biased, and too easily circumvented to serve as the primary defence against misuse. Do not build your integrity practice around avoiding detection</li>
@@ -710,24 +481,5 @@
 <li><strong>Data integrity requires vigilance:</strong> AI can fabricate plausible-sounding data, results, and statistical analyses. Never use AI to describe data it has not seen</li>
 <li><strong>Disclosure is necessary but not sufficient:</strong> Transparent disclosure is the baseline, but it does not automatically make any level of AI use acceptable. Your use must also be consistent with your journal's policy and your discipline's norms</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session:</strong> In Sub-Lesson 5 (Building Your AI Writing Workflow), we bring together everything from this week (the writing process, discipline-specific applications, collaborative workflows, and integrity practices) into a practical, personalised workflow that you can use for your own research writing.</p>
-</div>
-
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-6/AI Writing Tools Landscape and Honest Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">AI Writing Tools — Landscape and Honest Assessment</div></a>
-  <a class="page-nav-link" href="../week-6/Building Your AI Writing Workflow.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Building Your AI Writing Workflow</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next session:</strong> In Sub-Lesson 5 (Building Your AI Writing Workflow), we bring together everything from this week (the writing process, discipline-specific applications, collaborative workflows, and integrity practices) into a practical, personalised workflow that you can use for your own research writing.</p>
+</div></div><div class="prevnext"><a href="AI%20Writing%20Tools%20Landscape%20and%20Honest%20Assessment.html"><span class="d">&larr; Previous</span><span class="pt">AI Writing Tools — Landscape and Honest Assessment</span></a><a class="next" href="Building%20Your%20AI%20Writing%20Workflow.html"><span class="d">Next &rarr;</span><span class="pt">Building Your AI Writing Workflow</span></a></div></div><div class="rightrail"><div class="rmeta">Week 6<br>Lesson 4<br>21 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Integrity spectrum</div>A scale for weighing the ethical risk of AI writing assistance, from low-risk surface corrections like grammar to high-risk substantive generation like arguments or data descriptions, with risk rising as AI shifts from form to content.</div><div class="snote"><div class="sk">Perplexity (in AI detection)</div>A statistical measure of how predictable each word choice is in a text. AI writing tends to have low perplexity because models favour highly probable next words; human writing is more variable and harder to predict.</div><div class="snote"><div class="sk">Burstiness (in AI detection)</div>The natural variation in sentence length and complexity within writing. Human prose mixes short and long sentences; AI text tends to be more uniform, a feature detection tools use to flag machine-generated content.</div><div class="snote"><div class="sk">Synthetic data</div>Data generated computationally to mimic real experimental results (plausible distributions, correlations, effect sizes) without any underlying observation. In misconduct, AI can produce synthetic datasets hard to distinguish from genuine ones.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

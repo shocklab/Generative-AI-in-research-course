@@ -1,229 +1,190 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 3.4 - Sustainable AI: Practices and Possibilities</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-
-        .ai-notice strong { font-weight: 600; }
-
-        header {
-            background: #003A70;
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .week-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-
-        .content { padding: 50px 40px; }
-
-        .intro-text {
-            background: #f9f9f9;
-            padding: 35px;
-            border-radius: 15px;
-            border-left: 5px solid #003A70;
-            margin-bottom: 40px;
-        }
-
-        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .intro-text h2::before { content: '🎯'; }
-        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-
-        .section-title {
-            font-size: 2em;
-            color: #2a5298;
-            margin: 50px 0 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #003A70;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-
-        .styled-list { list-style: none; margin-top: 15px; }
-
-        .styled-list li {
-            padding: 8px 0 8px 25px;
-            color: #555;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-
-        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #003A70;
-        }
-
-        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .info-box p { color: #555; line-height: 1.7; }
-
-        .resource-placeholder {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-            border: 2px dashed #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-        }
-
-        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-        .resource-placeholder p { color: #666; }
-
-        .technical-detail {
-            background: white;
-            border: 2px solid #d0e8f2;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-        .comparison-table tr:last-child td { border-bottom: none; }
-        .comparison-table tr:hover { background: #f9f9f9; }
-
-        .tool-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-top: 5px solid #003A70;
-            margin-bottom: 20px;
-        }
-
-        .tool-card h3 { color: #2a5298; font-size: 1.3em; margin-bottom: 8px; }
-        .tool-card .tool-url { font-size: 0.9em; color: #003A70; margin-bottom: 12px; }
-        .tool-card p { color: #555; line-height: 1.7; margin-bottom: 10px; }
-
-        .decision-framework {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .decision-framework h4 { color: #003A70; font-size: 1.4em; margin-bottom: 20px; }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .content { padding: 30px 20px; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design and presentation have been enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 3 • Sub-Lesson 4</div>
-<h1>🌱 <span style="color: #ffffff;">Sustainable AI: Practices &amp; Possibilities</span></h1>
-<p>What researchers can do, how to measure your footprint, and the other side of the story</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>The previous two sessions established that AI has a real and growing environmental footprint, and that the relationship between efficiency and total consumption is complicated. This session asks: given all of that, what can you actually do?</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sustainable AI: Practices &amp; Possibilities — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1500px;margin:0 auto;padding:0 36px;display:grid;grid-template-columns:220px minmax(0,1fr) 252px;column-gap:60px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.4rem;line-height:1.66;color:var(--ink);margin:0 0 26px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.27rem;line-height:1.58;color:var(--ink2);margin-bottom:11px;padding-left:22px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.25rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.16rem;line-height:1.52;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.22rem;line-height:1.6;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.18rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.27rem;line-height:1.64}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson cur" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><div class="subs"><a href="#s1">Measuring Your Own Footprint</a><a href="#s2">Practical Choices That Make a Difference</a><a href="#s3">The Other Side: AI for Environmental Solutions</a><a href="#s4">The Policy Landscape</a><a href="#s5">A Framework for Your Own Decisions</a></div><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Sustainable AI: Practices &amp; Possibilities</h1><div class="deck">What researchers can do, how to measure your footprint, and the other side of the story</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">The previous two sessions established that AI has a real and growing environmental footprint, and that the relationship between efficiency and total consumption is complicated. This session asks: given all of that, what can you actually do?</p>
 <p>We will look at concrete tools for measuring the carbon footprint of your own computational work, practical choices that can reduce your impact, and the other side of the story: the ways AI is being applied to environmental challenges. The goal is not to make you feel either guilty or reassured, but to help you make informed decisions and engage critically with claims about AI and the environment from any direction.</p>
 </div>
 <!-- SECTION 1: MEASURING YOUR FOOTPRINT -->
-<h2 class="section-title">📏 Measuring Your Own Footprint</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">You cannot reduce what you do not measure. A small ecosystem of open tools has emerged to help researchers estimate and track the carbon footprint of their computational work.</p>
-<div class="tool-card">
-<h3>🌱 CodeCarbon</h3>
+<h2 class="section-title" id="s1">Measuring Your Own Footprint</h2>
+<p style=" margin-bottom: 30px">You cannot reduce what you do not measure. A small ecosystem of open tools has emerged to help researchers estimate and track the carbon footprint of their computational work.</p>
+<div class="tool-card"><h3>CodeCarbon</h3>
 <div class="tool-url"><a href="https://codecarbon.io" target="_blank" rel="noopener">codecarbon.io</a> | <a href="https://github.com/mlco2/codecarbon" target="_blank" rel="noopener">GitHub</a></div>
 <p>The most widely used tool for tracking emissions from machine learning workloads. CodeCarbon is a Python library that monitors your GPU/CPU power draw during a computation and looks up the carbon intensity of the local electricity grid, producing an estimate in kg CO₂ equivalent.</p>
 <ul class="styled-list">
@@ -233,8 +194,7 @@
 <li><strong>Limitation:</strong> Measures direct electricity use; does not account for embodied hardware carbon or data centre overhead beyond PUE estimates</li>
 </ul>
 </div>
-<div class="tool-card">
-<h3>🌍 Green Algorithms</h3>
+<div class="tool-card"><h3>Green Algorithms</h3>
 <div class="tool-url"><a href="https://www.green-algorithms.org" target="_blank" rel="noopener">green-algorithms.org</a></div>
 <p>A web-based calculator designed for the broader scientific computing community, not only ML researchers. If you run bioinformatics pipelines, simulations, or any compute-intensive work, Green Algorithms can estimate its footprint.</p>
 <ul class="styled-list">
@@ -244,8 +204,7 @@
 <li><strong>Particularly useful for:</strong> Non-ML researchers who want to understand the footprint of their existing computational work</li>
 </ul>
 </div>
-<div class="tool-card">
-<h3>⚖️ ML CO₂ Impact Calculator</h3>
+<div class="tool-card"><h3>ML CO₂ Impact Calculator</h3>
 <div class="tool-url"><a href="https://mlco2.github.io/impact/" target="_blank" rel="noopener">mlco2.github.io/impact/</a></div>
 <p>A simpler web-based calculator for estimating the carbon footprint of a planned ML training run, before you run it. Useful for project planning and grant applications where you want to report your expected compute footprint.</p>
 <ul class="styled-list">
@@ -254,21 +213,19 @@
 <li><strong>Distinction from CodeCarbon:</strong> This tool estimates in advance (before running); CodeCarbon measures in real time</li>
 </ul>
 </div>
-<div class="info-box">
-<h4>💡 Should You Report Your Compute Footprint in Papers?</h4>
+<div class="info-box"><h4>Should You Report Your Compute Footprint in Papers?</h4>
 <p>The "Green AI" movement (Schwartz et al., 2020) has called for academic papers to routinely report the computational cost of the research they present, both in financial and environmental terms. Some venues now encourage or require this; most do not yet mandate it. Reporting your compute footprint in your methods section:</p>
-<ul class="styled-list" style="margin-top: 8px;">
+<ul class="styled-list" style="margin-top: 8px">
 <li>Enables reproducibility assessment (others can judge whether they have the resources to replicate your work)</li>
 <li>Contributes to the community's understanding of aggregate research compute costs</li>
 <li>Models good practice for your field</li>
 </ul>
-<p style="margin-top: 8px;">Even a rough estimate ("training was performed on X GPUs for Y hours, estimated emissions Z kg CO₂e using CodeCarbon") is more useful than nothing.</p>
+<p style="margin-top: 8px">Even a rough estimate ("training was performed on X GPUs for Y hours, estimated emissions Z kg CO₂e using CodeCarbon") is more useful than nothing.</p>
 </div>
 <!-- SECTION 2: PRACTICAL CHOICES -->
-<h2 class="section-title">🔧 Practical Choices That Make a Difference</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">You may not be able to influence how AI companies power their data centres, but you can make choices that affect the footprint of your own AI use.</p>
-<div class="technical-detail">
-<h4>📊 Impact of Different Choices</h4>
+<h2 class="section-title" id="s2">Practical Choices That Make a Difference</h2>
+<p style=" margin-bottom: 30px">You may not be able to influence how AI companies power their data centres, but you can make choices that affect the footprint of your own AI use.</p>
+<div class="technical-detail"><h4>Impact of Different Choices</h4>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -321,15 +278,12 @@
 </tbody>
 </table>
 </div>
-<div class="highlight-box">
-<h3>🌍 <span style="color: #ffffff;">The Cloud Region Choice: The Most Impactful Lever</span></h3>
+<div class="highlight-box"><h3><span>The Cloud Region Choice: The Most Impactful Lever</span></h3>
 <p>Research by Dodge et al. (2022, Allen Institute for AI, ACM FAccT) found that running identical AI workloads in a low-carbon electricity region vs. a high-carbon region can reduce carbon emissions by up to 80%, with zero change to the model, code, or performance.</p>
-<p style="margin-top: 15px;">Major cloud providers (AWS, Google Cloud, Azure) all allow you to specify the region where your compute runs. Choosing <em>us-west-2</em> (Oregon, with significant hydroelectric power) over <em>us-east-1</em> (Virginia, more coal/gas dependent) can make a substantial difference. The same applies to European regions: <em>eu-north-1</em> (Sweden) is among the cleanest, while <em>eu-central-1</em> (Frankfurt) is less so.</p>
-<p style="margin-top: 15px;">Tools like the <strong>Electricity Maps API</strong> and <strong>Google Cloud's Carbon Footprint tool</strong> can help you choose the lowest-carbon option in real time.</p>
+<p style="margin-top: 15px">Major cloud providers (AWS, Google Cloud, Azure) all allow you to specify the region where your compute runs. Choosing <em>us-west-2</em> (Oregon, with significant hydroelectric power) over <em>us-east-1</em> (Virginia, more coal/gas dependent) can make a substantial difference. The same applies to European regions: <em>eu-north-1</em> (Sweden) is among the cleanest, while <em>eu-central-1</em> (Frankfurt) is less so.</p>
+<p style="margin-top: 15px">Tools like the <strong>Electricity Maps API</strong> and <strong>Google Cloud's Carbon Footprint tool</strong> can help you choose the lowest-carbon option in real time.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Choosing the Right Model Size</h3>
+<div class="card-grid"><div class="card"><h3>Choosing the Right Model Size</h3>
 <p>One choice that gets overlooked: do you need a frontier model, or will a smaller one do?</p>
 <ul class="styled-list">
 <li>For many research tasks (data extraction, classification, summarisation, code generation) a 7B or 13B parameter model performs nearly as well as a 70B+ model</li>
@@ -338,8 +292,7 @@
 <li>Open-weight models (LLaMA 3, Mistral, Qwen) allow local deployment that avoids sending data to cloud providers, which may matter for sensitive research data as well as energy reasons</li>
 </ul>
 </div>
-<div class="card">
-<h3>Prompting vs. Compute</h3>
+<div class="card"><h3>Prompting vs. Compute</h3>
 <p>Before investing in training or fine-tuning, it is worth asking whether better prompting could achieve the same result at a fraction of the compute cost.</p>
 <ul class="styled-list">
 <li>Well-crafted prompts can match or exceed the performance of a fine-tuned smaller model for many tasks</li>
@@ -348,8 +301,7 @@
 <li>Cache and reuse results: if you are running the same analysis on many documents, caching intermediate outputs avoids redundant compute</li>
 </ul>
 </div>
-<div class="card">
-<h3>Context Window and Iteration Costs</h3>
+<div class="card"><h3>Context Window and Iteration Costs</h3>
 <p>Two less-visible sources of compute cost: the amount of text you feed into a model, and how many times you iterate.</p>
 <ul class="styled-list">
 <li><strong>Context length scales compute:</strong> Feeding a 100-page document into a frontier model incurs compute proportional to that length, since every token in context is processed on every query</li>
@@ -359,9 +311,8 @@
 </ul>
 </div>
 </div>
-<div class="technical-detail">
-<h4>🔬 The Hidden Energy Cost of Frontier Model Features</h4>
-<p style="color: #555; margin-bottom: 15px;">Many advanced AI features are designed to improve output quality, but each carries an energy cost that is largely invisible in the user interface. The figures below are estimates based on available published evidence (noted in parentheses); some platform costs are not publicly disclosed.</p>
+<div class="technical-detail"><h4>The Hidden Energy Cost of Frontier Model Features</h4>
+<p style=" margin-bottom: 15px">Many advanced AI features are designed to improve output quality, but each carries an energy cost that is largely invisible in the user interface. The figures below are estimates based on available published evidence (noted in parentheses); some platform costs are not publicly disclosed.</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -403,22 +354,18 @@
 </tr>
 </tbody>
 </table>
-<div class="info-box" style="margin-top: 20px;">
-<h4>💡 When Are These Features Worth It?</h4>
+<div class="info-box" style="margin-top: 20px"><h4>When Are These Features Worth It?</h4>
 <p>Extended thinking and Deep Research exist because they genuinely improve results on hard problems. A Deep Research session synthesising 50 sources for a complex literature question may save many hours of manual work, and may well be the lower-energy option when your time is factored in.</p>
-<p style="margin-top: 8px;">The concern is <strong>reflexive use</strong>: enabling reasoning modes or triggering Deep Research for questions that a standard prompt would handle adequately. As with model size: <em>match capability to complexity, and choose deliberately instead of reaching for the most powerful available option</em>.</p>
+<p style="margin-top: 8px">The concern is <strong>reflexive use</strong>: enabling reasoning modes or triggering Deep Research for questions that a standard prompt would handle adequately. As with model size: <em>match capability to complexity, and choose deliberately instead of reaching for the most powerful available option</em>.</p>
 </div>
 </div>
 <!-- SECTION 3: AI FOR CLIMATE -->
-<h2 class="section-title">🌿 The Other Side: AI for Environmental Solutions</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">A responsible treatment of AI's environmental impact requires engaging with both sides. AI consumes energy, and it is also being applied to some of the world's most pressing environmental challenges. These applications do not cancel out AI's footprint, but they are part of the full picture.</p>
-<div class="resource-placeholder">
-<h4>📄 Foundational Reading: Tackling Climate Change with Machine Learning</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/1906.05433" target="_blank" rel="noopener"><strong>Rolnick et al. (2022): "Tackling Climate Change with Machine Learning"</strong></a>, ACM Computing Surveys. A landmark survey paper by 22 researchers outlining 13 areas where ML can contribute to climate mitigation and adaptation. Essential reading for a balanced view of AI's relationship with the environment.</p>
+<h2 class="section-title" id="s3">The Other Side: AI for Environmental Solutions</h2>
+<p style=" margin-bottom: 30px">A responsible treatment of AI's environmental impact requires engaging with both sides. AI consumes energy, and it is also being applied to some of the world's most pressing environmental challenges. These applications do not cancel out AI's footprint, but they are part of the full picture.</p>
+<div class="resource-placeholder"><h4>Foundational Reading: Tackling Climate Change with Machine Learning</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/1906.05433" target="_blank" rel="noopener"><strong>Rolnick et al. (2022): "Tackling Climate Change with Machine Learning"</strong></a>, ACM Computing Surveys. A landmark survey paper by 22 researchers outlining 13 areas where ML can contribute to climate mitigation and adaptation. Essential reading for a balanced view of AI's relationship with the environment.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Energy Systems</h3>
+<div class="card-grid"><div class="card"><h3>Energy Systems</h3>
 <ul class="styled-list">
 <li><strong>Grid optimisation:</strong> ML can predict demand and balance supply more efficiently, enabling higher penetrations of variable renewable energy</li>
 <li><strong>DeepMind + Google:</strong> A reinforcement learning system reduced cooling energy use in Google's data centres by ~40%, AI reducing its own infrastructure's footprint</li>
@@ -426,8 +373,7 @@
 <li><strong>Demand forecasting:</strong> Better predictions of energy demand reduce the need for fossil fuel peaker plants</li>
 </ul>
 </div>
-<div class="card">
-<h3>Climate Science and Modelling</h3>
+<div class="card"><h3>Climate Science and Modelling</h3>
 <ul class="styled-list">
 <li><strong>Weather prediction:</strong> Google DeepMind's GraphCast and NVIDIA's FourCastNet produce weather forecasts faster and at lower compute cost than traditional numerical models</li>
 <li><strong>Climate downscaling:</strong> ML emulators can produce high-resolution regional climate projections from coarser global models at a fraction of the compute cost</li>
@@ -435,8 +381,7 @@
 <li><strong>Carbon monitoring:</strong> Satellite imagery analysis for tracking deforestation, methane leaks, and land use change</li>
 </ul>
 </div>
-<div class="card">
-<h3>Science and Materials</h3>
+<div class="card"><h3>Science and Materials</h3>
 <ul class="styled-list">
 <li><strong>Materials discovery:</strong> AlphaFold's success with protein structure has inspired similar approaches for discovering new materials for batteries, solar cells, and carbon capture</li>
 <li><strong>Drug discovery:</strong> AI-accelerated drug development has the potential to address diseases exacerbated by climate change</li>
@@ -445,23 +390,20 @@
 </ul>
 </div>
 </div>
-<div class="info-box">
-<h4>⚖️ How to Think About the Trade-off</h4>
+<div class="info-box"><h4>How to Think About the Trade-off</h4>
 <p>The existence of beneficial AI applications for climate does not automatically justify AI's overall energy footprint. That would require demonstrating that the net impact is positive, which requires careful case-by-case analysis. Some questions worth asking:</p>
-<ul class="styled-list" style="margin-top: 10px;">
+<ul class="styled-list" style="margin-top: 10px">
 <li>Does this specific AI application actually require a frontier model, or could a much smaller system do the job?</li>
 <li>What is the counterfactual? Would the same outcome be achieved without AI, using less energy?</li>
 <li>Are the emissions savings from the application larger than the emissions from running the AI system itself?</li>
 <li>Who bears the environmental costs (global electricity + hardware) vs. who receives the benefits (specific sectors or regions)?</li>
 </ul>
-<p style="margin-top: 8px;">These are genuinely difficult questions, and the honest answer in most cases is that we don't yet have the data to answer them precisely.</p>
+<p style="margin-top: 8px">These are genuinely difficult questions, and the honest answer in most cases is that we don't yet have the data to answer them precisely.</p>
 </div>
 <!-- SECTION 4: POLICY -->
-<h2 class="section-title">🏛️ The Policy Landscape</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Individual choices by researchers matter, but the scale of AI's environmental impact requires systemic responses. Here is where policy is currently heading.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Disclosure Requirements</h3>
+<h2 class="section-title" id="s4">The Policy Landscape</h2>
+<p style=" margin-bottom: 30px">Individual choices by researchers matter, but the scale of AI's environmental impact requires systemic responses. Here is where policy is currently heading.</p>
+<div class="card-grid"><div class="card"><h3>Disclosure Requirements</h3>
 <ul class="styled-list">
 <li><strong>EU AI Act:</strong> Includes provisions for transparency about compute resources and energy use for certain high-impact AI systems</li>
 <li><strong>SEC climate disclosures (US):</strong> Require large publicly-listed companies to disclose material climate risks, which can include data centre energy use</li>
@@ -469,8 +411,7 @@
 <li><strong>The gap:</strong> Most disclosure regimes apply to companies, not to AI products or models specifically</li>
 </ul>
 </div>
-<div class="card">
-<h3>What Researchers Can Advocate For</h3>
+<div class="card"><h3>What Researchers Can Advocate For</h3>
 <ul class="styled-list">
 <li><strong>Mandatory model cards:</strong> Reporting of compute, energy use, and carbon footprint alongside model releases, similar to nutrition labels</li>
 <li><strong>Journal and conference standards:</strong> Requiring compute reporting in publications, as some ML venues are beginning to implement</li>
@@ -479,30 +420,27 @@
 </ul>
 </div>
 </div>
-<div class="info-box" style="margin-top: 25px;">
-<h4>🌍 Africa and the AU: A Significant Policy Gap</h4>
+<div class="info-box" style="margin-top: 25px"><h4>Africa and the AU: A Significant Policy Gap</h4>
 <p>The <strong>African Union Continental AI Strategy</strong> (adopted July 2024) is the continent's primary AI governance framework. Its environmental provisions are minimal but worth noting:</p>
-<ul class="styled-list" style="margin-top: 10px;">
+<ul class="styled-list" style="margin-top: 10px">
 <li><strong>Water scarcity acknowledged:</strong> The strategy explicitly states that data centre cooling "poses a threat to regions already facing water scarcity", directly relevant to an African context</li>
 <li><strong>High-risk AI framework:</strong> "Environmental impact" is listed as a risk dimension for high-risk AI systems, in principle requiring impact assessments</li>
 <li><strong>General principle:</strong> AI development should not harm "the environment", stated without specific implementation mechanisms</li>
 <li><strong>AU Data Policy Framework (2022):</strong> The AU's data governance framework contains no meaningful environmental provisions</li>
 </ul>
-<p style="margin-top: 12px;">A 2025 analysis by TechPolicy.Press examining 14 African AI strategies found that only three acknowledged environmental consequences at all, and that the AU's single mention of water scarcity "provides no concrete solutions or mitigation plans." The gap matters because Africa is among the world's most climate-vulnerable regions, and countries like South Africa run electricity grids that are among the world's most carbon-intensive (historically over 80% coal). AI workloads and data centres in the region inherit that carbon intensity, yet current continental AI governance does not address this.</p>
-<p style="margin-top: 8px;">UNESCO and the World Bank have been working with AU policymakers on "Green AI" pathways, and the policy gap may narrow as the Continental Strategy moves through implementation (Phase 1: 2025–2026; Phase 2: 2028–2030). For now, it represents an area where researchers, particularly those based in Africa, can contribute to policy advocacy.</p>
+<p style="margin-top: 12px">A 2025 analysis by TechPolicy.Press examining 14 African AI strategies found that only three acknowledged environmental consequences at all, and that the AU's single mention of water scarcity "provides no concrete solutions or mitigation plans." The gap matters because Africa is among the world's most climate-vulnerable regions, and countries like South Africa run electricity grids that are among the world's most carbon-intensive (historically over 80% coal). AI workloads and data centres in the region inherit that carbon intensity, yet current continental AI governance does not address this.</p>
+<p style="margin-top: 8px">UNESCO and the World Bank have been working with AU policymakers on "Green AI" pathways, and the policy gap may narrow as the Continental Strategy moves through implementation (Phase 1: 2025–2026; Phase 2: 2028–2030). For now, it represents an area where researchers, particularly those based in Africa, can contribute to policy advocacy.</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Policy and Measurement Resources</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1787/7babf571-en" target="_blank" rel="noopener"><strong>OECD (2022): "Measuring the Environmental Impacts of Artificial Intelligence Compute and Applications"</strong></a>. Policy-focused analysis of methodological challenges and governance options.</p>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/1907.10597" target="_blank" rel="noopener"><strong>Schwartz et al. (2020): "Green AI"</strong></a> (Communications of the ACM). The paper that called for the research community to report efficiency metrics alongside performance. Short and accessible.</p>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/2206.05229" target="_blank" rel="noopener"><strong>Dodge et al. (2022): "Measuring the Carbon Intensity of AI in Cloud Instances"</strong></a>. The paper demonstrating the 80% emissions reduction available from cloud region choice.</p>
+<div class="resource-placeholder"><h4>Policy and Measurement Resources</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://doi.org/10.1787/7babf571-en" target="_blank" rel="noopener"><strong>OECD (2022): "Measuring the Environmental Impacts of Artificial Intelligence Compute and Applications"</strong></a>. Policy-focused analysis of methodological challenges and governance options.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/1907.10597" target="_blank" rel="noopener"><strong>Schwartz et al. (2020): "Green AI"</strong></a> (Communications of the ACM). The paper that called for the research community to report efficiency metrics alongside performance. Short and accessible.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2206.05229" target="_blank" rel="noopener"><strong>Dodge et al. (2022): "Measuring the Carbon Intensity of AI in Cloud Instances"</strong></a>. The paper demonstrating the 80% emissions reduction available from cloud region choice.</p>
 </div>
 <!-- SECTION 5: DECISION FRAMEWORK -->
-<h2 class="section-title">🧭 A Framework for Your Own Decisions</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Rather than a set of rules, here is a set of questions you can ask yourself when deciding how to use AI in your research.</p>
-<div class="decision-framework">
-<h4>Questions to Ask Before Running Compute-Intensive AI Work</h4>
-<ol style="margin-left: 25px; color: #555; line-height: 2.2; font-size: 1.05em;">
+<h2 class="section-title" id="s5">A Framework for Your Own Decisions</h2>
+<p style=" margin-bottom: 30px">Rather than a set of rules, here is a set of questions you can ask yourself when deciding how to use AI in your research.</p>
+<div class="decision-framework"><h4>Questions to Ask Before Running Compute-Intensive AI Work</h4>
+<ol style="margin-left: 25px">
 <li><strong>Do I actually need AI for this task?</strong> Could a simpler statistical method, a keyword search, or manual analysis achieve the same result with less compute?</li>
 <li><strong>Do I need a frontier model, and do I need its most powerful features?</strong> Would a 7B parameter open-weight model do the job? If using a frontier model, do I need extended thinking, Deep Research, or agent workflows, or will a standard prompt suffice? Have I tested simpler approaches first?</li>
 <li><strong>Can I measure the footprint?</strong> Can I add CodeCarbon to this experiment, or use the Green Algorithms calculator to estimate it?</li>
@@ -512,11 +450,10 @@
 <li><strong>Will I report this?</strong> If this is publishable research, will I include the compute footprint in the methods section?</li>
 </ol>
 </div>
-<div class="info-box">
-<h4>💡 Proportionality: Don't Catastrophise, Don't Dismiss</h4>
+<div class="info-box"><h4>Proportionality: Don't Catastrophise, Don't Dismiss</h4>
 <p>Two failure modes are common in discussions of AI and the environment. The first is catastrophising: treating every ChatGPT query as an environmental emergency. The second is dismissing: pointing to AI's small per-query footprint as a reason to ignore the issue entirely.</p>
-<p style="margin-top: 8px;">The proportionate response is to:</p>
-<ul class="styled-list" style="margin-top: 8px;">
+<p style="margin-top: 8px">The proportionate response is to:</p>
+<ul class="styled-list" style="margin-top: 8px">
 <li>Recognise that aggregate scale is what matters, not individual queries in isolation</li>
 <li>Make the low-effort choices (model size, cloud region, caching) as a matter of routine</li>
 <li>Apply more scrutiny to high-compute work (training runs, large-scale inference pipelines)</li>
@@ -525,10 +462,9 @@
 </ul>
 </div>
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>📚 Week 3 Summary: Environmental Implications of AI</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Week 3 Summary: Environmental Implications of AI</h2>
 <p>Across the four sessions this week, we have built a picture of AI's environmental footprint that is neither comforting nor catastrophic, but honest about what we know and what we don't:</p>
-<ul class="styled-list" style="margin-top: 15px;">
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>The data are uncertain:</strong> Corporate opacity means all figures are estimates; treat them as order-of-magnitude guides</li>
 <li><strong>Critical minerals underpin all AI hardware:</strong> Silicon, cobalt, rare earth elements, and lithium are geographically concentrated, ethically contested, and environmentally costly to extract, a supply chain dimension often absent from mainstream AI debate</li>
 <li><strong>Text vs. video is not comparable:</strong> Video generation uses ~1,000× more energy than text; these are categorically different use cases</li>
@@ -538,23 +474,5 @@
 <li><strong>AI can also help:</strong> Genuine applications in climate science, energy systems, and materials research, though these do not automatically offset AI's footprint</li>
 <li><strong>Researchers can act:</strong> Model choice, cloud region, reporting, and advocacy are all within your control</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next week (Week 4):</strong> We move from environmental implications to the broader ethical landscape: ethical frameworks for using AI in research, including questions of transparency, privacy, bias, and academic integrity.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-3/Critical Minerals and AI.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Critical Minerals and AI</div></a>
-  <a class="page-nav-link" href="../week-3/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next week (Week 4):</strong> We move from environmental implications to the broader ethical landscape: ethical frameworks for using AI in research, including questions of transparency, privacy, bias, and academic integrity.</p>
+</div></div><div class="prevnext"><a href="Critical%20Minerals%20and%20AI.html"><span class="d">&larr; Previous</span><span class="pt">Critical Minerals and AI</span></a><a class="next" href="Discussion%20Questions.html"><span class="d">Next &rarr;</span><span class="pt">Discussion Questions (to prepare before class)</span></a></div></div><div class="rightrail"><div class="rmeta">Week 3<br>Lesson 4<br>15 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Carbon intensity</div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk">CO₂ equivalent (CO₂e)</div>A standardised unit that converts all greenhouse gases into the amount of carbon dioxide that would cause the same warming, letting different emission sources be compared on a single scale.</div><div class="snote"><div class="sk">Embodied carbon</div>The greenhouse-gas emissions released when manufacturing a physical object; for AI, the carbon cost of making chips, servers, and data centres, as distinct from emissions from the electricity used during operation.</div><div class="snote"><div class="sk">LoRA (Low-Rank Adaptation)</div>A parameter-efficient fine-tuning method that inserts small trainable matrices into a frozen model, updating only a tiny fraction of parameters, so a large model can be adapted on modest hardware near full-fine-tuning quality.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

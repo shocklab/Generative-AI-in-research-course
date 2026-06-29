@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAM5020F 2026: Generative AI for Research</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 10px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 10px auto 0;
+    }
+    .course-code {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+    .content {
+        padding: 40px;
+    }
+    .caveat-banner {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 18px 22px;
+        border-radius: 12px;
+        margin-bottom: 35px;
+    }
+    .caveat-banner p {
+        color: #555;
+        font-size: 0.95em;
+        line-height: 1.7;
+    }
+    .caveat-banner a {
+        color: #003A70;
+        font-weight: 600;
+    }
+    .week-section {
+        margin-bottom: 35px;
+    }
+    .week-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #003A70;
+    }
+    .week-number {
+        background: #003A70;
+        color: white;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.1em;
+        flex-shrink: 0;
+    }
+    .week-header h2 {
+        color: #2a5298;
+        font-size: 1.4em;
+        font-weight: 600;
+    }
+    .week-time {
+        margin-left: auto;
+        color: #2a5298;
+        font-size: 0.78em;
+        font-weight: 600;
+        background: #eef2f8;
+        padding: 4px 13px;
+        border-radius: 14px;
+        white-space: nowrap;
+        align-self: center;
+    }
+    .week-header .week-subtitle {
+        color: #888;
+        font-size: 0.85em;
+        font-weight: 400;
+    }
+    .lesson-list {
+        list-style: none;
+        margin-left: 60px;
+    }
+    .lesson-list li {
+        margin-bottom: 8px;
+    }
+    .lesson-list a {
+        color: #2c3e50;
+        text-decoration: none;
+        padding: 8px 15px;
+        display: block;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        border-left: 3px solid transparent;
+    }
+    .lesson-list a:hover {
+        background: #f0f4f8;
+        border-left: 3px solid #003A70;
+        color: #003A70;
+    }
+    .lesson-list .supplementary {
+        font-style: italic;
+        opacity: 0.8;
+    }
+    .lesson-list .supplementary::after {
+        content: ' (supplementary)';
+        font-size: 0.85em;
+        color: #999;
+    }
+    .intro-section {
+        background: #f9f9f9;
+        padding: 25px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 35px;
+    }
+    .intro-section h2 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+    .intro-section p {
+        color: #555;
+        line-height: 1.8;
+    }
+    .coming-soon {
+        color: #999;
+        font-style: italic;
+        margin-left: 60px;
+        padding: 8px 15px;
+    }
+    footer {
+        background: #f9f9f9;
+        padding: 25px 40px;
+        text-align: center;
+        color: #888;
+        font-size: 0.9em;
+        border-top: 1px solid #eee;
+    }
+    footer a {
+        color: #003A70;
+    }
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.6em;
+        }
+        .content {
+            padding: 25px 20px;
+        }
+        .lesson-list {
+            margin-left: 20px;
+        }
+        .week-number {
+            width: 35px;
+            height: 35px;
+            font-size: 0.9em;
+        }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="course-code">MAM5020F 2026</div>
+        <h1><span style="color: #ffffff;">Generative AI for Research</span></h1>
+        <p>University of Cape Town — NQF Level 9 Postgraduate Course</p>
+        <p style="opacity: 0.7; font-size: 0.95em; margin-top: 5px;">Assoc. Prof. Jonathan Shock</p>
+    </header>
+
+    <div class="content">
+
+        <div class="caveat-banner">
+            <p><strong>A note on these materials:</strong> The design, presentation, and content of these course pages have been created and enhanced using AI tools (primarily Claude by Anthropic). While all materials have been thoroughly reviewed and audited, there may still be errors, particularly in links, citations, or statistical claims. If you spot anything that looks wrong, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. For more details, see the <a href="course-introduction/AI Content Disclaimer.html">full AI content disclaimer</a>.</p>
+        </div>
+
+        <div class="intro-section">
+            <h2>About This Course</h2>
+            <p>A 12-week postgraduate course exploring how generative AI is changing research practice, from literature reviews to data analysis, writing to ethics. No prior programming, machine learning, or computer science background required.</p>
+            <p style="margin-top: 12px;"><a href="about.html" style="color: #003A70; font-weight: 600;">Read more about the course, the convenor, licensing, and how to cite &rarr;</a></p>
+            <p style="margin-top: 6px;"><a href="papers/index.html" style="color: #003A70; font-weight: 600;">Browse all course papers (54 PDFs across the 8 built weeks) &rarr;</a></p>
+        </div>
+
+        <!-- Course Orientation -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number" style="background: #2a5298;">i</div>
+                <h2>Course Orientation</h2>
+                <span class="week-time">&approx; 15 min</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="course-orientation/Overview.html">Course Overview</a></li>
+            </ul>
+        </div>
+
+        <!-- Course Introduction -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number" style="background: #2a5298;">ii</div>
+                <h2>Course Introduction</h2>
+                <span class="week-time">&approx; 15 min</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="course-introduction/Introduction to the course.html">Introduction to the Course</a></li>
+                <li><a href="course-introduction/Course Caveats.html">Course Caveats</a></li>
+                <li><a href="course-introduction/AI Content Disclaimer.html">AI Content Disclaimer</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 1 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">1</div>
+                <h2>Foundations of Generative AI</h2>
+                <span class="week-time">&approx; 2.5&ndash;3.5 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-1/Foundations of Generative AI.html">Foundations of Generative AI</a></li>
+                <li><a href="week-1/History of AI From Neurons to Neural Networks.html">History of AI: From Neurons to Neural Networks</a></li>
+                <li><a href="week-1/A lightning tour of AI.html">A Lightning Tour of AI (Video)</a></li>
+                <li><a href="week-1/But what is a neural network.html">But What Is a Neural Network?</a></li>
+                <li><a href="week-1/Understanding How Generative AI Works.html">Understanding How Generative AI Works</a></li>
+                <li><a href="week-1/An introduction to Transformers.html">An Introduction to Transformers</a></li>
+                <li><a href="week-1/Current Generative AI Landscape.html">Current Generative AI Landscape (May 2026)</a></li>
+                <li><a href="week-1/Hands-On Exploration.html">Hands-On Exploration: Testing Generative AI Tools</a></li>
+                <li><a href="week-1/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 2 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">2</div>
+                <h2>LLM Deep Dive</h2>
+                <span class="week-time">&approx; 2&ndash;2.5 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-2/LLM Architecture Deep Dive.html">LLM Architecture Deep Dive</a></li>
+                <li><a href="week-2/Training Large Language Models.html">Training Large Language Models</a></li>
+                <li><a href="week-2/Fine-Tuning RLHF and Alignment.html">Fine-Tuning, RLHF and Alignment</a></li>
+                <li><a href="week-2/How AI Image Generation Works.html">How AI Image Generation Works</a></li>
+                <li><a href="week-2/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 3 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">3</div>
+                <h2>Environmental Implications of AI</h2>
+                <span class="week-time">&approx; 2&ndash;2.5 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-3/What Does AI Actually Consume.html">What Does AI Actually Consume?</a></li>
+                <li><a href="week-3/Infrastructure Scale and the Rebound Problem.html">Infrastructure, Scale, and the Rebound Problem</a></li>
+                <li><a href="week-3/Critical Minerals and AI.html">Critical Minerals and AI</a></li>
+                <li><a href="week-3/Sustainable AI What Can Be Done.html">Sustainable AI: What Can Be Done?</a></li>
+                <li><a href="week-3/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 4 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">4</div>
+                <h2>Ethical Frameworks for AI in Research</h2>
+                <span class="week-time">&approx; 2.5&ndash;3 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-4/Ethical Frameworks and Four Lenses.html">Ethical Frameworks and Four Lenses</a></li>
+                <li><a href="week-4/Ubuntu Relational Ethics and the Just AI Framework.html">Ubuntu, Relational Ethics and the Just AI Framework</a></li>
+                <li><a href="week-4/Transparency Authorship and Integrity.html">Transparency, Authorship and Integrity</a></li>
+                <li><a href="week-4/Applying Ethics Case Studies and Your Framework.html">Applying Ethics: Case Studies and Your Framework</a></li>
+                <li><a class="supplementary" href="week-4/The Broader Landscape of AI Ethics.html">The Broader Landscape of AI Ethics</a></li>
+                <li><a href="week-4/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 5 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">5</div>
+                <h2>AI-Assisted Literature Reviews</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-5/The AI Literature Review Landscape.html">The AI Literature Review Landscape</a></li>
+                <li><a href="week-5/Free Tools Deep Dive.html">Free Tools Deep Dive</a></li>
+                <li><a href="week-5/Paid Tools and When They Are Worth It.html">Paid Tools and When They Are Worth It</a></li>
+                <li><a href="week-5/The Hallucinated Citation Crisis.html">The Hallucinated Citation Crisis</a></li>
+                <li><a href="week-5/Building Your Research Workflow with Claude.html">Building Your Research Workflow with Claude</a></li>
+                <li><a href="week-5/Hands-On Activities and Assessment.html">Hands-On Activities and Assessment</a></li>
+                <li><a href="week-5/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 6 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">6</div>
+                <h2>AI for Writing, Communication &amp; Research Ideation</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-6/Writing as Thinking.html">Writing as Thinking — Why the Process Matters</a></li>
+                <li><a href="week-6/Research Ideation with AI.html">Research Ideation with AI</a></li>
+                <li><a href="week-6/AI Writing Tools Landscape and Honest Assessment.html">AI Writing Tools — Landscape and Honest Assessment</a></li>
+                <li><a href="week-6/Scientific Integrity and the Writing Pipeline.html">Scientific Integrity and the Writing Pipeline</a></li>
+                <li><a href="week-6/Building Your AI Writing Workflow.html">Building Your AI Writing Workflow</a></li>
+                <li><a href="week-6/Hands-On Activities and Assessment.html">Hands-On Activities and Assessment</a></li>
+                <li><a href="week-6/Using AI to Review Your Own Work.html">Using AI to Review Your Own Work (Supplementary)</a></li>
+                <li><a href="week-6/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 7 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">7</div>
+                <h2>AI for Data, Code &amp; Computation</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-7/Natural Language to Code.html">Natural Language to Code — The New Interface</a></li>
+                <li><a href="week-7/AI-Assisted Data Analysis in Practice.html">AI-Assisted Data Analysis in Practice</a></li>
+                <li><a href="week-7/Visualization with AI.html">Visualization with AI</a></li>
+                <li><a href="week-7/Verification of AI-Generated Code.html">Verification of AI-Generated Code</a></li>
+                <li><a href="week-7/Building Your Data Analysis Workflow.html">Building Your Data Analysis Workflow</a></li>
+                <li><a href="week-7/Agentic Data Analysis.html">Agentic Data Analysis: Giving AI Tools, Not Just Questions</a></li>
+                <li><a href="week-7/Hands-On Activities and Assessment.html">Hands-On Activities and Assessment</a></li>
+                <li><a href="week-7/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 8 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">8</div>
+                <h2>Multimodal AI for Research</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-8/What Multimodal AI Can See Hear and Read.html">What Multimodal AI Can See, Hear, and Read</a></li>
+                <li><a href="week-8/AI and Scientific Images.html">AI and Scientific Images</a></li>
+                <li><a href="week-8/Document Intelligence.html">Document Intelligence</a></li>
+                <li><a href="week-8/Transcription and Audio Analysis.html">Transcription and Audio Analysis</a></li>
+                <li><a href="week-8/Video and Multimodal Workflows.html">Video and Multimodal Workflows</a></li>
+                <li><a href="week-8/Hands-On Activities and Assessment.html">Hands-On Activities and Assessment</a></li>
+                <li><a href="week-8/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 9 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">9</div>
+                <h2>Critical Evaluation &amp; Limitations of AI</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-9/The Trajectory of LLM Capabilities.html">The Trajectory of LLM Capabilities</a></li>
+                <li><a href="week-9/Three Categories of Failure.html">Three Categories of Failure: Patched, Reduced, Structural</a></li>
+                <li><a href="week-9/Where AI Is Now Genuinely Strong.html">Where AI Is Now Genuinely Strong</a></li>
+                <li><a href="week-9/Illusions of Understanding.html">Illusions of Understanding</a></li>
+                <li><a href="week-9/Verification Protocols for a Moving Target.html">Verification Protocols for a Moving Target</a></li>
+                <li><a href="week-9/Hands-On Activities and Assessment.html">Hands-On Activities and Assessment</a></li>
+                <li><a href="week-9/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 10 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">10</div>
+                <h2>Agentic AI, RAG &amp; Advanced Research Tools</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-10/What Agents Are and Whats New in 2026.html">Agents: What They Are and What's New in 2026</a></li>
+                <li><a href="week-10/Failure Modes for Long-Horizon Tasks.html">Failure Modes for Multi-Step / Long-Horizon Tasks</a></li>
+                <li><a href="week-10/The Current Tool Landscape and MCP.html">The Current Tool Landscape (Including MCP)</a></li>
+                <li><a href="week-10/RAG in 2026.html">RAG in 2026</a></li>
+                <li><a href="week-10/Advanced Research Tools - A Curated Tour.html">Advanced Research Tools: A Curated Tour</a></li>
+                <li><a href="week-10/Hands-On Activities and Assessment.html">Hands-On Activities and Assessment</a></li>
+                <li><a href="week-10/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 11 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">11</div>
+                <h2>Future of AI in Research &amp; Africa's Sovereign AI Capacity</h2>
+                <span class="week-time">&approx; 3&ndash;4 hours</span>
+            </div>
+            <p style="margin-left: 60px; margin-top: 4px; margin-bottom: 6px; color: #003A70; font-weight: 600; font-size: 0.95em; letter-spacing: 0.3px;">Part A &mdash; The Future of AI in Research</p>
+            <ul class="lesson-list" style="margin-top: 0;">
+                <li><a href="week-11/What the Future of AI in Research Might Look Like.html">What the Future of AI in Research Might Look Like</a></li>
+                <li><a href="week-11/Speculative Futures - A Reading Guide.html">Speculative Futures: A Reading Guide</a></li>
+                <li><a href="week-11/The Shifting Research Landscape.html">The Shifting Research Landscape: Policy, Peer Review, Integrity</a></li>
+            </ul>
+            <p style="margin-left: 60px; margin-top: 14px; margin-bottom: 6px; color: #003A70; font-weight: 600; font-size: 0.95em; letter-spacing: 0.3px;">Part B &mdash; Africa's Sovereign AI Capacity</p>
+            <ul class="lesson-list" style="margin-top: 0;">
+                <li><a href="week-11/Sovereign AI Capacity and Why Compute Is the Floor.html">Sovereign AI Capacity, and Why Compute Is the Floor</a></li>
+                <li><a href="week-11/Data Languages and African Model-Building.html">Data, Languages and African Model-Building</a></li>
+                <li><a href="week-11/Policy Institutions and Talent.html">Policy, Institutions, and Talent</a></li>
+                <li><a href="week-11/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Week 12 -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number">12</div>
+                <h2>Integrative Capstone</h2>
+                <span class="week-time">&approx; 3 hours</span>
+            </div>
+            <ul class="lesson-list">
+                <li><a href="week-12/Synthesis and the Integrative Capstone.html">Synthesis and the Integrative Capstone</a></li>
+                <li><a href="week-12/Discussion Questions.html">Discussion Questions (to prepare before class)</a></li>
+            </ul>
+        </div>
+
+        <!-- Advanced Track -->
+        <div class="week-section">
+            <div class="week-header">
+                <div class="week-number" style="background: #6a5da8;">&#9733;</div>
+                <h2>Advanced Track &mdash; Agentic Research with Claude Code</h2>
+                <span class="week-time" style="background: #f1eefb; color: #4f4391;">&approx; 2&ndash;3 hours</span>
+            </div>
+            <p style="margin-left: 60px; margin-top: 4px; margin-bottom: 6px; color: #6a5da8; font-weight: 600; font-size: 0.9em;">Optional &middot; beyond the free tier &middot; requires a paid Claude subscription and a terminal</p>
+            <p style="margin-left: 60px; margin-top: 0; margin-bottom: 10px; color: #666; font-size: 0.88em; font-style: italic;">Much of this track is adapted, with thanks, from Dominik Luke&#353;&rsquo;s course <a href="https://techczech.github.io/agents-for-reproducibility/" target="_blank" rel="noopener">Using AI Agents for Reproducible Research</a> (Oxford e-Research Centre).</p>
+            <p style="margin-left: 60px; margin-top: 0; margin-bottom: 6px; color: #003A70; font-weight: 600; font-size: 0.95em;">Lesson A &mdash; Claude Code as a Research Environment</p>
+            <ul class="lesson-list" style="margin-top: 0;">
+                <li><a href="advanced/Claude Code as a Research Environment.html">A.1 &mdash; What Claude Code Actually Is</a></li>
+                <li><a href="advanced/The Honest Case - Cost Access and Disposition.html">A.2 &mdash; The Honest Case: Cost, Access, and the Disposition</a></li>
+                <li><a href="advanced/First Contact and the Control Surface.html">A.3 &mdash; First Contact and the Control Surface</a></li>
+            </ul>
+            <p style="margin-left: 60px; margin-top: 12px; margin-bottom: 6px; color: #003A70; font-weight: 600; font-size: 0.95em;">Lesson B &mdash; Reproducible Research Workflows</p>
+            <ul class="lesson-list" style="margin-top: 0;">
+                <li><a href="advanced/Reproducibility and the Project Folder.html">B.1 &mdash; Reproducibility, and the Reproducible Project Folder</a></li>
+                <li><a href="advanced/Encoding Good Habits - CLAUDE.md Pre-registration and Skills.html">B.2 &mdash; Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</a></li>
+                <li><a href="advanced/The Reproducible Workflow End to End.html">B.3 &mdash; The Reproducible Workflow, End to End</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>MAM5020F 2026 — University of Cape Town — <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a></p>
+        <p style="margin-top: 5px; font-size: 0.85em;">Course materials created with the assistance of AI tools. <a href="course-introduction/AI Content Disclaimer.html">Read the full disclaimer</a>.</p>
+        <p style="margin-top: 5px; font-size: 0.85em;">© 2026 Jonathan Shock. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a> — share and adapt freely with attribution. <a href="https://github.com/shocklab/Generative-AI-in-research-course/blob/main/LICENSE" target="_blank" rel="noopener">Full licence</a>.</p>
+    </footer>
+</div>
+<!-- SCORM-HOOK-START -->
+<script src="scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body>
+</html>
