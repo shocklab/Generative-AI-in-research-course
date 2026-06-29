@@ -32,7 +32,7 @@ img{max-width:100%}
 .brandrule{height:4px;background:var(--blue)}
 /* ---- three-column shell ---- */
 .shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
-.maincol{min-width:0}
+.maincol{min-width:0;max-width:1340px;margin-left:auto;margin-right:auto}
 .leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
 .leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
 .leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
@@ -73,7 +73,7 @@ img{max-width:100%}
 .abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
-.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
@@ -107,13 +107,18 @@ img{max-width:100%}
 .abody .section{margin:0 0 8px}
 .abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
 /* callout boxes */
-.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
-.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .cm,.abody .comment{color:#9fb0c7;background:none;border:0;padding:0;margin:0;font-family:inherit;font-style:normal}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
 .abody .empty-note{font-style:italic;color:var(--mut)}
 /* generic cards + grids */
 .abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
-.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
-.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;margin:22px 0;align-items:start}
+.abody .category-grid>*{margin:0}
+.abody .model-list{margin:10px 0 0;padding:0}
+/* callouts nested inside cards must stay compact, not squeeze the text to one word per line */
+.abody .category-card .model-details,.abody .card .model-details,.abody .category-card .info-box,.abody .card .info-box,.abody .category-card .highlight-box,.abody .card .highlight-box,.abody .category-card .technical-detail,.abody .card .technical-detail,.abody .category-card .analogy-box,.abody .card .analogy-box{padding:13px 16px;margin:13px 0 0}
+.abody .category-card .model-details p,.abody .card .model-details p,.abody .category-card .highlight-box p,.abody .card .highlight-box p,.abody .category-card .info-box p,.abody .card .info-box p,.abody .category-card .technical-detail p,.abody .card .technical-detail p{font-size:1.04rem;line-height:1.5;margin:0 0 6px}
 .abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
 /* topic list */
 .abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
@@ -201,6 +206,23 @@ img{max-width:100%}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media print{.tsize{display:none}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px}}
+/* ---- hideable margins: labelled controls at the top of the reading column ---- */
+.sidebarctl{display:flex;justify-content:flex-end;gap:8px;margin:0;padding:8px 0 0}
+.sidebarctl .vbtn{font-family:'Fraunces';font-size:.8rem;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:6px;cursor:pointer;padding:6px 12px;white-space:nowrap}
+.sidebarctl .vbtn:hover{color:var(--blue);border-color:var(--blue)}
+.sidebarctl .vbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.vbtn .ls{display:none}
+html.hl .vbtn[data-m="l"] .lh{display:none}
+html.hl .vbtn[data-m="l"] .ls{display:inline}
+html.hr .vbtn[data-m="r"] .lh{display:none}
+html.hr .vbtn[data-m="r"] .ls{display:inline}
+@media(min-width:981px){
+  /* keep the columns + gaps in place; just blank the sidebar content */
+  html.hl .leftnav{visibility:hidden}
+  html.hr .rightrail{visibility:hidden}
+}
+@media(max-width:980px){.sidebarctl{display:none}}
+@media print{.sidebarctl{display:none}}
 """
 
 SPY = ("<script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));"
@@ -245,9 +267,22 @@ def relhref(target, frm):
 ANALYTICS = ('<script data-goatcounter="https://mam5020f.goatcounter.com/count" '
              'async src="//gc.zgo.at/count.js"></script>')
 
-# reader text-size control: pre-paint setter in <head> (no flash) + control + wiring in <body>
-TS_HEAD = ('<script>try{var s=localStorage.getItem("mam-textsize");'
-           'if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script>')
+# reader text-size + hidden-margin state: pre-paint setter in <head> (no flash)
+TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");'
+           'if(s)d.style.fontSize=(["100%","112%","125%"][s]||"100%");'
+           'if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");'
+           'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
+
+# reshow tabs + collapse/expand wiring for the side margins (shell pages only)
+MARGIN_BODY = ('<div class="sidebarctl">'
+               '<button class="vbtn" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button>'
+               '<button class="vbtn" type="button" data-m="r"><span class="lh">Hide right sidebar &raquo;</span><span class="ls">&laquo; Show right sidebar</span></button>'
+               '</div>'
+               '<script>document.addEventListener("click",function(e){'
+               'var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;'
+               'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
+               'var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}'
+               'document.documentElement.classList.toggle(c,!on);});</script>')
 TS_BODY = ('<div class="tsize" role="group" aria-label="Text size">'
            '<button type="button" data-ts="0" aria-label="Default text size">A</button>'
            '<button type="button" data-ts="1" aria-label="Larger text size">A</button>'
@@ -321,7 +356,8 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         else:
             items += f'<a class="lesson" href="{rel}">{html.escape(sl["title"])}</a>'
     back = relhref('index.html', href)
-    leftnav = (f'<div class="leftnav"><a class="back" href="{back}">&larr; All lessons</a>'
+    leftnav = ('<div class="leftnav">'
+               f'<a class="back" href="{back}">&larr; All lessons</a>'
                f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
                f'<nav class="toc">{items}</nav></div>')
 
@@ -337,7 +373,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         if d:
             snotes += f'<div class="snote"><div class="sk">{html.escape(term)}</div>{d["definition"]}</div>'
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
-    rightrail = f'<div class="rightrail"><div class="rmeta">{meta}</div>{rail_terms}</div>'
+    rightrail = (f'<div class="rightrail"><div class="rmeta">{meta}</div>{rail_terms}</div>')
 
     # prev / next
     pn = ''
@@ -350,7 +386,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
                  f'<span class="pt">{html.escape(nxt["title"])}</span></a>') if nxt else '<span></span>'
         pn = f'<div class="prevnext">{left}{right}</div>'
 
-    main = (f'<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
+    main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             f'<h1>{html.escape(h1)}</h1>' + (f'<div class="deck">{html.escape(deck)}</div>' if deck else '') + '</div>'
             f'<div class="abody">{c}</div>{pn}')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
@@ -406,7 +442,8 @@ def render_glossary(terms):
         groups.setdefault(first(t['term']), []).append(t)
     letters = sorted(groups)
     nav = ''.join(f'<a class="lesson" href="#L{L}">{L}</a>' for L in letters)
-    leftnav = ('<div class="leftnav"><a class="back" href="index.html">&larr; All lessons</a>'
+    leftnav = ('<div class="leftnav">'
+               '<a class="back" href="index.html">&larr; All lessons</a>'
                f'<div class="navwk">Reference</div><nav class="toc">{nav}</nav></div>')
     blocks = ''
     for L in letters:
@@ -414,8 +451,8 @@ def render_glossary(terms):
         for t in groups[L]:
             blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
-    rightrail = f'<div class="rightrail"><div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>'
-    main = ('<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
+    rightrail = (f'<div class="rightrail"><div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
+    main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
             f'<div class="abody gloss">{blocks}</div>')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
