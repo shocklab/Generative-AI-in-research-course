@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Generative AI Landscape (Updated May 2026)</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50;
+      background: #f5f5f5; padding: 20px;
+    }
+    .container {
+      max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
+    }
+    .ai-notice {
+      background: #e8f4f8;
+      color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em;
+      border-bottom: 1px solid #d0e8f2;
+    }
+    .ai-notice strong { font-weight: 600; }
+    header {
+      background: #003A70;
+      color: white; padding: 60px 40px; text-align: center;
+    }
+    header h1 { font-size: 2.5em; margin-bottom: 20px; font-weight: 300; letter-spacing: 1px; }
+    header p { font-size: 1.2em; opacity: 0.9; max-width: 900px; margin: 0 auto; }
+    .content { padding: 50px 40px; }
+    .intro-section {
+      background: #f9f9f9;
+      padding: 35px; border-radius: 15px; border-left: 5px solid #003A70;
+      margin-bottom: 40px;
+    }
+    .intro-section p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+    .section-title {
+      font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px;
+      border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px;
+    }
+    .category-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px; margin: 30px 0;
+    }
+    .category-card {
+      background: white; border-radius: 15px; padding: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid #003A70; transition: all 0.3s ease;
+    }
+    .category-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+    .category-card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+    .model-list { list-style: none; }
+    .model-list li {
+      padding: 8px 0 8px 25px; position: relative; color: #555; line-height: 1.6;
+    }
+    .model-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+    .model-list li strong { color: #2c3e50; }
+    .model-details {
+      background: #f8f9fa; padding: 15px 20px; border-radius: 10px; margin: 10px 0;
+      border-left: 3px solid #003A70; font-size: 0.95em; color: #666;
+    }
+    .highlight-box {
+      background: #003A70;
+      color: white; padding: 30px; border-radius: 15px; margin: 40px 0;
+    }
+    .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+    .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8em; }
+      .content { padding: 30px 20px; }
+      .category-grid { grid-template-columns: 1fr; }
+    }
+  .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+</head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Updated:</strong> May 2026. Frontier models change fast, so treat this as a living snapshot rather than a canon list. This list was put together using a combination of human input, Claude and ChatGPT with websearch</div>
+<header>
+<h1>🌐 Current Generative AI Landscape</h1>
+<p>A practical, research-oriented snapshot (updated through May 2026).</p>
+</header>
+<div class="content">
+<div class="intro-section">
+<p>Track the landscape by <strong>model families</strong>, <strong>modalities</strong>, <strong>context limits</strong>, and <strong>agent/tool reliability</strong>, rather than by a single leaderboard.</p>
+<p>This page prioritizes tools/models with clear availability and/or credible release notes.</p>
+</div>
+<!-- LLMs -->
+<h2 class="section-title">💬 Large Language Models (LLMs)</h2>
+<div class="category-grid">
+<div class="category-card">
+<h3>OpenAI (ChatGPT / API)</h3>
+<ul class="model-list">
+<li><strong>GPT-5.5 / GPT-5.5 Pro</strong>: flagship family for "work + agents" (May 2026); Instant/Thinking/Pro variants; tops the FrontierMath leaderboard</li>
+<li><strong>GPT-5.5-Codex</strong>: GPT-5.5 variant optimized for long-horizon, agentic coding</li>
+<li><strong>GPT-5.2 / GPT-4o</strong>: earlier models; still widely used but no longer "default latest"</li>
+</ul>
+<div class="model-details">Practical differentiator: sustained tool-calling + long-context work and repo-scale coding agents.</div>
+</div>
+<div class="category-card">
+<h3>Anthropic Claude</h3>
+<ul class="model-list">
+<li><strong>Claude Opus 4.7</strong>: flagship (generally available 16 April 2026); strong long-context reasoning + coding; current default for production research workflows</li>
+<li><strong>Claude Mythos (preview)</strong>: limited research preview (May 2026); leads GPQA Diamond and HLE at time of writing</li>
+<li><strong>Claude Sonnet 4.5</strong>: high-utility "daily driver" for agents/coding</li>
+<li><strong>Claude Haiku 4.5</strong>: fast, cost-efficient small model</li>
+</ul>
+<div class="model-details">Often preferred for instruction-following stability and long-document workflows.</div>
+</div>
+<div class="category-card">
+<h3>Google Gemini</h3>
+<ul class="model-list">
+<li><strong>Gemini 3.1 Pro / Deep Think</strong>: multimodal + Google ecosystem integrations; IMO 2025 gold-medal-level maths reasoning</li>
+<li><strong>NotebookLM</strong>: grounded Q&amp;A on your sources; audio/video "overviews" expanding</li>
+</ul>
+<div class="model-details">Strongest "current web + Workspace/Drive" integration path for many research teams.</div>
+</div>
+<div class="category-card">
+<h3>Meta Llama (Open-weight)</h3>
+<ul class="model-list">
+<li><strong>Llama 4 Scout</strong>: compact open-weight model; long-context positioning</li>
+<li><strong>Llama 4 Maverick</strong>: larger open-weight model; aimed at stronger reasoning/coding</li>
+<li><strong>Llama 4 Behemoth (preview)</strong>: very large MoE model previewed by Meta</li>
+</ul>
+<div class="model-details">Use when you need controlled deployment, fine-tuning, or "open-weight first" constraints.</div>
+</div>
+<div class="category-card">
+<h3>China-focused frontier &amp; fast-moving families</h3>
+<ul class="model-list">
+<li><strong>Kimi K2.6 (Moonshot AI)</strong>: open-weights MoE (~1T total / 32B active), native multimodal + "agentic" positioning (April 2026); coding near closed-frontier parity</li>
+<li><strong>Qwen 3.x (Alibaba)</strong>: open-weight family; rapid iteration cadence (watchpoint for 2026)</li>
+<li><strong>DeepSeek V4 Pro / V4 Flash</strong>: open-weights MoE (Pro: 1.6T total / 49B active, 1M-token context; MIT licence, April 2026); world-leading competitive-programming score at roughly 10&times; lower cost</li>
+<li><strong>Doubao 2.0 (ByteDance)</strong>: "agent era" positioning; very large consumer footprint</li>
+<li><strong>ERNIE 4.5 / X1 (Baidu)</strong>: multimodal + reasoning variants; rolling into product ecosystem</li>
+<li><strong>GLM-5 (Zhipu)</strong>, <strong>M2.5 (MiniMax)</strong>, <strong>Hunyuan 2.0 (Tencent)</strong>, <strong>Spark X2 (iFlytek)</strong>: additional major families</li>
+</ul>
+<div class="model-details">China's ecosystem now has parallel "frontier stacks" (models + apps + cloud hosting) with very fast deployment cycles.</div>
+</div>
+<div class="category-card">
+<h3>Other important families</h3>
+<ul class="model-list">
+<li><strong>Mistral Large 2</strong>: strong multilingual model family (widely hosted in enterprise stacks)</li>
+<li><strong>Qwen3</strong>: also widely used outside China via open weights + hosted endpoints</li>
+<li><strong>GLM</strong>: Zhipu's family continues to iterate quickly (watch open-source drops)</li>
+</ul>
+</div>
+</div>
+<!-- Image -->
+<h2 class="section-title">🎨 Image Generation Models</h2>
+<div class="category-grid">
+<div class="category-card">
+<h3>General-purpose image models</h3>
+<ul class="model-list">
+<li><strong>DALL·E 3</strong>: strong prompt interpretation + editing workflows</li>
+<li><strong>Midjourney (v6+)</strong>: aesthetic quality and style control</li>
+<li><strong>Stable Diffusion (SD3 / SD3.5)</strong>: local deployment + custom pipelines</li>
+<li><strong>Adobe Firefly</strong>: Creative Cloud integration + commercial positioning</li>
+</ul>
+</div>
+<div class="category-card">
+<h3>Google image generation (Imagen)</h3>
+<ul class="model-list">
+<li><strong>Imagen 3</strong>: rolled into Gemini experiences; also accessible via Gemini API (Feb 2025)</li>
+<li><strong>Imagen 4</strong>: improved quality + text rendering; available via Gemini API / AI Studio (Jun 2025)</li>
+<li><strong>Imagen 4 Ultra</strong>: higher-end variant for demanding creative/control needs</li>
+</ul>
+<div class="model-details">Practical note: Imagen models are often chosen for prompt adherence + typography improvements in later versions.</div>
+</div>
+<div class="category-card">
+<h3>FLUX (Black Forest Labs)</h3>
+<ul class="model-list">
+<li><strong>FLUX.2 [dev]</strong>: high-quality text-to-image + editing; multi-reference control</li>
+<li><strong>FLUX.2 [klein]</strong>: "sub-second" variants aimed at real-time workflows (Jan 2026 updates)</li>
+<li><strong>FLUX.2 [flex]</strong>: ongoing performance updates</li>
+</ul>
+<div class="model-details">Notable: explicit focus on controllable editing + multiple references.</div>
+</div>
+</div>
+<!-- Video -->
+<h2 class="section-title">🎬 Video Generation Models</h2>
+<div class="category-grid">
+<div class="category-card">
+<h3>Frontier text-to-video</h3>
+<ul class="model-list">
+<li><strong>Sora 2 (OpenAI)</strong>: video + synchronized dialogue/sound effects</li>
+<li><strong>Veo 3 / Veo 3 Fast (Google)</strong>: native audio; provenance via SynthID watermarking</li>
+<li><strong>Runway</strong>: creator-oriented suite; strong tooling for iteration and control</li>
+<li><strong>Pika / Luma</strong>: competitive creative tools; often best for rapid ideation</li>
+</ul>
+<div class="model-details">2025→2026 shift: controllability, consistency, and editability matter as much as realism.</div>
+</div>
+<div class="category-card">
+<h3>Avatar / translation video tools</h3>
+<ul class="model-list">
+<li><strong>Synthesia</strong>: training/presentation avatars</li>
+<li><strong>HeyGen</strong>: dubbing + lip-sync translation workflows</li>
+</ul>
+</div>
+</div>
+<!-- Coding + Agents -->
+<h2 class="section-title">💻 Code Generation &amp; Agentic Development</h2>
+<div class="category-grid">
+<div class="category-card">
+<h3>Agentic coding assistants</h3>
+<ul class="model-list">
+<li><strong>OpenAI Codex (GPT-5.2-Codex)</strong>: long-horizon refactors/migrations; agent workflows</li>
+<li><strong>Claude Code</strong>: terminal-centric agent for repo-scale work</li>
+<li><strong>GitHub Copilot</strong>: mainstream IDE integration</li>
+<li><strong>Cursor</strong>: AI-first editor with codebase-wide operations</li>
+</ul>
+<div class="model-details">"Best" depends on tool permissions/sandboxing, repo size, and multi-file edit reliability.</div>
+</div>
+<div class="category-card">
+<h3>Agent platforms &amp; orchestration (incl. OpenClaw)</h3>
+<ul class="model-list">
+<li><strong>OpenClaw</strong>: open-source agent platform: multi-channel integrations + large "skills" ecosystem + model-agnostic config</li>
+<li><strong>Why it matters</strong>: abstracts "agents" away from one vendor/model; lets you plug GPT/Claude/Gemini/Llama into the same automation layer</li>
+<li><strong>Security note</strong>: self-hosted agent platforms can be risky if exposed/misconfigured; guidance has emphasized access controls + auditing</li>
+</ul>
+<div class="model-details">Treat it like running a web app with plugin execution: sandbox skills, least-privilege permissions, and lock down network exposure.</div>
+</div>
+</div>
+<div class="highlight-box">
+<h3>🔮 Key Trends (2025 → early 2026)</h3>
+<p><strong>Agent reliability beats raw scores:</strong> long-running tool use, memory/compaction, and safe sandboxing are the real differentiators.</p>
+<p><strong>Parallel "frontiers" emerged:</strong> the China stack (models + apps + cloud) is now a fast-moving peer ecosystem rather than a lagging one.</p>
+<p><strong>Provenance becomes normal:</strong> watermarking/provenance systems (e.g., SynthID for some Google media) increasingly ship by default.</p>
+<p><strong>Image models are getting judged on typography:</strong> later Imagen family entries explicitly target text rendering improvements.</p>
+</div>
+<!-- Sources note (optional, keep minimal in-page) -->
+<div class="model-details" style="margin-top: 10px;">Source anchors for the updates above include official Google Developers notes on Imagen (Imagen 3/4), Moonshot's Kimi K2.5 release info, and reporting on OpenClaw's rapid adoption + security cautions.</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-1/An introduction to Transformers.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">An Introduction to Transformers</div></a>
+  <a class="page-nav-link" href="../week-1/Hands-On Exploration.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Exploration: Testing Generative AI Tools</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

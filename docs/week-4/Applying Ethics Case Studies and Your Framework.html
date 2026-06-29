@@ -1,257 +1,190 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 4.4 - Applying Ethics: Case Studies and Your Framework</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-
-        .ai-notice strong { font-weight: 600; }
-
-        header {
-            background: #003A70;
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .week-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-
-        .content { padding: 50px 40px; }
-
-        .intro-text {
-            background: #f9f9f9;
-            padding: 35px;
-            border-radius: 15px;
-            border-left: 5px solid #003A70;
-            margin-bottom: 40px;
-        }
-
-        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .intro-text h2::before { content: '🎯'; }
-        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-
-        .section-title {
-            font-size: 2em;
-            color: #2a5298;
-            margin: 50px 0 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #003A70;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-
-        .styled-list { list-style: none; margin-top: 15px; }
-
-        .styled-list li {
-            padding: 8px 0 8px 25px;
-            color: #555;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-
-        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-
-        .warning-box {
-            background: #fff8e1;
-            border-left: 5px solid #f9a825;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-
-        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
-        .warning-box p { color: #555; line-height: 1.7; }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #003A70;
-        }
-
-        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .info-box p { color: #555; line-height: 1.7; }
-
-        .resource-placeholder {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-            border: 2px dashed #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-        }
-
-        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-        .resource-placeholder p { color: #666; }
-
-        .technical-detail {
-            background: white;
-            border: 2px solid #d0e8f2;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-
-        .case-study {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-
-        .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
-
-        .decision-framework {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .decision-framework h4 { color: #003A70; font-size: 1.4em; margin-bottom: 20px; }
-
-        .step-list {
-            counter-reset: step-counter;
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .step-list li {
-            counter-increment: step-counter;
-            padding: 15px 15px 15px 60px;
-            position: relative;
-            margin-bottom: 12px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .step-list li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #003A70;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .content { padding: 30px 20px; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 4 • Sub-Lesson 4</div>
-<h1>⚖️ <span style="color: #ffffff;">Applying Ethics: Case Studies &amp; Your Framework</span></h1>
-<p>Practical ethical scenarios, structured analysis, and beginning your personal ethical framework</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>This final session for the week moves from theory to practice. We will introduce a structured decision framework for reasoning through AI ethics dilemmas, work through four detailed case studies using the lenses from Sub-Lesson 1, and begin building the personal ethical framework that forms part of your assessment.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Applying Ethics: Case Studies &amp; Your Framework — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.48rem;line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.28rem;line-height:1.58;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.24rem;line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.33rem;line-height:1.62}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 4 &middot; Ethical Frameworks for AI in Research</div><nav class="toc"><a class="lesson" href="Ethical%20Frameworks%20and%20Four%20Lenses.html">Ethical Frameworks and Four Lenses</a><a class="lesson" href="Ubuntu%20Relational%20Ethics%20and%20the%20Just%20AI%20Framework.html">Ubuntu, Relational Ethics and the Just AI Framework</a><a class="lesson" href="Transparency%20Authorship%20and%20Integrity.html">Transparency, Authorship and Integrity</a><a class="lesson cur" href="Applying%20Ethics%20Case%20Studies%20and%20Your%20Framework.html">Applying Ethics: Case Studies and Your Framework</a><div class="subs"><a href="#s1">A Decision Framework for AI Ethics in Research</a><a href="#s2">Case Study 1: The Literature Review</a><a href="#s3">Case Study 2: The Data Analysis</a><a href="#s4">Case Study 3: The Grant Application</a><a href="#s5">Case Study 4: The Student Project</a><a href="#s6">Beginning Your Personal Ethical Framework</a><a href="#s7">The Journal Policy Audit Activity</a></div><a class="lesson" href="The%20Broader%20Landscape%20of%20AI%20Ethics.html">The Broader Landscape of AI Ethics</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Applying Ethics: Case Studies &amp; Your Framework</h1><div class="deck">Practical ethical scenarios, structured analysis, and beginning your personal ethical framework</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">This final session for the week moves from theory to practice. We will introduce a structured decision framework for reasoning through AI ethics dilemmas, work through four detailed case studies using the lenses from Sub-Lesson 1, and begin building the personal ethical framework that forms part of your assessment.</p>
 <p>The case studies are designed to be debatable. There are no obvious right answers, and each involves tensions where different ethical lenses produce different recommendations. Working through that ambiguity is the exercise.</p>
 </div>
 <!-- SECTION 1: DECISION FRAMEWORK -->
-<h2 class="section-title">🧭 A Decision Framework for AI Ethics in Research</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Before we look at the case studies, here is a structured approach for reasoning through ethical dilemmas. It will not hand you an answer. It is a way to ensure you have considered multiple perspectives before making a decision.</p>
-<div class="decision-framework">
-<h4>Six Steps for Ethical Reasoning About AI in Research</h4>
+<h2 class="section-title" id="s1">A Decision Framework for AI Ethics in Research</h2>
+<p style=" margin-bottom: 30px">Before we look at the case studies, here is a structured approach for reasoning through ethical dilemmas. It will not hand you an answer. It is a way to ensure you have considered multiple perspectives before making a decision.</p>
+<div class="decision-framework"><h4>Six Steps for Ethical Reasoning About AI in Research</h4>
 <ol class="step-list">
 <li><strong>Identify the dilemma.</strong> What is the specific ethical tension? Name it precisely. Often what appears to be one dilemma is actually several entangled ones.</li>
 <li><strong>Identify stakeholders.</strong> Who is affected? Consider: the researcher, participants, co-authors, supervisors, students, the broader research community, the public, and communities whose data may have contributed to the AI system.</li>
@@ -261,132 +194,102 @@
 <li><strong>Document and disclose.</strong> How will you record and communicate your reasoning? Transparency about the decision-making process is itself an ethical act.</li>
 </ol>
 </div>
-<div class="info-box">
-<h4>💡 A Tool, Not a Formula</h4>
+<div class="info-box"><h4>A Tool, Not a Formula</h4>
 <p>This framework will not give you an answer. It will give you a structured process for arriving at one. The reasoning carries the value here, the act of forcing yourself to consider perspectives you might otherwise overlook, rather than the conclusion you reach.</p>
 </div>
 <!-- SECTION 2: CASE STUDY 1 -->
-<h2 class="section-title">📋 Case Study 1: The Literature Review</h2>
-<div class="case-study">
-<h4>📋 The Scenario</h4>
+<h2 class="section-title" id="s2">Case Study 1: The Literature Review</h2>
+<div class="case-study"><h4>The Scenario</h4>
 <p>Dr. Amara, a postdoctoral researcher in public health, uses Claude to conduct a systematic literature review for a journal article. She provides her research question and inclusion criteria, and the AI identifies 150 relevant papers, extracts key findings, and drafts a narrative synthesis of the literature.</p>
 <p>Dr. Amara checks a random sample of 20 papers against the AI's summaries and finds them accurate. She does not have time to verify all 150. She submits the literature review as part of a journal article, with a methods note stating: "AI tools were used to assist with literature search and synthesis."</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Consequentialist Analysis</h3>
+<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>The positive outcomes are real: a fuller review than Dr. Amara could have produced manually, completed in less time. But the unverified papers introduce risk. If any of the AI's summaries contain errors or fabricated citations (a known issue), the published review could mislead the field. The aggregate consequence of researchers routinely publishing AI-generated reviews they have not fully verified could erode the reliability of the scientific literature.</p>
 </div>
-<div class="card">
-<h3>Deontological Analysis</h3>
+<div class="card"><h3>Deontological Analysis</h3>
 <p>A researcher has a duty to vouch for the accuracy of their published work. Submitting a review based on 130 unverified summaries is difficult to reconcile with this duty. The disclosure statement ("AI tools were used to assist") is technically true but arguably misleading, since it does not convey the extent of AI involvement or the limited verification.</p>
 </div>
-<div class="card">
-<h3>Virtue Ethics Analysis</h3>
+<div class="card"><h3>Virtue Ethics Analysis</h3>
 <p>Is Dr. Amara developing the deep familiarity with the literature that scholarly expertise requires? A systematic review is a process as much as a product, one through which the researcher builds mastery of their field. If AI does the intellectual work of synthesis, what is the researcher's contribution?</p>
 </div>
-<div class="card">
-<h3>Ubuntu Analysis</h3>
+<div class="card"><h3>Ubuntu Analysis</h3>
 <p>How does this affect Dr. Amara's relationship with her research community? Readers trust that a published review represents the author's genuine engagement with the literature. Other researchers may build on this review, cite it, and make decisions based on it. The relational responsibility extends beyond Dr. Amara to everyone who relies on her work.</p>
 </div>
 </div>
-<div class="info-box">
-<h4>💬 Discussion Questions</h4>
+<div class="info-box"><h4>Discussion Questions</h4>
 <p>Is checking 20 out of 150 papers sufficient due diligence? Where is the threshold? Is the disclosure statement adequate, and should it specify the degree of AI involvement? Would your assessment change if Dr. Amara had checked all 150 summaries? What if she had no time constraints: does time pressure change the ethical calculus?</p>
 </div>
 <!-- SECTION 3: CASE STUDY 2 -->
-<h2 class="section-title">📋 Case Study 2: The Data Analysis</h2>
-<div class="case-study">
-<h4>📋 The Scenario</h4>
+<h2 class="section-title" id="s3">Case Study 2: The Data Analysis</h2>
+<div class="case-study"><h4>The Scenario</h4>
 <p>Thabo, a PhD student at a university in Johannesburg, is conducting qualitative research on HIV stigma in peri-urban communities. He has 45 in-depth interview transcripts in a mixture of English, isiZulu, and Sesotho. He uses GPT-4 to assist with thematic coding, uploading anonymised transcripts and asking the AI to identify recurring themes and apply codes.</p>
 <p>The AI produces a coherent coding framework that Thabo reviews and modifies. However, he notices that some of the AI's initial codes reflect categories more common in US and European HIV research than in the South African context. They frame stigma primarily through individual psychology rather than through community and family dynamics. He corrects the codes he notices, but is uncertain whether the overall coding framework has been subtly shaped by the AI's training data biases in ways he has not detected.</p>
 <p>Thabo discloses AI use in his methods section.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Consequentialist Analysis</h3>
+<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>The coding assistance allows Thabo to handle a multilingual dataset that would otherwise require a research team he does not have access to. But if the AI's Western-centric categories have shaped the analysis in undetected ways, the findings may misrepresent the lived experience of the participants, with real consequences for how HIV stigma is understood and addressed in this context.</p>
 </div>
-<div class="card">
-<h3>Deontological Analysis</h3>
+<div class="card"><h3>Deontological Analysis</h3>
 <p>Thabo has a duty to represent his participants' experiences accurately. Applying interpretive categories that may not fit their reality, even unknowingly, is in tension with this duty. He also has duties to his discipline: qualitative research depends on the researcher's deep engagement with the data, not delegation to an algorithm.</p>
 </div>
-<div class="card">
-<h3>Virtue Ethics Analysis</h3>
+<div class="card"><h3>Virtue Ethics Analysis</h3>
 <p>Is Thabo developing the analytical skills that a qualitative researcher needs? The ability to immerse oneself in data, to recognise patterns that do not fit preexisting categories, and to let participants' voices shape the analysis: these are core competencies that AI assistance may shortcut rather than develop.</p>
 </div>
-<div class="card">
-<h3>Ubuntu Analysis</h3>
+<div class="card"><h3>Ubuntu Analysis</h3>
 <p>The participants shared deeply personal experiences of stigma within specific community contexts. Applying Western-derived categories to their stories is a form of epistemic injustice, imposing external frameworks on lived experience. The relational obligation to participants goes beyond individual consent to include representing their experience in terms that honour their reality. What is at stake is the relationship between researcher and community, well beyond the accuracy of the data alone.</p>
 </div>
 </div>
-<div class="info-box">
-<h4>💬 Discussion Questions</h4>
+<div class="info-box"><h4>Discussion Questions</h4>
 <p>How can Thabo assess whether the AI has introduced systematic bias into his coding framework? Does the fact that he is working with multilingual data from a non-Western context make AI assistance more or less risky? What would a responsible approach to AI-assisted qualitative coding look like in this context? How does the RIA Just AI Framework's concept of epistemic justice apply here?</p>
 </div>
 <!-- SECTION 4: CASE STUDY 3 -->
-<h2 class="section-title">📋 Case Study 3: The Grant Application</h2>
-<div class="case-study">
-<h4>📋 The Scenario</h4>
+<h2 class="section-title" id="s4">Case Study 3: The Grant Application</h2>
+<div class="case-study"><h4>The Scenario</h4>
 <p>Dr. Nkosi is an early-career academic at a South African university. English is her third language, and she has found grant writing in English particularly challenging. She uses Claude to substantially draft a grant application, providing her research ideas, preliminary data, and methodological approach, and asking the AI to produce a polished narrative. The resulting application is well-structured, persuasive, and reads fluently.</p>
 <p>A senior colleague reviews the draft and comments that it is the strongest proposal she has seen from Dr. Nkosi. The funding body has no published policy on AI use in applications. Dr. Nkosi submits the application without disclosing AI use.</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Consequentialist Analysis</h3>
+<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>If the research itself is strong, with good ideas, solid methodology, and clear potential impact, does it matter how the proposal was written? The funder wants to support good research, and Dr. Nkosi's research may genuinely deserve funding. But if AI-polished applications become the norm without disclosure, researchers without AI access are systematically disadvantaged, and the competition is distorted.</p>
 </div>
-<div class="card">
-<h3>Deontological Analysis</h3>
+<div class="card"><h3>Deontological Analysis</h3>
 <p>No explicit policy exists, but does the absence of a rule make it acceptable? Grant applications carry an implicit expectation that they represent the applicant's own scholarly voice and capability. Even without a formal rule, there may be an implicit duty of honest self-representation. The funder is partly assessing the researcher's communication ability alongside their research ideas.</p>
 </div>
-<div class="card">
-<h3>Virtue Ethics Analysis</h3>
+<div class="card"><h3>Virtue Ethics Analysis</h3>
 <p>Is Dr. Nkosi developing the grant-writing skills that her career will require? Grant writing is a core academic competence. If AI does this work, Dr. Nkosi may secure funding now but remain unable to write independently. On a more generous reading, learning from well-structured AI output could itself be a form of skill development.</p>
 </div>
-<div class="card">
-<h3>Ubuntu Analysis</h3>
+<div class="card"><h3>Ubuntu Analysis</h3>
 <p>This case introduces a fairness dimension. Dr. Nkosi faces a structural disadvantage, writing in her third language in a system that privileges native English speakers, and AI partially levels this uneven playing field. From an ubuntu perspective, the question is whether the academic community's reliance on English-language fluency as a proxy for research quality is itself unjust. Does AI use in this context restore a more equitable relationship between Dr. Nkosi and the funding system?</p>
 </div>
 </div>
-<div class="info-box">
-<h4>💬 Discussion Questions</h4>
+<div class="info-box"><h4>Discussion Questions</h4>
 <p>Does the language equity dimension change your ethical assessment compared to a native English speaker using AI for the same purpose? Should funders require AI disclosure in applications? Should they prohibit AI use, permit it, or actively encourage it as an equity tool? What would happen if Dr. Nkosi disclosed AI use: would it help or harm her application?</p>
 </div>
 <!-- SECTION 5: CASE STUDY 4 -->
-<h2 class="section-title">📋 Case Study 4: The Student Project</h2>
-<div class="case-study">
-<h4>📋 The Scenario</h4>
+<h2 class="section-title" id="s5">Case Study 4: The Student Project</h2>
+<div class="case-study"><h4>The Scenario</h4>
 <p>Fatima, a master's student in environmental science, uses Claude to generate Python code for statistical analysis of her research data on water quality in the Western Cape. The AI produces working code for her planned regression analysis. But the AI also suggests an alternative analytical approach that Fatima had not considered: a mixed-effects model that accounts for spatial autocorrelation. This alternative approach produces results that are more favourable to her hypothesis.</p>
 <p>Fatima adopts the AI-suggested approach. She understands the code at a general level but is not confident she could explain the mathematical details of the mixed-effects model. She discloses in her methods: "Statistical analysis was conducted using Python code generated with assistance from Claude (Anthropic). The mixed-effects modelling approach was suggested by the AI assistant."</p>
 </div>
-<div class="card-grid">
-<div class="card">
-<h3>Consequentialist Analysis</h3>
+<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>The mixed-effects model may genuinely be more appropriate for the data, since spatial autocorrelation is a real methodological concern for environmental data. If so, the AI has improved the analysis. But adopting a method you do not fully understand introduces risk. If reviewers question the approach, can Fatima defend it? If the model contains subtle errors or inappropriate assumptions, will she detect them?</p>
 </div>
-<div class="card">
-<h3>Deontological Analysis</h3>
+<div class="card"><h3>Deontological Analysis</h3>
 <p>Does Fatima have a duty to fully understand every analytical method she employs? Research methodology requires that the researcher can justify their choices. Adopting a method because an AI suggested it, especially when it produces more favourable results, is uncomfortably close to p-hacking or outcome-driven methodology selection, even if the suggestion is technically sound.</p>
 </div>
-<div class="card">
-<h3>Virtue Ethics Analysis</h3>
+<div class="card"><h3>Virtue Ethics Analysis</h3>
 <p>A master's degree is about developing competence. If Fatima cannot explain the mathematical foundations of her chosen analytical approach, has she developed the competence that the degree is meant to certify? The disclosure is commendable, but disclosure does not resolve the competence question.</p>
 </div>
-<div class="card">
-<h3>Ubuntu Analysis</h3>
+<div class="card"><h3>Ubuntu Analysis</h3>
 <p>Fatima's supervisor and examiners need to be able to trust that she understands her own research. If she cannot explain or defend her analytical choices, the examination relationship is undermined. More broadly, her peers (who may be doing their analyses without AI assistance) are held to a different standard of methodological understanding.</p>
 </div>
 </div>
-<div class="info-box">
-<h4>💬 Discussion Questions</h4>
+<div class="info-box"><h4>Discussion Questions</h4>
 <p>Is it ever appropriate to adopt an analytical approach you do not fully understand? Where is the line between "using a tool" and "not understanding your own research"? Does the fact that the AI-suggested approach produces more favourable results change the ethical assessment? Is Fatima's disclosure adequate? What responsibility does her supervisor have in this situation?</p>
 </div>
 <!-- SECTION 6: PERSONAL ETHICAL FRAMEWORK -->
-<h2 class="section-title">📝 Beginning Your Personal Ethical Framework</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">One component of the course assessment (20%, due Week 12) is developing a personal ethical framework for AI use in your research domain. Rather than a one-off assignment, it should evolve as your understanding develops across the course. This week, you begin.</p>
-<div class="decision-framework">
-<h4>Building Your Framework: A Starting Structure</h4>
+<h2 class="section-title" id="s6">Beginning Your Personal Ethical Framework</h2>
+<p style=" margin-bottom: 30px">One component of the course assessment (20%, due Week 12) is developing a personal ethical framework for AI use in your research domain. Rather than a one-off assignment, it should evolve as your understanding develops across the course. This week, you begin.</p>
+<div class="decision-framework"><h4>Building Your Framework: A Starting Structure</h4>
 <ol class="step-list">
 <li><strong>Identify your AI use cases.</strong> What are the specific ways you might use (or are already using) AI in your research? Be concrete: literature search, writing assistance, data analysis, coding, translation, brainstorming, etc.</li>
 <li><strong>Map the ethical tensions.</strong> For each use case, what are the key ethical tensions? Consider: transparency, competence, bias, privacy, fairness, relationships with participants and community.</li>
@@ -395,21 +298,18 @@
 <li><strong>Name your uncertainties.</strong> Where are you genuinely unsure? What questions remain open? Honest uncertainty is more valuable than false confidence.</li>
 </ol>
 </div>
-<div class="info-box">
-<h4>💡 This Is a First Draft</h4>
+<div class="info-box"><h4>This Is a First Draft</h4>
 <p>Your ethical framework will be revisited and refined throughout the course as you encounter new topics. AI-assisted literature review (Week 5), AI for writing (Week 6), AI for data analysis (Week 7), and AI for coding (Week 8) will all introduce new ethical dimensions. The goal this week is to establish a foundation, not to produce a finished document. Expect your framework to change a great deal.</p>
 </div>
-<div class="highlight-box">
-<h3>💡 <span style="color: #ffffff;">Weekly Assessment</span></h3>
+<div class="highlight-box"><h3><span>Weekly Assessment</span></h3>
 <p><strong>Ethical Analysis (800 words):</strong> Describe one real or realistic ethical dilemma involving AI in your research domain. Apply two different ethical frameworks from those covered this week. Explain what you would actually do, and why. Use the six-step decision framework as your structure.</p>
 <p>Treat this as a practical exercise, and choose a dilemma you might actually face. The best submissions show real engagement with the tension rather than a mechanical application of frameworks.</p>
 </div>
 <!-- SECTION 7: JOURNAL POLICY AUDIT -->
-<h2 class="section-title">🔎 The Journal Policy Audit Activity</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">An in-class activity to ground the transparency discussion in your own disciplinary context.</p>
-<div class="technical-detail">
-<h4>📊 Structured Audit Guide</h4>
-<p style="margin-bottom: 15px;">Choose the top 5 journals in your field (or the 5 journals you are most likely to submit to). For each, investigate and record:</p>
+<h2 class="section-title" id="s7">The Journal Policy Audit Activity</h2>
+<p style=" margin-bottom: 30px">An in-class activity to ground the transparency discussion in your own disciplinary context.</p>
+<div class="technical-detail"><h4>Structured Audit Guide</h4>
+<p style="margin-bottom: 15px">Choose the top 5 journals in your field (or the 5 journals you are most likely to submit to). For each, investigate and record:</p>
 <ul class="styled-list">
 <li><strong>Does the journal have an AI/LLM policy?</strong> If yes, when was it last updated? If no, note its absence, which is also informative.</li>
 <li><strong>What disclosure is required?</strong> Where should it appear (methods, acknowledgements, cover letter)? How specific must it be?</li>
@@ -417,17 +317,15 @@
 <li><strong>What is ambiguous or missing?</strong> Are there grey areas the policy does not address? Common gaps include: AI use in peer review, AI use for data analysis vs. writing, AI use in revisions after initial submission.</li>
 <li><strong>How does it compare to other journals?</strong> Are the policies in your field more or less restrictive than those of Nature, Science, or the ACM?</li>
 </ul>
-<p style="margin-top: 15px;">Bring your findings to class. We will compare across disciplines and discuss what the patterns reveal about your field's relationship with AI.</p>
+<p style="margin-top: 15px">Bring your findings to class. We will compare across disciplines and discuss what the patterns reveal about your field's relationship with AI.</p>
 </div>
-<div class="warning-box">
-<h4>⚠️ Check the Latest Version</h4>
+<div class="warning-box"><h4>Check the Latest Version</h4>
 <p>Many journals have updated their AI policies multiple times since early 2023. Check the most recent version of author guidelines directly on the journal's website. Do not rely on cached versions, secondary summaries, or policies from previous years.</p>
 </div>
 <!-- WEEK SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>📚 Week 4 Summary: Ethical Frameworks for AI in Research</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Week 4 Summary: Ethical Frameworks for AI in Research</h2>
 <p>This week provided you with the conceptual tools and practical knowledge for navigating the ethical dimensions of AI in research.</p>
-<ul class="styled-list" style="margin-top: 15px;">
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>Four philosophical lenses</strong> (consequentialism, deontology, virtue ethics, and ubuntu) provide complementary perspectives. Where they disagree, that disagreement is useful rather than a flaw</li>
 <li><strong>Ubuntu and relational ethics</strong> offer insights that individualist frameworks miss, about collective harm, structural injustice, and the social fabric that research communities depend on</li>
 <li><strong>The RIA Just AI Framework</strong> moves beyond "responsible AI" to demand restorative and redistributive justice, with nine core inquiries spanning human rights, epistemic justice, data justice, and sustainability</li>
@@ -435,25 +333,7 @@
 <li><strong>Bias, privacy, authorship, and integrity</strong> are not solved problems; they require ongoing attention and judgment as the technology and its governance evolve</li>
 <li><strong>Personal ethical frameworks</strong> should be living documents, specific enough to guide real decisions and honest enough to acknowledge genuine uncertainty</li>
 <li><strong>Ethical dilemmas in AI-assisted research</strong> rarely have simple answers, as the case studies show; what matters is the quality of the reasoning, not the conclusion you settle on</li>
-<li><strong>Much lies beyond this week:</strong> Labour exploitation, surveillance AI, autonomous weapons, corporate power, deepfakes, gender, disability, and many more dimensions of AI ethics extend past what we could cover. See <a href="The Broader Landscape of AI Ethics.html" target="_blank" rel="noopener">The Broader Landscape of AI Ethics</a> for an orientation and further reading</li>
+<li><strong>Much lies beyond this week:</strong> Labour exploitation, surveillance AI, autonomous weapons, corporate power, digital forgery, gender, disability, and many more dimensions of AI ethics extend past what we could cover. See <a href="The Broader Landscape of AI Ethics.html" target="_blank" rel="noopener">The Broader Landscape of AI Ethics</a> for an orientation and further reading</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next week (Week 5):</strong> We move from ethical foundations to practical application, starting with AI-assisted literature review. How can AI help you find, organise, and synthesise research literature? What are the risks, and how do you use these tools responsibly?</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-4/Transparency Authorship and Integrity.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Transparency, Authorship and Integrity</div></a>
-  <a class="page-nav-link" href="../week-4/The Broader Landscape of AI Ethics.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">The Broader Landscape of AI Ethics</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next week (Week 5):</strong> We move from ethical foundations to practical application, starting with AI-assisted literature review. How can AI help you find, organise, and synthesise research literature? What are the risks, and how do you use these tools responsibly?</p>
+</div></div><div class="prevnext"><a href="Transparency%20Authorship%20and%20Integrity.html"><span class="d">&larr; Previous</span><span class="pt">Transparency, Authorship and Integrity</span></a><a class="next" href="The%20Broader%20Landscape%20of%20AI%20Ethics.html"><span class="d">Next &rarr;</span><span class="pt">The Broader Landscape of AI Ethics</span></a></div></div><div class="rightrail"><div class="rmeta">Week 4<br>Lesson 4<br>15 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Epistemic injustice</div>A wrong done to someone specifically as a knower or knowledge-producer — for example, when a researcher imposes external interpretive categories onto a community's experience, distorting what participants actually meant.</div><div class="snote"><div class="sk">P-hacking (outcome-driven analysis)</div>Selecting or adjusting an analytical method after seeing the data to produce statistically favourable results, rather than choosing the method on principled grounds before analysis begins.</div><div class="snote"><div class="sk">RIA Just AI Framework</div>A framework from the Research ICT Africa think-tank that extends beyond conventional responsible AI to demand restorative and redistributive justice, structured around nine inquiries spanning human rights, epistemic justice, data justice, and sustainability.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

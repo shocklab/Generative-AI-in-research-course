@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Overview — MAM5020F 2026: Generative AI for Research</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    .back-bar {
+        background: #f0f4f8;
+        padding: 12px 30px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .back-bar a {
+        color: #003A70;
+        text-decoration: none;
+        font-size: 0.9em;
+        font-weight: 600;
+    }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 10px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 10px auto 0;
+    }
+    .content {
+        padding: 50px 40px;
+    }
+    .intro-text {
+        background: #f9f9f9;
+        padding: 25px 30px;
+        border-radius: 12px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+    .intro-text p {
+        color: #444;
+        line-height: 1.8;
+    }
+    .section {
+        margin-bottom: 45px;
+    }
+    .section-title {
+        color: #2a5298;
+        font-size: 1.5em;
+        font-weight: 600;
+        margin-bottom: 18px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #003A70;
+    }
+    .section p {
+        color: #444;
+        line-height: 1.8;
+        margin-bottom: 14px;
+    }
+    .section a {
+        color: #003A70;
+        font-weight: 600;
+    }
+    .phase-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 18px;
+    }
+    .phase-card {
+        background: white;
+        border: 1px solid #e0e6ed;
+        border-left: 5px solid #003A70;
+        border-radius: 10px;
+        padding: 22px 24px;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .phase-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 58, 112, 0.1);
+    }
+    .phase-card h3 {
+        color: #003A70;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .phase-card p {
+        color: #555;
+        font-size: 0.95em;
+        line-height: 1.65;
+    }
+    .assessment-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 18px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .assessment-table th {
+        background: #003A70;
+        color: white;
+        padding: 14px 18px;
+        text-align: left;
+        font-weight: 600;
+    }
+    .assessment-table td {
+        padding: 14px 18px;
+        border-bottom: 1px solid #e0e6ed;
+        color: #444;
+        line-height: 1.6;
+        background: white;
+    }
+    .assessment-table tr:last-child td {
+        border-bottom: none;
+    }
+    .assessment-table .weight {
+        font-weight: 700;
+        color: #003A70;
+        white-space: nowrap;
+    }
+    .styled-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 12px 0 14px;
+    }
+    .styled-list li {
+        position: relative;
+        padding-left: 22px;
+        margin-bottom: 10px;
+        color: #444;
+        line-height: 1.7;
+    }
+    .styled-list li::before {
+        content: '\25B8';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: 700;
+    }
+    .info-box {
+        background: #f9f9f9;
+        border-left: 5px solid #003A70;
+        padding: 20px 25px;
+        border-radius: 8px;
+        margin: 18px 0;
+    }
+    .info-box p {
+        margin-bottom: 10px;
+    }
+    .info-box p:last-child {
+        margin-bottom: 0;
+    }
+    .info-box h3 {
+        color: #2a5298;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .audience-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 18px;
+        margin-top: 18px;
+    }
+    .audience-card {
+        background: #f4f7fb;
+        border-radius: 10px;
+        padding: 22px 24px;
+    }
+    .audience-card h3 {
+        color: #003A70;
+        font-size: 1.05em;
+        margin-bottom: 10px;
+    }
+    .audience-card p {
+        color: #555;
+        font-size: 0.95em;
+        line-height: 1.65;
+    }
+    footer {
+        background: #f9f9f9;
+        padding: 25px 40px;
+        text-align: center;
+        color: #888;
+        font-size: 0.9em;
+        border-top: 1px solid #eee;
+    }
+    footer a {
+        color: #003A70;
+    }
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.6em;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="back-bar"><a href="../index.html">&#8592; Back to Contents</a></div>
+
+    <header>
+        <h1><span style="color: #ffffff;">Course Overview</span></h1>
+        <p>How this course works, week to week</p>
+    </header>
+
+    <div class="content">
+
+        <div class="intro-text">
+            <p>This page is the practical orientation: the rhythm of each week, what the assessments look like, how to navigate the materials, and what to expect if you're a UCT student versus a self-learner reading along. For the bigger picture (who built this, why, and the licensing) see the <a href="../about.html">About page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">New Here? Start in Three Steps</h2>
+            <ul class="styled-list">
+                <li><strong>Read this page.</strong> It tells you the weekly rhythm, the time each week takes, how the work is assessed, and how to find your way around.</li>
+                <li><strong>Open the <a href="../index.html">contents page</a> and start at Week&nbsp;1.</strong> The weeks are meant to be read in order. Weeks&nbsp;1&ndash;4 lay the foundations everything else builds on.</li>
+                <li><strong>End each week with the activities.</strong> Every week finishes with a hands-on "Activities and Assessment" page and a "Discussion Questions" page. Doing those, rather than only reading, is where the learning happens.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">The Weekly Rhythm</h2>
+            <p>Each of the twelve weeks follows the same three-phase structure. The phases are designed to be done in order, but each one stands alone if you only have time for part of the week.</p>
+            <div class="phase-grid">
+                <div class="phase-card">
+                    <h3>Pre-Class</h3>
+                    <p>Readings, short videos, and a few framing questions. This is where you build the conceptual ground for the week. Most weeks have 2&ndash;4 core readings plus optional supplementary material. All readings are openly accessible.</p>
+                </div>
+                <div class="phase-card">
+                    <h3>In-Class</h3>
+                    <p>Discussion, hands-on activities, worked examples, and group work. For UCT students this happens in the scheduled session; for self-learners, the activity prompts are written so you can run them yourself or with a study group.</p>
+                </div>
+                <div class="phase-card">
+                    <h3>Post-Class</h3>
+                    <p>Deeper reading, an assignment, or a reflective task. This is where the week's ideas get applied to your own research questions and where most of the assessment work happens.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Time and Workload</h2>
+            <p>Honest estimates, so you can plan. These cover reading plus the week's hands-on activity and discussion preparation. They do not include the open-ended project work, which is on top.</p>
+            <ul class="styled-list">
+                <li><strong>Per week:</strong> roughly <strong>3&ndash;4 hours</strong> for most weeks. The lighter, more conceptual weeks (2 and 3) are nearer 2&ndash;2.5 hours; Week&nbsp;1 runs a little longer because it sets the foundations and includes several videos. The estimate for each week is shown next to it on the <a href="../index.html">contents page</a>.</li>
+                <li><strong>Whole course:</strong> roughly <strong>35&ndash;45 hours</strong> across the twelve weeks, plus the Week&nbsp;12 capstone (about 3 hours) and the research-enhancement project, which is open-ended and scales with how far you take it.</li>
+                <li><strong>If you only have part of a week:</strong> the three phases (pre-class, in-class, post-class) each stand alone. Reading the pre-class material on its own is still worthwhile.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">How to Navigate the Materials</h2>
+            <p>The <a href="../index.html">landing page</a> lists every week and every sub-lesson in order. A few things worth knowing as you work through them:</p>
+            <ul class="styled-list">
+                <li><strong>Core vs supplementary pages:</strong> sub-lessons marked <em>(supplementary)</em> in the contents list are deeper dives or adjacent topics. They are useful but not required for the assessments.</li>
+                <li><strong>Linear vs cherry-picked:</strong> the weeks build on each other, particularly Weeks 1&ndash;4 (foundations and ethics) which underpin everything that follows. Weeks 5&ndash;8 (literature, writing, code, multimodal) can be read in any order once you've done the foundations.</li>
+                <li><strong>Hands-on activities:</strong> every week ends with an "Activities and Assessment" page. Even if you're not formally enrolled, working through these is the most effective way to internalise the material.</li>
+                <li><strong>External links:</strong> all open in a new tab. Where readings are paywalled, we link to an open-access version (preprint, postprint, or institutional copy) wherever one exists.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Who This Page Is For</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <h3>UCT students enrolled in MAM5020F</h3>
+                    <p>The authoritative versions of these materials, plus all assignments and grading, live on Amathuba. This site mirrors the lesson content for ease of reference and revision. Treat Amathuba as the source of truth for deadlines and submissions.</p>
+                </div>
+                <div class="audience-card">
+                    <h3>Self-learners and other educators</h3>
+                    <p>Everything you need is on this site. The materials are released under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>, so you are welcome to read, adapt, and reuse them in your own teaching with attribution. See the <a href="../about.html">About page</a> for the suggested citation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Prerequisites</h2>
+            <div class="info-box">
+                <p>None. The course is pitched at NQF Level 9 (postgraduate) but assumes no prior background in machine learning, computer science, or programming. What it does assume is that you are an active researcher or graduate student with a research project, problem, or question of your own to bring to the material.</p>
+                <p>The hands-on weeks (especially Weeks 5, 7 and 8) involve using AI tools directly. You will need a laptop, a free or paid account with at least one frontier AI assistant (Claude, ChatGPT, or Gemini), and a willingness to try things and break them.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+
+            <div class="info-box">
+                <h3>Do I need to pay for an AI tool?</h3>
+                <p>No. The whole twelve-week core is designed to run on free tiers, a choice the course argues for in Weeks&nbsp;10 and&nbsp;11 on the grounds that access matters. The only exception is the optional Advanced Track, which uses a paid tool and says so plainly up front.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Which AI assistant should I use?</h3>
+                <p>Any current frontier assistant (Claude, ChatGPT, or Gemini) is fine for almost everything here. The course stays tool-agnostic and talks about model <em>families</em> rather than chasing version numbers, because the specifics change monthly. Where a particular tool matters, the lesson says so.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Do I have to do the weeks in order?</h3>
+                <p>Do Weeks&nbsp;1&ndash;4 first: the foundations and the ethical framework underpin everything else. After that, Weeks&nbsp;5&ndash;8 (literature, writing, code, multimodal) can be taken in any order, and Weeks&nbsp;9&ndash;11 build toward the capstone.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>Is it safe to use my own research data in the exercises?</h3>
+                <p>Treat that as a real question. Do not put confidential, identifiable, restricted, or embargoed data into a third-party AI tool during the exercises; use fictional or non-sensitive material instead. Weeks&nbsp;4 and&nbsp;11 cover the ethics and disclosure side of this in depth.</p>
+            </div>
+
+            <div class="info-box">
+                <h3>A model or tool mentioned here looks out of date.</h3>
+                <p>It probably is, and that is part of the point. The capability claims are dated, calibrated snapshots, and Week&nbsp;9 teaches the habit of checking the primary source rather than trusting a figure a page wrote months ago. If a specific link is broken or a claim is wrong, please tell us (below).</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Getting Help and Reporting Problems</h2>
+            <div class="info-box">
+                <p><strong>Found a broken link, a wrong citation, an out-of-date claim, or any other error?</strong> Email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a> or open an issue on the <a href="https://github.com/shocklab/Generative-AI-in-research-course" target="_blank" rel="noopener">course GitHub repository</a>. Corrections are genuinely welcomed and made promptly. A course about AI hallucination would be a poor one to leave errors in.</p>
+                <p><strong>UCT students:</strong> for anything to do with deadlines, submissions, or grades, Amathuba is the source of truth; use the channels there rather than email for those.</p>
+            </div>
+        </div>
+
+    </div>
+
+    
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <span style="flex:1 1 240px;"></span>
+  <a class="page-nav-link" href="../course-introduction/Introduction to the course.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Introduction to the Course</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer>
+        <p>MAM5020F 2026 &mdash; University of Cape Town &mdash; <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a></p>
+        <p style="margin-top: 5px; font-size: 0.85em;">&copy; 2026 Jonathan Shock. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC&nbsp;BY&nbsp;4.0</a>.</p>
+    </footer>
+</div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body>
+</html>

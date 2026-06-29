@@ -1,228 +1,190 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 4.3 - Transparency, Authorship and Integrity</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-
-        .ai-notice strong { font-weight: 600; }
-
-        header {
-            background: #003A70;
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .week-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-
-        .content { padding: 50px 40px; }
-
-        .intro-text {
-            background: #f9f9f9;
-            padding: 35px;
-            border-radius: 15px;
-            border-left: 5px solid #003A70;
-            margin-bottom: 40px;
-        }
-
-        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-        .intro-text h2::before { content: '🎯'; }
-        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-
-        .section-title {
-            font-size: 2em;
-            color: #2a5298;
-            margin: 50px 0 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #003A70;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-
-        .styled-list { list-style: none; margin-top: 15px; }
-
-        .styled-list li {
-            padding: 8px 0 8px 25px;
-            color: #555;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-
-        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-
-        .warning-box {
-            background: #fff8e1;
-            border-left: 5px solid #f9a825;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-
-        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
-        .warning-box p { color: #555; line-height: 1.7; }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #003A70;
-        }
-
-        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .info-box p { color: #555; line-height: 1.7; }
-
-        .resource-placeholder {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-            border: 2px dashed #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-        }
-
-        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-        .resource-placeholder p { color: #666; }
-
-        .technical-detail {
-            background: white;
-            border: 2px solid #d0e8f2;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-        .comparison-table tr:last-child td { border-bottom: none; }
-        .comparison-table tr:hover { background: #f9f9f9; }
-
-        .decision-framework {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .decision-framework h4 { color: #003A70; font-size: 1.4em; margin-bottom: 20px; }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .content { padding: 30px 20px; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 4 • Sub-Lesson 3</div>
-<h1>🔍 <span style="color: #ffffff;">Transparency, Authorship &amp; Integrity</span></h1>
-<p>Disclosure norms, the AI authorship debate, bias, privacy, and the academic integrity spectrum</p>
-</header>
-<div class="content">
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>This session moves from ethical theory to the practical questions every researcher using AI tools must navigate: When and how should you disclose AI use? Can AI be listed as an author? How does bias manifest in AI-assisted research? What happens to your data when you use cloud-based AI? Where does legitimate tool use end and academic misconduct begin?</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Transparency, Authorship &amp; Integrity — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.48rem;line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.28rem;line-height:1.58;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.24rem;line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.33rem;line-height:1.62}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 4 &middot; Ethical Frameworks for AI in Research</div><nav class="toc"><a class="lesson" href="Ethical%20Frameworks%20and%20Four%20Lenses.html">Ethical Frameworks and Four Lenses</a><a class="lesson" href="Ubuntu%20Relational%20Ethics%20and%20the%20Just%20AI%20Framework.html">Ubuntu, Relational Ethics and the Just AI Framework</a><a class="lesson cur" href="Transparency%20Authorship%20and%20Integrity.html">Transparency, Authorship and Integrity</a><div class="subs"><a href="#s1">Transparency: When and How to Disclose AI Use</a><a href="#s2">Journal Policies: The Current Landscape</a><a href="#s3">Can AI Be an Author?</a><a href="#s4">Bias in AI-Assisted Research</a><a href="#s5">Privacy: What Happens to Your Data?</a><a href="#s6">The Academic Integrity Spectrum</a><a href="#s7">Intellectual Property: Who Owns AI-Generated Content?</a></div><a class="lesson" href="Applying%20Ethics%20Case%20Studies%20and%20Your%20Framework.html">Applying Ethics: Case Studies and Your Framework</a><a class="lesson" href="The%20Broader%20Landscape%20of%20AI%20Ethics.html">The Broader Landscape of AI Ethics</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Transparency, Authorship &amp; Integrity</h1><div class="deck">Disclosure norms, the AI authorship debate, bias, privacy, and the academic integrity spectrum</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">This session moves from ethical theory to the practical questions every researcher using AI tools must navigate: When and how should you disclose AI use? Can AI be listed as an author? How does bias manifest in AI-assisted research? What happens to your data when you use cloud-based AI? Where does legitimate tool use end and academic misconduct begin?</p>
 <p>These are questions with evolving answers. Journal policies, institutional guidelines, and legal frameworks are all in flux. Rather than definitive rules, the goal is to equip you to make informed, defensible decisions as the field shifts.</p>
 </div>
 <!-- SECTION 1: TRANSPARENCY -->
-<h2 class="section-title">📝 Transparency: When and How to Disclose AI Use</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Disclosure is the foundation of trust in AI-assisted research. But what should you disclose, and where?</p>
-<div class="card-grid">
-<div class="card">
-<h3>The Case for Disclosure</h3>
+<h2 class="section-title" id="s1">Transparency: When and How to Disclose AI Use</h2>
+<p style=" margin-bottom: 30px">Disclosure is the foundation of trust in AI-assisted research. But what should you disclose, and where?</p>
+<div class="card-grid"><div class="card"><h3>The Case for Disclosure</h3>
 <ul class="styled-list">
 <li><strong>Reproducibility:</strong> Other researchers need to know what tools were used to evaluate and replicate your work. "AI-assisted" covers a vast range of practices</li>
 <li><strong>Trust:</strong> Readers assess credibility differently when they know AI was involved. Undisclosed AI use, if later discovered, damages trust far more than transparent use</li>
@@ -230,8 +192,7 @@
 <li><strong>Norm-setting:</strong> Current disclosure practices establish the expectations that will govern AI use in your field for years to come</li>
 </ul>
 </div>
-<div class="card">
-<h3>What and How to Disclose</h3>
+<div class="card"><h3>What and How to Disclose</h3>
 <p><strong>What to include:</strong></p>
 <ul class="styled-list">
 <li>Which AI tool(s) were used (name, version if known, date of use)</li>
@@ -239,7 +200,7 @@
 <li>The degree of human modification of AI outputs</li>
 <li>Any prompts used (increasingly expected in some fields)</li>
 </ul>
-<p style="margin-top: 15px;"><strong>Where to disclose:</strong></p>
+<p style="margin-top: 15px"><strong>Where to disclose:</strong></p>
 <ul class="styled-list">
 <li>Methods section (for substantive AI use in research process)</li>
 <li>Acknowledgements (for editorial assistance)</li>
@@ -248,18 +209,15 @@
 </ul>
 </div>
 </div>
-<div class="warning-box">
-<h4>⚠️ A Moving Target</h4>
+<div class="warning-box"><h4>A Moving Target</h4>
 <p>Disclosure norms are evolving rapidly. What is considered adequate disclosure today may be considered insufficient in a year. Always check your target journal's most recent author guidelines before submission. Policies are updated frequently, and cached or secondary sources may be outdated.</p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Key Reading</h4>
+<div class="resource-placeholder"><h4>Key Reading</h4>
 </div>
 <!-- SECTION 2: JOURNAL POLICIES -->
-<h2 class="section-title">📋 Journal Policies: The Current Landscape</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Major publishers have issued AI use policies, but they differ in specifics. The table below captures the current state. Check for updates before relying on it.</p>
-<div class="technical-detail">
-<h4>📊 AI Policies of Major Publishers (as of early 2026)</h4>
+<h2 class="section-title" id="s2">Journal Policies: The Current Landscape</h2>
+<p style=" margin-bottom: 30px">Major publishers have issued AI use policies, but they differ in specifics. The table below captures the current state. Check for updates before relying on it.</p>
+<div class="technical-detail"><h4>AI Policies of Major Publishers (as of early 2026)</h4>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -308,23 +266,19 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 15px; color: #666; font-size: 0.95em;"><em>Note: All major publishers have converged on two points: (1) AI cannot be listed as an author, and (2) AI use must be disclosed. The specifics of how to disclose vary. Always check the most recent version of author guidelines.</em></p>
+<p style="margin-top: 15px"><em>Note: All major publishers have converged on two points: (1) AI cannot be listed as an author, and (2) AI use must be disclosed. The specifics of how to disclose vary. Always check the most recent version of author guidelines.</em></p>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Key Readings</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1038/d41586-023-00191-1" target="_blank" rel="noopener"><strong>Nature Editorial (2023): "Tools Such as ChatGPT Threaten Transparent Science; Here Are Our Ground Rules"</strong></a> — The influential early statement that shaped many subsequent policies.</p>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener"><strong>ACM (2024): "Policy on Authorship and Use of Generative AI and Large Language Models"</strong></a> — A detailed, discipline-specific policy worth examining closely as a model.</p>
+<div class="resource-placeholder"><h4>Key Readings</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://doi.org/10.1038/d41586-023-00191-1" target="_blank" rel="noopener"><strong>Nature Editorial (2023): "Tools Such as ChatGPT Threaten Transparent Science; Here Are Our Ground Rules"</strong></a> — The influential early statement that shaped many subsequent policies.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener"><strong>ACM (2024): "Policy on Authorship and Use of Generative AI and Large Language Models"</strong></a> — A detailed, discipline-specific policy worth examining closely as a model.</p>
 </div>
-<div class="info-box">
-<h4>📝 Activity: Journal Policy Audit</h4>
+<div class="info-box"><h4>Activity: Journal Policy Audit</h4>
 <p>Survey the AI disclosure policies of the top 5 journals in your field. For each journal: find the current AI/LLM policy (or note its absence), document what is required for disclosure, note the authorship rules, and identify anything ambiguous or missing. This exercise will be discussed in class, so bring your findings.</p>
 </div>
 <!-- SECTION 3: AI AUTHORSHIP -->
-<h2 class="section-title">✍️ Can AI Be an Author?</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The authorship question has generated intense debate. The current consensus is clear, and the reasoning behind it repays a close look.</p>
-<div class="card-grid">
-<div class="card">
-<h3>The Case Against AI Authorship</h3>
+<h2 class="section-title" id="s3">Can AI Be an Author?</h2>
+<p style=" margin-bottom: 30px">The authorship question has generated intense debate. The current consensus is clear, and the reasoning behind it repays a close look.</p>
+<div class="card-grid"><div class="card"><h3>The Case Against AI Authorship</h3>
 <p>The dominant position, reflected in all major publisher policies:</p>
 <ul class="styled-list">
 <li><strong>Accountability:</strong> Authorship implies legal and ethical responsibility for the work. AI cannot be held accountable for errors, fabrications, or misconduct</li>
@@ -333,8 +287,7 @@
 <li><strong>Precedent:</strong> Listing AI as an author normalises the idea that non-human entities can bear scholarly responsibility, a precedent with uncertain consequences</li>
 </ul>
 </div>
-<div class="card">
-<h3>The Complications</h3>
+<div class="card"><h3>The Complications</h3>
 <p>Even if the current consensus is correct, the reasoning repays interrogation:</p>
 <ul class="styled-list">
 <li><strong>Substantial contribution:</strong> In some workflows, AI makes genuinely substantial intellectual contributions: structuring arguments, identifying patterns, generating hypotheses. The "tool" framing may understate this</li>
@@ -344,17 +297,14 @@
 </ul>
 </div>
 </div>
-<div class="highlight-box">
-<h3>💡 <span style="color: #ffffff;">Where Things Stand</span></h3>
+<div class="highlight-box"><h3><span>Where Things Stand</span></h3>
 <p>The current consensus (2025–2026) is clear: AI cannot be listed as an author on academic publications. Every major publisher has taken this position. The reasoning behind it, centred on accountability and the nature of authorship itself, rests on assumptions that may need updating as AI capabilities evolve and as our understanding of human-AI collaboration deepens.</p>
 <p>For now, the practical advice is straightforward: do not list AI as an author. Use disclosure statements and contribution descriptions to be transparent about AI's role.</p>
 </div>
 <!-- SECTION 4: BIAS -->
-<h2 class="section-title">⚖️ Bias in AI-Assisted Research</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">"Bias in, bias out." In research contexts, the manifestations can be subtle and the consequences significant.</p>
-<div class="card-grid">
-<div class="card">
-<h3>Sources of Bias</h3>
+<h2 class="section-title" id="s4">Bias in AI-Assisted Research</h2>
+<p style=" margin-bottom: 30px">"Bias in, bias out." In research contexts, the manifestations can be subtle and the consequences significant.</p>
+<div class="card-grid"><div class="card"><h3>Sources of Bias</h3>
 <p>AI systems trained on large datasets inherit and can amplify the biases present in that data:</p>
 <ul class="styled-list">
 <li><strong>Language bias:</strong> Training data overwhelmingly in English, underrepresenting non-English scholarship and perspectives</li>
@@ -364,8 +314,7 @@
 <li><strong>Publication bias:</strong> Models trained on published work inherit the biases of what gets published: positive results, established methodologies, dominant theoretical frameworks</li>
 </ul>
 </div>
-<div class="card">
-<h3>How Bias Manifests in Research</h3>
+<div class="card"><h3>How Bias Manifests in Research</h3>
 <ul class="styled-list">
 <li><strong>Literature review:</strong> AI may systematically overlook non-English sources, regional journals, or scholarship from underrepresented communities</li>
 <li><strong>Coding and analysis:</strong> AI may apply analytical categories developed in one context (typically Western, English-speaking) to data from another</li>
@@ -374,8 +323,7 @@
 <li><strong>Data interpretation:</strong> AI may impose patterns or categories that do not fit the data, producing confident but misleading analyses</li>
 </ul>
 </div>
-<div class="card">
-<h3>Mitigation Strategies</h3>
+<div class="card"><h3>Mitigation Strategies</h3>
 <ul class="styled-list">
 <li><strong>Awareness:</strong> Know what biases are likely in your tools. This requires understanding how they were trained (which is often only partially disclosed)</li>
 <li><strong>Cross-checking:</strong> Use multiple AI tools and compare results with manual methods. Where they diverge, investigate why</li>
@@ -385,16 +333,13 @@
 </ul>
 </div>
 </div>
-<div class="warning-box">
-<h4>⚠️ The Invisible Risk</h4>
+<div class="warning-box"><h4>The Invisible Risk</h4>
 <p>AI-generated bias is not always visible. AI can produce confident, well-structured, fluent output that contains systematic omissions or distortions. The risk is high in qualitative research, where AI may impose interpretive categories that do not fit the data, and the researcher may not notice because the output reads so convincingly. Treat AI outputs with the same critical scrutiny you would apply to any research assistant's work, and more, because the assistant's biases are structural rather than idiosyncratic.</p>
 </div>
 <!-- SECTION 5: PRIVACY -->
-<h2 class="section-title">🔒 Privacy: What Happens to Your Data?</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When you paste text into a cloud-based AI tool, where does it go, and who else might see it?</p>
-<div class="card-grid">
-<div class="card">
-<h3>Data Handling by AI Providers</h3>
+<h2 class="section-title" id="s5">Privacy: What Happens to Your Data?</h2>
+<p style=" margin-bottom: 30px">When you paste text into a cloud-based AI tool, where does it go, and who else might see it?</p>
+<div class="card-grid"><div class="card"><h3>Data Handling by AI Providers</h3>
 <p>Policies vary across providers and tiers, and change frequently. Key considerations:</p>
 <ul class="styled-list">
 <li><strong>Training use:</strong> Some consumer-tier services may use conversation data to improve their models (unless the user opts out). Enterprise and API tiers typically have stronger protections</li>
@@ -403,8 +348,7 @@
 <li><strong>Jurisdictional issues:</strong> Your data may be processed and stored in a different country, subject to different privacy laws</li>
 </ul>
 </div>
-<div class="card">
-<h3>Implications for Researchers</h3>
+<div class="card"><h3>Implications for Researchers</h3>
 <p>The privacy question has real consequences for research practice:</p>
 <ul class="styled-list">
 <li><strong>Participant data:</strong> Pasting interview transcripts, survey responses, or medical records into consumer AI tools may violate your ethics approval and data protection commitments</li>
@@ -414,16 +358,14 @@
 </ul>
 </div>
 </div>
-<div class="info-box">
-<h4>💡 Practical Guidance</h4>
+<div class="info-box"><h4>Practical Guidance</h4>
 <p>For sensitive research data: use enterprise tiers with explicit data protection guarantees; anonymise data before using AI tools; check your university's data handling policy and your ethics approval conditions; consider running local/open-weight models for sensitive analysis (e.g., LLaMA, Mistral on your own hardware); and when in doubt, ask your ethics committee before proceeding.</p>
 </div>
 <!-- SECTION 6: ACADEMIC INTEGRITY -->
-<h2 class="section-title">🎓 The Academic Integrity Spectrum</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI use in research is rarely binary, legitimate or illegitimate. It exists on a spectrum, with a large grey zone that requires judgment.</p>
-<div class="decision-framework">
-<h4>The Spectrum of AI Use in Research</h4>
-<table class="comparison-table" style="margin-top: 15px;">
+<h2 class="section-title" id="s6">The Academic Integrity Spectrum</h2>
+<p style=" margin-bottom: 30px">AI use in research is rarely binary, legitimate or illegitimate. It exists on a spectrum, with a large grey zone that requires judgment.</p>
+<div class="decision-framework"><h4>The Spectrum of AI Use in Research</h4>
+<table class="comparison-table" style="margin-top: 15px">
 <thead>
 <tr>
 <th>Category</th>
@@ -433,33 +375,30 @@
 </thead>
 <tbody>
 <tr>
-<td><strong style="color: #2e7d32;">Generally Accepted</strong></td>
+<td><strong>Generally Accepted</strong></td>
 <td>Grammar and spell checking; code debugging and syntax help; brainstorming and ideation; literature search and discovery; translation assistance</td>
 <td>These uses are widely considered analogous to existing tools (spell checkers, search engines). Disclosure is good practice but the ethical risk is low.</td>
 </tr>
 <tr>
-<td><strong style="color: #f57f17;">Grey Zone</strong></td>
+<td><strong>Grey Zone</strong></td>
 <td>Drafting sections that are then heavily edited; generating initial analyses that are verified and refined; restructuring arguments; summarising literature; code generation for novel analyses</td>
 <td>These uses involve more substantial AI contribution. Disclosure is essential. The key question: does the researcher maintain genuine intellectual command of the work?</td>
 </tr>
 <tr>
-<td><strong style="color: #c62828;">Generally Problematic</strong></td>
+<td><strong>Generally Problematic</strong></td>
 <td>Submitting AI-generated text as one's own without disclosure; fabricating or augmenting data using AI; using AI to bypass learning objectives; allowing AI to make substantive research decisions without human oversight</td>
 <td>These uses involve misrepresentation, fabrication, or abdication of intellectual responsibility. Most institutions and publishers would consider these misconduct.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="info-box">
-<h4>💡 The Key Distinction</h4>
+<div class="info-box"><h4>The Key Distinction</h4>
 <p>The question is not "did you use AI?" but "did you use AI honestly and transparently, maintaining your intellectual responsibility for the work?" A researcher who uses AI to draft text, carefully verifies and revises it, and discloses the process is acting with integrity. A researcher who submits AI output as their own work, unchecked and undisclosed, is not, regardless of how good the output is.</p>
 </div>
 <!-- SECTION 7: INTELLECTUAL PROPERTY -->
-<h2 class="section-title">⚙️ Intellectual Property: Who Owns AI-Generated Content?</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The legal landscape around AI-generated content and copyright is evolving rapidly and remains largely unsettled.</p>
-<div class="card-grid">
-<div class="card">
-<h3>The Current Legal Landscape</h3>
+<h2 class="section-title" id="s7">Intellectual Property: Who Owns AI-Generated Content?</h2>
+<p style=" margin-bottom: 30px">The legal landscape around AI-generated content and copyright is evolving rapidly and remains largely unsettled.</p>
+<div class="card-grid"><div class="card"><h3>The Current Legal Landscape</h3>
 <ul class="styled-list">
 <li><strong>US Copyright Office:</strong> Content generated by AI without human authorship is not copyrightable. However, human-directed AI use, where the human exercises substantial creative control, may produce copyrightable work</li>
 <li><strong>The boundary is unclear:</strong> How much human creative input is needed to make AI-assisted work copyrightable? Courts are still working this out</li>
@@ -467,8 +406,7 @@
 <li><strong>Rapid evolution:</strong> Multiple court cases are currently in progress that could reshape the legal landscape significantly</li>
 </ul>
 </div>
-<div class="card">
-<h3>Implications for Researchers</h3>
+<div class="card"><h3>Implications for Researchers</h3>
 <ul class="styled-list">
 <li><strong>Copyright claims:</strong> If your AI-assisted work is not copyrightable, this could affect publication agreements, licensing, and IP ownership disputes</li>
 <li><strong>University IP policies:</strong> Many university IP policies were written before AI-generated content was a consideration, so they may not clearly address who owns AI-assisted research outputs</li>
@@ -477,16 +415,14 @@
 </ul>
 </div>
 </div>
-<div class="resource-placeholder">
-<h4>📄 Further Reading</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1002/asi.24750" target="_blank" rel="noopener"><strong>Lund, B.D., et al. (2023): "ChatGPT and a New Academic Reality"</strong></a> — <em>JASIST</em>. A thorough overview of the academic integrity and authorship debates around AI.</p>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1038/d41586-023-00288-7" target="_blank" rel="noopener"><strong>van Dis, E.A.M., et al. (2023): "ChatGPT: Five Priorities for Research"</strong></a> — <em>Nature</em>, 614. Short, actionable priorities for the research community.</p>
+<div class="resource-placeholder"><h4>Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://doi.org/10.1002/asi.24750" target="_blank" rel="noopener"><strong>Lund, B.D., et al. (2023): "ChatGPT and a New Academic Reality"</strong></a> — <em>JASIST</em>. A thorough overview of the academic integrity and authorship debates around AI.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://doi.org/10.1038/d41586-023-00288-7" target="_blank" rel="noopener"><strong>van Dis, E.A.M., et al. (2023): "ChatGPT: Five Priorities for Research"</strong></a> — <em>Nature</em>, 614. Short, actionable priorities for the research community.</p>
 </div>
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>📚 Summary &amp; Key Takeaways</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Summary &amp; Key Takeaways</h2>
 <p>This session covered the practical ethical landscape that every researcher using AI must navigate.</p>
-<ul class="styled-list" style="margin-top: 15px;">
+<ul class="styled-list" style="margin-top: 15px">
 <li><strong>Disclosure is foundational:</strong> Transparency about AI use builds trust and enables reproducibility. Norms are converging toward more, not less, disclosure</li>
 <li><strong>Journal policies are converging:</strong> All major publishers agree that AI cannot be an author, and that AI use must be disclosed. The specifics of how to disclose vary</li>
 <li><strong>The authorship consensus is clear (for now):</strong> AI cannot meet the accountability requirement for authorship. But the reasoning is worth examining because the underlying assumptions may need updating</li>
@@ -495,23 +431,5 @@
 <li><strong>Integrity is a spectrum:</strong> The question is not whether you used AI, but whether you used it honestly, transparently, and with genuine intellectual responsibility</li>
 <li><strong>IP law is uncertain:</strong> The copyright status of AI-assisted work remains legally unsettled, so document your creative process and ensure substantial human input</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session:</strong> We put all of this into practice, working through four detailed case studies using the ethical lenses from Sub-Lesson 1 and the practical knowledge from this session, and beginning your personal ethical framework.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-4/Ubuntu Relational Ethics and the Just AI Framework.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Ubuntu, Relational Ethics and the Just AI Framework</div></a>
-  <a class="page-nav-link" href="../week-4/Applying Ethics Case Studies and Your Framework.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Applying Ethics: Case Studies and Your Framework</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<p style="margin-top: 20px"><strong>Next session:</strong> We put all of this into practice, working through four detailed case studies using the ethical lenses from Sub-Lesson 1 and the practical knowledge from this session, and beginning your personal ethical framework.</p>
+</div></div><div class="prevnext"><a href="Ubuntu%20Relational%20Ethics%20and%20the%20Just%20AI%20Framework.html"><span class="d">&larr; Previous</span><span class="pt">Ubuntu, Relational Ethics and the Just AI Framework</span></a><a class="next" href="Applying%20Ethics%20Case%20Studies%20and%20Your%20Framework.html"><span class="d">Next &rarr;</span><span class="pt">Applying Ethics: Case Studies and Your Framework</span></a></div></div><div class="rightrail"><div class="rmeta">Week 4<br>Lesson 3<br>12 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">ICMJE criteria</div>The International Committee of Medical Journal Editors' four requirements for authorship: substantial contribution, drafting or revising the work, approving the final version, and accountability for it. Widely adopted beyond medicine.</div><div class="snote"><div class="sk">Training data</div>The large collection of text and other content an AI model learns from during development. Biases, gaps, or errors in that data are absorbed by the model and can shape its outputs in ways not always visible to the user.</div><div class="snote"><div class="sk">Publication bias</div>The tendency of scientific literature to over-represent studies with positive or significant results, because null findings are less likely to be submitted or accepted. AI models trained on published work inherit this skew.</div><div class="snote"><div class="sk">IRB (Institutional Review Board)</div>An ethics committee that reviews research involving human participants, called an IRB in the US and a Research Ethics Committee elsewhere. Using AI with participant data may require amended approval.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

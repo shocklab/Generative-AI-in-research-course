@@ -1,0 +1,445 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - Supplementary: The Broader Landscape of AI Ethics</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #e8f4f8;
+            color: #003A70;
+            padding: 15px 30px;
+            text-align: center;
+            font-size: 0.9em;
+            border-bottom: 1px solid #d0e8f2;
+        }
+
+        .ai-notice strong { font-weight: 600; }
+
+        header {
+            background: #003A70;
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
+        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
+
+        .content { padding: 50px 40px; }
+
+        .intro-text {
+            background: #f9f9f9;
+            padding: 35px;
+            border-radius: 15px;
+            border-left: 5px solid #003A70;
+            margin-bottom: 40px;
+        }
+
+        .intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .intro-text h2::before { content: '🎯'; }
+        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
+
+        .section-title {
+            font-size: 2em;
+            color: #2a5298;
+            margin: 50px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #003A70;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #003A70;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
+        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
+        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
+
+        .styled-list { list-style: none; margin-top: 15px; }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            color: #555;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before { content: '▸'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
+
+        .highlight-box {
+            background: #003A70;
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
+        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
+        .warning-box p { color: #555; line-height: 1.7; }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 20px 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 4px solid #003A70;
+        }
+
+        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .info-box p { color: #555; line-height: 1.7; }
+
+        .resource-placeholder {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+            border: 2px dashed #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            text-align: center;
+        }
+
+        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
+        .resource-placeholder p { color: #666; }
+
+        .technical-detail {
+            background: white;
+            border: 2px solid #d0e8f2;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
+        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .comparison-table tr:hover { background: #f9f9f9; }
+
+        .case-study {
+            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            .content { padding: 30px 20px; }
+            .card-grid { grid-template-columns: 1fr; }
+        }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+<link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css"></head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 4 • L5</div>
+<h1>🌐 <span style="color: #ffffff;">The Broader Landscape of AI Ethics</span></h1>
+<p>Important dimensions we haven't fully covered, and where to explore them further</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>Why This Page Exists</h2>
+<p>The four sessions of this week give you a framework for ethical reasoning about AI in research: philosophical lenses, African-grounded approaches, transparency and integrity norms, and practical case studies. But AI ethics is a vast and rapidly evolving field, and we have had to be selective.</p>
+<p>This page maps some of the important dimensions we have not been able to cover in depth. It is not intended as full reading. The territory is much larger than any single week of a course can represent. Each section provides a brief orientation and pointers to freely accessible resources for those who want to go further.</p>
+<p>If any of these topics connect with your own research, consider exploring them as part of your personal ethical framework assessment or your research enhancement project.</p>
+</div>
+<!-- SECTION 1: LABOUR AND EXPLOITATION -->
+<h2 class="section-title">👷 Labour and Exploitation in AI Systems</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI systems do not build themselves. Behind the apparent magic of large language models and image classifiers is an enormous amount of human labour, much of it invisible, poorly paid, and psychologically harmful.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Ghost Work</h3>
+<p>The term "ghost work", coined by Mary L. Gray and Siddharth Suri, describes the hidden human labour that makes AI systems appear intelligent. Data labellers, content taggers, and quality checkers perform the cognitive piecework that training and maintaining AI systems require. An estimated 8% of Americans have participated in this "ghost economy," and the figure is growing globally.</p>
+<p>These workers typically lack employment protections, benefits, or job security. Their work is kept invisible, because the illusion of fully automated intelligence sells better than the reality of human-in-the-loop systems.</p>
+</div>
+<div class="card">
+<h3>Content Moderation and Psychological Harm</h3>
+<p>To make AI systems like ChatGPT safe, companies outsource the task of labelling toxic content (descriptions of violence, abuse, and exploitation) to workers in countries like Kenya, the Philippines, and India. A 2023 investigation by TIME magazine revealed that workers making ChatGPT less toxic were paid less than $2 per hour and described being mentally scarred by the material they were required to read and classify.</p>
+<p>This raises hard questions about who bears the psychological cost of AI safety, and about the global labour inequities embedded in the AI supply chain.</p>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://ghostwork.info/" target="_blank" rel="noopener"><strong>Gray, M.L. &amp; Suri, S. (2019): <em>Ghost Work: How to Stop Silicon Valley from Building a New Global Underclass</em></strong></a> — Book website with overview and resources.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://time.com/6247678/openai-chatgpt-kenya-workers/" target="_blank" rel="noopener"><strong>Perrigo, B. (2023): "OpenAI Used Kenyan Workers on Less Than $2 Per Hour"</strong></a> — TIME. The investigation that brought global attention to the human cost of AI content moderation.</p>
+</div>
+<!-- SECTION 2: SURVEILLANCE AND CARCERAL AI -->
+<h2 class="section-title">🔍 Surveillance, Policing, and Carceral AI</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI is increasingly deployed in surveillance, predictive policing, facial recognition, and criminal justice decision-making, domains where errors and biases have direct consequences for human freedom.</p>
+<div class="card-grid">
+<div class="card">
+<h3>Predictive Policing and Bail Algorithms</h3>
+<p>AI systems trained on historical crime data tend to reproduce and amplify existing patterns of discriminatory policing. If a neighbourhood has been over-policed, the data will show more crime there, and the algorithm will recommend more policing, creating a feedback loop. Similar concerns apply to bail and sentencing algorithms, where studies have documented racial disparities in risk assessments.</p>
+</div>
+<div class="card">
+<h3>Facial Recognition</h3>
+<p>Facial recognition technology has been shown to have significantly higher error rates for darker-skinned faces and for women, a finding documented at length by Joy Buolamwini and Timnit Gebru's landmark "Gender Shades" study. When these systems are deployed in policing and border control, their failures have direct consequences: they lead to wrongful detentions and misidentifications of real people.</p>
+</div>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.ajl.org/" target="_blank" rel="noopener"><strong>Algorithmic Justice League</strong></a> — Founded by Joy Buolamwini. Research and advocacy on AI bias, particularly in facial recognition.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.hrw.org/topic/arms/killer-robots" target="_blank" rel="noopener"><strong>Human Rights Watch: AI and Human Rights</strong></a> — Coverage of AI in policing, surveillance, and criminal justice from a human rights perspective.</p>
+</div>
+<!-- SECTION 3: MILITARY AND DUAL-USE -->
+<h2 class="section-title">⚔️ Military and Dual-Use Applications</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI developed for civilian purposes can often be repurposed for military applications, and autonomous weapons systems raise some of the most urgent ethical questions in the field.</p>
+<div class="card">
+<h3>Autonomous Weapons and the "Killer Robots" Debate</h3>
+<p>The <a href="https://www.stopkillerrobots.org/" target="_blank" rel="noopener">Campaign to Stop Killer Robots</a>, a coalition of over 250 organisations, has been advocating since 2013 for international law prohibiting lethal autonomous weapons systems. These are weapons that can select and engage targets without meaningful human control. In December 2023, 152 countries voted at the UN General Assembly to address the dangers of such systems.</p>
+<p>The dual-use problem is particularly relevant for researchers: AI tools developed for image recognition, natural language processing, or autonomous navigation can be adapted for targeting systems, surveillance, or cyberweapons. This is a live debate within AI research communities about where the boundaries of responsible research lie.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.stopkillerrobots.org/" target="_blank" rel="noopener"><strong>Stop Killer Robots</strong></a> — Campaign website with resources on autonomous weapons, international law, and the case for human control over the use of force.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.icrc.org/en/document/icrc-position-autonomous-weapon-systems" target="_blank" rel="noopener"><strong>International Committee of the Red Cross: Position on Autonomous Weapons</strong></a> — The ICRC's analysis from an international humanitarian law perspective.</p>
+</div>
+<!-- SECTION 4: CORPORATE POWER -->
+<h2 class="section-title">🏢 Concentration of Corporate Power</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The AI field is dominated by a small number of companies with extraordinary concentrations of data, compute, talent, and capital. This has implications for democratic governance, research independence, and equitable access.</p>
+<div class="card">
+<h3>Surveillance Capitalism and Knowledge Monopolies</h3>
+<p>Shoshana Zuboff's concept of "surveillance capitalism" describes how companies extract behavioural data at scale and use it to predict and influence human behaviour. The largest AI companies control the technology, the data, the infrastructure, the researchers, and, increasingly, the governance frameworks. This concentration of knowledge and power raises questions that reach past market competition to the foundations of democratic self-governance.</p>
+<p>For researchers, the dependence on commercial AI tools raises questions about intellectual independence: when a handful of companies provide the tools through which research is conducted, what does that mean for the autonomy and diversity of knowledge production?</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://news.harvard.edu/gazette/story/2019/03/harvard-professor-says-surveillance-capitalism-is-undermining-democracy/" target="_blank" rel="noopener"><strong>Harvard Gazette (2019): "Harvard Professor Says Surveillance Capitalism Is Undermining Democracy"</strong></a> — Accessible introduction to Zuboff's framework.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://ainowinstitute.org/" target="_blank" rel="noopener"><strong>AI Now Institute</strong></a> — Research institute focused on the social implications of artificial intelligence, including corporate power and accountability.</p>
+</div>
+<!-- SECTION 5: DIGITAL FORGERY AND DEMOCRACY -->
+<h2 class="section-title">🎭 Digital Forgery, Disinformation, and Democratic Erosion</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 18px;">AI-generated synthetic media can fabricate video, audio, and images that are increasingly difficult to distinguish from authentic content, with direct implications for trust, journalism, and democratic processes.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">These fabrications are widely called &ldquo;deepfakes&rdquo;. This course uses <strong>digital forgery</strong> instead: the word &ldquo;deepfake&rdquo; was coined in 2017 by a Reddit user who used the technique to make non-consensual pornography of women, and naming the act as forgery keeps that origin in view rather than normalising it.</p>
+<div class="card">
+<h3>Elections and Public Trust</h3>
+<p>2024 saw AI-generated content deployed across elections worldwide. In the US, a digital forgery of President Biden&rsquo;s voice was used to discourage voters. In Romania, election results were annulled after evidence of AI-powered interference. In India, Indonesia, and Mexico, AI-generated forgeries were used to create defamatory images of female candidates, amplifying misogynistic stereotypes.</p>
+<p>While researchers found the overall scale of AI-generated electoral disinformation was lower than feared, the broader concern is about cumulative erosion of trust. When any piece of media could be fabricated, shared evidence (which both democracy and research depend on) comes under threat.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.brennancenter.org/our-work/analysis-opinion/gauging-ai-threat-free-and-fair-elections" target="_blank" rel="noopener"><strong>Brennan Center for Justice: "Gauging the AI Threat to Free and Fair Elections"</strong></a> — Analysis of AI's impact on electoral integrity.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://ash.harvard.edu/articles/the-apocalypse-that-wasnt-ai-was-everywhere-in-2024s-elections-but-deepfakes-and-misinformation-were-only-part-of-the-picture/" target="_blank" rel="noopener"><strong>Harvard Ash Center (2024): "The Apocalypse That Wasn't"</strong></a> — Measured assessment of AI's actual role in 2024 elections.</p>
+</div>
+<!-- SECTION 6: GENDER AND AI -->
+<h2 class="section-title">♀️ Gender and AI</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">From gendered virtual assistants to gender bias in training data and hiring algorithms, AI systems often encode and amplify existing gender inequalities.</p>
+<div class="card">
+<h3>Gendered Design and Representation</h3>
+<p>Most AI assistants (Siri, Alexa, Cortana) were designed with female-sounding names, voices, and personalities, reinforcing the association between femininity and servility. A 2019 UNESCO report titled <em>"I'd Blush If I Could"</em> documented how these systems responded submissively to harassment, normalising gender-based abuse at a massive scale.</p>
+<p>More broadly, AI systems reflect the demographics of their creators: women make up a small minority of AI researchers and engineers, and this underrepresentation shapes what problems get attention, what data gets collected, and whose needs are served.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://unesdoc.unesco.org/ark:/48223/pf0000367416" target="_blank" rel="noopener"><strong>UNESCO (2019): "I'd Blush If I Could: Closing Gender Divides in Digital Skills Through Education"</strong></a> — The report that catalysed global attention to gendered AI design. Free PDF.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.unesco.org/en/artificial-intelligence/gender-equality" target="_blank" rel="noopener"><strong>UNESCO: AI and Gender Equality</strong></a> — Ongoing resources and policy recommendations.</p>
+</div>
+<!-- SECTION 7: DISABILITY AND AI -->
+<h2 class="section-title">♿ Disability, Neurodiversity, and Accessibility</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI can be a powerful enabler for people with disabilities, but it can also encode ableist assumptions and create new forms of exclusion.</p>
+<div class="card">
+<h3>AI as Both Enabler and Barrier</h3>
+<p>AI powers assistive technologies, including speech recognition, image description, and predictive text, that can transform accessibility. But the same AI systems can also discriminate: hiring algorithms that penalise candidates with speech differences or non-standard work histories; facial recognition that fails for people with facial differences; and data systems that treat disability-related patterns as outliers to be discarded.</p>
+<p>Meredith Whittaker and colleagues at the AI Now Institute have argued that disability is "at the margins of all other justice-deserving groups," making disabled people particularly vulnerable to AI harms. Jutta Treviranus, a pioneer in inclusive design, observes that AI systems often fail for anyone who does not conform to narrow definitions of "normal", and that designing for the margins improves systems for everyone.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://ainowinstitute.org/wp-content/uploads/2023/04/disabilitybiasai-2019.pdf" target="_blank" rel="noopener"><strong>Whittaker, M. et al. (2019): "Disability, Bias, and AI"</strong></a> — AI Now Institute. Foundational report on how AI systems perpetuate ableism. Free PDF.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.w3.org/WAI/research/ai2023/" target="_blank" rel="noopener"><strong>W3C AI and Accessibility Research Symposium (2023)</strong></a> — Resources from the World Wide Web Consortium's exploration of AI and accessibility.</p>
+</div>
+<!-- SECTION 8: EMOTIONAL AND PSYCHOLOGICAL -->
+<h2 class="section-title">🧠 Emotional and Psychological Dimensions</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">As AI systems become more conversational and emotionally responsive, they raise questions about dependency, parasocial relationships, and the psychological effects of human-AI interaction.</p>
+<div class="card">
+<h3>AI Companionship and Dependency</h3>
+<p>Companion chatbots and emotionally responsive AI systems are now among the most popular uses of generative AI. Research suggests that users frequently form parasocial attachments to AI chatbots: one-sided emotional bonds that can lead to dependency. A longitudinal study by MIT Media Lab found that higher daily chatbot usage correlated with increased loneliness, emotional dependence, and reduced real-world social interaction.</p>
+<p>This raises particular concerns for vulnerable populations such as adolescents and people experiencing loneliness or mental health difficulties, and for the design incentives of companies that profit from engagement. When chatbots are optimised to be emotionally engaging, there is a risk that they exploit users' social and emotional needs rather than meeting them.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.nature.com/articles/s42256-025-01093-9" target="_blank" rel="noopener"><strong>Nature Machine Intelligence (2025): "Emotional Risks of AI Companions Demand Attention"</strong></a> — Editorial on the psychological risks of AI companionship.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/html/2503.17473v1" target="_blank" rel="noopener"><strong>Fang et al. (2025): "How AI and Human Behaviors Shape Psychosocial Effects of Chatbot Use"</strong></a> — Longitudinal controlled study on the effects of AI chatbot interaction.</p>
+</div>
+<!-- SECTION 9: ACCOUNTABILITY AND LIABILITY -->
+<h2 class="section-title">⚖️ Accountability and Legal Liability</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">When AI causes harm in research, in healthcare, or in public services, who is legally responsible? This question remains largely unsettled.</p>
+<div class="card">
+<h3>The Liability Gap</h3>
+<p>Existing legal frameworks were designed for a world where humans make decisions and are accountable for their consequences. AI introduces what legal scholars call an "accountability gap": the developer, the deployer, the user, and the AI system itself all play roles in producing outcomes, but responsibility is often unclear.</p>
+<p>The EU AI Act (2024), the first broad AI legislation, attempts to address this through a risk-based regulatory framework, but even the EU withdrew its proposed AI Liability Directive in 2025 due to lack of consensus. For researchers, the lesson is that legal frameworks are lagging behind technological capability. Ethical reasoning cannot wait for the law to catch up.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://artificialintelligenceact.eu/high-level-summary/" target="_blank" rel="noopener"><strong>EU AI Act: High-Level Summary</strong></a> — Accessible overview of the world's first comprehensive AI legislation.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener"><strong>European Commission: Regulatory Framework for AI</strong></a> — Official resource on the EU's approach to AI governance.</p>
+</div>
+<!-- SECTION 10: INDIGENOUS DATA SOVEREIGNTY -->
+<h2 class="section-title">🌏 Indigenous Data Sovereignty Beyond Africa</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The questions about data ownership and community governance that we explored through ubuntu and the Esethu Framework are part of a global movement for indigenous data sovereignty.</p>
+<div class="card">
+<h3>The CARE Principles</h3>
+<p>The <strong>CARE Principles for Indigenous Data Governance</strong> (Collective Benefit, Authority to Control, Responsibility, and Ethics) were developed by the Global Indigenous Data Alliance and the Research Data Alliance's International Indigenous Data Sovereignty Interest Group. First articulated at a workshop in Gaborone, Botswana, in 2018, they complement the FAIR data principles (Findable, Accessible, Interoperable, Reusable) by centring the rights and interests of Indigenous Peoples.</p>
+<p>The principles address a real tension: open data initiatives that promote broad sharing can benefit better-resourced institutions at the expense of the communities whose knowledge and data are being shared. The CARE Principles insist that Indigenous communities must have authority over their own data, that data use must provide collective benefit, and that researchers have ethical responsibilities that go beyond individual consent.</p>
+<p>Related frameworks include <strong>OCAP</strong> (Ownership, Control, Access, Possession) developed by First Nations in Canada, and <strong>Māori Data Sovereignty</strong> principles from Aotearoa New Zealand, which assert that data about Māori people and resources is a taonga (treasure) that should be governed according to Māori values and tikanga (customary practices).</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://datascience.codata.org/articles/dsj-2020-043" target="_blank" rel="noopener"><strong>Carroll, S.R. et al. (2020): "The CARE Principles for Indigenous Data Governance"</strong></a> — <em>Data Science Journal</em>. The foundational paper. Open access.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.gida-global.org/care" target="_blank" rel="noopener"><strong>Global Indigenous Data Alliance: CARE Principles</strong></a> — Overview and resources from the alliance that developed the framework.</p>
+</div>
+<!-- SECTION 11: FEMINIST ETHICS OF CARE -->
+<h2 class="section-title">💜 Feminist Ethics of Care</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">The ethics of care, a tradition developed in feminist moral philosophy, shares much ground with ubuntu but brings its own distinctive insights to AI ethics.</p>
+<div class="card">
+<h3>From Care to Technology</h3>
+<p>Care ethics, developed by scholars including Carol Gilligan, Nel Noddings, Virginia Held, and Joan Tronto, holds that moral action centres on interpersonal relationships and responsiveness to concrete situations rather than abstract principles. Where consequentialism asks "what produces the best outcomes?" and deontology asks "what is my duty?", care ethics asks "what does this relationship require of me?"</p>
+<p>Applied to AI, care ethics raises distinctive questions: Does this technology support or undermine caring relationships? Who performs the care work that AI systems depend on (and who profits from it)? Does the automation of care (in healthcare, education, social services) enhance or diminish the quality of human connection? Joan Tronto's concept of <em>"homines curans"</em> (caring people) challenges the assumption of autonomous, rational individuals that underpins much of Western AI ethics.</p>
+<p>Care ethics shares ubuntu's emphasis on relationality and interdependence, and its compatibility with non-Western ethical traditions makes it a powerful bridge between different ethical frameworks.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://iep.utm.edu/care-ethics/" target="_blank" rel="noopener"><strong>Internet Encyclopedia of Philosophy: "Care Ethics"</strong></a> — Thorough, freely accessible overview of the tradition and its key thinkers.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://ethicsofcare.org/joan-tronto/" target="_blank" rel="noopener"><strong>Ethics of Care: Joan Tronto</strong></a> — Resources on Tronto's work connecting care ethics with political and institutional analysis.</p>
+</div>
+<!-- SECTION 12: LABOUR MARKET -->
+<h2 class="section-title">💼 AI and the Labour Market</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Beyond the hidden labour behind AI systems, there are broader questions about how AI is reshaping employment, including in research and academia.</p>
+<div class="card">
+<h3>Displacement, Transformation, and Inequality</h3>
+<p>The IMF estimates that approximately 40% of global employment is exposed to AI, with advanced economies facing the greatest disruption. The World Economic Forum projects 92 million jobs displaced by 2030, alongside 170 million new jobs created, but the distribution of losses and gains is deeply unequal. Older workers, those without higher education, and those in the Global South face the greatest risks of displacement without corresponding access to new opportunities.</p>
+<p>For researchers and academics, AI raises specific concerns: Will AI-assisted research devalue traditional scholarly skills? Will institutions use AI to reduce research positions? How should universities prepare postgraduates for a labour market where AI competence is increasingly expected but equitable access to AI tools is not guaranteed?</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Further Reading</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.imf.org/en/publications/staff-discussion-notes/issues/2024/01/14/gen-ai-artificial-intelligence-and-the-future-of-work-542379" target="_blank" rel="noopener"><strong>IMF (2024): "Gen-AI: Artificial Intelligence and the Future of Work"</strong></a> — Staff Discussion Note on global employment impacts. Free PDF.</p>
+</div>
+<!-- INSTITUTIONS AND RESOURCES -->
+<h2 class="section-title">🏛️ Institutions and Ongoing Resources</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">AI ethics is an academic field, and also an active domain of institutional research, advocacy, and policy-making. Here are some organisations doing important work that connects to the themes of this course.</p>
+<div class="card-grid">
+<div class="card">
+<h3>UCT Ethics Lab</h3>
+<p>The <a href="https://health.uct.ac.za/ethics-lab" target="_blank" rel="noopener"><strong>Ethics Lab</strong></a> at UCT's Faculty of Health Sciences is an interdisciplinary research unit advancing ethical scholarship in health research and innovation. Its work spans global health ethics, decolonising health research in Africa, and building Africa's voice in local and global health ethics conversations. While not focused exclusively on AI, the Lab's emphasis on epistemic justice, African-grounded ethics, and the interconnection of human, animal, and planetary wellbeing provides foundational resources for thinking about AI ethics in African contexts.</p>
+</div>
+<div class="card">
+<h3>Global Center on AI Governance</h3>
+<p>The <a href="https://www.globalcenter.ai/" target="_blank" rel="noopener"><strong>Global Center on AI Governance (GCG)</strong></a> works to reduce global inequalities exacerbated by AI through research, policy advice, and training. Described as Africa's leading voice in AI policy and governance, the GCG engages with over 150 countries and offers courses on responsible AI and AI ethics and policy in Africa. Their work on national AI strategy analysis, public perceptions of AI in South Africa, and the <a href="https://www.global-index.ai/" target="_blank" rel="noopener">Global Index on Responsible AI</a> provides valuable resources for understanding AI governance from an African perspective.</p>
+</div>
+<div class="card">
+<h3>Research ICT Africa</h3>
+<p><a href="https://researchictafrica.net/" target="_blank" rel="noopener"><strong>Research ICT Africa (RIA)</strong></a>, whose Just AI Framework of Inquiry we explored in Sub-Lesson 2, conducts research on the digital economy, AI governance, and data justice across the African continent. Their work bridges local realities and global governance forums, generating evidence for equitable AI policy.</p>
+</div>
+<div class="card">
+<h3>Other Key Organisations</h3>
+<ul class="styled-list">
+<li><a href="https://ainowinstitute.org/" target="_blank" rel="noopener"><strong>AI Now Institute</strong></a> — Research on the social implications of AI, including corporate power, labour, and disability</li>
+<li><a href="https://www.ajl.org/" target="_blank" rel="noopener"><strong>Algorithmic Justice League</strong></a> — Research and advocacy on AI bias, particularly in facial recognition</li>
+<li><a href="https://www.governance.ai/" target="_blank" rel="noopener"><strong>Centre for the Governance of AI (GovAI)</strong></a> — Research on the governance of advanced AI, originally at Oxford</li>
+<li><a href="https://datasociety.net/" target="_blank" rel="noopener"><strong>Data &amp; Society</strong></a> — Research on the social and cultural issues arising from data-centric technologies</li>
+</ul>
+</div>
+</div>
+<!-- SUMMARY -->
+<div class="highlight-box">
+<h3>🗺️ The Map Is Not the Territory</h3>
+<p>This page has sketched a dozen dimensions of AI ethics that extend beyond what we could cover this week. There are others still: AI and environmental justice (which you explored in Week 3), AI and children, AI and neurodiversity, religious and spiritual perspectives on technology, posthumanism and questions about AI consciousness, and more.</p>
+<p>You do not need to master all of these domains. What ethical reasoning about AI requires is intellectual humility: an awareness that the questions are bigger than any single framework, and that the field is evolving faster than any curriculum can track. The philosophical lenses and practical tools from this week give you a foundation. What you build on that foundation, in your own research and practice, is up to you.</p>
+</div>
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Back to the Core</h2>
+<p>This supplementary page is intended as a resource for further exploration, not as required reading. The core content of Week 4 (ethical frameworks, ubuntu and relational ethics, transparency and integrity, and practical case studies) provides the foundation you need for the assessments and for ethical reasoning in your research.</p>
+<p style="margin-top: 20px;"><strong>Next week (Week 5):</strong> We move from ethical foundations to practical application: AI-assisted literature review. How can AI help you find, organise, and synthesise research literature? What are the risks, and how do you use these tools responsibly?</p>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-4/Applying Ethics Case Studies and Your Framework.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Applying Ethics: Case Studies and Your Framework</div></a>
+  <a class="page-nav-link" href="../week-4/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

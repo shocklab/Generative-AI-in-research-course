@@ -1,0 +1,528 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5.5 - Building Your Research Workflow with Claude</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            margin-top: 10px;
+            padding-left: 18px;
+        }
+
+        .card ul li {
+            margin-bottom: 5px;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #003A70;
+            color: #ffffff;
+            border-radius: 15px;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #ffffff;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .prompt-example {
+            background: #f4f4f4;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            line-height: 1.7;
+            color: #1a202c;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .prompt-label {
+            display: inline-block;
+            background: #003A70;
+            color: #ffffff;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .code-block {
+            background: #1a202c;
+            color: #e2e8f0;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.88em;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-x: auto;
+        }
+
+        .code-block .comment {
+            color: #68d391;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .level-card {
+            border-left: 5px solid #003A70;
+        }
+
+        .level-card .level-tag {
+            display: inline-block;
+            background: #003A70;
+            color: #ffffff;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.75em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .prompt-example, .code-block {
+                font-size: 0.82em;
+                padding: 15px;
+            }
+        }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 5 • Sub-Lesson 5</div>
+<h1>🛠️ <span style="color: #ffffff;">Building Your Research Workflow with Claude</span></h1>
+<p>From generic AI chat to a personalised research assistant, using Claude skills, custom prompts, and CLAUDE.md to improve your literature review</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>So far this week, we've surveyed AI literature tools and confronted the hallucinated citation problem. In this session, we shift from surveying tools to <strong>building something personal</strong>: a Claude-based research workflow tailored to your specific needs.</p>
+<p style="margin-top: 12px;">We'll cover three levels of customisation, from simple prompting techniques anyone can use today, through Claude Projects for ongoing research, to Claude Code's "skills" system for those who want maximum control. You don't need programming experience for any of this, but we will show you what's possible for those who want to go further.</p>
+<p style="margin-top: 12px;">The goal is practical: by the end of this session, you should have at least one new technique you can apply to your research <em>today</em>.</p>
+</div>
+<!-- SECTION 1: BETTER PROMPTING -->
+<h2 class="section-title">💬 Level 1: Better Prompting for Literature Review</h2>
+<p>One of the most useful changes a researcher can make is writing better prompts. A vague prompt produces a vague answer. A structured prompt, one that tells Claude what you need, what you don't want, and how to handle uncertainty, produces much better results. Below are four prompt templates you can start using immediately, whether you're on Claude's free tier or any other plan.</p>
+<p>Note however, the first thing that you should do is to read the paper yourself. You won't always read the whole of every paper, but engage with it yourself first so that you can critically engage with the AI.</p>
+<div class="card-grid">
+<div class="card">
+<h3>📑 The Structured Literature Prompt</h3>
+<p>Use this when you're starting research in a new area and need to understand the lay of the land.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I am researching <strong>[topic]</strong> for my <strong>[thesis/paper/review]</strong> in <strong>[discipline]</strong>. I need help understanding the current state of the literature. Please help me by: 1. Identifying the key themes and debates in this area 2. Suggesting search terms I should use (including terms I might not have considered) 3. Describing the major methodological approaches used in this field 4. Noting any recent shifts or emerging trends IMPORTANT: Do NOT generate specific paper citations. Instead, describe the landscape so I can search for papers myself using Semantic Scholar and Google Scholar. If you do mention specific researchers or papers, flag them clearly so I can verify they exist.</div>
+</div>
+<div class="card">
+<h3>📊 The Synthesis Prompt</h3>
+<p>Use this after you've collected verified papers and uploaded them to Claude. Claude works well with documents you've provided.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I have uploaded <strong>[N]</strong> papers on <strong>[topic]</strong>. Please: 1. Identify the key points of agreement across these papers 2. Identify the key points of disagreement or tension 3. Note any methodological differences that might explain different findings 4. Identify gaps — what questions do these papers not address? 5. For every claim you make, cite the specific paper(s) from my uploaded documents using [Author, Year] format</div>
+</div>
+<div class="card">
+<h3>🔎 The Critical Reading Prompt</h3>
+<p>Use this when you need to deeply engage with a single paper, especially one that's central to your research.</p>
+<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> Please read the attached paper and help me evaluate it critically: 1. What is the central argument or finding? 2. What methodology did the authors use, and what are its strengths and limitations? 3. What assumptions does the paper make (stated or unstated)? 4. How does this paper relate to <strong>[my specific research question]</strong>? 5. What questions would you ask the authors if you were a peer reviewer?</div>
+</div>
+<div class="card">
+<h3>🛡️ Anti-Hallucination Prompt Strategies</h3>
+<p>These techniques reduce the risk of fabricated information. Use them in combination with any prompt above.</p>
+<ul>
+<li><strong>Explicitly forbid memory-based citations:</strong> "Do NOT generate citations from memory"</li>
+<li><strong>Demand uncertainty flagging:</strong> "If you are not sure about something, say 'I'm not certain' rather than guessing"</li>
+<li><strong>Scope to uploaded documents:</strong> "Based only on the documents I've provided..."</li>
+<li><strong>Normalise 'I don't know':</strong> "It's better to say you don't know than to fabricate an answer"</li>
+<li><strong>Separate discovery from analysis:</strong> Use Semantic Scholar or Elicit to <em>find</em> papers, then upload them to Claude to <em>analyse</em> them</li>
+</ul>
+</div>
+</div>
+<div class="info-box"><strong>Why does this work?</strong> LLMs respond to structure. When you give Claude a numbered list of tasks, it addresses each one. When you set explicit constraints ("do not generate citations"), it follows them far more reliably than if you hope it won't hallucinate. Think of prompting as giving instructions to a highly capable but very literal research assistant.</div>
+<!-- SECTION 2: CLAUDE PROJECTS -->
+<h2 class="section-title">📁 Level 2: Claude Projects for Ongoing Research</h2>
+<p>Individual prompts are powerful, but they're ephemeral: each new conversation starts from scratch. If you're working on a research project over weeks or months, you need something persistent. <strong>Claude Projects</strong> are built for this.</p>
+<p style="margin-top: 15px;">Claude Projects (available with a Claude Pro subscription) let you create a dedicated workspace for a research topic. You can upload your key papers, your methodology documents and your research proposal, then set custom instructions that persist across every conversation in that Project. Instead of re-explaining your context every time, Claude already knows who you are, what you're working on, and how you want it to behave.</p>
+<div class="technical-detail">
+<h3>Setting Up a Research Project</h3>
+<p style="margin-bottom: 15px;">Here's how to structure an effective Claude Project for your research:</p>
+<ul class="styled-list">
+<li><strong>Create a Project</strong> with a clear name (e.g., "PhD: Water Governance in Cape Town")</li>
+<li><strong>Upload your key documents:</strong> your research proposal, 10–20 of your most important papers, your methodology chapter or plan, any relevant data descriptions</li>
+<li><strong>Set custom instructions</strong> that define how Claude should work with you (see the example below)</li>
+<li><strong>Start conversations within the Project.</strong> Each one will have access to your documents and follow your custom instructions</li>
+</ul>
+</div>
+<p style="margin-top: 20px;">It is worth spending time on the custom instructions. Here is an example you can adapt:</p>
+<div class="technical-detail">
+<h3>Example Project Instructions</h3>
+<div class="prompt-example"><span class="prompt-label">CUSTOM INSTRUCTIONS</span> You are my research assistant for my PhD on <strong>[topic]</strong> in <strong>[department]</strong> at <strong>[university]</strong>. My research question is: <strong>[question]</strong> My methodology is: <strong>[approach]</strong> When helping me: - Always ground your responses in the papers I've uploaded to this project - When I ask about the literature, cite specific papers from my project using [Author, Year] - Never generate citations from memory — if I need new papers, direct me to search Semantic Scholar or Google Scholar - When I ask you to summarise, always note what a paper's methodology was, not just its findings - Flag when my uploaded papers disagree with each other - Be direct about limitations and gaps - If I ask something that my uploaded papers don't address, say so clearly</div>
+</div>
+<div class="info-box"><strong>Practical tip:</strong> Start small. Upload your 5 most important papers and your research proposal. As you find more relevant papers through your searches, add them to the Project over time. This creates a growing, curated knowledge base that Claude can draw on, and because every paper in it was found and verified by <em>you</em>, the citation problem is greatly reduced.</div>
+<!-- SECTION 3: CLAUDE CODE SKILLS -->
+<h2 class="section-title">⚡ Level 3: Claude Code Skills (For the Adventurous)</h2>
+<p>This section is for those who want to go further. Most students won't need this right now, but understanding what's possible will help you decide how deep you want to go, and give you a sense of where these tools are heading.</p>
+<div class="technical-detail">
+<h3>What is Claude Code?</h3>
+<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer. It can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. It's free to try with a Claude account.</p>
+<p style="margin-top: 10px;">You interact with it by typing commands in your terminal (the command line), and it responds by taking actions: reading your files, creating new ones, running searches, and reporting back what it found.</p>
+</div>
+<div class="technical-detail">
+<h3>What is CLAUDE.md?</h3>
+<p>A <code>CLAUDE.md</code> file is a special Markdown file that acts as <strong>persistent instructions</strong> for Claude Code. It's read automatically at the start of every session, like giving Claude a "constitution" for how to work with you. You place it in your project folder, and every time you start Claude Code in that folder, it reads the file and follows those instructions.</p>
+<p style="margin-top: 10px;">Think of it as the equivalent of Project instructions (Level 2), but stored as a file on your computer rather than in Claude's web interface. That means you can version-control it, share it with collaborators, and customise it to a much greater degree.</p>
+</div>
+<p style="margin-top: 20px;">Here is an example <code>CLAUDE.md</code> for a research project:</p>
+<div class="code-block"><span class="comment"># Research Project: [Your Topic]</span> <span class="comment">## My Research Context</span> - PhD student in [Department], UCT - Research question: [Your question] - Methodology: [Your approach] - Stage: Literature review phase <span class="comment">## Rules for Literature Work</span> - NEVER generate citations from memory - Always verify claims against uploaded sources - When I ask for papers, search Semantic Scholar API instead of guessing - Flag uncertainty with [UNVERIFIED] tags - Maintain my bibliography in Zotero-compatible format <span class="comment">## My Preferred Workflow</span> 1. I provide a research question or theme 2. You help me formulate search queries 3. I run the searches in Semantic Scholar/Elicit 4. I upload the papers I find 5. You help me synthesise and critically evaluate them</div>
+<div class="technical-detail">
+<h3>What are Skills?</h3>
+<p>Skills are reusable, multi-step workflows you can trigger with a <strong>slash command</strong> (e.g., <code>/lit-review</code>). They live in a <code>.claude/skills/</code> folder inside your project and can orchestrate complex research tasks that would otherwise require multiple separate prompts.</p>
+<p style="margin-top: 15px;">For example, a <code>/lit-review</code> skill could:</p>
+<ol style="margin-top: 10px; padding-left: 20px; line-height: 2;">
+<li>Ask you for your research question</li>
+<li>Generate optimised search queries for Semantic Scholar</li>
+<li>Help you evaluate the papers you find</li>
+<li>Generate a structured synthesis with proper citations</li>
+<li>Flag any claims that need verification</li>
+</ol>
+<p style="margin-top: 15px;">Instead of remembering and typing a long prompt each time, you simply type <code>/lit-review</code> and the skill guides you through the entire process.</p>
+</div>
+<div class="info-box"><strong><a href="https://www.chatprd.ai/how-i-ai/teresa-torres-claude-code-obsdian-task-management" target="_blank" rel="noopener">The Teresa Torres Approach</a>:</strong> Researcher Teresa Torres uses Claude Code with modular context files, separate files for different aspects of her research context, loaded as needed. Her daily workflow includes an automated research digest that surfaces new papers relevant to her predefined topics. This kind of setup takes time to build, but once in place it means new relevant research comes to you rather than you having to go looking for it.</div>
+<!-- SECTION 4: PRIVACY AND DATA -->
+<h2 class="section-title">🔒 A Note on Privacy and Data</h2>
+<div class="warning-box"><strong>⚠️ Important:</strong> When you upload papers to Claude (or any AI tool), those papers are processed on external servers. Before uploading anything, consider the following:
+<ul style="margin-top: 12px; padding-left: 20px; line-height: 1.9;">
+<li><strong>Check your university's data policy</strong> and your ethics approval before uploading sensitive or restricted data</li>
+<li><strong>For sensitive research data,</strong> consider using Claude's API with appropriate data handling agreements, or use on-premise solutions if available through your institution</li>
+<li><strong>NotebookLM (Google) and Claude Projects</strong> each have their own data policies; read them before uploading</li>
+<li><strong>Never upload papers that are under confidential review</strong> (e.g., manuscripts you are reviewing for a journal, which are shared with you in confidence)</li>
+<li><strong>Be cautious with unpublished data.</strong> If your research involves participant data, interview transcripts, or other sensitive material, check whether uploading it to a cloud service is compliant with your ethics approval</li>
+</ul>
+</div>
+<p style="margin-top: 15px;">None of this is a reason to avoid these tools entirely. It is a reason to be thoughtful about <em>what</em> you upload and <em>where</em>. Published papers are generally safe to upload. Your own writing drafts are fine. Sensitive participant data or confidential manuscripts require more care.</p>
+<!-- SECTION 5: CHOOSING YOUR LEVEL -->
+<h2 class="section-title">🎯 Choosing Your Level</h2>
+<p>There is no single right way to use AI in your research workflow. The best approach depends on how often you use these tools, what stage of research you're in, and how comfortable you are with technology. Here are the three levels summarised:</p>
+<div class="card-grid">
+<div class="card level-card">
+<div class="level-tag">Everyone</div>
+<h3>💬 Better Prompts</h3>
+<p><strong>Start today, no extra tools needed.</strong></p>
+<p style="margin-top: 8px;">Works with Claude's free tier (or any LLM). Use the structured prompt templates from Section 1 to get much better results from every conversation. The key principles: be specific, set constraints, separate discovery from analysis.</p>
+<p style="margin-top: 8px;"><strong>Best for:</strong> Everyone, regardless of experience level.</p>
+</div>
+<div class="card level-card">
+<div class="level-tag">Regular Users</div>
+<h3>📁 Claude Projects</h3>
+<p><strong>Requires a Claude Pro subscription.</strong></p>
+<p style="margin-top: 8px;">Create a persistent workspace with your uploaded papers and custom instructions. Ideal for ongoing research where you want Claude to remember your context across multiple conversations. Build a curated knowledge base over time.</p>
+<p style="margin-top: 8px;"><strong>Best for:</strong> Researchers with an active, ongoing project who use Claude regularly.</p>
+</div>
+<div class="card level-card">
+<div class="level-tag">Power Users</div>
+<h3>⚡ Claude Code + Skills</h3>
+<p><strong>Free to try; requires comfort with the terminal.</strong></p>
+<p style="margin-top: 8px;">Build automated, multi-step research workflows with CLAUDE.md and skills. Maximum flexibility and customisation. Your instructions live as files you control, and workflows can be shared with collaborators.</p>
+<p style="margin-top: 8px;"><strong>Best for:</strong> Researchers who want maximum control and are comfortable (or willing to learn) working in the terminal.</p>
+</div>
+</div>
+<div class="highlight-box"><strong>Which level you use matters less than the principles behind all three:</strong> separate discovery from synthesis, ground everything in verified sources, build citation verification into your workflow from the start, and be explicit with AI about what you want and what you don't want it to do.</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Summary &amp; Key Takeaways</h2>
+<p>In this session, we moved from understanding AI tools to building with them. The three levels of customisation (better prompts, Claude Projects, and Claude Code skills) give you a pathway from simple improvements you can make right now to more involved workflows you can grow into over time.</p>
+<p style="margin-top: 12px;"><strong>Key takeaways:</strong></p>
+<ul class="styled-list">
+<li><strong>Structure your prompts</strong> with numbered tasks, explicit constraints, and anti-hallucination safeguards, which on its own will improve your results</li>
+<li><strong>Separate finding papers from analysing them:</strong> use Semantic Scholar, Elicit, or Google Scholar to discover papers, then upload verified PDFs to Claude for synthesis</li>
+<li><strong>Claude Projects</strong> give you persistent context: upload your key papers once and have Claude remember your research context across sessions</li>
+<li><strong>Claude Code and CLAUDE.md</strong> offer maximum customisation for those who want automated, repeatable research workflows</li>
+<li><strong>Always check data policies</strong> before uploading sensitive or confidential material to any AI tool</li>
+<li><strong>The principles matter more than the tools:</strong> verify sources, flag uncertainty, and never let AI-generated citations go unchecked</li>
+</ul>
+<p style="margin-top: 15px;"><strong>Next session:</strong> We put everything together with hands-on activities: a comparative search challenge, a citation verification exercise, and the weekly assessment. Come ready to work with your own research topic.</p>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-5/The Hallucinated Citation Crisis.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">The Hallucinated Citation Crisis</div></a>
+  <a class="page-nav-link" href="../week-5/Hands-On Activities and Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Activities and Assessment</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

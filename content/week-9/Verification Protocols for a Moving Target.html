@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 9.5 - Verification Protocols for a Moving Target</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+   !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+   has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span {
+    color: #ffffff !important;
+}
+.highlight-box a, header a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Week 9 &bull; Sub-Lesson 5</div>
+  <h1>&#128270; <span style="color: #ffffff;">Verification Protocols for a Moving Target</span></h1>
+  <p>Practical techniques for verifying AI outputs, plus the meta-skill of reading AI capability claims critically</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>The previous sub-lessons established the trajectory (9.1), the failure taxonomy (9.2), the genuine capability cases (9.3), and the durable epistemic concerns (9.4). This sub-lesson is the practical pay-off: how do you actually verify AI output in your own research workflow, and how do you read claims about AI capability critically when the literature is always six to twelve months behind the artefact?</p>
+    <p>Two layers. First, verification of specific AI outputs: techniques you apply to a particular analysis, citation, or proof. Second, verification of <em>capability claims</em>, the meta-skill of reading the AI literature without being fooled by dated examples or selection bias. Both are required.</p>
+  </div>
+
+  <!-- LAYER 1: VERIFYING OUTPUTS -->
+  <h2 class="section-title">&#128270; Layer 1: Verifying Specific AI Outputs</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These techniques are the operational consequence of the failure taxonomy. Each targets a specific failure mode from 9.2.</p>
+
+  <div class="card-grid">
+
+    <div class="card">
+      <h3>Known-Answer Testing</h3>
+      <p>Run AI through tasks where you know the correct answer in advance: synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. The Week 7 silent-error problem, code that runs but is wrong, is detected here and nowhere else. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
+    </div>
+
+    <div class="card">
+      <h3>Adversarial Prompting</h3>
+      <p>Deliberately try to break outputs. Ask trick questions, push back on initial answers, change framings to see whether responses are stable. The Hallucination Hunting activity in 9.6 is exactly this. The aim is not to catch the AI being wrong once; it is to map where the AI is fragile in your domain.</p>
+    </div>
+
+    <div class="card">
+      <h3>Cross-Model Triangulation</h3>
+      <p>Ask the same question of Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro, and an open-weights model like DeepSeek V4 Pro. When they agree: that&#39;s some evidence the answer is correct (provided their training data overlaps don&#39;t produce a shared error). When they disagree: that&#39;s a stronger signal that the question is one you should investigate yourself rather than trust any single output.</p>
+    </div>
+
+    <div class="card">
+      <h3>The &ldquo;Teach It Back&rdquo; Test</h3>
+      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it, and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are about the gap between feeling you understand and actually understanding. The teach-it-back test closes the gap.</p>
+    </div>
+
+    <div class="card">
+      <h3>Manual Spot-Checks</h3>
+      <p>Even when overall reliability is high, manually verify a sample of outputs. Every Nth citation. Every Nth analytical step. Random samples of generated text. The discipline is not catching every error; it is keeping your own intuitions calibrated as the work scales.</p>
+    </div>
+
+    <div class="card">
+      <h3>Citation Verification</h3>
+      <p>Direct re-use of the Week 5 framework. The Five-Point Citation Check (existence, authors, year, venue, claim verification) applies to every AI-generated citation. Frontier models still hallucinate citations on niche topics. The fix is mechanical, not mysterious; treat citation verification as a pipeline step, not an afterthought.</p>
+    </div>
+
+    <div class="card">
+      <h3>Reproducibility Testing</h3>
+      <p>Does the same prompt produce the same answer on different runs? Different sessions? Different models in the same family? Variable outputs are a signal, either of model uncertainty (informative) or of stochasticity that may matter for your downstream conclusions. Test before relying on a single run.</p>
+    </div>
+
+    <div class="card">
+      <h3>Domain-Expert Spot-Checks</h3>
+      <p>For cross-disciplinary work, recruit a domain expert to check AI output in their field. The Dunning&ndash;Kruger trap from 9.4 means you cannot reliably assess AI output in fields you don&#39;t know well. The fix is not to try harder; it is to ask someone who can.</p>
+    </div>
+
+  </div>
+
+  <!-- LAYER 2: VERIFYING CAPABILITY CLAIMS -->
+  <h2 class="section-title">&#128202; Layer 2: Verifying Capability Claims (the Dated-Research Trap)</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the meta-skill the rest of the week has been building towards. When you encounter a published claim about what AI can or cannot do (in a journal article, a conference paper, a news story, a textbook) treat it as a hypothesis about a system that has since been replaced.</p>
+
+  <div class="info-box">
+    <h4>&#128221; The Three-Question Check</h4>
+    <p><strong>1. Which model and version?</strong> A 2023 paper that says &ldquo;LLMs cannot do X&rdquo; tested GPT-3.5, GPT-4, or Claude 1. None of those is current. Without knowing which specific system was tested, the claim has no clear referent.</p>
+    <p><strong>2. When was it tested?</strong> Anything pre-2024 is now historical. The artefact under study has been replaced two or three times since. Useful as a historical landmark; not useful as a current diagnosis.</p>
+    <p><strong>3. Has anyone retested with current frontier models?</strong> If yes, what did the retest find? If no, the claim is unproven on present systems, not falsified, just unproven. Treat with the same caution you would treat a 2010 claim about smartphone battery life applied to 2026 phones.</p>
+  </div>
+
+  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By May 2026, the same questions answered by GPT-5.5 Pro, Gemini Deep Think, or AlphaEvolve give very different answers (see 9.3). Citing Frieder et al. as if it described current AI is now an error, though the citation persists in the literature because it was a good paper when published.</p>
+
+  <div class="case-study">
+    <h4>&#128221; A Concrete Example: The Reversal Curse</h4>
+    <p>Berglund et al. (2023) showed the reversal curse on the GPT-3.5/GPT-4 generation. The paper has been cited several thousand times. It was an important contribution at the time.</p>
+    <p>By 2026, the reversal curse is no longer a prominent failure in benchmark discussions. Frontier models handle it largely correctly. A 2026 paper that opens with &ldquo;LLMs famously suffer from the reversal curse (Berglund et al., 2023)&rdquo; has not retested the claim and is treating a historical finding as a current diagnosis.</p>
+    <p>The fix: cite Berglund et al. as the originating documentation of a failure mode that has since been mitigated, not as evidence about current model behaviour. The same disciplinary move applies to most pre-2025 capability claims.</p>
+  </div>
+
+  <!-- BUILDING HABITS -->
+  <h2 class="section-title">&#129336; Building Verification Habits</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Verification is not a one-time audit. It is a habit that survives model releases. Three commitments that make verification durable:</p>
+
+  <ul class="styled-list">
+    <li><strong>Verification as workflow component, not afterthought.</strong> Every AI-assisted analysis pipeline should have a verification step before any output leaves your workspace. Bake it into the workflow; don&#39;t leave it to memory or virtue.</li>
+    <li><strong>Retest cadence.</strong> When a new frontier model drops, your previous calibration may be wrong in either direction. Re-run your known-answer test set. Re-test the failure cases that worried you. Re-test the capability cases that worked. The model that&#39;s frontier today is not the one you calibrated against six months ago.</li>
+    <li><strong>Write down what you found.</strong> Document the model, the date, the prompts, the outputs, the verification steps. This is partly for reproducibility, partly for your own future self when you wonder &ldquo;was that working back then or am I misremembering?&rdquo;, and partly so the field can learn from your domain-specific findings.</li>
+  </ul>
+
+  <!-- VERIFY-REFERENCES SKILL -->
+  <h2 class="section-title">&#128221; The Course&#39;s Own Verification Practice</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This course practises what it teaches. The materials are AI-assisted (see the AI Content Disclaimer on the home page) and have been verified using a custom <code>/verify-references</code> skill that does exactly the kind of checking described above: every URL fetched, every named citation cross-checked against primary sources, every statistical claim traced back to source.</p>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In building these materials we have caught and fixed errors of exactly the patterns documented this week:</p>
+
+  <ul class="styled-list">
+    <li>Wrong arXiv IDs (a Gupta &ldquo;Chasing Carbon&rdquo; reference linked to a maths paper on Fourier&ndash;Stieltjes algebras)</li>
+    <li>Hallucinated authors (&ldquo;Tamburrino et al.&rdquo; for what was actually Wright et al.; &ldquo;Anthony et al.&rdquo; for what was actually Luccioni et al.; &ldquo;Humbel et al.&rdquo; for what was actually Crosilla et al.)</li>
+    <li>Wrong DOIs (a Lund et al. citation pointed at a paper about academic promotions, not ChatGPT)</li>
+    <li>Hallucinated post titles (a Mollick blog post on AI ethics that doesn&#39;t exist)</li>
+    <li>Wrong article titles (Nature article cited with a hallucinated subtitle; MIT Tech Review article cited with the URL slug as &ldquo;title&rdquo;)</li>
+    <li>Wrong link slugs (Okolo Brookings article URL had &ldquo;equitable&rdquo; where it should have been &ldquo;inclusive&rdquo;; ICRC autonomous-weapons URL had the words in the wrong order)</li>
+  </ul>
+
+  <p style="color: #555; font-size: 1.05em; margin-top: 20px; margin-bottom: 20px; line-height: 1.8;">All caught by the verification process. Some had been in place across multiple weeks. The lesson: even careful AI-assisted writing produces these errors at non-trivial rates. Verification catches them; without verification, they persist.</p>
+
+  <div class="info-box">
+    <h4>&#129504; A 2026 Open Question: &ldquo;Teaching Claude Why&rdquo;</h4>
+    <p>In May 2026 Anthropic published research on training models not just to follow safety rules but to understand the <em>reasons</em> behind those rules. The thinking: a model that understands why a rule exists can navigate novel situations the rule-makers didn&#39;t anticipate, and can articulate trade-offs when rules conflict.</p>
+    <p>This raises a verification question that doesn&#39;t have a settled answer yet. <strong>If a model is being trained to understand <em>why</em> it should behave certain ways, does that change how we verify its outputs?</strong> Does understanding motivation make verification easier (the model can explain its reasoning) or harder (the model can construct plausible justifications for almost anything)? It is too early to say. Worth tracking as the research develops, and worth thinking about for your own discipline: when AI systems can articulate <em>why</em> they reached a conclusion, what new verification opportunities and pitfalls emerge?</p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>The verification stance</h3>
+    <p>Verification is not a sign of distrust in AI. It is a sign of taking AI seriously as a research tool. Tools you take seriously, you check. Microscopes get calibrated. Statistical packages get validated against worked examples. AI outputs get verified against primary sources.</p>
+    <p>The researcher who never verifies their AI outputs is making a methodological mistake. The researcher who verifies systematically is doing their job.</p>
+  </div>
+
+  <div class="intro-text" style="margin-top: 50px;">
+    <h2>&#128073; What Comes Next</h2>
+    <p><strong>Sub-Lesson 9.6 &mdash; Hands-On Activities and Assessment.</strong> Three activities that put the trajectory and verification frames into practice in your own field, and a final assessment that asks you to write your own dated capability/limitation snapshot. The deliverable explicitly acknowledges that it will go stale &mdash; that is the teaching move.</p>
+  </div>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-9/Illusions of Understanding.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Illusions of Understanding</div></a>
+  <a class="page-nav-link" href="../week-9/Hands-On Activities and Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Activities and Assessment</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

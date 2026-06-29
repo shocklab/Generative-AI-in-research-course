@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced B.2 - Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</title>
+  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+  <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6;
+    color: #2c3e50;
+    background: #f5f5f5;
+    padding: 20px;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.ai-notice {
+    background: #e8f4f8;
+    color: #003A70;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 0.9em;
+    border-bottom: 1px solid #d0e8f2;
+}
+header {
+    background: #003A70;
+    color: white;
+    padding: 50px 40px;
+    text-align: center;
+}
+.week-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+    backdrop-filter: blur(10px);
+}
+header h1 {
+    font-size: 2.3em;
+    margin-bottom: 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    opacity: 0.95;
+    max-width: 800px;
+    margin: 10px auto 0;
+}
+.content {
+    padding: 50px 40px;
+}
+.intro-text {
+    background: #f9f9f9;
+    padding: 35px;
+    border-radius: 15px;
+    border-left: 5px solid #003A70;
+    margin-bottom: 40px;
+}
+.intro-text h2 {
+    color: #2a5298;
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.intro-text p {
+    font-size: 1.1em;
+    color: #495057;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.intro-text p:last-child {
+    margin-bottom: 0;
+}
+.section-title {
+    font-size: 2em;
+    color: #2a5298;
+    margin: 50px 0 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #003A70;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-left: 5px solid #003A70;
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+.card h3 {
+    color: #2a5298;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+.card p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+.styled-list {
+    list-style: none;
+    margin-top: 15px;
+}
+.styled-list li {
+    padding: 8px 0 8px 25px;
+    color: #555;
+    position: relative;
+    line-height: 1.6;
+}
+.styled-list li::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #003A70;
+    font-weight: bold;
+}
+.highlight-box {
+    background: #003A70;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin: 40px 0;
+}
+.highlight-box h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+.highlight-box p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 12px;
+}
+.highlight-box p:last-child {
+    margin-bottom: 0;
+}
+.warning-box {
+    background: #fff8e1;
+    border-left: 5px solid #f9a825;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+}
+.warning-box h4 {
+    color: #e65100;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+.warning-box p {
+    color: #555;
+    line-height: 1.7;
+}
+.info-box {
+    background: #f8f9fa;
+    padding: 20px 25px;
+    border-radius: 12px;
+    margin: 20px 0;
+    border-left: 4px solid #003A70;
+}
+.info-box h4 {
+    color: #2a5298;
+    font-size: 1.2em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.info-box p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.info-box p:last-child {
+    margin-bottom: 0;
+}
+.instructor-box {
+    background: #f3effa;
+    border-left: 5px solid #6a5da8;
+    border-radius: 12px;
+    padding: 22px 26px;
+    margin: 25px 0;
+}
+.instructor-box h4 {
+    color: #4f4391;
+    font-size: 1.15em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.instructor-box p {
+    color: #463f5e;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+.instructor-box p:last-child {
+    margin-bottom: 0;
+}
+.technical-detail {
+    background: white;
+    border: 2px solid #d0e8f2;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+}
+.technical-detail h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study {
+    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
+    border: 2px solid #003A70;
+    border-radius: 15px;
+    padding: 25px;
+    margin: 25px 0;
+}
+.case-study h4 {
+    color: #003A70;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+.case-study p {
+    color: #444;
+    line-height: 1.75;
+    margin-bottom: 12px;
+}
+.case-study p:last-child {
+    margin-bottom: 0;
+}
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.comparison-table th {
+    background: #003A70;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95em;
+}
+.comparison-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e9ecef;
+    color: #555;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+.comparison-table tr:hover {
+    background: #f9f9f9;
+}
+.step-list {
+    counter-reset: step-counter;
+    list-style: none;
+    margin: 20px 0;
+}
+.step-list > li {
+    counter-increment: step-counter;
+    padding: 15px 15px 15px 60px;
+    position: relative;
+    margin-bottom: 12px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    color: #444;
+    line-height: 1.7;
+}
+.step-list > li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #003A70;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+.resource-placeholder {
+    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
+    border: 2px dashed #003A70;
+    border-radius: 15px;
+    padding: 30px;
+    margin: 25px 0;
+}
+.resource-placeholder h4 {
+    color: #2a5298;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.resource-placeholder p {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+.resource-placeholder p:last-child {
+    margin-bottom: 0;
+}
+pre.code-block {
+    background: #11243d;
+    color: #e6edf3;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    overflow-x: auto;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.85em;
+    line-height: 1.65;
+    white-space: pre;
+}
+pre.code-block .cm {
+    color: #8aa0b6;
+}
+pre.code-block .pr {
+    color: #7fd1b9;
+}
+code {
+    background: #eef2f6;
+    color: #11407c;
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.86em;
+}
+pre.code-block code {
+    background: none;
+    color: inherit;
+    padding: 0;
+}
+.gate-banner {
+    background: #003A70;
+    color: white;
+    padding: 22px 28px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    font-size: 1.0em;
+    line-height: 1.7;
+}
+.gate-banner strong {
+    color: #ffffff;
+}
+@media (max-width: 768px) {
+    header h1 { font-size: 1.8em;
+    } .content { padding: 30px 20px;
+    } .card-grid { grid-template-columns: 1fr;
+    } .comparison-table { font-size: 0.85em;
+    } pre.code-block { font-size: 0.78em;
+    };
+}
+/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
+header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+.highlight-box strong, .highlight-box em, .highlight-box span,
+.gate-banner, .gate-banner p, .gate-banner strong, .gate-banner em {
+    color: #ffffff !important;
+}
+.highlight-box a, header a, .gate-banner a {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+  </style>
+  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body>
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
+<div class="container">
+
+<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
+
+<header>
+  <div class="week-badge">Advanced Track &bull; Lesson B &bull; 2 of 3</div>
+  <h1>&#128203; <span style="color: #ffffff;">Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</span></h1>
+  <p>Turning research integrity into rules the agent follows every time</p>
+</header>
+
+<div class="content">
+
+  <div class="intro-text">
+    <h2>&#127919; What We&#39;ll Cover</h2>
+    <p>A folder structure is a skeleton. This page adds the muscle: the standing instructions that make the agent keep the structure honest, the discipline of deciding what counts <em>before</em> you spend the compute, and the reusable Skills that turn a good workflow into one you can repeat across projects.</p>
+    <p>The centrepiece is the <code>CLAUDE.md</code> research-habits template. It is where the integrity habits the whole course has taught stop being good intentions and become rules the agent follows every time.</p>
+  </div>
+
+  <h2 class="section-title">&#128203; The CLAUDE.md Research-Habits Template</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Lesson&nbsp;A.3 introduced <code>CLAUDE.md</code> as the control surface, the file Claude Code reads at the start of every session. Here it does its real job: encoding research integrity as machine-readable rules. This template is adapted, with thanks, from the <code>AGENTS.md</code> conventions in Dominik Luke&#353;&#39;s <em>Using AI Agents for Reproducible Research</em> workshop (Oxford), and extended with the harder-edged habits that working researchers tend to add once they have been burned a few times.</p>
+
+  <pre class="code-block"><span class="cm"># CLAUDE.md &mdash; &lt;project name&gt;</span>
+
+<span class="cm">## What this project is</span>
+- One line on the project, the data, and the question.
+- Status: e.g. &ldquo;fictional teaching project&rdquo; / &ldquo;real, unpublished &mdash; do not share&rdquo;.
+
+<span class="cm">## Working rules</span>
+- Read files before proposing changes.
+- Never modify anything in data/raw/. It is the only copy.
+- Use plan mode and show me the plan before any consequential change.
+- When you summarise or analyse, name which files you used.
+- If something is uncertain, say so &mdash; never fill a gap with a plausible guess.
+- Save reusable code in scripts/; save generated outputs in outputs/.
+- Log every consequential decision in notes/decision-log.md, dated, with the reason.
+- Run analysis scripts to a committed log (... 2&gt;&amp;1 | tee outputs/&lt;name&gt;_run.log);
+  the log, not the figure, is the record of what happened.
+- Work from logs and printed tables, not screenshots, unless I ask otherwise.
+- Before you tell me a task is done, show me the diff.
+
+<span class="cm">## Pre-registration</span>
+- If the pre-registrations/ folder has an entry for the current question,
+  it is binding. Do not tune on the headline metric; do not reframe a
+  result after the fact. If reality contradicts the prediction, apply the
+  decision rule and say so plainly.
+
+<span class="cm">## Boundaries</span>
+- Don&#39;t add claims about real people, studies, or institutions that aren&#39;t in the sources.
+- Don&#39;t commit or push unless I ask; don&#39;t send anything on my behalf.
+- British spelling.</pre>
+
+  <div class="info-box">
+    <h4>&#128161; The course&#39;s habits, written as rules</h4>
+    <p>Almost every line is a research-integrity habit this course already taught, now written somewhere the agent obeys it every time:</p>
+    <ul class="styled-list" style="margin-top: 0;">
+      <li>&ldquo;Never fill a gap with a plausible guess&rdquo; is the <strong>Week&nbsp;9 hallucination lesson</strong>.</li>
+      <li>&ldquo;Name which files you used&rdquo; is the <strong>Week&nbsp;5 citation-integrity lesson</strong>.</li>
+      <li>&ldquo;Log every consequential decision&rdquo; is <strong>reproducibility</strong> itself.</li>
+      <li>&ldquo;Show me the diff before done&rdquo; is <strong>verification</strong> (Weeks&nbsp;9&ndash;10).</li>
+      <li>&ldquo;Don&#39;t reframe a result after the fact&rdquo; is the <strong>calibrated-reading disposition</strong> the whole course is built on.</li>
+    </ul>
+    <p>The disposition the course spent eleven weeks building collapses, here, into one file you can drop into any project.</p>
+  </div>
+
+  <div class="resource-placeholder">
+    <h4>&#128229; Download: the CLAUDE.md research-habits template</h4>
+    <p>The template above as a ready-to-edit file. Drop it into the root of a project, fill in the top two lines, and adjust the rules to fit. <a href="files/CLAUDE-md-research-template.md">CLAUDE-md-research-template.md</a></p>
+  </div>
+
+  <h2 class="section-title">&#128221; Pre-registration: Decide What Counts Before You Spend the Compute</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This is the habit that most separates careful computational research from the other kind, and it goes beyond anything in the source workshop. The idea is simple and old. It comes from clinical trials, and the case for making it a routine research habit rather than a clinical-trials formality is laid out in Nosek et&nbsp;al.&#39;s <em><a href="https://doi.org/10.1073/pnas.1708274114" target="_blank" rel="noopener">The Preregistration Revolution</a></em> (2018, PNAS). It transfers directly to any experiment where you can run a cheap pilot: <strong>write down what you expect to find, and the rule for deciding, before you run the thing.</strong></p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Concretely, a pre-registration is a short file, committed to <code>pre-registrations/</code> before any serious compute, that states: the question; what an <em>interesting</em>, a <em>boring-but-worth-knowing</em>, and a <em>dead</em> result would each look like, in advance; the analysis you will run; and the decision rule you will follow. The point is to bind your future self. When the result comes back and it is disappointing, the temptation is to quietly re-frame: to tune the metric, move the threshold, tell a flattering story. A committed pre-registration is what stops you, because the standard was set when you had nothing to defend.</p>
+
+  <pre class="code-block"><span class="cm"># pre-registration: do microplastic counts differ across the three sites?</span>
+<span class="cm"># committed 2026-03-20, before running the analysis</span>
+
+Question: Is the median microplastic count higher at the town site than
+  at the upstream site?
+
+Prediction: Town &gt; upstream, by a margin large enough to matter ecologically
+  (we set &ldquo;matters&rdquo; at a difference of &ge; 20 particles/L in advance).
+
+Decision rule:
+  - Interesting: town median exceeds upstream by &ge; 20 particles/L AND the
+    difference survives a Mann-Whitney U test at p &lt; 0.05.
+  - Boring-but-worth-knowing: a real but smaller difference, or no difference.
+    Either way we report it straight.
+  - Dead: the data are too sparse or too messy after cleaning to test at all.
+
+Fixed in advance: outlier rule (exclude only samples the field notes mark
+  unreliable); missing-value handling (listwise); the test (Mann-Whitney U,
+  because counts are not normally distributed). No tuning of these on results.</pre>
+
+  <div class="instructor-box">
+    <h4>&#128100; From the instructor&#39;s own practice</h4>
+    <p>&ldquo;It&rsquo;s very easy now to come up with ideas and to explore them. The important point is to figure out in advance what are going to be the markers for success as you go along, so writing them down before you start is vital.&rdquo;</p>
+    <p>&ldquo;Of course sometimes you get a completely surprising result, but mostly you define a question and come up with what would correspond to an interesting outcome at each stage (starting off small) &mdash; and if it fails the test as you go along, that&rsquo;s generally the time to stop.&rdquo;</p>
+    <p>&ldquo;This means you have to define interesting/important carefully upfront, but once you&rsquo;ve defined it, unless there&rsquo;s something really strange that happens, stick to it and save the compute. This is the pre-registration process: you register the gates at the start, and if the gates are closed as you go along, you stop.&rdquo;</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">That staged framing is what makes pre-registration practical rather than bureaucratic. You rarely commit one giant analysis up front and judge it only at the end; instead you set <em>gates at each stage</em> and run the cheapest stage first. A small pilot either clears its pre-registered gate or it does not. If it clears, you have earned the right to spend more compute on the next stage; if it does not, you stop, having spent almost nothing finding out. Pre-registration and cheap pilots belong together: the gates tell you, in advance and honestly, how far a question deserves to be taken before the next increment of effort. The discipline is to decide the gate before each step, and to let a closed gate stop you, rather than to decide everything before you start.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Pre-registration is the operational form of the course&#39;s deepest theme: ask &ldquo;is this interesting?&rdquo; not just &ldquo;is this publishable?&rdquo;, and be honest when the data say no. It is also where the agent earns its keep without being given a chance to flatter you: the <code>CLAUDE.md</code> rule above tells Claude Code that an existing pre-registration is <em>binding</em>, so the agent that runs your analysis is the same one holding you to the standard you set before you saw the answer.</p>
+
+  <h2 class="section-title">&#129513; Skills and Subagents: Packaging Reproducible Practice</h2>
+
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A <code>CLAUDE.md</code> encodes the rules of <em>one</em> project. A <strong>Skill</strong> packages a reusable <em>workflow</em> that travels across projects. Where a rule says &ldquo;always log decisions,&rdquo; a Skill says &ldquo;here is exactly how to build a data inventory, every time&rdquo;: a tested procedure rather than a re-improvised prompt.</p>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A Skill is a folder under <code>.claude/skills/</code> with a <code>SKILL.md</code> file: a little YAML header naming it and saying when to use it, then concise instructions. For example, a reproducible-research skill for creating a data inventory:</p>
+
+  <pre class="code-block"><span class="cm"># .claude/skills/data-inventory/SKILL.md</span>
+---
+name: data-inventory
+description: >
+  Create docs/data-inventory.md describing each raw data file, its
+  variables, units, row counts, and visible problems. Use when a project
+  has data in data/raw/ and no inventory yet.
+---
+
+Inspect every file in data/raw/ (read-only). For each file, record:
+the filename, what it appears to contain, the columns and their units,
+the number of rows, missing-value counts, and any obvious anomalies
+(impossible values, inconsistent column names, mixed date formats).
+Do not edit the raw files. Where something is ambiguous, say so &mdash;
+do not guess. Cross-check against any field notes and flag contradictions.
+Write the result to docs/data-inventory.md.</pre>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Written once and inspected, that Skill produces the same disciplined inventory on every project you use it in. That repeatability is the reproducibility win: a Skill is a procedure you have tested and can trust, the opposite of ad-hoc prompting that varies every time.</p>
+
+  <div class="resource-placeholder">
+    <h4>&#128230; Download: seven research Skills</h4>
+    <p>The <code>data-inventory</code> Skill above is deliberately small, to show the shape. To see the idea at full size, and to actually use it, here is a bundle of seven ready-to-install Skills for reproducible research: <code>pre-register</code> (idea triage before you spend compute), <code>arxiv-fetcher</code> and <code>academic-pdf-to-mkd</code> (getting papers into a workable form), <code>paper-review</code>, <code>claim-fact-checker</code> and <code>reference-verifier</code> (the Week&nbsp;9 verification habit, packaged as procedures), and <code>convergence-check</code> (an honest read on whether an iterative loop is converging or just spinning). Unzip, drop the folders into <code>~/.claude/skills/</code>, and Claude Code loads each one on demand. <a href="files/co-scientist-skills.zip">co-scientist-skills.zip</a></p>
+    <p style="font-size: 0.92em; color: #777;">Three of the seven (<code>academic-pdf-to-mkd</code>, <code>claim-fact-checker</code>, and <code>paper-review</code>) are adapted, with thanks, from <strong>Dominik Luke&#353;</strong>&rsquo;s MIT-licensed agent-skills collection (<a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a>); the bundle ships with a <code>LICENSE</code> and full attribution. The other four are the instructor&rsquo;s own.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Subagents</strong> add a second move. For a bounded job, Claude Code can spawn a separate, focused agent, and the most useful research application is verification. After the main agent has produced an analysis, you can have an independent subagent check it: re-derive the result from the raw data, look for the errors the first agent might have made, and report disagreements. This is the Week&nbsp;9 adversarial-verification idea made operational: a second pair of eyes that does not share the first agent&#39;s assumptions.</p>
+
+  <div class="info-box">
+    <h4>&#128270; A note on trust</h4>
+    <p>A verification subagent is genuinely useful, but it is not magic: it is another instance of the same kind of system, and it can share the same blind spots. Treat it as one more screen, not as a guarantee, just as Week&nbsp;9 said of any single check. The human who reads the disagreements and decides what they mean is still you.</p>
+  </div>
+
+  <p style="color: #555; line-height: 1.75; margin-top: 25px; margin-bottom: 15px;"><strong>Coming up in B.3:</strong> we put all of it together: a full analysis of the Berg River data from messy files to a result a stranger could reproduce, then how to verify agentic work honestly, and why the reproducible folder turns out to be the best research-disclosure you can offer.</p>
+
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../advanced/Reproducibility and the Project Folder.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">B.1 — Reproducibility, and the Reproducible Project Folder</div></a>
+  <a class="page-nav-link" href="../advanced/The Reproducible Workflow End to End.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">B.3 — The Reproducible Workflow, End to End</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

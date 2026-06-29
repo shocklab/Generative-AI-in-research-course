@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5.4 - The Hallucinated Citation Crisis</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p, .card li {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .card ol {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .card ol li {
+            padding: 4px 0;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f0fe;
+            border-left: 5px solid #003A70;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #003A70;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .case-study {
+            background: #f8fafc;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .case-study h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table thead th {
+            background: #003A70;
+            color: #ffffff;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .comparison-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.93em;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #e8f0fe;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 10px 12px;
+            }
+        }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 5 • Sub-Lesson 4</div>
+<h1>👻 <span style="color: #ffffff;">The Hallucinated Citation Crisis</span></h1>
+<p>When AI invents academic papers that don't exist: why it happens, how bad it is, and what you must do about it</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>AI tools can generate references that look completely real, with correct formatting, plausible author names, real journal titles, and convincing abstracts, yet refer to papers that have never been published. Studies suggest that general-purpose LLMs hallucinate citations at high rates.</p>
+<p style="margin-top: 12px;">In late 2025, the problem hit the highest levels of academic publishing, with consequences that are still unfolding. Hallucinated citations were found in papers at one of the most prestigious machine learning conferences in the world, forcing a reckoning across the research community about the reliability of AI-assisted scholarship.</p>
+<p style="margin-top: 12px;">This session covers the scope of the problem, why it happens at a technical level, real-world case studies that should concern every researcher, and the verification habits you must build to protect your own work. One rule sits above the rest: <strong>never include a citation in your work that you have not independently verified exists.</strong></p>
+<p style="margin-top: 12px;"><strong>An important note: While I was working on this section with Claude, it hallucinated a number of references. I went through everything to check for correctness and relevance.</strong></p>
+</div>
+<!-- SECTION 1: THE SCALE OF THE PROBLEM -->
+<h2 class="section-title">📊 The Scale of the Problem</h2>
+<p>Before we look at why hallucination happens, let us be clear about how widespread the problem is. It is a systemic issue that affects every researcher who uses generative AI tools.</p>
+<div class="card-grid">
+<div class="card">
+<h3>⚖️ Legal Citations: 1 in 6 queries give rise to hallucinations</h3>
+<p><a href="https://hai.stanford.edu/news/ai-trial-legal-models-hallucinate-1-out-6-or-more-benchmarking-queries" target="_blank" rel="noopener">A Stanford HAI study</a> (Magesh et al., 2024) found that even purpose-built legal AI tools from LexisNexis and Thomson Reuters hallucinated between 17% and 34% of the time on benchmarking queries, despite marketing claims of being "hallucination-free." An earlier Stanford study found general-purpose chatbots hallucinated between 58% and 82% of the time on legal queries.</p>
+</div>
+<div class="card">
+<h3>📈 Academic Citations: 20–90%+</h3>
+<p><a href=" https://www.jmir.org/2024/1/e53164" target="_blank" rel="noopener">A 2024 comparative analysis in JMIR</a> tested LLMs on systematic review citations and found hallucination rates of 39.6% for GPT-3.5, 28.6% for GPT-4, and a striking 91.4% for Google Bard. A 2025 study in JMIR Mental Health (Linardon et al.) found GPT-4o fabricated 19.9% of all citations across mental health literature reviews. Newer models are improving, but no general-purpose LLM has eliminated the problem.</p>
+</div>
+<div class="card">
+<h3>🔬 Worse in Specialised Fields</h3>
+<p><a href="https://mental.jmir.org/2025/1/e80371/" target="_blank" rel="noopener">The Linardon et al. (2025) </a>study demonstrated this directly: GPT-4o's citation fabrication rates were 28% for binge eating disorder and 29% for body dysmorphic disorder (less familiar topics), compared to just 6% for major depressive disorder (a well-studied topic). <a href="https://arxiv.org/html/2510.25378" target="_blank" rel="noopener">A 2025 study on</a> bibliographic hallucination confirmed that citation accuracy correlates strongly with how frequently a paper appears in training data. Highly cited papers are reproduced faithfully, while niche work is fabricated.</p>
+</div>
+<div class="card">
+<h3>🔎 Partial Hallucinations</h3>
+<p><a href="https://gptzero.me/news/neurips/" target="_blank" rel="noopener">The GPTZero analysis</a> of NeurIPS 2025 papers documented this pattern in detail: some hallucinated citations started from a real paper but made subtle changes: expanding an author's initials into a guessed first name, dropping or adding co-authors, or paraphrasing the title. These "uncanny valley" citations look entirely legitimate at first glance, making them harder to catch than completely fabricated references.</p>
+</div>
+</div>
+<div class="warning-box"><strong>⚠️ One distinction to hold onto:</strong> These hallucination rates are for general-purpose LLMs (ChatGPT, Claude, Gemini) used without retrieval augmentation. Tools designed for literature search (Semantic Scholar, Elicit, Consensus) have much lower rates because they search actual databases and return real records. There is a large gap between <em>generating</em> a citation and <em>retrieving</em> one. When you need to find papers, use retrieval tools. When you need to analyse or synthesise papers you have already found, generative tools become useful. Do not confuse the two use cases.</div>
+<!-- SECTION 2: WHY IT HAPPENS -->
+<h2 class="section-title">🔬 Why It Happens</h2>
+<p>Understanding why LLMs hallucinate citations is essential for knowing when to trust them and when not to. The explanation is not complicated, but it does require shifting how you think about what these systems are doing.</p>
+<ul class="styled-list">
+<li><strong>LLMs are pattern completion systems, not knowledge databases.</strong> They generate text that is statistically likely to follow the prompt. A citation that "looks right" is generated because the model has learned the pattern of what citations look like, having never looked up a real paper. The model is autocompleting the format of a reference list.</li>
+<li><strong>The model has no internal database of papers.</strong> It cannot check whether "Smith et al. (2023)" actually exists in any journal. It generates what seems plausible based on patterns in its training data. There is no verification step and no lookup, only next-token prediction.</li>
+<li><strong>Niche topics and pressure increase hallucination.</strong> Models are particularly likely to hallucinate when asked about niche topics, very recent papers, or when pressured to provide a specific number of references. Asking "Give me 10 references on this topic" virtually guarantees that some will be fabricated if the model does not have 10 real ones in its training data.</li>
+<li><strong>Partial hallucinations are especially dangerous.</strong> The model may combine real elements (a real author name, a real journal, a plausible-sounding title) into a citation that does not exist as a whole. Because each individual component checks out superficially, these fabrications are much harder to catch than completely invented references.</li>
+</ul>
+<div class="technical-detail">
+<h3>⚙️ Retrieval vs. Generation: The Critical Difference</h3>
+<p><strong>Retrieval-based tools</strong> (Semantic Scholar, Elicit, Consensus, Google Scholar) work by searching an actual database of indexed papers. When they return a result, that result exists in the database. The paper is real. The metadata comes from the publisher or indexing service. These tools can have coverage gaps (they might not include every paper ever published) but they do not fabricate papers.</p>
+<p style="margin-top: 12px;"><strong>Generation-based tools</strong> (ChatGPT, Claude, Gemini when asked for references) produce text token by token without any database lookup. They generate text that follows the statistical patterns of what a citation should look like. There is no step in the process where the model checks a database to verify that the paper exists. The output may be correct (if the model's training data included that specific paper frequently enough), but there is no guarantee.</p>
+<p style="margin-top: 12px;"><strong>The practical implication:</strong> Use retrieval-based tools to <em>find</em> papers. Use generation-based tools to <em>analyse</em> and <em>discuss</em> papers you have already verified. This division of labour sharply reduces the risk of hallucinated citations entering your work.</p>
+</div>
+<!-- SECTION 3: THE NEURIPS 2025 SCANDAL -->
+<h2 class="section-title">💥 The NeurIPS 2025 Scandal</h2>
+<p>The theoretical risk of hallucinated citations became a very real crisis in late 2025, when the problem was discovered at one of the most prestigious venues in computer science.</p>
+<div class="case-study">
+<h3>📰 Case Study: <a href="https://gptzero.me/news/neurips/" target="_blank" rel="noopener">Hallucinated Citations at NeurIPS 2025</a></h3>
+<p>In late 2025 and early 2026, researchers and journalists discovered that over 100 hallucinated citations had made it through peer review and into papers published at NeurIPS 2025, one of the most prestigious AI and machine learning conferences in the world.</p>
+<p style="margin-top: 12px;">Teams from institutions including Google, Harvard, Meta, and Cambridge were among those with papers containing fabricated references. These were papers from leading research groups at the top of the field, not fringe submissions.</p>
+<p style="margin-top: 12px;">The scandal exposed a systemic problem at every level of the publication pipeline. Authors were using AI tools to generate or polish their papers and not verifying the references. Peer reviewers, overwhelmed by the volume of submissions and often working under tight deadlines, were not checking whether cited papers actually existed. And the conference itself had no automated systems in place to catch fabricated references.</p>
+<p style="margin-top: 12px;">The discovery triggered a broader investigation that revealed widespread AI-generated content among submissions to NeurIPS 2025. The scope of the contamination was larger than anyone had feared.</p>
+<p style="margin-top: 12px;"><strong>Papers about artificial intelligence were themselves corrupted by artificial intelligence.</strong> The community that builds these models had failed to protect itself from their best-known failure mode.</p>
+</div>
+<div class="info-box"><strong>💡 The lesson for all of us:</strong> The NeurIPS scandal shows what happens when verification fails at every level. The authors did not check, the reviewers did not check, and the conference did not have systems in place to catch fabricated references. If this can happen at the top of computer science, it can happen in any field. The responsibility for verification falls on <em>you</em>, the author. You cannot assume that peer review will catch what you miss.</div>
+<!-- SECTION 4: THE POLLUTION LOOP -->
+<h2 class="section-title">🔄 The Pollution Loop</h2>
+<p>The problem does not end when a hallucinated citation is published. It gets worse, because published citations feed back into the systems that generate future citations. This creates a compounding problem that threatens the integrity of the scholarly record itself.</p>
+<ul class="styled-list">
+<li><strong>Hallucinated citations in published papers get indexed by databases.</strong> Once a fake reference appears in a published paper, it becomes part of the metadata that databases like Google Scholar and Semantic Scholar index. The fake citation now has an apparent provenance: it was referenced in a real, peer-reviewed paper.</li>
+<li><strong>AI models trained on updated data learn these fake citations as "real."</strong> When language models are trained or fine-tuned on new academic text, they absorb hallucinated citations as if they were genuine. The model becomes more confident about the fake paper's existence because it has now "seen" it referenced in a real publication.</li>
+<li><strong>Future AI outputs reference fake papers with more confidence.</strong> The next time someone asks a model about the topic, it may cite the hallucinated paper with greater certainty, because the paper now appears in its training data as a cited work. It may even generate a plausible abstract or summary of the fake paper.</li>
+<li><strong>This creates a self-reinforcing cycle of academic pollution.</strong> Each cycle makes the fake citation harder to detect and more deeply embedded in the literature. What started as a single hallucinated reference can, over time, become part of the accepted knowledge base of a field.</li>
+</ul>
+<div class="highlight-box"><strong>🚨 Why this matters today:</strong> The pollution loop is why verification matters now, not at some hypothetical future point. Every hallucinated citation that makes it into a published paper degrades the ecosystem that all researchers, human and AI, depend on. Verification is good practice for your own work and a collective responsibility at the same time. When you verify your citations, you protect your own credibility and the integrity of the scholarly record that your whole field depends on.</div>
+<!-- SECTION 5: THE VERIFICATION TOOLKIT -->
+<h2 class="section-title">✅ The Verification Toolkit</h2>
+<p>The good news is that hallucinated citations are almost always detectable, provided you know what to look for and have a systematic verification process. Fake citations are catchable; the trouble is that researchers are not checking. This section gives you the tools and habits to be someone who always checks.</p>
+<div class="card-grid">
+<div class="card">
+<h3>📋 The Five-Point Citation Check</h3>
+<p>Before any AI-surfaced citation enters your work, run it through these five checks:</p>
+<ol>
+<li><strong>Does the paper exist?</strong> Search Google Scholar, Semantic Scholar, or the journal's website for the exact title.</li>
+<li><strong>Are the authors correct?</strong> Check the authors' actual publication lists on their institutional pages or Google Scholar profiles.</li>
+<li><strong>Is the year correct?</strong> Verify the publication year on the journal or preprint server.</li>
+<li><strong>Is the journal or venue real?</strong> Confirm it is not a hallucinated journal name or a predatory publication.</li>
+<li><strong>Does it actually say what the AI claims?</strong> Read at least the abstract. AI tools frequently misrepresent the conclusions of real papers. Read more of the paper if you are citing claims within the paper.</li>
+</ol>
+</div>
+<div class="card">
+<h3>🔧 Tools for Verification</h3>
+<ul class="styled-list">
+<li><strong>Google Scholar:</strong> search the exact title in quotation marks. If it does not appear, the paper likely does not exist.</li>
+<li><strong>Semantic Scholar:</strong> search by DOI, title, or author. Offers a clean API and good coverage.</li>
+<li><strong>CrossRef / doi.org:</strong> enter a DOI to verify it resolves to a real paper. If the DOI does not resolve, the citation is fabricated.</li>
+<li><strong>Retraction Watch Database:</strong> check whether a paper has been retracted after publication.</li>
+<li><strong>Scite.ai:</strong> see how a paper has been cited by others, whether supporting or contrasting its claims.</li>
+</ul>
+</div>
+<div class="card">
+<h3>🎉 Red Flags for Hallucinated Citations</h3>
+<ul class="styled-list">
+<li>Author names that are very common (Smith, Zhang, Lee) combined with generic-sounding titles</li>
+<li>Papers supposedly published in very prestigious journals that you cannot find online</li>
+<li>Very round publication years (2020, 2023) for niche topics</li>
+<li>Multiple citations with suspiciously similar formatting patterns or phrasing</li>
+<li>Papers whose conclusions perfectly match what you asked the AI to support; real research is messier than that</li>
+<li>DOIs that do not resolve when you enter them at doi.org</li>
+</ul>
+</div>
+<div class="card">
+<h3>🛠️ Building Good Habits</h3>
+<ul class="styled-list">
+<li><strong>Never include a citation you have not verified.</strong> No exceptions.</li>
+<li><strong>Keep a verification log.</strong> Document your checking process. This protects you if questions arise later.</li>
+<li><strong>Use the right tool for the right job.</strong> Use retrieval-based tools (Elicit, Semantic Scholar, Consensus) for <em>finding</em> papers. Use generative tools (ChatGPT, Claude) for <em>analysis and synthesis</em> of papers you have already verified.</li>
+<li><strong>When in doubt, search for the DOI.</strong> The Digital Object Identifier is the most reliable way to verify a citation. If a paper has a real DOI that resolves, it almost certainly exists.</li>
+<li><strong>Be sceptical of convenience.</strong> If the AI gives you a perfectly formatted reference list that says exactly what you hoped, slow down and verify harder.</li>
+</ul>
+</div>
+</div>
+<!-- SECTION 6: RETRACTION WATCH AND MONITORING -->
+<h2 class="section-title">📚 Retraction Watch and Ongoing Monitoring</h2>
+<p>The academic community is not standing still. The hallucinated citation crisis has prompted a growing movement to develop better tools, policies, and practices for protecting the scholarly record.</p>
+<div class="resource-placeholder">
+<h4>📰 Retraction Watch</h4>
+<p><a href="http://retractionwatch.com/" target="_blank" rel="noopener">retractionwatch.com</a></p>
+<p style="margin-top: 8px;">Retraction Watch has become an essential resource for any researcher who cares about the integrity of the literature. Their database tracks retracted papers, and their blog covers emerging issues including AI-generated content in published research. Bookmark this site and check it regularly.</p>
+</div>
+<ul class="styled-list">
+<li><strong>Automated detection tools are in development.</strong> Several research groups are building tools that can automatically flag potentially hallucinated citations by cross-referencing against actual publication databases. These tools are not yet widely deployed, but they represent an important line of defence.</li>
+<li><strong>Preprint servers are adding verification steps.</strong> Some preprint platforms are beginning to implement automated citation checks that flag references that cannot be resolved against known databases before a paper is posted.</li>
+<li><strong>Journal policies are evolving rapidly.</strong> Major publishers are updating their submission guidelines to require authors to declare AI tool usage and to verify all citations independently. Some journals are beginning to run automated citation checks as part of the editorial process.</li>
+<li><strong>Conference organisers are responding.</strong> In the wake of the NeurIPS scandal, major AI conferences are implementing new review guidelines that specifically address AI-generated content and citation verification.</li>
+</ul>
+<div class="info-box"><strong>💡 The bottom line:</strong> The ecosystem is adapting, but slowly. Automated tools for detecting hallucinated citations are improving, and policies are being updated. But right now, the primary line of defence is <em>you</em>. Your verification habits are what stand between a hallucinated citation and the published record. Do not wait for institutions to solve this problem. Build the habits that protect your work today.</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<ul class="styled-list">
+<li><strong>Hallucinated citations are common, not rare.</strong> General-purpose LLMs fabricate references at rates between 15% and 40% or higher. The citations look real, with correct formatting, plausible authors, and real-sounding journals, but the papers do not exist.</li>
+<li><strong>This happens because LLMs are pattern generators, not databases.</strong> They produce text that looks like a citation because they have learned what citations look like. There is no lookup step, no verification, no connection to any real database of papers.</li>
+<li><strong>The NeurIPS 2025 scandal proved this is not hypothetical.</strong> Over 100 hallucinated citations made it through peer review at one of the world's top conferences, from teams at leading institutions. If it can happen there, it can happen anywhere.</li>
+<li><strong>The pollution loop makes the problem worse over time.</strong> Hallucinated citations that are published get absorbed into databases and training data, making future hallucinations more confident and harder to detect.</li>
+<li><strong>This is a solvable problem if you build good habits.</strong> The Five-Point Citation Check, the right verification tools, and a commitment to never including an unverified citation will protect your work and contribute to the integrity of the scholarly record.</li>
+<li><strong>Use retrieval tools for finding, generative tools for thinking.</strong> Semantic Scholar, Elicit, and Consensus search real databases. ChatGPT and Claude generate text. Use each where it is strong, and do not ask a generative tool to do a retrieval tool's job.</li>
+</ul>
+<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> We move from problems to solutions, building a personalised research workflow using Claude, including custom prompts and skills that enforce citation verification as part of the process. The goal is to make verification automatic rather than optional.</div>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-5/Paid Tools and When They Are Worth It.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Paid Tools and When They Are Worth It</div></a>
+  <a class="page-nav-link" href="../week-5/Building Your Research Workflow with Claude.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Building Your Research Workflow with Claude</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

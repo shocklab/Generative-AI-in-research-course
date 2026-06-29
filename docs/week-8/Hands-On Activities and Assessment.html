@@ -1,101 +1,195 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 8.6 - Hands-On: Activities &amp; Assessment</title>
-  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-  <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Lato', sans-serif; line-height: 1.6; color: #2c3e50; background: #f5f5f5; padding: 20px; }
-.container { max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
-.ai-notice { background: #e8f4f8; color: #003A70; padding: 15px 30px; text-align: center; font-size: 0.9em; border-bottom: 1px solid #d0e8f2; }
-header { background: #003A70; color: white; padding: 50px 40px; text-align: center; }
-.week-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px; font-size: 0.9em; margin-bottom: 15px; backdrop-filter: blur(10px); }
-header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-.content { padding: 50px 40px; }
-.intro-text { background: #f9f9f9; padding: 35px; border-radius: 15px; border-left: 5px solid #003A70; margin-bottom: 40px; }
-.intro-text h2 { color: #2a5298; font-size: 1.8em; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-.intro-text h2::before { content: '\1F3AF'; }
-.intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-.section-title { font-size: 2em; color: #2a5298; margin: 50px 0 30px; padding-bottom: 15px; border-bottom: 3px solid #003A70; display: flex; align-items: center; gap: 15px; }
-.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-.card { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 5px solid #003A70; transition: all 0.3s ease; }
-.card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-.card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-.card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-.styled-list { list-style: none; margin-top: 15px; }
-.styled-list li { padding: 8px 0 8px 25px; color: #555; position: relative; line-height: 1.6; }
-.styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-.highlight-box { background: #003A70; color: white; padding: 30px; border-radius: 15px; margin: 40px 0; }
-.highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-.highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-.warning-box { background: #fff8e1; border-left: 5px solid #f9a825; padding: 20px 25px; border-radius: 12px; margin: 20px 0; }
-.warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
-.warning-box p { color: #555; line-height: 1.7; }
-.info-box { background: #f8f9fa; padding: 20px 25px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #003A70; }
-.info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-.info-box p { color: #555; line-height: 1.7; }
-.technical-detail { background: white; border: 2px solid #d0e8f2; border-radius: 12px; padding: 25px; margin: 20px 0; }
-.technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-.case-study { background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%); border: 2px solid #003A70; border-radius: 15px; padding: 25px; margin: 25px 0; }
-.case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
-.comparison-table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-.comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-.comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-.comparison-table tr:last-child td { border-bottom: none; }
-.comparison-table tr:hover { background: #f9f9f9; }
-.step-list { counter-reset: step-counter; list-style: none; margin: 20px 0; }
-.step-list > li { counter-increment: step-counter; padding: 15px 15px 15px 60px; position: relative; margin-bottom: 12px; background: #f9f9f9; border-radius: 10px; color: #444; line-height: 1.7; }
-.step-list > li::before { content: counter(step-counter); position: absolute; left: 15px; top: 50%; transform: translateY(-50%); background: #003A70; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.9em; }
-.resource-placeholder { background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%); border: 2px dashed #003A70; border-radius: 15px; padding: 30px; margin: 25px 0; text-align: center; }
-.resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-.resource-placeholder p { color: #666; }
-@media (max-width: 768px) { header h1 { font-size: 1.8em; } .content { padding: 30px 20px; } .card-grid { grid-template-columns: 1fr; } .comparison-table { font-size: 0.85em; } }
-      /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head>
-<body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
-<div class="container">
-
-  <div class="ai-notice">
-    This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.
-  </div>
-
-  <header>
-    <div class="week-badge">Week 8 &bull; Sub-Lesson 6</div>
-    <h1><span style="color: #ffffff;">&#129514; Hands-On: Activities &amp; Assessment</span></h1>
-    <p>Three practical activities testing multimodal AI across images, audio, and documents, plus your weekly assessment</p>
-  </header>
-
-  <div class="content">
-
-    <div class="intro-text">
-      <h2>What We'll Cover</h2>
-      <p>This session applies everything from the week: multimodal AI capabilities, the specific failure modes in each modality, and what verification looks like when AI is working with non-text data. Each activity is designed to produce a specific kind of learning. The aim is to move you past "I used the tool" to "I understand where this tool can mislead me."</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Hands-On: Activities &amp; Assessment — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.48rem;line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.28rem;line-height:1.58;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.24rem;line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.33rem;line-height:1.62}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 8 &middot; Multimodal AI for Research</div><nav class="toc"><a class="lesson" href="What%20Multimodal%20AI%20Can%20See%20Hear%20and%20Read.html">What Multimodal AI Can See, Hear, and Read</a><a class="lesson" href="AI%20and%20Scientific%20Images.html">AI and Scientific Images</a><a class="lesson" href="Document%20Intelligence.html">Document Intelligence</a><a class="lesson" href="Transcription%20and%20Audio%20Analysis.html">Transcription and Audio Analysis</a><a class="lesson" href="Video%20and%20Multimodal%20Workflows.html">Video and Multimodal Workflows</a><a class="lesson cur" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><div class="subs"><a href="#s1">Activity 1: Figure Analysis Challenge</a><a href="#s2">Activity 2: Transcription and Verification</a><a href="#s3">Activity 3: Document Extraction Challenge</a><a href="#s4">Weekly Assessment</a><a href="#s5">Full Week Summary</a></div><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Hands-On: Activities &amp; Assessment</h1><div class="deck">Three practical activities testing multimodal AI across images, audio, and documents, plus your weekly assessment</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+      <p class="drop">This session applies everything from the week: multimodal AI capabilities, the specific failure modes in each modality, and what verification looks like when AI is working with non-text data. Each activity is designed to produce a specific kind of learning. The aim is to move you past "I used the tool" to "I understand where this tool can mislead me."</p>
       <p>You will work through three structured activities (figure analysis, transcription verification, and document extraction), then complete the weekly assessment which asks you to apply multimodal AI to your own research materials and document what you find.</p>
     </div>
 
     <!-- Activity 1 -->
-    <h2 class="section-title">&#128202; Activity 1: Figure Analysis Challenge</h2>
+    <h2 class="section-title" id="s1">Activity 1: Figure Analysis Challenge</h2>
 
-    <div class="case-study">
-      <h4>&#128270; "Reading vs. Understanding"</h4>
+    <div class="case-study"><h4>"Reading vs. Understanding"</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will use three publicly available scientific figures of increasing complexity. Instructions are provided for finding suitable figures from open-access papers in your field. Choose figures that represent the types of visualisations common in your research area: a simple bar chart, a multi-line plot with several series, and a complex figure (heatmap, network diagram, or multi-panel figure).</p>
+      <p style=" margin-bottom: 20px"><strong>Materials:</strong> You will use three publicly available scientific figures of increasing complexity. Instructions are provided for finding suitable figures from open-access papers in your field. Choose figures that represent the types of visualisations common in your research area: a simple bar chart, a multi-line plot with several series, and a complex figure (heatmap, network diagram, or multi-panel figure).</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task, for each figure:</strong></p>
+      <p style=" margin-bottom: 15px"><strong>Task, for each figure:</strong></p>
       <ol class="step-list">
         <li>Use Claude or GPT (or equivalent frontier multimodal model) to describe what the figure shows. Record the AI's output verbatim.</li>
         <li>Use the AI to extract specific numerical values visible in the figure: axis values, data points, percentages, sample sizes. Record these alongside the values you read from the figure yourself.</li>
@@ -103,7 +197,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Ask the AI to explain the main finding the figure is communicating. Compare its interpretation with the paper's own discussion of that figure.</li>
       </ol>
 
-      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to look for:</strong></p>
+      <p style=" margin: 20px 0 10px"><strong>What to look for:</strong></p>
       <ul class="styled-list">
         <li>Where does the AI describe qualitative patterns accurately but misread quantitative details?</li>
         <li>Does it read the scale and axis labels correctly? Does it handle logarithmic scales?</li>
@@ -111,21 +205,19 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Does its "main finding" interpretation match what the authors actually say in the paper?</li>
       </ul>
 
-      <div class="info-box" style="margin-top: 20px;">
-        <h4>&#128172; Discussion Prompt</h4>
+      <div class="info-box" style="margin-top: 20px"><h4>Discussion Prompt</h4>
         <p>When CharXiv launched in 2024, leading models scored 47.1% on scientific chart reasoning vs. 80.5% for humans. Frontier model scores have improved substantially since, so the headline gap will not match what you see today. The question for your forum post is this: <em>which features of your test charts did the AI handle reliably, and which did it still get wrong?</em> Bring specific examples and note the model and date you tested.</p>
       </div>
     </div>
 
     <!-- Activity 2 -->
-    <h2 class="section-title">&#127908; Activity 2: Transcription and Verification</h2>
+    <h2 class="section-title" id="s2">Activity 2: Transcription and Verification</h2>
 
-    <div class="case-study">
-      <h4>&#128269; "The Hallucination Hunt &mdash; Test It On Yourself"</h4>
+    <div class="case-study"><h4>"The Hallucination Hunt &mdash; Test It On Yourself"</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">This exercise asks you to record your own voice and transcribe it. The lesson&#39;s claims about Whisper&#39;s performance on African-accented English stay abstract until you hear your own words come back wrong. You will also generate your own ground truth (the script you wrote and read aloud), so verification is genuine.</p>
+      <p style=" margin-bottom: 20px">This exercise asks you to record your own voice and transcribe it. The lesson&#39;s claims about Whisper&#39;s performance on African-accented English stay abstract until you hear your own words come back wrong. You will also generate your own ground truth (the script you wrote and read aloud), so verification is genuine.</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 1: Write a script (~3 minutes when read aloud, around 400&ndash;500 words).</strong> Treat it as if you are explaining a piece of your research to a colleague. Include the following challenge features, which are the things Whisper is most likely to mishandle:</p>
+      <p style=" margin-bottom: 15px"><strong>Step 1: Write a script (~3 minutes when read aloud, around 400&ndash;500 words).</strong> Treat it as if you are explaining a piece of your research to a colleague. Include the following challenge features, which are the things Whisper is most likely to mishandle:</p>
 
       <ul class="styled-list">
         <li><strong>Technical jargon from your field:</strong> at least 5&ndash;10 specialist terms (e.g. <em>haematopoiesis</em>, <em>heteroskedasticity</em>, <em>phenomenology</em>, <em>k-means clustering</em>)</li>
@@ -136,15 +228,15 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li><strong>One sentence in your second language</strong> if you have one (Afrikaans, isiZulu, isiXhosa, Sesotho). Even a few words is enough to surface what Whisper does with code-switching</li>
       </ul>
 
-      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 2: Record yourself reading the script.</strong> Use your phone or laptop microphone. Read at normal pace; do not over-articulate. Save the recording as a single audio file (<code>.wav</code>, <code>.mp3</code>, or <code>.m4a</code>). Aim for around 3 minutes of audio. If you have a quiet room, use it; if you do not, that is also useful data, since background noise is one of the hallucination triggers covered in Sub-Lesson 4.</p>
+      <p style=" margin-top: 20px; margin-bottom: 15px"><strong>Step 2: Record yourself reading the script.</strong> Use your phone or laptop microphone. Read at normal pace; do not over-articulate. Save the recording as a single audio file (<code>.wav</code>, <code>.mp3</code>, or <code>.m4a</code>). Aim for around 3 minutes of audio. If you have a quiet room, use it; if you do not, that is also useful data, since background noise is one of the hallucination triggers covered in Sub-Lesson 4.</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 3: Transcribe with Whisper.</strong> Two options, both free:</p>
+      <p style=" margin-bottom: 15px"><strong>Step 3: Transcribe with Whisper.</strong> Two options, both free:</p>
       <ul class="styled-list">
-        <li><strong>Option A, Hugging Face Space (no install):</strong> upload your audio to <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener" style="color: #003A70;">huggingface.co/spaces/openai/whisper</a> and select <code>large-v3</code> as the model. Output appears in the browser.</li>
+        <li><strong>Option A, Hugging Face Space (no install):</strong> upload your audio to <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener">huggingface.co/spaces/openai/whisper</a> and select <code>large-v3</code> as the model. Output appears in the browser.</li>
         <li><strong>Option B, Google Colab notebook:</strong> follow the course-provided notebook, which runs <code>whisper</code> on a free GPU. Slightly more setup, but you can save the output and re-run. Notebook URL in the course resources.</li>
       </ul>
 
-      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 4: Compare line by line against your own script (your ground truth).</strong> Read both aloud if needed. Mark every difference. Categorise each error:</p>
+      <p style=" margin-top: 20px; margin-bottom: 15px"><strong>Step 4: Compare line by line against your own script (your ground truth).</strong> Read both aloud if needed. Mark every difference. Categorise each error:</p>
       <ul class="styled-list">
         <li><strong>Substitution:</strong> wrong word in place of the right one</li>
         <li><strong>Deletion:</strong> word or phrase missing from the transcript</li>
@@ -152,35 +244,32 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li><strong>Other:</strong> punctuation, capitalisation, formatting</li>
       </ul>
 
-      <p style="color: #444; line-height: 1.8; margin-top: 15px;"><strong>Step 5: Calculate your own WER.</strong> WER = (substitutions + deletions + insertions) / total words in ground truth, expressed as a percentage. Compare your number to the headline benchmarks in Sub-Lesson 4 (~2.0% on clean read speech). If your number is much higher, what features of your script and recording explain the difference?</p>
+      <p style=" margin-top: 15px"><strong>Step 5: Calculate your own WER.</strong> WER = (substitutions + deletions + insertions) / total words in ground truth, expressed as a percentage. Compare your number to the headline benchmarks in Sub-Lesson 4 (~2.0% on clean read speech). If your number is much higher, what features of your script and recording explain the difference?</p>
 
-      <div class="info-box" style="margin-top: 20px;">
-        <h4>&#129760; Reflection (for your forum post)</h4>
+      <div class="info-box" style="margin-top: 20px"><h4>Reflection (for your forum post)</h4>
         <p>Three questions to address: (1) Which of your challenge features tripped Whisper? Were homophones, jargon, proper nouns, or your second-language sentence the worst? (2) Did Whisper insert anything that was not said? Be specific and quote the inserted text. (3) If you had used this transcript for qualitative coding without checking it against your script, would your analysis have been corrupted in ways a reader could not detect from the transcript alone?</p>
       </div>
 
-      <div class="warning-box" style="margin-top: 20px;">
-        <h4>&#127482;&#127466; Why This Matters for South African Research</h4>
+      <div class="warning-box" style="margin-top: 20px"><h4>Why This Matters for South African Research</h4>
         <p>South African English exists in many varieties, and most postgraduate students at UCT will speak some combination of accented English with code-switching from one or more African languages. The course materials cite published numbers; this exercise lets you measure them on yourself. If your Whisper output is materially worse than the headline 2.0% figure (and for many South African accents it will be), the numbers in published benchmarks are not your numbers.</p>
       </div>
     </div>
 
     <!-- Activity 3 -->
-    <h2 class="section-title">&#128196; Activity 3: Document Extraction Challenge</h2>
+    <h2 class="section-title" id="s3">Activity 3: Document Extraction Challenge</h2>
 
-    <div class="case-study">
-      <h4>&#128203; "The Table Problem"</h4>
+    <div class="case-study"><h4>"The Table Problem"</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Source paper:</strong> The COPCOV trial of hydroxychloroquine/chloroquine for COVID-19 prevention, an open-access randomised controlled trial published in <em>PLOS Medicine</em> (2024). Download the PDF directly from the publisher: <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428" target="_blank" rel="noopener" style="color: #003A70;">journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428</a></p>
+      <p style=" margin-bottom: 20px"><strong>Source paper:</strong> The COPCOV trial of hydroxychloroquine/chloroquine for COVID-19 prevention, an open-access randomised controlled trial published in <em>PLOS Medicine</em> (2024). Download the PDF directly from the publisher: <a href="https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428" target="_blank" rel="noopener">journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1004428</a></p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;">You will extract two tables from this single PDF. Both look superficially tractable (neither has merged column headers or nested column groups), yet both contain the kinds of structural features that everyday research tables actually have, and that AI extraction tools quietly mishandle. The exercise tests what your tool does with the features that show up in real papers rather than the rare textbook-complex cases.</p>
+      <p style=" margin-bottom: 20px">You will extract two tables from this single PDF. Both look superficially tractable (neither has merged column headers or nested column groups), yet both contain the kinds of structural features that everyday research tables actually have, and that AI extraction tools quietly mishandle. The exercise tests what your tool does with the features that show up in real papers rather than the rare textbook-complex cases.</p>
 
       <ul class="styled-list">
         <li><strong>Table 1: Demographic details of COPCOV study participants.</strong> Three data columns (HCQ/CQ arm, Placebo arm, Total). Watch for: bold section headers spanning all columns (<em>Existing comorbidities</em>, <em>Baseline symptoms</em>) that are visual organisers rather than data rows; implicit category grouping under labels like &ldquo;Sex, n (%)&rdquo; and &ldquo;Smoking, n (%)&rdquo;; embedded italics in row labels (<em>n</em>, <em>N</em>, IQR); en-dash ranges in cell values (e.g. 23&ndash;39); and a <strong>page break in the middle of the table</strong> with a &ldquo;(Continued)&rdquo; marker.</li>
         <li><strong>Table 2: Prespecified endpoints in the intention-to-treat population.</strong> Five data columns (Outcome, HCQ/CQ, Placebo, Risk ratio, p-value). Watch for: <strong>multi-line cell content</strong>, where each endpoint cell stacks the n/N count and the percentage with 95% CI on two visual lines but they are one logical cell; section divider rows (<em>Secondary endpoints:</em>) that span all data columns; bold sub-categorisation in row labels (<em>Primary endpoint:</em>, <em>Tertiary endpoint:</em>); footnote markers in cells (<code>*</code> after &ldquo;All-cause respiratory illness&rdquo;, <code>**</code> after the p-value 0.0002); mixed CI delimiters (mostly &ldquo;to&rdquo;, but one cell uses an en-dash); and text wrapping in narrow columns that splits values across visual lines for layout reasons only.</li>
       </ul>
 
-      <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Task:</strong></p>
+      <p style=" margin-top: 20px; margin-bottom: 15px"><strong>Task:</strong></p>
       <ol class="step-list">
         <li>Extract Table 1 using a tool of your choice. Suggested options: Docling for local processing (free, open-source, <code>pip install docling</code>), or direct upload of the PDF to Claude or GPT with a prompt asking for the table content as Markdown or CSV. Note which tool you used and any relevant settings.</li>
         <li>Repeat for Table 2 using the <em>same</em> tool, so the comparison isolates the effect of table content rather than tool choice.</li>
@@ -189,7 +278,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li>Identify which specific structural features in each table caused extraction failures, and whether the failure modes differ between the two tables.</li>
       </ol>
 
-      <p style="color: #444; line-height: 1.8; margin: 20px 0 10px;"><strong>What to document for your forum post:</strong></p>
+      <p style=" margin: 20px 0 10px"><strong>What to document for your forum post:</strong></p>
       <ul class="styled-list">
         <li><strong>Section headers as data rows:</strong> Did your tool treat <em>Existing comorbidities</em>, <em>Baseline symptoms</em>, and <em>Secondary endpoints:</em> as data rows, drop them silently, or mark them as headers? Each of these failure modes corrupts downstream analysis differently.</li>
         <li><strong>Page break (Table 1):</strong> Did the tool recognise that the table continues across the page break, or did it produce two disconnected tables? Was the &ldquo;(Continued)&rdquo; marker left in the output as if it were data?</li>
@@ -202,10 +291,9 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     </div>
 
     <!-- Assessment -->
-    <h2 class="section-title">&#128221; Weekly Assessment</h2>
+    <h2 class="section-title" id="s4">Weekly Assessment</h2>
 
-    <div class="highlight-box">
-      <h3>Multimodal Analysis Report &mdash; 1000 Words</h3>
+    <div class="highlight-box"><h3>Multimodal Analysis Report &mdash; 1000 Words</h3>
       <p>Use multimodal AI to process research materials relevant to your own research domain. You must use at least two different modalities (for example: an image and an audio recording; a PDF table and a scientific figure; a video and a document).</p>
       <p><strong>Your report should address:</strong></p>
       <p>1. <strong>What you did:</strong> which tools, which materials, what tasks you asked the AI to perform.</p>
@@ -218,33 +306,12 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     </div>
 
     <!-- Full Week Summary -->
-    <h2 class="section-title">&#128218; Full Week Summary</h2>
+    <h2 class="section-title" id="s5">Full Week Summary</h2>
 
-    <div class="intro-text" style="margin-top: 0;">
-      <h2>What You Have Learned This Week</h2>
+    <div class="intro-text" style="margin-top: 0"><h2>What You Have Learned This Week</h2>
       <p>AI can now see images, read documents, transcribe audio, and process hours of video. Even so, "reading" and "understanding" remain distinct. The gap between impressive demonstrations and reliable research use is large, and this week has been about measuring that gap.</p>
       <p>The CharXiv benchmark (introduced in 2024 with leading models at 47.1% vs. 80.5% for humans) established the pattern that runs through this week: real-world performance lags simplified benchmarks. Frontier model scores on CharXiv have improved substantially since, but the underlying gap shows up again in each modality and is the framing to carry forward. Transcription hallucination is pervasive: every transcript used in research requires full human verification rather than spot-checking. African language ASR has a real performance gap relative to English, but specialist tools (Intron Sahara, Lelapa AI) and fine-tuning significantly close it. Complex tables remain the hardest document AI problem: merged cells and multi-level headers cause extraction failures that are invisible without side-by-side verification.</p>
       <p>Video AI compounds failure modes from each modality. Verify temporal claims especially, and do not assume that a large context window means equal attention across the full recording. The "lost in the middle" problem applies to video as much as to long documents.</p>
       <p>The skill of the week is less about memorising which tool to use and more about the verification habits that make multimodal AI trustworthy for research: checking every extracted number, reviewing every transcript against audio, verifying every timestamp, and documenting what you checked and how.</p>
       <p><strong>Next week, Week 9:</strong> We turn to sycophancy, reasoning failures, and the specific ways AI misleads even when it is not hallucinating. The question shifts from "did the AI get the data right?" to "did the AI reason about the data correctly?"</p>
-    </div>
-
-  </div><!-- /content -->
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-8/Video and Multimodal Workflows.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Video and Multimodal Workflows</div></a>
-  <a class="page-nav-link" href="../week-8/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div><!-- /container -->
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body>
-</html>
+    </div></div><div class="prevnext"><a href="Video%20and%20Multimodal%20Workflows.html"><span class="d">&larr; Previous</span><span class="pt">Video and Multimodal Workflows</span></a><a class="next" href="Discussion%20Questions.html"><span class="d">Next &rarr;</span><span class="pt">Discussion Questions (to prepare before class)</span></a></div></div><div class="rightrail"><div class="rmeta">Week 8<br>Lesson 6<br>11 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Whisper</div>An open-source automatic speech recognition model from OpenAI that converts spoken audio into written text. Trained on a large multilingual dataset, it is widely used for transcription in research.</div><div class="snote"><div class="sk">WER (word error rate)</div>The standard measure of transcription accuracy: the percentage of words that are wrong (substituted, deleted, or inserted) against the correct reference text. A 10% WER means about one word in ten is incorrect.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

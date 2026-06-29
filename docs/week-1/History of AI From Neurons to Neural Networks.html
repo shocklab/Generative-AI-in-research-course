@@ -1,263 +1,198 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>History of Artificial Intelligence: From Neurons to Neural Networks</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-        
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-        
-        .ai-notice strong {
-            font-weight: 600;
-        }
-        
-        header {
-            background: #003A70;
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-        }
-        
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-        
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .timeline {
-            position: relative;
-            padding: 40px 0;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: #003A70;
-        }
-        
-        .timeline-section {
-            margin-bottom: 60px;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 2em;
-            color: #2a5298;
-            margin-bottom: 40px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .timeline-item:nth-child(odd) {
-            flex-direction: row;
-        }
-        
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
-        }
-        
-        .timeline-content {
-            width: 45%;
-            padding: 25px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-        
-        .timeline-marker {
-            width: 10%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1;
-        }
-        
-        .marker-circle {
-            width: 25px;
-            height: 25px;
-            background: white;
-            border: 4px solid #003A70;
-            border-radius: 50%;
-            box-shadow: 0 0 0 4px rgba(0, 58, 112, 0.2);
-        }
-        
-        .timeline-date {
-            font-weight: bold;
-            color: #003A70;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-        }
-        
-        .timeline-title {
-            font-size: 1.4em;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .timeline-description {
-            color: #555;
-            line-height: 1.6;
-        }
-        
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-        
-        .highlight-box h3 {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-        
-        .highlight-box ul {
-            margin-left: 20px;
-        }
-        
-        .highlight-box ul li {
-            margin-bottom: 10px;
-        }
-        
-        .era-badge {
-            display: inline-block;
-            padding: 5px 15px;
-            background: #003A70;
-            color: white;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-            
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                flex-direction: column !important;
-                align-items: flex-start;
-                padding-left: 60px;
-            }
-            
-            .timeline-content {
-                width: 100%;
-            }
-            
-            .timeline-marker {
-                position: absolute;
-                left: 15px;
-                width: auto;
-            }
-        }
-    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-</head><body><div class="container">
-    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
-<div class="ai-notice"><strong>Note:</strong> This page's design and content have been enhanced using Claude (Anthropic's AI assistant) to improve clarity and visual presentation.</div>
-<header>
-<h1>🧠 The Evolution of Artificial Intelligence</h1>
-<p>From Biological Neurons to Neural Networks: A Journey Through Two Centuries of Innovation</p>
-</header>
-<div class="content">
-<div class="highlight-box">
-<h3>📚 Where Should We Begin?</h3>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>The Evolution of Artificial Intelligence — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.48rem;line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.28rem;line-height:1.58;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.24rem;line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.33rem;line-height:1.62}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 1 &middot; Foundations of Generative AI</div><nav class="toc"><a class="lesson" href="Foundations%20of%20Generative%20AI.html">Foundations of Generative AI</a><a class="lesson cur" href="History%20of%20AI%20From%20Neurons%20to%20Neural%20Networks.html">History of AI: From Neurons to Neural Networks</a><div class="subs"><a href="#s1">The Pre-History (1770-1890)</a><a href="#s2">The Biological Foundations (1890-1943)</a><a href="#s3">The Birth of AI (1950-1969)</a><a href="#s4">Winters and Revival (1970-2006)</a><a href="#s5">The Statistical Turn: How AI Became Machine Learning (1990-2013)</a><a href="#s6">The Deep Learning Revolution (2010-2017)</a><a href="#s7">The Generative AI Era (2018-Present)</a></div><a class="lesson" href="A%20lightning%20tour%20of%20AI.html">A Lightning Tour of AI (Video)</a><a class="lesson" href="But%20what%20is%20a%20neural%20network.html">But What Is a Neural Network?</a><a class="lesson" href="Understanding%20How%20Generative%20AI%20Works.html">Understanding How Generative AI Works</a><a class="lesson" href="An%20introduction%20to%20Transformers.html">An Introduction to Transformers</a><a class="lesson" href="Current%20Generative%20AI%20Landscape.html">Current Generative AI Landscape (May 2026)</a><a class="lesson" href="Hands-On%20Exploration.html">Hands-On Exploration: Testing Generative AI Tools</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>The Evolution of Artificial Intelligence</h1><div class="deck">From Biological Neurons to Neural Networks: A Journey Through Two Centuries of Innovation</div></div><div class="abody"><div class="highlight-box"><h3>Where Should We Begin?</h3>
 <p>The story of artificial intelligence doesn't start with computers. It begins with understanding the human brain itself, with mechanical attempts to mimic intelligence, and with philosophical questions about the nature of thought. From 18th-century automata to modern transformers processing billions of parameters, this is the story of how we learned to teach machines to think.</p>
 </div>
 <!-- Pre-History Era -->
-<div class="timeline-section">
-<h2 class="section-title">🎭 The Pre-History (1770-1890)</h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Mechanical Wonder</span>
+<div class="timeline-section"><h2 class="section-title" id="s1">The Pre-History (1770-1890)</h2>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content"><span class="era-badge">Mechanical Wonder</span>
 <div class="timeline-date">1770</div>
 <div class="timeline-title">The Turk</div>
 <div class="timeline-description">Wolfgang von Kempelen's "Mechanical Turk" fascinated Europe and America for decades. This chess-playing automaton appeared to demonstrate machine intelligence, defeating famous opponents including Benjamin Franklin and Napoleon Bonaparte. Though it concealed a human chess master inside, the Turk captured the imagination of what intelligent machines might someday achieve and raised profound questions about the boundaries between human and artificial intelligence.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Visionary Pioneer</span>
 <div class="timeline-date">1843</div>
@@ -268,24 +203,18 @@
 </div>
 </div>
 <!-- Biological Foundations Era -->
-<div class="timeline-section">
-<h2 class="section-title">🔬 The Biological Foundations (1890-1943)</h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Neuroscience Revolution</span>
+<div class="timeline-section"><h2 class="section-title" id="s2">The Biological Foundations (1890-1943)</h2>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content"><span class="era-badge">Neuroscience Revolution</span>
 <div class="timeline-date">1890s</div>
 <div class="timeline-title">Understanding the Brain</div>
 <div class="timeline-description">Santiago Ramón y Cajal in Spain meticulously drew neurons and their connections by hand, creating beautiful illustrations that revealed the brain's cellular structure. His work established the neuron doctrine: the nervous system is made up of discrete cells rather than a continuous network. This insight into how biological intelligence works would eventually inspire artificial neural networks. His 1889 family photo and detailed drawings of neural tissue remain iconic in neuroscience.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Mathematical Logic</span>
 <div class="timeline-date">1910-1913</div>
@@ -293,27 +222,21 @@
 <div class="timeline-description">Alfred North Whitehead and Bertrand Russell's monumental three-volume work attempted to derive all mathematical truths from a set of logical axioms. Their famous proof that 1+1=2 required over 360 pages of formal logic. While the project ultimately faced limitations (as Gödel would later prove), it established rigorous foundations for mathematical logic and demonstrated that reasoning could be formalized, an insight that mattered for artificial intelligence. This work showed that thought itself might follow rules that could be mechanized.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Mathematical Neuroscience</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Mathematical Neuroscience</span>
 <div class="timeline-date">1943</div>
 <div class="timeline-title">The First Mathematical Neuron</div>
 <div class="timeline-description">Warren McCulloch (a psychiatrist and neurophysiologist) and Walter Pitts (a self-taught mathematical prodigy) published "A Logical Calculus of the Ideas Immanent in Nervous Activity." The paper demonstrated that networks of simple artificial neurons could compute any logical or arithmetic function. They showed that brain activity could be understood through logic and that, in theory, anything a brain could do could be done by a formal network of simple units. This was the birth of artificial neural networks, though the technology to build them wouldn't exist for decades.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
 </div>
 </div>
 <!-- Birth of AI Era -->
-<div class="timeline-section">
-<h2 class="section-title">🎯 The Birth of AI (1950-1969)</h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-section"><h2 class="section-title" id="s3">The Birth of AI (1950-1969)</h2>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Philosophical Foundation</span>
 <div class="timeline-date">1950</div>
@@ -321,21 +244,17 @@
 <div class="timeline-description">Alan Turing published "Computing Machinery and Intelligence," proposing the famous "Imitation Game" (now called the Turing Test): if a machine can convince a human interrogator that it's human through text-based conversation, does that demonstrate intelligence? Rather than defining intelligence philosophically, Turing proposed a practical test. His question "Can machines think?" reframed as "Can machines do what we (as thinking entities) can do?" established the operational foundation for AI research and remains influential, and controversial, today.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">The Field is Born</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">The Field is Born</span>
 <div class="timeline-date">1956</div>
 <div class="timeline-title">The Dartmouth Conference</div>
 <div class="timeline-description">John McCarthy, Marvin Minsky, Claude Shannon, and Nathan Rochester organized a summer workshop at Dartmouth College. Here, the term "Artificial Intelligence" was coined, and the field was officially born as a distinct discipline. The proposal optimistically stated: "Every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it." This confidence would drive research for decades, sometimes productively, sometimes leading to overpromising.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">First Learning Machine</span>
 <div class="timeline-date">1958</div>
@@ -343,21 +262,17 @@
 <div class="timeline-description">Frank Rosenblatt created the Mark I Perceptron at Cornell Aeronautical Laboratory, the first artificial neural network that could learn from examples. It used photocells to recognize simple patterns and could learn through trial and error. The New York Times reported it as "the embryo of an electronic computer that [the Navy] expects will be able to walk, talk, see, write, reproduce itself and be conscious of its existence." While wildly optimistic, the Perceptron proved that machines could learn.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Early Skepticism</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Early Skepticism</span>
 <div class="timeline-date">1966</div>
 <div class="timeline-title">The ALPAC Report</div>
 <div class="timeline-description">The Automatic Language Processing Advisory Committee (ALPAC) report on machine translation concluded there was "no immediate or predictable prospect of useful machine translation," finding it slower, less accurate, and roughly twice as expensive as human translation. After investing in AI-powered translation during the Cold War, the U.S. government found the results disappointing. This report foreshadowed the funding cuts that would define the first AI winter, an early sign of the gap between promises and reality.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Critical Analysis</span>
 <div class="timeline-date">1969</div>
@@ -368,28 +283,21 @@
 </div>
 </div>
 <!-- The Winters and Revival Era -->
-<div class="timeline-section">
-<h2 class="section-title">❄️ Winters and Revival (1970-2006)</h2>
-<div class="highlight-box" style="background: #2a5298;">
-<h3>The First AI Winter (1974-1980)</h3>
+<div class="timeline-section"><h2 class="section-title" id="s4">Winters and Revival (1970-2006)</h2>
+<div class="highlight-box"><h3>The First AI Winter (1974-1980)</h3>
 <p>The gap between expectations and reality became too large to ignore. Early AI systems worked in "toy" domains but failed in the messy real world. Speech recognition, natural language understanding, and computer vision all proved far harder than anticipated. The ALPAC report had already cooled enthusiasm for machine translation. Sir James Lighthill's influential 1973 report for the British government concluded: "In no part of the field have the discoveries made so far produced the major impact that was then promised." Government and corporate funding evaporated, and many AI researchers quietly shifted to other fields or rebranded their work.</p>
 </div>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Theoretical Advance</span>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content"><span class="era-badge">Theoretical Advance</span>
 <div class="timeline-date">1972</div>
 <div class="timeline-title">Adaptive Recurrent Neural Networks</div>
 <div class="timeline-description">Shun-ichi Amari developed adaptive recurrent neural networks, laying groundwork for processing sequences and temporal patterns. This work on networks with feedback connections would matter decades later for tasks like language processing and time-series prediction. Even during the AI winter, theoretical work continued quietly in the background.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Brief Revival</span>
 <div class="timeline-date">1980s</div>
@@ -397,21 +305,17 @@
 <div class="timeline-description">The 1980s saw commercial success with expert systems, AI programs that encoded human expertise as rules. Companies like Digital Equipment Corporation built systems that saved millions of dollars. Japan's "Fifth Generation" project promised revolutionary AI computers. But by the late 1980s, these systems' brittleness became apparent: they couldn't handle situations outside their narrow domains, were expensive to maintain, and couldn't learn from experience. When the hype collapsed, a second AI winter began. The lesson: rule-based intelligence, no matter how sophisticated, couldn't scale to general intelligence.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">The Breakthrough</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">The Breakthrough</span>
 <div class="timeline-date">1986</div>
 <div class="timeline-title">Backpropagation Revolutionizes Learning</div>
 <div class="timeline-description">David Rumelhart, Geoffrey Hinton, and Ronald Williams published "Learning Representations by Back-Propagating Errors," demonstrating how to efficiently train multi-layer neural networks. Backpropagation solved the problem Minsky and Papert had highlighted: by adding hidden layers and using gradient descent, networks could learn complex, non-linear patterns. This algorithm would become the foundation of modern deep learning. The paper showed that neural networks could discover useful internal representations: beyond matching inputs to outputs, they learned to understand structure in data.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Vision Revolution</span>
 <div class="timeline-date">1989</div>
@@ -419,21 +323,17 @@
 <div class="timeline-description">Yann LeCun and colleagues at Bell Labs developed Convolutional Neural Networks (CNNs), inspired by Hubel and Wiesel's discoveries about the visual cortex. Their LeNet system could read handwritten digits with high accuracy and was deployed by the U.S. Postal Service to automatically read zip codes. CNNs incorporated key insights: local connectivity, weight sharing, and hierarchical processing. These "convolution" operations allowed networks to automatically learn visual features (edges, textures, and eventually complex objects) without human feature engineering. This architecture would dominate computer vision three decades later.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Memory Networks</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Memory Networks</span>
 <div class="timeline-date">1997</div>
 <div class="timeline-title">Long Short-Term Memory (LSTM)</div>
 <div class="timeline-description">Sepp Hochreiter and Jürgen Schmidhuber introduced Long Short-Term Memory networks, solving a fundamental problem: standard recurrent networks couldn't learn patterns that spanned many time steps due to the "vanishing gradient problem." LSTMs introduced gating mechanisms that let networks learn when to remember, when to forget, and when to pay attention. The title of one of their papers, "LSTM Can Solve Hard Long Time Lag Problems," was prescient. LSTMs would become central to speech recognition, machine translation, and eventually, large language models. Knowing when to forget mattered as much as the ability to remember.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Renaissance Begins</span>
 <div class="timeline-date">2006</div>
@@ -444,24 +344,18 @@
 </div>
 </div>
 <!-- The Statistical Turn -->
-<div class="timeline-section">
-<h2 class="section-title">📊 The Statistical Turn: How AI Became Machine Learning (1990-2013)</h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Paradigm Shift</span>
+<div class="timeline-section"><h2 class="section-title" id="s5">The Statistical Turn: How AI Became Machine Learning (1990-2013)</h2>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content"><span class="era-badge">Paradigm Shift</span>
 <div class="timeline-date">1990</div>
 <div class="timeline-title">Statistics Beats Rules</div>
 <div class="timeline-description">For decades, getting computers to handle language meant hand-writing grammatical rules, in the tradition of Noam Chomsky's formal linguistics. Then a team at IBM (including Frederick Jelinek, Peter Brown, and Robert Mercer) tried something heretical: ignore the rules and count the patterns. Their 1990 paper "A Statistical Approach to Machine Translation" learned to translate not from grammar but from probabilities harvested from millions of aligned sentences, and speech recognition had already taken the same turn using Hidden Markov Models. The mood was caught by a line famously (if apocryphally) attributed to Jelinek: "Every time I fire a linguist, the performance of the speech recognizer goes up." It was a break from symbolic, rules-based AI, and it worked. Language, it turned out, yielded to counting.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Machine Learning</span>
 <div class="timeline-date">1995</div>
@@ -469,38 +363,30 @@
 <div class="timeline-description">While neural networks languished, a different statistical idea flourished. In 1995 Corinna Cortes and Vladimir Vapnik introduced support vector machines, classifiers grounded in rigorous statistical learning theory that, for a decade, often outperformed neural networks on real problems. SVMs were emblematic of a shift in the field's identity: the goal moved quietly from "build an intelligent machine" to "learn a function from data." Through the late 1990s and 2000s this paradigm powered spam filters, search ranking, recommendation engines and fraud detection, often without anyone calling it "AI" at all. The discipline rebranded itself as machine learning and, later, data science. Histories often skip this unglamorous, statistics-first decade, yet it built the datasets, benchmarks, and habits of mind that the deep-learning revolution would inherit.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Language as Geometry</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Language as Geometry</span>
 <div class="timeline-date">2013</div>
 <div class="timeline-title">Word2Vec: Meaning Becomes Arithmetic</div>
 <div class="timeline-description">The statistical and neural threads finally fused. In 2013 Tomáš Mikolov and colleagues at Google released word2vec, which trained a simple neural network to predict a word from its neighbours and, in doing so, placed every word in a geometric space where meaning became arithmetic. The famous example: take the vector for "king," subtract "man," add "woman," and you land beside "queen." For the first time machines had a dense, learned representation of meaning rather than treating words as opaque symbols. Word embeddings became the input layer of nearly all modern language AI, and the core idea, representing meaning as a position in high-dimensional space, runs straight through to the transformers and large language models in the next chapter.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
 </div>
 </div>
 <!-- Deep Learning Revolution -->
-<div class="timeline-section">
-<h2 class="section-title">🚀 The Deep Learning Revolution (2010-2017)</h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Public Breakthrough</span>
+<div class="timeline-section"><h2 class="section-title" id="s6">The Deep Learning Revolution (2010-2017)</h2>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content"><span class="era-badge">Public Breakthrough</span>
 <div class="timeline-date">2011</div>
 <div class="timeline-title">Watson Wins Jeopardy!</div>
 <div class="timeline-description">IBM's Watson defeated Jeopardy! champions Ken Jennings and Brad Rutter, demonstrating sophisticated natural language understanding and question-answering capabilities. Unlike chess or Go, Jeopardy! requires understanding puns, wordplay, and cultural references. Watson's victory showcased AI's growing ability to handle messy, real-world language and knowledge. Jennings graciously noted in his final response: "I for one welcome our new computer overlords."</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Unsupervised Learning</span>
 <div class="timeline-date">2012</div>
@@ -508,21 +394,17 @@
 <div class="timeline-description">Google researchers trained a massive neural network on 10 million unlabeled YouTube thumbnails. Without being told what to look for, the network spontaneously learned to recognize cats, human faces, and bodies. This demonstrated that neural networks could discover meaningful patterns without explicit labels, a step toward more general AI. The "Google Cat Paper" captured public imagination: machines teaching themselves what cats are by watching YouTube felt both futuristic and oddly relatable.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">The Turning Point</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">The Turning Point</span>
 <div class="timeline-date">2012</div>
 <div class="timeline-title">AlexNet and ImageNet</div>
 <div class="timeline-description">Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton's "AlexNet" crushed the ImageNet image recognition competition, achieving 15.3% error rate compared to the second-place 26.2%. The margin was enormous, far beyond an incremental improvement. AlexNet demonstrated that deep learning worked at scale, that GPUs could accelerate training dramatically, and that with enough data, neural networks could surpass traditional computer vision. Major tech companies suddenly pivoted to deep learning. The modern AI boom had begun. Within three years, deep learning would surpass human-level performance on ImageNet.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Superhuman Performance</span>
 <div class="timeline-date">2015</div>
@@ -530,21 +412,17 @@
 <div class="timeline-description">Microsoft's ResNet achieved 3.6% error on ImageNet, better than estimated human performance at ~5%. Deep learning had definitively exceeded human capabilities at a complex visual task. The tables from research papers showed AI crossing human-relative performance ranges: from first attempts at beginner level (1998), to superhuman (2012-2015), to far above human (2020+). Computer vision transformed from an impossible problem to a solved problem in under two decades.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Intuition and Creativity</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Intuition and Creativity</span>
 <div class="timeline-date">2016</div>
 <div class="timeline-title">AlphaGo Defeats Lee Sedol</div>
 <div class="timeline-description">DeepMind's AlphaGo beat world champion Lee Sedol 4-1 at Go, a game with more possible board positions than atoms in the universe. Unlike chess engines that rely on brute-force search, AlphaGo combined deep neural networks with Monte Carlo tree search, learning from millions of games and self-play. Move 37 in Game 2, a move no human would consider, stunned the Go world with its creativity. The victory went beyond computation; it demonstrated something like intuition, pattern recognition, and even creativity. Lee Sedol himself acknowledged: "AlphaGo's moves are so beautiful and creative."</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Architecture Revolution</span>
 <div class="timeline-date">2017</div>
@@ -555,24 +433,18 @@
 </div>
 </div>
 <!-- Generative AI Era -->
-<div class="timeline-section">
-<h2 class="section-title">✨ The Generative AI Era (2018-Present)</h2>
-<div class="timeline">
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Scaling Laws</span>
+<div class="timeline-section"><h2 class="section-title" id="s7">The Generative AI Era (2018-Present)</h2>
+<div class="timeline"><div class="timeline-item"><div class="timeline-content"><span class="era-badge">Scaling Laws</span>
 <div class="timeline-date">2018-2020</div>
 <div class="timeline-title">GPT, GPT-2, and GPT-3</div>
 <div class="timeline-description">OpenAI's GPT series demonstrated that scaling up transformer models produced emergent capabilities. GPT-2 (2019, 1.5B parameters) was initially considered "too dangerous to release" due to concerns about generating misinformation. GPT-3 (2020, 175B parameters) could perform tasks it was never explicitly trained for: translation, arithmetic, writing code, even basic reasoning, all through "few-shot learning" with just a few examples. The race to scale had begun. Researchers discovered that bigger models were better at the same tasks and could also do entirely new things. "More is different," as the physicist Philip Anderson once wrote.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Mainstream Moment</span>
 <div class="timeline-date">November 30, 2022</div>
@@ -580,21 +452,17 @@
 <div class="timeline-description">OpenAI released ChatGPT, a conversational interface to GPT-3.5 fine-tuned with reinforcement learning from human feedback (RLHF). It reached 100 million users in 2 months, at the time the fastest-growing consumer application in history (later overtaken, for example by Threads in 2023). Unlike previous AI breakthroughs confined to research labs or narrow domains, ChatGPT put powerful AI in everyone's hands. Students used it for homework, programmers for debugging, writers for brainstorming. AI entered mainstream consciousness. The world would never be quite the same.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Visual Creativity</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Visual Creativity</span>
 <div class="timeline-date">2022-2023</div>
 <div class="timeline-title">The Image Generation Revolution</div>
 <div class="timeline-description">Midjourney, DALL-E 2, and Stable Diffusion democratized AI art generation. Diffusion models, which learn to gradually denoise images, could create photorealistic images, paintings in any style, or entirely novel creations from text descriptions. An AI-generated image ("Théâtre D'opéra Spatial") won first place at the Colorado State Fair's art competition, sparking fierce debate about creativity, authorship, and the future of art. Artists both celebrated the new medium and protested copyright concerns. The barrier between imagination and image had all but disappeared.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Frontier Models</span>
 <div class="timeline-date">2023</div>
@@ -602,21 +470,17 @@
 <div class="timeline-description">GPT-4 demonstrated significant advances: it reportedly passed the bar exam near the 90th percentile (a figure later disputed — Martínez (2024) found roughly the 48th percentile on essays and the 68th overall), scored 1410 on the SAT, and could reason about images as well as text. The model showed improved reasoning, less harmful output, and better factual accuracy. It also exhibited genuine multimodal understanding, comprehending relationships between images and text. Microsoft researchers published "Sparks of Artificial General Intelligence," arguing GPT-4 showed early signs of general intelligence. Whether or not one agrees, the capabilities were undeniable and, to many, unexpected.</div>
 </div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content"><span class="era-badge">Competitive Landscape</span>
+<div class="timeline-item"><div class="timeline-content"><span class="era-badge">Competitive Landscape</span>
 <div class="timeline-date">2023-2024</div>
 <div class="timeline-title">The Model Explosion</div>
 <div class="timeline-description">Competition intensified as major players released frontier models: Anthropic's Claude (focused on safety and reliability), Google's Gemini (with strong multimodal capabilities), Meta's Llama (open-source), and many others. Each brought different strengths: Claude excelled at subtle reasoning and following instructions; Gemini integrated deeply with Google's ecosystem; Llama democratized access to powerful models. The question shifted from "AI exists" to "which AI for which task?" The cambrian explosion of AI models created both opportunity and confusion.</div>
 </div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
-<div class="timeline-content" style="opacity: 0;"></div>
+<div class="timeline-content" style="opacity: 0"></div>
 </div>
-<div class="timeline-item">
-<div class="timeline-content" style="opacity: 0;"></div>
-<div class="timeline-marker">
-<div class="marker-circle"></div>
+<div class="timeline-item"><div class="timeline-content" style="opacity: 0"></div>
+<div class="timeline-marker"><div class="marker-circle"></div>
 </div>
 <div class="timeline-content"><span class="era-badge">Real-World Impact</span>
 <div class="timeline-date">2024-2025</div>
@@ -627,10 +491,9 @@
 </div>
 </div>
 <!-- Ethics and Challenges -->
-<div class="highlight-box" style="background: #8B0000;">
-<h3>⚖️ Ethics and Critical Challenges</h3>
+<div class="highlight-box"><h3>Ethics and Critical Challenges</h3>
 <p><strong>As AI grows more powerful and ubiquitous, critical questions and challenges emerge that we must address:</strong></p>
-<ul style="margin-top: 15px;">
+<ul style="margin-top: 15px">
 <li><strong>Bias in Datasets:</strong> AI systems learn from historical data, which means they can perpetuate and even amplify societal biases. Facial recognition systems perform worse on darker skin tones: MIT researcher Joy Buolamwini's work revealed error rates up to 34% higher for darker-skinned women. Criminal justice algorithms disproportionately flag minority defendants as high-risk for recidivism. Police departments using "predictive policing" send officers to neighborhoods that were historically over-policed, creating a self-fulfilling prophecy. As one article title warned: "AI is sending people to jail—and getting it wrong." The bias sits in the data and the systems we've built, not in the math.</li>
 <li><strong>Ownership and Copyright:</strong> Major lawsuits are challenging how AI companies use creative works for training. The New York Times, Getty Images, and thousands of artists have sued, arguing their copyrighted material was used without permission. GitHub Copilot (trained on code repositories) faced class-action lawsuits for potentially reproducing copyrighted code. OpenAI was even sued for defamation when ChatGPT generated false information. The fundamental question: If an AI creates something after training on millions of copyrighted works, who owns what it produces? Current copyright law wasn't designed for machines that learn.</li>
 <li><strong>The Nature of Creativity:</strong> When AI-generated art wins competitions, what does it mean to be a creator? Is the person who wrote the prompt the artist, or is the AI? If a musician uses AI to generate melodies, who composed the song? These questions reach past philosophy into copyright, compensation, and what we value as a society. Some argue AI democratizes creativity; others see it as plagiarism at scale. Both might be right.</li>
@@ -639,42 +502,21 @@
 <li><strong>Existential Risk:</strong> Some researchers, including pioneers like Geoffrey Hinton and Yoshua Bengio, warn that advanced AI could pose existential risks to humanity. Their concern is not killer robots. It is that once AI systems exceed human intelligence, we may lose the ability to control or even understand them. Others dismiss these concerns as science fiction. The debate is ongoing, intense, and increasingly urgent as AI capabilities accelerate. Even if the risk is small, the stakes (human extinction) are infinitely high. How much caution is appropriate?</li>
 </ul>
 </div>
-<div class="highlight-box">
-<h3>🔮 Where Do We Go From Here?</h3>
+<div class="highlight-box"><h3>Where Do We Go From Here?</h3>
 <p><strong>The questions facing us today are profound:</strong></p>
-<ul style="margin-top: 15px;">
+<ul style="margin-top: 15px">
 <li><strong>Is this an existential risk?</strong> Are we creating something we can't control? Or is this concern overblown hype from people watching too many sci-fi movies?</li>
 <li><strong>Will AI be a tool or a solution?</strong> Is AI just the latest in a long line of productivity tools, like spreadsheets or databases, or does it represent something fundamentally different? Can it actually solve humanity's grand challenges (climate change, disease, poverty), or will it merely be "a handy tool" that makes some tasks easier?</li>
 <li><strong>Are we witnessing AGI?</strong> Artificial General Intelligence (AI that matches or exceeds human capabilities across all domains) has been "20 years away" for 70 years. But GPT-4's performance on exams, coding challenges, and creative tasks has some researchers arguing we're closer than ever. Others point out that current AI lacks true understanding, can't reason reliably, and fails at tasks that children find trivial. Who's right matters enormously.</li>
 <li><strong>How do we govern this?</strong> Technology moves faster than regulation. The EU's AI Act, Biden's Executive Order on AI, and various state laws attempt to address safety, bias, and transparency. But can regulation keep pace? Should it? Too much regulation might stifle innovation; too little might allow harm.</li>
 </ul>
-<p style="margin-top: 20px;"><strong>What's certain:</strong> The pace of change continues to accelerate. What took decades in the 1900s now takes years, months, or weeks. Research, regulation, public dialogue, and vigilance remain crucial as we navigate this era of rapid change.</p>
-<p style="margin-top: 15px; font-style: italic;">The technology that took 135 years to develop is now evolving faster than we can fully comprehend. The next breakthroughs may come in months rather than years.</p>
+<p style="margin-top: 20px"><strong>What's certain:</strong> The pace of change continues to accelerate. What took decades in the 1900s now takes years, months, or weeks. Research, regulation, public dialogue, and vigilance remain crucial as we navigate this era of rapid change.</p>
+<p style="margin-top: 15px; font-style: italic">The technology that took 135 years to develop is now evolving faster than we can fully comprehend. The next breakthroughs may come in months rather than years.</p>
 </div>
-<div class="highlight-box">
-<h3>🧭 Explore further: periodising AI's history</h3>
+<div class="highlight-box"><h3>Explore further: periodising AI's history</h3>
 <p>This lesson tells the story as a single arc. A complementary way to think about it is to divide the history into <em>eras</em>. Dominik Lukeš's open-source project <a href="https://github.com/techczech/ai-history-eras" target="_blank" rel="noopener"><strong>Eras of AI History</strong></a> does exactly that, with a wink, mapping AI's development onto a civilisation's own ages: a prehistory of philosophers and logicians; an "axial age" (1936–1973) when ideas from mathematics, logic, neuroscience and linguistics converged at once; a "middle ages" of patchy but foundational progress; an "industrial revolution" of statistical methods (the statistical turn above); and the deep-learning and transformer eras that followed. It's worth browsing as a prompt rather than a definitive answer: <em>how</em> we choose to carve up a history, and where we draw the lines, shapes the story we tell. As Lukeš notes, the most recent period is arguably still "more political science than history."</p>
 </div>
-<div style="text-align: center; margin-top: 40px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
-<p style="font-size: 1.3em; color: #2a5298; font-weight: 600; margin-bottom: 15px;">"With great power comes great responsibility."</p>
-<p style="color: #666; line-height: 1.8;">From Cajal's hand-drawn neurons to neural networks with trillions of parameters,<br>from the Mechanical Turk's illusion to machines that genuinely learn,<br>from "Can machines think?" to machines that converse, create, and code—<br>the story of AI is still being written.</p>
-<p style="margin-top: 20px; color: #2a5298; font-weight: 500;">The next chapter is ours to create.</p>
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-1/Foundations of Generative AI.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Foundations of Generative AI</div></a>
-  <a class="page-nav-link" href="../week-1/A lightning tour of AI.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">A Lightning Tour of AI (Video)</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+<div style="text-align: center; margin-top: 40px; padding: 30px; border-radius: 10px"><p style=" margin-bottom: 15px">"With great power comes great responsibility."</p>
+<p>From Cajal's hand-drawn neurons to neural networks with trillions of parameters,<br>from the Mechanical Turk's illusion to machines that genuinely learn,<br>from "Can machines think?" to machines that converse, create, and code—<br>the story of AI is still being written.</p>
+<p style="margin-top: 20px">The next chapter is ours to create.</p>
+</div></div><div class="prevnext"><a href="Foundations%20of%20Generative%20AI.html"><span class="d">&larr; Previous</span><span class="pt">Foundations of Generative AI</span></a><a class="next" href="A%20lightning%20tour%20of%20AI.html"><span class="d">Next &rarr;</span><span class="pt">A Lightning Tour of AI (Video)</span></a></div></div><div class="rightrail"><div class="rmeta">Week 1<br>Lesson 2<br>20 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Neural network</div>A computational system loosely inspired by the brain, made of layers of simple mathematical units (neurons) connected together. By adjusting connection strengths through training, it learns to recognise patterns in data.</div><div class="snote"><div class="sk">Turing Test</div>A benchmark proposed by Alan Turing in 1950: if a machine can hold a text conversation a human judge cannot distinguish from talking to another person, it is taken to have demonstrated intelligence.</div><div class="snote"><div class="sk">Backpropagation</div>The training algorithm that makes multi-layer neural networks learnable: after each prediction, the error is traced backwards through the layers so every connection can be nudged to reduce future mistakes.</div><div class="snote"><div class="sk">Transformer</div>A neural network architecture introduced in 2017 that processes whole sequences of text at once and uses attention to weigh how relevant each word is to every other. It underpins virtually all modern large language models.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

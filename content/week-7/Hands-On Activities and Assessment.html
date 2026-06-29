@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 7.7 - Hands-On Activities &amp; Assessment</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+    .ai-notice strong {
+        font-weight: 600;
+    }
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+    .content {
+        padding: 50px 40px;
+    }
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .intro-text h2::before {
+        content: '🎯';
+    }
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+    .styled-list li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+    .resource-placeholder p {
+        color: #666;
+    }
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .comparison-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .comparison-table th {
+        background: #003A70;
+        color: white;
+        padding: 15px;
+        text-align: left;
+        font-weight: 600;
+    }
+    .comparison-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid #e9ecef;
+        color: #555;
+    }
+    .comparison-table tr:last-child td {
+        border-bottom: none;
+    }
+    .comparison-table tr:hover {
+        background: #f9f9f9;
+    }
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+    .decision-framework {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 3px solid #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+    }
+    .decision-framework h4 {
+        color: #003A70;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+    }
+    .decision-framework p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+    .step-list {
+        list-style: none;
+        counter-reset: steps;
+        margin: 20px 0;
+    }
+    .step-list > li {
+        counter-increment: steps;
+        padding: 15px 15px 15px 60px;
+        position: relative;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        border-radius: 12px;
+    }
+    .step-list > li::before {
+        content: counter(steps);
+        position: absolute;
+        left: 15px;
+        top: 22px;
+        width: 35px;
+        height: 35px;
+        background: #003A70;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    .tool-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-top: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+    .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .tool-card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .tool-card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+        .comparison-table {
+            font-size: 0.85em;
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 8px 10px;
+        }
+    }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 7 &bull; Sub-Lesson 7</div>
+<h1>🧪 <span style="color: #ffffff;">Hands-On: Activities &amp; Assessment</span></h1>
+<p>Putting it all together: cleaning messy data, generating and verifying analysis code, interpreting AI-produced results, and your weekly assessment</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>This final session of Week 7 is entirely practical. You will work through three activities that build on everything we have covered this week about AI-assisted data analysis and visualisation. The activities move from the foundational skill of data cleaning, through the practice of code verification, to the harder challenge of evaluating AI-generated interpretations of data. Each activity develops a different dimension of the competence you need to use AI safely and effectively in your data work.</p>
+<p>By the end of this session, you will have hands-on experience spotting and correcting errors in datasets, a tested workflow for verifying AI-generated analysis code before trusting its results, and sharpened instincts for distinguishing sound data interpretation from plausible-sounding nonsense. The weekly assessment then asks you to bring all of these skills together in a complete AI-assisted data analysis.</p>
+</div>
+
+<!-- ACTIVITY 1: DATA CLEANING CHALLENGE -->
+<h2 class="section-title">🧹 Activity 1: The Data Cleaning Challenge</h2>
+<div class="decision-framework">
+<h4>Objective</h4>
+<p>Discover how AI handles messy, real-world data and where it silently fails. Data cleaning is the unglamorous foundation of all analysis, yet it is where most errors are introduced and where AI tools are at once most helpful and most dangerous. This exercise gives you a dataset with planted errors of the kinds that appear in real research data, and asks you to use AI to find and fix them.</p>
+
+<h4 style="margin-top: 25px;">Setup</h4>
+<ol class="step-list">
+<li><strong>Obtain or create a messy dataset.</strong> Use a dataset from your own field if you have one, or create a small spreadsheet (50-100 rows, 6-8 columns) with deliberately planted errors. Your dataset should include a mix of the following problems:
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">Missing values: some blank cells, some coded as "N/A", some as "-999", some as "NA"</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">Inconsistent formatting: dates in mixed formats (01/03/2024, 3 Jan 2024, 2024-01-03), inconsistent capitalisation in categories</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">Outliers: a few values that are clearly impossible (e.g., an age of 350, a temperature of 9999)</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">Duplicate rows: two or three exact or near-exact duplicates</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">Unit inconsistencies: some values in metres and others in centimetres in the same column, or some weights in kilograms and others in pounds</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">Encoding errors: garbled characters in text fields, trailing whitespace in category labels</li>
+</ul>
+</li>
+<li><strong>Record your planted errors.</strong> Before giving the dataset to AI, make a private list of every error you planted. This is your answer key: you will use it to evaluate how well the AI does.</li>
+<li><strong>Ask AI to clean the dataset.</strong> Upload or paste the data into your chosen AI tool and prompt it: <em>"This dataset has data quality issues. Please identify all problems you can find, explain each one, and provide cleaned data."</em> Do not hint at what kinds of errors exist.</li>
+<li><strong>Compare the AI's findings against your answer key.</strong> Work through the AI's response systematically. For each error you planted, check whether the AI found it, correctly diagnosed it, and proposed an appropriate fix.</li>
+<li><strong>Test the AI on ambiguous cases.</strong> Ask the AI about specific rows or values where the "correct" cleaning decision depends on domain knowledge. For example, if a value is unusual but not impossible in your field, does the AI flag it as an error or leave it alone? Does it make assumptions about your domain that are wrong?</li>
+</ol>
+
+<h4 style="margin-top: 25px;">What to Record</h4>
+<ul class="styled-list">
+<li>How many of your planted errors did the AI find? Which types of errors was it best at catching, and which did it miss?</li>
+<li>Did the AI find any "errors" that were not actually errors, correct data that it mistakenly flagged as problematic?</li>
+<li>For the errors it did catch, were its proposed fixes appropriate? Did it make domain-specific assumptions that were wrong?</li>
+<li>What cleaning decisions require human judgement that AI cannot provide? Where is the boundary between automation and expertise?</li>
+<li>If you used the AI's cleaned dataset without checking, what errors would have remained in your data, and what would those errors do to your analysis?</li>
+</ul>
+
+<div class="warning-box" style="margin-top: 20px;">
+<h4>⚠️ The Silent Error Problem</h4>
+<p>The most dangerous AI cleaning errors are the ones it "fixes" incorrectly without telling you, not the ones it misses. An AI might silently convert all your dates to a single format but get the day/month order wrong for ambiguous dates like 03/04/2024. It might remove a value it considers an outlier that is actually a genuine and important measurement. Verify the AI's cleaning decisions, not just its error detection.</p>
+</div>
+</div>
+
+<!-- ACTIVITY 2: CODE GENERATION AND VERIFICATION -->
+<h2 class="section-title">💻 Activity 2: Code Generation and Verification</h2>
+<div class="case-study">
+<h4>Objective</h4>
+<p style="color: #555; line-height: 1.7;">Practice the complete cycle of describing an analysis in natural language, receiving AI-generated code, and then verifying that the code does what you intended. AI-assisted data analysis asks you to bridge the gap between your research question and the code that answers it, even if you did not write that code yourself. The verification step is not optional. It is what separates research from guessing.</p>
+
+<h4 style="margin-top: 25px;">Setup</h4>
+<ol class="step-list">
+<li><strong>Choose a dataset and research question.</strong> Use a dataset you are familiar with, ideally from your own research, or a well-known public dataset in your field. Formulate a specific, answerable research question that requires at least two analytical steps (e.g., data transformation plus statistical test, or grouping plus visualisation).</li>
+<li><strong>Describe your analysis to the AI in plain language.</strong> Write a clear natural-language description of what you want to do with the data. Do not use technical statistical terms unless they are essential. Describe the analysis the way you would explain it to a colleague from a different field. For example: <em>"I want to compare the average response times between the three treatment groups, check whether the differences are statistically meaningful, and create a chart showing the distribution of response times in each group."</em></li>
+<li><strong>Receive and read the code before running it.</strong> When the AI generates code, read through it line by line before executing anything. Even if you are not fluent in the programming language, try to follow the logic. Note anything you do not understand; these are the places where errors are most likely to hide.
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">Ask the AI to add comments explaining each section if the code is not already well-commented</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">If you cannot follow the logic at all, ask the AI to explain step by step what the code does</li>
+</ul>
+</li>
+<li><strong>Verify the code using at least three of the following techniques:</strong>
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Manual spot-check:</strong> Pick 3-5 specific data points and trace the calculation by hand. Does the code produce the same result you get with a calculator or spreadsheet?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Edge case testing:</strong> What happens with missing values, zeros, or extreme values? Does the code handle them correctly or crash?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Sanity check on output:</strong> Do the results make sense given what you know about the data? If the mean is supposed to be around 50 and the code reports 5000, something is wrong.</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Alternative implementation:</strong> Ask a different AI tool (or the same tool in a new conversation) to write code for the same analysis. Compare the two implementations: do they produce identical results?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Statistical assumption check:</strong> Does the code verify the assumptions of the statistical tests it uses? If it runs a t-test, does it check for normality and equal variances first?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Ask AI to critique itself:</strong> Paste the code back to the AI and ask: "What could go wrong with this analysis? What assumptions does this code make that might not hold for my data?"</li>
+</ul>
+</li>
+<li><strong>Document every discrepancy.</strong> If any verification technique reveals a problem (a wrong result, a missing assumption check, an edge case that breaks the code), document it precisely. Then ask the AI to fix the issue and verify the fix.</li>
+</ol>
+
+<h4 style="margin-top: 25px;">What to Record</h4>
+<ul class="styled-list">
+<li>How well did the AI translate your natural-language description into code? Did it capture your intent correctly, or did it make assumptions about what you wanted?</li>
+<li>Which verification technique found the most issues? Which technique do you think is most important for your typical analyses?</li>
+<li>Did the code make any statistical assumptions that were not appropriate for your data? Did it check those assumptions or just proceed?</li>
+<li>If you had run the code without verification, what errors would have ended up in your results?</li>
+<li>How confident are you in the final, verified code? What residual uncertainties remain?</li>
+</ul>
+
+<div class="info-box" style="margin-top: 20px;">
+<h4>💬 Discussion</h4>
+<p>Most students find that AI-generated code is syntactically correct and runs without errors, which is not the same as being analytically correct. The common problems are: choosing an inappropriate statistical test for the data structure, failing to check assumptions, handling missing data by silently dropping rows (which changes your effective sample size), and producing visualisations that display the data but obscure the important patterns. The verification step catches these problems before they become errors in your research.</p>
+</div>
+</div>
+
+<!-- ACTIVITY 3: INTERPRETATION CHALLENGE -->
+<h2 class="section-title">🔎 Activity 3: The Interpretation Challenge</h2>
+<div class="case-study">
+<h4>Objective</h4>
+<p style="color: #555; line-height: 1.7;">Develop your ability to evaluate AI-generated interpretations of data analysis results. Generating code and producing numbers is only half of data analysis; the other half is interpreting what those numbers mean. AI tools are increasingly capable of producing narrative interpretations of statistical output, but these interpretations range from accurate to badly misleading. This exercise trains you to tell the difference.</p>
+
+<h4 style="margin-top: 25px;">Setup</h4>
+<ol class="step-list">
+<li><strong>Run an analysis on a dataset you understand well.</strong> Use the code from Activity 2, or run a fresh analysis on data from your field. The analysis should produce clear statistical output: means, p-values, confidence intervals, effect sizes, or similar quantitative results.</li>
+<li><strong>Generate four AI interpretations.</strong> Ask the AI to interpret the results four separate times, using four different prompts. Start a fresh conversation for each interpretation so that earlier responses do not influence later ones:
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Interpretation A:</strong> <em>"Here are my analysis results. What do they mean?"</em> (minimal context)</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Interpretation B:</strong> <em>"Here are my results. I expected to find [state your hypothesis]. Do the results support this?"</em> (leading prompt)</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Interpretation C:</strong> <em>"Here are my results. Please provide a critical interpretation, including what the results do NOT show and what alternative explanations exist."</em> (critical prompt)</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Interpretation D:</strong> <em>"Here are my results. Interpret them as if you were writing the discussion section of a peer-reviewed paper in [your field]."</em> (academic framing)</li>
+</ul>
+</li>
+<li><strong>Evaluate each interpretation.</strong> Read all four interpretations carefully and assess each one against the following criteria:
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Accuracy:</strong> Are all factual claims about the data correct? Does the interpretation correctly report what the numbers show?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Overclaiming:</strong> Does the interpretation claim more than the data supports? Does it confuse correlation with causation, or treat a non-significant trend as meaningful?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Completeness:</strong> Does it mention important limitations, alternative explanations, or caveats? Or does it present a single clean narrative?</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;"><strong>Bias:</strong> Does the interpretation change depending on how you framed the prompt? Did the leading prompt (B) produce a more confirmatory interpretation?</li>
+</ul>
+</li>
+<li><strong>Write your own interpretation.</strong> After evaluating all four AI versions, write your own interpretation of the results in 150-200 words. Draw on the best elements of the AI interpretations, correct the errors, and add the domain expertise that only you can provide.</li>
+</ol>
+
+<h4 style="margin-top: 25px;">What to Record</h4>
+<ul class="styled-list">
+<li>Which of the four interpretations was most accurate? Which was most misleading? What made the difference?</li>
+<li>Did the leading prompt (Interpretation B) produce confirmation bias in the AI's response? How did it differ from the others?</li>
+<li>What did the critical prompt (Interpretation C) catch that the others missed? Was it genuinely critical, or did it just add generic caveats?</li>
+<li>What domain-specific knowledge did you bring to your own interpretation that none of the AI versions included?</li>
+<li>If a reader saw only one of the AI interpretations without the data, would they come away with a correct understanding of what the analysis showed?</li>
+</ul>
+
+<div class="warning-box" style="margin-top: 20px;">
+<h4>⚠️ The Confirmation Bias Trap</h4>
+<p>This exercise usually shows that AI interpretations are highly sensitive to framing. When you tell the AI what you expected to find, it tends to produce an interpretation that confirms your expectations, even when the data does not clearly support them. The danger is that this feels like independent validation of your hypothesis when it is the AI echoing your own priors back to you. In your real research, generate interpretations using the critical prompt (C) first, before layering in your own expectations.</p>
+</div>
+</div>
+
+<!-- WEEKLY ASSESSMENT -->
+<h2 class="section-title">📝 Weekly Assessment</h2>
+<div class="decision-framework">
+<h4>AI-Assisted Data Analysis (1000 words + code)</h4>
+<p>This week's assessment asks you to conduct a complete data analysis using AI tools, then document and critically reflect on the process. It tests your ability to use AI as an analytical partner rather than a code generator, while keeping the rigour and critical judgement that separate research from automated number-crunching.</p>
+
+<h4 style="margin-top: 25px;">Requirements</h4>
+<ol class="step-list">
+<li><strong>Choose a dataset and formulate a research question.</strong> Use data from your own research, or select a publicly available dataset relevant to your field. The research question should require meaningful analysis that goes beyond descriptive statistics. You need to do something with the data that involves at least one inferential step (comparison, relationship, prediction, classification, or similar).
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">If using your own data, ensure you have appropriate ethical clearance for sharing it in a course context</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">If using a public dataset, briefly explain why this dataset is appropriate for your question</li>
+</ul>
+</li>
+<li><strong>Conduct the analysis using AI tools (1000 words + code).</strong> Write up the analysis as if it were part of a research paper: describe the data, explain your analytical approach, present the results (including at least one visualisation), and interpret the findings. Include the AI-generated code (annotated with comments) as an appendix. The 1000 words covers the written analysis only; code and figures are additional.
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">You may use any AI tools: ChatGPT, Claude, Gemini, Copilot, or specialised data analysis tools</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">The write-up should follow standard academic structure: introduction to the question, methods, results, discussion</li>
+</ul>
+</li>
+<li><strong>Include a Verification Report (minimum 300 words, does not count toward 1000).</strong> Document how you verified the AI-generated code and results. You must apply at least three verification techniques from Activity 2. For each technique, describe what you checked, what you found, and what (if anything) you corrected.
+<ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
+<li style="padding: 4px 0; background: none; counter-increment: none;">Be specific: "I spot-checked the mean of column X by calculating it in a spreadsheet and got 47.3, which matched the code output" is far better than "I verified the results"</li>
+<li style="padding: 4px 0; background: none; counter-increment: none;">If you found errors during verification, describe the original error, how you caught it, and how you fixed it</li>
+</ul>
+</li>
+<li><strong>Include a Critical Commentary (minimum 200 words, does not count toward 1000).</strong> Reflect on the limitations of your AI-assisted analysis. Address: What could the AI not do that you had to do yourself? Where did the AI's suggestions require domain knowledge to evaluate? What would you do differently next time? How confident are you in the results, and what residual uncertainties remain?</li>
+<li><strong>Include a Disclosure Statement</strong> describing the role of AI in your analysis, similar to those you practised in Week 6. Specify which tools you used, what they contributed (data cleaning, code generation, visualisation, interpretation), and what you contributed independently.</li>
+</ol>
+</div>
+
+<p style="font-size: 1.1em; color: #555; margin: 30px 0 15px;"><strong>Assessment Criteria:</strong></p>
+<div class="card-grid">
+<div class="card">
+<h3>Analysis Quality (30%)</h3>
+<p>Appropriate research question, sound analytical approach, correct statistical methods, clear and informative visualisation, and accurate interpretation of results. We are looking for evidence that you understand the analysis, not just that you ran the code. Can you explain why this method is appropriate for this data? Do the conclusions follow from the evidence?</p>
+</div>
+<div class="card">
+<h3>Verification (30%)</h3>
+<p>Thorough, specific, and honest documentation of how you verified the AI-generated code and results. At least three verification techniques applied with concrete evidence of what was checked and what was found. A good verification report shows a researcher who does not trust output until it has been independently confirmed, and who can explain how they confirmed it.</p>
+</div>
+<div class="card">
+<h3>Critical Commentary (25%)</h3>
+<p>Thoughtful reflection on the limitations of AI-assisted analysis, the role of domain expertise, and the boundary between what AI can and cannot do with data. We want to see critical thinking: specific observations about where AI helped, where it fell short, and what you learned about using AI tools for data work in your field, rather than generic disclaimers.</p>
+</div>
+<div class="card">
+<h3>Documentation (15%)</h3>
+<p>Clear code comments, well-structured write-up, appropriate disclosure statement, and overall presentation quality. The code appendix should be readable and well-annotated. The disclosure statement should be specific enough that a reader could understand exactly what role AI played in the analysis.</p>
+</div>
+</div>
+
+<div class="info-box">
+<h4>📤 Submission</h4>
+<p><strong>Upload to Amathuba by the deadline indicated on the activity.</strong> Include the verification report, critical commentary, and disclosure statement as clearly marked sections within your submission. The code appendix should be included as a separate section or attachment. The verification report, critical commentary, and disclosure statement do not count toward the 1000-word limit for the analysis itself.</p>
+</div>
+
+<!-- WEEK 7 SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2 style="display: flex; align-items: center; gap: 10px;">Week 7 Summary &amp; Key Takeaways</h2>
+<ul class="styled-list">
+<li><strong>AI can accelerate every stage of data analysis, but acceleration without verification is faster error production.</strong> The speed of AI-generated code and analysis is a genuine advantage, but only when paired with systematic checking. Unverified AI output is automation with unknown error rates, not research.</li>
+<li><strong>Data cleaning is where AI is simultaneously most helpful and most dangerous.</strong> AI tools excel at detecting formatting inconsistencies and common data quality issues, but they make silent assumptions about domain-specific decisions that can corrupt your data in ways that are difficult to detect downstream.</li>
+<li><strong>Always read AI-generated code before running it, and verify the output after running it.</strong> Syntactically correct code that executes without errors can still be analytically wrong code that fails to answer your research question. The most dangerous bugs produce plausible-looking but wrong results.</li>
+<li><strong>AI interpretations of data are highly sensitive to how you frame the prompt.</strong> Tell the AI what you expected to find, and it will tend to confirm your expectations. That is confirmation bias amplified by technology, not independent validation. Start with a neutral or critical framing.</li>
+<li><strong>Statistical assumption checking is non-negotiable.</strong> AI tools frequently apply statistical tests without verifying whether the assumptions of those tests are met by your data. A t-test on non-normal data, a correlation on non-linear relationships, a regression with violated independence: these are the default failure mode of AI-generated analysis code, not edge cases.</li>
+<li><strong>Domain expertise is irreplaceable.</strong> AI can generate code and produce numbers, but it cannot tell you whether those numbers make sense in the context of your field. An outlier that AI removes might be your most important finding. A "significant" result might be meaningless in practical terms. Only you can make these judgements.</li>
+<li><strong>Natural language to code is powerful but lossy.</strong> Every translation from your research question to a prompt to AI-generated code involves information loss and potential misinterpretation. The clearer and more specific your description, the better the code, but some gap between intention and implementation always remains.</li>
+<li><strong>Reproducibility requires documentation.</strong> If you use AI to generate analysis code, documenting what you asked for and what the AI produced is essential for reproducibility. Another researcher should be able to understand what you did, why you made the choices you made, and how you verified the results.</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Looking ahead:</strong> Next week, we turn to <em>Multimodal AI for Research</em>. Having now used AI tools for literature review, writing, ideation, and data analysis, we extend the toolkit beyond text, working with images, audio, video, and documents, and applying the same critical eye to what multimodal models can and cannot reliably do.</p>
+</div>
+</div>
+<!-- end .content -->
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-7/Agentic Data Analysis.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Agentic Data Analysis: Giving AI Tools, Not Just Questions</div></a>
+  <a class="page-nav-link" href="../week-7/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- end .container -->
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

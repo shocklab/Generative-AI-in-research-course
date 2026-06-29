@@ -1,0 +1,559 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 5.1 - The AI Literature Review Landscape</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f0f2f5;
+            color: #2d3748;
+            line-height: 1.7;
+            font-size: 1.05em;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .ai-notice {
+            background: #f0f4ff;
+            border-left: 4px solid #003A70;
+            padding: 12px 20px;
+            font-size: 0.85em;
+            color: #4a5568;
+            margin: 20px 30px 0 30px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        header {
+            background: #003A70;
+            color: #ffffff;
+            padding: 50px 40px 40px;
+            text-align: center;
+        }
+
+        .week-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .intro-text {
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .intro-text h2::before {
+            content: '\1F3AF';
+            margin-right: 10px;
+        }
+
+        .intro-text h2 {
+            color: #003A70;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            color: #003A70;
+            font-size: 1.5em;
+            margin: 50px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #003A70;
+            font-weight: 700;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #003A70;
+            font-size: 1.15em;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #4a5568;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .styled-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .styled-list li {
+            padding: 8px 0 8px 25px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .styled-list li::before {
+            content: '\25B8';
+            color: #003A70;
+            font-weight: bold;
+            position: absolute;
+            left: 5px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: #e8f0fe;
+            border-left: 5px solid #003A70;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .highlight-box strong {
+            color: #003A70;
+        }
+
+        .warning-box {
+            background: #fff8e1;
+            border-left: 5px solid #f9a825;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .warning-box strong {
+            color: #e65100;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #1976d2;
+            border-radius: 0 15px 15px 0;
+            padding: 25px 30px;
+            margin: 25px 0;
+            font-size: 1em;
+        }
+
+        .info-box strong {
+            color: #0d47a1;
+        }
+
+        .resource-placeholder {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 20px 25px;
+            margin: 15px 0;
+        }
+
+        .resource-placeholder h4 {
+            color: #003A70;
+            margin-bottom: 5px;
+        }
+
+        .resource-placeholder p {
+            color: #4a5568;
+            font-size: 0.93em;
+        }
+
+        .resource-placeholder a {
+            color: #2a5298;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-placeholder a:hover {
+            text-decoration: underline;
+        }
+
+        .technical-detail {
+            background: #f1f5f9;
+            border: 2px solid #003A70;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .technical-detail h3 {
+            color: #003A70;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table thead th {
+            background: #003A70;
+            color: #ffffff;
+            padding: 14px 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .comparison-table tbody td {
+            padding: 12px 18px;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 0.93em;
+        }
+
+        .comparison-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #e8f0fe;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            header {
+                padding: 30px 20px;
+            }
+
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.25em;
+            }
+
+            .ai-notice {
+                margin: 15px 15px 0 15px;
+            }
+
+            .comparison-table {
+                font-size: 0.85em;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 10px 12px;
+            }
+        }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 5 • Sub-Lesson 1</div>
+<h1>🔍 <span style="color: #ffffff;">The AI Literature Review Landscape</span></h1>
+<p>Understanding the ecosystem of AI-powered tools transforming how researchers find, organise, and synthesise academic literature</p>
+</header>
+<div class="content"><!-- INTRO -->
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p>Literature review is arguably one of the most immediately useful applications of generative AI for researchers at every career stage. Whether you are a first-year Master's student trying to get your bearings in a new field or a seasoned academic keeping up with a fast-moving literature, AI tools can dramatically accelerate the process of finding, reading, and synthesising published work.</p>
+<p style="margin-top: 12px;">In this session, we map the landscape: what types of AI literature tools exist, what they actually do under the hood, and how to think about combining them into an effective workflow. We will also confront a serious limitation. AI can find and summarise papers quickly, but it can also confidently cite papers that do not exist. Understanding why this happens (and how to protect yourself) is a theme we will return to throughout this week.</p>
+<p style="margin-top: 12px;">By the end of this sub-lesson, you should be able to identify the major categories of AI literature tools, understand the mechanisms that power them, and begin thinking about which combination might work best for your own research.</p>
+</div>
+<!-- SECTION 1 -->
+<h2 class="section-title">🗺️ Why AI Changes Literature Review</h2>
+<p>Before we look at specific tools, it helps to understand what makes literature review so difficult in the first place, and how AI addresses each of those challenges. Traditional literature review has several well-known pain points, each of which AI tools tackle in different ways.</p>
+<div class="card-grid">
+<div class="card">
+<h3>⏰ Time and Scale</h3>
+<p><strong>The problem:</strong> Academic publishing has grown exponentially. Biomedical research alone adds over 1 million papers per year to PubMed. No researcher can manually screen everything relevant to their topic.</p>
+<p style="margin-top: 10px;"><strong>How AI helps:</strong> Automated screening, summarisation, and data extraction let you process hundreds of abstracts in the time it would take to read ten. Tools like Elicit can extract structured data from dozens of papers simultaneously.</p>
+</div>
+<div class="card">
+<h3>🔑 Keyword Dependency</h3>
+<p><strong>The problem:</strong> Traditional database searches rely on exact keyword matching. Different fields use different terminology for the same concept. A search for "machine learning" might miss papers that only use "statistical learning" or "pattern recognition."</p>
+<p style="margin-top: 10px;"><strong>How AI helps:</strong> Semantic search tools understand meaning, not just keywords. You can describe your research question in plain language, and the tool finds conceptually related papers regardless of the specific terminology they use.</p>
+</div>
+<div class="card">
+<h3>🌐 Language Barriers</h3>
+<p><strong>The problem:</strong> Significant research is published in languages other than English. Valuable work in Mandarin, Spanish, German, or Portuguese journals is routinely overlooked by English-speaking researchers. The problem is even worse in lower resource languages, and often AI does not help here.</p>
+<p style="margin-top: 10px;"><strong>How AI helps:</strong> Large language models can read and summarise papers in dozens of languages. Some tools can translate abstracts or even full papers on the fly, opening up previously inaccessible literatures.</p>
+</div>
+<div class="card">
+<h3>📈 Keeping Current</h3>
+<p><strong>The problem:</strong> Even after completing a thorough review, the literature keeps growing. Staying up to date requires continuous monitoring across multiple journals and preprint servers.</p>
+<p style="margin-top: 10px;"><strong>How AI helps:</strong> Tools like ResearchRabbit can send automated alerts when new papers appear that are related to your collection. Semantic Scholar offers AI-powered recommendations based on your reading history and library.</p>
+</div>
+<div class="card">
+<h3>🔶 Coverage Gaps</h3>
+<p><strong>The problem:</strong> Keyword searches inevitably miss papers. You find what you know to look for, but the most important papers are sometimes the ones you did not know existed, especially papers in adjacent fields that use different vocabulary.</p>
+<p style="margin-top: 10px;"><strong>How AI helps:</strong> Citation-mapping tools like Connected Papers and Litmaps build visual networks showing how papers relate to each other through citations. These tools reveal clusters of related work that no keyword search would have found.</p>
+</div>
+<div class="card">
+<h3>📋 Synthesis Difficulty</h3>
+<p><strong>The problem:</strong> Finding papers is only half the battle. Synthesising findings across dozens of studies (comparing methods, reconciling conflicting results, identifying gaps) is cognitively demanding and prone to bias.</p>
+<p style="margin-top: 10px;"><strong>How AI helps:</strong> Grounded chat tools let you upload a collection of papers and ask questions across all of them. You can ask "What methods did these studies use?" or "Where do these papers disagree?" and get an answer that draws from your actual sources.</p>
+</div>
+</div>
+<div class="warning-box"><strong>⚠️ A critical caveat:</strong> AI tools address these pain points, but they do not eliminate them. Every AI literature tool has significant limitations, from incomplete coverage of databases to the persistent risk of hallucinated references. Think of these tools as powerful assistants, not replacements for your own critical judgment. We will explore specific failure modes in later sessions this week.</div>
+<!-- SECTION 2 -->
+<h2 class="section-title">🧩 Three Categories of AI Literature Tools</h2>
+<p>The landscape of AI-powered literature tools can feel overwhelming. New products launch every month, and many make similar-sounding claims. To cut through the noise, it helps to group these tools into three broad categories based on how they work. Each category has distinct strengths and weaknesses.</p>
+<div class="card-grid">
+<div class="card">
+<h3>🔗 1. Citation-Based Discovery Tools</h3>
+<p><strong>Examples:</strong> <a href="https://www.connectedpapers.com/" target="_blank" rel="noopener">Connected Papers</a>, <a href="https://www.researchrabbit.ai/" target="_blank" rel="noopener">ResearchRabbit</a>, <a href="https://jenni.ai/literature-reviews?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=23438701412&amp;utm_term=litmaps%20ia&amp;utm_content=791610294373&amp;cmc_adid=ga_791610294373_23438701412&amp;utm_group=195014744527&amp;tw_source=google&amp;tw_adid=791610294373&amp;tw_campaign=23438701412&amp;tw_kwdid=kwd-2420657330083&amp;gad_source=1&amp;gad_campaignid=23438701412&amp;gbraid=0AAAAAou4ae1yD6lXJUE3bxBOs3XDN2UB-&amp;gclid=Cj0KCQjw7IjOBhDyARIsAFzrWQwUueLxafJ0xqdW_cxXbXmOMG4GXW6AL_p_YWvnqhzjyNCg3AZu9kQaAl6mEALw_wcB" target="_blank" rel="noopener">Litmaps</a>, <a href="https://chromewebstore.google.com/detail/cocites-beta/kjnhiadmccnbfbfjkmkhinglkaolnhcj" target="_blank" rel="noopener">CoCites</a></p>
+<p style="margin-top: 10px;">These tools work by analysing citation chains and co-citation networks. Given a "seed" paper, they map out which other papers cite it, which papers it cites, and which papers frequently appear alongside it in reference lists. The result is a visual network of related work.</p>
+<p style="margin-top: 10px;"><strong>Key strength:</strong> They find papers you would never discover through keyword search alone: papers that are conceptually related because the research community treats them as related (by citing them together). This is a different approach from text-based search.</p>
+<p style="margin-top: 10px;"><strong>Important distinction:</strong> These tools typically rely on bibliometric data, not AI language models. Connected Papers uses co-citation analysis algorithms, not GPT. This means they do not hallucinate papers: every paper they show you is real and genuinely connected through the citation network.</p>
+</div>
+<div class="card">
+<h3>🔬 2. Semantic Search &amp; Synthesis Tools</h3>
+<p><strong>Examples:</strong> <a href="https://elicit.com/" target="_blank" rel="noopener">Elicit</a>, <a href="https://consensus.app/" target="_blank" rel="noopener">Consensus</a>, <a href="https://www.semanticscholar.org/" target="_blank" rel="noopener">Semantic Scholar</a>, <a href="https://scispace.com/" target="_blank" rel="noopener">SciSpace</a>&nbsp;</p>
+<p style="margin-top: 10px;">These tools use AI language models to understand the meaning of your research question, not just the keywords. When you type a question like "Does mindfulness meditation reduce cortisol levels?", a semantic search tool interprets that question and finds papers whose content is conceptually relevant, even if they never use the word "mindfulness."</p>
+<p style="margin-top: 10px;"><strong>Key strength:</strong> They can extract structured data from papers (sample sizes, methods, findings), summarise results across multiple studies, and even answer specific research questions grounded in the literature. Elicit, for example, can create a table comparing the methods and findings of 20 papers in minutes.</p>
+<p style="margin-top: 10px;"><strong>Key risk:</strong> Because these tools use language models, they can sometimes generate inaccurate summaries or misrepresent a paper's findings. The quality of the underlying model matters enormously. Always verify key claims against the original paper.</p>
+</div>
+<div class="card">
+<h3>💬 3. Grounded Chat &amp; RAG Tools</h3>
+<p><strong>Examples:</strong> <a href="https://workspace.google.com/products/notebooklm/?utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=1713698-Workspace-DR-EMEA-ZA-en-Google-BKWS-EXA-na&amp;utm_content=c-Hybrid+%7C+BKWS+-+EXA+%7C+Txt+-+Gemini+-+Notebook+LM-2153050522686&amp;utm_term=notebooklm&amp;gclsrc=aw.ds&amp;gad_source=1&amp;gad_campaignid=20830673235&amp;gclid=Cj0KCQjw7IjOBhDyARIsAFzrWQyqiUymLW36csT6GZtcaT_4-7YKeefUMNJI38u8jIeY2Zo91ZOMVq4aAuOeEALw_wcB" target="_blank" rel="noopener">NotebookLM</a> (Google), <a href="https://claude.ai/new" target="_blank" rel="noopener">Claude with uploaded papers,</a> <a href="https://www.perplexity.ai/" target="_blank" rel="noopener">Perplexity</a>, <a href="https://www.chatpdf.com/" target="_blank" rel="noopener">ChatPDF</a></p>
+<p style="margin-top: 10px;">These tools let you upload your own documents and have a conversation with them. They use a technique called Retrieval-Augmented Generation (RAG): when you ask a question, the tool searches through your uploaded documents for relevant passages, then uses a language model to compose an answer based on those specific passages.</p>
+<p style="margin-top: 10px;"><strong>Key strength:</strong> Responses are grounded in your actual sources. Rather than drawing on the model's general training data (which may contain errors), the model works directly with the text you provide. This significantly reduces hallucination risk, though it does not eliminate it entirely.</p>
+<p style="margin-top: 10px;"><strong>Key risk:</strong> The quality of the output depends on the quality and completeness of the documents you upload. If a crucial paper is missing from your collection, the tool cannot account for it. RAG tools can also occasionally misinterpret the source text, especially with complex statistical results or subtle arguments.</p>
+</div>
+</div>
+<div class="info-box"><strong>💡 A note on overlap:</strong> Many tools increasingly span multiple categories. Semantic Scholar, for instance, offers both semantic search and citation graph exploration. Elicit combines semantic search with data extraction that uses RAG-like techniques. The categories above describe the primary mechanism each tool relies on, but the boundaries are blurring as the field evolves.</div>
+<!-- SECTION 3 -->
+<h2 class="section-title">⚙️ What's Actually Happening Under the Hood</h2>
+<p>You do not need to be a machine learning engineer to use these tools effectively, but a conceptual understanding of how they work will help you predict when they will succeed and when they will fail. Here is a simplified look at the mechanisms powering each category.</p>
+<div class="technical-detail">
+<h3>🔗 Citation-Based Tools: Graph Analysis</h3>
+<p>These tools operate on large citation databases. Semantic Scholar, for example, maintains a corpus of over 220 million academic papers with their citation relationships. When you provide a seed paper, the tool builds a graph where each node is a paper and each edge is a citation link.</p>
+<p style="margin-top: 10px;">The tool then uses graph analysis algorithms to find papers that are most strongly connected to your seed. These include papers that directly cite it, papers that share many of the same references (co-citation analysis), and papers frequently cited by the same later papers (bibliographic coupling). The result is a map of the "neighbourhood" of your research topic as defined by the research community's own citation behaviour.</p>
+<p style="margin-top: 10px;"><strong>When this works well:</strong> In established fields with mature citation networks. <strong>When this struggles:</strong> For very new topics (preprints haven't been cited yet), interdisciplinary work (citations may not cross field boundaries), or topics where key papers are in databases the tool doesn't index.</p>
+</div>
+<div class="technical-detail">
+<h3>🔬 Semantic Search Tools: Embeddings and Vector Similarity</h3>
+<p>Semantic search tools use embedding models, which are neural networks that convert text into high-dimensional numerical vectors (lists of numbers). The key property of these vectors is that texts with similar meanings end up with similar vectors, regardless of the specific words used.</p>
+<p style="margin-top: 10px;">When you type a research question, it gets converted into a vector. The tool then compares this vector against pre-computed vectors for millions of paper abstracts, finding the papers whose vectors are closest to yours in this mathematical space. This is why you can search for "Does exercise help depression?" and find papers titled "Physical activity as an intervention for major depressive disorder": the meanings are close even though the words differ.</p>
+<p style="margin-top: 10px;"><strong>When this works well:</strong> When your question is clear and the relevant literature uses broadly similar concepts. <strong>When this struggles:</strong> With highly technical or specialised queries where domain-specific nuance matters, or when the same term means different things in different fields (e.g., "bias" in statistics vs. psychology vs. electronics).</p>
+</div>
+<div class="technical-detail">
+<h3>💬 RAG Tools: Chunking, Retrieval, and Generation</h3>
+<p>Retrieval-Augmented Generation (RAG) is a multi-step process:</p>
+<ul class="styled-list" style="margin-top: 10px;">
+<li><strong>Chunking:</strong> Your uploaded documents are split into smaller segments (typically a few hundred words each).</li>
+<li><strong>Embedding:</strong> Each chunk is converted into a numerical vector, just like in semantic search.</li>
+<li><strong>Retrieval:</strong> When you ask a question, it is also converted into a vector. The system finds the chunks whose vectors are most similar to your question.</li>
+<li><strong>Generation:</strong> The retrieved chunks are provided to the language model as context, along with your question. The model generates an answer based specifically on this context.</li>
+</ul>
+<p style="margin-top: 10px;"><strong>When this works well:</strong> When your question can be answered by a specific passage in one of your documents. <strong>When this struggles:</strong> When the answer requires synthesising information spread across many different sections, when the chunking splits a key argument across two chunks, or when the question requires reasoning that goes beyond what is stated in the text.</p>
+</div>
+<div class="info-box"><strong>🧠 Why this matters for you:</strong> Understanding these mechanisms helps you become a more strategic user. If you know that citation tools rely on graph data, you will not expect them to find a preprint published yesterday. If you know that semantic search depends on embeddings, you will rephrase a failed query rather than just adding more keywords. If you know that RAG retrieves chunks, you will understand why it sometimes gives incomplete answers to broad questions, and know to break your broad question into smaller, more specific ones.</div>
+<!-- SECTION 4 -->
+<h2 class="section-title">🔄 Building a Combined Workflow</h2>
+<p>No single AI tool does everything well. Citation tools do not summarise. Semantic search tools do not let you have a conversation with your papers. RAG tools only know about the documents you upload. The most effective approach is to combine multiple tools strategically, using each where it is strongest.</p>
+<p style="margin-top: 15px;">Here is a recommended workflow that many researchers are finding effective. Think of it as a starting template that you can adapt to your own field and research style.</p>
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Step</th>
+<th>Action</th>
+<th>Tool Category</th>
+<th>Example Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Landscape Scan</strong></td>
+<td>Start broad. Search with your research question in plain language to understand what is out there and identify the main themes.</td>
+<td>Semantic Search</td>
+<td>Elicit, Consensus, Semantic Scholar</td>
+</tr>
+<tr>
+<td><strong>2. Identify Seeds</strong></td>
+<td>From your initial scan, identify 3–5 key papers that are central to your topic: highly cited, recent reviews, or foundational studies.</td>
+<td>Your judgment</td>
+<td>(Manual selection)</td>
+</tr>
+<tr>
+<td><strong>3. Map the Network</strong></td>
+<td>Feed your seed papers into citation-mapping tools to discover related work you would not have found through keyword search.</td>
+<td>Citation-Based Discovery</td>
+<td>Connected Papers, ResearchRabbit, Litmaps</td>
+</tr>
+<tr>
+<td><strong>4. Deep Reading &amp; Synthesis</strong></td>
+<td>Read through the papers first yourself, identifying things that you don't understand. Upload your most important papers to a grounded chat tool. Ask specific questions across them: methods used, key findings, points of disagreement.</td>
+<td>Grounded Chat / RAG</td>
+<td>NotebookLM, Claude, Perplexity</td>
+</tr>
+<tr>
+<td><strong>5. Verify &amp; Validate</strong></td>
+<td>Cross-check every AI-surfaced paper against traditional databases. Confirm that cited papers actually exist and say what the AI claims they say.</td>
+<td>Traditional Databases</td>
+<td>Google Scholar, Web of Science, Scopus</td>
+</tr>
+<tr>
+<td><strong>6. Manage &amp; Organise</strong></td>
+<td>Use a reference manager to store and organise everything. Zotero is free, open source, and increasingly has AI plugins for tagging and annotation.</td>
+<td>Reference Management</td>
+<td>Zotero + AI plugins, Paperpile</td>
+</tr>
+<tr>
+<td><strong>7. Take detailed notes and synthesise<br></strong></td>
+<td>You have to actively engage at every step along the way, and the step of actually collating what you have found into a form that makes sense to you is vital! If you don't do this, then you may have just offloaded the cognitively demanding tasks.</td>
+<td>Notetaker of your choice</td>
+<td>Obsidian, Google docs, pen and paper</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-box"><strong>🔑 Key insight:</strong> The most effective researchers combine multiple tools strategically, using each where it is strongest, and always verifying against traditional databases. No AI tool currently has complete coverage of all published work, and no AI summary should be trusted without verification against the original source.</div>
+<div class="warning-box"><strong>⚠️ Step 5 is non-negotiable.</strong> It is tempting to skip verification when AI tools give you fluent, confident-sounding results. But AI language models can and do fabricate references, inventing plausible-sounding authors, journal names, and even DOIs. We will examine real examples of this failure mode in later sessions. For now, take this as a firm rule: every reference that enters your work must be independently verified.</div>
+<!-- SECTION 5 -->
+<h2 class="section-title">📚 Readings for This Week</h2>
+<p>The following readings provide the evidence base and critical perspectives that underpin this week's sessions. The first three are core readings; the supplementary items are recommended for those who want to go deeper.</p>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 15px;">Core Readings</h3>
+<div class="resource-placeholder">
+<h4>📄 Khraisha, Q., et al. (2024). "<a href="https://pubmed.ncbi.nlm.nih.gov/38484744/" target="_blank" rel="noopener">Can Large Language Models Replace Systematic Reviews</a>?"</h4>
+<p><em>Research Synthesis Methods.</em> Preprint available.</p>
+<p style="margin-top: 8px;">A careful evaluation of whether LLMs can perform the core tasks of systematic review (screening, extraction, synthesis) to the standard required. The answer is qualified, and worth reading in full. <strong>Read at least the introduction and conclusion;</strong> this is both sobering and informative about the current state of AI capabilities in this domain.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 van Dis, E.A.M., et al. (2023). "ChatGPT: Five Priorities for Research."</h4>
+<p><em>Nature</em>, 614. Free to read. <a href="https://doi.org/10.1038/d41586-023-00288-7" target="_blank" rel="noopener">https://doi.org/10.1038/d41586-023-00288-7</a></p>
+<p style="margin-top: 8px;">An early and influential piece outlining the key priorities the research community needs to address as AI tools become embedded in scientific practice. Published in Nature and widely cited, it frames many of the debates that are still ongoing. Short and accessible.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Wagner, G., et al. (2022). "<a href="https://journals.sagepub.com/doi/full/10.1177/02683962211048201" target="_blank" rel="noopener">Artificial Intelligence and the Conduct of Literature Reviews.</a>"</h4>
+<p><em>Journal of Information Technology</em>, 37(2). Open access.</p>
+<p style="margin-top: 8px;">A thorough overview of how AI was being applied to literature review processes before the current generative AI wave. Provides valuable context for understanding what has changed and what challenges remain. The framework they propose for thinking about AI-assisted review stages is still useful.</p>
+</div>
+<h3 style="color: #003a70; margin-top: 30px; margin-bottom: 15px;">Supplementary Readings</h3>
+<div class="resource-placeholder">
+<h4>Elicit Team.&nbsp;</h4>
+<p><a href="https://elicit.com/blog" target="_blank" rel="noopener">Elicit blog.</a> Free. A clear explanation from the team behind one of the most popular AI research tools about what their system actually does, including its limitations. Useful for understanding the semantic search category.</p>
+</div>
+<div class="resource-placeholder">
+<h4>Syriani, E., et al. (2023). "<a href="https://arxiv.org/abs/2307.06464" target="_blank" rel="noopener">Assessing the Ability of ChatGPT to Screen Articles for Systematic Reviews.</a>"</h4>
+<p>arXiv:2307.06464. Free. An empirical study testing ChatGPT's ability to perform title and abstract screening, one of the most time-consuming steps in systematic review. Useful data on accuracy, sensitivity, and specificity.</p>
+</div>
+<div class="resource-placeholder">
+<h4>Mollick, E. .&nbsp;</h4>
+<p><a href="https://www.oneusefulthing.org/" target="_blank" rel="noopener"><em>One Useful Thing</em></a> (Substack). Free. Ethan Mollick consistently provides some of the most balanced, practical writing on AI in academic contexts. This piece explores how AI is changing the research paper as a format.</p>
+</div>
+<div class="resource-placeholder">
+<h4>Perplexity AI. (2024). "<a href="https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work" target="_blank" rel="noopener">How does Perplexity work?</a>"</h4>
+<p>Free online. Understanding how Perplexity's citation system works (and its limitations) is useful for anyone considering it as a research tool. Illustrates the RAG approach in practice.</p>
+</div>
+<div class="resource-placeholder">
+<h4>Retraction Watch. (ongoing). "<a href="https://retractionwatch.com/2026/02/21/weekend-reads-did-a-prof-invent-his-own-nobel-prize-former-dean-omits-pharma-ties-ai-generated-quotes-found-in-now-retracted-article-on-ai/" target="_blank" rel="noopener">Did a prof invent his own Nobel Prize?</a>"</h4>
+<p>Free online. A sobering and continuously updated resource documenting cases where AI-generated content has caused problems in published research. Essential context for understanding why verification matters.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>Key Takeaways</h2>
+<ul class="styled-list">
+<li>AI literature tools fall into three main categories: <strong>citation-based discovery</strong> (graph analysis), <strong>semantic search and synthesis</strong> (embeddings and language models), and <strong>grounded chat / RAG</strong> (conversation with your documents).</li>
+<li>Each category works through a different mechanism, which determines when it will succeed and when it will fail. Understanding the mechanism helps you use the tool more effectively.</li>
+<li>No single tool covers the full literature review workflow. The most effective approach combines multiple tools, using each where it is strongest.</li>
+<li>Verification against traditional databases and original sources is non-negotiable. AI tools can and do fabricate references, misrepresent findings, and miss important papers.</li>
+<li>The field is evolving rapidly. Tools that exist today may be superseded within months. The conceptual framework (understanding what types of tools exist and why) will remain useful even as specific products change.</li>
+</ul>
+<div class="highlight-box" style="margin-top: 25px;"><strong>👉 Up next:</strong> In the next session, we take a deep dive into the free tools available (Semantic Scholar, Connected Papers, ResearchRabbit, NotebookLM, and Google Scholar) with hands-on exploration of what each does best and where each falls short.</div>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-4/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+  <a class="page-nav-link" href="../week-5/Free Tools Deep Dive.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Free Tools Deep Dive</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

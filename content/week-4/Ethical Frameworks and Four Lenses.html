@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4.1 - Ethical Frameworks and Four Lenses</title>
+    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Lato', sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        background: #f5f5f5;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .ai-notice {
+        background: #e8f4f8;
+        color: #003A70;
+        padding: 15px 30px;
+        text-align: center;
+        font-size: 0.9em;
+        border-bottom: 1px solid #d0e8f2;
+    }
+
+    .ai-notice strong {
+        font-weight: 600;
+    }
+
+    header {
+        background: #003A70;
+        color: white;
+        padding: 50px 40px;
+        text-align: center;
+    }
+
+    .week-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+        font-size: 2.3em;
+        margin-bottom: 15px;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+
+    header p {
+        font-size: 1.1em;
+        opacity: 0.95;
+        max-width: 800px;
+        margin: 10px auto 0;
+    }
+
+    .content {
+        padding: 50px 40px;
+    }
+
+    .intro-text {
+        background: #f9f9f9;
+        padding: 35px;
+        border-radius: 15px;
+        border-left: 5px solid #003A70;
+        margin-bottom: 40px;
+    }
+
+    .intro-text h2 {
+        color: #2a5298;
+        font-size: 1.8em;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .intro-text h2::before {
+        content: '🎯';
+    }
+
+    .intro-text p {
+        font-size: 1.1em;
+        color: #495057;
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+
+    .section-title {
+        font-size: 2em;
+        color: #2a5298;
+        margin: 50px 0 30px;
+        padding-bottom: 15px;
+        border-bottom: 3px solid #003A70;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin: 30px 0;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #003A70;
+        transition: all 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h3 {
+        color: #2a5298;
+        font-size: 1.4em;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    .card p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .styled-list {
+        list-style: none;
+        margin-top: 15px;
+    }
+
+    .styled-list li {
+        padding: 8px 0 8px 25px;
+        color: #555;
+        position: relative;
+        line-height: 1.6;
+    }
+
+    .styled-list li::before {
+        content: '▸';
+        position: absolute;
+        left: 0;
+        color: #003A70;
+        font-weight: bold;
+    }
+
+    .highlight-box {
+        background: #003A70;
+        color: white;
+        padding: 30px;
+        border-radius: 15px;
+        margin: 40px 0;
+    }
+
+    .highlight-box h3 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .highlight-box p {
+        font-size: 1.05em;
+        line-height: 1.8;
+        opacity: 0.95;
+        margin-bottom: 12px;
+    }
+
+    .warning-box {
+        background: #fff8e1;
+        border-left: 5px solid #f9a825;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+    }
+
+    .warning-box h4 {
+        color: #e65100;
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+
+    .warning-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .info-box {
+        background: #f8f9fa;
+        padding: 20px 25px;
+        border-radius: 12px;
+        margin: 20px 0;
+        border-left: 4px solid #003A70;
+    }
+
+    .info-box h4 {
+        color: #2a5298;
+        font-size: 1.2em;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .info-box p {
+        color: #555;
+        line-height: 1.7;
+    }
+
+    .resource-placeholder {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
+        border: 2px dashed #003A70;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 25px 0;
+        text-align: center;
+    }
+
+    .resource-placeholder h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+
+    .resource-placeholder p {
+        color: #666;
+    }
+
+    .technical-detail {
+        background: white;
+        border: 2px solid #d0e8f2;
+        border-radius: 12px;
+        padding: 25px;
+        margin: 20px 0;
+    }
+
+    .technical-detail h4 {
+        color: #2a5298;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    .case-study {
+        background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
+        border: 2px solid #003A70;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 25px 0;
+    }
+
+    .case-study h4 {
+        color: #003A70;
+        font-size: 1.3em;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .card-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .back-nav { background: #f0f4f8; padding: 12px 30px; border-bottom: 1px solid #e0e0e0; } .back-nav a { color: #003A70; text-decoration: none; font-size: 0.9em; font-weight: 600; } .back-nav a:hover { text-decoration: underline; }
+        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
+       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
+       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
+    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
+    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
+    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
+    .highlight-box strong, .highlight-box em, .highlight-box span {
+        color: #ffffff !important;
+    }
+    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
+    </style>
+    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
+</head><body><div class="container">
+    <div class="back-nav"><a href="../index.html">&#8592; Back to Contents</a></div>
+<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
+<header>
+<div class="week-badge">Week 4 • Sub-Lesson 1</div>
+<h1>🧭 <span style="color: #ffffff;">Ethical Frameworks &amp; Four Lenses</span></h1>
+<p>Why existing research ethics fall short, and four philosophical traditions for navigating AI dilemmas</p>
+</header>
+<div class="content">
+<div class="intro-text">
+<h2>What We'll Cover</h2>
+<p><em>This session comes with a major caveat: I am not an ethicist and so in future versions of this course, this section will be done in collaboration with those for whom this is their area of expertise. Much of the following is a very simplified view, but hopefully one which makes you think. This caveat is a very important one to keep in mind throughout.</em></p>
+<p>AI introduces ethical questions that traditional research ethics frameworks were never designed to answer. Institutional Review Boards, <a href="https://www.hhs.gov/ohrp/regulations-and-policy/belmont-report/index.html" target="_blank" rel="noopener">the Belmont Report</a>, and informed consent protocols emerged in a world where humans were the sole producers of research outputs. They remain necessary, but they are not sufficient for a world where AI can co-author papers, generate synthetic data, code analyses, and write literature reviews.</p>
+<p>This session introduces four complementary philosophical traditions (consequentialism, deontology, virtue ethics, and ubuntu) as lenses for reasoning through the ethical dilemmas that AI creates in research. The goal is not to prescribe rules, but to develop your capacity for ethical reasoning. Different lenses will often produce different answers, and that disagreement is what we want.</p>
+<p>Note also that these are not the only ethical frameworks, and again, this should be seen as an extremely simplified view of each of them.</p>
+</div>
+<!-- SECTION 1: THE ETHICS GAP -->
+<h2 class="section-title">🔍 The Ethics Gap</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Existing research ethics frameworks address important concerns, but they leave significant gaps when it comes to AI-assisted research.</p>
+<div class="card-grid">
+<div class="card">
+<h3>What Existing Frameworks Cover</h3>
+<p>Traditional research ethics, developed largely in response to historical abuses, focus on:</p>
+<ul class="styled-list">
+<li><strong>Human participant protections:</strong> Informed consent, minimising harm, equitable selection of participants (the Belmont Report)</li>
+<li><strong>Research integrity:</strong> Honest reporting, proper attribution, avoiding fabrication and falsification</li>
+<li><strong>Data protection:</strong> Privacy, confidentiality, secure storage</li>
+<li><strong>Institutional oversight:</strong> IRB/ethics committee review processes</li>
+</ul>
+<p style="margin-top: 15px;">These are necessary. But they were designed for a world where every word in a paper, every line of analysis, and every research decision was made by a human being.</p>
+</div>
+<div class="card">
+<h3>What AI Introduces</h3>
+<p>AI-assisted research raises questions that existing frameworks do not adequately address:</p>
+<ul class="styled-list">
+<li><strong>Non-human agency:</strong> Who is responsible when AI generates content that contains errors, biases, or fabrications?</li>
+<li><strong>Training data provenance:</strong> Was the data used to train the model collected with consent? Does it represent the communities being studied?</li>
+<li><strong>Opacity:</strong> When AI contributes to analysis or writing, the reasoning process is not transparent, even to the researcher</li>
+<li><strong>Authorship:</strong> Can a non-human entity be credited as a contributor to research?</li>
+<li><strong>Data privacy:</strong> What happens to sensitive research data entered into cloud-based AI tools?</li>
+<li><strong>Bias amplification:</strong> AI can systematically reproduce and scale biases in ways that individual researchers cannot</li>
+</ul>
+</div>
+</div>
+<div class="warning-box">
+<h4>⚠️ A Rapidly Evolving Landscape</h4>
+<p>The ethical norms around AI in research are changing faster than guidelines can be written. Journal policies, institutional guidelines, and funder requirements that exist today may be outdated within months. Throughout this week, I encourage you to check the most recent versions of any policies we reference, and to treat any framework (including the ones we present here) as a tool for reasoning, not as a definitive answer.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Foundational Mapping</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/1906.11668" target="_blank" rel="noopener"> <strong>Jobin, A., Ienca, M., &amp; Vayena, E. (2019): "The Global Landscape of AI Ethics Guidelines"</strong> </a>&nbsp;— A thorough analysis of 84 AI ethics documents from around the world, identifying convergence around principles like transparency, justice, and non-maleficence, but also significant divergence in how these principles are interpreted and operationalised. A useful starting point for understanding the breadth of the AI ethics conversation. Note that this was from 2019, so in many ways is already very outdated.</p>
+</div>
+<!-- SECTION 2: FOUR PHILOSOPHICAL LENSES -->
+<h2 class="section-title">🔎 Four Philosophical Lenses</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Rather than searching for the single "correct" ethical framework, we introduce four complementary traditions. Each illuminates different aspects of AI ethics dilemmas. Think of them as tools in a toolkit, each useful for different tasks.</p>
+<div class="card-grid">
+<div class="card">
+<h3>1. <a href="https://plato.stanford.edu/entries/consequentialism/" target="_blank" rel="noopener">Consequentialism</a></h3>
+<p><strong>Focus:</strong> Outcomes and consequences</p>
+<p>An action is ethical if it produces the best overall consequences. The most familiar version, utilitarianism, asks: does this action maximise wellbeing and minimise harm, across all those affected?</p>
+<p><strong>Key question for AI in research:</strong> What are the likely outcomes of using AI in this way, and do the benefits outweigh the harms, for you, your participants, your field, and broader society?</p>
+<ul class="styled-list">
+<li><strong>Strengths:</strong> Pragmatic, outcome-focused, good at weighing trade-offs</li>
+<li><strong>Limitations:</strong> Consequences are hard to predict; whose consequences count? Can justify problematic means if ends are good enough</li>
+</ul>
+</div>
+<div class="card">
+<h3>2. <a href="https://plato.stanford.edu/entries/ethics-deontological/" target="_blank" rel="noopener">Deontology</a></h3>
+<p><strong>Focus:</strong> Duties, rules, and rights</p>
+<p>Some actions are inherently right or wrong, regardless of their consequences. Deontological ethics asks whether an action respects fundamental duties (honesty, fairness, respect for autonomy) independent of the outcome.</p>
+<p><strong>Key question for AI in research:</strong> Are there rules or duties that this AI use violates, regardless of how well it works? Does it respect the rights and autonomy of all involved?</p>
+<ul class="styled-list">
+<li><strong>Strengths:</strong> Clear boundaries, protects individual rights, not swayed by "the ends justify the means"</li>
+<li><strong>Limitations:</strong> Rules can conflict with each other; can be rigid in genuinely novel situations where existing rules do not apply</li>
+</ul>
+</div>
+<div class="card">
+<h3>3. <a href="https://plato.stanford.edu/entries/ethics-virtue/" target="_blank" rel="noopener">Virtue Ethics</a></h3>
+<p><strong>Focus:</strong> Character and intellectual virtues</p>
+<p>Rather than asking "what should I do?", virtue ethics asks "what kind of person am I becoming?" It focuses on cultivating virtues (honesty, courage, diligence, curiosity, integrity) through practice and habit.</p>
+<p><strong>Key question for AI in research:</strong> Does this AI use reflect and develop the intellectual virtues that good research requires? Am I becoming a better or worse researcher through my use of these tools?</p>
+<ul class="styled-list">
+<li><strong>Strengths:</strong> Emphasises personal responsibility, adaptable to new situations, attentive to character development</li>
+<li><strong>Limitations:</strong> Can be subjective; what counts as a "virtue" varies across cultures; less helpful for institutional policy</li>
+</ul>
+</div>
+<div class="card">
+<h3>4. <a href="https://www.ahrlj.up.ac.za/metz-t" target="_blank" rel="noopener">Ubuntu / Relational Ethics</a></h3>
+<p><strong>Focus:</strong> Relationships and community</p>
+<p>"Umuntu ngumuntu ngabantu": a person is a person through other people. Ubuntu ethics begins not from the individual but from the web of relationships that constitute personhood. Ethical action is action that strengthens the community and its bonds.</p>
+<p><strong>Key question for AI in research:</strong> How does this AI use affect my relationships, with my research community, my participants, my students, and broader society? Does it strengthen or weaken these bonds?</p>
+<ul class="styled-list">
+<li><strong>Strengths:</strong> Attentive to collective harm, power dynamics, and the social fabric; challenges individualist assumptions</li>
+<li><strong>Limitations:</strong> Can be vague on individual decisions; risk of being invoked superficially without engaging the philosophical tradition</li>
+</ul>
+<p style="margin-top: 10px;"><em>We will explore ubuntu and African relational ethics in much greater depth in Sub-Lesson 2.</em></p>
+</div>
+</div>
+<div class="highlight-box">
+<h3>💡 <span style="color: #ffffff;">Why Four Lenses, Not One?</span></h3>
+<p>These four frameworks will often produce different answers to the same ethical question. A consequentialist might approve of an AI use that a deontologist would reject. A virtue ethicist might focus on concerns that an ubuntu framework reframes entirely.</p>
+<p>That disagreement is where ethical reasoning actually happens. By holding multiple perspectives at once, you develop a more resilient capacity for navigating dilemmas that do not have simple answers. The goal is not to find the "right" lens, but to use all four to see what each one reveals and what it misses.</p>
+</div>
+<div class="info-box">
+<h4>🌍 Beyond Philosophical Lenses: Governance Frameworks</h4>
+<p>These four traditions are lenses for <em>reasoning</em>, but scholars and institutions are also building concrete <em>governance frameworks</em> that translate ethical values into structured tools for assessing AI systems. One example is the <a href="https://researchictafrica.net/research/ria-just-ai-framework-of-inquiry/" target="_blank" rel="noopener"><strong>Research ICT Africa (RIA) Just AI Framework of Inquiry</strong></a> (Chetty &amp; Sey, 2025), which organises nine interconnected inquiries (from human rights and data justice to sustainability and economic justice) into an actionable framework for AI research and policy, developed explicitly from and for African contexts. We will examine the RIA framework in detail in Sub-Lesson 2, alongside the deeper exploration of ubuntu.</p>
+</div>
+<!-- SECTION 3: APPLYING THE LENSES -->
+<h2 class="section-title">🧪 Applying the Lenses: A Quick Example</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">To see how the four lenses work in practice, consider a straightforward scenario.</p>
+<div class="case-study">
+<h4>📋 Scenario: The Rewritten Discussion</h4>
+<p>A PhD student uses ChatGPT to rewrite the discussion section of their thesis chapter. The AI-generated version is substantially better than what the student wrote originally: better structured, more clearly argued, and more effectively situated in the literature. The student submits the rewritten version without disclosing AI use. Their supervisor does not have an explicit policy on AI tools.</p>
+</div>
+<div class="card-grid">
+<div class="card">
+<h3>Consequentialist Lens</h3>
+<p>What are the outcomes? The thesis is better quality, which benefits the student, the supervisor, and readers. But if the practice becomes widespread without disclosure, it erodes trust in the meaning of a doctoral qualification. If discovered, the consequences for the student could be severe. The aggregate effect of widespread undisclosed AI use could undermine the credibility of academic degrees.</p>
+<p><strong>Verdict:</strong> Short-term benefits are real, but long-term systemic consequences are concerning.</p>
+</div>
+<div class="card">
+<h3>Deontological Lens</h3>
+<p>Is there a duty being violated? Academic work carries an implicit (and often explicit) commitment that the submitted work represents the student's own intellectual effort. Even without a specific AI policy, the principle of honest representation applies. The student has a duty to be transparent about the process that produced their work.</p>
+<p><strong>Verdict:</strong> The lack of disclosure violates a duty of honesty, regardless of the quality improvement.</p>
+</div>
+<div class="card">
+<h3>Virtue Ethics Lens</h3>
+<p>What kind of researcher is the student becoming? A doctoral thesis is also a process of developing the capacity for independent scholarly thought. If AI does the intellectual heavy lifting of structuring arguments and situating them in the literature, the student may not develop these skills. The question reaches beyond this chapter to intellectual formation itself.</p>
+<p><strong>Verdict:</strong> Even if the output is better, the process may undermine the student's development as a scholar.</p>
+</div>
+<div class="card">
+<h3>Ubuntu Lens</h3>
+<p>How does this affect relationships? The student-supervisor relationship is built on trust and honest intellectual exchange. Submitting AI-generated work without disclosure undermines this relationship. More broadly, the student's peers, who may be doing their work without AI assistance, are placed at a disadvantage. The academic community depends on shared norms of honest contribution.</p>
+<p><strong>Verdict:</strong> The undisclosed use weakens the relational bonds that sustain academic community.</p>
+</div>
+</div>
+<div class="info-box">
+<h4>💡 Notice the Convergence and Divergence</h4>
+<p>In this case, all four lenses point in a similar direction, toward disclosure and caution. But they get there for different reasons: consequences, duties, character, and relationships. In more complex cases (which we will explore in Sub-Lesson 4), the lenses will diverge more sharply, and the reasoning becomes genuinely difficult. That is when having multiple frameworks is most valuable.</p>
+</div>
+<!-- SECTION 4: READINGS -->
+<h2 class="section-title">📚 Readings for This Week</h2>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Three core readings and six supplementary readings for the full week. All are freely accessible.</p>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1016/j.patter.2021.100205" target="_blank" rel="noopener"> <strong>Birhane, A. (2021): "Algorithmic Injustice: A Relational Ethics Approach"</strong> </a> — <em>Patterns</em> , 2(2). Open access. An ubuntu-informed approach to AI ethics that argues algorithmic injustice is structural, not just a matter of individual system bias. Essential reading for Sub-Lesson 2.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1038/d41586-023-00191-1" target="_blank" rel="noopener"> <strong>Nature Editorial (2023): "Tools Such as ChatGPT Threaten Transparent Science; Here Are Our Ground Rules"</strong> </a> — <em>Nature</em> , 613. Free to read. Short and essential — Nature's influential statement on AI disclosure, which set the tone for many subsequent journal policies. Primary reading for Sub-Lesson 3.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://cyber.harvard.edu/story/2020-07/rationality-relationality-ubuntu-ethical-and-human-rights-framework-artificial" target="_blank" rel="noopener"> <strong>Mhlambi, S. (2020): "From Rationality to Relationality: Ubuntu as an Ethical and Human Rights Framework for AI Governance"</strong> </a> — Carr Center Discussion Paper, Harvard Kennedy School. Free PDF. The foundational paper for understanding ubuntu as a framework for AI ethics. Essential reading for Sub-Lesson 2.</p>
+</div>
+<div class="resource-placeholder">
+<h4>📄 Supplementary Readings</h4>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1002/asi.24750" target="_blank" rel="noopener"> <strong>Lund, B.D., et al. (2023): "ChatGPT and a New Academic Reality"</strong> </a> — <em>JASIST</em> . Overview of the academic integrity debate around AI. Preprint freely available.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://doi.org/10.1038/d41586-023-00288-7" target="_blank" rel="noopener"> <strong>van Dis, E.A.M., et al. (2023): "ChatGPT: Five Priorities for Research"</strong> </a> — <em>Nature</em> , 614. Short, actionable, and widely cited. Free to read.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.brookings.edu/articles/ai-in-the-global-south-opportunities-and-challenges-towards-more-inclusive-governance/" target="_blank" rel="noopener"> <strong>Okolo, C.T. (2023): "AI in the Global South: Opportunities and Challenges Towards More Inclusive Governance"</strong> </a> — Brookings Institution. The equity dimensions of global AI access.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://arxiv.org/abs/1906.11668" target="_blank" rel="noopener"> <strong>Jobin, A., Ienca, M., &amp; Vayena, E. (2019): "The Global Landscape of AI Ethics Guidelines"</strong> </a> — <em>Nature Machine Intelligence</em> , 1(9). A thorough mapping of AI ethics frameworks worldwide.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener"> <strong>ACM (2024): "Policy on Authorship and Use of Generative AI and Large Language Models"</strong> </a> — A discipline-specific policy example worth examining closely.</p>
+</div>
+<!-- SUMMARY -->
+<div class="intro-text" style="margin-top: 50px;">
+<h2>📚 Summary &amp; Key Takeaways</h2>
+<p>This session established the foundation for ethical reasoning about AI in research.</p>
+<ul class="styled-list" style="margin-top: 15px;">
+<li><strong>The ethics gap is real:</strong> Existing research ethics frameworks (IRBs, Belmont Report, informed consent) are necessary but insufficient for AI-assisted research</li>
+<li><strong>Four complementary lenses:</strong> Consequentialism (outcomes), deontology (duties), virtue ethics (character), and ubuntu (relationships) each illuminate different dimensions of AI ethics dilemmas</li>
+<li><strong>Disagreement is productive:</strong> The four lenses will often produce different answers, and that divergence gives you the basis for deeper ethical reasoning</li>
+<li><strong>Tools, not rules:</strong> These frameworks are not checklists to apply mechanically. They are tools for developing your capacity for ethical reasoning in a rapidly changing landscape</li>
+<li><strong>The landscape is vast:</strong> This week necessarily focuses on selected dimensions of AI ethics. Labour exploitation, surveillance and carceral AI, autonomous weapons, corporate power concentration, digital forgery and democratic erosion, gender, disability, and more are all important areas we cannot cover in depth. See <a href="The%20Broader%20Landscape%20of%20AI%20Ethics.html" target="_blank" rel="noopener">The Broader Landscape of AI Ethics</a> for an orientation to these topics and pointers for further exploration</li>
+</ul>
+<p style="margin-top: 20px;"><strong>Next session:</strong> We look closely at ubuntu and African relational ethics (including the Research ICT Africa Just AI Framework), exploring what these traditions offer that Western individualist frameworks miss, and why they matter for AI governance globally.</p>
+</div>
+</div>
+<!-- PAGE-NAV-START -->
+<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
+<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
+  <a class="page-nav-link" href="../week-3/Discussion Questions.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Discussion Questions (to prepare before class)</div></a>
+  <a class="page-nav-link" href="../week-4/Ubuntu Relational Ethics and the Just AI Framework.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Ubuntu, Relational Ethics and the Just AI Framework</div></a>
+</nav>
+<!-- PAGE-NAV-END -->
+<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
+</footer></div>
+<!-- SCORM-HOOK-START -->
+<script src="../scorm-api.js"></script>
+<!-- SCORM-HOOK-END -->
+<!-- ANALYTICS-START -->
+<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- ANALYTICS-END -->
+</body></html>

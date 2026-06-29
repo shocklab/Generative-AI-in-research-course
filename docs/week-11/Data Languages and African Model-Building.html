@@ -1,450 +1,261 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Week 11.5 - Data, Languages and African Model-Building</title>
-  <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-  <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-body {
-    font-family: 'Lato', sans-serif;
-    line-height: 1.6;
-    color: #2c3e50;
-    background: #f5f5f5;
-    padding: 20px;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    overflow: hidden;
-}
-.ai-notice {
-    background: #e8f4f8;
-    color: #003A70;
-    padding: 15px 30px;
-    text-align: center;
-    font-size: 0.9em;
-    border-bottom: 1px solid #d0e8f2;
-}
-header {
-    background: #003A70;
-    color: white;
-    padding: 50px 40px;
-    text-align: center;
-}
-.week-badge {
-    display: inline-block;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 0.9em;
-    margin-bottom: 15px;
-    backdrop-filter: blur(10px);
-}
-header h1 {
-    font-size: 2.3em;
-    margin-bottom: 15px;
-    font-weight: 300;
-    letter-spacing: 1px;
-}
-header p {
-    font-size: 1.1em;
-    opacity: 0.95;
-    max-width: 800px;
-    margin: 10px auto 0;
-}
-.content {
-    padding: 50px 40px;
-}
-.intro-text {
-    background: #f9f9f9;
-    padding: 35px;
-    border-radius: 15px;
-    border-left: 5px solid #003A70;
-    margin-bottom: 40px;
-}
-.intro-text h2 {
-    color: #2a5298;
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.intro-text p {
-    font-size: 1.1em;
-    color: #495057;
-    line-height: 1.8;
-    margin-bottom: 15px;
-}
-.intro-text p:last-child {
-    margin-bottom: 0;
-}
-.section-title {
-    font-size: 2em;
-    color: #2a5298;
-    margin: 50px 0 30px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #003A70;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin: 30px 0;
-}
-.card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-left: 5px solid #003A70;
-    transition: all 0.3s ease;
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-.card h3 {
-    color: #2a5298;
-    font-size: 1.4em;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-.card p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 15px;
-}
-.styled-list {
-    list-style: none;
-    margin-top: 15px;
-}
-.styled-list li {
-    padding: 8px 0 8px 25px;
-    color: #555;
-    position: relative;
-    line-height: 1.6;
-}
-.styled-list li::before {
-    content: '\25B8';
-    position: absolute;
-    left: 0;
-    color: #003A70;
-    font-weight: bold;
-}
-.highlight-box {
-    background: #003A70;
-    color: white;
-    padding: 30px;
-    border-radius: 15px;
-    margin: 40px 0;
-}
-.highlight-box h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-}
-.highlight-box p {
-    font-size: 1.05em;
-    line-height: 1.8;
-    opacity: 0.95;
-    margin-bottom: 12px;
-}
-.highlight-box p:last-child {
-    margin-bottom: 0;
-}
-.warning-box {
-    background: #fff8e1;
-    border-left: 5px solid #f9a825;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-}
-.warning-box h4 {
-    color: #e65100;
-    font-size: 1.1em;
-    margin-bottom: 10px;
-}
-.warning-box p {
-    color: #555;
-    line-height: 1.7;
-}
-.info-box {
-    background: #f8f9fa;
-    padding: 20px 25px;
-    border-radius: 12px;
-    margin: 20px 0;
-    border-left: 4px solid #003A70;
-}
-.info-box h4 {
-    color: #2a5298;
-    font-size: 1.2em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.info-box p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-.info-box p:last-child {
-    margin-bottom: 0;
-}
-.technical-detail {
-    background: white;
-    border: 2px solid #d0e8f2;
-    border-radius: 12px;
-    padding: 25px;
-    margin: 20px 0;
-}
-.technical-detail h4 {
-    color: #2a5298;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-}
-.case-study {
-    background: linear-gradient(135deg, rgba(0,58,112,0.03) 0%, rgba(42,82,152,0.03) 100%);
-    border: 2px solid #003A70;
-    border-radius: 15px;
-    padding: 25px;
-    margin: 25px 0;
-}
-.case-study h4 {
-    color: #003A70;
-    font-size: 1.3em;
-    margin-bottom: 15px;
-}
-.case-study p {
-    color: #444;
-    line-height: 1.75;
-    margin-bottom: 12px;
-}
-.case-study p:last-child {
-    margin-bottom: 0;
-}
-.comparison-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-.comparison-table th {
-    background: #003A70;
-    color: white;
-    padding: 15px;
-    text-align: left;
-    font-weight: 600;
-    font-size: 0.95em;
-}
-.comparison-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #e9ecef;
-    color: #555;
-    font-size: 0.95em;
-    line-height: 1.5;
-}
-.comparison-table tr:last-child td {
-    border-bottom: none;
-}
-.comparison-table tr:hover {
-    background: #f9f9f9;
-}
-.step-list {
-    counter-reset: step-counter;
-    list-style: none;
-    margin: 20px 0;
-}
-.step-list > li {
-    counter-increment: step-counter;
-    padding: 15px 15px 15px 60px;
-    position: relative;
-    margin-bottom: 12px;
-    background: #f9f9f9;
-    border-radius: 10px;
-    color: #444;
-    line-height: 1.7;
-}
-.step-list > li::before {
-    content: counter(step-counter);
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #003A70;
-    color: white;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 0.9em;
-}
-.resource-placeholder {
-    background: linear-gradient(135deg, rgba(0,58,112,0.05) 0%, rgba(42,82,152,0.05) 100%);
-    border: 2px dashed #003A70;
-    border-radius: 15px;
-    padding: 30px;
-    margin: 25px 0;
-}
-.resource-placeholder h4 {
-    color: #2a5298;
-    font-size: 1.3em;
-    margin-bottom: 10px;
-}
-.resource-placeholder p {
-    color: #555;
-    line-height: 1.7;
-    margin-bottom: 8px;
-}
-.resource-placeholder p:last-child {
-    margin-bottom: 0;
-}
-@media (max-width: 768px) {
-    header h1 { font-size: 1.8em;
-    } .content { padding: 30px 20px;
-    } .card-grid { grid-template-columns: 1fr;
-    } .comparison-table { font-size: 0.85em;
-    };
-}
-/* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults). */
-header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-.highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-.highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-.highlight-box strong, .highlight-box em, .highlight-box span {
-    color: #ffffff !important;
-}
-.highlight-box a, header a {
-    color: #ffffff !important;
-    text-decoration: underline;
-}
-  </style>
-  <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div>
-<div class="container">
-
-<div class="ai-notice"><strong>Note:</strong> This page&#39;s design, presentation and content have been created and enhanced using Claude (Anthropic&#39;s AI assistant) to improve visual quality and educational experience.</div>
-
-<header>
-  <div class="week-badge">Week 11 &bull; Part B &bull; Sub-Lesson 5</div>
-  <h1>&#128488;&#65039; <span style="color: #ffffff;">Data, Languages and African Model-Building</span></h1>
-  <p>The global Indigenous data-sovereignty arc, the African foundation-model inventory, the benchmark stack, and where the gaps are</p>
-</header>
-
-<div class="content">
-
-  <div class="intro-text">
-    <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Sub-Lesson 11.4 closed on the compute layer. We turn now to the other three layers in the stack that African researchers have actually <em>built</em> over the last few years: the data they govern, the models they train, and the benchmarks they use to measure progress. This is the most concretely positive part of the African AI story. The infrastructure conversation in 11.4 was substantially aspirational; the data-and-models conversation in 11.5 is substantially shipping.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Data, Languages and African Model-Building — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.48rem;line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.28rem;line-height:1.58;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.24rem;line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.33rem;line-height:1.62}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 11 &middot; Future of AI in Research &amp; Africa&#x27;s Sovereign AI Capacity</div><nav class="toc"><a class="lesson" href="What%20the%20Future%20of%20AI%20in%20Research%20Might%20Look%20Like.html">What the Future of AI in Research Might Look Like</a><a class="lesson" href="Speculative%20Futures%20-%20A%20Reading%20Guide.html">Speculative Futures: A Reading Guide</a><a class="lesson" href="The%20Shifting%20Research%20Landscape.html">The Shifting Research Landscape: Policy, Peer Review, Integrity</a><a class="lesson" href="Sovereign%20AI%20Capacity%20and%20Why%20Compute%20Is%20the%20Floor.html">Sovereign AI Capacity, and Why Compute Is the Floor</a><a class="lesson cur" href="Data%20Languages%20and%20African%20Model-Building.html">Data, Languages and African Model-Building</a><div class="subs"><a href="#s1">The Map: Charting the Landscape of African NLP</a><a href="#s2">The Global Indigenous Data-Sovereignty Arc</a><a href="#s3">Community Infrastructure: Masakhane, Lanfrica, AfricaNLP, Indaba</a><a href="#s4">The African Foundation-Model Inventory</a><a href="#s5">The African Benchmark Stack</a><a href="#s6">Two Strategic Positions</a><a href="#s7">Where the Gaps Are</a><a href="#s8">What This Means for Your Research</a><a href="#s9">A Short Exercise</a><a href="#s10">Sources &amp; Further Reading</a></div><a class="lesson" href="Policy%20Institutions%20and%20Talent.html">Policy, Institutions, and Talent</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Data, Languages and African Model-Building</h1><div class="deck">The global Indigenous data-sovereignty arc, the African foundation-model inventory, the benchmark stack, and where the gaps are</div></div><div class="abody"><div class="intro-text"><h2>What We&#39;ll Cover</h2>
+    <p class="drop">Sub-Lesson 11.4 closed on the compute layer. We turn now to the other three layers in the stack that African researchers have actually <em>built</em> over the last few years: the data they govern, the models they train, and the benchmarks they use to measure progress. This is the most concretely positive part of the African AI story. The infrastructure conversation in 11.4 was substantially aspirational; the data-and-models conversation in 11.5 is substantially shipping.</p>
     <p>This sub-lesson is structured around three pillars and one survey paper. The survey is Alabi, Hedderich, Adelani &amp; Klakow&#39;s 2025 <em>Charting the Landscape of African NLP</em>, which mapped 884 papers over five years and is the most thorough recent overview of the field. The three pillars are: a <em>global Indigenous data-sovereignty arc</em> that runs from Te Hiku Media&#39;s Kaitiakitanga License through the CARE Principles to the Esethu Framework; an <em>African foundation-model inventory</em> that is genuinely substantial, structured by family and led by <strong>InkubaLM</strong> (Lelapa) and <strong>MzansiLM</strong> (UCT); and an <em>African benchmark stack</em> with new 2026 additions worth foregrounding.</p>
     <p>We close on the central split in the current literature, sovereign/frontier-aspirant projects (Awarri&#39;s N-ATLAS in Nigeria) versus resource-efficient/pragmatic projects (Lelapa&#39;s InkubaLM family), and a section on where the <em>gaps</em> are: the thesis-shaped opportunities that postgraduate researchers in this course are well placed to close.</p>
   </div>
 
-  <h2 class="section-title">&#128205; The Map: Charting the Landscape of African NLP</h2>
+  <h2 class="section-title" id="s1">The Map: Charting the Landscape of African NLP</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If you read only one survey paper before going further into the African NLP literature, make it this one.</p>
+  <p style=" margin-bottom: 20px">If you read only one survey paper before going further into the African NLP literature, make it this one.</p>
 
-  <div class="technical-detail">
-    <h4>&#128218; Alabi, Hedderich, Adelani &amp; Klakow (2025) &mdash; Charting the Landscape of African NLP</h4>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">Jesujoba O. Alabi, Michael A. Hedderich, David Ifeoluwa Adelani &amp; Dietrich Klakow. <em>Charting the Landscape of African NLP.</em> EMNLP 2025 main, pp. 27807&ndash;27841. <a href="https://arxiv.org/abs/2505.21315" target="_blank" rel="noopener">arXiv:2505.21315</a>.</p>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">The paper systematically surveys 884 African-NLP papers over a five-year window and produces a map that is genuinely useful for navigation. It documents which languages have been worked on (and how unevenly), which tasks dominate the literature (MT, NER, sentiment, and ASR are the largest), which institutions are most active, and where the cross-cultural and cross-linguistic blind spots lie. If you are starting a project on African NLP and you do not know the lay of the land, this is where to begin.</p>
-    <p style="color: #444; line-height: 1.75;">A complement worth noting: Belay, Azime, Adelani et al.&#39;s <em>The Rise of AfricaNLP</em> (<a href="https://arxiv.org/abs/2509.25477" target="_blank" rel="noopener">arXiv:2509.25477</a>, September 2025, updated April 2026) provides the bibliometric companion &mdash; 2,200 papers analysed for community impact and contributor patterns.</p>
+  <div class="technical-detail"><h4>Alabi, Hedderich, Adelani &amp; Klakow (2025) &mdash; Charting the Landscape of African NLP</h4>
+    <p style=" margin-bottom: 12px">Jesujoba O. Alabi, Michael A. Hedderich, David Ifeoluwa Adelani &amp; Dietrich Klakow. <em>Charting the Landscape of African NLP.</em> EMNLP 2025 main, pp. 27807&ndash;27841. <a href="https://arxiv.org/abs/2505.21315" target="_blank" rel="noopener">arXiv:2505.21315</a>.</p>
+    <p style=" margin-bottom: 12px">The paper systematically surveys 884 African-NLP papers over a five-year window and produces a map that is genuinely useful for navigation. It documents which languages have been worked on (and how unevenly), which tasks dominate the literature (MT, NER, sentiment, and ASR are the largest), which institutions are most active, and where the cross-cultural and cross-linguistic blind spots lie. If you are starting a project on African NLP and you do not know the lay of the land, this is where to begin.</p>
+    <p>A complement worth noting: Belay, Azime, Adelani et al.&#39;s <em>The Rise of AfricaNLP</em> (<a href="https://arxiv.org/abs/2509.25477" target="_blank" rel="noopener">arXiv:2509.25477</a>, September 2025, updated April 2026) provides the bibliometric companion &mdash; 2,200 papers analysed for community impact and contributor patterns.</p>
   </div>
 
-  <div class="info-box">
-    <h4>&#128202; The single most useful number from the recent literature</h4>
+  <div class="info-box"><h4>The single most useful number from the recent literature</h4>
     <p>A June 2025 quantitative survey, <em>The State of Large Language Models for African Languages: Progress and Challenges</em> (Hussen, Sewunetie, Ayele, Imam, Muhammad &amp; Yimam, <a href="https://arxiv.org/abs/2506.02280" target="_blank" rel="noopener">arXiv:2506.02280</a>), measured what current LLM families actually cover. The headline finding: across six large LLMs, eight small LMs, and six smaller models, just <strong>42 African languages</strong> receive meaningful support. Africa has roughly two thousand languages. <strong>~98% of African languages remain unsupported</strong> by current foundation-model infrastructure. The script picture is similar: current LLM tokenisers handle Latin, Arabic, and Ge&#39;ez but not the roughly 20 active African scripts (Tifinagh, N&#39;Ko, Vai, Adlam and others).</p>
     <p>That number frames the whole African-model conversation. The space is vastly under-served; the work that exists matters because of how much more there is to do.</p>
   </div>
 
-  <h2 class="section-title">&#127757; The Global Indigenous Data-Sovereignty Arc</h2>
+  <h2 class="section-title" id="s2">The Global Indigenous Data-Sovereignty Arc</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Before we look at the models, we look at the framework under which African researchers are choosing to release the data the models are built on. This conversation does not start with African scholarship; it sits inside a longer, global Indigenous data-sovereignty tradition. Naming that lineage matters, because the African work is part of a wider movement that has been theorising community-grounded data governance for considerably longer than the current AI moment has been running.</p>
+  <p style=" margin-bottom: 20px">Before we look at the models, we look at the framework under which African researchers are choosing to release the data the models are built on. This conversation does not start with African scholarship; it sits inside a longer, global Indigenous data-sovereignty tradition. Naming that lineage matters, because the African work is part of a wider movement that has been theorising community-grounded data governance for considerably longer than the current AI moment has been running.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Te Hiku Media &amp; the Kaitiakitanga License</h3>
+  <div class="card-grid"><div class="card"><h3>Te Hiku Media &amp; the Kaitiakitanga License</h3>
       <p>Te Hiku Media (<a href="https://tehiku.nz" target="_blank" rel="noopener">tehiku.nz</a>), an <em>iwi</em> radio station and media hub representing five Far-North M&#257;ori iwi (Ng&#257;ti Kuri, Te Aup&#333;uri, Ng&#257;i Takoto, Te Rarawa, Ng&#257;ti Kahu), was established as Te Hiku O Te Ika at Awanui in December 1990. The organisation built the foundational ASR work for te reo M&#257;ori, reporting around 92% accuracy for monolingual M&#257;ori speech. To govern the speech data the community contributed, Te Hiku developed the <strong>Kaitiakitanga License</strong>, which treats the organisation as <em>kaitiaki</em> (guardian, not owner) of the data, and explicitly prohibits uses that would surveil, discriminate against, or harm M&#257;ori people. This is the most-cited Indigenous-data-license precedent in the African NLP literature.</p>
-      <p style="color: #888; font-size: 0.9em;">Jones, K. &amp; Mahelona, K. <em>Data Sovereignty and the Kaitiakitanga License</em> (Te Hiku Media, 2022, updated 2023). <a href="https://tehiku.nz/te-hiku-tech/te-hiku-dev-korero/25141/data-sovereignty-and-the-kaitiakitanga-license" target="_blank" rel="noopener">tehiku.nz</a>.</p>
+      <p>Jones, K. &amp; Mahelona, K. <em>Data Sovereignty and the Kaitiakitanga License</em> (Te Hiku Media, 2022, updated 2023). <a href="https://tehiku.nz/te-hiku-tech/te-hiku-dev-korero/25141/data-sovereignty-and-the-kaitiakitanga-license" target="_blank" rel="noopener">tehiku.nz</a>.</p>
     </div>
-    <div class="card">
-      <h3>The CARE Principles</h3>
+    <div class="card"><h3>The CARE Principles</h3>
       <p>The <strong>CARE Principles for Indigenous Data Governance</strong> (Carroll, Garba, Figueroa-Rodr&iacute;guez, Holbrook, Lovett, Materechera, Parsons, Raseroka, Rodriguez-Lonebear, Rowe, Sara, Walker, Anderson &amp; Hudson, 2020) generalise the Te Hiku-style position into a four-principle framework: <strong>Collective Benefit</strong>, <strong>Authority to Control</strong>, <strong>Responsibility</strong>, and <strong>Ethics</strong>. The principles were drafted at International Data Week in <em>Gaborone, in November 2018</em>, by the RDA International Indigenous Data Sovereignty Interest Group. By 2026 CARE has been adopted by the Research Data Alliance, the Global Indigenous Data Alliance (GIDA), the Australian Research Data Commons, and the US NIH&#39;s genomic-data policy.</p>
-      <p style="color: #888; font-size: 0.9em;">Carroll, S. R. et al. (2020). <em>Data Science Journal</em> 19(1): 43. <a href="https://datascience.codata.org/articles/10.5334/dsj-2020-043" target="_blank" rel="noopener">DOI 10.5334/dsj-2020-043</a>. GIDA: <a href="https://www.gida-global.org/whoweare" target="_blank" rel="noopener">gida-global.org</a>.</p>
+      <p>Carroll, S. R. et al. (2020). <em>Data Science Journal</em> 19(1): 43. <a href="https://datascience.codata.org/articles/10.5334/dsj-2020-043" target="_blank" rel="noopener">DOI 10.5334/dsj-2020-043</a>. GIDA: <a href="https://www.gida-global.org/whoweare" target="_blank" rel="noopener">gida-global.org</a>.</p>
     </div>
-    <div class="card">
-      <h3>The Esethu Framework</h3>
+    <div class="card"><h3>The Esethu Framework</h3>
       <p>The Esethu Framework (Rajab, Aremu, Chimoto, Dunbar, Morrissey, Thior, Potgieter, Ojo, Tonja, Chetty, Nekoto, Moiloa, Abbott, Marivate &amp; Rosman, 2025) is the African strand&#39;s most developed published proposal. It introduces a community-centric <em>Esethu License</em> under which commercial users &mdash; especially non-African ones &mdash; pay a fee that is reinvested into dataset expansion via local partners. The proof-of-concept dataset is the <strong>Vuk&#39;uzenzele isiXhosa Speech Dataset (ViXSD)</strong>. The author team draws across Wits, Lelapa AI, and Masakhane; the lineage is explicit about citing Kaitiakitanga as a precedent.</p>
-      <p style="color: #888; font-size: 0.9em;">Rajab, J. et al. (2025). <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>; <a href="https://aclanthology.org/2025.acl-long.1487/" target="_blank" rel="noopener">ACL 2025</a>.</p>
+      <p>Rajab, J. et al. (2025). <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>; <a href="https://aclanthology.org/2025.acl-long.1487/" target="_blank" rel="noopener">ACL 2025</a>.</p>
     </div>
-    <div class="card">
-      <h3>The wider tradition</h3>
+    <div class="card"><h3>The wider tradition</h3>
       <p>Two more strands belong in the global arc. <strong>OCAP</strong> (Ownership, Control, Access, Possession), developed by the First Nations Information Governance Centre in Canada since 1998, is the oldest of the institutional frameworks. <strong>S&aacute;pmi data governance</strong>, articulated by the S&aacute;mi Council and discussed at the first S&aacute;mi Research Data Governance conference in Troms&oslash; in January 2023, articulates a parallel European-Indigenous tradition. These traditions are not interchangeable, but reading them alongside the African strand makes clear that the relational conception of data governance is genuinely global.</p>
-      <p style="color: #888; font-size: 0.9em;">OCAP: <a href="https://fnigc.ca/ocap-training/" target="_blank" rel="noopener">FNIGC</a>. Eriksen et al. (2024), <em>Nordic Journal of Library and Information Studies</em>.</p>
+      <p>OCAP: <a href="https://fnigc.ca/ocap-training/" target="_blank" rel="noopener">FNIGC</a>. Eriksen et al. (2024), <em>Nordic Journal of Library and Information Studies</em>.</p>
     </div>
   </div>
 
-  <div class="info-box">
-    <h4>&#129496; The lineage in one sentence</h4>
+  <div class="info-box"><h4>The lineage in one sentence</h4>
     <p>Kaitiakitanga (Te Hiku, M&#257;ori, since the early 2010s in the AI context) &rarr; CARE Principles (drafted in <em>Gaborone</em> in 2018, published 2020) &rarr; Esethu Framework (Rajab et al., ACL 2025). The African work is the most recent expression of a global Indigenous tradition that explicitly traces its own intellectual lineage back through M&#257;ori and First Nations scholarship.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">For policy context at the African continental level: the <strong>AU Data Policy Framework</strong> (adopted February 2022, published 28 July 2022) sets the stated continental orientation toward transparency, accountability, inclusion, and equity, aimed at an African Digital Single Market by 2030. The <strong>AU Continental AI Strategy</strong> (July 2024) explicitly invokes data sovereignty across its five focus areas. Both documents are real and worth reading; both, as we noted in 11.4, are policy positions rather than enforced regulatory mechanisms.</p>
+  <p style=" margin-bottom: 15px">For policy context at the African continental level: the <strong>AU Data Policy Framework</strong> (adopted February 2022, published 28 July 2022) sets the stated continental orientation toward transparency, accountability, inclusion, and equity, aimed at an African Digital Single Market by 2030. The <strong>AU Continental AI Strategy</strong> (July 2024) explicitly invokes data sovereignty across its five focus areas. Both documents are real and worth reading; both, as we noted in 11.4, are policy positions rather than enforced regulatory mechanisms.</p>
 
-  <div class="warning-box">
-    <h4>&#9888;&#65039; An honest gap to flag</h4>
+  <div class="warning-box"><h4>An honest gap to flag</h4>
     <p>There is, as of May 2026, <em>no peer-reviewed African critique-and-adaptation of the CARE Principles</em>: a paper arguing what would need to change for CARE to be made specifically African rather than imported with adjustments. Abeba Birhane and Rediet Abebe&#39;s work orbits this question; the AfricaNLP licensing conversation (Marivate, Adelani, Rajab et al.) is making constructive moves in practice. But the central critical paper has not been written yet. We return to this in the gaps section at the end of the sub-lesson; it is a concrete thesis opportunity the literature currently offers.</p>
     <p>A related practical gap: <em>most African datasets released in 2024 and 2025 still go up under CC-BY or research-only licences</em>, not under Kaitiakitanga- or Esethu-style community licences. The rhetorical commitment to community licensing is genuinely there; the operational uptake is not yet matching it. ViXSD is so far the proof of concept, not the beginning of a wave.</p>
   </div>
 
-  <h2 class="section-title">&#129309; Community Infrastructure: Masakhane, Lanfrica, AfricaNLP, Indaba</h2>
+  <h2 class="section-title" id="s3">Community Infrastructure: Masakhane, Lanfrica, AfricaNLP, Indaba</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Before the foundation models, before the benchmarks, before the licensed datasets, there is the community infrastructure that makes everything else possible. Four organisations or venues are doing the disproportionate share of the work.</p>
+  <p style=" margin-bottom: 20px">Before the foundation models, before the benchmarks, before the licensed datasets, there is the community infrastructure that makes everything else possible. Four organisations or venues are doing the disproportionate share of the work.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>Masakhane</h3>
+  <div class="card-grid"><div class="card"><h3>Masakhane</h3>
       <p>Founded around 2019 out of an ICLR Africa workshop, Masakhane is the grassroots research community that has anchored modern African NLP. The flagship projects are <strong>MasakhaNER</strong> (named-entity recognition across African languages), <strong>MAFAND-MT</strong> / <strong>LAFAND-MT</strong> (machine translation), <strong>MasakhaNEWS</strong> (16 languages, news topic classification, arXiv:2304.09972), and <strong>MasakhaPOS</strong> (20 languages, part-of-speech tagging, arXiv:2305.13989). Masakhane&#39;s public-facing website at <a href="https://www.masakhane.io/" target="_blank" rel="noopener">masakhane.io</a> displays older figures, but the organisation is very much active: the GitHub and HuggingFace organisations (<a href="https://huggingface.co/masakhane" target="_blank" rel="noopener">huggingface.co/masakhane</a>) show dataset and code updates well into 2025, and Masakhane members are the substantial author overlap on InkubaLM, Esethu, and most of the AfricaNLP 2025 proceedings.</p>
     </div>
-    <div class="card">
-      <h3>Lanfrica</h3>
+    <div class="card"><h3>Lanfrica</h3>
       <p>Founded by Chris C. Emezue and Bonaventure F. P. Dossou, Lanfrica (<a href="https://lanfrica.com" target="_blank" rel="noopener">lanfrica.com</a>) is the pan-African resource catalogue that indexes datasets, papers, models, and projects across roughly <strong>2,199 African languages</strong> (including extinct languages). In 2025 Lanfrica ran the NaijaVoices Language Heritage Micro-Grants programme, supporting six community-led Nigerian-language projects, and Emezue presented &ldquo;Data Farming and the QRUE Frameworks&rdquo; at LT4ALL 2025. If you are looking for whether a resource exists in a specific African language, Lanfrica is the right first stop.</p>
     </div>
-    <div class="card">
-      <h3>AfricaNLP 2025 (ACL Vienna)</h3>
+    <div class="card"><h3>AfricaNLP 2025 (ACL Vienna)</h3>
       <p>The Sixth AfricaNLP Workshop, co-located with ACL 2025 in Vienna on <strong>31 July 2025</strong>, was the <em>first archival edition</em> of the workshop &mdash; 28 archival and 7 non-archival papers under the theme &ldquo;Multilingual and Multicultural-aware LLMs&rdquo;. Editors: Constantine Lignos (Brandeis), Idris Abdulmumin, and David Ifeoluwa Adelani. Proceedings: <a href="https://aclanthology.org/2025.africanlp-1.0/" target="_blank" rel="noopener">aclanthology.org/2025.africanlp-1.0/</a>. The archival status is a small but consequential change: AfricaNLP papers now carry the full bibliographic weight of an ACL workshop proceedings.</p>
     </div>
-    <div class="card">
-      <h3>Deep Learning Indaba 2025</h3>
+    <div class="card"><h3>Deep Learning Indaba 2025</h3>
       <p>The seventh Deep Learning Indaba was held in <strong>Kigali, Rwanda, 17&ndash;22 August 2025</strong>, hosted by the University of Rwanda under the theme <em>Urunana &mdash; Hand in Hand for AI in Africa</em>. Over 1,000 participants, 12 workshops, and the by-now-standard mix of mentoring, research showcases, and the African AI community&#39;s most important annual gathering. Indaba does not produce an archival proceedings volume; the research output sits on OpenReview and at the contributing labs.</p>
-      <p style="color: #888; font-size: 0.9em;"><a href="https://deeplearningindaba.com/2025/" target="_blank" rel="noopener">deeplearningindaba.com/2025</a></p>
+      <p><a href="https://deeplearningindaba.com/2025/" target="_blank" rel="noopener">deeplearningindaba.com/2025</a></p>
     </div>
   </div>
 
-  <h2 class="section-title">&#129504; The African Foundation-Model Inventory</h2>
+  <h2 class="section-title" id="s4">The African Foundation-Model Inventory</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">What follows is a verified inventory of the foundation models &mdash; encoder, from-scratch decoder, adapted decoder, and named-language &mdash; that are actually shipping for African languages as of May 2026. Two centrepieces matter most for this course: <strong>InkubaLM</strong> (the first sovereign African small language model, from Lelapa AI) and <strong>MzansiLM</strong> (the UCT-built decoder covering all eleven official South African written languages).</p>
+  <p style=" margin-bottom: 20px">What follows is a verified inventory of the foundation models &mdash; encoder, from-scratch decoder, adapted decoder, and named-language &mdash; that are actually shipping for African languages as of May 2026. Two centrepieces matter most for this course: <strong>InkubaLM</strong> (the first sovereign African small language model, from Lelapa AI) and <strong>MzansiLM</strong> (the UCT-built decoder covering all eleven official South African written languages).</p>
 
-  <div class="technical-detail">
-    <h4>&#127759; Encoder-family foundations</h4>
-    <ul class="styled-list" style="margin-top: 0;">
+  <div class="technical-detail"><h4>Encoder-family foundations</h4>
+    <ul class="styled-list" style="margin-top: 0">
       <li><strong>AfriBERTa</strong> (Ogueji, Zhu, Lin, Waterloo, MRL 2021). The early demonstration that high-quality language modelling for low-resource African languages is possible with less than 1 GB of text. 11 African languages.</li>
       <li><strong>AfroXLMR</strong> (Alabi et al., <a href="https://arxiv.org/abs/2204.06487" target="_blank" rel="noopener">arXiv:2204.06487</a>, 2022). Multilingual adaptive fine-tuning (MAFT) of XLM-R for African languages. Updated variant <strong>AfroXLMR-Social</strong> (<a href="https://arxiv.org/abs/2503.18247" target="_blank" rel="noopener">arXiv:2503.18247</a>, March 2025) by Belay, Azime, Adelani et al.</li>
       <li><strong>AfroLM</strong> (Dossou, Tonja, Yousuf, Osei et al., <a href="https://arxiv.org/abs/2211.03263" target="_blank" rel="noopener">arXiv:2211.03263</a>, SustainNLP 2022). 23 African languages, active-learning-based.</li>
@@ -452,39 +263,35 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </ul>
   </div>
 
-  <div class="technical-detail">
-    <h4>&#129666; From-scratch decoder models &mdash; the African sovereign small-LM lineage</h4>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;"><strong>InkubaLM</strong> (Lelapa AI; <a href="https://arxiv.org/abs/2408.17024" target="_blank" rel="noopener">arXiv:2408.17024</a>, August 2024). Authors: Atnafu Lambebo Tonja, Bonaventure F. P. Dossou, Jessica Ojo, Jenalea Rajab, Fadel Thior, Eric Peter Wairagala, Anuoluwapo Aremu, Pelonomi Moiloa, Jade Abbott, Vukosi Marivate, Benjamin Rosman. 0.4B parameters (422M), trained on 2.4B tokens of which 1.9B are African-language tokens. Languages: isiZulu, Yoruba, Swahili, isiXhosa, Hausa, English, French. CC&nbsp;BY-NC 4.0. Model card: <a href="https://huggingface.co/lelapa/InkubaLM-0.4B" target="_blank" rel="noopener">huggingface.co/lelapa/InkubaLM-0.4B</a>. The first published <em>from-scratch</em> African sovereign small language model and a serious benchmark for what is achievable on accessible compute.</p>
-    <p style="color: #444; line-height: 1.75;"><strong>MzansiLM</strong> (UCT NLP group; <a href="https://arxiv.org/abs/2603.20732" target="_blank" rel="noopener">arXiv:2603.20732</a>, 21 March 2026; accepted at LREC 2026 in Mallorca). Anri Lombard (UCT master&#39;s researcher in computer science) led the work with Drs Francois Meyer and Jan Buys, alongside Simbarashe Mawere, Temi Aina, Ethan Wolff, Sbonelo Gumede, and Elan Novick. 125M-parameter decoder-only model trained from scratch alongside the accompanying <strong>MzansiText</strong> corpus. Covers all <em>eleven</em> official South African written languages: Sepedi, Sesotho, Setswana, siSwati, Tshivenda, Xitsonga, Afrikaans, English, isiNdebele, isiXhosa, and isiZulu. Reports 20.65 BLEU on isiXhosa data-to-text generation. This is the UCT contribution to the African sovereign-LM lineage, and the kind of work this course&#39;s students may go on to do.</p>
+  <div class="technical-detail"><h4>From-scratch decoder models &mdash; the African sovereign small-LM lineage</h4>
+    <p style=" margin-bottom: 12px"><strong>InkubaLM</strong> (Lelapa AI; <a href="https://arxiv.org/abs/2408.17024" target="_blank" rel="noopener">arXiv:2408.17024</a>, August 2024). Authors: Atnafu Lambebo Tonja, Bonaventure F. P. Dossou, Jessica Ojo, Jenalea Rajab, Fadel Thior, Eric Peter Wairagala, Anuoluwapo Aremu, Pelonomi Moiloa, Jade Abbott, Vukosi Marivate, Benjamin Rosman. 0.4B parameters (422M), trained on 2.4B tokens of which 1.9B are African-language tokens. Languages: isiZulu, Yoruba, Swahili, isiXhosa, Hausa, English, French. CC&nbsp;BY-NC 4.0. Model card: <a href="https://huggingface.co/lelapa/InkubaLM-0.4B" target="_blank" rel="noopener">huggingface.co/lelapa/InkubaLM-0.4B</a>. The first published <em>from-scratch</em> African sovereign small language model and a serious benchmark for what is achievable on accessible compute.</p>
+    <p><strong>MzansiLM</strong> (UCT NLP group; <a href="https://arxiv.org/abs/2603.20732" target="_blank" rel="noopener">arXiv:2603.20732</a>, 21 March 2026; accepted at LREC 2026 in Mallorca). Anri Lombard (UCT master&#39;s researcher in computer science) led the work with Drs Francois Meyer and Jan Buys, alongside Simbarashe Mawere, Temi Aina, Ethan Wolff, Sbonelo Gumede, and Elan Novick. 125M-parameter decoder-only model trained from scratch alongside the accompanying <strong>MzansiText</strong> corpus. Covers all <em>eleven</em> official South African written languages: Sepedi, Sesotho, Setswana, siSwati, Tshivenda, Xitsonga, Afrikaans, English, isiNdebele, isiXhosa, and isiZulu. Reports 20.65 BLEU on isiXhosa data-to-text generation. This is the UCT contribution to the African sovereign-LM lineage, and the kind of work this course&#39;s students may go on to do.</p>
   </div>
 
-  <div class="technical-detail">
-    <h4>&#128683; Adapted-from-Llama decoder models</h4>
-    <ul class="styled-list" style="margin-top: 0;">
+  <div class="technical-detail"><h4>Adapted-from-Llama decoder models</h4>
+    <ul class="styled-list" style="margin-top: 0">
       <li><strong>AfroLlama_V1</strong> (Jacaranda Health, <a href="https://huggingface.co/Jacaranda/AfroLlama_V1" target="_blank" rel="noopener">HF model card</a>). 8B parameters, fine-tuned for Swahili, Xhosa, Zulu, Yoruba, Hausa, and English. Jacaranda&#39;s companion model <strong>UlizaLlama</strong> (7B, Llama-2-based, 321M Swahili tokens) was selected into the 2025 AI for Global Development Accelerator.</li>
       <li><strong>Lugha-Llama</strong> (Buzaaba, Wettig, Adelani &amp; Fellbaum, Princeton, <a href="https://arxiv.org/abs/2504.06536" target="_blank" rel="noopener">arXiv:2504.06536</a>, April 2025). Mixed-data adaptation of Llama for African languages. Reports state-of-the-art results on IrokoBench and a 10-point improvement on AfriQA.</li>
       <li><strong>Toucan</strong> (Elmadany, Adebara, Abdul-Mageed, UBC, <a href="https://arxiv.org/abs/2407.04796" target="_blank" rel="noopener">arXiv:2407.04796</a>, July 2024). Many-to-many translation for 150 African language pairs. Not technically Llama-based but sits in the same adapted-model family.</li>
     </ul>
   </div>
 
-  <div class="technical-detail">
-    <h4>&#128227; Named-language models</h4>
-    <p style="color: #444; line-height: 1.75; margin-bottom: 12px;">A handful of African languages now have dedicated foundation-model resources. The Amharic ecosystem is the most developed.</p>
-    <ul class="styled-list" style="margin-top: 0;">
+  <div class="technical-detail"><h4>Named-language models</h4>
+    <p style=" margin-bottom: 12px">A handful of African languages now have dedicated foundation-model resources. The Amharic ecosystem is the most developed.</p>
+    <ul class="styled-list" style="margin-top: 0">
       <li><strong>KinyaBERT</strong> (Nzeyimana &amp; Niyongabo Rubungo, <a href="https://arxiv.org/abs/2203.08459" target="_blank" rel="noopener">arXiv:2203.08459</a>, ACL 2022). Encoder model with explicit morphological analysis for Kinyarwanda.</li>
       <li><strong>Amharic-LLaMA / Amharic-LLaVA</strong> (Andersland, <a href="https://arxiv.org/abs/2403.06354" target="_blank" rel="noopener">arXiv:2403.06354</a>, March 2024). The first published Amharic-adapted LLaMA with multimodal capability.</li>
       <li><strong>Walia-LLM</strong> (<a href="https://arxiv.org/abs/2402.08015" target="_blank" rel="noopener">arXiv:2402.08015</a>, February 2024). Enhanced Amharic-adapted LLaMA.</li>
       <li><strong>SwahBERT</strong> (2022). Swahili encoder model.</li>
     </ul>
-    <p style="color: #444; line-height: 1.75; margin-top: 12px;">The dataset substrate worth naming: <strong>WURA</strong> (Oladipo et al., EMNLP 2023) is a high-quality multilingual pre-training corpus covering 16 African languages, and underpins the AfriTeVa model family.</p>
+    <p style=" margin-top: 12px">The dataset substrate worth naming: <strong>WURA</strong> (Oladipo et al., EMNLP 2023) is a high-quality multilingual pre-training corpus covering 16 African languages, and underpins the AfriTeVa model family.</p>
   </div>
 
-  <h2 class="section-title">&#127919; The African Benchmark Stack</h2>
+  <h2 class="section-title" id="s5">The African Benchmark Stack</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Benchmarks are how a field measures progress. The African benchmark stack has expanded substantially in 2024 and 2025, with several important 2026 additions. What follows is the verified inventory you can actually use to evaluate African-language work.</p>
+  <p style=" margin-bottom: 20px">Benchmarks are how a field measures progress. The African benchmark stack has expanded substantially in 2024 and 2025, with several important 2026 additions. What follows is the verified inventory you can actually use to evaluate African-language work.</p>
 
-  <div style="overflow-x: auto;">
-    <table class="comparison-table">
+  <div style="overflow-x: auto"><table class="comparison-table">
       <thead>
         <tr>
           <th>Benchmark</th>
@@ -542,10 +349,9 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </table>
   </div>
 
-  <div class="info-box">
-    <h4>&#128640; The 2026 additions worth foregrounding</h4>
+  <div class="info-box"><h4>The 2026 additions worth foregrounding</h4>
     <p>Four 2026 (and late-2025) benchmark releases are particularly worth knowing about, because they expand the stack into areas it did not previously cover.</p>
-    <ul class="styled-list" style="margin-top: 8px;">
+    <ul class="styled-list" style="margin-top: 8px">
       <li><strong>Afri-MCQA</strong> (Multimodal Cultural QA, <a href="https://arxiv.org/abs/2601.05699" target="_blank" rel="noopener">arXiv:2601.05699</a>, January 2026). The freshest African QA/reasoning benchmark, and the first to take cultural context seriously as an evaluation axis. If you are building anything that involves cultural reasoning on African content, start here.</li>
       <li><strong>NaijaVoices</strong> (<a href="https://arxiv.org/abs/2505.20564" target="_blank" rel="noopener">arXiv:2505.20564</a>, AfricaNLP 2025). 1,867 hours of multi-speaker Hausa, Igbo, and Yoruba speech (precisely 1,838.54 hours across 5,455 unique speakers, 645,000 unique sentences) &mdash; one of the largest African ASR datasets to date, and built under Lanfrica&#39;s &ldquo;data farming&rdquo; ethos.</li>
       <li><strong>Yankari</strong> (AfricaNLP 2025). 30 million-token monolingual Yoruba corpus.</li>
@@ -553,28 +359,25 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </ul>
   </div>
 
-  <h2 class="section-title">&#9878;&#65039; Two Strategic Positions</h2>
+  <h2 class="section-title" id="s6">Two Strategic Positions</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">There is a real and currently unresolved disagreement inside the African AI community about what the right strategic move is. The argument is worth understanding clearly because it shapes which kinds of project a postgraduate researcher might join.</p>
+  <p style=" margin-bottom: 20px">There is a real and currently unresolved disagreement inside the African AI community about what the right strategic move is. The argument is worth understanding clearly because it shapes which kinds of project a postgraduate researcher might join.</p>
 
-  <div class="card-grid">
-    <div class="card">
-      <h3>The sovereign / frontier-aspirant position</h3>
+  <div class="card-grid"><div class="card"><h3>The sovereign / frontier-aspirant position</h3>
       <p>The argument: African AI sovereignty requires <em>African frontier-scale models</em>, trained on African data, owned by African institutions, hosted on African compute. Without that, the continent will remain technologically dependent regardless of how much application-layer work happens locally. The clearest current expression is Nigeria&#39;s <strong>N-ATLAS</strong>, a national open-source LLM built by <strong>Awarri Technologies</strong> (Silas Adekunle and Eniola Edun) in partnership with the Nigerian Federal Ministry of Communications, Innovation and Digital Economy and published by NCAIR. Funded with $3.5M seed from UNDP, UNESCO, Meta, Google, and Microsoft. Launched by Minister Bosun Tijani at UNGA80 sidelines on 25 September 2025. Now publicly available on Hugging Face as <a href="https://huggingface.co/NCAIR1/N-ATLaS" target="_blank" rel="noopener">NCAIR1/N-ATLaS</a>: 8B parameters, Llama-3-8B base, fine-tuned across English, Hausa, Igbo, and Yoruba; subject to a 1,000-user licence cap, with commercial use requiring explicit licensing from Awarri and the Federal Ministry. Cassava&#39;s compute work (11.4) and the Tanzania&ndash;Almawave Kiswahili partnership are adjacent expressions of the same strategic position.</p>
-      <p style="color: #888; font-size: 0.95em; margin-top: 12px;">Status: operational. Shipped September 2025, weights public on Hugging Face under a capped non-commercial-by-default licence.</p>
+      <p style=" margin-top: 12px">Status: operational. Shipped September 2025, weights public on Hugging Face under a capped non-commercial-by-default licence.</p>
     </div>
-    <div class="card">
-      <h3>The resource-efficient / pragmatic position</h3>
+    <div class="card"><h3>The resource-efficient / pragmatic position</h3>
       <p>The argument made most explicitly by Pelonomi Moiloa at Lelapa AI: African sovereign AI capacity is best pursued by building <em>smaller, more efficient models</em> that the available infrastructure can actually support and that solve the problems African users actually have. The InkubaLM family, MzansiLM&#39;s 125M parameters covering all eleven SA languages, the Masakhane lineage&#39;s benchmark and dataset work, and Jacaranda&#39;s vertical-health deployment of UlizaLlama all sit in this strand. The argument is that engineering for the real constraints &mdash; compute, energy, end-user devices &mdash; is itself a sovereignty practice.</p>
-      <p style="color: #888; font-size: 0.95em; margin-top: 12px;">Status: shipping, used by real African users, smaller in headline numbers but more operationally honest.</p>
+      <p style=" margin-top: 12px">Status: shipping, used by real African users, smaller in headline numbers but more operationally honest.</p>
     </div>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The pedagogical point of putting these two positions side by side is not to declare a winner. Both are sovereignty practices in different registers; both have honest arguments behind them; the right answer for a particular project depends on what the project is for. The useful exercise is to be able to read a piece of African-AI work and identify clearly which strand it sits in, because the success criteria for the two are quite different. A 125M-parameter community-licensed model that runs on a feature-phone-class device is a success in the resource-efficient register; it is a partial step in the frontier-aspirant register. A nation-state frontier-scale model that is announced but not yet running is a partial step in the sovereign register; it is mostly absent from the resource-efficient one.</p>
+  <p style=" margin-bottom: 15px">The pedagogical point of putting these two positions side by side is not to declare a winner. Both are sovereignty practices in different registers; both have honest arguments behind them; the right answer for a particular project depends on what the project is for. The useful exercise is to be able to read a piece of African-AI work and identify clearly which strand it sits in, because the success criteria for the two are quite different. A 125M-parameter community-licensed model that runs on a feature-phone-class device is a success in the resource-efficient register; it is a partial step in the frontier-aspirant register. A nation-state frontier-scale model that is announced but not yet running is a partial step in the sovereign register; it is mostly absent from the resource-efficient one.</p>
 
-  <h2 class="section-title">&#128269; Where the Gaps Are</h2>
+  <h2 class="section-title" id="s7">Where the Gaps Are</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">For the postgraduate audience, the practical payoff is a concrete list of what is missing in the current African data-and-models landscape. Six gaps are particularly thesis-shaped: each one is a genuine research opening that could be pursued from a UCT or comparable position.</p>
+  <p style=" margin-bottom: 20px">For the postgraduate audience, the practical payoff is a concrete list of what is missing in the current African data-and-models landscape. Six gaps are particularly thesis-shaped: each one is a genuine research opening that could be pursued from a UCT or comparable position.</p>
 
   <ol class="step-list">
     <li><strong>No African-language LegalBench equivalent.</strong> Legal NLP benchmarks exist for English; the equivalent for any African language does not. Africa has substantial bodies of customary law, statutory law, and judicial decisions in many of its languages. A LegalBench-for-Swahili or LegalBench-for-isiXhosa would be a benchmark contribution and a step toward AI-supported access to law for people who do not work in English.</li>
@@ -585,9 +388,9 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Operational uptake of community licensing remains low.</strong> Despite Esethu, despite Kaitiakitanga, despite CARE, most African datasets in 2024 and 2025 still ship under CC-BY or research-only licences. There is room for both empirical research on <em>why</em>, and for practical work helping projects move to community-grounded licences when it is appropriate.</li>
   </ol>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">If you are a postgraduate looking for a thesis topic in this part of the AI landscape, any of these gaps is a real opening. Not because they are easy, but because the field will recognise the contribution.</p>
+  <p style=" margin-bottom: 15px">If you are a postgraduate looking for a thesis topic in this part of the AI landscape, any of these gaps is a real opening. Not because they are easy, but because the field will recognise the contribution.</p>
 
-  <h2 class="section-title">&#127919; What This Means for Your Research</h2>
+  <h2 class="section-title" id="s8">What This Means for Your Research</h2>
 
   <ul class="styled-list">
     <li><strong>Use the benchmarks.</strong> The African benchmark stack is real and broad enough to evaluate work in most of the major NLU and ASR areas. If your project involves African-language NLP and you are not evaluating against at least one of AfroBench / IrokoBench / AfriMTEB / Afri-MCQA / AfriHate / AfriSenti / AfriSpeech-200, you are working blind.</li>
@@ -597,7 +400,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Resource-efficient is a sovereignty practice.</strong> The Lelapa argument generalises: matching your work to the compute and data you actually have access to, rather than to the headline numbers of foreign labs, is the practical version of the sovereignty position covered in 11.4.</li>
   </ul>
 
-  <h2 class="section-title">&#9999;&#65039; A Short Exercise</h2>
+  <h2 class="section-title" id="s9">A Short Exercise</h2>
 
   <ol class="step-list">
     <li><strong>Pick a language and a domain</strong> relevant to your current or planned research project. The domain might be medicine, agriculture, law, climate science, education, the humanities, or another.</li>
@@ -607,10 +410,9 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Bring it to class.</strong> We will pool the proposals across the cohort and look at which gaps the group together could imaginably address.</li>
   </ol>
 
-  <h2 class="section-title">&#128218; Sources &amp; Further Reading</h2>
+  <h2 class="section-title" id="s10">Sources &amp; Further Reading</h2>
 
-  <div class="resource-placeholder">
-    <h4>&#128196; Sovereignty &amp; data governance</h4>
+  <div class="resource-placeholder"><h4>Sovereignty &amp; data governance</h4>
     <p><strong>Carroll, S. R. et al. (2020).</strong> The CARE Principles for Indigenous Data Governance. <em>Data Science Journal</em> 19(1): 43. <a href="https://datascience.codata.org/articles/10.5334/dsj-2020-043" target="_blank" rel="noopener">DOI 10.5334/dsj-2020-043</a>.</p>
     <p><strong>Jones, K. &amp; Mahelona, K. (2022/2023).</strong> <em>Data Sovereignty and the Kaitiakitanga License</em>. Te Hiku Media. <a href="https://tehiku.nz/te-hiku-tech/te-hiku-dev-korero/25141/data-sovereignty-and-the-kaitiakitanga-license" target="_blank" rel="noopener">tehiku.nz</a>.</p>
     <p><strong>Rajab, J. et al. (2025).</strong> The Esethu Framework. <a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">arXiv:2502.15916</a>; ACL 2025.</p>
@@ -619,8 +421,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p><strong>First Nations Information Governance Centre.</strong> OCAP Principles. <a href="https://fnigc.ca/ocap-training/" target="_blank" rel="noopener">fnigc.ca</a>.</p>
   </div>
 
-  <div class="resource-placeholder">
-    <h4>&#128196; Models &amp; community infrastructure</h4>
+  <div class="resource-placeholder"><h4>Models &amp; community infrastructure</h4>
     <p><strong>Alabi, J. O., Hedderich, M. A., Adelani, D. I. &amp; Klakow, D. (2025).</strong> Charting the Landscape of African NLP: Mapping Progress and Shaping the Road Ahead. EMNLP 2025 main, pp. 27807&ndash;27841. <a href="https://arxiv.org/abs/2505.21315" target="_blank" rel="noopener">arXiv:2505.21315</a>.</p>
     <p><strong>Belay, T. D., Azime, I. A., Adelani, D. I. et al. (2025).</strong> The Rise of AfricaNLP: A Survey of Contributions, Contributors, Community Impact, and Bibliometric Analysis. <a href="https://arxiv.org/abs/2509.25477" target="_blank" rel="noopener">arXiv:2509.25477</a>.</p>
     <p><strong>Hussen, K. Y., Sewunetie, W. T., Ayele, A. A., Imam, S. H., Muhammad, S. H. &amp; Yimam, S. M. (2025).</strong> The State of Large Language Models for African Languages: Progress and Challenges. <a href="https://arxiv.org/abs/2506.02280" target="_blank" rel="noopener">arXiv:2506.02280</a>.</p>
@@ -635,8 +436,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p><strong>Deep Learning Indaba 2025 (Kigali).</strong> <a href="https://deeplearningindaba.com/2025/" target="_blank" rel="noopener">deeplearningindaba.com/2025</a>.</p>
   </div>
 
-  <div class="resource-placeholder">
-    <h4>&#128196; Benchmarks</h4>
+  <div class="resource-placeholder"><h4>Benchmarks</h4>
     <p><strong>AfroBench</strong> &mdash; Ojo et al., ACL 2025 Findings. <a href="https://arxiv.org/abs/2311.07978" target="_blank" rel="noopener">arXiv:2311.07978</a>.</p>
     <p><strong>IrokoBench</strong> &mdash; Adelani et al., NAACL 2025 main. <a href="https://arxiv.org/abs/2406.03368" target="_blank" rel="noopener">arXiv:2406.03368</a>.</p>
     <p><strong>AfriSenti</strong> &mdash; Muhammad et al., EMNLP 2023. <a href="https://arxiv.org/abs/2302.08956" target="_blank" rel="noopener">arXiv:2302.08956</a>.</p>
@@ -650,24 +450,4 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p><strong>NaijaVoices, Yankari, AfroCS-xs</strong> &mdash; AfricaNLP 2025 proceedings (see ACL Anthology link above).</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 20px; margin-bottom: 15px;"><strong>Coming up in 11.6:</strong> we turn from data and models to the remaining two layers of the stack, policy and talent. The African Union Continental AI Strategy in its operational detail, the national strategies of South Africa / Kenya / Rwanda / Nigeria / Egypt (and the peer-reviewed comparative analysis in Yilma &amp; Wodajo&#39;s <em>Science and Public Policy</em> special section), and the institutional landscape of Deep Learning Indaba, AIMS, ARIN, and Lelapa as the talent pipeline. We close 11.6 with the question that opens Week 12 (the integrative capstone): given everything we now know about African AI capacity, what is the most useful thing a postgraduate in this room can actually do?</p>
-
-</div>
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-11/Sovereign AI Capacity and Why Compute Is the Floor.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Sovereign AI Capacity, and Why Compute Is the Floor</div></a>
-  <a class="page-nav-link" href="../week-11/Policy Institutions and Talent.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Policy, Institutions, and Talent</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+  <p style=" margin-top: 20px; margin-bottom: 15px"><strong>Coming up in 11.6:</strong> we turn from data and models to the remaining two layers of the stack, policy and talent. The African Union Continental AI Strategy in its operational detail, the national strategies of South Africa / Kenya / Rwanda / Nigeria / Egypt (and the peer-reviewed comparative analysis in Yilma &amp; Wodajo&#39;s <em>Science and Public Policy</em> special section), and the institutional landscape of Deep Learning Indaba, AIMS, ARIN, and Lelapa as the talent pipeline. We close 11.6 with the question that opens Week 12 (the integrative capstone): given everything we now know about African AI capacity, what is the most useful thing a postgraduate in this room can actually do?</p></div><div class="prevnext"><a href="Sovereign%20AI%20Capacity%20and%20Why%20Compute%20Is%20the%20Floor.html"><span class="d">&larr; Previous</span><span class="pt">Sovereign AI Capacity, and Why Compute Is the Floor</span></a><a class="next" href="Policy%20Institutions%20and%20Talent.html"><span class="d">Next &rarr;</span><span class="pt">Policy, Institutions, and Talent</span></a></div></div><div class="rightrail"><div class="rmeta">Week 11<br>Lesson 5<br>22 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Data sovereignty</div>The principle that a community has the right to govern how data about its members or culture is collected, used, and shared, including refusing harmful uses, and to benefit from it.</div><div class="snote"><div class="sk">Foundation model</div>A large AI model trained on a broad body of data that can be adapted to many specific tasks. African-language examples include InkubaLM, built specifically for under-represented languages.</div><div class="snote"><div class="sk">Benchmark</div>A standardised test used to measure and compare AI models, made of problems with known answers. A high benchmark score can overstate real-world ability if the test is easier than actual tasks.</div><div class="snote"><div class="sk">Low-resource language</div>A language for which very little digitised text, audio, or labelled data exists, making AI models harder to train. Most African languages are low-resource because they are under-represented in current training datasets.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

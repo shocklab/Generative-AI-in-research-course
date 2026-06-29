@@ -1,303 +1,194 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 7.6 - Agentic Data Analysis</title>
-    <link rel="stylesheet" href="https://s.brightspace.com/lib/fonts/0.6.1/fonts.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f5f5f5;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .ai-notice {
-            background: #e8f4f8;
-            color: #003A70;
-            padding: 15px 30px;
-            text-align: center;
-            font-size: 0.9em;
-            border-bottom: 1px solid #d0e8f2;
-        }
-
-        .ai-notice strong { font-weight: 600; }
-
-        header {
-            background: #003A70;
-            color: white;
-            padding: 50px 40px;
-            text-align: center;
-        }
-
-        .week-badge {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        header h1 { font-size: 2.3em; margin-bottom: 15px; font-weight: 300; letter-spacing: 1px; }
-        header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 0; }
-
-        .content { padding: 50px 40px; }
-
-        .intro-text {
-            background: #f9f9f9;
-            padding: 35px;
-            border-radius: 15px;
-            border-left: 5px solid #003A70;
-            margin-bottom: 40px;
-        }
-
-        .intro-text h2 {
-            color: #2a5298;
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .intro-text h2::before { content: '\1F3AF'; }
-        .intro-text p { font-size: 1.1em; color: #495057; line-height: 1.8; margin-bottom: 15px; }
-
-        .section-title {
-            font-size: 2em;
-            color: #2a5298;
-            margin: 50px 0 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #003A70;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 30px 0; }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            border-left: 5px solid #003A70;
-            transition: all 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.15); }
-        .card h3 { color: #2a5298; font-size: 1.4em; margin-bottom: 15px; font-weight: 600; }
-        .card p { color: #555; line-height: 1.7; margin-bottom: 15px; }
-
-        .styled-list { list-style: none; margin-top: 15px; }
-
-        .styled-list li {
-            padding: 8px 0 8px 25px;
-            color: #555;
-            position: relative;
-            line-height: 1.6;
-        }
-
-        .styled-list li::before { content: '\25B8'; position: absolute; left: 0; color: #003A70; font-weight: bold; }
-
-        .highlight-box {
-            background: #003A70;
-            color: white;
-            padding: 30px;
-            border-radius: 15px;
-            margin: 40px 0;
-        }
-
-        .highlight-box h3 { font-size: 1.8em; margin-bottom: 15px; }
-        .highlight-box p { font-size: 1.05em; line-height: 1.8; opacity: 0.95; margin-bottom: 12px; }
-
-        .warning-box {
-            background: #fff8e1;
-            border-left: 5px solid #f9a825;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-        }
-
-        .warning-box h4 { color: #e65100; font-size: 1.1em; margin-bottom: 10px; }
-        .warning-box p { color: #555; line-height: 1.7; }
-
-        .info-box {
-            background: #f8f9fa;
-            padding: 20px 25px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border-left: 4px solid #003A70;
-        }
-
-        .info-box h4 { color: #2a5298; font-size: 1.2em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .info-box p { color: #555; line-height: 1.7; }
-
-        .technical-detail {
-            background: white;
-            border: 2px solid #d0e8f2;
-            border-radius: 12px;
-            padding: 25px;
-            margin: 20px 0;
-        }
-
-        .technical-detail h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 15px; }
-
-        .case-study {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 25px;
-            margin: 25px 0;
-        }
-
-        .case-study h4 { color: #003A70; font-size: 1.3em; margin-bottom: 15px; }
-
-        .decision-framework {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.03) 0%, rgba(42, 82, 152, 0.03) 100%);
-            border: 2px solid #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-        }
-
-        .decision-framework h4 { color: #003A70; font-size: 1.4em; margin-bottom: 20px; }
-
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .comparison-table th { background: #003A70; color: white; padding: 15px; text-align: left; font-weight: 600; }
-        .comparison-table td { padding: 12px 15px; border-bottom: 1px solid #e9ecef; color: #555; }
-        .comparison-table tr:last-child td { border-bottom: none; }
-        .comparison-table tr:hover { background: #f9f9f9; }
-
-        .step-list {
-            counter-reset: step-counter;
-            list-style: none;
-            margin: 20px 0;
-        }
-
-        .step-list > li {
-            counter-increment: step-counter;
-            padding: 15px 15px 15px 60px;
-            position: relative;
-            margin-bottom: 12px;
-            background: #f9f9f9;
-            border-radius: 10px;
-            color: #444;
-            line-height: 1.7;
-        }
-
-        .step-list > li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #003A70;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        .code-block {
-            background: #1e1e2e;
-            color: #cdd6f4;
-            padding: 20px 25px;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-            line-height: 1.7;
-            margin: 15px 0;
-            overflow-x: auto;
-        }
-
-        .code-block .comment { color: #6c7086; }
-        .code-block .key { color: #89b4fa; }
-        .code-block .value { color: #a6e3a1; }
-
-        .resource-placeholder {
-            background: linear-gradient(135deg, rgba(0, 58, 112, 0.05) 0%, rgba(42, 82, 152, 0.05) 100%);
-            border: 2px dashed #003A70;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 25px 0;
-            text-align: center;
-        }
-
-        .resource-placeholder h4 { color: #2a5298; font-size: 1.3em; margin-bottom: 10px; }
-        .resource-placeholder p { color: #666; }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 1.8em; }
-            .content { padding: 30px 20px; }
-            .card-grid { grid-template-columns: 1fr; }
-            .comparison-table { font-size: 0.85em; }
-            .comparison-table th, .comparison-table td { padding: 8px 10px; }
-        }
-        /* Force white text on dark-blue backgrounds (overrides Brightspace stylesheet defaults).
-       !important is required because Brightspace's body:not(.template-fallback) h1..h6 selector
-       has specificity (0,2,2), beating .highlight-box h3 (0,1,1). */
-    header, header h1, header h2, header h3, header h4, header p, header span, header strong, header em, .week-badge,
-    .highlight-box, .highlight-box h1, .highlight-box h2, .highlight-box h3, .highlight-box h4, .highlight-box h5,
-    .highlight-box p, .highlight-box ul, .highlight-box ol, .highlight-box li,
-    .highlight-box strong, .highlight-box em, .highlight-box span {
-        color: #ffffff !important;
-    }
-    .highlight-box a, header a { color: #ffffff !important; text-decoration: underline; }
-    </style>
-    <link rel="stylesheet" href="https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css">
-</head><body><div class="container">
-<div class="ai-notice"><strong>Note:</strong> This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience.</div>
-<header>
-<div class="week-badge">Week 7 &bull; Sub-Lesson 6</div>
-<h1>&#129302; <span style="color: #ffffff;">Agentic Data Analysis</span></h1>
-<p>The shift from asking AI questions to giving AI tools, and what it means for how research gets done</p>
-</header>
-<div class="content">
-
-<div class="intro-text">
-<h2>What We'll Cover</h2>
-<p>Everything covered in this week so far has followed the same basic pattern: you ask the AI something, it produces code or analysis, you check it and decide what to do next. This conversational loop is useful, but it is no longer the frontier of what AI can do for data-intensive research.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Agentic Data Analysis — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet"><style>
+:root{--blue:#003A70;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:100%}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--blue);color:#fff}
+body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
+img{max-width:100%}
+.brandrule{height:4px;background:var(--blue)}
+/* ---- three-column shell ---- */
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.maincol{min-width:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
+.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover{color:var(--blue2)}
+.leftnav .navwk{font-family:'Fraunces';font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:.95rem;color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
+.toc{display:flex;flex-direction:column}
+.toc .lesson{font-family:'Newsreader';font-size:.97rem;line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson:hover{color:var(--blue)}
+.toc .lesson.cur{color:var(--blue);font-weight:500}
+.toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
+.toc .subs a{font-family:'Newsreader';font-size:.86rem;line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a:hover{color:var(--blue)}
+.toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
+.rightrail .rmeta{font-family:'Fraunces';font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
+.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:.93rem;line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .rhd{font-family:'Fraunces';font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
+/* ---- lesson header (in maincol) ---- */
+.ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
+.ahead .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.ahead h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.3rem,4.6vw,3.2rem);line-height:1.04;letter-spacing:-.012em;color:var(--blue);margin:0 0 16px}
+.ahead .deck{font-family:'Newsreader';font-style:italic;font-size:1.28rem;line-height:1.4;color:var(--mut);max-width:600px}
+/* ---- lesson body ---- */
+.abody{padding:30px 0 56px}
+.abody p{font-size:1.48rem;line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
+.abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
+.abody strong{font-weight:600}.abody em{font-style:italic}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
+.abody h3{font-family:'Fraunces';font-weight:500;font-size:1.32rem;color:var(--ink);margin:26px 0 10px}
+.abody h4{font-family:'Fraunces';font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
+.abody li{font-size:1.33rem;line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
+.abody ul li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
+.abody ol{counter-reset:li}.abody ol li{counter-increment:li}
+.abody ol li::before{content:counter(li)'.';position:absolute;left:0;top:0;font-family:'Fraunces';color:var(--blue);font-size:1rem}
+.abody .intro-text{border-left:2px solid var(--blue);padding:2px 0 2px 22px;margin:0 0 34px}
+.abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.abody .intro-text p{font-size:1.31rem;color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
+.abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0}
+.abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
+.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:1.16rem;color:var(--blue);margin:0 0 8px}
+.abody .card p{font-size:1.21rem;line-height:1.5;color:var(--ink2);margin:0}
+.abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
+.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:1.45rem;color:#fff;margin:0 0 12px}
+.abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:1.28rem;line-height:1.58;color:#e9e2d2;margin:0 0 8px}
+.abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
+.abody .highlight-box ul li::before{background:#bcd0e6}
+.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li{font-family:'Newsreader';font-size:1.24rem;line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:1.22rem;color:var(--blue);margin:0 0 8px}
+.abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
+.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:1.04rem;line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:1.01rem}
+.abody th{font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
+.abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
+.abody .step-list{list-style:none;counter-reset:s;padding:0;margin:26px 0}
+.abody .step-list>li{counter-increment:s;position:relative;padding:2px 0 22px 56px;border:0;margin:0;font-size:1.12rem;color:var(--ink2)}
+.abody .step-list>li::before{content:counter(s);position:absolute;left:0;top:-4px;font-family:'Fraunces';font-weight:400;font-size:2.2rem;color:var(--blue);line-height:1}
+.abody .step-list>li::after{content:none}
+.abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85rem;line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
+.abody .code-block *{font-family:inherit}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.86em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
+.abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
+.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
+/* ===== baseline + bespoke long-tail components ===== */
+.abody{font-size:1.33rem;line-height:1.62}
+.abody .section{margin:0 0 8px}
+.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
+/* callout boxes */
+.abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section,.abody .comment,.abody .cm{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
+.abody .analogy-box p,.abody .how-it-works p,.abody .key-concepts p,.abody .research-applications p,.abody .instructor-box p,.abody .prompt-example p,.abody .intro-section p,.abody .comment p,.abody .empty-note p{font-family:'Newsreader';font-size:1.05rem;line-height:1.6;color:var(--ink2);margin:0 0 8px}
+.abody .empty-note{font-style:italic;color:var(--mut)}
+/* generic cards + grids */
+.abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
+.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
+.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
+/* topic list */
+.abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
+.abody .topic-item{font-family:'Newsreader';font-size:1.06rem;line-height:1.4;color:var(--ink2);padding:6px 0 6px 18px;position:relative}
+.abody .topic-item::before{content:'';position:absolute;left:0;top:.65em;width:9px;height:1px;background:var(--blue)}
+/* timeline (handles era/description and date/title/content variants) */
+.abody .timeline-items,.abody .timeline,.abody .timeline-section{margin:22px 0}
+.abody .timeline-item{position:relative;padding:0 0 20px 26px;margin-left:4px;border-left:2px solid var(--rule)}
+.abody .timeline-item:last-child{border-left-color:transparent;padding-bottom:0}
+.abody .timeline-marker,.abody .marker-circle{display:none}
+.abody .timeline-era,.abody .timeline-date,.abody .era-badge{position:relative;font-family:'Fraunces';font-weight:500;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.abody .timeline-item>.timeline-era::before,.abody .timeline-item>.timeline-date::before,.abody .timeline-item>.era-badge::before{content:'';position:absolute;left:-33px;top:1px;width:11px;height:11px;border-radius:50%;background:var(--blue);border:2px solid var(--paper)}
+.abody .timeline-title{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.abody .timeline-description,.abody .timeline-content{font-family:'Newsreader';font-size:1.06rem;line-height:1.55;color:var(--ink2)}
+.abody .timeline-description strong,.abody .timeline-content strong{color:var(--ink)}
+/* stats */
+.abody .stat-box{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:16px 20px;margin:20px 0;border-radius:3px}
+.abody .stat-number{font-family:'Fraunces';font-weight:500;font-size:2rem;color:var(--blue);line-height:1}
+.abody .stat-label{font-family:'Newsreader';font-size:.95rem;line-height:1.45;color:var(--mut)}
+/* discussion questions */
+.abody .question-set{margin:24px 0}
+.abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
+/* paper cards */
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:1.14rem;color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
+.abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
+.abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
+.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+/* inline badges + indicators */
+.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
+.abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+/* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
+.abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
+.abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+/* very slight curve on the boxes */
+.abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
+.prevnext{padding:28px 0 60px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--rule)}
+.prevnext a{display:flex;flex-direction:column;gap:5px;text-decoration:none;max-width:46%}
+.prevnext .d{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
+.prevnext .pt{font-family:'Fraunces';font-size:1rem;color:var(--blue)}
+.prevnext .next{text-align:right;margin-left:auto}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+/* ---- INDEX / landing ---- */
+.iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
+.icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
+.icover .eyebrow{font-family:'Fraunces';font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;color:var(--blue);margin-bottom:22px}
+.icover h1{font-family:'Fraunces';font-optical-sizing:auto;font-weight:400;font-size:clamp(2.9rem,5vw,4.4rem);line-height:1.0;letter-spacing:-.015em;color:var(--blue)}
+.icover .sub{font-family:'Newsreader';font-style:italic;font-size:1.32rem;line-height:1.35;color:var(--mut);margin-top:18px}
+.iintro p{font-size:1.16rem;line-height:1.62;color:var(--ink2)}
+.iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
+.iintro .links a{font-family:'Fraunces';font-size:1.04rem;color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
+.iintro .links a:hover{border-color:var(--blue)}
+.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
+.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
+.wlabel{font-family:'Fraunces';font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
+.wlabel b{color:var(--blue);font-weight:600}
+.wcell h3{font-family:'Fraunces';font-weight:500;font-size:1.46rem;color:var(--blue);margin:0 0 6px;line-height:1.1}
+.lessons{list-style:none;margin:12px 0 0;padding:0}
+.lessons li{border-top:1px solid var(--rule)}
+.lessons a{display:block;font-size:1.08rem;color:var(--ink2);text-decoration:none;padding:9px 0;line-height:1.32;transition:color .15s,padding .15s}
+.lessons a:hover{color:var(--blue);padding-left:6px}
+.ifoot{border-top:1px solid var(--rule);margin-top:18px}
+.ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:.85rem;color:var(--lbl)}
+.ifoot a{color:var(--blue);text-decoration:none}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+/* ---- GLOSSARY ---- */
+.gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
+.gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
+.gloss .ga + .gentry{border-top:0}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:1.12rem;color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:1.05rem;line-height:1.55;color:var(--ink2)}
+.gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
+/* ---- reader text-size control ---- */
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
+.tsize button:nth-child(1){font-size:13px}
+.tsize button:nth-child(2){font-size:16px}
+.tsize button:nth-child(3){font-size:20px}
+.tsize button:hover{color:var(--blue)}
+.tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media print{.tsize{display:none}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+</style><script>try{var s=localStorage.getItem("mam-textsize");if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 7 &middot; AI for Data, Code &amp; Computation</div><nav class="toc"><a class="lesson" href="Natural%20Language%20to%20Code.html">Natural Language to Code — The New Interface</a><a class="lesson" href="AI-Assisted%20Data%20Analysis%20in%20Practice.html">AI-Assisted Data Analysis in Practice</a><a class="lesson" href="Visualization%20with%20AI.html">Visualization with AI</a><a class="lesson" href="Verification%20of%20AI-Generated%20Code.html">Verification of AI-Generated Code</a><a class="lesson" href="Building%20Your%20Data%20Analysis%20Workflow.html">Building Your Data Analysis Workflow</a><a class="lesson cur" href="Agentic%20Data%20Analysis.html">Agentic Data Analysis: Giving AI Tools, Not Just Questions</a><div class="subs"><a href="#s1">The Paradigm Shift: From Conversation to Agency</a><a href="#s2">What Agentic Tools Can Actually Do in 2026</a><a href="#s3">MCP: Connecting AI to Your Research Data</a><a href="#s4">CLAUDE.md: Onboarding the Agent to Your Project</a><a href="#s5">Running an Agentic Analysis Pipeline</a><a href="#s6">Oversight: The Non-Negotiable Part</a><a href="#s7">When to Use Agentic vs. Conversational</a><a href="#s8">Readings for This Session</a></div><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Agentic Data Analysis</h1><div class="deck">The shift from asking AI questions to giving AI tools, and what it means for how research gets done</div></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+<p class="drop">Everything covered in this week so far has followed the same basic pattern: you ask the AI something, it produces code or analysis, you check it and decide what to do next. This conversational loop is useful, but it is no longer the frontier of what AI can do for data-intensive research.</p>
 <p>This session introduces a different paradigm: <strong>agentic AI</strong>, where instead of asking the AI questions one at a time, you give it tools, a goal, and context, then let it plan and execute a multi-step analysis pipeline largely on its own. The AI reads your actual files, runs code, checks the results, fixes problems, and iterates, without you feeding it information piece by piece.</p>
 <p>This is not science fiction. It is deployed and available today. But it introduces a new set of considerations around setup, oversight, reproducibility, and trust that are quite different from conversational AI use. By the end of this session you will understand what agentic analysis actually means, how to set up a project for it, and where it still needs you.</p>
 </div>
 
 <!-- SECTION 1: THE PARADIGM SHIFT -->
-<h2 class="section-title">&#128256; The Paradigm Shift: From Conversation to Agency</h2>
+<h2 class="section-title" id="s1">The Paradigm Shift: From Conversation to Agency</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The distinction between a conversational AI tool and an agentic one is about more than speed or capability. It is a different model of how the AI participates in your work.</p>
+<p style=" margin-bottom: 25px">The distinction between a conversational AI tool and an agentic one is about more than speed or capability. It is a different model of how the AI participates in your work.</p>
 
-<div class="card-grid">
-<div class="card">
-<h3>Conversational AI (What You've Used So Far)</h3>
+<div class="card-grid"><div class="card"><h3>Conversational AI (What You've Used So Far)</h3>
 <p>You are the one who runs code, checks results, and decides what to ask next. The AI responds to each message in isolation, without access to your actual files or the ability to act on its own suggestions.</p>
 <ul class="styled-list">
 <li>You paste data samples or error messages into the chat</li>
@@ -308,8 +199,7 @@
 </ul>
 </div>
 
-<div class="card">
-<h3>Agentic AI (The New Paradigm)</h3>
+<div class="card"><h3>Agentic AI (The New Paradigm)</h3>
 <p>The AI operates in your environment, with access to your files, the ability to run code, and the capacity to plan and execute multi-step tasks autonomously, checking its own work and adjusting as it goes.</p>
 <ul class="styled-list">
 <li>The AI reads your actual data files directly, with no copy-pasting</li>
@@ -321,19 +211,17 @@
 </div>
 </div>
 
-<div class="highlight-box">
-<h3>&#128161; <span style="color: #ffffff;">The USB-C Analogy</span></h3>
+<div class="highlight-box"><h3><span>The USB-C Analogy</span></h3>
 <p>The key enabling technology here is the <strong>Model Context Protocol (MCP)</strong>, announced by Anthropic in November 2024 and now an open industry standard supported by Anthropic, OpenAI, and Google. MCP has been described as "USB-C for AI": a single universal protocol that lets AI models connect to any external system, including databases, file systems, APIs, web browsers, and version control systems.</p>
 <p>Before MCP, connecting an AI to an external data source required bespoke integration work for every combination of AI and data system. Now, with a standard protocol and over 8,600 available MCP servers, you can give an AI direct, secure access to a PostgreSQL database, a file system, or a cloud storage bucket using off-the-shelf components. This is what makes agentic research workflows practical rather than theoretical.</p>
 </div>
 
 <!-- SECTION 2: WHAT AGENTS CAN DO -->
-<h2 class="section-title">&#9881;&#65039; What Agentic Tools Can Actually Do in 2026</h2>
+<h2 class="section-title" id="s2">What Agentic Tools Can Actually Do in 2026</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">The capability of current agentic tools has expanded a great deal in the past 18 months. Here is what is possible today, based on what tools like Claude Code, Codex, and Gemini CLI can do in practice.</p>
+<p style=" margin-bottom: 25px">The capability of current agentic tools has expanded a great deal in the past 18 months. Here is what is possible today, based on what tools like Claude Code, Codex, and Gemini CLI can do in practice.</p>
 
-<div class="technical-detail">
-<h4>Claude Code: The Current Capability Ceiling</h4>
+<div class="technical-detail"><h4>Claude Code: The Current Capability Ceiling</h4>
 <p>Claude Code is currently the most capable agentic coding tool for research use. In practical terms, it can:</p>
 <ul class="styled-list">
 <li><strong>Read entire project structures:</strong> It understands multi-file dependencies, not just individual snippets. You can point it at a project directory and it will orient itself before writing a single line.</li>
@@ -344,27 +232,23 @@
 </ul>
 </div>
 
-<div class="card-grid">
-<div class="card">
-<h3>Also in the Ecosystem</h3>
+<div class="card-grid"><div class="card"><h3>Also in the Ecosystem</h3>
 <p><strong>Codex (OpenAI)</strong>: Claude Code's primary commercial competitor, launched as a dedicated agent in April 2025. Terminal-based, file-reading, open-source CLI. Tightly integrated with the OpenAI ecosystem.</p>
 <p><strong>Gemini CLI (Google)</strong>: Open-source terminal agent released June 2025. Strong Google Cloud integration; supports MCP. Useful if your data lives in Google infrastructure.</p>
 <p><strong>Open Interpreter</strong>: Open-source, runs fully locally. Your data never leaves your machine, which makes it relevant for sensitive research data that cannot be sent to a cloud provider.</p>
 </div>
-<div class="card">
-<h3>The Research Frontier</h3>
+<div class="card"><h3>The Research Frontier</h3>
 <p>The most ambitious demonstration of agentic research capability is the <strong>Sakana AI Scientist</strong>. Version 2 (2025) automates the entire research lifecycle: idea generation, code writing, experiment execution, result analysis, and paper writing, at approximately $15 per paper.</p>
 <p>One AI Scientist paper achieved peer-review acceptance at an ICLR 2025 workshop; the system description was published in <em>Nature</em>. A 2026 <em>Nature</em> editorial noted that "AI scientists are changing research &mdash; institutions, funders and publishers must respond." This is not an endorsement: critical evaluations identify serious weaknesses in literature synthesis and novelty assessment. But it marks the direction of travel.</p>
 </div>
 </div>
 
 <!-- SECTION 3: MCP AND CONNECTING TO YOUR DATA -->
-<h2 class="section-title">&#128268; MCP: Connecting AI to Your Research Data</h2>
+<h2 class="section-title" id="s3">MCP: Connecting AI to Your Research Data</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">For most researchers, the most useful aspect of agentic tools is direct data access via MCP. Instead of exporting a CSV, pasting a sample into a chat window, and hoping the AI correctly infers your data structure, you give the agent a connection to your actual data, and it reads, queries, and works with it directly.</p>
+<p style=" margin-bottom: 25px">For most researchers, the most useful aspect of agentic tools is direct data access via MCP. Instead of exporting a CSV, pasting a sample into a chat window, and hoping the AI correctly infers your data structure, you give the agent a connection to your actual data, and it reads, queries, and works with it directly.</p>
 
-<div class="technical-detail">
-<h4>What MCP Actually Connects</h4>
+<div class="technical-detail"><h4>What MCP Actually Connects</h4>
 <p>MCP servers expose three types of capability to an AI agent:</p>
 <ul class="styled-list">
 <li><strong>Resources:</strong> structured data injected directly into the model's context, such as file contents, database records, and API responses</li>
@@ -372,9 +256,9 @@
 <li><strong>Prompts:</strong> reusable templates for structured interactions with specific data systems</li>
 </ul>
 
-<p style="margin-top: 15px;">For research workflows, the most useful MCP servers are:</p>
+<p style="margin-top: 15px">For research workflows, the most useful MCP servers are:</p>
 
-<table class="comparison-table" style="margin-top: 15px;">
+<table class="comparison-table" style="margin-top: 15px">
 <thead>
 <tr><th>Category</th><th>MCP Servers</th><th>Research Use Case</th></tr>
 </thead>
@@ -388,22 +272,19 @@
 </table>
 </div>
 
-<div class="info-box">
-<h4>&#128204; You Do Not Need to Understand MCP Deeply to Use It</h4>
+<div class="info-box"><h4>You Do Not Need to Understand MCP Deeply to Use It</h4>
 <p>MCP configuration typically involves adding a few lines to a JSON settings file that tell Claude Code which servers to connect to and with what permissions. For filesystem access, the most common research use case, the setup takes about five minutes. The official MCP server repository at <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">github.com/modelcontextprotocol/servers</a> provides ready-made configurations for all major data systems. You do not need to build or maintain anything; you are connecting to existing infrastructure.</p>
 </div>
 
 <!-- SECTION 4: CLAUDE.md -->
-<h2 class="section-title">&#128196; CLAUDE.md: Onboarding the Agent to Your Project</h2>
+<h2 class="section-title" id="s4">CLAUDE.md: Onboarding the Agent to Your Project</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">When you start a new Claude Code session, the agent knows nothing about your project. <strong>CLAUDE.md</strong> is how you fix that. It is a plain Markdown file in your project root that Claude Code reads automatically at the start of every session. Think of it as the onboarding document you would give a new research assistant joining your project on their first day.</p>
+<p style=" margin-bottom: 25px">When you start a new Claude Code session, the agent knows nothing about your project. <strong>CLAUDE.md</strong> is how you fix that. It is a plain Markdown file in your project root that Claude Code reads automatically at the start of every session. Think of it as the onboarding document you would give a new research assistant joining your project on their first day.</p>
 
-<div class="case-study">
-<h4>&#128203; What Goes in a Research CLAUDE.md</h4>
+<div class="case-study"><h4>What Goes in a Research CLAUDE.md</h4>
 <p>Running <code>/init</code> in Claude Code will auto-generate a starter file based on what it finds in your project. But for a research data analysis project, you want to customise it carefully. A well-structured research CLAUDE.md typically includes:</p>
 
-<div class="code-block">
-<span class="comment"># My Research Project — CLAUDE.md</span>
+<div class="code-block"><span class="comment"># My Research Project — CLAUDE.md</span>
 
 <span class="key"># Research Context</span>
 <span class="value">- Research question: Does X predict Y in population Z?</span>
@@ -430,26 +311,24 @@
 <span class="value">- Flag, do not silently fix, any unexpected data patterns</span>
 </div>
 
-<p style="margin-top: 15px;">Every statistical convention you care about, every data-handling rule, and every constraint on what the agent should not do is specified upfront. The agent applies these throughout the session, so you do not need to repeat them in every prompt.</p>
+<p style="margin-top: 15px">Every statistical convention you care about, every data-handling rule, and every constraint on what the agent should not do is specified upfront. The agent applies these throughout the session, so you do not need to repeat them in every prompt.</p>
 </div>
 
-<div class="warning-box">
-<h4>&#9888;&#65039; CLAUDE.md Is Not Magic</h4>
+<div class="warning-box"><h4>CLAUDE.md Is Not Magic</h4>
 <p>The agent reads CLAUDE.md but it does not always follow every instruction perfectly, especially in long or complex sessions. Think of it as the difference between telling a new research assistant your conventions on their first day versus expecting them to remember everything perfectly three months later. It improves consistency a great deal, but it does not replace oversight. Keep your CLAUDE.md under 200 lines. It consumes context window space, and more instructions do not always mean better adherence.</p>
 </div>
 
 <!-- SECTION 5: RUNNING AN AGENTIC ANALYSIS -->
-<h2 class="section-title">&#127939; Running an Agentic Analysis Pipeline</h2>
+<h2 class="section-title" id="s5">Running an Agentic Analysis Pipeline</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">What does it actually look like when you hand an analysis task to an agent rather than conducting it conversationally? Here is a concrete research scenario.</p>
+<p style=" margin-bottom: 25px">What does it actually look like when you hand an analysis task to an agent rather than conducting it conversationally? Here is a concrete research scenario.</p>
 
-<div class="case-study">
-<h4>&#128300; A Real Agentic Workflow: From Raw Data to Annotated Results</h4>
+<div class="case-study"><h4>A Real Agentic Workflow: From Raw Data to Annotated Results</h4>
 <p>You have six months of longitudinal survey data across three sites, pre-cleaned and stored as CSV files. Your research question is whether a teaching intervention improved outcomes differently across sites. Instead of a back-and-forth conversation, you write one goal statement to Claude Code:</p>
 
-<p style="margin-top: 15px; font-family: monospace; background: #f0f0f0; padding: 15px; border-radius: 8px; color: #333; font-size: 0.9em;">"Load the three wave CSV files in /data/processed/, merge them on participant_id, run our pre-registered mixed-effects model (intervention &times; site &times; time), produce the three figures from our analysis plan, and save a summary table in /output/. Flag anything unexpected in the data. Use the conventions in CLAUDE.md throughout."</p>
+<p style="margin-top: 15px; padding: 15px; border-radius: 8px">"Load the three wave CSV files in /data/processed/, merge them on participant_id, run our pre-registered mixed-effects model (intervention &times; site &times; time), produce the three figures from our analysis plan, and save a summary table in /output/. Flag anything unexpected in the data. Use the conventions in CLAUDE.md throughout."</p>
 
-<p style="margin-top: 15px;">The agent then:</p>
+<p style="margin-top: 15px">The agent then:</p>
 <ol class="step-list">
 <li>Reads the CLAUDE.md to understand your project context, conventions, and constraints</li>
 <li>Loads all three CSV files, checks that participant IDs merge cleanly, and flags the 12 cases where they do not, rather than silently dropping them</li>
@@ -459,30 +338,26 @@
 <li>Writes a log of every decision it made: which merge strategy it used, how it handled the 12 mismatched IDs, and what changed between the first and second model specification</li>
 </ol>
 
-<p style="margin-top: 15px;">Current tools can do this today with a well-structured project and a good CLAUDE.md. What they do not do is tell you whether the findings are scientifically meaningful, whether the model specification is appropriate for your theory, or whether the "unexpected patterns" they flagged matter for your interpretation. That is still yours.</p>
+<p style="margin-top: 15px">Current tools can do this today with a well-structured project and a good CLAUDE.md. What they do not do is tell you whether the findings are scientifically meaningful, whether the model specification is appropriate for your theory, or whether the "unexpected patterns" they flagged matter for your interpretation. That is still yours.</p>
 </div>
 
-<div class="highlight-box">
-<h3>&#128161; <span style="color: #ffffff;">The Goal Statement Is Everything</span></h3>
+<div class="highlight-box"><h3><span>The Goal Statement Is Everything</span></h3>
 <p>The quality of an agentic analysis depends heavily on the quality of the goal statement you give it upfront. Vague goals (&ldquo;analyse my data&rdquo;) produce vague results. Specific, bounded goals (&ldquo;run the pre-registered model, produce these specific outputs, flag anomalies, log all decisions&rdquo;) produce useful results. Your primary lever is the goal statement rather than the prompts you send during execution, because for much of a well-specified task, you will not be sending prompts at all.</p>
 </div>
 
 <!-- SECTION 6: OVERSIGHT -->
-<h2 class="section-title">&#128064; Oversight: The Non-Negotiable Part</h2>
+<h2 class="section-title" id="s6">Oversight: The Non-Negotiable Part</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Agentic tools introduce a specific oversight challenge that does not exist in conversational use: the agent can take many consequential actions between your check-ins. How you handle oversight largely determines whether an agentic workflow is safe to use on real research.</p>
+<p style=" margin-bottom: 25px">Agentic tools introduce a specific oversight challenge that does not exist in conversational use: the agent can take many consequential actions between your check-ins. How you handle oversight largely determines whether an agentic workflow is safe to use on real research.</p>
 
-<div class="technical-detail">
-<h4>The Reliability Mathematics</h4>
+<div class="technical-detail"><h4>The Reliability Mathematics</h4>
 <p>Consider the arithmetic. Suppose each step in an agentic pipeline succeeds with 90% reliability, a reasonable figure for current tools on well-defined tasks. For a 5-step pipeline:</p>
-<p style="text-align: center; margin: 20px 0; font-size: 1.1em; color: #2a5298;"><strong>0.9 &times; 0.9 &times; 0.9 &times; 0.9 &times; 0.9 = 59% end-to-end reliability</strong></p>
+<p style="text-align: center; margin: 20px 0"><strong>0.9 &times; 0.9 &times; 0.9 &times; 0.9 &times; 0.9 = 59% end-to-end reliability</strong></p>
 <p>For a 10-step pipeline: <strong>35%</strong>. For 20 steps: <strong>12%</strong>.</p>
-<p style="margin-top: 15px;">This is a structural property of sequential processes, and it does not matter how capable the individual steps are. It is why long autonomous agentic pipelines need human checkpoints. The issue is not that AI tools are unreliable; it is that probabilities compound.</p>
+<p style="margin-top: 15px">This is a structural property of sequential processes, and it does not matter how capable the individual steps are. It is why long autonomous agentic pipelines need human checkpoints. The issue is not that AI tools are unreliable; it is that probabilities compound.</p>
 </div>
 
-<div class="card-grid">
-<div class="card">
-<h3>&#10003; What Good Oversight Looks Like</h3>
+<div class="card-grid"><div class="card"><h3>What Good Oversight Looks Like</h3>
 <ul class="styled-list">
 <li><strong>Review the plan before execution:</strong> Ask the agent to outline its intended steps before it starts. If the plan is wrong, catching it here is infinitely cheaper than catching it after 30 minutes of autonomous work</li>
 <li><strong>Set explicit checkpoints:</strong> Instruct the agent to pause and report at key decision points, such as after data loading, after cleaning, and before running the final model</li>
@@ -491,8 +366,7 @@
 <li><strong>Start with a small scope:</strong> On a new dataset, run the agent on a 10% sample first. Check the results thoroughly before running it on the full data</li>
 </ul>
 </div>
-<div class="card">
-<h3>&#10007; What Goes Wrong Without It</h3>
+<div class="card"><h3>What Goes Wrong Without It</h3>
 <ul class="styled-list">
 <li><strong>Silent scope creep:</strong> Agents given broad access sometimes take actions beyond their intended task, such as modifying files you expected to be read-only, or running analyses you did not ask for</li>
 <li><strong>Compounding errors:</strong> An error in step 2 that goes unchecked propagates through every subsequent step. The final output looks complete but is built on a flawed foundation</li>
@@ -502,18 +376,16 @@
 </div>
 </div>
 
-<div class="warning-box">
-<h4>&#9888;&#65039; Security: A Genuine Concern for MCP</h4>
+<div class="warning-box"><h4>Security: A Genuine Concern for MCP</h4>
 <p>When you connect an AI agent to real institutional data systems via MCP, you introduce security considerations that do not arise in conversational use. Palo Alto Networks' Unit 42 has documented MCP-specific attack vectors including <strong>tool poisoning</strong> (malicious instructions hidden in tool metadata) and credential theft via indirect prompt injection. For researchers connecting agents to institutional databases, applying the principle of <strong>minimum necessary access</strong> is not optional: give the agent access to the specific data it needs for the task, not to your entire institutional data infrastructure. Check with your institution's IT security team before connecting research data systems to external MCP servers.</p>
 </div>
 
 <!-- SECTION 7: WHEN AGENTIC VS CONVERSATIONAL -->
-<h2 class="section-title">&#9878;&#65039; When to Use Agentic vs. Conversational</h2>
+<h2 class="section-title" id="s7">When to Use Agentic vs. Conversational</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">Agentic tools are not simply "better" than conversational ones. They are suited to different kinds of tasks. Choosing between them is a judgment call you will make regularly as AI becomes more capable.</p>
+<p style=" margin-bottom: 25px">Agentic tools are not simply "better" than conversational ones. They are suited to different kinds of tasks. Choosing between them is a judgment call you will make regularly as AI becomes more capable.</p>
 
-<div class="decision-framework">
-<h4>A Decision Framework</h4>
+<div class="decision-framework"><h4>A Decision Framework</h4>
 <table class="comparison-table">
 <thead>
 <tr><th></th><th>Use Agentic When&hellip;</th><th>Use Conversational When&hellip;</th></tr>
@@ -548,62 +420,36 @@
 </table>
 </div>
 
-<div class="info-box">
-<h4>&#128204; The Honest Assessment</h4>
+<div class="info-box"><h4>The Honest Assessment</h4>
 <p>As of 2026, most researchers using agentic tools for the first time find that the setup cost (structuring a project correctly, writing a good CLAUDE.md, configuring MCP) takes longer than they expected, and the first few autonomous runs require careful review and correction. The payoff comes on the second, third, and tenth use of a well-configured project, when the same setup generates consistent, auditable results with much less manual effort. Agentic tools reward investment in project structure in a way that conversational tools do not.</p>
 </div>
 
 <!-- SECTION 8: READINGS -->
-<h2 class="section-title">&#128218; Readings for This Session</h2>
+<h2 class="section-title" id="s8">Readings for This Session</h2>
 
-<div class="resource-placeholder">
-<h4>&#128214; Core Reading 1</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener"><strong>Anthropic (2024). "Introducing the Model Context Protocol."</strong></a> The original announcement of MCP, explaining the motivation, architecture, and vision. Short and accessible, and the primary source for understanding what MCP is and why it was created. Read alongside the <a href="https://claude.com/blog/using-claude-md-files" target="_blank" rel="noopener">CLAUDE.md best practices guide</a> from Anthropic's blog.</p>
+<div class="resource-placeholder"><h4>Core Reading 1</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener"><strong>Anthropic (2024). "Introducing the Model Context Protocol."</strong></a> The original announcement of MCP, explaining the motivation, architecture, and vision. Short and accessible, and the primary source for understanding what MCP is and why it was created. Read alongside the <a href="https://claude.com/blog/using-claude-md-files" target="_blank" rel="noopener">CLAUDE.md best practices guide</a> from Anthropic's blog.</p>
 </div>
 
-<div class="resource-placeholder">
-<h4>&#128214; Core Reading 2</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.nature.com/articles/s41467-025-63913-1" target="_blank" rel="noopener"><strong>Tang, X. et al. (2025). "Risks of AI scientists: prioritizing safeguarding over autonomy." <em>Nature Communications</em>.</strong></a> A rigorous analysis of the specific risks that arise when AI agents are used for autonomous scientific research. Proposes a triadic safeguarding framework (human regulation, agent alignment, environmental feedback) as the key pillars of responsible agentic research deployment. Essential reading before deploying agents on real research data.</p>
+<div class="resource-placeholder"><h4>Core Reading 2</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.nature.com/articles/s41467-025-63913-1" target="_blank" rel="noopener"><strong>Tang, X. et al. (2025). "Risks of AI scientists: prioritizing safeguarding over autonomy." <em>Nature Communications</em>.</strong></a> A rigorous analysis of the specific risks that arise when AI agents are used for autonomous scientific research. Proposes a triadic safeguarding framework (human regulation, agent alignment, environmental feedback) as the key pillars of responsible agentic research deployment. Essential reading before deploying agents on real research data.</p>
 </div>
 
-<div class="resource-placeholder">
-<h4>&#128214; Core Reading 3</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.nature.com/articles/d41586-026-00934-w" target="_blank" rel="noopener"><strong>Nature (2026). "AI scientists are changing research &mdash; institutions, funders and publishers must respond."</strong></a> A policy-oriented editorial on the institutional implications of agentic research tools. Covers reproducibility challenges, peer-review implications, and what research institutions need to put in place. Good for understanding the broader context in which you will be using these tools during your career.</p>
+<div class="resource-placeholder"><h4>Core Reading 3</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.nature.com/articles/d41586-026-00934-w" target="_blank" rel="noopener"><strong>Nature (2026). "AI scientists are changing research &mdash; institutions, funders and publishers must respond."</strong></a> A policy-oriented editorial on the institutional implications of agentic research tools. Covers reproducibility challenges, peer-review implications, and what research institutions need to put in place. Good for understanding the broader context in which you will be using these tools during your career.</p>
 </div>
 
-<div class="resource-placeholder">
-<h4>&#128196; Supplementary: Practical Guides</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener"><strong>Claude Code Documentation</strong></a>. The official guide to Claude Code, including sub-agents, CLAUDE.md best practices, MCP configuration, and multi-agent workflows. The <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">best practices section</a> is particularly relevant.<br><br>
-<a href="https://arxiv.org/abs/2503.08979" target="_blank" rel="noopener"><strong>Agentic AI for Scientific Discovery: A Survey (arXiv:2503.08979, 2025)</strong></a>. A full survey of where agentic AI is currently deployed in scientific research, what works, and where the gaps remain. Good context for understanding which research domains are furthest ahead.
+<div class="resource-placeholder"><h4>Supplementary: Practical Guides</h4>
+<p style="font-style: normal; margin-top: 8px"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener"><strong>Claude Code Documentation</strong></a>. The official guide to Claude Code, including sub-agents, CLAUDE.md best practices, MCP configuration, and multi-agent workflows. The <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">best practices section</a> is particularly relevant.<br><br><a href="https://arxiv.org/abs/2503.08979" target="_blank" rel="noopener"><strong>Agentic AI for Scientific Discovery: A Survey (arXiv:2503.08979, 2025)</strong></a>. A full survey of where agentic AI is currently deployed in scientific research, what works, and where the gaps remain. Good context for understanding which research domains are furthest ahead.
 </p>
 </div>
 
 <!-- SUMMARY -->
-<div class="intro-text" style="margin-top: 50px;">
-<h2>Key Takeaways</h2>
+<div class="intro-text" style="margin-top: 50px"><h2>Key Takeaways</h2>
 <p><strong>The paradigm has shifted from conversation to agency.</strong> Giving an AI tools, context, and a goal, then letting it execute a multi-step pipeline autonomously, is now practical for research workflows. MCP, Claude Code, Codex, and Gemini CLI make this accessible without deep technical expertise.</p>
 <p><strong>CLAUDE.md is the most important document you will write for an agentic project.</strong> It specifies your data structure, analytical conventions, and constraints upfront, so the agent applies them throughout a session without you repeating them. Investing 30 minutes in a good CLAUDE.md saves hours of downstream correction.</p>
 <p><strong>Oversight is mathematics, not distrust.</strong> The reliability degradation in sequential pipelines makes checkpoints a structural requirement for any serious multi-step agentic analysis. Review the plan before execution, require decision logs, and verify outputs rather than just completion.</p>
 <p><strong>Agentic tools reward project structure.</strong> The setup cost is real, but it pays off across repeated use. The researchers who benefit most from agentic tools are those who treat project organisation as a first-class research activity, not an afterthought.</p>
 <p><strong>The judgment is still yours.</strong> Agentic tools can execute a pre-specified analysis faster and more consistently than you can by hand. They cannot decide what question to ask, whether a result is scientifically meaningful, or how to handle a finding that contradicts your expectations. The frontier has moved, but the researcher has not been replaced. The researcher has been given a more capable collaborator.</p>
 <p><strong>Next session:</strong> Sub-Lesson 7 brings together the full week with hands-on activities. You will practice both conversational and agentic workflows on real data, compare the results, and complete the weekly assessment.</p>
-</div>
-
-</div>
-<!-- PAGE-NAV-START -->
-<style>.page-nav-link:hover{background:#003A70 !important;}.page-nav-link:hover *{color:#ffffff !important;}</style>
-<nav class="page-nav" aria-label="Lesson navigation" style="max-width:1200px;margin:28px auto 0;padding:0 40px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-family:'Lato',sans-serif;">
-  <a class="page-nav-link" href="../week-7/Building Your Data Analysis Workflow.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:left;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">&#8592; Previous</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Building Your Data Analysis Workflow</div></a>
-  <a class="page-nav-link" href="../week-7/Hands-On Activities and Assessment.html" style="flex:1 1 240px;text-decoration:none;display:block;padding:14px 18px;border:1px solid #d0e0ee;border-radius:12px;background:#f8fbff;color:#003A70;transition:background .2s,color .2s;text-align:right;"><div style="font-size:.78em;text-transform:uppercase;letter-spacing:.5px;color:#8a99a8;margin-bottom:3px;">Next &#8594;</div><div style="font-weight:600;font-size:.97em;line-height:1.35;">Hands-On Activities and Assessment</div></a>
-</nav>
-<!-- PAGE-NAV-END -->
-<footer style="background: #f9f9f9; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
-&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
-</footer></div>
-<!-- SCORM-HOOK-START -->
-<script src="../scorm-api.js"></script>
-<!-- SCORM-HOOK-END -->
-<!-- ANALYTICS-START -->
-<script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<!-- ANALYTICS-END -->
-</body></html>
+</div></div><div class="prevnext"><a href="Building%20Your%20Data%20Analysis%20Workflow.html"><span class="d">&larr; Previous</span><span class="pt">Building Your Data Analysis Workflow</span></a><a class="next" href="Hands-On%20Activities%20and%20Assessment.html"><span class="d">Next &rarr;</span><span class="pt">Hands-On Activities and Assessment</span></a></div></div><div class="rightrail"><div class="rmeta">Week 7<br>Lesson 6<br>17 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk">Agentic AI</div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk">MCP (Model Context Protocol)</div>An open standard, introduced by Anthropic in 2024, that lets an AI agent connect to external tools and data sources (databases, file storage, reference managers) through one consistent interface rather than custom wiring for each.</div><div class="snote"><div class="sk">CLAUDE.md</div>A plain-text file placed in a project folder that Claude Code reads automatically at the start of every session, holding standing instructions and context so the researcher need not repeat them each time.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["100%","112%","125%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
