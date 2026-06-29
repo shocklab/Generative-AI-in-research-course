@@ -205,9 +205,9 @@ img{max-width:100%}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media print{.tsize{display:none}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px}}
-/* ---- hideable margins: labelled controls in the corner ---- */
-.sidebarctl{position:fixed;right:18px;bottom:60px;z-index:300;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-.sidebarctl .vbtn{font-family:'Fraunces';font-size:.85rem;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:6px;cursor:pointer;padding:7px 13px;box-shadow:0 2px 10px rgba(40,30,10,.1);white-space:nowrap}
+/* ---- hideable margins: labelled controls at the top of the reading column ---- */
+.sidebarctl{display:flex;justify-content:flex-end;gap:8px;margin:0;padding:8px 0 0}
+.sidebarctl .vbtn{font-family:'Fraunces';font-size:.8rem;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:6px;cursor:pointer;padding:6px 12px;white-space:nowrap}
 .sidebarctl .vbtn:hover{color:var(--blue);border-color:var(--blue)}
 .sidebarctl .vbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .vbtn .ls{display:none}
@@ -387,11 +387,11 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
                  f'<span class="pt">{html.escape(nxt["title"])}</span></a>') if nxt else '<span></span>'
         pn = f'<div class="prevnext">{left}{right}</div>'
 
-    main = (f'<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
+    main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             f'<h1>{html.escape(h1)}</h1>' + (f'<div class="deck">{html.escape(deck)}</div>' if deck else '') + '</div>'
             f'<div class="abody">{c}</div>{pn}')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
-            '<div class="maincol">' + main + '</div>' + rightrail + '</div>' + MARGIN_BODY)
+            '<div class="maincol">' + main + '</div>' + rightrail + '</div>')
     out = os.path.join(OUT, unquote(href))
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(page(h1 + " — MAM5020F", body, SPY))
@@ -453,11 +453,11 @@ def render_glossary(terms):
             blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
     rightrail = (f'<div class="rightrail"><div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
-    main = ('<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
+    main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
             f'<div class="abody gloss">{blocks}</div>')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
-            '<div class="maincol">' + main + '</div>' + rightrail + '</div>' + MARGIN_BODY)
+            '<div class="maincol">' + main + '</div>' + rightrail + '</div>')
     open(os.path.join(OUT, "glossary.html"), "w", encoding="utf-8").write(page("Glossary — MAM5020F", body))
 
 # ---------- synthetic sections for pages outside the index sitemap ----------
