@@ -206,11 +206,11 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px}}
 /* ---- hideable margins ---- */
-.mcoll{position:absolute;top:38px;display:flex;align-items:center;justify-content:center;width:26px;height:26px;font-family:'Fraunces';font-size:1.3rem;line-height:1;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:5px;cursor:pointer;padding:0;z-index:6;box-shadow:0 1px 4px rgba(40,30,10,.07)}
-.mcoll:hover{color:var(--blue);border-color:var(--blue)}
-.leftnav .mcoll{right:-13px}
-.rightrail .mcoll{left:-13px}
-.mshow{position:fixed;top:46%;transform:translateY(-50%);z-index:300;display:none;background:var(--card);border:1px solid var(--rule2);color:var(--lbl);font-family:'Fraunces';font-size:1.05rem;cursor:pointer;padding:14px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.mcoll{position:absolute;top:34px;display:flex;align-items:center;justify-content:center;width:36px;height:36px;font-family:'Fraunces';font-size:1.7rem;line-height:1;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:7px;cursor:pointer;padding:0;z-index:6;box-shadow:0 2px 7px rgba(40,30,10,.12)}
+.mcoll:hover{color:var(--blue);border-color:var(--blue);background:var(--paper)}
+.leftnav .mcoll{right:-18px}
+.rightrail .mcoll{left:-18px}
+.mshow{position:fixed;top:46%;transform:translateY(-50%);z-index:300;display:none;background:var(--card);border:1px solid var(--rule2);color:var(--mut);font-family:'Fraunces';font-size:1.5rem;line-height:1;cursor:pointer;padding:18px 8px;box-shadow:0 2px 12px rgba(40,30,10,.12)}
 .mshow:hover{color:var(--blue)}
 .mshow.l{left:0;border-radius:0 7px 7px 0}
 .mshow.r{right:0;border-radius:7px 0 0 7px}
@@ -277,8 +277,8 @@ TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("m
            'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
 
 # reshow tabs + collapse/expand wiring for the side margins (shell pages only)
-MARGIN_BODY = ('<button class="mshow l" type="button" data-m="l" title="Show navigation" aria-label="Show navigation">&rsaquo;</button>'
-               '<button class="mshow r" type="button" data-m="r" title="Show margin notes" aria-label="Show margin notes">&lsaquo;</button>'
+MARGIN_BODY = ('<button class="mshow l" type="button" data-m="l" title="Show navigation" aria-label="Show navigation">&raquo;</button>'
+               '<button class="mshow r" type="button" data-m="r" title="Show margin notes" aria-label="Show margin notes">&laquo;</button>'
                '<script>document.addEventListener("click",function(e){'
                'var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;'
                'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
@@ -357,7 +357,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         else:
             items += f'<a class="lesson" href="{rel}">{html.escape(sl["title"])}</a>'
     back = relhref('index.html', href)
-    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&lsaquo;</button>'
+    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&laquo;</button>'
                f'<a class="back" href="{back}">&larr; All lessons</a>'
                f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
                f'<nav class="toc">{items}</nav></div>')
@@ -374,7 +374,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         if d:
             snotes += f'<div class="snote"><div class="sk">{html.escape(term)}</div>{d["definition"]}</div>'
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
-    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&rsaquo;</button>'
+    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&raquo;</button>'
                  f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
 
     # prev / next
@@ -444,7 +444,7 @@ def render_glossary(terms):
         groups.setdefault(first(t['term']), []).append(t)
     letters = sorted(groups)
     nav = ''.join(f'<a class="lesson" href="#L{L}">{L}</a>' for L in letters)
-    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&lsaquo;</button>'
+    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&laquo;</button>'
                '<a class="back" href="index.html">&larr; All lessons</a>'
                f'<div class="navwk">Reference</div><nav class="toc">{nav}</nav></div>')
     blocks = ''
@@ -453,7 +453,7 @@ def render_glossary(terms):
         for t in groups[L]:
             blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
-    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&rsaquo;</button>'
+    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&raquo;</button>'
                  f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = ('<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
