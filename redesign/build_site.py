@@ -205,27 +205,25 @@ img{max-width:100%}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media print{.tsize{display:none}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px}}
-/* ---- hideable margins ---- */
-.mcoll{position:absolute;top:34px;display:flex;align-items:center;justify-content:center;width:36px;height:36px;font-family:'Fraunces';font-size:1.7rem;line-height:1;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:7px;cursor:pointer;padding:0;z-index:6;box-shadow:0 2px 7px rgba(40,30,10,.12)}
-.mcoll:hover{color:var(--blue);border-color:var(--blue);background:var(--paper)}
-.leftnav .mcoll{right:-18px}
-.rightrail .mcoll{left:-18px}
-.mshow{position:fixed;top:46%;transform:translateY(-50%);z-index:300;display:none;background:var(--card);border:1px solid var(--rule2);color:var(--mut);font-family:'Fraunces';font-size:1.5rem;line-height:1;cursor:pointer;padding:18px 8px;box-shadow:0 2px 12px rgba(40,30,10,.12)}
-.mshow:hover{color:var(--blue)}
-.mshow.l{left:0;border-radius:0 7px 7px 0}
-.mshow.r{right:0;border-radius:7px 0 0 7px}
-.mshow:focus-visible,.mcoll:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+/* ---- hideable margins: labelled controls in the corner ---- */
+.sidebarctl{position:fixed;right:18px;bottom:60px;z-index:300;display:flex;flex-direction:column;gap:6px;align-items:flex-end}
+.sidebarctl .vbtn{font-family:'Fraunces';font-size:.85rem;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:6px;cursor:pointer;padding:7px 13px;box-shadow:0 2px 10px rgba(40,30,10,.1);white-space:nowrap}
+.sidebarctl .vbtn:hover{color:var(--blue);border-color:var(--blue)}
+.sidebarctl .vbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.vbtn .ls{display:none}
+html.hl .vbtn[data-m="l"] .lh{display:none}
+html.hl .vbtn[data-m="l"] .ls{display:inline}
+html.hr .vbtn[data-m="r"] .lh{display:none}
+html.hr .vbtn[data-m="r"] .ls{display:inline}
 @media(min-width:981px){
   html.hl .leftnav{display:none}
   html.hr .rightrail{display:none}
   html.hl .shell{grid-template-columns:minmax(0,1fr) 248px}
   html.hr .shell{grid-template-columns:218px minmax(0,1fr)}
   html.hl.hr .shell{grid-template-columns:minmax(0,1fr)}
-  html.hl .mshow.l{display:block}
-  html.hr .mshow.r{display:block}
 }
-@media(max-width:980px){.mcoll{display:none}.mshow{display:none!important}}
-@media print{.mshow,.mcoll{display:none}}
+@media(max-width:980px){.sidebarctl{display:none}}
+@media print{.sidebarctl{display:none}}
 """
 
 SPY = ("<script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));"
@@ -277,8 +275,10 @@ TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("m
            'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
 
 # reshow tabs + collapse/expand wiring for the side margins (shell pages only)
-MARGIN_BODY = ('<button class="mshow l" type="button" data-m="l" title="Show navigation" aria-label="Show navigation">&raquo;</button>'
-               '<button class="mshow r" type="button" data-m="r" title="Show margin notes" aria-label="Show margin notes">&laquo;</button>'
+MARGIN_BODY = ('<div class="sidebarctl">'
+               '<button class="vbtn" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button>'
+               '<button class="vbtn" type="button" data-m="r"><span class="lh">Hide right sidebar &raquo;</span><span class="ls">&laquo; Show right sidebar</span></button>'
+               '</div>'
                '<script>document.addEventListener("click",function(e){'
                'var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;'
                'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
@@ -357,7 +357,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         else:
             items += f'<a class="lesson" href="{rel}">{html.escape(sl["title"])}</a>'
     back = relhref('index.html', href)
-    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&laquo;</button>'
+    leftnav = ('<div class="leftnav">'
                f'<a class="back" href="{back}">&larr; All lessons</a>'
                f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
                f'<nav class="toc">{items}</nav></div>')
@@ -374,8 +374,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         if d:
             snotes += f'<div class="snote"><div class="sk">{html.escape(term)}</div>{d["definition"]}</div>'
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
-    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&raquo;</button>'
-                 f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
+    rightrail = (f'<div class="rightrail"><div class="rmeta">{meta}</div>{rail_terms}</div>')
 
     # prev / next
     pn = ''
@@ -444,7 +443,7 @@ def render_glossary(terms):
         groups.setdefault(first(t['term']), []).append(t)
     letters = sorted(groups)
     nav = ''.join(f'<a class="lesson" href="#L{L}">{L}</a>' for L in letters)
-    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&laquo;</button>'
+    leftnav = ('<div class="leftnav">'
                '<a class="back" href="index.html">&larr; All lessons</a>'
                f'<div class="navwk">Reference</div><nav class="toc">{nav}</nav></div>')
     blocks = ''
@@ -453,8 +452,7 @@ def render_glossary(terms):
         for t in groups[L]:
             blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
-    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&raquo;</button>'
-                 f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
+    rightrail = (f'<div class="rightrail"><div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = ('<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
             f'<div class="abody gloss">{blocks}</div>')
