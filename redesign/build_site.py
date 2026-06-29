@@ -32,7 +32,7 @@ img{max-width:100%}
 .brandrule{height:4px;background:var(--blue)}
 /* ---- three-column shell ---- */
 .shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
-.maincol{min-width:0}
+.maincol{min-width:0;max-width:1340px;margin-left:auto;margin-right:auto}
 .leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
 .leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
 .leftnav .back{font-family:'Fraunces';font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
@@ -112,8 +112,12 @@ img{max-width:100%}
 .abody .empty-note{font-style:italic;color:var(--mut)}
 /* generic cards + grids */
 .abody .tool-card,.abody .category-card,.abody .objective-card,.abody .level-card,.abody .architecture-card,.abody .phase-card,.abody .comparison-card,.abody .audience-card,.abody .week-card,.abody .paper-card,.abody .structure-item{background:var(--card);border:1px solid var(--rule);padding:18px 22px;margin:14px 0;border-radius:3px}
-.abody .category-grid,.abody .model-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:22px 0}
-.abody .category-grid>*,.abody .model-list>*{margin:0}
+.abody .category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:18px;margin:22px 0}
+.abody .category-grid>*{margin:0}
+.abody .model-list{margin:10px 0 0;padding:0}
+/* callouts nested inside cards must stay compact, not squeeze the text to one word per line */
+.abody .category-card .model-details,.abody .card .model-details,.abody .category-card .info-box,.abody .card .info-box,.abody .category-card .highlight-box,.abody .card .highlight-box,.abody .category-card .technical-detail,.abody .card .technical-detail,.abody .category-card .analogy-box,.abody .card .analogy-box{padding:13px 16px;margin:13px 0 0}
+.abody .category-card .model-details p,.abody .card .model-details p,.abody .category-card .highlight-box p,.abody .card .highlight-box p,.abody .category-card .info-box p,.abody .card .info-box p,.abody .category-card .technical-detail p,.abody .card .technical-detail p{font-size:1.04rem;line-height:1.5;margin:0 0 6px}
 .abody .objective-number,.abody .num{font-family:'Fraunces';font-weight:400;font-size:1.6rem;color:var(--blue);line-height:1}
 /* topic list */
 .abody .topics-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:6px 24px;margin:18px 0}
@@ -201,6 +205,27 @@ img{max-width:100%}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media print{.tsize{display:none}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px}}
+/* ---- hideable margins ---- */
+.mcoll{position:absolute;top:40px;font-family:'Fraunces';font-size:1rem;line-height:1;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:5px;cursor:pointer;padding:5px 9px;z-index:6;box-shadow:0 1px 4px rgba(40,30,10,.07)}
+.mcoll:hover{color:var(--blue);border-color:var(--blue)}
+.leftnav .mcoll{right:-15px}
+.rightrail .mcoll{left:-15px}
+.mshow{position:fixed;top:46%;transform:translateY(-50%);z-index:300;display:none;background:var(--card);border:1px solid var(--rule2);color:var(--lbl);font-family:'Fraunces';font-size:1.05rem;cursor:pointer;padding:14px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.mshow:hover{color:var(--blue)}
+.mshow.l{left:0;border-radius:0 7px 7px 0}
+.mshow.r{right:0;border-radius:7px 0 0 7px}
+.mshow:focus-visible,.mcoll:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+@media(min-width:981px){
+  html.hl .leftnav{display:none}
+  html.hr .rightrail{display:none}
+  html.hl .shell{grid-template-columns:minmax(0,1fr) 248px}
+  html.hr .shell{grid-template-columns:218px minmax(0,1fr)}
+  html.hl.hr .shell{grid-template-columns:minmax(0,1fr)}
+  html.hl .mshow.l{display:block}
+  html.hr .mshow.r{display:block}
+}
+@media(max-width:980px){.mcoll{display:none}.mshow{display:none!important}}
+@media print{.mshow,.mcoll{display:none}}
 """
 
 SPY = ("<script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));"
@@ -245,9 +270,20 @@ def relhref(target, frm):
 ANALYTICS = ('<script data-goatcounter="https://mam5020f.goatcounter.com/count" '
              'async src="//gc.zgo.at/count.js"></script>')
 
-# reader text-size control: pre-paint setter in <head> (no flash) + control + wiring in <body>
-TS_HEAD = ('<script>try{var s=localStorage.getItem("mam-textsize");'
-           'if(s)document.documentElement.style.fontSize=(["100%","112%","125%"][s]||"100%");}catch(e){}</script>')
+# reader text-size + hidden-margin state: pre-paint setter in <head> (no flash)
+TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");'
+           'if(s)d.style.fontSize=(["100%","112%","125%"][s]||"100%");'
+           'if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");'
+           'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
+
+# reshow tabs + collapse/expand wiring for the side margins (shell pages only)
+MARGIN_BODY = ('<button class="mshow l" type="button" data-m="l" title="Show navigation" aria-label="Show navigation">&rsaquo;</button>'
+               '<button class="mshow r" type="button" data-m="r" title="Show margin notes" aria-label="Show margin notes">&lsaquo;</button>'
+               '<script>document.addEventListener("click",function(e){'
+               'var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;'
+               'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
+               'var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}'
+               'document.documentElement.classList.toggle(c,!on);});</script>')
 TS_BODY = ('<div class="tsize" role="group" aria-label="Text size">'
            '<button type="button" data-ts="0" aria-label="Default text size">A</button>'
            '<button type="button" data-ts="1" aria-label="Larger text size">A</button>'
@@ -321,7 +357,8 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         else:
             items += f'<a class="lesson" href="{rel}">{html.escape(sl["title"])}</a>'
     back = relhref('index.html', href)
-    leftnav = (f'<div class="leftnav"><a class="back" href="{back}">&larr; All lessons</a>'
+    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&lsaquo;</button>'
+               f'<a class="back" href="{back}">&larr; All lessons</a>'
                f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
                f'<nav class="toc">{items}</nav></div>')
 
@@ -337,7 +374,8 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         if d:
             snotes += f'<div class="snote"><div class="sk">{html.escape(term)}</div>{d["definition"]}</div>'
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
-    rightrail = f'<div class="rightrail"><div class="rmeta">{meta}</div>{rail_terms}</div>'
+    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&rsaquo;</button>'
+                 f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
 
     # prev / next
     pn = ''
@@ -354,7 +392,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
             f'<h1>{html.escape(h1)}</h1>' + (f'<div class="deck">{html.escape(deck)}</div>' if deck else '') + '</div>'
             f'<div class="abody">{c}</div>{pn}')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
-            '<div class="maincol">' + main + '</div>' + rightrail + '</div>')
+            '<div class="maincol">' + main + '</div>' + rightrail + '</div>' + MARGIN_BODY)
     out = os.path.join(OUT, unquote(href))
     os.makedirs(os.path.dirname(out), exist_ok=True)
     open(out, "w", encoding="utf-8").write(page(h1 + " — MAM5020F", body, SPY))
@@ -406,7 +444,8 @@ def render_glossary(terms):
         groups.setdefault(first(t['term']), []).append(t)
     letters = sorted(groups)
     nav = ''.join(f'<a class="lesson" href="#L{L}">{L}</a>' for L in letters)
-    leftnav = ('<div class="leftnav"><a class="back" href="index.html">&larr; All lessons</a>'
+    leftnav = ('<div class="leftnav"><button class="mcoll" type="button" data-m="l" title="Hide navigation" aria-label="Hide navigation">&lsaquo;</button>'
+               '<a class="back" href="index.html">&larr; All lessons</a>'
                f'<div class="navwk">Reference</div><nav class="toc">{nav}</nav></div>')
     blocks = ''
     for L in letters:
@@ -414,12 +453,13 @@ def render_glossary(terms):
         for t in groups[L]:
             blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
-    rightrail = f'<div class="rightrail"><div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>'
+    rightrail = ('<div class="rightrail"><button class="mcoll" type="button" data-m="r" title="Hide margin notes" aria-label="Hide margin notes">&rsaquo;</button>'
+                 f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = ('<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
             f'<div class="abody gloss">{blocks}</div>')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
-            '<div class="maincol">' + main + '</div>' + rightrail + '</div>')
+            '<div class="maincol">' + main + '</div>' + rightrail + '</div>' + MARGIN_BODY)
     open(os.path.join(OUT, "glossary.html"), "w", encoding="utf-8").write(page("Glossary — MAM5020F", body))
 
 # ---------- synthetic sections for pages outside the index sitemap ----------
