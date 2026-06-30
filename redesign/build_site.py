@@ -452,7 +452,8 @@ def render_glossary(terms):
     for L in letters:
         blocks += f'<h2 class="ga" id="L{L}">{html.escape(L)}</h2>'
         for t in groups[L]:
-            blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
+            slug = re.sub(r'[^a-z0-9]+', '-', t["term"].lower()).strip('-')
+            blocks += (f'<div class="gentry" id="gt-{slug}"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
     rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
