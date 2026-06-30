@@ -4,7 +4,7 @@
     "status": "DRAFT — de-Claudified, pending verification",
     "raw_terms": 241,
     "unique_keys": 188,
-    "canonical_terms": 171
+    "canonical_terms": 172
   },
   "terms": [
     {
@@ -1222,6 +1222,11 @@
       "aliases": [
         "writing homogenisation"
       ]
+    },
+    {
+      "term": "Deepfake",
+      "definition": "See <a href=\"#gt-digital-forgery\">digital forgery</a>, the term this course uses for AI-fabricated media of a real person.",
+      "aliases": []
     }
   ],
   "lessons": {

@@ -146,10 +146,14 @@ img{max-width:100%}
 .abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:.95rem;color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:.85rem;color:var(--blue)}
-.abody .access,.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.abody .access{font-family:'Newsreader';font-size:1.02rem;line-height:1.5;color:var(--mut)}
 /* inline badges + indicators */
-.abody .level-tag,.abody .card-label,.abody .verdict{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
-.abody .verdict-yes{color:#2c6e3f}.abody .verdict-no{color:#9a2f2f}
+.abody .level-tag,.abody .card-label{display:inline-block;font-family:'Fraunces';font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .verdict{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--mut);padding:16px 20px;margin:0 0 14px;border-radius:3px}
+.abody .verdict p{font-size:1.22rem;line-height:1.55;color:var(--ink2);margin:0}
+.abody .verdict-yes{border-left-color:#2c6e3f}.abody .verdict-no{border-left-color:#9a2f2f}
+.abody .verdict-yes strong{color:#2c6e3f}.abody .verdict-no strong{color:#9a2f2f}
 .abody .risk-high{color:#9a2f2f;font-weight:600}.abody .risk-low{color:#2c6e3f;font-weight:600}
 .abody .prompt-label{display:block;font-family:'Fraunces';font-weight:500;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
@@ -448,7 +452,8 @@ def render_glossary(terms):
     for L in letters:
         blocks += f'<h2 class="ga" id="L{L}">{html.escape(L)}</h2>'
         for t in groups[L]:
-            blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
+            slug = re.sub(r'[^a-z0-9]+', '-', t["term"].lower()).strip('-')
+            blocks += (f'<div class="gentry" id="gt-{slug}"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
     rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
