@@ -206,23 +206,24 @@ img{max-width:100%}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media print{.tsize{display:none}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px}}
-/* ---- hideable margins: labelled controls at the top of the reading column ---- */
-.sidebarctl{display:flex;justify-content:flex-end;gap:8px;margin:0;padding:8px 0 0}
-.sidebarctl .vbtn{font-family:'Fraunces';font-size:.8rem;color:var(--mut);background:var(--card);border:1px solid var(--rule2);border-radius:6px;cursor:pointer;padding:6px 12px;white-space:nowrap}
-.sidebarctl .vbtn:hover{color:var(--blue);border-color:var(--blue)}
-.sidebarctl .vbtn:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-.vbtn .ls{display:none}
-html.hl .vbtn[data-m="l"] .lh{display:none}
-html.hl .vbtn[data-m="l"] .ls{display:inline}
-html.hr .vbtn[data-m="r"] .lh{display:none}
-html.hr .vbtn[data-m="r"] .ls{display:inline}
+/* ---- hideable margins: a labelled toggle at the top of each margin ---- */
+.navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:.78rem;letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
+.navtoggle:hover{color:var(--blue)}
+.navtoggle:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
+.navtoggle .ls{display:none}
+html.hl .navtoggle[data-m="l"] .lh{display:none}
+html.hl .navtoggle[data-m="l"] .ls{display:inline}
+html.hr .navtoggle[data-m="r"] .lh{display:none}
+html.hr .navtoggle[data-m="r"] .ls{display:inline}
 @media(min-width:981px){
-  /* keep the columns + gaps in place; just blank the sidebar content */
+  /* keep columns + gaps; blank the sidebar but keep its toggle clickable */
   html.hl .leftnav{visibility:hidden}
   html.hr .rightrail{visibility:hidden}
+  html.hl .leftnav .navtoggle{visibility:visible}
+  html.hr .rightrail .navtoggle{visibility:visible}
 }
-@media(max-width:980px){.sidebarctl{display:none}}
-@media print{.sidebarctl{display:none}}
+@media(max-width:980px){.navtoggle{display:none}}
+@media print{.navtoggle{display:none}}
 """
 
 SPY = ("<script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));"
@@ -274,11 +275,9 @@ TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("m
            'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
 
 # reshow tabs + collapse/expand wiring for the side margins (shell pages only)
-MARGIN_BODY = ('<div class="sidebarctl">'
-               '<button class="vbtn" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button>'
-               '<button class="vbtn" type="button" data-m="r"><span class="lh">Hide right sidebar &raquo;</span><span class="ls">&laquo; Show right sidebar</span></button>'
-               '</div>'
-               '<script>document.addEventListener("click",function(e){'
+NAV_TOG_L = '<button class="navtoggle" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button>'
+NAV_TOG_R = '<button class="navtoggle" type="button" data-m="r"><span class="lh">Hide right sidebar &raquo;</span><span class="ls">&laquo; Show right sidebar</span></button>'
+MARGIN_BODY = ('<script>document.addEventListener("click",function(e){'
                'var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;'
                'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
                'var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}'
@@ -356,7 +355,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         else:
             items += f'<a class="lesson" href="{rel}">{html.escape(sl["title"])}</a>'
     back = relhref('index.html', href)
-    leftnav = ('<div class="leftnav">'
+    leftnav = ('<div class="leftnav">' + NAV_TOG_L +
                f'<a class="back" href="{back}">&larr; All lessons</a>'
                f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
                f'<nav class="toc">{items}</nav></div>')
@@ -373,7 +372,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
         if d:
             snotes += f'<div class="snote"><div class="sk">{html.escape(term)}</div>{d["definition"]}</div>'
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
-    rightrail = (f'<div class="rightrail"><div class="rmeta">{meta}</div>{rail_terms}</div>')
+    rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
 
     # prev / next
     pn = ''
@@ -442,7 +441,7 @@ def render_glossary(terms):
         groups.setdefault(first(t['term']), []).append(t)
     letters = sorted(groups)
     nav = ''.join(f'<a class="lesson" href="#L{L}">{L}</a>' for L in letters)
-    leftnav = ('<div class="leftnav">'
+    leftnav = ('<div class="leftnav">' + NAV_TOG_L +
                '<a class="back" href="index.html">&larr; All lessons</a>'
                f'<div class="navwk">Reference</div><nav class="toc">{nav}</nav></div>')
     blocks = ''
@@ -451,7 +450,7 @@ def render_glossary(terms):
         for t in groups[L]:
             blocks += (f'<div class="gentry"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
-    rightrail = (f'<div class="rightrail"><div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
+    rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
             f'<div class="abody gloss">{blocks}</div>')
