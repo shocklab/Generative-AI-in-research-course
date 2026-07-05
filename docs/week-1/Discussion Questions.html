@@ -80,6 +80,10 @@ img{max-width:100%}
 .abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
 /* ===== baseline + bespoke long-tail components ===== */
 .abody{font-size:1.37rem;line-height:1.62}
+/* explanatory SVG diagrams (figure.diagram) */
+.abody figure.diagram{margin:46px 0}
+.abody figure.diagram>svg{display:block;width:100%;height:auto;border-radius:14px}
+.abody figure.diagram figcaption{font-family:'Fraunces';font-style:italic;font-size:1.04rem;line-height:1.45;color:var(--lbl);text-align:center;margin-top:16px}
 .abody .section{margin:0 0 8px}
 .abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
 /* callout boxes */
@@ -136,6 +140,10 @@ img{max-width:100%}
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:1.1rem;color:var(--blue);text-decoration:none;line-height:1.2}
+.abody a.ytlink:hover{border-color:#c4302b}
+.abody a.ytlink .ytpl{color:#c4302b;font-size:1.3rem;line-height:1}
+.abody a.ytlink small{display:block;font-family:'Newsreader';font-size:.8rem;color:var(--lbl);font-style:italic;margin-top:3px}
 .abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
 /* very slight curve on the boxes */
 .abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}

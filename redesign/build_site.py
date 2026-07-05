@@ -104,6 +104,10 @@ img{max-width:100%}
 .abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
 /* ===== baseline + bespoke long-tail components ===== */
 .abody{font-size:1.37rem;line-height:1.62}
+/* explanatory SVG diagrams (figure.diagram) */
+.abody figure.diagram{margin:46px 0}
+.abody figure.diagram>svg{display:block;width:100%;height:auto;border-radius:14px}
+.abody figure.diagram figcaption{font-family:'Fraunces';font-style:italic;font-size:1.04rem;line-height:1.45;color:var(--lbl);text-align:center;margin-top:16px}
 .abody .section{margin:0 0 8px}
 .abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
 /* callout boxes */
@@ -160,6 +164,10 @@ img{max-width:100%}
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:1.1rem;color:var(--blue);text-decoration:none;line-height:1.2}
+.abody a.ytlink:hover{border-color:#c4302b}
+.abody a.ytlink .ytpl{color:#c4302b;font-size:1.3rem;line-height:1}
+.abody a.ytlink small{display:block;font-family:'Newsreader';font-size:.8rem;color:var(--lbl);font-style:italic;margin-top:3px}
 .abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
 /* very slight curve on the boxes */
 .abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
@@ -254,6 +262,22 @@ def strip_inline(c):
         d = [x for x in m.group(1).split(';') if x.strip() and not re.match(r'\s*(color|background[\w-]*|font-family|font-size|line-height|font-weight|list-style[\w-]*|padding[\w-]*)\s*:', x, re.I)]
         return (' style="' + ';'.join(d) + '"') if d else ''
     return re.sub(r'\s*style="([^"]*)"', fix, c)
+
+# YouTube videos whose owners disabled off-site embedding (verified in-browser).
+# Their iframes render as "Video unavailable"; swap them for an honest link-card.
+KNOWN_DEAD_VIDEOS = {"Ub3GoFaUcds", "sOPDGQjFcuM"}
+def fix_dead_videos(c):
+    def rep(m):
+        vid = m.group(1)
+        if vid not in KNOWN_DEAD_VIDEOS:
+            return m.group(0)
+        url = f"https://www.youtube.com/watch?v={vid}"
+        return (f'<a class="ytlink" href="{url}" target="_blank" rel="noopener">'
+                f'<span class="ytpl" aria-hidden="true">&#9654;</span>'
+                f'<span class="ytlt">Watch on YouTube'
+                f'<small>this video only plays on YouTube &middot; opens in a new tab</small></span></a>')
+    return re.sub(r'<iframe\b[^>]*?/embed/([A-Za-z0-9_-]+)[^>]*>\s*(?:</iframe>)?', rep, c)
+
 def inner_div(src, cls):
     s = re.search(r'<div class="' + re.escape(cls) + r'"[^>]*>', src)
     if not s: return ""
@@ -341,6 +365,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     c = re.sub(r'href="\s+', 'href="', c)  # trim malformed leading-space hrefs from source
     c = strip_emoji(strip_inline(c))       # remove decorative emoji throughout the body
     c = re.sub(r'(<(?:strong|b|em|h[1-4]|p|li|div)[^>]*>)\s+', r'\1', c)  # tidy space left by stripped emoji
+    c = fix_dead_videos(c)                 # embedding-disabled YouTube -> link-card
     c = re.sub(r'(</h2>\s*)<p>', r'\1<p class="drop">', c, count=1)
     secs = []
     def _sec(m):

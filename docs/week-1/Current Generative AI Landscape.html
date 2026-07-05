@@ -80,6 +80,10 @@ img{max-width:100%}
 .abody .resource-placeholder p{font-family:'Newsreader';font-size:1.02rem;line-height:1.55;color:var(--ink2);margin:0 0 6px}
 /* ===== baseline + bespoke long-tail components ===== */
 .abody{font-size:1.37rem;line-height:1.62}
+/* explanatory SVG diagrams (figure.diagram) */
+.abody figure.diagram{margin:46px 0}
+.abody figure.diagram>svg{display:block;width:100%;height:auto;border-radius:14px}
+.abody figure.diagram figcaption{font-family:'Fraunces';font-style:italic;font-size:1.04rem;line-height:1.45;color:var(--lbl);text-align:center;margin-top:16px}
 .abody .section{margin:0 0 8px}
 .abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:1.3rem;color:var(--blue);margin:26px 0 10px}
 /* callout boxes */
@@ -136,6 +140,10 @@ img{max-width:100%}
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:1.1rem;color:var(--blue);text-decoration:none;line-height:1.2}
+.abody a.ytlink:hover{border-color:#c4302b}
+.abody a.ytlink .ytpl{color:#c4302b;font-size:1.3rem;line-height:1}
+.abody a.ytlink small{display:block;font-family:'Newsreader';font-size:.8rem;color:var(--lbl);font-style:italic;margin-top:3px}
 .abody .video-badge{font-family:'Fraunces';font-weight:500;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
 /* very slight curve on the boxes */
 .abody .highlight-box,.abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework,.abody .warning-box,.abody .code-block,.abody pre,.abody .resource-placeholder{border-radius:3px}
@@ -208,6 +216,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>This page prioritizes tools/models with clear availability and/or credible release notes.</p>
 </div>
 <!-- LLMs -->
+
+<figure id="fig-w1-modality-map" class="diagram"><svg width="100%" viewBox="0 0 680 234" role="img" xmlns="http://www.w3.org/2000/svg"><title>The generative-AI modality map</title><desc>A grid of four output modalities — text, images, video, code — with leading model families and their best uses.</desc><rect x="1" y="1" width="678" height="232" rx="14" fill="#ebf1f8" stroke="#c4d3e6"/><rect x="24" y="30" width="632" height="36" rx="8" fill="#003A70"/><text x="156.0" y="53" text-anchor="start" font-family="'Fraunces',Georgia,serif" font-size="13.5" fill="#ffffff" font-weight="500">Leading families (May 2026)</text><text x="412.0" y="53" text-anchor="start" font-family="'Fraunces',Georgia,serif" font-size="13.5" fill="#ffffff" font-weight="500">Best suited to</text><rect x="24" y="66" width="632" height="37" fill="#ffffff" stroke="#d7e0ec"/><text x="38" y="88" text-anchor="start" font-family="'Fraunces',Georgia,serif" font-size="13.5" fill="#003A70" font-weight="500">Text / LLMs</text><text x="156.0" y="88" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">GPT-5.5, Claude, Gemini, DeepSeek</text><text x="412.0" y="88" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">writing, reasoning, agents, code</text><rect x="24" y="103" width="632" height="37" fill="#f3f6fb" stroke="#d7e0ec"/><text x="38" y="125" text-anchor="start" font-family="'Fraunces',Georgia,serif" font-size="13.5" fill="#003A70" font-weight="500">Images</text><text x="156.0" y="125" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">DALL·E 3, Midjourney, Imagen, FLUX</text><text x="412.0" y="125" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">figures, illustration, design</text><rect x="24" y="140" width="632" height="37" fill="#ffffff" stroke="#d7e0ec"/><text x="38" y="162" text-anchor="start" font-family="'Fraunces',Georgia,serif" font-size="13.5" fill="#003A70" font-weight="500">Video</text><text x="156.0" y="162" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">Sora 2, Veo 3, Runway, Kling</text><text x="412.0" y="162" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">clips, animation, demonstrations</text><rect x="24" y="177" width="632" height="37" fill="#f3f6fb" stroke="#d7e0ec"/><text x="38" y="199" text-anchor="start" font-family="'Fraunces',Georgia,serif" font-size="13.5" fill="#003A70" font-weight="500">Code / agents</text><text x="156.0" y="199" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">Codex, Claude Code, Cursor, Copilot</text><text x="412.0" y="199" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12.5" fill="#3f3a32">writing and running code</text></svg><figcaption>The generative-AI landscape by output type — the leading model families in each, and what each is best suited to.</figcaption></figure>
 <h2 class="section-title" id="s1">Large Language Models (LLMs)</h2>
 <div class="category-grid"><div class="category-card"><h3>OpenAI (ChatGPT / API)</h3>
 <ul class="model-list">
