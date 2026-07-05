@@ -18,7 +18,7 @@ TINT = {
     'accent':  ('#d6e3f2', '#9fb8d6', '#003A70'),
     'good':    ('#e7efe8', '#8fb09a', '#2c6e3f'),
     'bad':     ('#f3e3df', '#c08a82', '#9a2f2f'),
-    'warn':    ('#f7efe0', '#cdab06a', '#7c5c12'),
+    'warn':    ('#f7efe0', '#cdab6a', '#7c5c12'),
     'neutral': ('#fffdf8', '#d8cfbd', '#3f3a32'),
 }
 # strong solid header fills (white text)
@@ -54,7 +54,10 @@ def _svg(w, h, title, desc, body):
             f'{body}</svg>')
 
 
+_SIZE_SNAP = {11.5: 12, 12.5: 12, 13.5: 13, 14.5: 14, 15: 15.5, 16: 15.5}
+
 def _txt(x, y, s, size, fill, fam=FB, anchor='start', weight=None, italic=False):
+    size = _SIZE_SNAP.get(size, size)
     w = f' font-weight="{weight}"' if weight else ''
     it = ' font-style="italic"' if italic else ''
     return (f'<text x="{x}" y="{y}" text-anchor="{anchor}" font-family="{fam}" '
