@@ -50,7 +50,7 @@ def wrap(text, max_chars):
 def _svg(w, h, title, desc, body):
     return (f'<svg width="100%" viewBox="0 0 {w} {h}" role="img" xmlns="http://www.w3.org/2000/svg">'
             f'<title>{esc(title)}</title><desc>{esc(desc)}</desc>'
-            f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="14" fill="{PANEL}" stroke="{PANEL_BD}"/>'
+            f'<rect x="1" y="1" width="{w-2}" height="{h-2}" rx="3" fill="{PANEL}" stroke="{PANEL_BD}"/>'
             f'{body}</svg>')
 
 
