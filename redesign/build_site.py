@@ -29,6 +29,8 @@ html{font-size:100%}
 ::selection{background:var(--blue);color:#fff}
 body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
 img{max-width:100%}
+/* reading measure: cap text blocks; tables, figures and grids keep the full canvas */
+.abody p,.abody li,.abody h2.section-title,.abody h3,.abody h4,.abody .intro-text,.abody blockquote{max-width:48rem}
 .abody h2.section-title,.abody h3,.abody h4,.ahead h1,.icover h1,.wcell h3,.ahead .eyebrow,.icover .eyebrow{overflow-wrap:break-word;hyphens:auto}
 .brandrule{height:4px;background:var(--blue)}
 /* ---- three-column shell ---- */

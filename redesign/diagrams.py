@@ -11,7 +11,7 @@ import re
 
 FT = "'Fraunces',Georgia,serif"
 FB = "'Newsreader',Georgia,serif"
-PANEL, PANEL_BD = "#ebf1f8", "#c4d3e6"
+PANEL, PANEL_BD = "#f7f3ea", "#cfc6b5"
 
 # tint fill, stroke, text  — for soft cells
 TINT = {
