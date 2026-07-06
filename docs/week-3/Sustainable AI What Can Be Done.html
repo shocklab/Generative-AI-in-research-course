@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -318,7 +319,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style="margin-top: 15px">Major cloud providers (AWS, Google Cloud, Azure) all allow you to specify the region where your compute runs. Choosing <em>us-west-2</em> (Oregon, with significant hydroelectric power) over <em>us-east-1</em> (Virginia, more coal/gas dependent) can make a substantial difference. The same applies to European regions: <em>eu-north-1</em> (Sweden) is among the cleanest, while <em>eu-central-1</em> (Frankfurt) is less so.</p>
 <p style="margin-top: 15px">Tools like the <strong>Electricity Maps API</strong> and <strong>Google Cloud's Carbon Footprint tool</strong> can help you choose the lowest-carbon option in real time.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Choosing the Right Model Size</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Choosing the Right Model Size</h3>
 <p>One choice that gets overlooked: do you need a frontier model, or will a smaller one do?</p>
 <ul class="styled-list">
 <li>For many research tasks (data extraction, classification, summarisation, code generation) a 7B or 13B parameter model performs nearly as well as a 70B+ model</li>

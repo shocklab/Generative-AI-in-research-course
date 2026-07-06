@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -242,7 +243,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 2: THE TOOLS LANDSCAPE -->
 <h2 class="section-title" id="s2">The Tools Landscape</h2>
 <p style=" margin-bottom: 30px">The ecosystem of AI coding tools has expanded rapidly. Each tool has a different approach, different strengths, and a different trade-off between ease of use and capability. Here is what matters for researchers.</p>
-<div class="card-grid"><div class="card"><h3>Claude Code</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Claude Code</h3>
 <p><strong>What it is:</strong> A terminal-based, agentic coding tool from Anthropic. It runs in your computer's command line and can read and write files on your system, execute code, and iterate on results, all through natural language conversation.</p>
 <p><strong>Key strengths:</strong> Strongest reasoning capabilities of any current coding tool. Can work with your actual files and project structure. Agentic mode means it can plan multi-step tasks, run code, check results, and fix errors autonomously.</p>
 <p><strong>Limitations:</strong> Requires comfort with the terminal (command line). The free tier is limited in usage. Steeper learning curve than chat-based alternatives.</p>
@@ -419,7 +420,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 5: WHAT YOU NEED TO KNOW -->
 <h2 class="section-title" id="s5">What You Need to Know Even Without Programming</h2>
 <p style=" margin-bottom: 30px">You do not need to write code from scratch. But you do need to <strong>read</strong> code well enough to verify that AI-generated scripts are doing what you intend. Here is the minimum set of concepts that every AI-assisted researcher should understand.</p>
-<div class="card-grid"><div class="card"><h3>Variables and Data Types</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Variables and Data Types</h3>
 <p>A variable is a named container that holds a value. When AI-generated code says <code>mean_score = df['satisfaction'].mean()</code> , you should understand that <code>mean_score</code> is storing the average of the 'satisfaction' column, and <code>df</code> is the dataset.</p>
 <p>Data types matter because operations that work on one type may fail or behave unexpectedly on another. A column of numbers stored as text will not compute a correct average, and AI-generated code does not always catch this. Knowing the difference between numeric, text, and categorical data is essential.</p>
 </div>

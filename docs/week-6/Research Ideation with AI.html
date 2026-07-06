@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -224,7 +225,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
             <p>The quality of AI-generated ideas depends heavily on how you ask. A generic prompt ("Give me research ideas about climate change") will produce generic results. Structured prompting strategies force the model to think in specific ways, producing more diverse and useful output. Here are five strategies that work well for research ideation, each with a different cognitive purpose.</p>
 
-            <div class="card-grid"><div class="card"><h3>Chain-of-Thought Prompting</h3>
+            <div class="card-grid grid-wide"><div class="card"><h3>Chain-of-Thought Prompting</h3>
                     <p><strong>Purpose:</strong> Forces structured, step-by-step reasoning instead of jumping to conclusions. The model must show its working, which exposes gaps and assumptions.</p>
                     <div class="prompt-example"><div class="prompt-label">Example Prompt</div>
                         Think step by step about what gaps exist in current research on [your topic]. For each gap, explain: (1) why the gap exists, (2) what methods could address it, and (3) what would change in the field if it were filled.
@@ -335,7 +336,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
             <p>Beyond the systemic problem of monoculture, there are specific cognitive risks that affect individual researchers who use AI for brainstorming. None of these is a reason to avoid AI entirely, but each is a risk you must manage.</p>
 
-            <div class="card-grid"><div class="card"><h3>Anchoring</h3>
+            <div class="card-grid grid-wide"><div class="card"><h3>Anchoring</h3>
                     <p><strong>The risk:</strong> Once AI frames a problem or suggests an approach, it becomes the reference point for all subsequent thinking. You evaluate every other idea relative to the AI's first suggestion, rather than exploring the space freely.</p>
                     <p style="margin-top: 8px"><strong>How it manifests:</strong> You ask AI for research ideas, it suggests studying "the impact of social media on adolescent mental health using sentiment analysis," and now every idea you generate is a variation on that frame: different platforms, different age groups, different methods, but always the same basic shape. The AI has not helped you think; it has told you what to think about.</p>
                     <p style="margin-top: 8px"><strong>Mitigation:</strong> Always brainstorm on your own first, even briefly, before consulting AI. Write down your initial thoughts so you have an anchor-free baseline to return to.</p>
