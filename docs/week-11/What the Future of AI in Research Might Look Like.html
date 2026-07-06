@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -322,7 +323,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">The aspirational bucket needs to be made explicit, because confident claims about the near future are usually presented as if they were claims about the present. Three of the most prominent are worth naming and bounding.</p>
 
-  <div class="card-grid"><div class="card"><h3>End-to-end autonomous science</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>End-to-end autonomous science</h3>
       <p>The picture in which an AI system formulates an original research question, designs experiments to answer it, runs them, interprets results, writes the paper, and submits it, with no human in the loop, is not happening, and is not on a credible near-term trajectory. Every system we have looked at above (Co-Scientist, Robin, GNoME/A-Lab, the AI Scientist) was steered by named human collaborators at every critical step. The Co-Scientist paper&#39;s own framing is &ldquo;scientist-in-the-loop&rdquo;.</p>
       <p>Aspirational marker: every demonstration of &ldquo;autonomy&rdquo; turns out, on inspection, to have humans selecting research goals, prioritising hypotheses, and verifying outputs.</p>
     </div>

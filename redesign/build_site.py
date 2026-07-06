@@ -74,6 +74,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -278,6 +279,31 @@ def fix_dead_videos(c):
                 f'<small>this video only plays on YouTube &middot; opens in a new tab</small></span></a>')
     return re.sub(r'<iframe\b[^>]*?/embed/([A-Za-z0-9_-]+)[^>]*>\s*(?:</iframe>)?', rep, c)
 
+# Card grids whose cards carry long prose become unreadable towers at 3-4
+# columns. Measure at build time; 3+ cards averaging >=75 words get a class
+# that widens the tracks so they lay out two-across.
+def widen_long_grids(c):
+    out = []; i = 0
+    pat = re.compile(r'<div class="(card-grid|category-grid)">')
+    while True:
+        m = pat.search(c, i)
+        if not m:
+            out.append(c[i:]); break
+        j = m.end(); depth = 1; end = len(c)
+        for mm in re.finditer(r'<div\b|</div>', c[j:]):
+            depth += 1 if mm.group() == '<div' else -1
+            if depth == 0:
+                end = j + mm.start(); break
+        block = c[j:end]
+        cards = len(re.findall(r'<div class="(?:card|tool-card|category-card)[" ]', block))
+        words = len(strip_tags(block).split())
+        cls = m.group(1)
+        if cards >= 3 and words / cards >= 75:
+            cls += ' grid-wide'
+        out.append(c[i:m.start()]); out.append(f'<div class="{cls}">')
+        i = j
+    return ''.join(out)
+
 def inner_div(src, cls):
     s = re.search(r'<div class="' + re.escape(cls) + r'"[^>]*>', src)
     if not s: return ""
@@ -366,6 +392,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     c = strip_emoji(strip_inline(c))       # remove decorative emoji throughout the body
     c = re.sub(r'(<(?:strong|b|em|h[1-4]|p|li|div)[^>]*>)\s+', r'\1', c)  # tidy space left by stripped emoji
     c = fix_dead_videos(c)                 # embedding-disabled YouTube -> link-card
+    c = widen_long_grids(c)                # long-prose card grids -> two-across
     c = re.sub(r'(</h2>\s*)<p>', r'\1<p class="drop">', c, count=1)
     secs = []
     def _sec(m):

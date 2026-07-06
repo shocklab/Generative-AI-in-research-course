@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -316,7 +317,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 15px">Three concrete results give the shape of the current picture.</p>
 
-  <div class="card-grid"><div class="card"><h3>Tortured-phrase detection (Cabanac et al.)</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Tortured-phrase detection (Cabanac et al.)</h3>
       <p>The <em>Problematic Paper Screener</em> (Cabanac, Labb&eacute;, Magazinov) maintains a database of more than 5,000 &ldquo;tortured phrases&rdquo; &mdash; oddly translated or rephrased technical terms (e.g. &ldquo;haze figuring&rdquo; for &ldquo;cloud computing&rdquo;) that are characteristic of paper-mill output and machine-paraphrased writing.</p>
       <p>Useful: catches a specific kind of fraud cheaply. Limited: addresses paper-mill style, not careful GenAI use.</p>
       <p><a href="https://arxiv.org/abs/2402.03370" target="_blank" rel="noopener">arXiv:2402.03370</a></p>

@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -394,7 +395,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">General-purpose LLMs (Claude, GPT, Gemini) are not the only class of image AI available to researchers. In several scientific domains, purpose-built models trained specifically on domain data substantially outperform general-purpose tools on well-defined classification tasks.</p>
 
-  <div class="card-grid"><div class="card" style="border-left-color: #c62828"><h3>Medical and Microscopy Imaging</h3>
+  <div class="card-grid grid-wide"><div class="card" style="border-left-color: #c62828"><h3>Medical and Microscopy Imaging</h3>
       <p>Domain-trained CNN and vision-transformer architectures report <strong>97&ndash;99% accuracy</strong> on the standard NIH thin-blood-smear malaria cell-image dataset (Mujahid et al., 2024, <em>Scientific Reports</em>; CNN&ndash;ViT ensembles reach ~99.6% in 2025 work). These are curated benchmark figures, not field-deployment accuracy, and have not been formally compared against expert pathologist performance on the same images. Real-world clinical accuracy is typically lower.</p>
       <p>General-purpose LLMs are not substitutes for these systems in diagnostic or clinical research contexts. As the Journal of Nuclear Medicine DREAM Report (2025) documents, applying general-purpose language models to domain-specific image interpretation produces systematic hallucination failures that are qualitatively different from those seen in general text tasks.</p>
       <ul class="styled-list">

@@ -50,6 +50,7 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -224,7 +225,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">These were widely-cited failure modes in 2023&ndash;24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks, but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
 
-  <div class="card-grid"><div class="card"><h3>The Reversal Curse</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>The Reversal Curse</h3>
       <p>In 2023, Berglund et al. showed that LLMs trained on facts of the form &ldquo;A is B&rdquo; failed to generalise to &ldquo;B is A&rdquo;, even when the inverse relationship was common in their training data. A model that knew &ldquo;Tom Cruise&#39;s mother is Mary Lee Pfeiffer&rdquo; would not reliably answer &ldquo;Who is Mary Lee Pfeiffer&#39;s son?&rdquo;</p>
       <p>By 2026, this failure mode is no longer prominent in benchmark discussions. Training-data interventions and inference-time techniques have substantially mitigated it in frontier models. Still cited in the literature, but largely as a historical landmark.</p>
       <p>Original: <a href="https://arxiv.org/abs/2309.12288" target="_blank" rel="noopener">Berglund, L., Tong, M., Kaufmann, M., et al. (2023). The Reversal Curse. arXiv:2309.12288</a></p>
