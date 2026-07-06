@@ -161,29 +161,52 @@ def barchart(bars, title, desc, unit='', threshold=None, thresh_label=''):
 
 
 # ---------------------------------------------------------------- linechart
-def linechart(series, xlabels, title, desc, ylabel='', note=''):
-    """series: list of dict(label, color, pts=[(t,v)...], above=bool) with t,v in [0,1]."""
-    W, x0, x1, y0, y1 = 680, 82, 604, 70, 300
+def linechart(series, xlabels, title, desc, ylabel='', note='', yticks=None):
+    """series: list of dict(label, color, pts=[(t,v)...], above=bool,
+    marks=[(t,v,text,pos)]) with t,v in [0,1]; pos in above/right/left/ar.
+    yticks: [(v, label), ...] draws dashed gridlines with left labels.
+    Single-series charts get no on-curve label (the caption names it);
+    use marks to annotate the values that carry the message."""
+    W, x0, x1, y0, y1 = 680, 90, 604, 70, 300
     def X(t): return x0 + t * (x1 - x0)
     def Y(v): return y1 - v * (y1 - y0)
-    seg = [f'<line x1="{x0}" y1="58" x2="{x0}" y2="{y1}" stroke="#c4d3e6" stroke-width="1.5"/>',
-           f'<line x1="{x0}" y1="{y1}" x2="{x1}" y2="{y1}" stroke="#c4d3e6" stroke-width="1.5"/>']
+    seg = []
+    for v, lab in (yticks or []):
+        yy = Y(v)
+        if v > 0.01:
+            seg.append(f'<line x1="{x0}" y1="{yy:.0f}" x2="{x1}" y2="{yy:.0f}" stroke="#d3deec" stroke-width="1" stroke-dasharray="3 5"/>')
+        seg.append(_txt(x0 - 10, yy + 4, lab, 12, '#6a6256', FB, 'end'))
+    seg.append(f'<line x1="{x0}" y1="58" x2="{x0}" y2="{y1}" stroke="#c4d3e6" stroke-width="1.5"/>')
+    seg.append(f'<line x1="{x0}" y1="{y1}" x2="{x1}" y2="{y1}" stroke="#c4d3e6" stroke-width="1.5"/>')
     if ylabel:
-        seg.append(_txt(x0 + 6, 64, ylabel, 11.5, '#6a6256'))
+        seg.append(_txt(x0 + 8, 64, ylabel, 11.5, '#6a6256'))
+    multi = len(series) > 1
     for sr in series:
         pts = ' '.join(f"{X(t):.0f},{Y(v):.0f}" for t, v in sr['pts'])
         c = sr['color']
         seg.append(f'<polyline points="{pts}" fill="none" stroke="{c}" stroke-width="2.5"/>')
-        lt, lv = sr['pts'][-1]
-        seg.append(f'<circle cx="{X(lt):.0f}" cy="{Y(lv):.0f}" r="4" fill="{c}"/>')
-        ly = Y(lv) - 8 if sr.get('above', True) else Y(lv) + 18
-        seg.append(_txt(X(lt) - 6, ly, sr['label'], 14, c, FT, 'end', 500))
+        if multi and sr.get('label'):
+            lt, lv = sr['pts'][-1]
+            seg.append(f'<circle cx="{X(lt):.0f}" cy="{Y(lv):.0f}" r="4" fill="{c}"/>')
+            ly = Y(lv) - 10 if sr.get('above', True) else Y(lv) + 20
+            seg.append(_txt(X(lt), ly, sr['label'], 14, c, FT, 'end', 500))
+        for t, v, lab, pos in sr.get('marks', []):
+            mx, my = X(t), Y(v)
+            seg.append(f'<circle cx="{mx:.0f}" cy="{my:.0f}" r="4.5" fill="{c}"/>')
+            if pos == 'right':
+                seg.append(_txt(mx + 10, my + 5, lab, 13, c, FT, 'start', 500))
+            elif pos == 'left':
+                seg.append(_txt(mx - 10, my + 5, lab, 13, c, FT, 'end', 500))
+            elif pos == 'ar':
+                seg.append(_txt(mx + 8, my - 6, lab, 13, c, FT, 'start', 500))
+            else:
+                seg.append(_txt(mx, my - 12, lab, 13, c, FT, 'middle', 500))
     for t, lab in xlabels:
         anchor = 'start' if t < 0.1 else ('end' if t > 0.9 else 'middle')
         seg.append(_txt(X(t), y1 + 18, lab, 12, '#6a6256', FB, anchor))
     if note:
         seg.append(_txt((x0 + x1) / 2, y1 + 44, note, 11.5, '#736a5c', FB, 'middle', None, True))
-    return _svg(W, 380, title, desc, ''.join(seg))
+    return _svg(W, 380 if note else 352, title, desc, ''.join(seg))
 
 
 # ---------------------------------------------------------------- filetree
