@@ -29,6 +29,7 @@ html{font-size:100%}
 ::selection{background:var(--blue);color:#fff}
 body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
 img{max-width:100%}
+.abody h2.section-title,.abody h3,.abody h4,.ahead h1,.icover h1,.wcell h3,.ahead .eyebrow,.icover .eyebrow{overflow-wrap:break-word;hyphens:auto}
 .brandrule{height:4px;background:var(--blue)}
 /* ---- three-column shell ---- */
 .shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
@@ -49,6 +50,8 @@ img{max-width:100%}
 .toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
 .rightrail .rmeta{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
 .rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--rule2)}
+.rightrail .snote .sk a:hover{color:var(--blue2);border-bottom-color:var(--blue2)}
 .rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
 .rightrail .rhd{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
 /* ---- lesson header (in maincol) ---- */
@@ -106,7 +109,7 @@ img{max-width:100%}
 .abody{font-size:var(--fs-list);line-height:1.62}
 /* explanatory SVG diagrams (figure.diagram) */
 .abody figure.diagram{margin:46px 0}
-.abody figure.diagram>svg{display:block;width:100%;height:auto;border-radius:14px}
+.abody figure.diagram>svg{display:block;width:100%;height:auto;border-radius:3px}
 .abody figure.diagram figcaption{font-family:'Fraunces';font-style:italic;font-size:var(--fs-meta);line-height:1.45;color:var(--lbl);text-align:center;margin-top:16px}
 .abody .section{margin:0 0 8px}
 .abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:26px 0 10px}
@@ -178,7 +181,7 @@ img{max-width:100%}
 .prevnext .d{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
 .prevnext .pt{font-family:'Fraunces';font-size:var(--fs-meta);color:var(--blue)}
 .prevnext .next{text-align:right;margin-left:auto}
-@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.maincol{width:100%;margin:0}.abody{overflow-wrap:break-word}.abody table{display:block;overflow-x:auto}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
 /* ---- INDEX / landing ---- */
 .iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
 .icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
@@ -219,7 +222,7 @@ img{max-width:100%}
 .tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 @media print{.tsize{display:none}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -427,7 +430,10 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     for term in terms[:4]:
         d = defs.get(term)
         if d:
-            snotes += f'<div class="snote"><div class="sk">{html.escape(term)}</div>{d["definition"]}</div>'
+            slug = re.sub(r'[^a-z0-9]+', '-', term.lower()).strip('-')
+            gh = relhref('glossary.html', href)
+            snotes += (f'<div class="snote"><div class="sk"><a href="{gh}#gt-{slug}">'
+                       f'{html.escape(term)}</a></div>{d["definition"]}</div>')
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
     rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
 
