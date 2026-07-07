@@ -356,7 +356,7 @@ TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("m
 
 # reshow tabs + collapse/expand wiring for the side margins (shell pages only)
 NAV_TOG_L = '<button class="navtoggle" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button>'
-NAV_TOG_R = '<button class="navtoggle" type="button" data-m="r"><span class="lh">Hide right sidebar &raquo;</span><span class="ls">&laquo; Show right sidebar</span></button>'
+NAV_TOG_R = '<button class="navtoggle" type="button" data-m="r"><span class="lh">Hide local glossary &raquo;</span><span class="ls">&laquo; Show local glossary</span></button>'
 MARGIN_BODY = ('<script>document.addEventListener("click",function(e){'
                'var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;'
                'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
