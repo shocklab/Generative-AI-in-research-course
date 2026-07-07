@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -329,7 +332,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="case-study"><h4>Scenario: The Rewritten Discussion</h4>
 <p>A PhD student uses ChatGPT to rewrite the discussion section of their thesis chapter. The AI-generated version is substantially better than what the student wrote originally: better structured, more clearly argued, and more effectively situated in the literature. The student submits the rewritten version without disclosing AI use. Their supervisor does not have an explicit policy on AI tools.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Consequentialist Lens</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Consequentialist Lens</h3>
 <p>What are the outcomes? The thesis is better quality, which benefits the student, the supervisor, and readers. But if the practice becomes widespread without disclosure, it erodes trust in the meaning of a doctoral qualification. If discovered, the consequences for the student could be severe. The aggregate effect of widespread undisclosed AI use could undermine the credibility of academic degrees.</p>
 <p><strong>Verdict:</strong> Short-term benefits are real, but long-term systemic consequences are concerning.</p>
 </div>

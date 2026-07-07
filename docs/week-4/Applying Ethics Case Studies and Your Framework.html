@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -264,7 +267,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Dr. Amara, a postdoctoral researcher in public health, uses Claude to conduct a systematic literature review for a journal article. She provides her research question and inclusion criteria, and the AI identifies 150 relevant papers, extracts key findings, and drafts a narrative synthesis of the literature.</p>
 <p>Dr. Amara checks a random sample of 20 papers against the AI's summaries and finds them accurate. She does not have time to verify all 150. She submits the literature review as part of a journal article, with a methods note stating: "AI tools were used to assist with literature search and synthesis."</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>The positive outcomes are real: a fuller review than Dr. Amara could have produced manually, completed in less time. But the unverified papers introduce risk. If any of the AI's summaries contain errors or fabricated citations (a known issue), the published review could mislead the field. The aggregate consequence of researchers routinely publishing AI-generated reviews they have not fully verified could erode the reliability of the scientific literature.</p>
 </div>
 <div class="card"><h3>Deontological Analysis</h3>
@@ -287,7 +290,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>The AI produces a coherent coding framework that Thabo reviews and modifies. However, he notices that some of the AI's initial codes reflect categories more common in US and European HIV research than in the South African context. They frame stigma primarily through individual psychology rather than through community and family dynamics. He corrects the codes he notices, but is uncertain whether the overall coding framework has been subtly shaped by the AI's training data biases in ways he has not detected.</p>
 <p>Thabo discloses AI use in his methods section.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>The coding assistance allows Thabo to handle a multilingual dataset that would otherwise require a research team he does not have access to. But if the AI's Western-centric categories have shaped the analysis in undetected ways, the findings may misrepresent the lived experience of the participants, with real consequences for how HIV stigma is understood and addressed in this context.</p>
 </div>
 <div class="card"><h3>Deontological Analysis</h3>
@@ -309,7 +312,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Dr. Nkosi is an early-career academic at a South African university. English is her third language, and she has found grant writing in English particularly challenging. She uses Claude to substantially draft a grant application, providing her research ideas, preliminary data, and methodological approach, and asking the AI to produce a polished narrative. The resulting application is well-structured, persuasive, and reads fluently.</p>
 <p>A senior colleague reviews the draft and comments that it is the strongest proposal she has seen from Dr. Nkosi. The funding body has no published policy on AI use in applications. Dr. Nkosi submits the application without disclosing AI use.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>If the research itself is strong, with good ideas, solid methodology, and clear potential impact, does it matter how the proposal was written? The funder wants to support good research, and Dr. Nkosi's research may genuinely deserve funding. But if AI-polished applications become the norm without disclosure, researchers without AI access are systematically disadvantaged, and the competition is distorted.</p>
 </div>
 <div class="card"><h3>Deontological Analysis</h3>
@@ -331,7 +334,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Fatima, a master's student in environmental science, uses Claude to generate Python code for statistical analysis of her research data on water quality in the Western Cape. The AI produces working code for her planned regression analysis. But the AI also suggests an alternative analytical approach that Fatima had not considered: a mixed-effects model that accounts for spatial autocorrelation. This alternative approach produces results that are more favourable to her hypothesis.</p>
 <p>Fatima adopts the AI-suggested approach. She understands the code at a general level but is not confident she could explain the mathematical details of the mixed-effects model. She discloses in her methods: "Statistical analysis was conducted using Python code generated with assistance from Claude (Anthropic). The mixed-effects modelling approach was suggested by the AI assistant."</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Consequentialist Analysis</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Consequentialist Analysis</h3>
 <p>The mixed-effects model may genuinely be more appropriate for the data, since spatial autocorrelation is a real methodological concern for environmental data. If so, the AI has improved the analysis. But adopting a method you do not fully understand introduces risk. If reviewers question the approach, can Fatima defend it? If the model contains subtle errors or inappropriate assumptions, will she detect them?</p>
 </div>
 <div class="card"><h3>Deontological Analysis</h3>

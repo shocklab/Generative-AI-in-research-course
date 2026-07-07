@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -279,7 +282,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">When the agent runs for an hour and makes a hundred changes you did not watch, the instinct is to inspect each one, to read every diff as it happens. That does not scale, and pretending it does is the fastest route to a false sense of safety. The volume <em>is</em> the problem: when so much is changing all the time, there often isn&#39;t a chance to check each change, and any carefulness that depends on watching every one will quietly fail. So the move is to take verification <em>off</em> the per-change axis. Don&#39;t try to catch every mistake as it happens; instead make mistakes survivable, encode what must stay true so a machine checks it, and verify the few things that actually matter. Week&nbsp;9&#39;s protocols and Week&nbsp;10&#39;s Princeton reliability finding (<a href="https://arxiv.org/abs/2602.16666" target="_blank" rel="noopener">Rabanser et&nbsp;al., 2026</a>) still bite, since the burden is real and it grows, but the response is to automate and target verification, not to watch harder.</p>
 
-  <div class="card-grid"><div class="card"><h3>1. Make mistakes recoverable</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>1. Make mistakes recoverable</h3>
       <p>With <code>data/raw/</code> read-only, everything regenerable from raw plus scripts, and all of it under Git, any bad change can be rolled back and any output rebuilt. You are no longer reviewing to prevent disaster, since disaster is structurally off the table, so you can safely <em>not</em> watch every step, and find errors later, in batch.</p>
     </div>
     <div class="card"><h3>2. Automate the checks</h3>

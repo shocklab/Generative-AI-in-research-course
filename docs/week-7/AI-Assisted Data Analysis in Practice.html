@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -310,7 +313,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>This is not a hypothetical scenario. It is the kind of mistake that happens routinely when AI selects variables based on column names rather than semantic understanding of what each column represents.</p>
 </div>
 <p style=" margin: 30px 0">Why does this happen? AI generates code that is <em>statistically plausible</em>: it follows valid programming syntax and applies real statistical methods. But it does not understand the <em>meaning</em> of your data. It does not know that column B and column C represent different things if their names are similar. It optimises for code that runs rather than code that answers your specific research question correctly.</p>
-<div class="card-grid"><div class="card"><h3>Wrong Variable Selection</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Wrong Variable Selection</h3>
 <p>AI picks a variable based on its name rather than its meaning. If your dataset has <code>income</code> , <code>income_adjusted</code> , and <code>income_log</code> , the AI may choose whichever seems most generic rather than the one that is appropriate for your analysis. This is especially dangerous when variable names are abbreviated or ambiguous, as they often are in real research datasets.</p>
 </div>
 <div class="card"><h3>Off-by-One Errors in Time Series</h3>

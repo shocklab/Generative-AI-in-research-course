@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -316,7 +319,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">These failures follow from how LLMs work, not from training-data quirks. They are unlikely to be solved by the next model release because they are properties of the architecture or the training paradigm. Verification protocols (Sub-Lesson 9.5) target these specifically.</p>
 
-  <div class="card-grid"><div class="card"><h3>Hallucination as Statistical Pressure</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Hallucination as Statistical Pressure</h3>
       <p>OpenAI&#39;s own analysis: hallucinations originate as binary-classification errors and persist because evaluations reward confident guessing over acknowledging uncertainty. The proposed fix is socio-technical (change how benchmarks score uncertainty) rather than architectural.</p>
       <p>The argument: <em>&ldquo;Hallucinations need not be mysterious &mdash; they originate simply as errors in binary classification.&rdquo;</em></p>
       <p>Source: <a href="https://arxiv.org/abs/2509.04664" target="_blank" rel="noopener">Kalai, A. T., Nachum, O., Vempala, S. S., &amp; Zhang, E. (Sept 2025). Why Language Models Hallucinate. arXiv:2509.04664</a></p>

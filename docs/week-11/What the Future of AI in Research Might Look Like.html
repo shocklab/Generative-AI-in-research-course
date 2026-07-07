@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -250,7 +253,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <figure id="fig-w11-real-overclaimed" class="diagram"><svg width="100%" viewBox="0 0 680 204" role="img" xmlns="http://www.w3.org/2000/svg"><title>Real, overclaimed, or aspirational</title><desc>Three buckets for sorting AI-in-science claims by how well the evidence supports them.</desc><rect x="1" y="1" width="678" height="202" rx="3" fill="#f7f3ea" stroke="#cfc6b5"/><rect x="26" y="30" width="195" height="40" rx="9" fill="#2c6e3f"/><text x="123.33333333333333" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Real</text><circle cx="38" cy="90" r="2.5" fill="#6a6256"/><text x="48.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Already shipping now</text><circle cx="38" cy="119" r="2.5" fill="#6a6256"/><text x="48.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Verifiable, in use</text><circle cx="38" cy="148" r="2.5" fill="#6a6256"/><text x="48.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">lit search, coding, ASR</text><rect x="243" y="30" width="195" height="40" rx="9" fill="#7c5c12"/><text x="340.0" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Overclaimed</text><circle cx="255" cy="90" r="2.5" fill="#6a6256"/><text x="264.66666666666663" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Rounded up in the retelling</text><circle cx="255" cy="119" r="2.5" fill="#6a6256"/><text x="264.66666666666663" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Real core, inflated claim</text><circle cx="255" cy="148" r="2.5" fill="#6a6256"/><text x="264.66666666666663" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">e.g. 'AI scientist' hype</text><rect x="459" y="30" width="195" height="40" rx="9" fill="#2a5298"/><text x="556.6666666666666" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Aspirational</text><circle cx="471" cy="90" r="2.5" fill="#6a6256"/><text x="481.3333333333333" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Not happening yet</text><circle cx="471" cy="119" r="2.5" fill="#6a6256"/><text x="481.3333333333333" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Plausible but unproven</text><circle cx="471" cy="148" r="2.5" fill="#6a6256"/><text x="481.3333333333333" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">e.g. autonomous discovery</text></svg><figcaption>A working filter for AI-in-science claims: what's real and shipping, what's overclaimed in the retelling, and what's still aspirational.</figcaption></figure>
 
 
-  <div class="card-grid"><div class="card"><h3>Real</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Real</h3>
       <p>A capability that is documented in peer-reviewed literature or independently replicated, with the scope of the claim carefully bounded by the people who made it. Almost always narrower than the headline.</p>
       <p>Test: would a working researcher in the field describe the result the same way the press does? If yes, it is real.</p>
     </div>
@@ -270,7 +273,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">Four lines of work, all peer-reviewed, all with humans verifying outputs in a laboratory, give the clearest <em>publishable</em> picture of what AI is currently contributing to active scientific research. They are not the whole picture (we return below to a second, more diffuse, and arguably larger category of AI-as-collaborator that does not yet fit inside a single headline paper) but they are a good place to anchor a discussion of what is actually working.</p>
 
-  <div class="card-grid"><div class="card"><h3>Protein structure prediction</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Protein structure prediction</h3>
       <p>The AlphaFold lineage is an AI capability that is now infrastructure. AlphaFold 3 (Abramson et al., <em>Nature</em>, May 2024) extended the protein-only prediction of AlphaFold 2 to complexes including nucleic acids, small molecules and ions; code and weights were opened to academic users in November 2024. Structural biologists no longer treat predicted structures as exotic.</p>
       <p>Real-bucket marker: a working scientist in the field uses it without thinking about it.</p>
     </div>
