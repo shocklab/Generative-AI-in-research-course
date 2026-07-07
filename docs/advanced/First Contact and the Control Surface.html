@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -295,7 +298,7 @@ claude</pre>
 <figure id="fig-adv-permissions" class="diagram"><svg width="100%" viewBox="0 0 680 238" role="img" xmlns="http://www.w3.org/2000/svg"><title>The control surface, most permissive to most protective</title><desc>Four layered controls from permission prompts through plan mode and allowlists to the sandbox boundary.</desc><rect x="1" y="1" width="678" height="236" rx="3" fill="#f7f3ea" stroke="#cfc6b5"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#fffdf8" stroke="#d8cfbd"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Permission prompts — it asks before acting</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Plan mode — look without touching</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Allowlists — pre-approve safe commands</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Sandbox — limits what it can reach</text></svg><figcaption>Four controls keep you in charge of an agent working on your data — from the everyday permission prompt to the sandbox around what it can reach.</figcaption></figure>
 
 
-  <div class="card-grid"><div class="card"><h3>Permission prompts</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Permission prompts</h3>
       <p>By default, Claude Code asks before it does anything consequential, such as editing a file or running a command. You see what it intends and approve or decline. The default posture is &ldquo;ask first,&rdquo; and for research work you should keep it that way until you have reason not to.</p>
     </div>
     <div class="card"><h3>Plan mode</h3>

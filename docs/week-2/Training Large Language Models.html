@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -248,7 +251,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>The dominant pre-training objective for modern decoder-only LLMs: given a sequence of tokens, predict the next token.</p>
 <p style="margin-top: 15px">In many training pipelines this is the main loss, and it’s powerful: applied to massive corpora, it encourages the model to capture grammar, factual associations, and patterns of reasoning. Some training setups also add auxiliary losses or curriculum/mixing strategies (especially for multimodal or retrieval-augmented systems).</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Autoregressive Language Modeling</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Autoregressive Language Modeling</h3>
 <p>The dominant approach for decoder-only models (GPT, Claude, LLaMA):</p>
 <ul class="styled-list">
 <li><strong>Input:</strong> Sequence of tokens [t₁, t₂, ..., tₙ]</li>
@@ -334,7 +337,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </table>
 <p style="margin-top: 15px"><strong>Trend (often claimed):</strong> As public web text becomes noisier and more saturated, labs increasingly emphasize filtering, licensing, domain balancing, and synthetic data. The extent of “data scarcity” depends heavily on definitions and access to private/licensed corpora.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Common Data Sources</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Common Data Sources</h3>
 <ul class="styled-list">
 <li><strong>Web crawls:</strong> <a href="https://commoncrawl.org" target="_blank" rel="noopener">Common Crawl</a>, C4 (Colossal Clean Crawled Corpus)</li>
 <li><strong>Books:</strong> Project Gutenberg, other book corpora (often legally and ethically contentious)</li>
@@ -405,7 +408,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Training LLMs means finding good values for billions of parameters in a high-dimensional space. The loss landscape is non-convex, and training is computationally expensive and sensitive to hyperparameters.</p>
 <p style="margin-top: 15px">Modern LLM training relies on: <strong>adaptive optimizers</strong> (Adam variants), <strong>careful learning rate schedules</strong>, <strong>large global batch sizes</strong>, and <strong>gradient clipping</strong> to reduce instability.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Optimizers</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Optimizers</h3>
 <p>Algorithms for updating parameters based on gradients:</p>
 <ul class="styled-list">
 <li><strong>SGD:</strong> Foundational but often slower/harder to tune at LLM scale.</li>
@@ -552,7 +555,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </ul>
 <p style="margin-top: 15px">These relationships let labs extrapolate performance and plan expensive training runs.</p>
 </div>
-<div class="card-grid"><div class="card"><h3>Kaplan Scaling Laws (2020)</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Kaplan Scaling Laws (2020)</h3>
 <p>OpenAI's early scaling-law analysis suggested:</p>
 <ul class="styled-list">
 <li><strong>Smooth power laws:</strong> Test loss decreases predictably with scale</li>
@@ -627,7 +630,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style=" margin-bottom: 30px">A single GPU can't hold a 70B parameter model, let alone train it. Modern LLM training requires distributing the model and data across many GPUs using parallelism strategies.</p>
 <figure id="fig-w2-parallelism" class="diagram"><svg width="100%" viewBox="0 0 680 204" role="img" xmlns="http://www.w3.org/2000/svg"><title>Three ways to split a model across GPUs</title><desc>Data, tensor, and pipeline parallelism, the three axes that distribute a model across many GPUs.</desc><rect x="1" y="1" width="678" height="202" rx="3" fill="#f7f3ea" stroke="#cfc6b5"/><rect x="26" y="30" width="195" height="40" rx="9" fill="#2a5298"/><text x="123.33333333333333" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Data parallel</text><circle cx="38" cy="90" r="2.5" fill="#6a6256"/><text x="48.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Split the batch across GPUs</text><circle cx="38" cy="119" r="2.5" fill="#6a6256"/><text x="48.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Each GPU holds a full copy</text><circle cx="38" cy="148" r="2.5" fill="#6a6256"/><text x="48.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">16 ways in the example</text><rect x="243" y="30" width="195" height="40" rx="9" fill="#003A70"/><text x="340.0" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Tensor parallel</text><circle cx="255" cy="90" r="2.5" fill="#6a6256"/><text x="264.66666666666663" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Split each layer's maths</text><circle cx="255" cy="119" r="2.5" fill="#6a6256"/><text x="264.66666666666663" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Across GPUs in a node</text><circle cx="255" cy="148" r="2.5" fill="#6a6256"/><text x="264.66666666666663" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">8 ways</text><rect x="459" y="30" width="195" height="40" rx="9" fill="#2c6e3f"/><text x="556.6666666666666" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Pipeline parallel</text><circle cx="471" cy="90" r="2.5" fill="#6a6256"/><text x="481.3333333333333" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Split layers into stages</text><circle cx="471" cy="119" r="2.5" fill="#6a6256"/><text x="481.3333333333333" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">GPUs form an assembly line</text><circle cx="471" cy="148" r="2.5" fill="#6a6256"/><text x="481.3333333333333" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">8 ways: 16×8×8 = 1024</text></svg><figcaption>Data, tensor, and pipeline parallelism combine — 16 × 8 × 8 = 1024 GPUs training one model.</figcaption></figure>
 
-<div class="card-grid"><div class="card"><h3>Data Parallelism</h3>
+<div class="card-grid grid-wide"><div class="card"><h3>Data Parallelism</h3>
 <p>The simplest approach: replicate the model across GPUs and split data across them.</p>
 <ul class="styled-list">
 <li><strong>Setup:</strong> Each GPU holds a complete model replica</li>

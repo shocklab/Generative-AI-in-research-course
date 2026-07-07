@@ -61,7 +61,8 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(auto-fit,minmax(460px,1fr))}
+.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -71,6 +72,8 @@ img{max-width:100%}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict){max-width:calc(48rem + 52px)}
+.abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
 .abody .technical-detail h4{color:var(--mut)}
@@ -268,7 +271,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <figure id="fig-w8-image-zones" class="diagram"><svg width="100%" viewBox="0 0 680 233" role="img" xmlns="http://www.w3.org/2000/svg"><title>What scientific-image AI can and cannot do</title><desc>Two zones: reliable description and trend-reading versus unreliable extraction of exact values.</desc><rect x="1" y="1" width="678" height="231" rx="3" fill="#f7f3ea" stroke="#cfc6b5"/><rect x="26" y="30" width="303" height="40" rx="9" fill="#2c6e3f"/><text x="177.5" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Reliable: describe</text><circle cx="38" cy="90" r="2.5" fill="#6a6256"/><text x="48.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Alt text and captions</text><circle cx="38" cy="119" r="2.5" fill="#6a6256"/><text x="48.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Qualitative trends</text><circle cx="38" cy="148" r="2.5" fill="#6a6256"/><text x="48.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Visual comparison</text><circle cx="38" cy="177" r="2.5" fill="#6a6256"/><text x="48.0" y="181" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Spotting obvious features</text><rect x="351" y="30" width="303" height="40" rx="9" fill="#9a2f2f"/><text x="502.5" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Unreliable: extract values</text><circle cx="363" cy="90" r="2.5" fill="#6a6256"/><text x="373.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Exact numbers off axes</text><circle cx="363" cy="119" r="2.5" fill="#6a6256"/><text x="373.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Reading chart geometry</text><circle cx="363" cy="148" r="2.5" fill="#6a6256"/><text x="373.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Precise measurements</text><circle cx="363" cy="177" r="2.5" fill="#6a6256"/><text x="373.0" y="181" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Reasoning about scale</text></svg><figcaption>AI reads scientific images well for description and trends — but not for pulling exact numbers off axes. CharXiv: 47% AI vs 80% human on real charts.</figcaption></figure>
 
 
-  <div class="card-grid"><div class="card"><h3>Accessibility and Documentation</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Accessibility and Documentation</h3>
       <p>Generating alt text and descriptive figure captions is one of the most reliable uses of multimodal AI. The model produces fluent natural-language descriptions of visual content, which is where its language-side strength applies.</p>
       <ul class="styled-list">
         <li>Alt text generation for journal figures</li>
@@ -495,7 +498,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
   <!-- READINGS -->
   <h2 class="section-title" id="s7">Core Readings</h2>
 
-  <div class="card-grid"><div class="card"><h3>Wang et al. (2024)</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Wang et al. (2024)</h3>
       <p><strong>CharXiv: Charting Gaps in Realistic Chart Understanding in Multimodal LLMs</strong></p>
       <p><em>NeurIPS 2024, Princeton University.</em> The definitive benchmark study for AI chart understanding on real scientific figures. Establishes the 47% finding, provides a root-cause analysis, and includes a human baseline. Essential reading before using any AI tool with scientific charts.</p>
       <ul class="styled-list">
