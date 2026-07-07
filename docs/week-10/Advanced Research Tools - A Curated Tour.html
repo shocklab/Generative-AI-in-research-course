@@ -9,14 +9,15 @@ img{max-width:100%}
 .abody p,.abody li,.abody h2.section-title,.abody h3,.abody h4,.abody .intro-text,.abody blockquote{max-width:48rem}
 .abody h2.section-title,.abody h3,.abody h4,.ahead h1,.icover h1,.wcell h3,.ahead .eyebrow,.icover .eyebrow{overflow-wrap:break-word;hyphens:auto}
 .brandrule{height:4px;background:var(--blue)}
+.mobnav{display:none}
 /* ---- three-column shell ---- */
 .shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
 .maincol{min-width:0;max-width:1340px;margin-left:auto;margin-right:auto}
 .leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
 .leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
-.leftnav .back{font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
-.leftnav .back:hover{color:var(--blue2)}
-.leftnav .navwk{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
+.leftnav .back,.mobnav .back{font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
+.leftnav .back:hover,.mobnav .back:hover{color:var(--blue2)}
+.leftnav .navwk,.mobnav .navwk{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
 .leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:var(--fs-nav);color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
 .toc{display:flex;flex-direction:column}
 .toc .lesson{font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
@@ -27,10 +28,10 @@ img{max-width:100%}
 .toc .subs a:hover{color:var(--blue)}
 .toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
 .rightrail .rmeta{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
-.rightrail .snote{margin-bottom:24px;font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.5;color:var(--ink2)}
-.rightrail .snote .sk a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--rule2)}
-.rightrail .snote .sk a:hover{color:var(--blue2);border-bottom-color:var(--blue2)}
-.rightrail .snote .sk{font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
+.rightrail .snote,.mobnav .snote{margin-bottom:24px;font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.5;color:var(--ink2)}
+.rightrail .snote .sk a,.mobnav .snote .sk a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--rule2)}
+.rightrail .snote .sk a:hover,.mobnav .snote .sk a:hover{color:var(--blue2);border-bottom-color:var(--blue2)}
+.rightrail .snote .sk,.mobnav .snote .sk{font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
 .rightrail .rhd{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.16em;text-transform:uppercase;color:var(--lbl);margin:0 0 12px}
 /* ---- lesson header (in maincol) ---- */
 .ahead{padding:44px 0 30px;border-bottom:1px solid var(--rule)}
@@ -71,6 +72,10 @@ img{max-width:100%}
 .abody .highlight-box ul li::before{background:#bcd0e6}
 .abody .info-box,.abody .technical-detail,.abody .case-study,.abody .decision-framework{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:22px 26px;margin:28px 0}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.58;color:var(--ink2);margin:0 0 8px}
+.abody .technical-detail{border-left-color:var(--mut)}
+.abody .technical-detail h4{color:var(--mut)}
+.abody .case-study{border-left-color:#b07a1e}
+.abody .case-study>h3:first-child::before{content:'Case study';display:block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
 .abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
 .abody .warning-box h4{color:var(--amber)}
@@ -164,7 +169,7 @@ img{max-width:100%}
 .prevnext .d{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
 .prevnext .pt{font-family:'Fraunces';font-size:var(--fs-meta);color:var(--blue)}
 .prevnext .next{text-align:right;margin-left:auto}
-@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.maincol{width:100%;margin:0}.abody{overflow-wrap:break-word}.abody table{display:block;overflow-x:auto}.leftnav,.rightrail{position:static;padding-top:0;max-height:none;overflow:visible}.leftnav{margin:24px 0 6px;padding-bottom:18px;border-bottom:1px solid var(--rule)}.toc{flex-flow:row wrap;gap:6px 18px}.toc .subs{display:none}.rightrail{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.maincol{width:100%;margin:0}.abody{overflow-wrap:break-word}.abody table{display:block;overflow-x:auto}.leftnav,.rightrail{display:none}.mobnav{display:block;margin:20px 0 2px}.mobnav details{background:var(--card);border:1px solid var(--rule);border-radius:3px;margin-bottom:10px}.mobnav summary{padding:12px 16px;font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);cursor:pointer}.mobnav .mnbody{padding:4px 16px 14px}.mobnav .back{margin-bottom:14px}.mobnav .snote{margin-top:16px}}
 /* ---- INDEX / landing ---- */
 .iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
 .icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
@@ -175,10 +180,17 @@ img{max-width:100%}
 .iintro .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:22px}
 .iintro .links a{font-family:'Fraunces';font-size:var(--fs-meta);color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2);padding-bottom:2px}
 .iintro .links a:hover{border-color:var(--blue)}
-.weeks{column-count:2;column-gap:60px;padding:38px 0 12px}
-.wcell{break-inside:avoid;-webkit-column-break-inside:avoid;padding-bottom:32px;margin-bottom:4px}
-.wlabel{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--lbl);margin-bottom:8px}
-.wlabel b{color:var(--blue);font-weight:600}
+.part{padding:30px 0 0}
+.phead{font-family:'Fraunces';font-weight:400;font-size:1.45rem;color:var(--ink);border-bottom:1px solid var(--rule2);padding-bottom:10px;margin:0 0 28px}
+.phead span{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-right:12px}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px 56px;align-items:start}
+.wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
+.wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
+.wbody{flex:1;min-width:0}
+.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
+.wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
+.wcell.lite h3{font-size:var(--fs-h3)}
 .wcell h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3lg);color:var(--blue);margin:0 0 6px;line-height:1.1}
 .lessons{list-style:none;margin:12px 0 0;padding:0}
 .lessons li{border-top:1px solid var(--rule)}
@@ -187,7 +199,7 @@ img{max-width:100%}
 .ifoot{border-top:1px solid var(--rule);margin-top:18px}
 .ifoot .in{max-width:1400px;margin:0 auto;padding:24px 36px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Fraunces';font-size:var(--fs-mono);color:var(--lbl)}
 .ifoot a{color:var(--blue);text-decoration:none}
-@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.weeks{column-count:1}}
+@media(max-width:860px){.icover{grid-template-columns:1fr;gap:26px;align-items:start}.pgrid{grid-template-columns:1fr}}
 /* ---- GLOSSARY ---- */
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
@@ -224,7 +236,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 }
 @media(max-width:980px){.navtoggle{display:none}}
 @media print{.navtoggle{display:none}}
-</style><script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");if(s)d.style.fontSize=(["100%","112%","125%"][s]||"100%");if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><button class="navtoggle" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 10 &middot; Agentic AI, RAG &amp; Advanced Research Tools</div><nav class="toc"><a class="lesson" href="What%20Agents%20Are%20and%20Whats%20New%20in%202026.html">Agents: What They Are and What&#x27;s New in 2026</a><a class="lesson" href="Failure%20Modes%20for%20Long-Horizon%20Tasks.html">Failure Modes for Multi-Step / Long-Horizon Tasks</a><a class="lesson" href="The%20Current%20Tool%20Landscape%20and%20MCP.html">The Current Tool Landscape (Including MCP)</a><a class="lesson" href="RAG%20in%202026.html">RAG in 2026</a><a class="lesson cur" href="Advanced%20Research%20Tools%20-%20A%20Curated%20Tour.html">Advanced Research Tools: A Curated Tour</a><div class="subs"><a href="#s1">Why “Free” Is the Whole Game Here</a><a href="#s2">Deep Research Modes: The Comparison That Matters</a><a href="#s3">Chinese Free Tiers: Often More Generous</a><a href="#s4">MCP Connectors Worth Wiring In</a><a href="#s5">What&#x27;s Expensive — and Probably Skippable</a><a href="#s6">A Free-Tier Research Pipeline</a></div><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><script>document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}document.documentElement.classList.toggle(c,!on);});</script><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Advanced Research Tools: A Curated Tour</h1><div class="deck">An honest free-versus-paid map of Deep Research modes, Chinese free tiers, MCP connectors and a free research pipeline, built for a student without a foreign credit card</div></div><div class="abody"><div class="intro-text"><h2>What We&#39;ll Cover</h2>
+</style><script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");if(s)d.style.fontSize=(["100%","112%","125%"][s]||"100%");if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><button class="navtoggle" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 10 &middot; Agentic AI, RAG &amp; Advanced Research Tools</div><nav class="toc"><a class="lesson" href="What%20Agents%20Are%20and%20Whats%20New%20in%202026.html">Agents: What They Are and What&#x27;s New in 2026</a><a class="lesson" href="Failure%20Modes%20for%20Long-Horizon%20Tasks.html">Failure Modes for Multi-Step / Long-Horizon Tasks</a><a class="lesson" href="The%20Current%20Tool%20Landscape%20and%20MCP.html">The Current Tool Landscape (Including MCP)</a><a class="lesson" href="RAG%20in%202026.html">RAG in 2026</a><a class="lesson cur" href="Advanced%20Research%20Tools%20-%20A%20Curated%20Tour.html">Advanced Research Tools: A Curated Tour</a><div class="subs"><a href="#s1">Why “Free” Is the Whole Game Here</a><a href="#s2">Deep Research Modes: The Comparison That Matters</a><a href="#s3">Chinese Free Tiers: Often More Generous</a><a href="#s4">MCP Connectors Worth Wiring In</a><a href="#s5">What&#x27;s Expensive — and Probably Skippable</a><a href="#s6">A Free-Tier Research Pipeline</a></div><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><script>document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}document.documentElement.classList.toggle(c,!on);});</script><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>Advanced Research Tools: A Curated Tour</h1><div class="deck">An honest free-versus-paid map of Deep Research modes, Chinese free tiers, MCP connectors and a free research pipeline, built for a student without a foreign credit card</div></div><div class="mobnav"><details><summary>Contents</summary><div class="mnbody"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 10 &middot; Agentic AI, RAG &amp; Advanced Research Tools</div><nav class="toc"><a class="lesson" href="What%20Agents%20Are%20and%20Whats%20New%20in%202026.html">Agents: What They Are and What&#x27;s New in 2026</a><a class="lesson" href="Failure%20Modes%20for%20Long-Horizon%20Tasks.html">Failure Modes for Multi-Step / Long-Horizon Tasks</a><a class="lesson" href="The%20Current%20Tool%20Landscape%20and%20MCP.html">The Current Tool Landscape (Including MCP)</a><a class="lesson" href="RAG%20in%202026.html">RAG in 2026</a><a class="lesson cur" href="Advanced%20Research%20Tools%20-%20A%20Curated%20Tour.html">Advanced Research Tools: A Curated Tour</a><div class="subs"><a href="#s1">Why “Free” Is the Whole Game Here</a><a href="#s2">Deep Research Modes: The Comparison That Matters</a><a href="#s3">Chinese Free Tiers: Often More Generous</a><a href="#s4">MCP Connectors Worth Wiring In</a><a href="#s5">What&#x27;s Expensive — and Probably Skippable</a><a href="#s6">A Free-Tier Research Pipeline</a></div><a class="lesson" href="Hands-On%20Activities%20and%20Assessment.html">Hands-On Activities and Assessment</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div></details><details><summary>Key terms</summary><div class="mnbody"><div class="snote"><div class="sk"><a href="../glossary.html#gt-deep-research-mode">Deep Research mode</a></div>A feature of tools such as Perplexity and Gemini that takes a question, autonomously plans and runs multiple web searches, reads the results, and produces a cited report over several minutes.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-mcp-model-context-protocol">MCP (Model Context Protocol)</a></div>An open standard, introduced by Anthropic in 2024, that lets an AI agent connect to external tools and data sources (databases, file storage, reference managers) through one consistent interface rather than custom wiring for each.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-prompt-injection">Prompt injection</a></div>An attack in which hostile instructions hidden inside content an agent reads (a web page, email, or document) hijack its behaviour, because the model cannot reliably tell data from instructions.</div></div></details></div><div class="abody"><div class="intro-text"><h2>What We&#39;ll Cover</h2>
     <p class="drop">This is the practical pay-off of the week: a tool-by-tool tour with honest verdicts. For each category we ask three questions: what does it actually do well, what is its specific failure mode, and <strong>what does the free tier deliver for a student who cannot put a foreign credit card into a sign-up form?</strong> That last question is not a footnote in this course; for many UCT students it decides whether a tool exists at all.</p>
     <p>The centrepiece is a comparison of <strong>Deep Research modes</strong> (the agentic-RAG tools from 10.4) because the Week 10 activity (10.6) hinges on them. We then cover the Chinese free-tier options (often <em>more</em> generous than the Western ones, with one serious catch), the MCP connectors worth wiring into a research workflow, what is expensive and skippable, and a free-tier research pipeline you can actually run.</p>
     <p>A hard warning before any number appears: <strong>every quota in this sub-lesson is a May 2026 snapshot and several will be wrong by the time you read this.</strong> Free tiers are the most volatile thing in the entire field; they change monthly, sometimes weekly. Treat the specific figures as &ldquo;go and check&rdquo;, not gospel. The framework for choosing is the durable part.</p>
