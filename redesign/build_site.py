@@ -335,6 +335,11 @@ def widen_long_grids(c):
         cards = len(re.findall(r'<div class="(?:card|tool-card|category-card)[" ]', block))
         words = len(strip_tags(block).split())
         cls = m.group(1)
+        # cards >= 3 is deliberate, not an off-by-one. Two-card grids are almost always contrast
+        # pairs read ACROSS ("What AI Does Well | What AI Can Miss", "Strengths | Limitations",
+        # some with tick/cross markers); grid-wide stacks single-column, which would destroy the
+        # comparison. Relaxing this to >= 2 restyles 49 such pairs site-wide. Jonathan reviewed
+        # them on 2026-07-16 and chose to keep them side-by-side, accepting ~402px cards.
         if cards >= 3 and words / cards >= 45:
             cls += ' grid-wide'
         out.append(c[i:m.start()]); out.append(f'<div class="{cls}">')
