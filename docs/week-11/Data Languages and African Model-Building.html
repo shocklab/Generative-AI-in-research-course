@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -290,7 +292,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 15px">For policy context at the African continental level: the <strong>AU Data Policy Framework</strong> (adopted February 2022, published 28 July 2022) sets the stated continental orientation toward transparency, accountability, inclusion, and equity, aimed at an African Digital Single Market by 2030. The <strong>AU Continental AI Strategy</strong> (July 2024) explicitly invokes data sovereignty across its five focus areas. Both documents are real and worth reading; both, as we noted in 11.4, are policy positions rather than enforced regulatory mechanisms.</p>
 
-  <div class="warning-box"><h4>An honest gap to flag</h4>
+  <div class="warning-box"><h4>A gap to flag</h4>
     <p>There is, as of May 2026, <em>no peer-reviewed African critique-and-adaptation of the CARE Principles</em>: a paper arguing what would need to change for CARE to be made specifically African rather than imported with adjustments. Abeba Birhane and Rediet Abebe&#39;s work orbits this question; the AfricaNLP licensing conversation (Marivate, Adelani, Rajab et al.) is making constructive moves in practice. But the central critical paper has not been written yet. We return to this in the gaps section at the end of the sub-lesson; it is a concrete thesis opportunity the literature currently offers.</p>
     <p>A related practical gap: <em>most African datasets released in 2024 and 2025 still go up under CC-BY or research-only licences</em>, not under Kaitiakitanga- or Esethu-style community licences. The rhetorical commitment to community licensing is genuinely there; the operational uptake is not yet matching it. ViXSD is so far the proof of concept, not the beginning of a wave.</p>
   </div>
@@ -415,7 +417,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     </table>
   </div>
 
-  <div class="info-box"><h4>The 2026 additions worth foregrounding</h4>
+  <div class="info-box"><h4>The 2026 additions</h4>
     <p>Four 2026 (and late-2025) benchmark releases are particularly worth knowing about, because they expand the stack into areas it did not previously cover.</p>
     <ul class="styled-list" style="margin-top: 8px">
       <li><strong>Afri-MCQA</strong> (Multimodal Cultural QA, <a href="https://arxiv.org/abs/2601.05699" target="_blank" rel="noopener">arXiv:2601.05699</a>, January 2026). The freshest African QA/reasoning benchmark, and the first to take cultural context seriously as an evaluation axis. If you are building anything that involves cultural reasoning on African content, start here.</li>

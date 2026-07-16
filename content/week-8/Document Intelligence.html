@@ -185,7 +185,7 @@
   <h2 class="section-title">&#128204; The &ldquo;Lost in the Middle&rdquo; Problem</h2>
 
   <div class="warning-box">
-    <h4>&#9888;&#65039; A Long-Document Limitation Worth Knowing About</h4>
+    <h4>&#9888;&#65039; A Long-Document Limitation</h4>
     <p>When you give an AI model a long document, it has historically paid more attention to content at the beginning and end than to content in the middle. This was documented systematically by Liu et al. (2024) in &ldquo;Lost in the Middle: How Language Models Use Long Contexts&rdquo; (<em>Transactions of the Association for Computational Linguistics</em>, arXiv:2307.03172), a finding that frontier long-context models have partially addressed but not eliminated. The U-shaped attention curve has flattened with newer training methods, but performance on locating specific information in the middle of long contexts is still measurably weaker than at the edges.</p>
     <p style="margin-top:12px;"><strong>For researchers:</strong> if you are asking an AI to find specific information in a long paper (methodological details, a contradictory finding, a specific numerical result), do not assume that &ldquo;1M-token context window&rdquo; means equal attention to all 1M tokens. For important information, extract the relevant section and query it separately rather than relying on the AI to correctly locate it within the full document. This is the safer workflow even where the underlying limitation has improved.</p>
   </div>

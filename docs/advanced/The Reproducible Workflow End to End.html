@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -264,7 +266,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     <li><strong>Commit.</strong> A Git commit snapshots the whole state, with a message that narrates the decisions.</li>
   </ol>
 
-  <div class="case-study"><h4>The test that matters: hand it to a stranger</h4>
+  <div class="case-study"><h4>Hand it to a stranger</h4>
     <p>Now the question reproducibility actually asks. Give the finished folder to someone who was not there. Can they reconstruct what happened? Yes, and not because they trust you: because the evidence is all present. The untouched raw data, the script that transforms it, the decision log explaining every judgement call (why the upstream counts were halved, why D-03 was dropped), the pre-registration showing the standard was set in advance, the outputs, and the run log proving what was executed. They can re-run the script and get the same result, and they can <em>disagree</em> with a decision because they can see it.</p>
     <p>The decision log is what carries the weight here. Without the upstream correction, if a hurried researcher never opened the field notes, this same analysis concludes that the town has <em>no</em> measurable effect: town and upstream read almost identically (a median difference of 2 particles/L, not remotely significant). With the correction, the town is clearly and significantly higher (a difference of 36, p&nbsp;&asymp;&nbsp;0.00002). One logged decision, sourced to a single field note, is the entire difference between the right answer and the wrong one. A reader of the folder can see exactly where the result turns; a chat transcript would have buried it.</p>
     <p>Contrast the same analysis done in a chat window. The model gives you the same answer, perhaps in the same minute. But the cleaning decisions are scattered through a conversation you will lose; the upstream halving is a thing the model did somewhere in the middle that nobody recorded; and next month there is no folder to hand anyone, only a number you once obtained and can no longer account for. Same model, same answer, wholly different research.</p>

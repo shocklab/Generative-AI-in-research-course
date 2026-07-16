@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -262,7 +264,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     </ol>
   </div>
 
-  <div class="question-set"><h3>AI Writing Tools Landscape and Honest Assessment</h3>
+  <div class="question-set"><h3>AI Writing Tools: Landscape and Assessment</h3>
     <ol class="question-list">
       <li><span class="q-tag">Calibrate</span> The lesson sorts tools into four categories. Pick the tool you use most and place it. What does the category framing surface, and what does it hide?</li>
       <li><span class="q-tag">Apply</span> For a non-native-English-speaker doing research in English, which category of tool is most defensibly useful and which most concerning? Be precise about the use-case that flips the answer.</li>

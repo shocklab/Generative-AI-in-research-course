@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -382,7 +384,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </tbody>
 </table>
 </div>
-<div class="info-box"><h4>Constitutional AI — Why It's Worth Understanding</h4>
+<div class="info-box"><h4>Constitutional AI</h4>
 <p>Constitutional AI (CAI), developed by Anthropic, is the approach used to train Claude, the AI that helped design these course pages. It works in two stages:</p>
 <ul class="styled-list" style="margin-top: 10px">
 <li><strong>Supervised stage:</strong> The model is shown its own potentially harmful response and asked to critique it against a list of principles (the "constitution"), then revise the response. This generates supervised training data without human annotation of every example.</li>

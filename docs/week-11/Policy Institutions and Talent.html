@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -331,7 +333,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     <li><strong>It is unusually concrete material for a postgraduate course.</strong> The full gazetted PDF is publicly available. The withdrawn citations are documented. The methodology that produced the problem is the methodology this entire course is asking you to be cautious about. The case is about as direct an argument for the calibrated-reading habit as the literature offers.</li>
   </ul>
 
-  <div class="warning-box"><h4>The honest comparison to Ethiopia</h4>
+  <div class="warning-box"><h4>The comparison to Ethiopia</h4>
     <p>Ethiopia is the only African state with a draft AI legislative instrument under serious consideration (the AI Development and Regulation Proclamation, drafted by the Ethiopian AI Institute). It is not enacted, but it exists. South Africa, between April 2026 and at least the autumn of 2026, will have no comparable document at all. Whatever your view of the merits of strategy-as-governance, the empirical situation as of May 2026 is that the largest economy on the continent currently has no AI policy framework at all, while the second-largest has a draft legislative instrument under review. That ordering is not the one the policy-positioning rhetoric would lead you to expect.</p>
   </div>
 
