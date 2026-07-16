@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>The Shifting Research Landscape — MAM5020F</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet"><style>
-:root{--blue:#003A70;--fs-tag:.7rem;--fs-lbl:.8rem;--fs-mono:.85rem;--fs-nav:.95rem;--fs-meta:1.05rem;--fs-sub:1.12rem;--fs-box:1.28rem;--fs-h3:1.35rem;--fs-list:1.37rem;--fs-h3lg:1.45rem;--fs-body:1.52rem;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+:root{--blue:#003A70;--fs-tag:.7rem;--fs-lbl:.8rem;--fs-mono:.85rem;--fs-nav:.95rem;--fs-meta:1.05rem;--fs-sub:1.12rem;--fs-code:1.12rem;--fs-box:1.28rem;--fs-h3:1.35rem;--fs-list:1.37rem;--fs-h3lg:1.45rem;--fs-body:1.52rem;--blue2:#2a5298;--paper:#f5f2ea;--card:#fffdf8;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
 html{font-size:100%}
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--blue);color:#fff}
@@ -61,10 +61,13 @@ img{max-width:100%}
 .abody .intro-text h2{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
-.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
-.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
-.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
-@media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
+/* Every grid hugs the reading measure, so its right edge matches the callout boxes at any width.
+   Long-card grids (grid-wide) stack single-column: two columns inside 820px would give ~402px
+   cards, no better than the 3-across this rule exists to escape. Only genuinely wide content
+   still breaks out to the full canvas. */
+.abody :is(.card-grid,.category-grid){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid).grid-wide{grid-template-columns:1fr}
+.abody :is(.card-grid,.category-grid):has(table,figure,pre,iframe,svg){max-width:none}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -94,7 +97,13 @@ img{max-width:100%}
 .abody .step-list>li::after{content:none}
 .abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-mono);line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
 .abody .code-block *{font-family:inherit}
-.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:.85em;background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#ece4d3;padding:1px 5px;color:#7a4a12}
+/* In a heading or a table cell, code takes the container's step: the prose step would dwarf an
+   11.2px header, and an em multiplier lands off-scale (.85em of a 12.8px h4 = 10.88px). */
+.abody :is(h1,h2,h3,h4,h5,h6,th,td) code{font-size:1em}
+/* small is otherwise unstyled and falls through to the UA default (.8333em) = off-scale */
+.abody small{font-size:var(--fs-meta)}
+.abody :is(th,td) small{font-size:1em}
 .abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
 .abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
 .abody .resource-placeholder h4{color:var(--blue)}
