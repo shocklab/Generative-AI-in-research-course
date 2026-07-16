@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -290,7 +292,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="info-box"><h4>What All These Tools Share</h4>
 <p>Every AI visualisation tool ultimately generates code (usually Python) that calls a plotting library. The AI is not drawing pixels. It is writing instructions for matplotlib, seaborn, plotly, or a similar library. This means the output is only as good as the code the AI writes, and that code reflects the defaults and conventions baked into those libraries. That is why AI-generated charts so often need fixing.</p>
 </div>
-<div class="info-box"><h4>A Capability Worth Knowing About</h4>
+<div class="info-box"><h4>A Capability to Know About</h4>
 <p>Modern agentic tools, particularly Claude Code, can view the plots they generate. When they produce a chart, they can inspect the rendered image, identify problems ("the y-axis starts at 94 which exaggerates the difference," "the legend overlaps the data"), and revise the code accordingly. If you ask Claude Code to critique its own visualisation for publication quality, colourblind safety, and clarity, it will often catch many of the issues described in this lesson and fix them autonomously. This does not eliminate your need to check the final output, but it does mean your starting point can be substantially better than raw matplotlib defaults.</p>
 </div>
 <!-- SECTION 2: GOOD VISUALISATION PRINCIPLES AI OFTEN VIOLATES -->

@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -353,7 +355,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Save your prompts:</strong> When a prompt produces good results, save it. Building a personal library of effective prompts is like building a toolkit: it compounds over time and reduces the number of requests you need to make</li>
 </ul>
 </div>
-<div class="warning-box"><h4>The Honest Assessment</h4>
+<div class="warning-box"><h4>The Assessment</h4>
 <p>The quality gap between free and paid AI coding tools is larger than in any other category we have covered in this course. If your research depends heavily on computational analysis, a paid tier may be one of the most cost-effective investments you can make: a single month's subscription costs less than a textbook and can save dozens of hours. But you should know what you are paying for and what the free alternatives can still do. Do not let marketing convince you that free tools are useless, and do not let optimism convince you that they are equivalent to paid ones. The truth sits in between, and where you fall depends on the complexity of your work.</p>
 </div>
 <table class="comparison-table">
@@ -405,7 +407,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </tbody>
 </table>
 <div class="info-box"><h4>A note on the prices in this table</h4>
-<p>Prices drift, so treat every figure here as indicative and check each tool's current pricing page before you decide. Claude Code in particular has no free tier: it is the one tool in this table that is paid-only, which matters in a course that has been free-tier-first throughout. The Advanced Track lesson <a href="../advanced/The Honest Case - Cost Access and Disposition.html">The Honest Case &mdash; Cost, Access and Disposition</a> deals squarely with what it costs, who that excludes, and when it is worth it.</p>
+<p>Prices drift, so treat every figure here as indicative and check each tool's current pricing page before you decide. Claude Code in particular has no free tier: it is the one tool in this table that is paid-only, which matters in a course that has been free-tier-first throughout. The Advanced Track lesson <a href="../advanced/Cost Access and the Disposition Shift.html">Cost, Access and the Disposition Shift</a> deals squarely with what it costs, who that excludes, and when it is worth it.</p>
 </div>
 <!-- SECTION 4: VIBE CODING -->
 <h2 class="section-title" id="s4">"Vibe Coding" — Promise and Peril</h2>

@@ -3,7 +3,7 @@ import diagrams as D
 from genlib import main
 
 CC = "content/advanced/Claude Code as a Research Environment.html"
-HC = "content/advanced/The Honest Case - Cost Access and Disposition.html"
+HC = "content/advanced/Cost Access and the Disposition Shift.html"
 FC = "content/advanced/First Contact and the Control Surface.html"
 RP = "content/advanced/Reproducibility and the Project Folder.html"
 EN = "content/advanced/Encoding Good Habits - CLAUDE.md Pre-registration and Skills.html"

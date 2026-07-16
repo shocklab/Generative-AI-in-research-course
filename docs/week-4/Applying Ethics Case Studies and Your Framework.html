@@ -62,6 +62,8 @@ img{max-width:100%}
 .abody .intro-text p{font-size:var(--fs-h3);color:var(--ink2)}.abody .intro-text p:last-child{margin-bottom:0}
 .abody .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:26px 0;align-items:start}
 .abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:repeat(2,minmax(0,1fr))}
+.abody .card-grid:not(.grid-wide),.abody .category-grid:not(.grid-wide){max-width:calc(48rem + 52px)}
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(table,figure,pre,iframe,svg){max-width:none}
 @media(max-width:1780px){.abody .card-grid.grid-wide,.abody .category-grid.grid-wide{grid-template-columns:1fr;max-width:calc(48rem + 52px)}}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
@@ -258,7 +260,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Document and disclose.</strong> How will you record and communicate your reasoning? Transparency about the decision-making process is itself an ethical act.</li>
 </ol>
 </div>
-<div class="info-box"><h4>A Tool, Not a Formula</h4>
+<div class="info-box"><h4>What the framework gives you</h4>
 <p>This framework will not give you an answer. It will give you a structured process for arriving at one. The reasoning carries the value here, the act of forcing yourself to consider perspectives you might otherwise overlook, rather than the conclusion you reach.</p>
 </div>
 <!-- SECTION 2: CASE STUDY 1 -->

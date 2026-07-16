@@ -370,7 +370,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The practical access picture as of May 2026: Claude.ai, ChatGPT, Gemini, Perplexity, and Microsoft Copilot all work from South African networks without a VPN, and UCT&#39;s Microsoft 365 subscription means Copilot Chat is very likely already available to you through your university account. The Chinese services below also work from a Cape Town connection without a VPN. One thing unites all of them, Western and Chinese alike: they process your data on servers outside South Africa, a data-protection point we treat seriously below.</p>
 
-  <h2 class="section-title">&#128270; Deep Research Modes: The Comparison That Matters</h2>
+  <h2 class="section-title">&#128270; Deep Research Modes: The Comparison</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Deep Research modes take a question, spend several minutes planning, searching, and reading, and return a cited report: the consumer face of the agentic RAG from 10.4. They are also what the 10.6 activity asks you to test. Here is the free-tier landscape, with the staleness warning in force.</p>
 
@@ -444,12 +444,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   </div>
 
   <div class="warning-box">
-    <h4>&#9888;&#65039; Sending data abroad: a rule for <em>all</em> these tools, not just the Chinese ones</h4>
+    <h4>&#9888;&#65039; Sending data abroad</h4>
     <p>It is tempting to attach the data-protection worry only to the Chinese services, but that would be both unfair and wrong. <strong>Almost every free AI tool in this sub-lesson processes your data outside South Africa</strong>: the US-based services (ChatGPT, Claude, Gemini, Perplexity) on infrastructure outside South Africa, typically in the United States; the Chinese services (DeepSeek, Kimi, Qwen, Z.ai) on servers in mainland China. Under South Africa&#39;s Protection of Personal Information Act (POPIA, section 72), the question is whether sending personal information abroad is permitted at all, not which country it goes to: a transfer abroad is restricted unless the recipient is bound by data-protection rules substantially similar to POPIA&#39;s, or the data subject has consented (among a few narrow conditions). POPIA has no &ldquo;approved-country&rdquo; whitelist; the test is the recipient&#39;s actual protection, which for any consumer AI service hosting your prompts abroad you have no basis to assume is met, wherever its servers sit.</p>
     <p>Applied equally to the US-hosted and the China-hosted tools: <strong>do not put identifiable personal data, participant information, unpublished results, or third-party confidential material into any of them.</strong> For public, non-personal research questions they are all excellent and free. For anything involving real people&#39;s data, the obligation is the same regardless of vendor, and you must record which tool you used and where its data went. The 10.6 activity makes this disclosure a required, graded section, for every tool, not an afterthought.</p>
   </div>
 
-  <h2 class="section-title">&#128268; MCP Connectors Worth Wiring In</h2>
+  <h2 class="section-title">&#128268; MCP Connectors</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">From 10.3: MCP lets an agent reach your tools through one standard. A handful of connectors are genuinely useful for research: reference managers (community-maintained <strong>Zotero</strong> MCP servers exist; search for the current one), <strong>GitHub</strong>, <strong>Google Drive</strong>, and <strong>Notion</strong>. On Claude.ai a set of connectors is available even on the free plan (free users get one custom connector). Used well, an agent can search your own library or read your repository through a single interface. Course participants already run this pattern in practice: an agent (Claude Code or OpenAI's Codex) connected to Zotero over MCP, keeping summaries and a living record of every paper they read.</p>
 
@@ -470,7 +470,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   </ul>
 
   <div class="info-box">
-    <h4>&#127757; A Week 3 reminder: agents are expensive in tokens, not just money</h4>
+    <h4>&#127757; Week 3 reminder: agents are expensive in tokens</h4>
     <p>An agentic run (planning, many tool calls, reading long results, retrying) burns far more tokens than a single chat message, sometimes by orders of magnitude. That is why free Deep Research is rationed, and it is also a Week 3 environmental point: a Deep Research report has a much larger compute (and therefore energy and water) footprint than a one-shot answer. Use the heavy tools when the task warrants them, not reflexively.</p>
   </div>
 
