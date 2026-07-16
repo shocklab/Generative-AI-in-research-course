@@ -84,7 +84,7 @@ Week 6/          (AI for Writing, Communication & Research Ideation)
   Table of Contents.html
   Writing as Thinking.html
   Research Ideation with AI.html
-  AI Writing Tools Landscape and Honest Assessment.html
+  AI Writing Tools - Landscape and Assessment.html
   Scientific Integrity and the Writing Pipeline.html
   Building Your AI Writing Workflow.html
   Hands-On Activities and Assessment.html

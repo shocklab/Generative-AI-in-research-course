@@ -4,7 +4,7 @@ from genlib import main
 
 WT = "content/week-6/Writing as Thinking.html"
 RI = "content/week-6/Research Ideation with AI.html"
-TL = "content/week-6/AI Writing Tools Landscape and Honest Assessment.html"
+TL = "content/week-6/AI Writing Tools - Landscape and Assessment.html"
 SI = "content/week-6/Scientific Integrity and the Writing Pipeline.html"
 BW = "content/week-6/Building Your AI Writing Workflow.html"
 UR = "content/week-6/Using AI to Review Your Own Work.html"

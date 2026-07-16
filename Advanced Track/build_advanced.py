@@ -258,7 +258,7 @@ SL_A1_BODY = GATE_BANNER + """
 
 
 # ===========================================================================
-# Lesson A.2 — The Honest Case: Cost, Access, and the Disposition
+# Lesson A.2 — Cost, Access, and the Disposition Shift
 # ===========================================================================
 
 SL_A2_BODY = """
@@ -268,7 +268,7 @@ SL_A2_BODY = """
     <p>The aim is that by the end you can decide, for yourself and honestly, whether this track is worth it for your situation. For some readers it clearly will be; for others it clearly will not be, and saying so plainly is part of keeping faith with the rest of the course.</p>
   </div>
 
-  <h2 class="section-title">&#128176; The Cost Picture, Honestly</h2>
+  <h2 class="section-title">&#128176; The Cost Picture</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Claude Code is not free. As of mid-2026 it is available through Anthropic&#39;s paid subscription tiers and via metered API usage; the entry subscription sits at roughly the price of a couple of streaming services per month, and the heavier tiers cost substantially more. Because these numbers change, this lesson does not pin an exact figure: check the current Anthropic pricing page rather than trusting a number a course page wrote months ago. (Trusting the live source over the cached claim is the Week&nbsp;9 disposition applied to pricing.)</p>
 
@@ -281,7 +281,7 @@ SL_A2_BODY = """
     <p>Remember the burden named in the disposition shift below: every agentic result needs checking, and that review time is part of the true cost. A run that is cheap in tokens but produces an hour of plausible-but-wrong work you then have to untangle was not cheap. Scope tightly, checkpoint often, and the spend (of money <em>and</em> of attention) stays proportionate to the stakes.</p>
   </div>
 
-  <h2 class="section-title">&#127757; The Equity Tension, Named</h2>
+  <h2 class="section-title">&#127757; The Equity Tension</h2>
 
   <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">This course has been militantly free-tier-first, and that was a deliberate choice with an argument behind it. Week&nbsp;10 made the case that &ldquo;just pay for the Pro plan&rdquo; is not advice but an assumption that excludes most of the people the course is for. Week&nbsp;11.4 put numbers on the African compute gap. A paid-tool track sits in direct tension with all of that, and the worst thing we could do is pretend otherwise.</p>
 
@@ -832,7 +832,7 @@ SL_B3_BODY = """
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">These layers catch different failures, and it helps to see which catches which. A <em>wrong-direction</em> failure, the agent confidently pursuing the wrong goal because it inferred the wrong intent and taking you on a tangent for days, is invisible to any amount of diff-reading, because no single change is wrong; the <em>question</em> is wrong. That is what the pre-registration <em>gates</em> from B.2 are for: a closed gate stops the tangent early. A <em>quiet-correctness</em> failure, a dropped column or a plausible default you didn&#39;t notice, is what the automated assertions catch. And reviewing at the <em>checkpoint</em> (the commit boundary) rather than at every keystroke is how human review stays in the loop without becoming a full-time job. Verification scales when it is layered, not when it is heroic.</p>
 
   <div class="warning-box">
-    <h4>&#9888;&#65039; What stays human, honestly</h4>
+    <h4>&#9888;&#65039; What stays human</h4>
     <p>The structure verifies the <em>process</em>; it does not verify the <em>judgement</em>. Is this the right analysis for the question? Does the result make physical sense for a river? Is the effect real or an artefact of the small sample after exclusions? Those are research judgements, and no amount of logging makes them the agent&#39;s job. The Week&nbsp;7 silent-error problem and the Week&nbsp;9 plausible-but-wrong problem do not disappear because the work is well-documented: a beautifully reproducible analysis can still be reproducibly wrong. And there is a cost to all of this: tokens, time, and the genuine review effort every agentic result demands. Budget for it.</p>
   </div>
 
@@ -877,11 +877,11 @@ SUBLESSONS = [
         "body": SL_A1_BODY,
     },
     {
-        "filename": "The Honest Case - Cost Access and Disposition.html",
-        "title": "Advanced A.2 - The Honest Case: Cost, Access, and the Disposition",
+        "filename": "Cost Access and the Disposition Shift.html",
+        "title": "Advanced A.2 - Cost, Access, and the Disposition Shift",
         "badge": "Advanced Track &bull; Lesson A &bull; 2 of 3",
         "header_emoji": "&#9878;&#65039;",  # balance scale
-        "header_title": "The Honest Case: Cost, Access, and the Shift in How You Work",
+        "header_title": "Cost, Access, and the Disposition Shift",
         "header_subtitle": "What it costs, who it excludes, what you can approximate for free, and the disposition it demands",
         "body": SL_A2_BODY,
     },
@@ -925,7 +925,7 @@ SUBLESSONS = [
 
 
 TOC_HTML = """<html><head><meta http-equiv="'Content-Type'" content="'text/html;charset=utf-8'" /><title>MAM5020F 2026 | Gen AI for Research - Advanced Track: Agentic Research with Claude Code</title></head><body>
-<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>Advanced Track &mdash; Beyond the Free Tier: Agentic Research with Claude Code</strong></font><br><p style='margin-left: 25px; margin-top: 20px; color: #003A70; font-weight: bold; font-size: 1.1em;'>Lesson A &mdash; Claude Code as a Research Environment</p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Claude Code as a Research Environment.html" />A.1 What Claude Code Actually Is</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Honest Case - Cost Access and Disposition.html" />A.2 The Honest Case: Cost, Access, and the Disposition</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="First Contact and the Control Surface.html" />A.3 First Contact and the Control Surface</a></p><p style='margin-left: 25px; margin-top: 24px; color: #003A70; font-weight: bold; font-size: 1.1em;'>Lesson B &mdash; Reproducible Research Workflows</p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Reproducibility and the Project Folder.html" />B.1 Reproducibility, and the Reproducible Project Folder</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Encoding Good Habits - CLAUDE.md Pre-registration and Skills.html" />B.2 Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Reproducible Workflow End to End.html" />B.3 The Reproducible Workflow, End to End</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
+<div style="background: #003A70; padding: 8px 20px; text-align: center;"><a href="../index.html" style="color: white; text-decoration: none; font-size: 0.85em;">&#8592; Back to Contents</a></div><table cellpadding=0 cellspacing=0 border=0 width=100%><tr><td colspan=3>&nbsp;</td></tr><tr><td valign="top" width="100%"><font class="title"><strong>Advanced Track &mdash; Beyond the Free Tier: Agentic Research with Claude Code</strong></font><br><p style='margin-left: 25px; margin-top: 20px; color: #003A70; font-weight: bold; font-size: 1.1em;'>Lesson A &mdash; Claude Code as a Research Environment</p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Claude Code as a Research Environment.html" />A.1 What Claude Code Actually Is</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Cost Access and the Disposition Shift.html" />A.2 Cost, Access, and the Disposition Shift</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="First Contact and the Control Surface.html" />A.3 First Contact and the Control Surface</a></p><p style='margin-left: 25px; margin-top: 24px; color: #003A70; font-weight: bold; font-size: 1.1em;'>Lesson B &mdash; Reproducible Research Workflows</p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Reproducibility and the Project Folder.html" />B.1 Reproducibility, and the Reproducible Project Folder</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="Encoding Good Habits - CLAUDE.md Pre-registration and Skills.html" />B.2 Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</a></p><p class='d2l' style=' margin-left: 40px'><a target="_blank" href="The Reproducible Workflow End to End.html" />B.3 The Reproducible Workflow, End to End</a></p></td></tr></table><footer style="background: #f9f9f9; margin-top: 40px; padding: 22px 30px; text-align: center; color: #888; font-size: 0.85em; border-top: 1px solid #eee; font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;">
 &copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; Licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener" style="color: #003A70; text-decoration: underline;">CC&nbsp;BY&nbsp;4.0</a>
 </footer></body></html>"""
 
