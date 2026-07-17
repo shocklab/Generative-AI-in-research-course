@@ -92,6 +92,10 @@ img{max-width:100%}
 .abody :is(.card-grid,.category-grid){max-width:calc(48rem + 52px)}
 .abody :is(.card-grid,.category-grid).grid-wide{grid-template-columns:1fr}
 .abody :is(.card-grid,.category-grid):has(table,figure,pre,iframe,svg){max-width:none}
+.afoot{max-width:calc(48rem + 52px);margin:52px 0 60px;padding-top:22px;border-top:1px solid var(--rule)}
+.afoot p{font-family:'Newsreader';font-size:var(--fs-lbl);line-height:1.6;color:var(--lbl);margin:0 0 6px}
+.afoot .alic{color:var(--mut)}
+.afoot a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
 .abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-box);line-height:1.5;color:var(--ink2);margin:0}
@@ -491,9 +495,22 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
               f'<details><summary>Contents</summary><div class="mnbody"><a class="back" href="{back}">&larr; All lessons</a>'
               f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
               f'<nav class="toc">{items}</nav></div></details>' + mobterms + '</div>')
+    # AI-authorship disclosure + licence. Lives in the page chrome, NOT in content/, because the
+    # renderer only carries `.content` across: the old per-page .ai-notice sat outside it and was
+    # silently dropped from 83 of 84 lessons by the Press redesign (71d15ee) for three weeks.
+    # verify_content.py compares .content to .abody, so it could never have caught that.
+    disc = relhref('course-introduction/AI Content Disclaimer.html', href)
+    afoot = ('<div class="afoot">'
+             f'<p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock '
+             f'before publication. AI-generated errors are possible &mdash; if you spot one, please email '
+             f'<a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. '
+             f'Full detail: <a href="{disc}">AI Content Disclaimer</a>.</p>'
+             '<p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research '
+             '&middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" '
+             'target="_blank">CC BY 4.0</a></p></div>')
     main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             f'<h1>{html.escape(h1)}</h1>' + (f'<div class="deck">{html.escape(deck)}</div>' if deck else '') + '</div>'
-            + mobnav + f'<div class="abody">{c}</div>{pn}')
+            + mobnav + f'<div class="abody">{c}</div>{pn}{afoot}')
     body = ('<div class="brandrule"></div><div class="shell">' + leftnav +
             '<div class="maincol">' + main + '</div>' + rightrail + '</div>')
     out = os.path.join(OUT, unquote(href))
