@@ -343,7 +343,7 @@
 <h4>Claude Code: The Current Capability Ceiling</h4>
 <p>Claude Code is currently the most capable agentic coding tool for research use. In practical terms, it can:</p>
 <ul class="styled-list">
-<li><strong>Read entire project structures:</strong> It understands multi-file dependencies, not just individual snippets. You can point it at a project directory and it will orient itself before writing a single line.</li>
+<li><strong>Read entire project structures:</strong> It understands multi-file dependencies. You can point it at a project directory and it will orient itself before writing a single line.</li>
 <li><strong>Execute and iterate autonomously:</strong> It runs code, sees the results, fixes errors, and continues, without you prompting it after each step. As of early 2026, median task durations have reached over 45 minutes, with some sessions running autonomously for hours.</li>
 <li><strong>Spawn parallel sub-agents:</strong> For complex multi-step analyses, it can launch independent agents to work on different tasks simultaneously, with one cleaning data while another generates exploratory plots.</li>
 <li><strong>View its own visual outputs:</strong> As discussed in Sub-Lesson 3, it can inspect plots it generates and critique them for quality and accessibility issues.</li>
@@ -499,7 +499,7 @@
 <li><strong>Review the plan before execution:</strong> Ask the agent to outline its intended steps before it starts. If the plan is wrong, catching it here is infinitely cheaper than catching it after 30 minutes of autonomous work</li>
 <li><strong>Set explicit checkpoints:</strong> Instruct the agent to pause and report at key decision points, such as after data loading, after cleaning, and before running the final model</li>
 <li><strong>Require a decision log:</strong> Every choice the agent makes (how to handle missing data, which column it used for grouping) should be logged so you can audit it</li>
-<li><strong>Verify outputs, not just completion:</strong> The agent finishing is not the same as the agent being right. Check key results against known values or sanity checks</li>
+<li><strong>Verify outputs:</strong> The agent finishing is not the same as the agent being right. Check key results against known values or sanity checks</li>
 <li><strong>Start with a small scope:</strong> On a new dataset, run the agent on a 10% sample first. Check the results thoroughly before running it on the full data</li>
 </ul>
 </div>
@@ -596,7 +596,7 @@
 <p><strong>The paradigm has shifted from conversation to agency.</strong> Giving an AI tools, context, and a goal, then letting it execute a multi-step pipeline autonomously, is now practical for research workflows. MCP, Claude Code, Codex, and Gemini CLI make this accessible without deep technical expertise.</p>
 <p><strong>CLAUDE.md is the most important document you will write for an agentic project.</strong> It specifies your data structure, analytical conventions, and constraints upfront, so the agent applies them throughout a session without you repeating them. Investing 30 minutes in a good CLAUDE.md saves hours of downstream correction.</p>
 <p><strong>Oversight is mathematics, not distrust.</strong> The reliability degradation in sequential pipelines makes checkpoints a structural requirement for any serious multi-step agentic analysis. Review the plan before execution, require decision logs, and verify outputs rather than just completion.</p>
-<p><strong>Agentic tools reward project structure.</strong> The setup cost is real, but it pays off across repeated use. The researchers who benefit most from agentic tools are those who treat project organisation as a first-class research activity, not an afterthought.</p>
+<p><strong>Agentic tools reward project structure.</strong> The setup cost is real, but it pays off across repeated use. The researchers who benefit most from agentic tools are those who treat project organisation as a first-class research activity.</p>
 <p><strong>The judgment is still yours.</strong> Agentic tools can execute a pre-specified analysis faster and more consistently than you can by hand. They cannot decide what question to ask, whether a result is scientifically meaningful, or how to handle a finding that contradicts your expectations. The frontier has moved, but the researcher has not been replaced. The researcher has been given a more capable collaborator.</p>
 <p><strong>Next session:</strong> Sub-Lesson 7 brings together the full week with hands-on activities. You will practice both conversational and agentic workflows on real data, compare the results, and complete the weekly assessment.</p>
 </div>
