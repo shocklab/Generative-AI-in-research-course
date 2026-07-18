@@ -415,7 +415,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p style="margin-top: 12px;">None of this touched the model&#39;s weights. A large slice of agent performance is engineering of the scaffolding, and it is the kind of thing a tool vendor can do that you, choosing between tools, cannot see from the model name alone.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">And it generalises across models. In a May 2026 follow-up the same team reported that, on a different agentic benchmark (tau2-bench), prompts and middleware alone moved scores by <strong>10 to 20 points</strong> (a roughly 20% lift on one coding model and 10% on another), and that the same harness techniques apply when driving open-weight models such as Kimi, Qwen, and DeepSeek (which we return to in 10.5). The lesson holds regardless of whose model you use: a large, measurable share of the work happens in the harness.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">And it generalises across models. In a May 2026 follow-up the same team reported that, on a different agentic benchmark (tau2-bench), prompts and middleware alone moved scores by <strong>10 to 20 points</strong> (a roughly 20% lift on one coding model and 10% on another), and that the same harness techniques apply when driving open-weight models such as Kimi, Qwen, and DeepSeek (which we return to in 10.5). The point holds regardless of whose model you use: a large, measurable share of the work happens in the harness.</p>
 
   <div class="warning-box">
     <h4>&#9888;&#65039; What this means when you read a benchmark</h4>
@@ -426,7 +426,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h2 class="section-title">&#128506;&#65039; The 2026 Agent Landscape in One Picture</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of May 2026, the agent ecosystem sorts into roughly five families. The boundaries are blurring fast (see the next section), but this map is a useful starting orientation. We will return to specific tools, and to the honest free-versus-paid picture, in Sub-Lessons 10.3 and 10.5.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">As of May 2026, the agent ecosystem sorts into roughly five families. The boundaries are blurring fast (see the next section), but this map is a useful starting orientation. We will return to specific tools, and to the free-versus-paid picture, in Sub-Lessons 10.3 and 10.5.</p>
 
   <div style="overflow-x: auto;">
     <table class="comparison-table">
@@ -472,7 +472,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="case-study">
     <h4>&#128421;&#65039; A threshold moment: computer-use at human speed</h4>
     <p>The computer-use family crossed a noticeable threshold in April 2026. Ari Weinstein of OpenAI, posting about the Codex computer-use mode, wrote on 16 April: <em>&ldquo;This is the first time I&#39;ve ever seen an LLM operate a GUI as fast as a person, and it&#39;s surreal.&rdquo;</em> Two weeks later he reported that a Codex app update had made one computer-use task run <strong>42% faster</strong> again.</p>
-    <p>Two honest caveats. First, these are <em>first-party</em> claims, the person shipping the product describing his own product, not independent measurements, so treat the 42% as a vendor figure. Second, &ldquo;as fast as a person&rdquo; is about <em>speed</em>, not <em>reliability</em>; a fast agent that takes a wrong action quickly is not obviously progress (we develop this distinction in 10.2). But the qualitative marker is real and worth recording: as of mid-2026, an AI driving a graphical interface by clicking and typing is no longer visibly slow. The bottleneck has moved from speed to judgement.</p>
+    <p>Two caveats. First, these are <em>first-party</em> claims, the person shipping the product describing his own product, not independent measurements, so treat the 42% as a vendor figure. Second, &ldquo;as fast as a person&rdquo; is about <em>speed</em>, not <em>reliability</em>; a fast agent that takes a wrong action quickly is not obviously progress (we develop this distinction in 10.2). But the qualitative marker is real and worth recording: as of mid-2026, an AI driving a graphical interface by clicking and typing is no longer visibly slow. The bottleneck has moved from speed to judgement.</p>
   </div>
 
   <div class="info-box">
@@ -482,7 +482,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h2 class="section-title">&#128640; Agents Are Breaking Containment</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A throughline of April&ndash;May 2026 is that the families above are bleeding into one another. Tools built as <em>coding</em> agents are being pointed at general knowledge work, because what makes a good coding agent (a solid loop, file access, the ability to run for a long time without losing the thread) is also what a good general agent needs.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Through April&ndash;May 2026, the families above have been bleeding into one another. Tools built as <em>coding</em> agents are being pointed at general knowledge work, because what makes a good coding agent (a solid loop, file access, the ability to run for a long time without losing the thread) is also what a good general agent needs.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">In the space of a few weeks, the major coding-agent products launched explicit &ldquo;for work&rdquo; or &ldquo;for non-code tasks&rdquo; surfaces. OpenAI&#39;s 16 April 2026 Codex update, which the company itself titled <a href="https://openai.com/index/codex-for-almost-everything/" target="_blank" rel="noopener">&ldquo;Codex for (almost) everything&rdquo;</a>, repositioned a coding tool for knowledge work: operating your computer, working across apps like Slack, Gmail and Notion, remembering preferences, and scheduling its own future work. Anthropic pushed Claude into knowledge-work and creative settings over the same period. (A reported general-work product circulating under the name &ldquo;Orbit&rdquo; had not, as of mid-May 2026, been officially launched; treat it as a rumour until it ships.) The pattern, though, is on the record: the coding harness has become a general-purpose work harness.</p>
 
