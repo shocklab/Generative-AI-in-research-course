@@ -90,6 +90,11 @@ img{max-width:100%}
    cards, no better than the 3-across this rule exists to escape. Only genuinely wide content
    still breaks out to the full canvas. */
 .abody :is(.card-grid,.category-grid){max-width:calc(48rem + 52px)}
+/* Exactly 4 short cards: cap at 2 columns so they sit 2x2, never 3+1 with an orphan.
+   Done via a 340px track minimum, not a viewport guard: 3 tracks would need a ~1068px
+   container, impossible inside the 820px cap, and narrow containers fall to 1 column
+   naturally (a viewport guard mis-fired at 1024px, where sidebars shrink the column). */
+.abody :is(.card-grid,.category-grid):not(.grid-wide):has(> :nth-child(4)):not(:has(> :nth-child(5))){grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
 .abody :is(.card-grid,.category-grid).grid-wide{grid-template-columns:1fr}
 .abody :is(.card-grid,.category-grid):has(table,figure,pre,iframe,svg){max-width:none}
 .afoot{max-width:calc(48rem + 52px);margin:52px 0 60px;padding-top:22px;border-top:1px solid var(--rule)}
