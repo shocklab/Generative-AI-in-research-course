@@ -2,7 +2,7 @@
 """Shared insert/dump helper for the per-week diagram generators."""
 import os, re, sys
 
-ROOT = "/Users/jonathanshock/Cursor folders/Gen AI in research course/Course materials"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def _insert(FIGS):
