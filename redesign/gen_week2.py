@@ -2,7 +2,7 @@
 import os, re, sys
 import diagrams as D
 
-ROOT = "/Users/jonathanshock/Cursor folders/Gen AI in research course/Course materials"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LA = "content/week-2/LLM Architecture Deep Dive.html"
 TR = "content/week-2/Training Large Language Models.html"
 FT = "content/week-2/Fine-Tuning RLHF and Alignment.html"

@@ -2,7 +2,7 @@
 import os, re, sys
 import diagrams as D
 
-ROOT = "/Users/jonathanshock/Cursor folders/Gen AI in research course/Course materials"
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 HIST = "content/week-1/History of AI From Neurons to Neural Networks.html"
 UNDR = "content/week-1/Understanding How Generative AI Works.html"
 LAND = "content/week-1/Current Generative AI Landscape.html"
