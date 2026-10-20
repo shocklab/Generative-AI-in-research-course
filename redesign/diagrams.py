@@ -11,7 +11,7 @@ import re
 
 FT = "'Fraunces',Georgia,serif"
 FB = "'Newsreader',Georgia,serif"
-PANEL, PANEL_BD = "#f7f3ea", "#cfc6b5"
+PANEL, PANEL_BD = "#f5f7f9", "#d3d9e0"
 
 # tint fill, stroke, text  — for soft cells
 TINT = {
@@ -19,7 +19,7 @@ TINT = {
     'good':    ('#e7efe8', '#8fb09a', '#2c6e3f'),
     'bad':     ('#f3e3df', '#c08a82', '#9a2f2f'),
     'warn':    ('#f7efe0', '#cdab6a', '#7c5c12'),
-    'neutral': ('#fffdf8', '#d8cfbd', '#3f3a32'),
+    'neutral': ('#ffffff', '#d3d9e0', '#3f3a32'),
 }
 # strong solid header fills (white text)
 HEAD = {'accent': '#003A70', 'good': '#2c6e3f', 'bad': '#9a2f2f',

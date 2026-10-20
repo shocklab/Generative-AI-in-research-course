@@ -23,8 +23,8 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
          '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">')
 
 CSS = r"""
-:root{--blue:#003A70;--fs-tag:.7rem;--fs-lbl:.8rem;--fs-mono:.85rem;--fs-nav:.95rem;--fs-meta:1.05rem;--fs-sub:1.12rem;--fs-code:1.12rem;--fs-box:1.28rem;--fs-h3:1.35rem;--fs-list:1.37rem;--fs-h3lg:1.45rem;--fs-body:1.52rem;--blue2:#2a5298;--paper:#fdfcf8;--card:#ffffff;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
-html{font-size:100%}
+:root{--blue:#003A70;--fs-tag:max(.7rem,11px);--fs-lbl:max(.8rem,11.5px);--fs-mono:.85rem;--fs-nav:.95rem;--fs-meta:1.05rem;--fs-sub:1.12rem;--fs-code:1.12rem;--fs-box:1.28rem;--fs-h3:1.35rem;--fs-list:1.37rem;--fs-h3lg:1.45rem;--fs-body:1.52rem;--blue2:#2a5298;--paper:#ffffff;--card:#ffffff;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#dde1e6;--rule2:#c9ced5;--amber:#7c5c12}
+html{font-size:85%}
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--blue);color:#fff}
 body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
@@ -35,7 +35,7 @@ img{max-width:100%}
 .brandrule{height:4px;background:var(--blue)}
 .mobnav{display:none}
 /* ---- three-column shell ---- */
-.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,1fr) 248px;column-gap:64px;align-items:start}
+.shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,58rem) 248px;justify-content:center;column-gap:64px;align-items:start}
 .maincol{min-width:0;max-width:1340px;margin-left:auto;margin-right:auto}
 .leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
 .leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
@@ -44,15 +44,15 @@ img{max-width:100%}
 .leftnav .navwk,.mobnav .navwk{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
 .leftnav .navhd{font-family:'Fraunces';font-weight:500;font-size:var(--fs-nav);color:var(--ink);margin-bottom:12px;padding-bottom:11px;border-bottom:1px solid var(--rule)}
 .toc{display:flex;flex-direction:column}
-.toc .lesson{font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
+.toc .lesson{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.3;color:var(--ink2);text-decoration:none;padding:6px 0;display:block;transition:color .15s}
 .toc .lesson:hover{color:var(--blue)}
 .toc .lesson.cur{color:var(--blue);font-weight:500}
 .toc .subs{display:flex;flex-direction:column;margin:3px 0 10px;border-left:1px solid var(--rule)}
-.toc .subs a{font-family:'Newsreader';font-size:var(--fs-mono);line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
+.toc .subs a{font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.32;color:var(--mut);text-decoration:none;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;transition:color .15s,border-color .15s}
 .toc .subs a:hover{color:var(--blue)}
 .toc .subs a.on{color:var(--blue);border-left-color:var(--blue)}
 .rightrail .rmeta{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--lbl);line-height:2;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid var(--rule)}
-.rightrail .snote,.mobnav .snote{margin-bottom:24px;font-family:'Newsreader';font-size:var(--fs-nav);line-height:1.5;color:var(--ink2)}
+.rightrail .snote,.mobnav .snote{margin-bottom:24px;font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.5;color:var(--ink2)}
 .rightrail .snote .sk a,.mobnav .snote .sk a{color:inherit;text-decoration:none;border-bottom:1px dotted var(--rule2)}
 .rightrail .snote .sk a:hover,.mobnav .snote .sk a:hover{color:var(--blue2);border-bottom-color:var(--blue2)}
 .rightrail .snote .sk,.mobnav .snote .sk{font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:5px}
@@ -76,6 +76,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -130,7 +131,7 @@ img{max-width:100%}
 .abody .step-list>li::after{content:none}
 .abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-mono);line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
 .abody .code-block *{font-family:inherit}
-.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#ece4d3;padding:1px 5px;color:#7a4a12}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#eef1f5;padding:1px 5px;color:#7a4a12}
 /* In a heading or a table cell, code takes the container's step: the prose step would dwarf an
    11.2px header, and an em multiplier lands off-scale (.85em of a 12.8px h4 = 10.88px). */
 .abody :is(h1,h2,h3,h4,h5,h6,th,td) code{font-size:1em}
@@ -184,14 +185,14 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
 .abody .access{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.5;color:var(--mut)}
 /* inline badges + indicators */
-.abody .level-tag,.abody .card-label{display:inline-block;font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#ece4d3;padding:2px 8px;border-radius:3px}
+.abody .level-tag,.abody .card-label{display:inline-block;font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);background:#eef1f5;padding:2px 8px;border-radius:3px}
 .abody .verdict{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--mut);padding:16px 20px;margin:0 0 14px;border-radius:3px}
 .abody .verdict p{font-size:var(--fs-box);line-height:1.55;color:var(--ink2);margin:0}
 .abody .verdict-yes{border-left-color:#2c6e3f}.abody .verdict-no{border-left-color:#9a2f2f}
@@ -203,7 +204,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -234,7 +238,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -251,11 +255,11 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
-.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(40,30,10,.1)}
+.tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
 .tsize button{font-family:'Fraunces';color:var(--mut);background:none;border:0;border-radius:4px;cursor:pointer;line-height:1;padding:5px 8px;transition:background .15s,color .15s}
 .tsize button:nth-child(1){font-size:13px}
 .tsize button:nth-child(2){font-size:16px}
@@ -263,8 +267,10 @@ img{max-width:100%}
 .tsize button:hover{color:var(--blue)}
 .tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-@media print{.tsize{display:none}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+.rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
+@media print{.tsize,.rightrail .tsize{display:none}}
+@media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -355,6 +361,42 @@ def widen_long_grids(c):
         i = j
     return ''.join(out)
 
+# h4 is styled as a short spaced-capitals label ("What it is"). Headings longer than
+# H4_LABEL_WORDS words (sentences, full citations) are hard to read that way, so they get
+# class h4long, set in ordinary type.
+# Headings inside SVG, <pre> code samples, scripts and styles are left alone. Inline <code> is
+# not skipped, since headings contain it.
+H4_LABEL_WORDS = 7
+H4_SKIP = re.compile(r'<(svg|pre|script|style|textarea)\b.*?</\1\s*>', re.S | re.I)
+H4_TAG = re.compile(r'<h4\b((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>(.*?)</h4\s*>', re.S | re.I)
+H4_CLASS = re.compile(r'(\s)class\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s"\'>]+))', re.I)
+def mark_long_h4(c):
+    def _mark(m):
+        attrs, inner = m.group(1), m.group(2)
+        words = strip_tags(re.sub(r'<br\b[^>]*>', ' ', inner, flags=re.I)).split()
+        if len(words) <= H4_LABEL_WORDS:
+            return m.group(0)
+        cm = H4_CLASS.search(attrs)
+        if cm:
+            old = next(g for g in cm.groups()[1:] if g is not None)
+            attrs = attrs[:cm.start()] + f'{cm.group(1)}class="h4long {html.escape(old, quote=True)}"' + attrs[cm.end():]
+        else:
+            attrs += ' class="h4long"'
+        return f'<h4{attrs}>{inner}</h4>'
+    out, i = [], 0
+    for s in H4_SKIP.finditer(c):
+        out.append(H4_TAG.sub(_mark, c[i:s.start()])); out.append(s.group(0))
+        i = s.end()
+    out.append(H4_TAG.sub(_mark, c[i:]))
+    return ''.join(out)
+
+# Left-margin label. Advanced Track sections have the same label and title, so print it once.
+def navwk_text(section):
+    label, title = section["label"], section["title"]
+    if label.strip() == title.strip():
+        return html.escape(title)
+    return f'{html.escape(label)} &middot; {html.escape(title)}'
+
 def inner_div(src, cls):
     s = re.search(r'<div class="' + re.escape(cls) + r'"[^>]*>', src)
     if not s: return ""
@@ -375,7 +417,7 @@ ANALYTICS = ('<script data-goatcounter="https://mam5020f.goatcounter.com/count" 
 
 # reader text-size + hidden-margin state: pre-paint setter in <head> (no flash)
 TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");'
-           'if(s)d.style.fontSize=(["100%","112%","125%"][s]||"100%");'
+           'if(s)d.style.fontSize=(["85%","95%","106%"][s]||"85%");'
            'if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");'
            'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
 
@@ -387,14 +429,17 @@ MARGIN_BODY = ('<script>document.addEventListener("click",function(e){'
                'var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";'
                'var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}'
                'document.documentElement.classList.toggle(c,!on);});</script>')
-TS_BODY = ('<div class="tsize" role="group" aria-label="Text size">'
-           '<button type="button" data-ts="0" aria-label="Default text size">A</button>'
-           '<button type="button" data-ts="1" aria-label="Larger text size">A</button>'
-           '<button type="button" data-ts="2" aria-label="Largest text size">A</button></div>'
-           '<script>(function(){var S=["100%","112%","125%"],K="mam-textsize";'
+# the text-size group: fixed bottom-right on every page, plus a copy at the top of the right
+# rail on pages that have one (the fixed copy is hidden there, so it never covers rail text)
+TS_GROUP = ('<div class="tsize" role="group" aria-label="Text size">'
+            '<button type="button" data-ts="0" aria-label="Default text size">A</button>'
+            '<button type="button" data-ts="1" aria-label="Larger text size">A</button>'
+            '<button type="button" data-ts="2" aria-label="Largest text size">A</button></div>')
+TS_BODY = (TS_GROUP +
+           '<script>(function(){var S=["85%","95%","106%"],K="mam-textsize";'
            'function ap(i){document.documentElement.style.fontSize=S[i]||S[0];'
            'var b=document.querySelectorAll(".tsize button");'
-           'for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}'
+           'for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}'
            'var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);'
            'document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;'
            'if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);'
@@ -444,6 +489,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     c = re.sub(r'(<(?:strong|b|em|h[1-4]|p|li|div)[^>]*>)\s+', r'\1', c)  # tidy space left by stripped emoji
     c = fix_dead_videos(c)                 # embedding-disabled YouTube -> link-card
     c = widen_long_grids(c)                # long-prose card grids -> two-across
+    c = mark_long_h4(c)                    # sentence-length h4s -> ordinary type
     c = re.sub(r'(</h2>\s*)<p>', r'\1<p class="drop">', c, count=1)
     secs = []
     def _sec(m):
@@ -464,7 +510,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     back = relhref('index.html', href)
     leftnav = ('<div class="leftnav">' + NAV_TOG_L +
                f'<a class="back" href="{back}">&larr; All lessons</a>'
-               f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
+               f'<div class="navwk">{navwk_text(section)}</div>'
                f'<nav class="toc">{items}</nav></div>')
 
     # right rail: metadata + key terms
@@ -482,7 +528,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
             snotes += (f'<div class="snote"><div class="sk"><a href="{gh}#gt-{slug}">'
                        f'{html.escape(term)}</a></div>{d["definition"]}</div>')
     rail_terms = (f'<div class="rhd">Key terms</div>{snotes}') if snotes else ''
-    rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
+    rightrail = ('<div class="rightrail">' + NAV_TOG_R + TS_GROUP + f'<div class="rmeta">{meta}</div>{rail_terms}</div>')
 
     # prev / next
     pn = ''
@@ -498,7 +544,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     mobterms = (f'<details><summary>Key terms</summary><div class="mnbody">{snotes}</div></details>') if snotes else ''
     mobnav = ('<div class="mobnav">'
               f'<details><summary>Contents</summary><div class="mnbody"><a class="back" href="{back}">&larr; All lessons</a>'
-              f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
+              f'<div class="navwk">{navwk_text(section)}</div>'
               f'<nav class="toc">{items}</nav></div></details>' + mobterms + '</div>')
     # AI-authorship disclosure + licence. Lives in the page chrome, NOT in content/, because the
     # renderer only carries `.content` across: the old per-page .ai-notice sat outside it and was
@@ -595,7 +641,7 @@ def render_glossary(terms):
             slug = re.sub(r'[^a-z0-9]+', '-', t["term"].lower()).strip('-')
             blocks += (f'<div class="gentry" id="gt-{slug}"><div class="gt">{html.escape(t["term"])}</div>'
                        f'<div class="gd">{t["definition"]}</div></div>')
-    rightrail = ('<div class="rightrail">' + NAV_TOG_R + f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
+    rightrail = ('<div class="rightrail">' + NAV_TOG_R + TS_GROUP + f'<div class="rmeta">Glossary<br>{len(terms)} terms<br>MAM5020F</div></div>')
     main = (MARGIN_BODY + '<div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div>'
             '<h1>Glossary</h1><div class="deck">Key terms used across the course, in plain language.</div></div>'
             f'<div class="abody gloss">{blocks}</div>')
