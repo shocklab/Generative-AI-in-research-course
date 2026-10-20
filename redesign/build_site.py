@@ -23,8 +23,8 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="
          '<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,600&display=swap" rel="stylesheet">')
 
 CSS = r"""
-:root{--blue:#003A70;--fs-tag:.7rem;--fs-lbl:.8rem;--fs-mono:.85rem;--fs-nav:.95rem;--fs-meta:1.05rem;--fs-sub:1.12rem;--fs-code:1.12rem;--fs-box:1.28rem;--fs-h3:1.35rem;--fs-list:1.37rem;--fs-h3lg:1.45rem;--fs-body:1.52rem;--blue2:#2a5298;--paper:#fdfcf8;--card:#ffffff;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
-html{font-size:100%}
+:root{--blue:#003A70;--fs-tag:max(.7rem,11px);--fs-lbl:max(.8rem,11.5px);--fs-mono:.85rem;--fs-nav:.95rem;--fs-meta:1.05rem;--fs-sub:1.12rem;--fs-code:1.12rem;--fs-box:1.28rem;--fs-h3:1.35rem;--fs-list:1.37rem;--fs-h3lg:1.45rem;--fs-body:1.52rem;--blue2:#2a5298;--paper:#ffffff;--card:#ffffff;--ink:#23201b;--ink2:#3f3a32;--mut:#6a6256;--lbl:#736a5c;--rule:#ddd5c5;--rule2:#cfc6b5;--amber:#7c5c12}
+html{font-size:85%}
 *{margin:0;padding:0;box-sizing:border-box}
 ::selection{background:var(--blue);color:#fff}
 body{background:var(--paper);color:var(--ink);font-family:'Newsreader',serif}
@@ -375,7 +375,7 @@ ANALYTICS = ('<script data-goatcounter="https://mam5020f.goatcounter.com/count" 
 
 # reader text-size + hidden-margin state: pre-paint setter in <head> (no flash)
 TS_HEAD = ('<script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");'
-           'if(s)d.style.fontSize=(["100%","112%","125%"][s]||"100%");'
+           'if(s)d.style.fontSize=(["85%","95%","106%"][s]||"85%");'
            'if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");'
            'if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script>')
 
@@ -391,7 +391,7 @@ TS_BODY = ('<div class="tsize" role="group" aria-label="Text size">'
            '<button type="button" data-ts="0" aria-label="Default text size">A</button>'
            '<button type="button" data-ts="1" aria-label="Larger text size">A</button>'
            '<button type="button" data-ts="2" aria-label="Largest text size">A</button></div>'
-           '<script>(function(){var S=["100%","112%","125%"],K="mam-textsize";'
+           '<script>(function(){var S=["85%","95%","106%"],K="mam-textsize";'
            'function ap(i){document.documentElement.style.fontSize=S[i]||S[0];'
            'var b=document.querySelectorAll(".tsize button");'
            'for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",k==i?"true":"false");}'
