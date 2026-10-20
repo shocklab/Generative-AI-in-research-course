@@ -52,6 +52,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -160,8 +161,8 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -179,7 +180,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -210,7 +214,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -227,8 +231,8 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
 .tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
@@ -242,7 +246,7 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -271,13 +275,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">If you read only one survey paper before going further into the African NLP literature, make it this one.</p>
 
-  <div class="technical-detail"><h4>Alabi, Hedderich, Adelani &amp; Klakow (2025) &mdash; Charting the Landscape of African NLP</h4>
+  <div class="technical-detail"><h4 class="h4long">Alabi, Hedderich, Adelani &amp; Klakow (2025) &mdash; Charting the Landscape of African NLP</h4>
     <p style=" margin-bottom: 12px">Jesujoba O. Alabi, Michael A. Hedderich, David Ifeoluwa Adelani &amp; Dietrich Klakow. <em>Charting the Landscape of African NLP.</em> EMNLP 2025 main, pp. 27807&ndash;27841. <a href="https://arxiv.org/abs/2505.21315" target="_blank" rel="noopener">arXiv:2505.21315</a>.</p>
     <p style=" margin-bottom: 12px">The paper systematically surveys 884 African-NLP papers over a five-year window and produces a map that is genuinely useful for navigation. It documents which languages have been worked on (and how unevenly), which tasks dominate the literature (MT, NER, sentiment, and ASR are the largest), which institutions are most active, and where the cross-cultural and cross-linguistic blind spots lie. If you are starting a project on African NLP and you do not know the lay of the land, this is where to begin.</p>
     <p>A complement worth noting: Belay, Azime, Adelani et al.&#39;s <em>The Rise of AfricaNLP</em> (<a href="https://arxiv.org/abs/2509.25477" target="_blank" rel="noopener">arXiv:2509.25477</a>, September 2025, updated April 2026) provides the bibliometric companion &mdash; 2,200 papers analysed for community impact and contributor patterns.</p>
   </div>
 
-  <div class="info-box"><h4>The single most useful number from the recent literature</h4>
+  <div class="info-box"><h4 class="h4long">The single most useful number from the recent literature</h4>
     <p>A June 2025 quantitative survey, <em>The State of Large Language Models for African Languages: Progress and Challenges</em> (Hussen, Sewunetie, Ayele, Imam, Muhammad &amp; Yimam, <a href="https://arxiv.org/abs/2506.02280" target="_blank" rel="noopener">arXiv:2506.02280</a>), measured what current LLM families actually cover. The headline finding: across six large LLMs, eight small LMs, and six smaller models, just <strong>42 African languages</strong> receive meaningful support. Africa has roughly two thousand languages. <strong>~98% of African languages remain unsupported</strong> by current foundation-model infrastructure. The script picture is similar: current LLM tokenisers handle Latin, Arabic, and Ge&#39;ez but not the roughly 20 active African scripts (Tifinagh, N&#39;Ko, Vai, Adlam and others).</p>
     <p>That number frames the whole African-model conversation. The space is vastly under-served; the work that exists matters because of how much more there is to do.</p>
   </div>
@@ -351,7 +355,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     </ul>
   </div>
 
-  <div class="technical-detail"><h4>From-scratch decoder models &mdash; the African sovereign small-LM lineage</h4>
+  <div class="technical-detail"><h4 class="h4long">From-scratch decoder models &mdash; the African sovereign small-LM lineage</h4>
     <p style=" margin-bottom: 12px"><strong>InkubaLM</strong> (Lelapa AI; <a href="https://arxiv.org/abs/2408.17024" target="_blank" rel="noopener">arXiv:2408.17024</a>, August 2024). Authors: Atnafu Lambebo Tonja, Bonaventure F. P. Dossou, Jessica Ojo, Jenalea Rajab, Fadel Thior, Eric Peter Wairagala, Anuoluwapo Aremu, Pelonomi Moiloa, Jade Abbott, Vukosi Marivate, Benjamin Rosman. 0.4B parameters (422M), trained on 2.4B tokens of which 1.9B are African-language tokens. Languages: isiZulu, Yoruba, Swahili, isiXhosa, Hausa, English, French. CC&nbsp;BY-NC 4.0. Model card: <a href="https://huggingface.co/lelapa/InkubaLM-0.4B" target="_blank" rel="noopener">huggingface.co/lelapa/InkubaLM-0.4B</a>. The first published <em>from-scratch</em> African sovereign small language model and a serious benchmark for what is achievable on accessible compute.</p>
     <p><strong>MzansiLM</strong> (UCT NLP group; <a href="https://arxiv.org/abs/2603.20732" target="_blank" rel="noopener">arXiv:2603.20732</a>, 21 March 2026; accepted at LREC 2026 in Mallorca). Anri Lombard (UCT master&#39;s researcher in computer science) led the work with Drs Francois Meyer and Jan Buys, alongside Simbarashe Mawere, Temi Aina, Ethan Wolff, Sbonelo Gumede, and Elan Novick. 125M-parameter decoder-only model trained from scratch alongside the accompanying <strong>MzansiText</strong> corpus. Covers all <em>eleven</em> official South African written languages: Sepedi, Sesotho, Setswana, siSwati, Tshivenda, Xitsonga, Afrikaans, English, isiNdebele, isiXhosa, and isiZulu. Reports 20.65 BLEU on isiXhosa data-to-text generation. This is the UCT contribution to the African sovereign-LM lineage, and the kind of work this course&#39;s students may go on to do.</p>
   </div>

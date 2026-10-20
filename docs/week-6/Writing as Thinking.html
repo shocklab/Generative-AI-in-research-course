@@ -52,6 +52,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -160,8 +161,8 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -179,7 +180,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -210,7 +214,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -227,8 +231,8 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
 .tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
@@ -242,7 +246,7 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -398,29 +402,29 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
             <h3 style=" margin-top: 20px; margin-bottom: 15px">Core Readings</h3>
 
-            <div class="resource-placeholder"><h4>Harvard Gazette (2025): "Is AI dulling our minds?"</h4>
+            <div class="resource-placeholder"><h4 class="h4long">Harvard Gazette (2025): "Is AI dulling our minds?"</h4>
                 <p>Explores research on the cognitive effects of AI use, including concerns about reduced deep thinking and intellectual engagement when AI handles cognitively demanding tasks. A broad, accessible introduction to the central concern of this session.</p>
                 <p style="margin-top: 8px"><a href="https://news.harvard.edu/gazette/story/2025/11/is-ai-dulling-our-minds/" target="_blank" rel="noopener">Read the article &rarr;</a></p>
             </div>
 
-            <div class="resource-placeholder"><h4>Frontiers in AI (2025): "A conceptual exploration of generative AI-induced cognitive dissonance and its emergence in university-level academic writing"</h4>
+            <div class="resource-placeholder"><h4 class="h4long">Frontiers in AI (2025): "A conceptual exploration of generative AI-induced cognitive dissonance and its emergence in university-level academic writing"</h4>
                 <p>A peer-reviewed study examining the psychological tension students experience when AI-generated text sounds more polished than their own writing but does not represent their thinking. Introduces the concept of cognitive dissonance in the AI writing context and explores its implications for academic identity and intellectual development.</p>
                 <p style="margin-top: 8px"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1573368/full" target="_blank" rel="noopener">Read the full paper &rarr;</a></p>
             </div>
 
-            <div class="resource-placeholder"><h4>Frontiers in Education (2025): "The impact of generative AI on academic reading and writing: a synthesis of recent evidence (2023&ndash;2025)"</h4>
+            <div class="resource-placeholder"><h4 class="h4long">Frontiers in Education (2025): "The impact of generative AI on academic reading and writing: a synthesis of recent evidence (2023&ndash;2025)"</h4>
                 <p>A synthesis of recent research evidence on how generative AI is changing academic reading and writing practices. Identifies patterns including student dependency on AI outputs, surface-level engagement, and the tension between productivity gains and learning losses. Essential reading for understanding the current evidence.</p>
                 <p style="margin-top: 8px"><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1711718/full" target="_blank" rel="noopener">Read the full paper &rarr;</a></p>
             </div>
 
             <h3 style=" margin-top: 30px; margin-bottom: 15px">Supplementary Readings</h3>
 
-            <div class="resource-placeholder"><h4>Psychology Today (2025): "How AI Impacts Academic Thinking, Writing and Learning"</h4>
+            <div class="resource-placeholder"><h4 class="h4long">Psychology Today (2025): "How AI Impacts Academic Thinking, Writing and Learning"</h4>
                 <p>An accessible overview of the intersection between AI tools and cognitive processes in academic settings. Discusses how reliance on AI for writing tasks may affect the development of critical thinking and independent reasoning skills.</p>
                 <p style="margin-top: 8px"><a href="https://www.psychologytoday.com/us/blog/in-one-lifespan/202509/how-ai-impacts-academic-thinking-writing-and-learning" target="_blank" rel="noopener">Read the article &rarr;</a></p>
             </div>
 
-            <div class="resource-placeholder"><h4>Holmner et al. (2025): "The Future of Academic Writing in the Age of Generative AI"</h4>
+            <div class="resource-placeholder"><h4 class="h4long">Holmner et al. (2025): "The Future of Academic Writing in the Age of Generative AI"</h4>
                 <p>Published in the Proceedings of the Association for Information Science and Technology (ASIS&amp;T), this paper examines how generative AI is reshaping academic writing and what this means for the future of scholarly communication.</p>
                 <p style="margin-top: 8px"><a href="https://asistdl.onlinelibrary.wiley.com/doi/abs/10.1002/pra2.1374" target="_blank" rel="noopener">Read the paper &rarr;</a></p>
             </div>

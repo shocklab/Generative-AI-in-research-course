@@ -52,6 +52,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -160,8 +161,8 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -179,7 +180,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -210,7 +214,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -227,8 +231,8 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
 .tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
@@ -242,7 +246,7 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -360,7 +364,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">Two example pitches, one from the Earth Sciences and one from Computational Biology. Neither pitch is perfect; both pass the bar. Use them as a calibration of what a strong response looks like, not as a template to copy.</p>
 
-  <div class="case-study"><h4>Example 1 &mdash; Climate / Earth Sciences postgraduate</h4>
+  <div class="case-study"><h4 class="h4long">Example 1 &mdash; Climate / Earth Sciences postgraduate</h4>
     <p><strong>1.</strong> Can multimodal-AI digitisation of pre-1980 hand-written hydrometeorological records, combined with current satellite data, improve drought-onset prediction for the Western Cape&#39;s rain-fed agricultural catchments enough to give farmers usable early warning?</p>
     <p><strong>2.</strong> Four tools, each tied to a stage. <em>Multimodal vision-language models</em> (Week 8) to digitise a century of hand-written rainfall and streamflow registers held only on paper, otherwise the project&#39;s main bottleneck. <em>Python data-analysis assistants</em> (Week 7) for the time-series cleaning, gap-filling and homogenisation the digitised series will need. A <em>Deep Research agent</em> (Week 10) for the scattered catchment-hydrology and drought-index literature. <em>Chat assistants</em> (Week 6) for first-draft writing only. I am choosing each tool where it removes a mechanical bottleneck, not where it makes a scientific judgement, and every output carries a named accuracy check.</p>
     <p><strong>3.</strong> Three things stay mine. The choice of which catchments to study and which drought index to use; these decide what the work actually measures, and a model optimising digitisation accuracy has no view on them. The interpretation of significance thresholds against real agricultural consequences; a p-value does not know what a missed planting season costs a smallholder. And the engagement with farming communities for ground-truth on what &ldquo;drought&rdquo; means locally, which needs a sustained human relationship AI cannot stand in for. The line: AI may transcribe and tidy the record, but defining the question and reading the result remain human work.</p>
@@ -369,7 +373,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     <p><strong>6.</strong> From the Just AI Framework (Week 4), the principle of <em>recipient relevance</em>. The people most affected by a drought-prediction tool are the farming communities who would act on it, so the work is built around them: outputs are co-interpreted with community representatives before publication, and any operational tool remains free at the point of use for South African agricultural extension services rather than licensed commercially. The principle changes who I publish with and on what terms.</p>
   </div>
 
-  <div class="case-study"><h4>Example 2 &mdash; Computational Biology / Bioinformatics postgraduate</h4>
+  <div class="case-study"><h4 class="h4long">Example 2 &mdash; Computational Biology / Bioinformatics postgraduate</h4>
     <p><strong>1.</strong> Can AI protein-structure prediction identify previously unstudied allosteric binding sites on <em>Plasmodium falciparum</em>&#39;s haemoglobin-degradation enzymes that could serve as starting points for novel antimalarial drug design?</p>
     <p><strong>2.</strong> Four tools, four stages. <em>AlphaFold 3</em> (Week 11.1) to predict the enzyme&#39;s complex structures and candidate allosteric pockets, the part no manual method can do at this scale. <em>Code-generation agents</em> (Week 7) to write the binding-affinity and docking pipelines in Python and PyMOL, which are scriptable and checkable. <em>RAG-based literature tools</em> (Week 5) to assemble the medicinal-chemistry context around any pocket the model flags. And the <em>calibrated-reading habit</em> from Week 9 applied to every vendor benchmark claim about predicted binding affinity, because those numbers are the kind that get rounded up in marketing. Each tool sits at a stage where its output can be independently checked.</p>
     <p><strong>3.</strong> Three things stay mine. The biological interpretation of the predicted structures: AlphaFold gives a plausible conformation, not a validated mechanism, and treating a prediction as an answer is how this field generates retractions. The choice of which candidates go forward to wet-lab validation, the one decision with real downstream cost, animal use and risk attached. And the writing of the discussion section, where the interpretation of what the work means actually lives. The boundary: the model proposes structures and runs calculations; deciding what is biologically real, and what is worth a wet-lab&#39;s time and money, stays with me and my supervisor.</p>
@@ -384,11 +388,11 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 20px">After the pitch, you write a 300-word self-critique. This is the part of the capstone that requires the most intellectual honesty, because there is no peer reviewer in the room to do it for you. Two prompts, roughly 150 words each.</p>
 
-  <div class="technical-detail"><h4>A. The strongest objection to your pitch (~150 words)</h4>
+  <div class="technical-detail"><h4 class="h4long">A. The strongest objection to your pitch (~150 words)</h4>
     <p>Identify the strongest specific objection an experienced researcher in your field (your most demanding supervisor on a bad day, or an external examiner who has read carefully) would raise to your pitch. Not a generic worry. A specific one. Then write how you would address it. You can address it by changing the pitch, by accepting the limitation honestly, or by explaining why the objection does not in fact bite. What you cannot do is ignore it. The self-critique fails as a self-critique if the objection it raises is one your pitch already obviously answers.</p>
   </div>
 
-  <div class="technical-detail"><h4>B. The calibrated-reading habit you most need to keep practising (~150 words)</h4>
+  <div class="technical-detail"><h4 class="h4long">B. The calibrated-reading habit you most need to keep practising (~150 words)</h4>
     <p>Of the four moves of the calibrated-reading disposition above (pulling primary sources, reading for limitations, calibrating before citing, choosing where you stand), which one are you, honestly, weakest at? Where in the last twelve weeks did you catch yourself short on the move? What practical habit will you adopt after the course to keep practising it? This is the only part of the capstone the course will not see you do over the rest of your career, so it is the part where being honest with yourself matters most.</p>
   </div>
 

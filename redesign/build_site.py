@@ -76,6 +76,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -184,8 +185,8 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -203,7 +204,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -234,7 +238,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -251,8 +255,8 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
 .tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
@@ -266,7 +270,7 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -356,6 +360,29 @@ def widen_long_grids(c):
         out.append(c[i:m.start()]); out.append(f'<div class="{cls}">')
         i = j
     return ''.join(out)
+
+# h4 is styled as a short spaced-capitals label ("What it is"). Headings longer than
+# H4_LABEL_WORDS words (sentences, full citations) are hard to read that way, so they get
+# class h4long, set in ordinary type.
+H4_LABEL_WORDS = 7
+def mark_long_h4(c):
+    def _mark(m):
+        attrs, inner = m.group(1), m.group(2)
+        if len(strip_tags(inner).split()) <= H4_LABEL_WORDS:
+            return m.group(0)
+        if re.search(r'\bclass="', attrs):
+            attrs = re.sub(r'\bclass="', 'class="h4long ', attrs, count=1)
+        else:
+            attrs += ' class="h4long"'
+        return f'<h4{attrs}>{inner}</h4>'
+    return re.sub(r'<h4\b([^>]*)>(.*?)</h4>', _mark, c, flags=re.S)
+
+# Left-margin label. Advanced Track sections have the same label and title, so print it once.
+def navwk_text(section):
+    label, title = section["label"], section["title"]
+    if label.strip() == title.strip():
+        return html.escape(title)
+    return f'{html.escape(label)} &middot; {html.escape(title)}'
 
 def inner_div(src, cls):
     s = re.search(r'<div class="' + re.escape(cls) + r'"[^>]*>', src)
@@ -449,6 +476,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     c = re.sub(r'(<(?:strong|b|em|h[1-4]|p|li|div)[^>]*>)\s+', r'\1', c)  # tidy space left by stripped emoji
     c = fix_dead_videos(c)                 # embedding-disabled YouTube -> link-card
     c = widen_long_grids(c)                # long-prose card grids -> two-across
+    c = mark_long_h4(c)                    # sentence-length h4s -> ordinary type
     c = re.sub(r'(</h2>\s*)<p>', r'\1<p class="drop">', c, count=1)
     secs = []
     def _sec(m):
@@ -469,7 +497,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     back = relhref('index.html', href)
     leftnav = ('<div class="leftnav">' + NAV_TOG_L +
                f'<a class="back" href="{back}">&larr; All lessons</a>'
-               f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
+               f'<div class="navwk">{navwk_text(section)}</div>'
                f'<nav class="toc">{items}</nav></div>')
 
     # right rail: metadata + key terms
@@ -503,7 +531,7 @@ def render_lesson(L, section, flat, idx, defs, lessonterms):
     mobterms = (f'<details><summary>Key terms</summary><div class="mnbody">{snotes}</div></details>') if snotes else ''
     mobnav = ('<div class="mobnav">'
               f'<details><summary>Contents</summary><div class="mnbody"><a class="back" href="{back}">&larr; All lessons</a>'
-              f'<div class="navwk">{html.escape(section["label"])} &middot; {html.escape(section["title"])}</div>'
+              f'<div class="navwk">{navwk_text(section)}</div>'
               f'<nav class="toc">{items}</nav></div></details>' + mobterms + '</div>')
     # AI-authorship disclosure + licence. Lives in the page chrome, NOT in content/, because the
     # renderer only carries `.content` across: the old per-page .ai-notice sat outside it and was

@@ -52,6 +52,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -160,8 +161,8 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -179,7 +180,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -210,7 +214,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -227,8 +231,8 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
 .tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
@@ -242,7 +246,7 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -409,15 +413,15 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <h2 class="section-title" id="s5">Readings for This Week</h2>
 <p>The following readings provide the evidence base and critical perspectives that underpin this week's sessions. The first three are core readings; the supplementary items are recommended for those who want to go deeper.</p>
 <h3 style=" margin-top: 30px; margin-bottom: 15px">Core Readings</h3>
-<div class="resource-placeholder"><h4>Khraisha, Q., et al. (2024). "<a href="https://pubmed.ncbi.nlm.nih.gov/38484744/" target="_blank" rel="noopener">Can Large Language Models Replace Systematic Reviews</a>?"</h4>
+<div class="resource-placeholder"><h4 class="h4long">Khraisha, Q., et al. (2024). "<a href="https://pubmed.ncbi.nlm.nih.gov/38484744/" target="_blank" rel="noopener">Can Large Language Models Replace Systematic Reviews</a>?"</h4>
 <p><em>Research Synthesis Methods.</em> Preprint available.</p>
 <p style="margin-top: 8px">A careful evaluation of whether LLMs can perform the core tasks of systematic review (screening, extraction, synthesis) to the standard required. The answer is qualified, and worth reading in full. <strong>Read at least the introduction and conclusion;</strong> this is both sobering and informative about the current state of AI capabilities in this domain.</p>
 </div>
-<div class="resource-placeholder"><h4>van Dis, E.A.M., et al. (2023). "ChatGPT: Five Priorities for Research."</h4>
+<div class="resource-placeholder"><h4 class="h4long">van Dis, E.A.M., et al. (2023). "ChatGPT: Five Priorities for Research."</h4>
 <p><em>Nature</em>, 614. Free to read. <a href="https://doi.org/10.1038/d41586-023-00288-7" target="_blank" rel="noopener">https://doi.org/10.1038/d41586-023-00288-7</a></p>
 <p style="margin-top: 8px">An early and influential piece outlining the key priorities the research community needs to address as AI tools become embedded in scientific practice. Published in Nature and widely cited, it frames many of the debates that are still ongoing. Short and accessible.</p>
 </div>
-<div class="resource-placeholder"><h4>Wagner, G., et al. (2022). "<a href="https://journals.sagepub.com/doi/full/10.1177/02683962211048201" target="_blank" rel="noopener">Artificial Intelligence and the Conduct of Literature Reviews.</a>"</h4>
+<div class="resource-placeholder"><h4 class="h4long">Wagner, G., et al. (2022). "<a href="https://journals.sagepub.com/doi/full/10.1177/02683962211048201" target="_blank" rel="noopener">Artificial Intelligence and the Conduct of Literature Reviews.</a>"</h4>
 <p><em>Journal of Information Technology</em>, 37(2). Open access.</p>
 <p style="margin-top: 8px">A thorough overview of how AI was being applied to literature review processes before the current generative AI wave. Provides valuable context for understanding what has changed and what challenges remain. The framework they propose for thinking about AI-assisted review stages is still useful.</p>
 </div>
@@ -425,7 +429,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="resource-placeholder"><h4>Elicit Team.&nbsp;</h4>
 <p><a href="https://elicit.com/blog" target="_blank" rel="noopener">Elicit blog.</a> Free. A clear explanation from the team behind one of the most popular AI research tools about what their system actually does, including its limitations. Useful for understanding the semantic search category.</p>
 </div>
-<div class="resource-placeholder"><h4>Syriani, E., et al. (2023). "<a href="https://arxiv.org/abs/2307.06464" target="_blank" rel="noopener">Assessing the Ability of ChatGPT to Screen Articles for Systematic Reviews.</a>"</h4>
+<div class="resource-placeholder"><h4 class="h4long">Syriani, E., et al. (2023). "<a href="https://arxiv.org/abs/2307.06464" target="_blank" rel="noopener">Assessing the Ability of ChatGPT to Screen Articles for Systematic Reviews.</a>"</h4>
 <p>arXiv:2307.06464. Free. An empirical study testing ChatGPT's ability to perform title and abstract screening, one of the most time-consuming steps in systematic review. Useful data on accuracy, sensitivity, and specificity.</p>
 </div>
 <div class="resource-placeholder"><h4>Mollick, E. .&nbsp;</h4>
@@ -434,7 +438,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="resource-placeholder"><h4>Perplexity AI. (2024). "<a href="https://www.perplexity.ai/help-center/en/articles/10352895-how-does-perplexity-work" target="_blank" rel="noopener">How does Perplexity work?</a>"</h4>
 <p>Free online. Understanding how Perplexity's citation system works (and its limitations) is useful for anyone considering it as a research tool. Illustrates the RAG approach in practice.</p>
 </div>
-<div class="resource-placeholder"><h4>Retraction Watch. (ongoing). "<a href="https://retractionwatch.com/2026/02/21/weekend-reads-did-a-prof-invent-his-own-nobel-prize-former-dean-omits-pharma-ties-ai-generated-quotes-found-in-now-retracted-article-on-ai/" target="_blank" rel="noopener">Did a prof invent his own Nobel Prize?</a>"</h4>
+<div class="resource-placeholder"><h4 class="h4long">Retraction Watch. (ongoing). "<a href="https://retractionwatch.com/2026/02/21/weekend-reads-did-a-prof-invent-his-own-nobel-prize-former-dean-omits-pharma-ties-ai-generated-quotes-found-in-now-retracted-article-on-ai/" target="_blank" rel="noopener">Did a prof invent his own Nobel Prize?</a>"</h4>
 <p>Free online. A sobering and continuously updated resource documenting cases where AI-generated content has caused problems in published research. Essential context for understanding why verification matters.</p>
 </div>
 <!-- SUMMARY -->

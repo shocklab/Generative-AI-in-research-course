@@ -52,6 +52,7 @@ img{max-width:100%}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin:18px 0 8px}
 .abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody h4.h4long{font-size:var(--fs-sub);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-list);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -160,8 +161,8 @@ img{max-width:100%}
 .abody .question-set{margin:24px 0}
 .abody .q-tag{display:inline-block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--blue);padding:2px 9px;border-radius:3px;margin-right:9px;vertical-align:middle}
 /* paper cards */
-.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--blue);margin:0 0 4px}
-.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-nav);color:var(--mut);margin:0 0 8px}
+.abody .paper-title{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--blue);margin:0 0 4px}
+.abody .paper-meta{font-family:'Newsreader';font-style:italic;font-size:var(--fs-meta);color:var(--mut);margin:0 0 8px}
 .abody .paper-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:8px;align-items:center}
 .abody .source-link,.abody .tool-url{font-family:'Fraunces';font-size:var(--fs-mono);color:var(--blue)}
 .abody .tool-pricing,.abody .sublesson-tag{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
@@ -179,7 +180,10 @@ img{max-width:100%}
 /* video — restore responsive 16:9 (the source kept this in <head>, which we drop) */
 .abody .video-container{position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;margin:26px 0;border-radius:3px;background:#04233f}
 .abody .video-container iframe,.abody .video-container img,.abody .video-container>a,.abody .video-container video{position:absolute;top:0;left:0;width:100%;height:100%;border:0;object-fit:cover}
+.abody{overflow-wrap:break-word}
 .abody .video-section iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:3px}
+.abody iframe{max-width:100%}
+.abody iframe[src*="youtube"]{height:auto;aspect-ratio:16/9}
 .abody a.ytlink{display:inline-flex;align-items:center;gap:13px;background:var(--card);border:1px solid var(--rule);border-left:3px solid #c4302b;border-radius:3px;padding:13px 20px;margin:10px 0;font-family:'Fraunces';font-size:var(--fs-sub);color:var(--blue);text-decoration:none;line-height:1.2}
 .abody a.ytlink:hover{border-color:#c4302b}
 .abody a.ytlink .ytpl{color:#c4302b;font-size:var(--fs-box);line-height:1}
@@ -210,7 +214,7 @@ img{max-width:100%}
 .wcell{display:flex;gap:18px;padding-bottom:30px;min-width:0}
 .wnum{font-family:'Fraunces';font-weight:500;font-size:2.5rem;line-height:.9;color:var(--blue);min-width:46px;text-align:right}
 .wbody{flex:1;min-width:0}
-.wrow{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+.wrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 14px}
 .wtime{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.12em;text-transform:uppercase;color:var(--lbl);white-space:nowrap}
 .wcell.lite .wnum{color:var(--lbl);font-size:1.4rem;padding-top:8px}
 .wcell.lite h3{font-size:var(--fs-h3)}
@@ -227,8 +231,8 @@ img{max-width:100%}
 .gloss .ga{font-family:'Fraunces';font-weight:400;font-size:1.7rem;color:var(--blue);border-top:1px solid var(--rule);padding-top:22px;margin:38px 0 6px;scroll-margin-top:24px}
 .gloss .gentry{padding:13px 0;border-top:1px solid var(--rule)}
 .gloss .ga + .gentry{border-top:0}
-.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-sub);color:var(--ink);margin-bottom:4px}
-.gloss .gd{font-family:'Newsreader';font-size:var(--fs-meta);line-height:1.55;color:var(--ink2)}
+.gloss .gt{font-family:'Fraunces';font-weight:500;font-size:var(--fs-h3);color:var(--ink);margin-bottom:4px}
+.gloss .gd{font-family:'Newsreader';font-size:var(--fs-box);line-height:1.55;color:var(--ink2)}
 .gloss .toc .lesson{font-family:'Fraunces';letter-spacing:.05em}
 /* ---- reader text-size control ---- */
 .tsize{position:fixed;right:18px;bottom:18px;z-index:300;display:flex;align-items:flex-end;gap:1px;background:var(--card);border:1px solid var(--rule2);border-radius:7px;padding:3px 5px;box-shadow:0 2px 12px rgba(0,20,40,.1)}
@@ -242,7 +246,7 @@ img{max-width:100%}
 @media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -350,7 +354,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </table>
 <p style="margin-top: 12px"><strong>Practical implication:</strong> Research by Dodge et al. (2022, Allen Institute for AI) found that choosing a low-carbon cloud region over a high-carbon one can reduce the carbon footprint of an identical AI workload by up to 80%, with zero change to the model or code. Few researchers use this lever, and it is available to most of them.</p>
 </div>
-<div class="info-box"><h4>Renewable Energy Claims: What They Mean (and Don't)</h4>
+<div class="info-box"><h4 class="h4long">Renewable Energy Claims: What They Mean (and Don't)</h4>
 <p>Major tech companies (Google, Microsoft, Amazon) claim to run on 100% renewable energy. This is technically accurate but requires careful interpretation.</p>
 <ul class="styled-list" style="margin-top: 10px">
 <li><strong>Energy Attribute Certificates (EACs):</strong> Companies often purchase certificates that say a renewable source generated a certain amount of electricity, but the renewable electricity may be generated at a different time or place than when the AI is running</li>
@@ -359,7 +363,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>The grid still matters:</strong> Even with renewable certificates, if a data centre draws from a coal-heavy grid at peak demand, it is still causing fossil fuel generation to run</li>
 </ul>
 </div>
-<div class="case-study"><h4>Case Study: Nuclear and the AI Energy Rush</h4>
+<div class="case-study"><h4 class="h4long">Case Study: Nuclear and the AI Energy Rush</h4>
 <p>The scale of AI's electricity demands is forcing AI companies to think creatively, and sometimes controversially, about power supply:</p>
 <ul class="styled-list" style="margin-top: 10px">
 <li><strong>Three Mile Island (Microsoft):</strong> Microsoft signed a 20-year power purchase agreement with Constellation Energy to restart Unit 1 of the Three Mile Island nuclear plant in Pennsylvania (closed since 2019) specifically to power its AI data centres. September 2024 marked that <em>announcement</em>, not a restart: the reactor (to be renamed the Crane Clean Energy Center) is scheduled to come back online around 2027, after an estimated $1.6&nbsp;billion refurbishment and pending Nuclear Regulatory Commission approval.</li>
@@ -399,7 +403,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 4: GROWTH TRAJECTORY -->
 <h2 class="section-title" id="s4">The Growth Trajectory</h2>
 <p style=" margin-bottom: 30px">Individual query costs and per-data-centre figures only tell part of the story. The trajectory of AI energy demand matters as much as the current level.</p>
-<div class="technical-detail"><h4>US Data Centre Electricity Demand: Past and Projected</h4>
+<div class="technical-detail"><h4 class="h4long">US Data Centre Electricity Demand: Past and Projected</h4>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -428,7 +432,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </table>
 <p style="margin-top: 12px">For global context: the IEA's 2024 Electricity report projected that global data centres could consume ~1,000 TWh by 2026, roughly equivalent to Japan's entire electricity consumption.</p>
 </div>
-<div class="info-box" style="margin-top: 25px"><h4>The IEA's updated 2025 trajectory: doubling by 2030</h4>
+<div class="info-box" style="margin-top: 25px"><h4 class="h4long">The IEA's updated 2025 trajectory: doubling by 2030</h4>
 <p>The IEA's dedicated <em><a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">Energy and AI</a></em> report (2025) gives the current global picture. The headline projections:</p>
 <ul style="margin-left: 25px; margin-top: 12px">
 <li>Global data-centre electricity roughly <strong>doubling from &asymp; 485 TWh (2025) to &asymp; 950 TWh (2030, &asymp; 3% of global electricity)</strong>.</li>
