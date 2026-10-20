@@ -830,7 +830,7 @@
     },
     {
       "term": "POPIA (Protection of Personal Information Act)",
-      "definition": "South Africa's data-protection law. Section 72 restricts sending personal information to a recipient in another country unless a listed condition is met: the recipient is bound by law, binding corporate rules or an agreement that gives substantially similar protection, the person concerned consents, or the transfer is needed for a contract that involves them or is for their benefit. This makes cross-border AI tool use a compliance issue.",
+      "definition": "South Africa's data-protection law. Section 72 restricts sending personal information abroad unless: the recipient is bound by law, binding corporate rules or an agreement giving substantially similar protection, including for onward transfers; the person consents to the transfer; the transfer is necessary for a contract with them, steps they requested before one, or a contract in their interest; or it benefits them, their consent cannot reasonably be obtained and they would probably give it. This makes cross-border AI tool use a compliance issue.",
       "aliases": [
         "POPIA (Protection of Personal Information Act)"
       ]
@@ -907,7 +907,7 @@
     },
     {
       "term": "RAGAS (Retrieval-Augmented Generation Assessment)",
-      "definition": "An open framework for measuring RAG quality. Some of its metrics need no hand-written reference answer; others, such as context recall, do. It separately scores whether the right passages were retrieved and whether the generated answer stays within what those passages say.",
+      "definition": "An open framework for measuring RAG quality. Some of its metrics need no hand-written reference answer; others, such as LLM-based context recall, do. It separately scores whether the right passages were retrieved and whether the generated answer stays within what those passages say.",
       "aliases": [
         "RAGAS (Retrieval-Augmented Generation Assessment)"
       ]
@@ -1070,7 +1070,7 @@
     },
     {
       "term": "Subagent",
-      "definition": "A second AI agent started by a primary agent to handle a specific, bounded task, such as re-checking an analysis. An ordinary subagent starts with a fresh context and only the task description it is given, so it does not see the first agent's conversation; a fork inherits the whole conversation. A subagent is usually the same model, and the task description can carry the first agent's assumptions, so it is a second check, not independent verification.",
+      "definition": "A second AI agent started by a primary agent to handle a specific, bounded task, such as re-checking an analysis. In Claude Code, an ordinary subagent does not see the first agent's conversation: it starts with its own instructions, usually the project's instruction files, and the task description the first agent writes; a fork inherits the whole conversation. A subagent is usually the same model, and the task description can carry the first agent's assumptions, so it is a second check, not independent verification.",
       "aliases": [
         "subagent"
       ]
