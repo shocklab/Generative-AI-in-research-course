@@ -103,7 +103,7 @@
   <!-- SECTION 2: THE TOOLS LANDSCAPE -->
   <h2 class="section-title">&#128295; The Tools Landscape</h2>
 
-  <p style="color:#555; line-height:1.8; margin-bottom:20px;">The field has moved quickly. The following table summarises the leading options as of 2025, drawing on the OmniDocBench benchmark (CVPR 2025) and independent evaluations.</p>
+  <p style="color:#555; line-height:1.8; margin-bottom:20px;">The field has moved quickly. The following table summarises the leading options as of 2025, drawing on the OmniDocBench benchmark (CVPR 2025, which covers Docling but not LlamaParse) and independent evaluations.</p>
 
   <table class="comparison-table">
     <thead>
@@ -162,7 +162,7 @@
 
   <div class="info-box">
     <h4>&#128161; Current Best Practice Recommendation</h4>
-    <p>For most research use cases: <strong>Docling</strong> is the fastest local option and handles most standard academic PDFs well. For tables in supplementary materials, <strong>LlamaParse</strong> gives the best accuracy but requires API access. For scanned documents, <strong>Marker</strong> runs full OCR on every page. Benchmarking studies recommend a hybrid approach: Docling for speed, LlamaParse for the tables that matter most (OmniDocBench, CVPR 2025; note that top tools now exceed 94% on the original benchmark, and a harder v1.6 subset has been released to track continued progress).</p>
+    <p>For most research use cases: <strong>Docling</strong> is the fastest local option and handles most standard academic PDFs well. For tables in supplementary materials, <strong>LlamaParse</strong> is a widely used cloud option but requires API access. For scanned documents, <strong>Marker</strong> runs full OCR on every page. One practical approach is a hybrid: Docling for speed, and a second parser such as LlamaParse for the tables that matter most, checked by hand. <a href="https://github.com/opendatalab/OmniDocBench" target="_blank" rel="noopener">OmniDocBench (CVPR 2025)</a> evaluates Docling but not LlamaParse, so compare both on your own documents (version 1.6, released in April 2026, added 296 harder pages; the top overall score on its leaderboard is about 97 out of 100).</p>
   </div>
 
   <!-- SECTION 3: THE COMPLEX TABLE PROBLEM -->
@@ -201,7 +201,7 @@
   <div class="card-grid">
     <div class="card">
       <h3>&#128221; Printed, Legible Handwriting</h3>
-      <p>Frontier vision-language models now achieve roughly <strong>96&ndash;98% character-level accuracy</strong> (~3&ndash;4% WER) on standard handwritten text benchmarks like IAM and RIMES; GPT-4o reports ~1.69% character error rate on RIMES (Crosilla et al., 2025, <a href="https://arxiv.org/abs/2503.15195" style="color:#2a5298;" target="_blank" rel="noopener">arXiv:2503.15195</a>). Specialised open models like Allen AI&#39;s olmOCR-2-7B (Oct 2025, <a href="https://arxiv.org/abs/2510.19817" style="color:#2a5298;" target="_blank" rel="noopener">arXiv:2510.19817</a>) match commercial systems on document OCR, though they are not primarily evaluated on handwriting. Accuracy drops into the 80&ndash;95% range on noisy, historical, or cursive handwriting.</p>
+      <p>Frontier vision-language models now achieve roughly <strong>96&ndash;98% character-level accuracy</strong> (~3&ndash;4% WER) on standard handwritten text benchmarks like IAM and RIMES; GPT-4o reports ~1.69% character error rate on RIMES (Crosilla et al., 2025, <a href="https://arxiv.org/abs/2503.15195" style="color:#2a5298;" target="_blank" rel="noopener">arXiv:2503.15195</a>). Specialised open models like Allen AI&#39;s olmOCR-2-7B (Oct 2025, <a href="https://arxiv.org/abs/2510.19817" style="color:#2a5298;" target="_blank" rel="noopener">arXiv:2510.19817</a>) match commercial systems on document OCR, though they are not primarily evaluated on handwriting. Accuracy falls on historical handwriting, and further outside English: in <a href="https://arxiv.org/abs/2503.15195" target="_blank" rel="noopener">the same benchmark</a> the best character error rate was about 7% on English historical papers (Bentham), above 20% on two Italian historical collections and about 41% on the German READ2016 set.</p>
     </div>
     <div class="card">
       <h3>&#128194; Archival Documents</h3>
@@ -243,7 +243,7 @@
 
   <div class="resource-placeholder">
     <h4>&#128202; Supplementary Reading</h4>
-    <p>OmniDocBench (CVPR 2025), the most thorough 2025 benchmark for document parsing. Note that top tools now exceed 94% on the original benchmark; a harder v1.6 subset was released to track continued progress on nested tables, dense formulas, and unconventional layouts.<br>
+    <p>OmniDocBench (CVPR 2025), the most thorough 2025 benchmark for document parsing. Version 1.6 (April 2026) added 296 harder pages with nested tables, dense formulas and unconventional layouts.<br>
     <a href="https://github.com/opendatalab/OmniDocBench" style="color:#2a5298; font-weight:600;">https://github.com/opendatalab/OmniDocBench</a></p>
   </div>
 
@@ -251,7 +251,7 @@
   <div class="highlight-box">
     <h3>&#9989; Sub-Lesson 3 Summary</h3>
     <p><strong>PDF structure:</strong> PDFs store text as positioned glyphs, not structured content. The three types (native, scanned, and mixed) require different tools and yield different accuracy levels.</p>
-    <p><strong>Tool landscape:</strong> Docling (best local option for standard academic PDFs), LlamaParse (best overall accuracy, cloud), Marker (best for scanned documents), Unstructured (versatile). A hybrid approach is the current recommended practice.</p>
+    <p><strong>Tool landscape:</strong> Docling (best local option for standard academic PDFs), LlamaParse (cloud, widely used for tables), Marker (best for scanned documents), Unstructured (versatile). A hybrid approach is one practical option to test on your own documents.</p>
     <p><strong>Complex tables:</strong> The central unsolved problem. Row merging, multi-level headers, footnote associations, and reading order all cause systematic failures even in the best tools. Always verify complex table extractions cell by cell.</p>
     <p><strong>Lost in the middle:</strong> AI models attend less to content in the middle of long documents. Extract specific sections before querying rather than querying full documents.</p>
     <p><strong>Up next &mdash; Sub-Lesson 4:</strong> We move from documents to audio. Transcription AI, word error rates, South African language performance, and qualitative analysis software.</p>

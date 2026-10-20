@@ -510,7 +510,7 @@
     },
     {
       "term": "Formal verification (Lean)",
-      "definition": "Checking a mathematical proof with software that enforces every logical step, making errors impossible to hide. Lean is a widely used tool; a Lean formalisation is a machine-checked certificate that a proof is correct.",
+      "definition": "Checking a mathematical proof with software that verifies every logical step from stated definitions and axioms. Lean is a widely used tool. <a href=\"https://lean-lang.org/doc/reference/latest/ValidatingProofs/\" target=\"_blank\" rel=\"noopener\">A successful Lean check</a> shows that the formal statement has been proved; a reader still has to confirm that the formal statement says what the original claim says, and that the proof uses no unfinished steps or extra axioms.",
       "aliases": [
         "formal verification (Lean)"
       ]
@@ -767,7 +767,7 @@
     },
     {
       "term": "OCR (optical character recognition)",
-      "definition": "Software that converts a scanned image of text into machine-readable characters. When a PDF is a photograph of a page rather than embedded text, OCR must run before AI can read or search its content.",
+      "definition": "Software that converts a scanned image of text into machine-readable characters. A PDF that is a photograph of a page needs OCR before its text can be searched or copied; vision-language AI models can also read the page image directly, though their transcription still needs checking.",
       "aliases": [
         "OCR (optical character recognition)"
       ]

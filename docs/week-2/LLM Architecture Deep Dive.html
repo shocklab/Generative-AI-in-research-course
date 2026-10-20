@@ -470,7 +470,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 </div>
 <div class="info-box"><h4>MoE in Production Models</h4>
-<p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → performs like 47B dense model at cost of 13B</p>
+<p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">matches or beats Llama 2 70B on the reported benchmarks</a> with the per-token compute of a 13B model (all 47B must still be held in memory)</p>
 <p style="margin-top: 8px"><strong>DeepSeek-V3:</strong> 256 experts, 8 active per token → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
 <p style="margin-top: 8px"><strong>GPT-4 (rumored):</strong> Speculated to use MoE with 8-16 experts, explaining its size vs. inference speed</p>
 </div>

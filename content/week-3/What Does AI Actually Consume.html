@@ -352,41 +352,42 @@
 <tr>
 <td><strong>Google Search query</strong></td>
 <td>~0.3 Wh</td>
-<td>~11 seconds of a light bulb (LED)</td>
+<td>~2 minutes of an LED bulb (10 W)</td>
 <td>Google; moderate confidence</td>
 </tr>
 <tr>
 <td><strong>ChatGPT text prompt (reported)</strong></td>
 <td>0.34 Wh</td>
-<td>~13 seconds of a light bulb</td>
-<td>OpenAI blog, June 2025; likely best-case</td>
+<td>~2 minutes of an LED bulb (10 W)</td>
+<td><a href="https://blog.samaltman.com/the-gentle-singularity" target="_blank" rel="noopener">Sam Altman's blog</a>, June 2025; stated average, no method published</td>
 </tr>
 <tr>
 <td><strong>Gemini text prompt (reported)</strong></td>
 <td>0.24 Wh</td>
 <td>~9 seconds of TV</td>
-<td>Google White Paper, 2025; likely best-case</td>
+<td><a href="https://arxiv.org/abs/2508.15734" target="_blank" rel="noopener">Google technical paper, 2025</a>; measured median prompt, May 2025</td>
 </tr>
 <tr>
 <td><strong>Large model text prompt (independent)</strong></td>
 <td>0.1–8 Wh</td>
-<td>4 seconds – ~5 minutes of a microwave</td>
+<td>under 1 second to ~30 seconds of a microwave</td>
 <td>MIT Technology Review, 2025; measured on open-weight models</td>
 </tr>
 <tr>
 <td><strong>AI image generation</strong></td>
 <td>~2–5 Wh</td>
-<td>~1–3 minutes of a microwave</td>
+<td>~7–18 seconds of a microwave</td>
 <td>Various; moderate confidence</td>
 </tr>
 <tr>
 <td><strong>AI video generation (5 seconds)</strong></td>
 <td>~3.4 MJ (~944 Wh)</td>
-<td>Approximately 1 hour of microwave use</td>
+<td>About 1 hour of microwave use</td>
 <td>MIT Technology Review, 2025; ~700× image cost</td>
 </tr>
 </tbody>
 </table>
+<p style="margin-top: 12px; color: #666;">Microwave comparisons assume a 1,000 W microwave.</p>
 <p style="margin-top: 12px; color: #666;"><strong>Key observation:</strong> Text generation and video generation differ by roughly three orders of magnitude. Company-reported figures for text prompts sit at the lower end of independent measurements, likely reflecting optimised infrastructure not available to all deployments.</p>
 </div>
 <div class="info-box">
@@ -461,7 +462,7 @@
 <td>~1 Wh</td>
 <td>~3 Wh</td>
 <td>~8 Wh</td>
-<td>This lesson's table: 0.34 Wh (OpenAI, reported best-case) up to 8 Wh (MIT Tech Review 2025, large open-weight model). Agentic calls carry long contexts (file contents, tool outputs, accumulated reasoning), so they sit toward the upper end, and we centre on ~3 Wh.</td>
+<td>This lesson's table: 0.34 Wh (OpenAI CEO's stated average) up to 8 Wh (MIT Tech Review 2025, large open-weight model). Agentic calls carry long contexts (file contents, tool outputs, accumulated reasoning), so they sit toward the upper end, and we centre on ~3 Wh.</td>
 </tr>
 <tr>
 <td><strong>B. Compute per task</strong><br><small>(simple-prompt-equivalents)</small></td>
@@ -545,7 +546,7 @@
 <p style="margin-bottom: 15px;"><strong>Reference point: one economy-class transatlantic flight (London → New York, ~5,540 km)</strong></p>
 <ul style="margin-left: 25px; color: #555; line-height: 2;">
 <li>CO₂ per passenger (direct emissions only): ~0.5 tonnes</li>
-<li>Including radiative forcing at altitude (contrails, water vapour): roughly doubles the climate impact</li>
+<li>Adding non-CO₂ effects at altitude (contrails, nitrogen oxides): many calculators roughly double the figure, but the multiplier depends on the climate metric used</li>
 <li><strong>Commonly used estimate: ~1 tonne CO₂e per passenger</strong></li>
 <li>Note: figures from different calculators range from 0.5 to 1.5 tonnes — this is itself uncertain</li>
 </ul>
@@ -629,7 +630,7 @@
 <li><strong>Why water, not air?</strong> Evaporative cooling is far more energy-efficient than air cooling for the temperatures involved</li>
 <li><strong>Why filtered municipal water?</strong> Minerals in unfiltered water would corrode and clog sensitive hardware — most large data centres use high-quality drinking water</li>
 <li><strong>Estimate:</strong> A 100 MW data centre may consume the equivalent of ~2,600 households' daily water use (IEA estimate)</li>
-<li><strong>US total:</strong> Data centres directly consume roughly 17.5 billion gallons of water per year — about 0.3% of the US public water supply (Lawrence Berkeley National Laboratory, 2024)</li>
+<li><strong>US total:</strong> Data centres directly consumed roughly 66 billion litres (about 17.4 billion US gallons) of water in 2023, not counting the water used to generate their electricity (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">Lawrence Berkeley National Laboratory, 2024</a>)</li>
 </ul>
 </div>
 <div class="card">
