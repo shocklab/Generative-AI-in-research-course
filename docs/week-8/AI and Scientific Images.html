@@ -391,12 +391,6 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
             <td>~38&ndash;43pp</td>
           </tr>
           <tr>
-            <td><strong>Claude 3.5 Sonnet</strong></td>
-            <td>~60%</td>
-            <td>94.7% (AI2D), 90.8% (ChartQA)</td>
-            <td>~30&ndash;35pp</td>
-          </tr>
-          <tr>
             <td><strong>Open-source leaders</strong></td>
             <td>Varies; drops up to 34.5pp</td>
             <td>Often 80&ndash;90%+ on standard benchmarks</td>
@@ -412,7 +406,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
       </table>
     </div>
 
-    <p><strong>Why does this happen?</strong> The companion paper &ldquo;Vision Language Models Are Blind&rdquo; (Rahmanzadehgervi et al., ACCV 2024) tested models on tasks that should be trivial for any visual system: do two circles overlap? how many lines intersect at this point? Models averaged 58.07% on these tasks, close to chance on some sub-tasks. The models are reading the axis labels, title text, and captions (the language surrounding the chart) and using that text to generate plausible descriptions. They are not processing the geometry of the chart itself.</p>
+    <p><strong>Why might this happen?</strong> A separate paper, &ldquo;Vision Language Models Are Blind&rdquo; (Rahmanzadehgervi et al., ACCV 2024), tested four models on tasks that should be trivial for any visual system: do two circles overlap? how many lines intersect at this point? The models averaged 58.07%, failing most when shapes overlapped or sat close together. The authors&rsquo; probing tests suggest the image encoder holds enough information to solve the tasks and that the language model fails to turn it into correct answers. This does not show why CharXiv errors occur, but it is a reason to check any value or spatial relationship a model reads from a figure.</p>
 
     <p style="margin-top: 15px"><strong>The practical implication:</strong> Never trust AI-extracted numerical values from charts without verification against the underlying data. The model&#39;s description of what a chart shows may sound authoritative while being numerically wrong. Frontier model scores on CharXiv have improved substantially since 2024, but evaluations of newer models continue to show gaps between performance on real scientific figures and performance on simplified benchmarks. The headline gap has narrowed; the underlying pattern is durable.</p>
   </div>
@@ -459,7 +453,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
     <div class="card" style="border-left-color: #2e7d32"><h3>Satellite and Geospatial Imagery</h3>
       <p>This is one of the most active areas of AI for science, with a layered ecosystem worth understanding before picking a tool.</p>
-      <p style="margin-top: 12px"><strong>Pretrained foundation models for Earth observation:</strong> weights trained on satellite data, used as backbones for downstream tasks. <strong>Prithvi / Prithvi-EO-2.0</strong> (IBM/NASA, on Harmonized Landsat Sentinel data) is the most established and the most widely used in research; <strong>Clay</strong> (ClayFM, 2024) is a generalist Earth-observation foundation model with growing adoption; <strong>SatMAE</strong> (Stanford, NeurIPS 2022) and <strong>Scale-MAE</strong> (2023) are masked-autoencoder approaches; <strong>SatCLIP</strong> (Microsoft/ETH, 2024) aligns satellite imagery with text in CLIP style. These are <em>backbones</em>: you load the weights through a framework rather than running them directly.</p>
+      <p style="margin-top: 12px"><strong>Pretrained foundation models for Earth observation:</strong> weights trained on satellite data, used as backbones for downstream tasks. <strong>Prithvi / Prithvi-EO-2.0</strong> (IBM/NASA, on Harmonized Landsat Sentinel data) is the most established and the most widely used in research; <strong>Clay</strong> (ClayFM, 2024) is a generalist Earth-observation foundation model with growing adoption; <strong>SatMAE</strong> (Stanford, NeurIPS 2022) and <strong>Scale-MAE</strong> (2023) are masked-autoencoder approaches; <strong>SatCLIP</strong> (Microsoft/ETH, 2024) learns embeddings of geographic locations by matching satellite images with their coordinates, in CLIP style. These are <em>backbones</em>: you load the weights through a framework rather than running them directly.</p>
       <p style="margin-top: 12px"><strong>Frameworks to run them:</strong> the Python libraries that handle data loading, fine-tuning, and inference. <strong>TerraTorch</strong> (IBM) is purpose-built for Prithvi and other geospatial foundation models and is the closest thing to a research-ready default. <strong>torchgeo</strong> (Microsoft) is the established PyTorch library for geospatial datasets and models. <strong>geoai-py</strong> (Wu, JOSS 2026) is a broader Python toolkit aimed at lowering the barrier to entry.</p>
       <p style="margin-top: 12px"><strong>Cloud APIs:</strong> Google&#39;s Geospatial Reasoning with Gemini applies a general-purpose multimodal model to geospatial data. Useful for description, qualitative reasoning, and rapid prototyping; less reliable for precise classification than purpose-trained satellite models.</p>
       <ul class="styled-list">
@@ -537,7 +531,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
     <div class="card"><h3>Rahmanzadehgervi et al. (2024)</h3>
       <p><strong>Vision Language Models Are Blind</strong></p>
-      <p><em>ACCV 2024.</em> Tests models on trivially simple geometric tasks: overlapping circles, intersecting lines. Average model score: 58.07%. Provides the mechanistic explanation for the CharXiv result: models are reading text labels, not processing image geometry. A short, accessible paper with significant implications.</p>
+      <p><em>ACCV 2024.</em> Tests models on trivially simple geometric tasks: overlapping circles, intersecting lines. Average model score: 58.07%. Shows that models fail simple geometric tasks; it does not itself explain the CharXiv result. A short, accessible paper with significant implications.</p>
       <ul class="styled-list">
         <li>Seven simple geometric task categories</li>
         <li>4 state-of-the-art VLMs evaluated</li>

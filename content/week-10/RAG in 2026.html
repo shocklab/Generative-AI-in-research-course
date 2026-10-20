@@ -399,7 +399,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h2 class="section-title">&#128207; Change Three: Can You Tell If It&#39;s Any Good?</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If a RAG system can retrieve the wrong sources and still produce a fluent answer, how do you measure quality? The most widely-adopted answer is <strong>RAGAS</strong> (Es, James, Espinosa-Anke &amp; Schockaert, 2023), a framework that scores a RAG system without needing hand-written gold answers for every question. Its widely-used metrics separate the two places RAG can fail:</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">If a RAG system can retrieve the wrong sources and still produce a fluent answer, how do you measure quality? The most widely-adopted answer is <strong>RAGAS</strong> (Es, James, Espinosa-Anke &amp; Schockaert, 2023), a framework that scores a RAG system with far fewer hand-written gold answers than older methods need. Some metrics (faithfulness, answer relevancy) need no reference answer; others (context recall, and the reference version of context precision) do. Its widely-used metrics separate the two places RAG can fail:</p>
 
   <ul class="styled-list">
     <li><strong>Context precision &amp; context recall</strong>: did the <em>retrieval</em> step fetch the relevant passages, and only those?</li>

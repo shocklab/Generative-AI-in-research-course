@@ -9,7 +9,7 @@
   "terms": [
     {
       "term": "50% time horizon",
-      "definition": "A capability metric from the AI-evaluation group METR: the length of the longest software task an AI system can finish with at least a 50% success rate, used to track progress over time.",
+      "definition": "A capability metric from the AI-evaluation group METR: the task length, measured as the time a human expert needs, at which a fitted curve predicts an AI system succeeds 50% of the time. It measures how hard the tasks are for a human, not how long the AI runs, and applies to METR's tasks, which are mainly software engineering, machine learning and cybersecurity.",
       "aliases": [
         "50% time horizon"
       ]
@@ -227,7 +227,7 @@
     },
     {
       "term": "Claude Projects",
-      "definition": "A persistent workspace inside Claude (paid subscription) where you can upload documents and set custom instructions that stay active across conversations, so you need not re-explain your research context each time.",
+      "definition": "A persistent workspace inside Claude where you can upload documents and set custom instructions that stay active across conversations, so you need not re-explain your research context each time. Free accounts can have up to five Projects; paid plans add capacity.",
       "aliases": [
         "Claude Projects"
       ]
@@ -531,7 +531,7 @@
     },
     {
       "term": "GAN (generative adversarial network)",
-      "definition": "An architecture that trains two neural networks in competition, a generator producing fake outputs and a discriminator trying to detect them, until the generator's outputs are statistically indistinguishable from real data.",
+      "definition": "An architecture that trains two neural networks in competition, a generator producing fake outputs and a discriminator trying to detect them, ideally until the generator's outputs are statistically indistinguishable from real data.",
       "aliases": [
         "GAN (generative adversarial network)"
       ]
@@ -830,7 +830,7 @@
     },
     {
       "term": "POPIA (Protection of Personal Information Act)",
-      "definition": "South Africa's data-protection law. Section 72 restricts sending personal information to servers in other countries unless the recipient meets equivalent privacy standards, making cross-border AI tool use a compliance issue.",
+      "definition": "South Africa's data-protection law. Section 72 restricts sending personal information to a recipient in another country unless a listed condition is met: the recipient is bound by law, binding corporate rules or an agreement that gives substantially similar protection, the person concerned consents, or the transfer is needed for a contract that involves them or is for their benefit. This makes cross-border AI tool use a compliance issue.",
       "aliases": [
         "POPIA (Protection of Personal Information Act)"
       ]
@@ -907,14 +907,14 @@
     },
     {
       "term": "RAGAS (Retrieval-Augmented Generation Assessment)",
-      "definition": "An open framework for measuring RAG quality without hand-written answers. It separately scores whether the right passages were retrieved and whether the generated answer stays within what those passages say.",
+      "definition": "An open framework for measuring RAG quality. Some of its metrics need no hand-written reference answer; others, such as context recall, do. It separately scores whether the right passages were retrieved and whether the generated answer stays within what those passages say.",
       "aliases": [
         "RAGAS (Retrieval-Augmented Generation Assessment)"
       ]
     },
     {
       "term": "Radiative forcing",
-      "definition": "A warming effect on the atmosphere beyond direct carbon emissions. Aviation's contrails and nitrogen oxides at altitude trap heat independently of CO₂, roughly doubling aviation's total climate impact over its carbon footprint alone.",
+      "definition": "A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.",
       "aliases": [
         "radiative forcing"
       ]
@@ -1005,7 +1005,7 @@
     },
     {
       "term": "Semiconductor foundry node",
-      "definition": "A measure of how small a chip's transistors are, given in nanometres (e.g. 5 nm). Smaller nodes pack more computing power into less space and need the most advanced, scarce fabrication facilities to make.",
+      "definition": "The name of a generation of chip-manufacturing technology, such as 5 nm. Modern node names are labels and do not equal any transistor dimension, so they are not directly comparable across manufacturers. Newer nodes generally fit more transistors into the same area and need the most advanced, scarce fabrication facilities.",
       "aliases": [
         "semiconductor foundry node"
       ]
@@ -1070,7 +1070,7 @@
     },
     {
       "term": "Subagent",
-      "definition": "A second AI agent spawned by a primary agent to handle a specific, bounded task, such as independently verifying an analysis, without sharing the first agent's assumptions or context.",
+      "definition": "A second AI agent started by a primary agent to handle a specific, bounded task, such as re-checking an analysis. An ordinary subagent starts with a fresh context and only the task description it is given, so it does not see the first agent's conversation; a fork inherits the whole conversation. A subagent is usually the same model, and the task description can carry the first agent's assumptions, so it is a second check, not independent verification.",
       "aliases": [
         "subagent"
       ]
@@ -1119,7 +1119,7 @@
     },
     {
       "term": "Token",
-      "definition": "The basic unit of text a language model reads and produces — roughly a word or word-fragment (e.g. \"unbelievable\" may split into \"un\", \"believe\", \"able\"). Models process text one token at a time.",
+      "definition": "The basic unit of text a language model reads and produces, roughly a word or word-fragment (e.g. \"unbelievable\" may split into \"un\", \"believe\", \"able\"). A model reads the tokens of a prompt in parallel but generates its reply one token at a time.",
       "aliases": [
         "token"
       ]

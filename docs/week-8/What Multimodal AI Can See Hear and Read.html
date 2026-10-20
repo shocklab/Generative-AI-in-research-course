@@ -508,7 +508,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
     <div class="card"><h3>Rahmanzadehgervi et al. (2024)</h3>
       <p><strong>Vision Language Models Are Blind</strong></p>
-      <p>ACCV 2024. Tests models on tasks trivial for humans: overlapping circles, intersecting lines, counting objects in simple arrangements. Models average 58.07% on these tasks, barely better than random on some sub-tasks. Provides the mechanistic explanation for the CharXiv result: models are not seeing the geometry.</p>
+      <p>ACCV 2024. Tests models on tasks trivial for humans: overlapping circles, intersecting lines, counting objects in simple arrangements. Models average 58.07% on these tasks. Shows that models fail simple geometric tasks; it does not itself explain the CharXiv result.</p>
       <ul class="styled-list">
         <li>7 simple geometric task categories</li>
         <li>4 state-of-the-art VLMs evaluated</li>
@@ -524,7 +524,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <div class="intro-text"><h2>Week 8 at a Glance</h2>
     <p>This sub-lesson introduced the four modalities relevant to research (<strong>images, audio, documents, and video</strong>) and mapped them to the tools and research contexts where they matter most. The model landscape table gives you a working comparison of where the major tools are today; treat it as a snapshot.</p>
-    <p>The frame for the week is the <strong>reading vs. understanding distinction</strong>. The CharXiv benchmark shows why it matters: even as model scores have improved, real-world performance on actual scientific figures consistently lags performance on purpose-built evaluation benchmarks. The companion &ldquo;VLMs Are Blind&rdquo; paper explains one mechanism: models often read surrounding text labels rather than processing image geometry.</p>
+    <p>The frame for the week is the <strong>reading vs. understanding distinction</strong>. The CharXiv benchmark shows why it matters: even as model scores have improved, real-world performance on actual scientific figures consistently lags performance on purpose-built evaluation benchmarks. A separate paper, &ldquo;VLMs Are Blind&rdquo;, shows that models fail simple geometric tasks even when their image encoders hold the information needed to solve them.</p>
     <p>The remaining sub-lessons go deeper into each domain:</p>
     <ul class="styled-list">
       <li><strong>Sub-Lesson 2: AI and Scientific Images</strong> &mdash; the CharXiv finding in depth, the correct-answer-wrong-reasoning problem, domain-specific tools, and bias in image recognition</li>
