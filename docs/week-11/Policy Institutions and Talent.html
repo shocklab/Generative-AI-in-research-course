@@ -243,10 +243,10 @@ img{max-width:100%}
 .tsize button:hover{color:var(--blue)}
 .tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-@media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
+@media print{.tsize,.rightrail .tsize{display:none}}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}

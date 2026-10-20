@@ -267,10 +267,10 @@ img{max-width:100%}
 .tsize button:hover{color:var(--blue)}
 .tsize button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
-@media print{.tsize{display:none}}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
+@media print{.tsize,.rightrail .tsize{display:none}}
 @media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
-@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px;opacity:.85}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
+@media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:inline-flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
@@ -364,18 +364,31 @@ def widen_long_grids(c):
 # h4 is styled as a short spaced-capitals label ("What it is"). Headings longer than
 # H4_LABEL_WORDS words (sentences, full citations) are hard to read that way, so they get
 # class h4long, set in ordinary type.
+# Headings inside SVG, <pre> code samples, scripts and styles are left alone. Inline <code> is
+# not skipped, since headings contain it.
 H4_LABEL_WORDS = 7
+H4_SKIP = re.compile(r'<(svg|pre|script|style|textarea)\b.*?</\1\s*>', re.S | re.I)
+H4_TAG = re.compile(r'<h4\b((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>(.*?)</h4\s*>', re.S | re.I)
+H4_CLASS = re.compile(r'(\s)class\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|([^\s"\'>]+))', re.I)
 def mark_long_h4(c):
     def _mark(m):
         attrs, inner = m.group(1), m.group(2)
-        if len(strip_tags(inner).split()) <= H4_LABEL_WORDS:
+        words = strip_tags(re.sub(r'<br\b[^>]*>', ' ', inner, flags=re.I)).split()
+        if len(words) <= H4_LABEL_WORDS:
             return m.group(0)
-        if re.search(r'\bclass="', attrs):
-            attrs = re.sub(r'\bclass="', 'class="h4long ', attrs, count=1)
+        cm = H4_CLASS.search(attrs)
+        if cm:
+            old = next(g for g in cm.groups()[1:] if g is not None)
+            attrs = attrs[:cm.start()] + f'{cm.group(1)}class="h4long {html.escape(old, quote=True)}"' + attrs[cm.end():]
         else:
             attrs += ' class="h4long"'
         return f'<h4{attrs}>{inner}</h4>'
-    return re.sub(r'<h4\b([^>]*)>(.*?)</h4>', _mark, c, flags=re.S)
+    out, i = [], 0
+    for s in H4_SKIP.finditer(c):
+        out.append(H4_TAG.sub(_mark, c[i:s.start()])); out.append(s.group(0))
+        i = s.end()
+    out.append(H4_TAG.sub(_mark, c[i:]))
+    return ''.join(out)
 
 # Left-margin label. Advanced Track sections have the same label and title, so print it once.
 def navwk_text(section):
