@@ -65,7 +65,7 @@ FIGS = [
          svg=D.matrix(["Leading families (May 2026)", "Best suited to"], [
              ("Text / LLMs", ["GPT-5.5, Claude, Gemini, DeepSeek", "writing, reasoning, agents, code"]),
              ("Images", ["DALL·E 3, Midjourney, Imagen, FLUX", "figures, illustration, design"]),
-             ("Video", ["Sora 2, Veo 3, Runway, Kling", "clips, animation, demonstrations"]),
+             ("Video", ["Veo 3, Runway, Kling", "clips, animation, demonstrations"]),
              ("Code / agents", ["Codex, Claude Code, Cursor, Copilot", "writing and running code"]),
          ], "The generative-AI modality map",
             "A grid of four output modalities — text, images, video, code — with leading model families and their best uses.")),

@@ -390,7 +390,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
   <h2 class="section-title" id="s3">Transcription Hallucination &mdash; The Critical Warning</h2>
 
   <div class="warning-box"><h4 class="h4long">Transcription Hallucination Is a Real and Documented Problem</h4>
-    <p>Investigative reporting in 2024 (Associated Press, TechCrunch) surfaced cases where Whisper hallucinated in approximately 80% of public meeting transcriptions tested by researchers. A separate peer-reviewed study, Koenecke et al. (FAccT 2024, &ldquo;Careless Whisper&rdquo;), analysed hallucinations in clinical interview transcriptions and found that 38% included explicit harms such as perpetuating violence, inventing associations, or implying false authority. Together these findings confirm that transcription hallucination is a systematic feature of how language model-based transcription works, not an occasional glitch.</p>
+    <p>Investigative reporting in 2024 (Associated Press, TechCrunch) surfaced cases where Whisper hallucinated in approximately 80% of public meeting transcriptions tested by researchers. A separate peer-reviewed study, Koenecke et al. (FAccT 2024, &ldquo;Careless Whisper&rdquo;), transcribed AphasiaBank research interviews with people with aphasia and a control group; <a href="https://arxiv.org/abs/2402.08021" target="_blank" rel="noopener">about 1% of transcriptions contained hallucinated phrases or sentences, and 38% of those hallucinations included explicit harms</a>, such as perpetuating violence, inventing associations, or implying false authority. Together these findings confirm that transcription hallucination is a systematic feature of how language model-based transcription works, not an occasional glitch.</p>
     <p style="margin-top:12px"><strong>What transcription hallucination looks like:</strong></p>
   </div>
 
@@ -552,7 +552,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
   </div>
 
   <div class="resource-placeholder"><h4>Core Reading 2</h4>
-    <p>Nahabwe et al. (2025). &ldquo;Benchmarking Automatic Speech Recognition Models for African Languages.&rdquo; Deep Learning Indaba 2025.<br><a href="https://arxiv.org/abs/2512.10968">https://arxiv.org/abs/2512.10968</a></p>
+    <p>Nahabwe et al. (2025). &ldquo;Benchmarking Automatic Speech Recognition Models for African Languages.&rdquo; Deep Learning Indaba 2025, <a href="https://proceedings.mlr.press/v302/nahabwe26a.html" target="_blank" rel="noopener">PMLR 302:1&ndash;19, 2026</a>.<br><a href="https://arxiv.org/abs/2512.10968">https://arxiv.org/abs/2512.10968</a></p>
     <p style="margin-top:10px">Systematic comparison of Whisper, W2v-BERT, XLS-R, and MMS across African languages with varying amounts of fine-tuning data. The source for the WER tables in this sub-lesson.</p>
   </div>
 
@@ -567,7 +567,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
   <!-- SUMMARY -->
   <div class="highlight-box"><h3>Sub-Lesson 4 Summary</h3>
     <p><strong>Accuracy landscape:</strong> Whisper large-v3 achieves approximately 2.0% WER on clean read speech but 11.5%+ on meeting audio. Real research audio is rarely clean. Always treat headline accuracy figures with caution.</p>
-    <p><strong>Transcription hallucination:</strong> Documented across multiple studies. Informal testing found hallucinations in approximately 80% of public meeting transcriptions; Koenecke et al. (FAccT 2024) found 38% of hallucinations in clinical transcriptions involved explicit harms. Invented sentences, fabricated proper nouns, and dropped content are all real failure modes. Every transcript used in research requires human verification against the original audio.</p>
+    <p><strong>Transcription hallucination:</strong> Documented across multiple studies. Informal testing found hallucinations in approximately 80% of public meeting transcriptions; Koenecke et al. (FAccT 2024) found that 38% of the hallucinations in transcriptions of AphasiaBank research interviews involved explicit harms. Invented sentences, fabricated proper nouns, and dropped content are all real failure modes. Every transcript used in research requires human verification against the original audio.</p>
     <p><strong>African language tools:</strong> In the Nahabwe et al. (2025) benchmark, a W2v-BERT speech model fine-tuned on one hour of audio had word error rates of 22.7% on Afrikaans, 28.0% on Zulu and 27.8% on Xhosa, falling to 3.2%, 7.9% and 7.1% with 50 hours of fine-tuning. Whisper (the small model) fine-tuned on the same data went from 26.4%, 33.6% and 33.6% at one hour to 2.1%, 8.2% and 5.9% at 50 hours. The study did not test Whisper without fine-tuning. Intron Sahara v2 and Lelapa AI are specialist tools developed for African language contexts and should be the first consideration for research involving these languages.</p>
     <p><strong>Qualitative analysis software:</strong> ATLAS.ti, NVivo, MAXQDA, and Insight7 all now offer AI coding and summarisation. AI finds passages; you determine what they mean.</p>
     <p><strong>Privacy:</strong> Audio recordings of participants require explicit ethics approval and consent cover before cloud processing. Use local tools (Whisper, WhisperX) for sensitive data.</p>

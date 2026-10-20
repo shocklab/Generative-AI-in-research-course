@@ -406,7 +406,7 @@
 <h3>What AI Can Miss</h3>
 <p>AI operates on statistical patterns, not domain understanding. This creates a fundamental blind spot: it cannot distinguish between a value that is unusual and a value that is wrong. However, with the right prompting, you can get it to find these issues. Consider these examples:</p>
 <ul class="styled-list">
-<li><strong>Domain-specific errors:</strong> A blood pressure reading of 300/200 is not an outlier; it is an impossibility. A resting heart rate of 180 in an adult is almost certainly a recording error. AI sees numbers; you see clinical meaning. If you tell it what to look out for, it will likely spot such errors.</li>
+<li><strong>Domain-specific errors:</strong> A blood pressure reading of 120/180 (diastolic higher than systolic) is not an outlier; it is a recording error. A reading of 300/200 is extreme but <a href="https://doi.org/10.1001/archinte.1986.00360140241036" target="_blank" rel="noopener">has been recorded in a hypertensive crisis</a>, so check it against the original record rather than deleting it. A resting heart rate of 180 in an adult is almost certainly a recording error. AI sees numbers; you see clinical meaning. If you tell it what to look out for, it will likely spot such errors.</li>
 <li><strong>Contextual plausibility:</strong> A salary of R2,000,000 per month might be a valid entry for a CEO or a data entry error for a junior employee. The same number means different things in different rows. Again, telling it to audit the data is likely to turn up this inconsistency.</li>
 <li><strong>Coded values with meaning:</strong> In many datasets, specific values carry special meaning. A "0" might mean "not measured" rather than "zero." A "-1" might be a sentinel value for "not applicable." AI will treat these as ordinary numbers unless you tell it otherwise.</li>
 <li><strong>Relationships between fields:</strong> A participant listed as 15 years old with a PhD should raise questions. AI may clean each column independently without checking cross-field consistency, unless you are careful.</li>
@@ -481,7 +481,7 @@
 </div>
 <div class="card">
 <h3>Wrong Statistical Test</h3>
-<p>AI selects a parametric test when your data are non-normal, or uses a test that assumes independence when your observations are paired. It may run a t-test on Likert scale data, apply a Pearson correlation to ordinal variables, or use linear regression when the relationship is clearly non-linear. The output will still include a p-value and a confidence interval — they will just be meaningless.</p>
+<p>AI selects a parametric test when your data are non-normal, or uses a test that assumes independence when your observations are paired. It may run a t-test on Likert scale data, apply a Pearson correlation to ordinal variables, or use linear regression when the relationship is clearly non-linear. The output will still include a p-value and a confidence interval, and nothing in it tells you whether the test suits your data.</p>
 </div>
 <div class="card">
 <h3>Grouping and Aggregation Errors</h3>
