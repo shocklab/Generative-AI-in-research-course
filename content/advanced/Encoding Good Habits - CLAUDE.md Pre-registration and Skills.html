@@ -414,7 +414,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <header>
   <div class="week-badge">Advanced Track &bull; Lesson B &bull; 2 of 3</div>
   <h1>&#128203; <span style="color: #ffffff;">Encoding Good Habits: CLAUDE.md, Pre-registration, and Skills</span></h1>
-  <p>Turning research integrity into rules the agent follows every time</p>
+  <p>Turning research integrity into standing instructions the agent reads at the start of every session</p>
 </header>
 
 <div class="content">
@@ -422,7 +422,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>A folder structure is a skeleton. This page adds the muscle: the standing instructions that make the agent keep the structure honest, the discipline of deciding what counts <em>before</em> you spend the compute, and the reusable Skills that turn a good workflow into one you can repeat across projects.</p>
-    <p>The centrepiece is the <code>CLAUDE.md</code> research-habits template. It is where the integrity habits the whole course has taught stop being good intentions and become rules the agent follows every time.</p>
+    <p>The centrepiece is the <code>CLAUDE.md</code> research-habits template. It is where the integrity habits the whole course has taught stop being good intentions and become standing instructions the agent reads at the start of every session. It usually follows them, so check that it did.</p>
   </div>
 
   <h2 class="section-title">&#128203; The CLAUDE.md Research-Habits Template</h2>
@@ -461,7 +461,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="info-box">
     <h4>&#128161; The course&#39;s habits, written as rules</h4>
-    <p>Almost every line is a research-integrity habit this course already taught, now written somewhere the agent obeys it every time:</p>
+    <p>Almost every line is a research-integrity habit this course already taught, now written somewhere the agent reads it at the start of every session:</p>
     <ul class="styled-list" style="margin-top: 0;">
       <li>&ldquo;Never fill a gap with a plausible guess&rdquo; is the <strong>Week&nbsp;9 hallucination lesson</strong>.</li>
       <li>&ldquo;Name which files you used&rdquo; is the <strong>Week&nbsp;5 citation-integrity lesson</strong>.</li>
@@ -518,7 +518,7 @@ Fixed in advance: outlier rule (exclude only samples the field notes mark
 
   <h2 class="section-title">&#129513; Skills and Subagents: Packaging Reproducible Practice</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A <code>CLAUDE.md</code> encodes the rules of <em>one</em> project. A <strong>Skill</strong> packages a reusable <em>workflow</em> that travels across projects. Where a rule says &ldquo;always log decisions,&rdquo; a Skill says &ldquo;here is exactly how to build a data inventory, every time&rdquo;: a tested procedure rather than a re-improvised prompt.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">A <code>CLAUDE.md</code> encodes the rules of <em>one</em> project. A <strong>Skill</strong> packages a reusable <em>workflow</em> that travels across projects. Where a rule says &ldquo;always log decisions,&rdquo; a Skill says &ldquo;here is exactly how to build a data inventory&rdquo;: a tested procedure rather than a re-improvised prompt.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A Skill is a folder under <code>.claude/skills/</code> with a <code>SKILL.md</code> file: a little YAML header naming it and saying when to use it, then concise instructions. For example, a reproducible-research skill for creating a data inventory:</p>
 
@@ -539,7 +539,7 @@ Do not edit the raw files. Where something is ambiguous, say so &mdash;
 do not guess. Cross-check against any field notes and flag contradictions.
 Write the result to docs/data-inventory.md.</pre>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Written once and inspected, that Skill produces the same disciplined inventory on every project you use it in. That repeatability is the reproducibility win: a Skill is a procedure you have tested and can trust, the opposite of ad-hoc prompting that varies every time.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Written once and inspected, that Skill gives every project you use it in the same inventory procedure. That repeatability is the reproducibility win: a Skill is a procedure you have tested and can inspect, the opposite of ad-hoc prompting that varies every time. The agent can still deviate from it, so check each run&rsquo;s output.</p>
 
   <div class="resource-placeholder">
     <h4>&#128230; Download: seven research Skills</h4>
@@ -547,7 +547,7 @@ Write the result to docs/data-inventory.md.</pre>
     <p style="font-size: 0.92em; color: #777;">Three of the seven (<code>academic-pdf-to-mkd</code>, <code>claim-fact-checker</code>, and <code>paper-review</code>) are adapted, with thanks, from <strong>Dominik Luke&#353;</strong>&rsquo;s MIT-licensed agent-skills collection (<a href="https://github.com/techczech/dominiks-agent-skills" target="_blank" rel="noopener">github.com/techczech/dominiks-agent-skills</a>); the bundle ships with a <code>LICENSE</code> and full attribution. The other four are the instructor&rsquo;s own.</p>
   </div>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Subagents</strong> add a second move. For a bounded job, Claude Code can spawn a separate, focused agent, and the most useful research application is verification. After the main agent has produced an analysis, you can have an independent subagent check it: re-derive the result from the raw data, look for the errors the first agent might have made, and report disagreements. This is the Week&nbsp;9 adversarial-verification idea made operational: a second pair of eyes that does not share the first agent&#39;s assumptions.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;"><strong>Subagents</strong> add a second move. For a bounded job, Claude Code can spawn a separate, focused agent, and the most useful research application is verification. After the main agent has produced an analysis, you can have a separate subagent check it: re-derive the result from the raw data, look for the errors the first agent might have made, and report disagreements. This is the Week&nbsp;9 adversarial-verification idea made operational: a second pair of eyes that starts without the first agent&#39;s conversation, although it is usually the same model and can share the first agent&#39;s blind spots.</p>
 
   <div class="info-box">
     <h4>&#128270; A note on trust</h4>

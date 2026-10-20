@@ -357,7 +357,7 @@
 <div class="content">
 <div class="intro-section">
 <h2>What is "Generative" AI?</h2>
-<p>The key shift in artificial intelligence is moving from <strong>analysis to creation</strong>. For decades, AI systems excelled at recognizing patterns, classifying data, and making predictions based on what they'd seen before. Generative AI is a different kind of system: it creates entirely new content that never existed before.</p>
+<p>The key shift in artificial intelligence is moving from <strong>analysis to creation</strong>. For decades, AI systems excelled at recognizing patterns, classifying data, and making predictions based on what they'd seen before. Generative AI is a different kind of system: it produces new text, images or code from patterns learned in training, although it can occasionally reproduce examples it was trained on.</p>
 <p>Think of it this way: traditional AI is like a highly skilled critic who can identify whether a rock is igneous, sedimentary, or metamorphic. Generative AI is like a geologist who can describe what a never-before-seen mineral deposit might look like based on tectonic conditions, then actually synthesize a detailed model of it.</p>
 </div>
 <h2 class="section-title">📊 The Fundamental Distinction</h2>
@@ -376,7 +376,7 @@
 </div>
 <div class="comparison-card generative"><span class="card-label" style="background: #2a5298;">Generative AI</span>
 <h3>Creation &amp; Synthesis</h3>
-<p>Generative AI creates new content from learned patterns. Rather than classifying existing data, it generates novel outputs (text, images, code, even scientific hypotheses) that didn't exist before. These systems answer: "What might this look like?"</p>
+<p>Generative AI creates new content from learned patterns. Rather than classifying existing data, it generates outputs (text, images, code, even scientific hypotheses) that are usually new. These systems answer: "What might this look like?"</p>
 <p><strong>Core task:</strong> Creating new, original content based on learned patterns</p>
 <ul class="example-list">
 <li><strong>Research proposals:</strong> Draft a grant application in your field</li>
@@ -402,7 +402,7 @@
 
 <h3>1. Transformers (e.g., ChatGPT, Claude, Deepseek)</h3>
 <div class="architecture-subtitle">"Attention Machines"</div>
-<p style="font-size: 1.05em; margin-bottom: 20px;">Transformers are the architecture behind modern large language models. They revolutionized AI by introducing the concept of "attention": the ability to focus on the most relevant parts of input when generating output.</p>
+<p style="font-size: 1.05em; margin-bottom: 20px;">Transformers are the architecture behind modern large language models. They changed AI by building the whole model on "attention", an idea first added to recurrent translation models in 2014: the ability to focus on the most relevant parts of input when generating output.</p>
 <div class="analogy-box">
 <h4>Scientific Analogy</h4>
 <p>Imagine you're reading a geology paper about sedimentary layers. When you encounter "the Cretaceous formation," your brain doesn't treat every word equally. You automatically pay more attention to certain context clues: mentions of fossils, depth measurements, dating methods, and geographical locations from earlier in the paper. You ignore irrelevant details about the authors' institutional affiliations.</p>
@@ -480,7 +480,7 @@
 <div class="architecture-card" style="border-left-color: #8B0000;">
 <h3>3. GANs - Generative Adversarial Networks</h3>
 <div class="architecture-subtitle">"Creator versus Critic"</div>
-<p style="font-size: 1.05em; margin-bottom: 20px;">GANs use a competitive approach: two neural networks locked in a contest. One (the "generator") creates fake images. The other (the "discriminator") tries to detect which images are fake. As they compete, both improve: the generator gets better at creating convincing fakes, and the discriminator gets better at detection. Eventually, the generator becomes so good that its creations are indistinguishable from real data.</p>
+<p style="font-size: 1.05em; margin-bottom: 20px;">GANs use a competitive approach: two neural networks locked in a contest. One (the "generator") creates fake images. The other (the "discriminator") tries to detect which images are fake. As they compete, both improve: the generator gets better at creating convincing fakes, and the discriminator gets better at detection. In the ideal case, the generator becomes so good that its creations are indistinguishable from real data.</p>
 <div class="analogy-box">
 <h4>Scientific Analogy</h4>
 <p>Imagine training a paleontologist to identify genuine fossils versus forgeries. You have two researchers: one (the "forger") tries to create fake fossils, and one (the "expert") tries to distinguish real from fake.</p>
@@ -496,13 +496,13 @@
 <p style="margin-left: 20px;">• Discriminator tries not to be fooled</p>
 <p style="margin-left: 20px;">• Generator learns from failures: which features made fakes detectable?</p>
 <p style="margin-left: 20px;">• Discriminator learns from successes: what subtle differences reveal fakes?</p>
-<p style="margin-top: 12px;"><strong>4. Equilibrium:</strong> Training continues until the generator is so good that the discriminator can't do better than random guessing (50% accuracy), meaning the fakes are statistically indistinguishable from real data.</p>
+<p style="margin-top: 12px;"><strong>4. Equilibrium:</strong> In the idealised mathematical analysis, training ends when the generator matches the real data distribution and the best possible discriminator can do no better than random guessing (50% accuracy). A real discriminator that scores 50% may simply be weak, so on its own that figure does not show the fakes are indistinguishable from real data.</p>
 <p style="margin-top: 12px;"><strong>5. Generation:</strong> Once trained, the generator can create new, realistic samples by transforming random noise into structured outputs.</p>
 </div>
 <div class="key-concepts">
 <h4>Key Concepts</h4>
 <ul>
-<li><strong>Nash equilibrium:</strong> Training aims for a balance where neither network can improve without the other also improving, a concept from game theory.</li>
+<li><strong>Nash equilibrium:</strong> A state in which neither network can improve its own score by changing only its own strategy while the other stays fixed, a concept from game theory.</li>
 <li><strong>Mode collapse:</strong> A failure mode where the generator only learns to create a few types of outputs rather than the full diversity of the training data.</li>
 <li><strong>Training instability:</strong> GANs can be tricky to train because the two networks must stay balanced. If one becomes too strong, learning breaks down.</li>
 <li><strong>Latent space interpolation:</strong> You can smoothly blend between different outputs by moving through the random input space, creating morphing sequences.</li>

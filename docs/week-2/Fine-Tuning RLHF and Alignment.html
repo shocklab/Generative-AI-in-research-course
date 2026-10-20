@@ -400,10 +400,16 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td>Zephyr, Llama-3-Instruct, many open models</td>
 </tr>
 <tr>
-<td><strong>GRPO / ORPO</strong></td>
-<td>Variants that remove the reference model or combine supervised and preference objectives in a single loss</td>
-<td>Further memory savings; single training stage</td>
+<td><strong>GRPO</strong></td>
+<td>Drops PPO's separate value (critic) model; scores each sampled answer against the average of a group of answers to the same question</td>
+<td>Less memory than PPO</td>
 <td>DeepSeek-R1, Qwen models</td>
+</tr>
+<tr>
+<td><strong>ORPO</strong></td>
+<td>Adds a preference penalty (odds ratio) to the supervised loss; needs no reference model</td>
+<td>Single training stage; less memory</td>
+<td>Open-source fine-tuning</td>
 </tr>
 </tbody>
 </table>

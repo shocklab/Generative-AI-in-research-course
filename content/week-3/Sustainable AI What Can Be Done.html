@@ -398,8 +398,8 @@
 </tr>
 <tr>
 <td><strong>Large context (long documents)</strong></td>
-<td>Transformer attention scales quadratically with sequence length; doubling context roughly quadruples compute</td>
-<td>O(n²) scaling — theoretically proven, not an estimate <em>(Duman-Keles et al., COLT 2023)</em></td>
+<td>The attention step of a standard transformer takes work that grows with the square of the sequence length, so very long inputs cost disproportionately more. Total compute and energy also depend on the model, its other layers and caching, so doubling the context does not generally quadruple the cost of a request.</td>
+<td>Attention is O(n²) in sequence length; it cannot be computed in less than quadratic time, even approximately, unless a widely believed conjecture in computer science (the Strong Exponential Time Hypothesis) is false <em>(Duman Keles et al., ALT 2023)</em></td>
 </tr>
 </tbody>
 </table>

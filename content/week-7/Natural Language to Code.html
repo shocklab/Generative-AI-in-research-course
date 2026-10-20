@@ -412,7 +412,7 @@
 <div class="highlight-box">
 <h3>💡 <span style="color: #ffffff;">The Critical Caveat</span></h3>
 <p>Modern agentic tools like Claude Code are excellent at catching their own programming errors. They iterate autonomously, fix syntax issues, and can even inspect their own visualisation outputs. This is a capability leap from earlier AI coding tools. But there is a category of error these tools do not reliably catch: code that runs perfectly but uses the wrong statistical test, the wrong variable, or the wrong analytical logic for your research question.</p>
-<p style="margin-top: 12px;">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may be wrong. No amount of autonomous iteration catches this, because from the code's perspective, nothing failed. You do not need to write code, but you do need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
+<p style="margin-top: 12px;">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may not answer your question. No amount of autonomous iteration catches this, because from the code's perspective, nothing failed. You do not need to write code, but you do need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
 </div>
 <!-- SECTION 2: THE TOOLS LANDSCAPE -->
 <h2 class="section-title">🛠️ The Tools Landscape</h2>
@@ -640,7 +640,7 @@
 <div class="case-study">
 <h4>🧪 The Difference Between "Runs" and "Correct"</h4>
 <p>Consider this scenario: you ask AI to compare satisfaction scores between two groups. The AI generates code that runs perfectly and produces a p-value of 0.03. You conclude the groups are significantly different.</p>
-<p style="margin-top: 15px;">But look closer at the code. The AI used a standard t-test, which assumes your data is normally distributed. Your satisfaction scores are on a 1–5 Likert scale, so they are ordinal, not normally distributed. A Mann-Whitney U test would have been more appropriate. The "correct" code might give you a p-value of 0.08, which is not significant.</p>
+<p style="margin-top: 15px;">But look closer at the code. The AI used a standard t-test, which compares group means and works best when the scores are roughly symmetric or the groups are large. Your satisfaction scores are a single 1–5 Likert item, so they are ordinal with many tied values. A rank-based test such as Mann-Whitney U, or an ordinal model, may fit the question better, but it tests a slightly different hypothesis, so choose the test from your research question before you see the result. The alternative analysis might give a p-value of 0.08, which is not significant.</p>
 <p style="margin-top: 15px;">The code ran. It produced a result. That result was wrong, not because the AI made a programming error, but because it chose an inappropriate statistical method for your data type. This is the kind of error that vibe coding will miss and that a basic understanding of your analysis can catch.</p>
 <p style="margin-top: 15px;">Always ask yourself whether the code is doing the right analysis, or just <em>an</em> analysis. If you are unsure, describe your data and the test the AI chose to a second AI tool and ask whether the choice is appropriate. Cross-checking between tools is one of the most effective strategies available to non-programmers.</p>
 </div>

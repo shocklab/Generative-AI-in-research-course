@@ -590,7 +590,7 @@
 </ul>
 <div class="info-box" style="margin-top: 15px;">
 <h4>🔢 Quick Math</h4>
-<p>A 7B parameter model might have: 32 layers × (12 attention heads × 4096 dim + 4× FFN expansion) ≈ 7 billion parameters</p>
+<p>A 7B parameter model might have 32 layers and a hidden size of 4096. In each layer the four attention matrices (query, key, value and output) hold about 4 × 4096² ≈ 67 million weights, and a feed-forward block with 4× expansion holds about 2 × 4096 × 16,384 ≈ 134 million. Across 32 layers that is about 6.4 billion; the token embedding tables add a few hundred million more, giving a total of roughly 6.6 to 6.7 billion, close to the 7 billion in the model's name.</p>
 </div>
 </div>
 <div class="card">
