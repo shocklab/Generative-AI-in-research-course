@@ -21,7 +21,7 @@ FIGS = [
             label_w=110)),
 
     dict(fid="fig-w8-image-zones", page=SI, loc=r'What AI Can Genuinely Help With', mode="after_p",
-         cap="AI reads scientific images well for description and trends — but not for pulling exact numbers off axes. CharXiv: 47% AI vs 80% human on real charts.",
+         cap="AI reads scientific images well for description and trends, but not for pulling exact numbers off axes. CharXiv: 47% AI vs 80% human on real charts.",
          svg=D.columns([
              dict(title="Reliable: describe", kind='good', lines=["Alt text and captions", "Qualitative trends", "Visual comparison", "Spotting obvious features"]),
              dict(title="Unreliable: extract values", kind='bad', lines=["Exact numbers off axes", "Reading chart geometry", "Precise measurements", "Reasoning about scale"]),

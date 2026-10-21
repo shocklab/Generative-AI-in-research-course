@@ -9,7 +9,7 @@ BW = "content/week-7/Building Your Data Analysis Workflow.html"
 
 FIGS = [
     dict(fid="fig-w7-vibe-coding", page=NL, loc=r'Vibe Coding', mode="after_p",
-         cap="Vibe coding is fine for prototypes and play, dangerous for anything you'll report — a scientific error survives autonomous iteration even when the code runs.",
+         cap="Vibe coding is fine for prototypes and play, dangerous for anything you'll report: a scientific error survives autonomous iteration even when the code runs.",
          svg=D.columns([
              dict(title="Safe to vibe-code", kind='good', lines=["Prototypes and exploration", "Throwaway utility scripts", "Learning and play", "Nothing you will report"]),
              dict(title="Dangerous to vibe-code", kind='bad', lines=["Analysis you will publish", "Results that inform policy", "Complex pipelines", "Anything reproducibility-critical"]),
@@ -17,7 +17,7 @@ FIGS = [
             "Two columns contrasting safe contexts for vibe coding with dangerous ones.")),
 
     dict(fid="fig-w7-silent-errors", page=DA, loc=r'Silent Error Problem', mode="after_p",
-         cap="Six 'silent' errors that produce clean output with no warning — each needs a deliberate check, because the code runs fine either way.",
+         cap="Six 'silent' errors that produce clean output with no warning: each needs a deliberate check, because the code runs fine either way.",
          svg=D.matrix(["What goes wrong", "How to catch it"], [
              ("Wrong variable", ["AI uses the wrong column", "Check it picked the right variable"]),
              ("Off-by-one (time series)", ["Shifted by one period", "Spot-check dates against rows"]),
@@ -30,7 +30,7 @@ FIGS = [
             label_w=168)),
 
     dict(fid="fig-w7-conv-vs-agentic", page=AG, loc=r'From Conversation to Agency', mode="after_p",
-         cap="Conversational AI answers one prompt at a time; an agent reads files, runs code, and iterates on its own — which is why oversight moves to checkpoints.",
+         cap="Conversational AI answers one prompt at a time; an agent reads files, runs code, and iterates on its own, which is why oversight moves to checkpoints.",
          svg=D.columns([
              dict(title="Conversational", kind='alt', lines=["You paste, it responds", "You run the code", "One step at a time", "You see every move"]),
              dict(title="Agentic", kind='accent', lines=["It reads files and runs code", "It fixes errors and iterates", "Many steps between check-ins", "You review at checkpoints"]),
@@ -38,7 +38,7 @@ FIGS = [
             "Two interaction styles compared: step-by-step conversation versus an autonomous agent loop.")),
 
     dict(fid="fig-w7-reliability", page=AG, loc=r'The Reliability Mathematics', mode="after_p",
-         cap="Why agentic pipelines need human checkpoints: even at 90% reliability per step, end-to-end success collapses — about 35% over 10 steps, 12% over 20.",
+         cap="Why agentic pipelines need human checkpoints: even at 90% reliability per step, end-to-end success collapses: about 35% over 10 steps, 12% over 20.",
          svg=D.linechart([
              dict(label="", color="#9a2f2f",
                   pts=[(0.0, 0.90), (0.053, 0.81), (0.105, 0.729), (0.211, 0.59), (0.316, 0.478),
@@ -52,7 +52,7 @@ FIGS = [
             note="At 90% reliability per step, a 20-step pipeline finishes correctly about 12% of the time.")),
 
     dict(fid="fig-w7-workflow", page=BW, loc=r'Principled Data Analysis Workflow', mode="after_p",
-         cap="A principled data-analysis workflow — AI assists with analysis and verification; defining the question and interpreting results stay yours.",
+         cap="A principled data-analysis workflow: AI assists with analysis and verification; defining the question and interpreting results stay yours.",
          svg=D.vflow([
              ("1 · Define the question clearly", 'accent'),
              ("2 · Prepare and understand your data", 'accent'),
