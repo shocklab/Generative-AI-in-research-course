@@ -6,7 +6,7 @@ CAP = "content/week-12/Synthesis and the Integrative Capstone.html"
 
 FIGS = [
     dict(fid="fig-w12-disposition", page=CAP, loc=r'Course in One Disposition', mode="after_p",
-         cap="The whole course in one disposition — four moves that repeat on any claim: go to the source, read for its limits, calibrate, and decide where you stand before you reach for tools.",
+         cap="The whole course in one disposition: four moves that repeat on any claim: go to the source, read for its limits, calibrate, and decide where you stand before you reach for tools.",
          svg=D.cycle([
              dict(title="Pull the primary source", sub="go to the original"),
              dict(title="Read for limitations", sub="not just the claim"),
@@ -18,7 +18,7 @@ FIGS = [
             center_kind='accent', arrow='#2a5298')),
 
     dict(fid="fig-w12-pitch", page=CAP, loc=r'The Structured Pitch', mode="after_p",
-         cap="The 600-word capstone pitch in six prompts — and how each one pulls a specific thread from across the twelve weeks.",
+         cap="The 600-word capstone pitch in six prompts, and how each one pulls a specific thread from across the twelve weeks.",
          svg=D.matrix(["What it asks for", "Draws on"], [
              ("1 · Research question", ["one plain-language question", "the whole project"]),
              ("2 · AI tools & stages", ["which tools, which stages, why", "Weeks 5–8, 10"]),

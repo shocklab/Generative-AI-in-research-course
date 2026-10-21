@@ -18,7 +18,7 @@ FIGS = [
             "Three buckets for sorting AI-in-science claims by how well the evidence supports them.")),
 
     dict(fid="fig-w11-five-layers", page=SOV, loc=r'Five-Layer', mode="after_p",
-         cap="The five layers of AI capacity, from the compute floor up — the course's map for the African half of the week. Compute comes first because everything rests on it.",
+         cap="The five layers of AI capacity, from the compute floor up: the course's map for the African half of the week. Compute comes first because everything rests on it.",
          svg=D.vflow([
              ("Compute — GPUs, data centres, power (the floor)", 'accent'),
              ("Data — corpora, domain data, governance", 'accent'),
@@ -29,7 +29,7 @@ FIGS = [
             "A stack of five capacity layers from compute at the floor up through data, models, policy, and talent.")),
 
     dict(fid="fig-w11-lineage", page=DAT, loc=r'Global Indigenous', mode="after_p",
-         cap="African data-sovereignty work sits inside a longer Indigenous lineage — from the Māori Kaitiakitanga licence, through the CARE Principles drafted in Gaborone, to the Esethu Framework.",
+         cap="African data-sovereignty work sits inside a longer Indigenous lineage: from the Māori Kaitiakitanga licence, through the CARE Principles drafted in Gaborone, to the Esethu Framework.",
          svg=D.vtimeline([
              ("Kaitiakitanga licence — Te Hiku, Aotearoa", [("Māori guardianship of language data", 'accent')]),
              ("CARE Principles — Gaborone, 2018", [("Indigenous data governance, globally", 'accent')]),
@@ -38,7 +38,7 @@ FIGS = [
             "A three-step lineage from the Kaitiakitanga licence through the CARE Principles to the Esethu Framework.")),
 
     dict(fid="fig-w11-models", page=DAT, loc=r'African Foundation-Model Inventory', mode="after_p",
-         cap="A snapshot of the African foundation-model inventory — encoders, from-scratch decoders, adapted Llama models, and named-language models.",
+         cap="A snapshot of the African foundation-model inventory: encoders, from-scratch decoders, adapted Llama models, and named-language models.",
          svg=D.matrix(["Examples", "What they do"], [
              ("Encoders", ["AfriBERTa, AfroXLMR, Serengeti", "understand and classify text"]),
              ("From-scratch decoders", ["InkubaLM, MzansiLM", "generate text, built ground-up"]),
@@ -49,7 +49,7 @@ FIGS = [
             label_w=158)),
 
     dict(fid="fig-w11-strategy", page=POL, loc=r'Strategy Landscape', mode="after_p",
-         cap="African AI policy, calibrated: most countries have strategies but few have binding law — and South Africa stands out for withdrawing its draft.",
+         cap="African AI policy, calibrated: most countries have strategies but few have binding law, and South Africa stands out for withdrawing its draft.",
          svg=D.matrix(["Where they stand (2026)", "Key point"], [
              ("South Africa", ["Draft policy withdrawn", "the standout reversal, April 2026"]),
              ("Nigeria", ["Revised strategy, Sept 2025", "N-ATLAS model shipped"]),
