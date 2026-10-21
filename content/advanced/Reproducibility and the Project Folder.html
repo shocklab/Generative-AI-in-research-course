@@ -423,7 +423,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>Lesson&nbsp;A was about driving the tool. Lesson&nbsp;B is the reason the whole track exists: using Claude Code to make your research genuinely <em>reproducible</em>, the kind of work a stranger, or you in two years, can open up, inspect, and repeat.</p>
     <p>This first page draws the distinction that the rest of the lesson hangs on: reproducibility is not the same as verification, and the two demand different things. Then it lays out the structure that makes reproducibility possible, the project folder as the unit of trustworthy research, and gives you a scaffold you can copy for your own work.</p>
-    <p>The two pages that follow turn that structure into practice: a <code>CLAUDE.md</code> that enforces good habits, pre-registration, and reusable Skills (B.2); then a full worked analysis from messy data to a reproducible result, how to verify it, and how the folder itself becomes your disclosure (B.3).</p>
+    <p>The two pages that follow turn that structure into practice: a <code>CLAUDE.md</code> that sets out good habits, pre-registration, and reusable Skills (B.2); then a full worked analysis from messy data to a reproducible result, how to verify it, and how the folder itself becomes your disclosure (B.3).</p>
   </div>
 
   <h2 class="section-title">&#9878;&#65039; Reproducibility Is Not Verification</h2>
@@ -461,7 +461,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="card-grid">
     <div class="card">
       <h3>data/raw/ &mdash; never edited</h3>
-      <p>The original data, treated as immutable. Cleaning produces <em>new</em> files in <code>data/processed/</code>; the raw stays untouched so the whole chain can always be rebuilt from the source. The <code>CLAUDE.md</code> will forbid the agent from editing anything in here.</p>
+      <p>The original data, treated as immutable. Cleaning produces <em>new</em> files in <code>data/processed/</code>; the raw stays untouched so the whole chain can always be rebuilt from the source. The <code>CLAUDE.md</code> tells the agent never to edit anything here, and a setup step makes the files read-only.</p>
     </div>
     <div class="card">
       <h3>scripts/ &mdash; the method, preserved</h3>

@@ -383,7 +383,7 @@
 <td><strong>AI video generation (5 seconds)</strong></td>
 <td>~3.4 MJ (~944 Wh)</td>
 <td>About 1 hour of microwave use</td>
-<td>MIT Technology Review, 2025; ~700× image cost</td>
+<td>MIT Technology Review, 2025; about 200–500× the image figure above</td>
 </tr>
 </tbody>
 </table>
@@ -445,7 +445,7 @@
 </div>
 <div class="technical-detail">
 <h4>🔢 The Calculation Ledger: Every Input and Its Source</h4>
-<p style="margin-bottom: 15px;">To estimate the footprint of a working day with an agentic tool, we need three quantities, each with a central value, a range, and a source. (How many calls make up a working day is a separate scenario assumption, stated below the table.)</p>
+<p style="margin-bottom: 15px;">To estimate the footprint of a working day with an agentic tool, we need three quantities, each with a central value, a range, and a source. (How many tasks make up a working day is a separate scenario assumption, stated below the table.)</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -481,7 +481,7 @@
 </div>
 <div class="technical-detail">
 <h4>📊 Putting the Inputs Together: A Day on <code>high</code> Effort</h4>
-<p style="margin-bottom: 15px;">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive calls</strong> rather than quick one-shot lookups, which cost far less. We hold the per-call energy (A) near its ~3 Wh midpoint and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 1–8 Wh band as well would widen these numbers further in both directions.)</p>
+<p style="margin-bottom: 15px;">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive tasks</strong> rather than quick one-shot lookups, which cost far less. We hold the per-call energy (A) near its ~3 Wh midpoint and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 1–8 Wh band as well would widen these numbers further in both directions.)</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -531,7 +531,7 @@
 </div>
 <div class="warning-box">
 <h4>⚠️ The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h4>
-<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~5 kWh day, that puts a heavy max-effort day in the region of <strong>15–50 kWh</strong>, or roughly <strong>tens to over 150 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive calls; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
+<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~5 kWh day, that puts a heavy max-effort day in the region of <strong>15–50 kWh</strong>, or roughly <strong>tens to over 150 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive tasks; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
 </div>
 <div class="highlight-box">
 <h3>💡 <span style="color: #ffffff;">What This Means for You as a Researcher</span></h3>
@@ -606,7 +606,7 @@
 </ul>
 <p style="margin-top: 12px;"><strong>Step 2 &mdash; Calculation:</strong> If AI&rsquo;s electricity were at average grid carbon intensity, AI&rsquo;s share of energy-related CO<sub>2</sub> &asymp; 0.5% &times; 40% &asymp; <strong>0.2%</strong>. AI loads are concentrated in the US (gas-heavy) and China (coal-heavy), pushing intensity above average; the largest operators&rsquo; renewable and nuclear procurement pulls below it (though annual matching overstates hourly cleanliness). Net plausible range: <strong>0.2&ndash;0.4% of energy-related CO<sub>2</sub></strong>, or roughly <strong>0.15&ndash;0.35% of total CO<sub>2</sub> / GHG</strong> depending on denominator.</p>
 <p style="margin-top: 12px;"><strong>Step 3 &mdash; The aviation benchmark.</strong> Aviation accounted for <strong>2.5% of global energy-related CO<sub>2</sub> in 2023 (&asymp; 950 Mt)</strong> &mdash; IEA, <em><a href="https://www.iea.org/energy-system/transport/aviation" target="_blank" rel="noopener">Aviation</a></em>. Passenger flights are &asymp; 81% of that and freight &asymp; 19%, so passenger aviation &asymp; <strong>2% of global CO<sub>2</sub></strong>.</p>
-<p style="margin-top: 12px;"><strong>Headline:</strong> Passenger air travel emits roughly <strong>6&ndash;10&times; what AI does operationally</strong> right now. AI is around a tenth to a fifth of aviation&rsquo;s footprint at the system level.</p>
+<p style="margin-top: 12px;"><strong>Headline:</strong> Passenger air travel emits roughly <strong>5&ndash;10&times; what AI does operationally</strong> right now. AI is around a tenth to a fifth of aviation&rsquo;s footprint at the system level.</p>
 </div>
 <p style="font-size: 1.05em; line-height: 1.75; margin-top: 25px;">Two caveats sharpen the comparison further:</p>
 <ul style="font-size: 1.05em; line-height: 1.75; margin-left: 25px;">

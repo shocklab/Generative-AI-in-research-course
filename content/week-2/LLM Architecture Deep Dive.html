@@ -499,7 +499,7 @@
 <ul class="styled-list">
 <li><strong>RoPE (Rotary Position Embedding):</strong> Rotate Q and K vectors based on position; used in LLaMA, Mistral, GPT-NeoX</li>
 <li><strong>ALiBi (Attention with Linear Biases):</strong> Add bias to attention scores based on distance; used in BLOOM, MPT</li>
-<li><strong>Length extrapolation:</strong> Can handle sequences longer than training context</li>
+<li><strong>Length extrapolation:</strong> Can be extended to sequences longer than the training context, though RoPE models usually need extra methods such as position interpolation</li>
 <li><strong>Better generalization:</strong> Understands "distance" concept rather than memorizing positions</li>
 </ul>
 </div>
@@ -509,7 +509,7 @@
 <p>RoPE (Rotary Position Embedding) has become the standard for new LLMs because it:</p>
 <ul class="styled-list" style="margin-top: 10px;">
 <li>Encodes relative positions naturally through rotation in complex space</li>
-<li>Allows models to extrapolate to longer contexts than seen in training</li>
+<li>Can be extended to longer contexts than seen in training, using position scaling (<a href="https://arxiv.org/abs/2306.15595" target="_blank" rel="noopener">interpolation</a>) and a short fine-tune</li>
 <li>Maintains computational efficiency (applied during Q/K computation)</li>
 <li>Empirically outperforms alternatives on long-context tasks</li>
 </ul>
@@ -547,7 +547,7 @@
 <ul class="styled-list">
 <li><strong>Massive parameter count:</strong> 100B+ total parameters with only 10-20B active per token</li>
 <li><strong>Inference efficiency:</strong> Computational cost based on active parameters, not total</li>
-<li><strong>Specialization:</strong> Different experts can learn different domains/patterns</li>
+<li><strong>Specialisation:</strong> experts tend to divide up token-level patterns such as syntax rather than subjects; <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">in Mixtral</a>, biology, philosophy and arXiv text used much the same experts</li>
 <li><strong>Scaling:</strong> Add more experts without proportional compute increase</li>
 </ul>
 </div>
@@ -606,7 +606,7 @@
 <div class="card">
 <h3>Dense vs. Sparse Architectures</h3>
 <ul class="styled-list">
-<li><strong>Dense models:</strong> All parameters active for every input (GPT-3, Claude, LLaMA 2)</li>
+<li><strong>Dense models:</strong> All parameters active for every input (GPT-3, LLaMA 2)</li>
 <li><strong>Sparse models (MoE):</strong> Subset of parameters active per input (Mixtral, DeepSeek-V3, Switch Transformer)</li>
 <li><strong>Trade-off:</strong> Sparse models offer better parameter efficiency but increased training complexity</li>
 <li><strong>Trend:</strong> Major labs moving toward sparse architectures for flagship models</li>
@@ -693,7 +693,7 @@
 <ul class="styled-list" style="margin-top: 15px;">
 <li><strong>Transformer fundamentals:</strong> Decoder-only architecture, layer structure, residual connections</li>
 <li><strong>Attention mechanisms:</strong> Self-attention, multi-head variants (MHA/MQA/GQA), how tokens learn relevance</li>
-<li><strong>Positional encoding:</strong> RoPE and ALiBi enable models to understand sequence order and extrapolate length</li>
+<li><strong>Positional encoding:</strong> RoPE and ALiBi let models represent sequence order; running beyond the training length usually needs extra methods such as position interpolation</li>
 <li><strong>Mixture of Experts:</strong> Sparse activation allows massive models with efficient inference</li>
 <li><strong>Scale considerations:</strong> Bigger isn't always better; match model to task, consider active vs. total parameters</li>
 </ul>

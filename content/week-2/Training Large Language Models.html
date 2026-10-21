@@ -529,7 +529,7 @@
 </div>
 <div class="resource-placeholder">
 <h4>📹 ChatGPT 5.2 explanation of the Adam Optimizer and Learning Rate Scheduling</h4>
-<p><a href="https://chatgpt.com/share/69a04d7a-ce78-800f-9437-2f58d578b575" target="_blank" rel="noopener">Here</a> you will find the explanation that I got to the above using ChatGPT 5.2. I have a very specific preprompt that I use (shared in the course discussion forum on Amathuba). Try the same prompt in different AIs and see how good, or bad, each one is.</p>
+<p><a href="https://chatgpt.com/share/69a04d7a-ce78-800f-9437-2f58d578b575" target="_blank" rel="noopener">Here</a> you will find the explanation that I got to the above using ChatGPT 5.2. I have a very specific preprompt that I use. Try the same prompt in different AIs and see how good, or bad, each one is.</p>
 </div>
 <!-- SECTION 4: COMPUTE REQUIREMENTS -->
 <h2 class="section-title">💰 Computational Resources &amp; Costs</h2>
@@ -556,7 +556,7 @@
 <th>Parameters</th>
 <th>Training Tokens</th>
 <th>Compute (FLOPs)</th>
-<th>GPU-Days (A100)</th>
+<th>GPU-Days (A100 at full peak speed)</th>
 <th>Estimated Cost</th>
 </tr>
 </thead>
@@ -585,17 +585,9 @@
 <td>~5,000,000</td>
 <td>~$100M+</td>
 </tr>
-<tr>
-<td><strong>Claude Opus 4.5 (speculative dense equivalent)</strong></td>
-<td>~500B (unconfirmed)</td>
-<td>~10T (unconfirmed)</td>
-<td>~3 × 10²⁵</td>
-<td>~1,100,000</td>
-<td>~$50–70M</td>
-</tr>
 </tbody>
 </table>
-<p style="margin-top: 15px; color: #666;"><strong>Note:</strong> These are rough estimates. Modern frontier models may use Mixture-of-Experts (MoE), where “parameters” and “active compute per token” diverge. Costs also depend on utilization, restarts, networking overheads, and whether compute is rented or owned.</p>
+<p style="margin-top: 15px; color: #666;"><strong>Note:</strong> These are rough estimates. Modern frontier models may use Mixture-of-Experts (MoE), where “parameters” and “active compute per token” diverge. Costs also depend on utilization, restarts, networking overheads, and whether compute is rented or owned. GPU-days assume each A100 runs at its <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/" target="_blank" rel="noopener">312 TFLOPS peak</a> without stopping. Real runs are slower: <a href="https://huggingface.co/meta-llama/Llama-2-70b-hf" target="_blank" rel="noopener">Meta reports 1,720,320 A100 GPU-hours</a> (71,680 GPU-days) for LLaMA 2 70B, about 2.3 times the figure here.</p>
 </div>
 <div class="card-grid">
 <div class="card">
