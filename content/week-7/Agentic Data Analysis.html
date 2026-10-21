@@ -341,7 +341,7 @@
 
 <div class="technical-detail">
 <h4>Claude Code: The Current Capability Ceiling</h4>
-<p>Claude Code is currently the most capable agentic coding tool for research use. In practical terms, it can:</p>
+<p>As of May 2026, Claude Code was among the most capable agentic coding tools for research use. In practical terms, it can:</p>
 <ul class="styled-list">
 <li><strong>Read entire project structures:</strong> It understands multi-file dependencies. You can point it at a project directory and it will orient itself before writing a single line.</li>
 <li><strong>Execute and iterate autonomously:</strong> It runs code, sees the results, fixes errors, and continues, without you prompting it after each step. As of early 2026, median task durations have reached over 45 minutes, with some sessions running autonomously for hours.</li>
@@ -356,12 +356,12 @@
 <h3>Also in the Ecosystem</h3>
 <p><strong>Codex (OpenAI)</strong>: Claude Code's primary commercial competitor, launched as a dedicated agent in April 2025. Terminal-based, file-reading, open-source CLI. Tightly integrated with the OpenAI ecosystem.</p>
 <p><strong>Gemini CLI (Google)</strong>: Open-source terminal agent released June 2025. Strong Google Cloud integration; supports MCP. Useful if your data lives in Google infrastructure.</p>
-<p><strong>Open Interpreter</strong>: Open-source, runs fully locally. Your data never leaves your machine, which makes it relevant for sensitive research data that cannot be sent to a cloud provider.</p>
+<p><strong>Open Interpreter</strong>: Open-source terminal agent that runs code on your machine and <a href="https://www.openinterpreter.com/docs/terminal/providers" target="_blank" rel="noopener">works with hosted or local models</a>. Only with a local model (for example through Ollama or LM Studio) does your data stay on your machine; with a hosted model it goes to that provider. Check this before using it on sensitive research data.</p>
 </div>
 <div class="card">
 <h3>The Research Frontier</h3>
 <p>The most ambitious demonstration of agentic research capability is the <strong>Sakana AI Scientist</strong>. Version 2 (2025) automates the entire research lifecycle: idea generation, code writing, experiment execution, result analysis, and paper writing. Sakana reported a cost of less than $15 per paper for the first version (2024); the Version 2 paper gives no per-paper cost.</p>
-<p>One AI Scientist paper achieved peer-review acceptance at an ICLR 2025 workshop; the system description was published in <em>Nature</em>. A 2026 <em>Nature</em> editorial noted that "AI scientists are changing research &mdash; institutions, funders and publishers must respond." This is not an endorsement: critical evaluations identify serious weaknesses in literature synthesis and novelty assessment. But it marks the direction of travel.</p>
+<p>One AI Scientist paper achieved peer-review acceptance at an ICLR 2025 workshop (one of three submitted, withdrawn after review as agreed in advance); the system description was published in <em>Nature</em>. A 2026 <em>Nature</em> editorial noted that "AI scientists are changing research &mdash; institutions, funders and publishers must respond." This is not an endorsement: critical evaluations identify serious weaknesses in literature synthesis and novelty assessment. But it marks the direction of travel.</p>
 </div>
 </div>
 
@@ -386,8 +386,7 @@
 <tr><th>Category</th><th>MCP Servers</th><th>Research Use Case</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Filesystem</strong></td><td>Official Filesystem server</td><td>Agent reads your data files, writes output, navigates project structure directly</td></tr>
-<tr><td><strong>Databases</strong></td><td>PostgreSQL, SQLite, MySQL, MongoDB</td><td>Agent queries your research database, runs analysis directly on stored data</td></tr>
+<tr><td><strong>Databases</strong></td><td>Community-maintained servers for most databases; check who maintains one before connecting it</td><td>Agent queries your research database, runs analysis directly on stored data</td></tr>
 <tr><td><strong>Cloud storage</strong></td><td>Google Cloud (BigQuery, Cloud SQL)</td><td>Large datasets in cloud infrastructure; agent runs queries without downloading</td></tr>
 <tr><td><strong>Version control</strong></td><td>Git server</td><td>Agent reads code history, understands project evolution, makes commits</td></tr>
 <tr><td><strong>Semantic search</strong></td><td>Chroma MCP</td><td>Vector database for finding relevant documents or past analyses</td></tr>
@@ -397,7 +396,7 @@
 
 <div class="info-box">
 <h4>&#128204; You Do Not Need to Understand MCP Deeply to Use It</h4>
-<p>MCP configuration typically involves adding a few lines to a JSON settings file that tell Claude Code which servers to connect to and with what permissions. For filesystem access, the most common research use case, the setup takes about five minutes. The official MCP server repository at <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">github.com/modelcontextprotocol/servers</a> provides ready-made configurations for all major data systems. You do not need to build or maintain anything; you are connecting to existing infrastructure.</p>
+<p>Claude Code already reads and writes the files in your project folder, so it needs no MCP server for that. MCP is for reaching systems outside the folder, such as a database or a reference manager. You add a server with the <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener"><code>claude mcp add</code> command</a>, or with an entry in a <code>.mcp.json</code> file in the project folder. The repository at <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">github.com/modelcontextprotocol/servers</a> keeps a small set of reference servers and links to servers maintained by companies and the community. You do not need to build or maintain anything; you are connecting to existing infrastructure.</p>
 </div>
 
 <!-- SECTION 4: CLAUDE.md -->
@@ -428,7 +427,7 @@
 <span class="key"># Analysis Conventions</span>
 <span class="value">- Use Mann-Whitney U (not t-test) for Likert-scale outcomes</span>
 <span class="value">- Apply Bonferroni correction when running multiple comparisons</span>
-<span class="value">- Effect sizes: report Cohen's d alongside p-values</span>
+<span class="value">- Effect sizes: report the rank-biserial correlation with Mann-Whitney U, and Cohen's d with any t-test</span>
 <span class="value">- Figures: colourblind-safe palette (Okabe-Ito), export as PDF</span>
 
 <span class="key"># Things to NEVER do</span>
@@ -489,7 +488,7 @@
 
 <p style="text-align: center; margin: 20px 0; font-size: 1.1em; color: #2a5298;"><strong>0.9 &times; 0.9 &times; 0.9 &times; 0.9 &times; 0.9 = 59% end-to-end reliability</strong></p>
 <p>For a 10-step pipeline: <strong>35%</strong>. For 20 steps: <strong>12%</strong>.</p>
-<p style="margin-top: 15px;">This is a structural property of sequential processes, and it does not matter how capable the individual steps are. It is why long autonomous agentic pipelines need human checkpoints. The issue is not that AI tools are unreliable; it is that probabilities compound.</p>
+<p style="margin-top: 15px;">At 99% per step, a 20-step pipeline succeeds about 82% of the time, so the longer the pipeline, the more per-step accuracy matters. These figures assume errors are independent and that none is caught. Human checkpoints are there to catch an error before later steps use its output.</p>
 </div>
 
 <div class="card-grid">
@@ -598,7 +597,7 @@
 <p><strong>Oversight is mathematics, not distrust.</strong> The reliability degradation in sequential pipelines makes checkpoints a structural requirement for any serious multi-step agentic analysis. Review the plan before execution, require decision logs, and verify outputs rather than just completion.</p>
 <p><strong>Agentic tools reward project structure.</strong> The setup cost is real, but it pays off across repeated use. The researchers who benefit most from agentic tools are those who treat project organisation as a first-class research activity.</p>
 <p><strong>The judgment is still yours.</strong> Agentic tools can execute a pre-specified analysis faster and more consistently than you can by hand. They cannot decide what question to ask, whether a result is scientifically meaningful, or how to handle a finding that contradicts your expectations. The frontier has moved, but the researcher has not been replaced. The researcher has been given a more capable collaborator.</p>
-<p><strong>Next session:</strong> Sub-Lesson 7 brings together the full week with hands-on activities. You will practice both conversational and agentic workflows on real data, compare the results, and complete the weekly assessment.</p>
+<p><strong>Next session:</strong> Sub-Lesson 7 brings together the full week with hands-on activities. You will practise AI-assisted analysis on real data and complete the weekly assessment.</p>
 </div>
 
 </div>

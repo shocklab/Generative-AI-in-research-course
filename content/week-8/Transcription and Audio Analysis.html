@@ -109,7 +109,7 @@
       <tr>
         <td><strong>Whisper large-v3 (OpenAI)</strong></td>
         <td>Open-source</td>
-        <td>~2.0% WER (clean audio)</td>
+        <td>~2% WER (clean read speech)</td>
         <td>Free, local, widely supported</td>
         <td>Free</td>
       </tr>
@@ -164,9 +164,9 @@
   <div class="technical-detail">
     <h4>&#128270; Understanding Word Error Rate (WER)</h4>
     <p style="color:#555; line-height:1.8; margin-bottom:15px;"><strong>WER (Word Error Rate)</strong> is the standard metric for transcription accuracy. A 10% WER means 1 in every 10 words is incorrect. For a 1-hour interview of approximately 8,000 words, a 10% WER represents around 800 errors. For academic research, a 10% error rate means every transcript requires careful human review before coding or analysis. The metric combines substitutions (wrong word), deletions (dropped word), and insertions (invented word) into a single number.</p>
-<figure id="fig-w8-wer" class="diagram"><svg width="100%" viewBox="0 0 680 200" role="img" xmlns="http://www.w3.org/2000/svg"><title>Word error rate across audio conditions</title><desc>A bar chart of word error rate rising from clean read speech to untuned African-language transcription.</desc><rect x="1" y="1" width="678" height="198" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><line x1="308" y1="38" x2="308" y2="164" stroke="#9a2f2f" stroke-width="1.5" stroke-dasharray="4 4"/><text x="184" y="63" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Clean read speech</text><rect x="200" y="49" width="22" height="19" rx="4" fill="#e7efe8" stroke="#8fb09a"/><text x="229.54963680387408" y="63" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#2c6e3f" font-weight="500">2.0%</text><text x="184" y="93" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Meeting audio</text><rect x="200" y="79" width="124" height="19" rx="4" fill="#f7efe0" stroke="#cdab6a"/><text x="331.91041162227606" y="93" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#7c5c12" font-weight="500">11.5%</text><text x="184" y="123" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Telephony</text><rect x="200" y="109" width="191" height="19" rx="4" fill="#f7efe0" stroke="#cdab6a"/><text x="398.7142857142857" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#7c5c12" font-weight="500">17.7%</text><text x="184" y="153" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">isiZulu, untuned</text><rect x="200" y="139" width="302" height="19" rx="4" fill="#f3e3df" stroke="#c08a82"/><text x="509.6949152542373" y="153" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#9a2f2f" font-weight="500">28.0%</text><text x="307.74818401937046" y="180" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#9a2f2f" font-style="italic">≈10%: review needed</text></svg><figcaption>Word error rate jumps off clean read speech — meetings, phone audio, and untuned African-language models all cross the line where every transcript needs human review.</figcaption></figure>
+<figure id="fig-w8-wer" class="diagram"><svg width="100%" viewBox="0 0 680 200" role="img" xmlns="http://www.w3.org/2000/svg"><title>Word error rate across audio conditions</title><desc>A bar chart of word error rate rising from clean read speech to lightly fine-tuned African-language transcription.</desc><rect x="1" y="1" width="678" height="198" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><line x1="308" y1="38" x2="308" y2="164" stroke="#9a2f2f" stroke-width="1.5" stroke-dasharray="4 4"/><text x="184" y="63" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Clean read speech</text><rect x="200" y="49" width="22" height="19" rx="4" fill="#e7efe8" stroke="#8fb09a"/><text x="229.54963680387408" y="63" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#2c6e3f" font-weight="500">~2%</text><text x="184" y="93" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Meeting audio</text><rect x="200" y="79" width="124" height="19" rx="4" fill="#f7efe0" stroke="#cdab6a"/><text x="331.91041162227606" y="93" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#7c5c12" font-weight="500">~10–15%</text><text x="184" y="123" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Telephony</text><rect x="200" y="109" width="191" height="19" rx="4" fill="#f7efe0" stroke="#cdab6a"/><text x="398.7142857142857" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#7c5c12" font-weight="500">~15–20%</text><text x="184" y="153" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">isiZulu, 1 h fine-tuned</text><rect x="200" y="139" width="302" height="19" rx="4" fill="#f3e3df" stroke="#c08a82"/><text x="509.6949152542373" y="153" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#9a2f2f" font-weight="500">28.0%</text><text x="307.74818401937046" y="180" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#9a2f2f" font-style="italic">≈10%: review needed</text></svg><figcaption>Word error rate rises above clean read speech: meetings, phone audio, and isiZulu with only one hour of fine-tuning all cross the line where every transcript needs human review.</figcaption></figure>
 
-    <p style="color:#555; line-height:1.8; margin-bottom:10px;">Whisper large-v3 performance across audio conditions (recent benchmarks):</p>
+    <p style="color:#555; line-height:1.8; margin-bottom:10px;">Typical Whisper large-v3 word error rates by audio condition (indicative ranges from secondary benchmark compilations; your own recordings will differ):</p>
     <table class="wer-table">
       <thead>
         <tr>
@@ -178,22 +178,22 @@
       <tbody>
         <tr>
           <td>Clean read speech (LibriSpeech test-clean)</td>
-          <td><strong>~2.0%</strong></td>
-          <td>Impressively accurate; ~1 error per 50 words</td>
+          <td><strong>~1.5&ndash;3%</strong></td>
+          <td>Impressively accurate; ~1 error per 33&ndash;67 words</td>
         </tr>
         <tr>
           <td>Real-world mixed audio</td>
-          <td><strong>7.88&ndash;11.46%</strong></td>
-          <td>Requires review; ~1 error per 9&ndash;13 words</td>
+          <td><strong>~8&ndash;12%</strong></td>
+          <td>Requires review; ~1 error per 8&ndash;12 words</td>
         </tr>
         <tr>
           <td>Meeting audio</td>
-          <td><strong>~11.5%</strong></td>
-          <td>Requires careful review; ~1 error per 9 words</td>
+          <td><strong>~10&ndash;15%</strong></td>
+          <td>Requires careful review; ~1 error per 7&ndash;10 words</td>
         </tr>
         <tr>
           <td>Telephony / call centre quality</td>
-          <td><strong>17.7%</strong></td>
+          <td><strong>~15&ndash;20%</strong></td>
           <td>Substantial errors; manual re-transcription often faster</td>
         </tr>
         <tr>
@@ -203,7 +203,7 @@
         </tr>
       </tbody>
     </table>
-    <p style="color:#555; line-height:1.8; margin-top:15px;">The &ldquo;clean read speech&rdquo; benchmark (LibriSpeech) represents near-ideal conditions: studio recordings of people reading prepared text aloud. Most research audio is far closer to the &ldquo;real-world mixed audio&rdquo; or &ldquo;meeting audio&rdquo; conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the Whisper large-v3 model card reports approximately 2.0% on clean audio. Neither figure is representative of typical research use.</p>
+    <p style="color:#555; line-height:1.8; margin-top:15px;">The &ldquo;clean read speech&rdquo; benchmark (LibriSpeech) represents near-ideal conditions: studio recordings of people reading prepared text aloud. Most research audio is far closer to the &ldquo;real-world mixed audio&rdquo; or &ldquo;meeting audio&rdquo; conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the <a href="https://huggingface.co/openai/whisper-large-v3" target="_blank" rel="noopener">Whisper large-v3 model card</a> does not give a single clean-audio figure; it reports a 10% to 20% reduction in errors compared with large-v2, and the <a href="https://huggingface.co/spaces/hf-audio/open_asr_leaderboard" target="_blank" rel="noopener">Open ASR Leaderboard</a> reports 1.6% for large-v3 on LibriSpeech test-clean. Neither figure is representative of typical research use.</p>
   </div>
 
   <!-- SECTION 3: TRANSCRIPTION HALLUCINATION -->
@@ -298,7 +298,7 @@
 
   <div class="info-box">
     <h4>&#128161; Practical Guidance for South African Research Contexts</h4>
-    <p>Standard Whisper large-v3 is a reasonable starting point for Afrikaans in quiet, clean recording conditions. For Zulu and Xhosa, especially in the naturalistic, spontaneous speech typical of qualitative interviews, fine-tuned variants or specialist tools (Intron Sahara v2, Lelapa AI) are strongly preferred over standard Whisper. For research that will be published or cited, budget for human verification of all transcripts regardless of the tool used. The performance gap between African languages and major European languages in standard tools is a data problem rather than a fixed property, and it is improving as more labeled audio data becomes available. Check current benchmark leaderboards before beginning a new research project.</p>
+    <p>The <a href="https://arxiv.org/abs/2512.10968" target="_blank" rel="noopener">Nahabwe et al. (2025) benchmark</a> did not test standard Whisper on Afrikaans; if you use it, transcribe a sample of your own clean recordings and check the error rate first. For Zulu and Xhosa, especially in the naturalistic, spontaneous speech typical of qualitative interviews, fine-tuned variants or specialist tools (Intron Sahara v2, Lelapa AI) are strongly preferred over standard Whisper. For research that will be published or cited, budget for human verification of all transcripts regardless of the tool used. The performance gap between African languages and major European languages in standard tools is a data problem rather than a fixed property, and it is improving as more labeled audio data becomes available. Check current benchmark leaderboards before beginning a new research project.</p>
   </div>
 
   <!-- SECTION 5: AI-ASSISTED QUALITATIVE ANALYSIS -->
@@ -309,7 +309,7 @@
   <div class="card-grid">
     <div class="card">
       <h3>&#128187; <a href="https://atlasti.com" target="_blank" rel="noopener">ATLAS.ti</a> (Lumivero)</h3>
-      <p>The most AI-integrated qualitative data analysis tool currently available. Includes AI transcription, AI-suggested codes, AI-generated summaries, and conversational querying across your document corpus.</p>
+      <p>A qualitative data analysis package with many built-in AI features (as of May 2026). Includes AI transcription, AI-suggested codes, AI-generated summaries, and conversational querying across your document corpus.</p>
       <ul class="styled-list">
         <li>AI coding suggestions are a starting point, not a final answer</li>
         <li>They reflect statistical patterns in your documents, not your theoretical framework</li>
@@ -414,7 +414,7 @@
   <!-- SUMMARY -->
   <div class="highlight-box">
     <h3>&#9989; Sub-Lesson 4 Summary</h3>
-    <p><strong>Accuracy landscape:</strong> Whisper large-v3 achieves approximately 2.0% WER on clean read speech but 11.5%+ on meeting audio. Real research audio is rarely clean. Always treat headline accuracy figures with caution.</p>
+    <p><strong>Accuracy landscape:</strong> Whisper large-v3 achieves about 2% WER on clean read speech but 10% or more on meeting audio. Real research audio is rarely clean. Always treat headline accuracy figures with caution.</p>
     <p><strong>Transcription hallucination:</strong> Documented across multiple studies. Informal testing found hallucinations in approximately 80% of public meeting transcriptions; Koenecke et al. (FAccT 2024) found that 38% of the hallucinations in transcriptions of AphasiaBank research interviews involved explicit harms. Invented sentences, fabricated proper nouns, and dropped content are all real failure modes. Every transcript used in research requires human verification against the original audio.</p>
     <p><strong>African language tools:</strong> In the Nahabwe et al. (2025) benchmark, a W2v-BERT speech model fine-tuned on one hour of audio had word error rates of 22.7% on Afrikaans, 28.0% on Zulu and 27.8% on Xhosa, falling to 3.2%, 7.9% and 7.1% with 50 hours of fine-tuning. Whisper (the small model) fine-tuned on the same data went from 26.4%, 33.6% and 33.6% at one hour to 2.1%, 8.2% and 5.9% at 50 hours. The study did not test Whisper without fine-tuning. Intron Sahara v2 and Lelapa AI are specialist tools developed for African language contexts and should be the first consideration for research involving these languages.</p>
     <p><strong>Qualitative analysis software:</strong> ATLAS.ti, NVivo, MAXQDA, and Insight7 all now offer AI coding and summarisation. AI finds passages; you determine what they mean.</p>
