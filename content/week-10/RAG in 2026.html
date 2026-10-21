@@ -347,14 +347,14 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <header>
   <div class="week-badge">Week 10 &bull; Sub-Lesson 4</div>
   <h1>&#128218; <span style="color: #ffffff;">RAG in 2026</span></h1>
-  <p>What changed since Week 5: long context vs retrieval, agentic RAG and Deep Research, evaluating it all, and why the researcher stays in the loop</p>
+  <p>What has changed in RAG since 2023: long context vs retrieval, agentic RAG and Deep Research, evaluating it all, and why the researcher stays in the loop</p>
 </header>
 
 <div class="content">
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>Week 5 introduced retrieval-augmented generation (RAG) as the engine behind the AI literature tools: the technique of fetching relevant documents and feeding them to a model so its answer is grounded in real sources rather than its training data alone. Those tools and that technique are still central. But three things have shifted since Week 5, and this sub-lesson is about all three.</p>
+    <p>Week 5 introduced retrieval-augmented generation (RAG) as the engine behind the AI literature tools: the technique of fetching relevant documents and feeding them to a model so its answer is grounded in real sources rather than its training data alone. Those tools and that technique are still central. But three things have changed since the first RAG literature tools of 2023, and this sub-lesson is about all three.</p>
     <p>First, <strong>long context</strong>: frontier models now routinely accept a million tokens or more, which changes when you need retrieval at all. Second, <strong>agentic RAG</strong>: retrieval has moved from a single fetch-then-answer step to a loop in which the model plans, retrieves, reads, and retrieves again, which is what the Deep Research modes you have heard about are doing. Third, <strong>evaluation</strong>: we now have frameworks for measuring whether a RAG system is any good, though the hardest cases remain open.</p>
     <p>The verdict the lesson builds to: for reading one long document, just use long context; for synthesising across many sources, agentic RAG still wins; and for anything you will cite, the Week 5 verification protocols apply regardless of which method produced the answer. None of this removes the researcher from the loop.</p>
   </div>
@@ -367,7 +367,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h2 class="section-title">&#128220; Change One: Long Context vs Retrieval</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In Week 5, a model&#39;s context window was small enough that you <em>had</em> to retrieve: you could not simply paste a stack of papers in. By 2026, frontier models accept a million tokens or more (the Gemini Pro tier from Week 8 being the standard example), enough for hundreds of pages at once. So a fair question is whether retrieval is still needed at all, or whether you should just dump everything into the context window and ask.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">In 2023, a model&#39;s context window was small enough that you <em>had</em> to retrieve: you could not simply paste a stack of papers in. By 2026, frontier models accept a million tokens or more (the Gemini Pro tier from Week 8 being the standard example), enough for hundreds of pages at once. So a fair question is whether retrieval is still needed at all, or whether you should just dump everything into the context window and ask.</p>
 
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">The most-cited study on this is Li et al. (2024), <em>Retrieval Augmented Generation or Long-Context LLMs?</em> (Google; EMNLP 2024). Their finding, in their words: <em>&ldquo;when resourced sufficiently, [long context] consistently outperforms RAG in terms of average performance. However, RAG&#39;s significantly lower cost remains a distinct advantage.&rdquo;</em> They proposed a hybrid, &ldquo;Self-Route&rdquo;, that routes each query to whichever approach suits it, cutting cost while keeping long-context quality.</p>
 
@@ -467,7 +467,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <ul class="styled-list">
       <li><a href="https://arxiv.org/abs/2501.09136" target="_blank" rel="noopener">Singh, A., Ehtesham, A., Kumar, S., Talaei Khoei, T., &amp; Vasilakos, A. V. (2025). <em>Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG.</em> arXiv:2501.09136</a> &mdash; the canonical agentic-RAG reference.</li>
       <li><a href="https://arxiv.org/abs/2407.16833" target="_blank" rel="noopener">Li, Z., Li, C., Zhang, M., Mei, Q., &amp; Bendersky, M. (2024). <em>Retrieval Augmented Generation or Long-Context LLMs? A Comprehensive Study and Hybrid Approach.</em> arXiv:2407.16833</a> (Google; EMNLP 2024) &mdash; the long-context-vs-RAG trade-off and the Self-Route hybrid. (2024 evidence &mdash; read for shape, not current margins.)</li>
-      <li><a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">Es, S., James, J., Espinosa-Anke, L., &amp; Schockaert, S. (2023). <em>RAGAS: Automated Evaluation of Retrieval Augmented Generation.</em> arXiv:2309.15217</a> &mdash; the RAG evaluation framework; metric definitions at <a href="https://docs.ragas.io/" target="_blank" rel="noopener">docs.ragas.io</a>.</li>
+      <li><a href="https://doi.org/10.18653/v1/2024.eacl-demo.16" target="_blank" rel="noopener">Es, S., James, J., Espinosa-Anke, L., &amp; Schockaert, S. (2024). <em>RAGAs: Automated Evaluation of Retrieval Augmented Generation.</em> Proceedings of EACL 2024: System Demonstrations, 150&ndash;158</a>; preprint <a href="https://arxiv.org/abs/2309.15217" target="_blank" rel="noopener">arXiv:2309.15217</a> (2023) &mdash; the RAG evaluation framework; metric definitions at <a href="https://docs.ragas.io/" target="_blank" rel="noopener">docs.ragas.io</a>.</li>
       <li><a href="https://arxiv.org/abs/2502.15916" target="_blank" rel="noopener">Esethu Framework (Rajab et al., 2025). arXiv:2502.15916</a> &mdash; locally-grounded infrastructure for equitable AI (introduced in Week 4; expanded in Week 11).</li>
     </ul>
   </div>
