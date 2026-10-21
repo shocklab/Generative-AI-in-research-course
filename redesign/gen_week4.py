@@ -9,7 +9,7 @@ AP = "content/week-4/Applying Ethics Case Studies and Your Framework.html"
 
 FIGS = [
     dict(fid="fig-w4-four-lenses", page=FL, loc=r'Applying the Lenses', mode="after_p",
-         cap="One scenario — a thesis discussion rewritten by AI and submitted undisclosed — judged through each of the four lenses. They diverge, which is the point.",
+         cap="One scenario (a thesis discussion rewritten by AI and submitted undisclosed) judged through each of the four lenses. They diverge, which is the point.",
          svg=D.hubspoke(
              dict(title="Rewritten discussion", sub="undisclosed AI, no policy"),
              [dict(title="Consequentialism", sub="trust erodes if hidden"),
@@ -20,7 +20,7 @@ FIGS = [
              "A central scenario judged by consequentialist, deontological, virtue, and Ubuntu lenses, each reaching a different emphasis.")),
 
     dict(fid="fig-w4-rationality", page=UB, loc=r'From Rationality to Relationality', mode="after_p",
-         cap="Mhlambi's argument: Western AI ethics starts from the individual; Ubuntu starts from relationship — and that changes what counts as ethical.",
+         cap="Mhlambi's argument: Western AI ethics starts from the individual; Ubuntu starts from relationship, and that changes what counts as ethical.",
          svg=D.columns([
              dict(title="Cartesian / individual", kind='alt', lines=["'I think, therefore I am'", "Personhood = rational capacity", "Prizes autonomy and rights"]),
              dict(title="Ubuntu / relational", kind='accent', lines=["'I am because we are'", "Personhood through community", "Prizes relationships, the collective"]),
@@ -38,7 +38,7 @@ FIGS = [
             lo="lower risk", hi="misconduct")),
 
     dict(fid="fig-w4-six-steps", page=AP, loc=r'Decision Framework for AI Ethics', mode="after_p",
-         cap="Six steps for reasoning through an AI ethics dilemma — it won't hand you an answer, but it makes sure you've weighed the perspectives before deciding.",
+         cap="Six steps for reasoning through an AI ethics dilemma: it won't hand you an answer, but it makes sure you've weighed the perspectives before deciding.",
          svg=D.vflow([
              ("1 · Identify the dilemma", 'accent'),
              ("2 · Identify the stakeholders", 'accent'),
