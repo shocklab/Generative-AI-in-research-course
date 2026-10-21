@@ -95,7 +95,7 @@
     <ul class="styled-list">
       <li><strong>Native PDF (text layer):</strong> text is stored as text; extraction is relatively reliable. Most modern journal PDFs fall into this category.</li>
       <li><strong>Image PDF (scanned):</strong> the entire page is an image; extraction requires OCR before any structure reconstruction is possible. Older archival documents and some supplementary files are often image PDFs.</li>
-      <li><strong>Mixed PDF:</strong> some pages have text layers, some are scanned. This is the most common and most error-prone type for research documents. A thesis that includes a scanned signature page is technically a mixed PDF.</li>
+      <li><strong>Mixed PDF:</strong> some pages have text layers, some are scanned. Mixed PDFs are common in theses and archives and are the most error-prone type. A thesis that includes a scanned signature page is technically a mixed PDF.</li>
     </ul>
     <p style="color:#555; line-height:1.8; margin-top:15px;">Identify your PDF type before choosing a tool. That habit saves more time than any other in document extraction work.</p>
   </div>
@@ -127,9 +127,9 @@
       </tr>
       <tr>
         <td><strong>LlamaParse (LlamaIndex)</strong></td>
-        <td>Highest accuracy overall</td>
-        <td>Excellent</td>
-        <td>Excellent</td>
+        <td>Complex layouts (vendor-reported; not in OmniDocBench)</td>
+        <td>Strong</td>
+        <td>Good (not independently benchmarked)</td>
         <td>Cloud</td>
         <td>Limited free tier</td>
       </tr>
@@ -213,7 +213,7 @@
     </div>
     <div class="card">
       <h3>&#128196; Practical Tool: Marker</h3>
-      <p>Marker processes every page through full OCR, making it reliable on scanned documents even at the cost of processing speed. For archival research where you cannot guarantee that documents have a text layer, Marker is the safest default choice among the open-source options.</p>
+      <p>Marker runs full-page OCR on pages that are scanned or have bad embedded text, and its <a href="https://github.com/datalab-to/marker" target="_blank" rel="noopener">force_ocr option</a> OCRs every page, which makes it reliable on scanned documents at some cost in speed. For archival research where you cannot guarantee that documents have a text layer, Marker is the safest default choice among the open-source options.</p>
     </div>
   </div>
 

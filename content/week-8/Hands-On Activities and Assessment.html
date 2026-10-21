@@ -93,7 +93,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="case-study">
       <h4>&#128270; "Reading vs. Understanding"</h4>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will use three publicly available scientific figures of increasing complexity. Instructions are provided for finding suitable figures from open-access papers in your field. Choose figures that represent the types of visualisations common in your research area: a simple bar chart, a multi-line plot with several series, and a complex figure (heatmap, network diagram, or multi-panel figure).</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 20px;"><strong>Materials:</strong> You will use three publicly available scientific figures of increasing complexity. Take them from open-access papers in your field (for example on PubMed Central or arXiv), where the methods and supplementary data let you check the values. Choose figures that represent the types of visualisations common in your research area: a simple bar chart, a multi-line plot with several series, and a complex figure (heatmap, network diagram, or multi-panel figure).</p>
 
       <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Task, for each figure:</strong></p>
       <ol class="step-list">
@@ -138,10 +138,9 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
       <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 2: Record yourself reading the script.</strong> Use your phone or laptop microphone. Read at normal pace; do not over-articulate. Save the recording as a single audio file (<code>.wav</code>, <code>.mp3</code>, or <code>.m4a</code>). Aim for around 3 minutes of audio. If you have a quiet room, use it; if you do not, that is also useful data, since background noise is one of the hallucination triggers covered in Sub-Lesson 4.</p>
 
-      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 3: Transcribe with Whisper.</strong> Two options, both free:</p>
+      <p style="color: #444; line-height: 1.8; margin-bottom: 15px;"><strong>Step 3: Transcribe with Whisper.</strong> A free option:</p>
       <ul class="styled-list">
-        <li><strong>Option A, Hugging Face Space (no install):</strong> upload your audio to <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener" style="color: #003A70;">huggingface.co/spaces/openai/whisper</a> and select <code>large-v3</code> as the model. Output appears in the browser.</li>
-        <li><strong>Option B, Google Colab notebook:</strong> follow the course-provided notebook, which runs <code>whisper</code> on a free GPU. Slightly more setup, but you can save the output and re-run. Notebook URL in the course resources.</li>
+        <li><strong>Hugging Face Space (no install):</strong> go to <a href="https://huggingface.co/spaces/openai/whisper" target="_blank" rel="noopener" style="color: #003A70;">huggingface.co/spaces/openai/whisper</a>. The Space runs Whisper large-v3; upload your audio and the output appears in the browser.</li>
       </ul>
 
       <p style="color: #444; line-height: 1.8; margin-top: 20px; margin-bottom: 15px;"><strong>Step 4: Compare line by line against your own script (your ground truth).</strong> Read both aloud if needed. Mark every difference. Categorise each error:</p>
@@ -152,7 +151,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
         <li><strong>Other:</strong> punctuation, capitalisation, formatting</li>
       </ul>
 
-      <p style="color: #444; line-height: 1.8; margin-top: 15px;"><strong>Step 5: Calculate your own WER.</strong> WER = (substitutions + deletions + insertions) / total words in ground truth, expressed as a percentage. Compare your number to the headline benchmarks in Sub-Lesson 4 (~2.0% on clean read speech). If your number is much higher, what features of your script and recording explain the difference?</p>
+      <p style="color: #444; line-height: 1.8; margin-top: 15px;"><strong>Step 5: Calculate your own WER.</strong> WER = (substitutions + deletions + insertions) / total words in ground truth, expressed as a percentage. Compare your number to the headline benchmarks in Sub-Lesson 4 (~2% on clean read speech, LibriSpeech). If your number is much higher, what features of your script and recording explain the difference?</p>
 
       <div class="info-box" style="margin-top: 20px;">
         <h4>&#129760; Reflection (for your forum post)</h4>
@@ -161,7 +160,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
       <div class="warning-box" style="margin-top: 20px;">
         <h4>&#127482;&#127466; Why This Matters for South African Research</h4>
-        <p>South African English exists in many varieties, and most postgraduate students at UCT will speak some combination of accented English with code-switching from one or more African languages. The course materials cite published numbers; this exercise lets you measure them on yourself. If your Whisper output is materially worse than the headline 2.0% figure (and for many South African accents it will be), the numbers in published benchmarks are not your numbers.</p>
+        <p>South African English exists in many varieties, and most postgraduate students at UCT will speak some combination of accented English with code-switching from one or more African languages. The course materials cite published numbers; this exercise lets you measure them on yourself. If your Whisper output is materially worse than the headline LibriSpeech figure of about 2% (and for many South African accents it will be), the numbers in published benchmarks are not your numbers.</p>
       </div>
     </div>
 
@@ -213,7 +212,6 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
       <p>3. <strong>What it got wrong:</strong> document at least three specific errors or limitations you observed, with examples from your actual output.</p>
       <p>4. <strong>Verification approach:</strong> how did you verify the AI's output? What would you have missed if you had not checked?</p>
       <p>5. <strong>Research workflow implications:</strong> how would you integrate these tools into your research practice? What safeguards would you build in?</p>
-      <p><strong>Submission:</strong> via Amathuba by [date].</p>
       <p><strong>Grading criteria:</strong> Accuracy of tool use (25%), quality of error documentation (30%), depth of verification practice (25%), research workflow integration (20%).</p>
     </div>
 
@@ -223,7 +221,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="intro-text" style="margin-top: 0;">
       <h2>What You Have Learned This Week</h2>
       <p>AI can now see images, read documents, transcribe audio, and process hours of video. Even so, "reading" and "understanding" remain distinct. The gap between impressive demonstrations and reliable research use is large, and this week has been about measuring that gap.</p>
-      <p>The CharXiv benchmark (introduced in 2024 with leading models at 47.1% vs. 80.5% for humans) established the pattern that runs through this week: real-world performance lags simplified benchmarks. Frontier model scores on CharXiv have improved substantially since, but the underlying gap shows up again in each modality and is the framing to carry forward. Transcription hallucination is pervasive: every transcript used in research requires full human verification rather than spot-checking. African language ASR has a real performance gap relative to English, but specialist tools (Intron Sahara, Lelapa AI) and fine-tuning significantly close it. Complex tables remain the hardest document AI problem: merged cells and multi-level headers cause extraction failures that are invisible without side-by-side verification.</p>
+      <p>The CharXiv benchmark (introduced in 2024 with leading models at 47.1% vs. 80.5% for humans) established the pattern that runs through this week: real-world performance lags simplified benchmarks. Frontier model scores on CharXiv have improved substantially since, but the underlying gap shows up again in each modality and is the framing to carry forward. Transcription hallucination is rare per transcript in peer-reviewed tests (about 1% in <a href="https://arxiv.org/abs/2402.08021" target="_blank" rel="noopener">Koenecke et al.</a>) but can be harmful when it happens, so every transcript used in research needs full human verification rather than spot-checking. African language ASR has a real performance gap relative to English, but specialist tools (Intron Sahara, Lelapa AI) and fine-tuning significantly close it. Complex tables remain the hardest document AI problem: merged cells and multi-level headers cause extraction failures that are invisible without side-by-side verification.</p>
       <p>Video AI compounds failure modes from each modality. Verify temporal claims especially, and do not assume that a large context window means equal attention across the full recording. The "lost in the middle" problem applies to video as much as to long documents.</p>
       <p>The skill of the week is less about memorising which tool to use and more about the verification habits that make multimodal AI trustworthy for research: checking every extracted number, reviewing every transcript against audio, verifying every timestamp, and documenting what you checked and how.</p>
       <p><strong>Next week, Week 9:</strong> We turn to sycophancy, reasoning failures, and the specific ways AI misleads even when it is not hallucinating. The question shifts from "did the AI get the data right?" to "did the AI reason about the data correctly?"</p>
