@@ -361,7 +361,7 @@
                     <p><strong>Purpose:</strong> Forces structured, step-by-step reasoning instead of jumping to conclusions. The model writes out its steps, which lets you inspect the argument for gaps and assumptions.</p>
                     <div class="prompt-example">
                         <div class="prompt-label">Example Prompt</div>
-                        Think step by step about what gaps exist in current research on [your topic]. For each gap, explain: (1) why the gap exists, (2) what methods could address it, and (3) what would change in the field if it were filled.
+                        List the gaps in current research on [your topic]. For each gap, explain: (1) why the gap exists, (2) what methods could address it, and (3) what would change in the field if it were filled.
                     </div>
                     <p style="margin-top: 10px;">Current reasoning models already work through a problem before answering, so <a href="https://developers.openai.com/api/docs/guides/reasoning-best-practices" target="_blank" rel="noopener">the words "think step by step" add little</a>. What helps is the structure you ask for, here three questions per gap, which puts the model's working where you can check it. By requiring reasoning at each step, you get more considered output and can see where the model's logic is weak, though the written steps may leave out what actually drove the answer (<a href="https://arxiv.org/abs/2305.04388" target="_blank" rel="noopener">Turpin et al., 2023</a>), so check each one.</p>
                 </div>

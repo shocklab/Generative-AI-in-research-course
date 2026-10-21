@@ -45,7 +45,7 @@ FIGS = [
     dict(fid="fig-w6-publishers", page=SI, loc=r'Updated Journal Policies', mode="after_p",
          cap="Major publishers converge on two rules — AI cannot be an author, and substantive AI use must be disclosed — while differing in strictness.",
          svg=D.matrix(["AI as author?", "Disclosure?", "Stance"], [
-             ("Science (AAAS)", ["No", "Yes — full prompts", "Strictest"]),
+             ("Science (AAAS)", ["No", "Yes, by type of use", "By type of use"]),
              ("Nature", ["No", "For substantive use", "Middle ground"]),
              ("Elsevier", ["No", "Yes — on submission", "Disclosure-focused"]),
              ("IEEE", ["No", "Yes", "Disclosure-focused"]),

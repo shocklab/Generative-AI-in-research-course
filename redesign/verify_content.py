@@ -52,6 +52,8 @@ def main():
         sc = inner_div(src, "content") or inner_div(src, "container")
         sc = re.sub(r'\n*<!-- (PAGE-NAV|SCORM-HOOK|ANALYTICS)-START -->.*?-END -->', '', sc, flags=re.S)
         ab = inner_div(out, "abody")
+        # build_site repeats each diagram's labels in its <desc> for screen readers; don't count them twice
+        ab = re.sub(r' Labels: [^<]*\.</desc>', '</desc>', ab)
         ws, wo = words(strip_tags(sc)), words(strip_tags(ab))
         lost = ws - wo            # words in source missing from output
         added = wo - ws           # words in output not in source
