@@ -131,7 +131,7 @@ img{max-width:100%}
 .abody .step-list>li::after{content:none}
 .abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-mono);line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
 .abody .code-block *{font-family:inherit}
-.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#eef1f5;padding:1px 5px;color:#7a4a12}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#eef1f5;padding:1px 5px;color:#7a4a12;overflow-wrap:anywhere}
 /* In a heading or a table cell, code takes the container's step: the prose step would dwarf an
    11.2px header, and an em multiplier lands off-scale (.85em of a 12.8px h4 = 10.88px). */
 .abody :is(h1,h2,h3,h4,h5,h6,th,td) code{font-size:1em}
