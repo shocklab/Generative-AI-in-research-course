@@ -458,11 +458,11 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>A. Energy per model call</strong></td>
-<td>~1 Wh</td>
-<td>~3 Wh</td>
+<td><strong>A. Energy per ordinary prompt</strong></td>
+<td>~0.24 Wh</td>
+<td>~0.34 Wh</td>
 <td>~8 Wh</td>
-<td>This lesson's table: 0.34 Wh (OpenAI CEO's stated average) up to 8 Wh (MIT Tech Review 2025, large open-weight model). Agentic calls carry long contexts (file contents, tool outputs, accumulated reasoning), so they sit toward the upper end, and we centre on ~3 Wh.</td>
+<td>This lesson's table: 0.24 Wh (Google's measured median Gemini prompt) and 0.34 Wh (OpenAI CEO's stated average), up to 8 Wh (MIT Tech Review 2025, large open-weight model). We centre on the reported 0.34 Wh. B already counts the extra tokens of long contexts and repeated calls, so A is the energy of one ordinary prompt, not of one long agent call.</td>
 </tr>
 <tr>
 <td><strong>B. Compute per task</strong><br><small>(simple-prompt-equivalents)</small></td>
@@ -481,7 +481,7 @@
 </div>
 <div class="technical-detail">
 <h4>📊 Putting the Inputs Together: A Day on <code>high</code> Effort</h4>
-<p style="margin-bottom: 15px;">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive tasks</strong> rather than quick one-shot lookups, which cost far less. We hold the per-call energy (A) near its ~3 Wh midpoint and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 1–8 Wh band as well would widen these numbers further in both directions.)</p>
+<p style="margin-bottom: 15px;">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive tasks</strong> rather than quick one-shot lookups, which cost far less. We hold the per-prompt energy (A) at its ~0.34 Wh central value and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 0.24–8 Wh band as well would widen these numbers further in both directions.)</p>
 <table class="comparison-table">
 <thead>
 <tr>
@@ -494,44 +494,44 @@
 <tbody>
 <tr>
 <td><strong>Energy per agentic task</strong> (A × B)</td>
-<td>~30 Wh</td>
-<td><strong>~100 Wh</strong></td>
-<td>~300 Wh</td>
+<td>~3.4 Wh</td>
+<td><strong>~10 Wh</strong></td>
+<td>~34 Wh</td>
 </tr>
 <tr>
 <td><strong>Energy for a 50-task day</strong> (× 50)</td>
-<td>~1.5 kWh</td>
-<td><strong>~5 kWh</strong></td>
-<td>~15 kWh</td>
+<td>~0.17 kWh</td>
+<td><strong>~0.5 kWh</strong></td>
+<td>~1.7 kWh</td>
 </tr>
 <tr>
 <td><strong>CO₂ — US grid</strong> (× 0.386)</td>
-<td>~0.6 kg</td>
-<td><strong>~1.9 kg</strong></td>
-<td>~5.8 kg</td>
+<td>~0.07 kg</td>
+<td><strong>~0.2 kg</strong></td>
+<td>~0.66 kg</td>
 </tr>
 <tr>
 <td><strong>CO₂ — South African grid</strong> (× 0.9)</td>
-<td>~1.4 kg</td>
-<td><strong>~4.5 kg</strong></td>
-<td>~13.5 kg</td>
+<td>~0.15 kg</td>
+<td><strong>~0.46 kg</strong></td>
+<td>~1.5 kg</td>
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 12px; color: #666;">For perspective, the central ~5 kWh for a full day of agentic coding is roughly five times the 944 Wh of a single 5-second AI video, and more than ten thousand times a single reported text prompt. Against the 6–7 kWh a day used above for a South African household, it is roughly 70–85% of a household's daily electricity use. The footprint of <em>this kind</em> of AI use comes from the <strong>loop</strong> of many calls rather than from any one prompt.</p>
+<p style="margin-top: 12px; color: #666;">For perspective, the central ~0.5 kWh for a full day of agentic coding is about half the 944 Wh of a single 5-second AI video, and about 1,500 times a single reported text prompt. Against the 6–7 kWh a day used above for a South African household, it is roughly 7–9% of a household's daily electricity use. The footprint of <em>this kind</em> of AI use comes from the <strong>loop</strong> of many calls rather than from any one prompt.</p>
 </div>
 <div class="info-box">
 <h4>🚗 How Does This Compare to Driving a Car?</h4>
 <p>A "typical passenger vehicle" emits about <strong>400 g CO₂ per mile ≈ 0.25 kg CO₂ per km</strong> (<a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle" target="_blank" rel="noopener">US EPA</a>). Dividing the day's emissions by that figure gives an equivalent driving distance:</p>
 <ul class="styled-list" style="margin-top: 12px;">
-<li><strong>On the US grid:</strong> a full day ≈ <strong>~8 km</strong> of driving (range ~2–23 km)</li>
-<li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~18 km</strong> of driving (range ~5–54 km)</li>
+<li><strong>On the US grid:</strong> a full day ≈ <strong>~0.8 km</strong> of driving (range ~0.3–2.6 km)</li>
+<li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~1.8 km</strong> of driving (range ~0.6–6 km)</li>
 </ul>
-<p style="margin-top: 12px;">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a short commute. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances; the car comparison is itself a range.)</p>
+<p style="margin-top: 12px;">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a drive of one or two kilometres. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances; the car comparison is itself a range.)</p>
 </div>
 <div class="warning-box">
 <h4>⚠️ The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h4>
-<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~5 kWh day, that puts a heavy max-effort day in the region of <strong>15–50 kWh</strong>, or roughly <strong>tens to over 150 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive tasks; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
+<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~0.5 kWh day, that puts a heavy max-effort day in the region of <strong>1.5–5 kWh</strong>, or roughly <strong>5–18 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive tasks; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
 </div>
 <div class="highlight-box">
 <h3>💡 <span style="color: #ffffff;">What This Means for You as a Researcher</span></h3>
@@ -722,7 +722,7 @@
 <li><strong>Water is underreported:</strong> Both direct cooling and indirect electricity generation consume significant water, with geographic implications</li>
 <li><strong>Scale is what matters:</strong> Individual query costs are small; billions of queries per day is not</li>
 <li><strong>Inference, not just training:</strong> The ongoing cost of running models at scale quickly exceeds one-time training costs</li>
-<li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~5 kWh: central estimate ~1.9 kg CO₂ (US grid) / ~4.5 kg (SA grid), comparable to driving ~8–18 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
+<li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~0.5 kWh: central estimate ~0.2 kg CO₂ (US grid) / ~0.46 kg (SA grid), comparable to driving ~1–2 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
 </ul>
 <p style="margin-top: 20px;"><strong>Next session (Week 3.2):</strong> We zoom out from individual queries to the infrastructure level: where does the electricity come from, how does manufacturing hardware fit in, and why do efficiency gains so often fail to reduce total energy use?</p>
 </div>
