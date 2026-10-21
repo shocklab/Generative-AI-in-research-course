@@ -414,7 +414,7 @@
 <p style="margin-top: 12px;"><strong>2. Embedding:</strong> Each token is converted into a high-dimensional vector, a point in a space with hundreds or thousands of dimensions. Similar concepts end up close together in this space (e.g., "magma" and "lava" would be near each other).</p>
 <p style="margin-top: 12px;"><strong>3. Attention:</strong> The model calculates how much each token should "attend to" every other token. When processing "erupted," it pays strong attention to "volcano" but less to "The."</p>
 <p style="margin-top: 12px;"><strong>4. Attention again, and again:</strong> The attention step happens iteratively across many layers, with each pass building a more abstract (rather than symbolically word-by-word) representation of the content.</p>
-<p style="margin-top: 12px;"><strong>5. Prediction:</strong> Based on all these weighted relationships, the model predicts the most likely next token. It picks up patterns of how words relate rather than memorizing fixed phrases.</p>
+<p style="margin-top: 12px;"><strong>5. Prediction:</strong> Based on all these weighted relationships, the model gives a probability to every possible next token, and one token is chosen from those probabilities (the temperature setting below controls how often a less likely token is picked). It picks up patterns of how words relate rather than memorizing fixed phrases.</p>
 <p style="margin-top: 12px;"><strong>6. Iteration:</strong> This happens recursively: predict one token, add it to the sequence, predict the next, and so on, until a complete response is generated.</p>
 </div>
 <div class="key-concepts">
@@ -423,7 +423,7 @@
 <li><strong>Context window:</strong> The amount of text the model can "see" at once, typically thousands to hundreds of thousands, or even over a million, tokens. Think of it as the model's "working memory."</li>
 <li><strong>Temperature:</strong> A parameter controlling randomness. Low temperature = predictable, conservative responses. High temperature = creative, diverse responses. Similar to choosing between a cautious or speculative hypothesis.</li>
 <li><strong>Training data:</strong> These models learn from vast text corpora (books, websites, papers), identifying statistical patterns in how language is used.</li>
-<li><strong>No true "understanding":</strong> Or does it...? To be discussed</li>
+<li><strong>Understanding:</strong> whether these models understand anything is debated; Week 9 returns to it.</li>
 </ul>
 </div>
 <div class="research-applications">
@@ -521,7 +521,7 @@
 </div>
 <div class="highlight-box">
 <h3>🎓 Why Understanding Architecture Matters</h3>
-<p>Each architecture has strengths and weaknesses shaped by its design. Transformers excel at sequential data and reasoning but are computationally expensive. Diffusion models create stunning images but are slow. GANs can generate in real-time but are hard to train.</p>
+<p>Each architecture has strengths and weaknesses shaped by its design. Transformers handle sequential data such as text well but are computationally expensive. Diffusion models create stunning images but are slow. GANs can generate in real-time but are hard to train.</p>
 <p style="margin-top: 15px;">As a researcher, understanding these tradeoffs helps you choose the right tool for your task. Need to draft a methods section? Use a transformer. Need to visualize a theoretical concept? Try a diffusion model. Need to augment a small dataset? Consider a GAN.</p>
 <p style="margin-top: 15px;">Understanding how these systems work also helps you recognize their limitations: they are pattern matching engines rather than reasoning entities. They don't "understand" science; they have learned statistical patterns in how scientific language and images are structured. That helps you use them effectively and avoid the pitfalls.</p>
 </div>

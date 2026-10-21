@@ -199,7 +199,7 @@
     },
     {
       "term": "Chain-of-thought prompting",
-      "definition": "A technique that asks an AI to reason through a problem step by step before giving its final answer, which typically produces more considered and better-structured outputs than a direct question.",
+      "definition": "A technique that asks an AI to reason through a problem step by step before giving its final answer. It improved older models; reasoning models do this without being asked, and OpenAI's guidance for them is to leave the instruction out.",
       "aliases": [
         "chain-of-thought prompting"
       ]
@@ -709,7 +709,7 @@
     },
     {
       "term": "Mixture of experts (MoE)",
-      "definition": "An architecture where a large model is split into many specialised sub-networks (experts), but each input is routed through only a small subset, keeping computation per query low despite a very large total parameter count.",
+      "definition": "An architecture where a large model is split into many sub-networks (experts), and a router sends each token through only a small subset, keeping computation per token low despite a very large total parameter count.",
       "aliases": [
         "mixture of experts (MoE)"
       ]
@@ -760,7 +760,7 @@
     },
     {
       "term": "Next-token prediction",
-      "definition": "The main learning objective in pre-training: given a sequence of words or word-pieces, the model is trained to predict the most probable next item, using each prediction's error to update its parameters.",
+      "definition": "The main learning objective in pre-training: given a sequence of words or word-pieces, the model is trained to give a probability to every possible next item, and the error against the item that actually came next is used to update its parameters.",
       "aliases": [
         "next-token prediction"
       ]

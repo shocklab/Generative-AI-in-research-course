@@ -525,10 +525,10 @@
 </div>
 <div class="card">
 <h3>Prompt Tuning &amp; Prefix Tuning</h3>
-<p>Even lighter-weight alternatives: instead of modifying model weights at all, learn a set of "soft tokens" that are prepended to every input.</p>
+<p>Even lighter-weight alternatives: instead of modifying model weights, learn a small set of extra vectors. <a href="https://huggingface.co/docs/peft/main/en/conceptual_guides/prompting" target="_blank" rel="noopener">Prompt tuning adds them at the input</a>, as "soft tokens" prepended to every input; prefix tuning adds them at every layer of the model.</p>
 <ul class="styled-list">
 <li><strong>No weight changes:</strong> The base model is completely frozen; only the soft prompt vectors are trained</li>
-<li><strong>Extremely lightweight:</strong> Only a few thousand parameters to learn</li>
+<li><strong>Extremely lightweight:</strong> typically well under 1% of the model's parameters; the number depends on prompt length, model width and, for prefix tuning, the number of layers</li>
 <li><strong>Limited expressiveness:</strong> Less powerful than LoRA for significant domain shifts</li>
 <li><strong>Easy to switch:</strong> Swap soft prompts to change the model's domain without reloading weights</li>
 </ul>
@@ -635,7 +635,7 @@
 <li><strong>LoRA makes fine-tuning accessible:</strong> Researchers can adapt existing models to specialist domains without frontier-scale compute</li>
 <li><strong>Understanding post-training helps:</strong> Refusals, sycophancy, and differences between models largely reflect alignment choices, not raw capability</li>
 </ul>
-<p style="margin-top: 20px;"><strong>Next session (Week 3):</strong> We zoom out from model internals to consider the broader context: the <em>environmental implications</em> of AI. Training and deploying large models consumes enormous amounts of energy. What does the carbon footprint of AI actually look like, and what does sustainable AI practice mean for researchers?</p>
+<p style="margin-top: 20px;"><strong>Coming in Week 3, after the image-generation sub-lesson:</strong> we zoom out from model internals to consider the broader context: the <em>environmental implications</em> of AI. Training and deploying large models consumes enormous amounts of energy. What does the carbon footprint of AI actually look like, and what does sustainable AI practice mean for researchers?</p>
 </div>
 </div>
 <!-- PAGE-NAV-START -->

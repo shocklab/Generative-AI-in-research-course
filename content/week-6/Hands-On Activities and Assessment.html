@@ -410,13 +410,13 @@
 <h2 class="section-title">💡 Activity 2: Prompt Engineering for Ideation</h2>
 <div class="case-study">
 <h4>Objective</h4>
-<p style="color: #555; line-height: 1.7;">Practice structured prompting for research ideation and observe how different strategies produce different results. A <a href="https://arxiv.org/abs/2409.04109" target="_blank" rel="noopener">2024 study by Si et al.</a> found that LLM-generated research ideas were rated as significantly more novel than human expert ideas, though with suggestive (but not statistically significant) evidence of weaker feasibility, and notably less diversity across ideas. This exercise lets you test those findings against your own field.</p>
+<p style="color: #555; line-height: 1.7;">Practice structured prompting for research ideation and observe how different strategies produce different results. A <a href="https://arxiv.org/abs/2409.04109" target="_blank" rel="noopener">2024 study by Si et al.</a> found that LLM-generated research ideas were rated as significantly more novel than human expert ideas, though with suggestive (but not statistically significant) evidence of weaker feasibility, and, when generated at scale, highly repetitive ideas. This exercise lets you test those findings against your own field.</p>
 
 <h4 style="margin-top: 25px;">Setup</h4>
 <ol class="step-list">
 <li><strong>Choose a broad research area</strong> from your field. It should be broad enough that there are many possible research questions within it, but specific enough to be meaningful (e.g., "machine learning in healthcare" rather than just "AI").</li>
 <li><strong>Round 1, naive prompt:</strong> Ask AI: <em>"Generate 10 research ideas about [your area]."</em> Record all 10 ideas exactly as the AI produces them. Do not refine or follow up; this is your baseline.</li>
-<li><strong>Round 2, chain-of-thought:</strong> Ask AI: <em>"Think step by step about what gaps exist in current research on [your area], then generate 10 research ideas that address those gaps."</em> Record all 10 ideas.</li>
+<li><strong>Round 2, structured reasoning:</strong> Ask AI: <em>"List the gaps in current research on [your area], and for each say why it exists, then generate 10 research ideas that address those gaps."</em> Record all 10 ideas.</li>
 <li><strong>Round 3, persona-based:</strong> Ask AI: <em>"You are a [specific expert type] with 20 years of experience in [adjacent field]. What research questions about [your area] would you find most interesting and worth investigating?"</em> Record the response.
 <ul style="margin-top: 10px; list-style: disc; padding-left: 20px;">
 <li style="padding: 4px 0; background: none; counter-increment: none;">Choose a persona from a field adjacent to yours, not your own field, so the cross-pollination has somewhere to come from</li>
@@ -455,6 +455,7 @@
 <li><strong>The "explain this paragraph" test.</strong> Cover the AI text and, for each paragraph, explain the argument from memory in your own words. If you cannot do this fluently, you do not fully understand or own that paragraph's argument.</li>
 <li><strong>Check every factual claim.</strong> Identify every statement that makes a factual assertion (statistics, dates, claims about research findings, cause-and-effect statements). Verify each one against a reliable source. Note which claims are accurate, which are vague, and which are wrong.</li>
 <li><strong>Internal consistency.</strong> Read the text as a whole. Does the argument hold together logically from start to finish? Are there contradictions? Does the conclusion actually follow from the evidence presented? Does each paragraph connect to the next?</li>
+<li><strong>The "defend it" test.</strong> For each claim, explain the evidence and answer the obvious counterargument without looking at the text.</li>
 </ol>
 
 <h4 style="margin-top: 25px;">What to Record</h4>
@@ -522,7 +523,7 @@
 <h2 style="display: flex; align-items: center; gap: 10px;">Week 6 Summary &amp; Key Takeaways</h2>
 <ul class="styled-list">
 <li><strong>Writing is thinking.</strong> Outsourcing the writing process to AI risks outsourcing the intellectual development that makes you a researcher. The struggle to articulate your ideas is not a problem to be solved; it is the process through which understanding deepens.</li>
-<li><strong>AI can generate ideas rated as MORE novel than human ideas, but less feasible and less diverse.</strong> Use AI to expand your thinking, not replace it. The best research ideas come from the intersection of AI-generated possibilities and your domain expertise.</li>
+<li><strong>AI can generate ideas rated as MORE novel than human ideas, but at scale it repeats itself.</strong> Use AI to expand your thinking, not replace it. The best research ideas come from the intersection of AI-generated possibilities and your domain expertise.</li>
 <li><strong>AI writing tools are powerful equalisers for non-native English speakers,</strong> but they homogenise writing toward Western, generic academic styles. Be aware of what you gain in fluency and what you may lose in distinctive voice and perspective.</li>
 <li><strong>Scientific integrity requires a spectrum of awareness,</strong> from grammar fixes (low risk) to generating arguments (very high risk). Know where on that spectrum you are operating at every moment, and be honest about it.</li>
 <li><strong>Journal policies are converging on mandatory disclosure,</strong> so build the habit now. Every major publisher now requires some form of AI use declaration. Treating this as a routine part of your workflow, rather than an afterthought, protects you and strengthens the research community.</li>
