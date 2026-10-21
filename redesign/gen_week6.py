@@ -11,7 +11,7 @@ UR = "content/week-6/Using AI to Review Your Own Work.html"
 
 FIGS = [
     dict(fid="fig-w6-assistance-spectrum", page=WT, loc=r'Spectrum of AI Assistance', mode="after_p",
-         cap="Five levels of AI writing help, from fixing typos to generating whole sections — the risk rises as AI moves from polishing your words to producing your ideas.",
+         cap="Five levels of AI writing help, from fixing typos to generating whole sections: the risk rises as AI moves from polishing your words to producing your ideas.",
          svg=D.spectrum([
              ("Proofreading & grammar", 'good'),
              ("Language enhancement", 'good'),
@@ -35,7 +35,7 @@ FIGS = [
             center_kind='warn', arrow='#b07a1e')),
 
     dict(fid="fig-w6-multilingual", page=TL, loc=r'Multilingual Equity', mode="after_p",
-         cap="Amano et al.: AI translation could lift the burden on non-native English writers — or entrench English further. Which future depends on how we use it.",
+         cap="Amano et al.: AI translation could lift the burden on non-native English writers, or entrench English further. Which future depends on how we use it.",
          svg=D.tree("AI translation goes mainstream", [
              dict(title="Write in English", sub="AI polishes to native level", kind='warn', action="English hegemony deepens"),
              dict(title="Write in your language", sub="read and publish in yours", kind='good', action="More language diversity"),
@@ -43,7 +43,7 @@ FIGS = [
             "A fork from widespread AI translation into deepening English dominance or growing linguistic diversity.")),
 
     dict(fid="fig-w6-publishers", page=SI, loc=r'Updated Journal Policies', mode="after_p",
-         cap="Major publishers converge on two rules — AI cannot be an author, and substantive AI use must be disclosed — while differing in strictness.",
+         cap="Major publishers converge on two rules: AI cannot be an author, and substantive AI use must be disclosed, while differing in strictness.",
          svg=D.matrix(["AI as author?", "Disclosure?", "Stance"], [
              ("Science (AAAS)", ["No", "Yes, by type of use", "By type of use"]),
              ("Nature", ["No", "For substantive use", "Middle ground"]),
@@ -54,7 +54,7 @@ FIGS = [
             "Five publishers compared on AI authorship, disclosure requirements, and overall stance.")),
 
     dict(fid="fig-w6-workflow", page=BW, loc=r'The Principled Workflow', mode="after_p",
-         cap="A principled writing workflow — AI earns its place in the middle (drafting and auditing); the thinking and the final voice stay yours.",
+         cap="A principled writing workflow: AI earns its place in the middle (drafting and auditing); the thinking and the final voice stay yours.",
          svg=D.vflow([
              ("1 · Think first, before any AI", 'accent'),
              ("2 · Outline it yourself", 'accent'),
@@ -65,7 +65,7 @@ FIGS = [
             "Five stages where AI assists with drafting and auditing while the thinking and voice stay the researcher's.")),
 
     dict(fid="fig-w6-peer-review", page=UR, loc=r'What AI Can Usefully', mode="after_p",
-         cap="Use AI to catch the checkable — consistency, clarity, stats, gaps — but novelty, significance, and ethics still need human judgment.",
+         cap="Use AI to catch the checkable (consistency, clarity, stats, gaps), but novelty, significance, and ethics still need human judgment.",
          svg=D.columns([
              dict(title="AI can usefully check", kind='good', lines=["Logical consistency", "Writing quality", "Positioning & related work", "Methodology gaps", "Statistical reporting", "Figures and tables"]),
              dict(title="Human judgment only", kind='warn', lines=["True novelty", "Domain conventions", "Significance", "Ethical concerns", "Reviewer taste & politics"]),

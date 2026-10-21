@@ -12,7 +12,7 @@ W10A = "content/week-10/Advanced Research Tools - A Curated Tour.html"
 
 FIGS = [
     dict(fid="fig-w5-three-categories", page=W5L, loc=r'Three Categories of AI Literature', mode="after_p",
-         cap="Three kinds of AI literature tool — citation-graph mappers, meaning-based search, and grounded chat that answers from real retrieved papers.",
+         cap="Three kinds of AI literature tool: citation-graph mappers, meaning-based search, and grounded chat that answers from real retrieved papers.",
          svg=D.columns([
              dict(title="Citation-based", kind='alt', lines=["Maps the citation graph", "Who-cites-whom links", "e.g. ResearchRabbit"]),
              dict(title="Semantic search", kind='accent', lines=["Searches by meaning", "Embeddings, not keywords", "e.g. Semantic Scholar"]),
