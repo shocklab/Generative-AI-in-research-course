@@ -117,13 +117,13 @@
         <td><strong>OpenAI Transcription API (GPT family)</strong></td>
         <td>API</td>
         <td>Better than Whisper on standard benchmarks</td>
-        <td>Lowest word error rate; API access</td>
+        <td><a href="https://www.assemblyai.com/benchmarks" target="_blank" rel="noopener">5.34% WER for GPT-4o Transcribe</a> versus 4.35% for Universal-3.5 Pro in AssemblyAI's pre-recorded benchmark; API access</td>
         <td>Paid</td>
       </tr>
       <tr>
         <td><strong>WhisperX</strong></td>
         <td>Open-source</td>
-        <td>Comparable to Whisper large-v3</td>
+        <td>Matches the Whisper model used; matches large-v3 when configured with large-v3</td>
         <td>Enhanced speaker diarization; better multi-speaker</td>
         <td>Free</td>
       </tr>
@@ -163,7 +163,7 @@
 
   <div class="technical-detail">
     <h4>&#128270; Understanding Word Error Rate (WER)</h4>
-    <p style="color:#555; line-height:1.8; margin-bottom:15px;"><strong>WER (Word Error Rate)</strong> is the standard metric for transcription accuracy. A 10% WER means 1 in every 10 words is incorrect. For a 1-hour interview of approximately 8,000 words, a 10% WER represents around 800 errors. For academic research, a 10% error rate means every transcript requires careful human review before coding or analysis. The metric combines substitutions (wrong word), deletions (dropped word), and insertions (invented word) into a single number.</p>
+    <p style="color:#555; line-height:1.8; margin-bottom:15px;"><strong>WER (Word Error Rate)</strong> is the standard metric for transcription accuracy. A 10% WER means about 10 word errors (substitutions, deletions and insertions) per 100 words in the reference transcript. For a 1-hour interview of approximately 8,000 words, a 10% WER represents around 800 errors. For academic research, a 10% error rate means every transcript requires careful human review before coding or analysis. The metric combines substitutions (wrong word), deletions (dropped word), and insertions (invented word) into a single number.</p>
 <figure id="fig-w8-wer" class="diagram"><svg width="100%" viewBox="0 0 680 200" role="img" xmlns="http://www.w3.org/2000/svg"><title>Word error rate across audio conditions</title><desc>A bar chart of word error rate rising from clean read speech to lightly fine-tuned African-language transcription.</desc><rect x="1" y="1" width="678" height="198" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><line x1="308" y1="38" x2="308" y2="164" stroke="#9a2f2f" stroke-width="1.5" stroke-dasharray="4 4"/><text x="184" y="63" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Clean read speech</text><rect x="200" y="49" width="22" height="19" rx="4" fill="#e7efe8" stroke="#8fb09a"/><text x="229.54963680387408" y="63" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#2c6e3f" font-weight="500">~2%</text><text x="184" y="93" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Meeting audio</text><rect x="200" y="79" width="124" height="19" rx="4" fill="#f7efe0" stroke="#cdab6a"/><text x="331.91041162227606" y="93" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#7c5c12" font-weight="500">~10–15%</text><text x="184" y="123" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Telephony</text><rect x="200" y="109" width="191" height="19" rx="4" fill="#f7efe0" stroke="#cdab6a"/><text x="398.7142857142857" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#7c5c12" font-weight="500">~15–20%</text><text x="184" y="153" text-anchor="end" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">isiZulu, 1 h fine-tuned</text><rect x="200" y="139" width="302" height="19" rx="4" fill="#f3e3df" stroke="#c08a82"/><text x="509.6949152542373" y="153" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#9a2f2f" font-weight="500">28.0%</text><text x="307.74818401937046" y="180" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#9a2f2f" font-style="italic">≈10%: review needed</text></svg><figcaption>Word error rate rises above clean read speech: meetings, phone audio, and isiZulu with only one hour of fine-tuning all cross the line where every transcript needs human review.</figcaption></figure>
 
     <p style="color:#555; line-height:1.8; margin-bottom:10px;">Typical Whisper large-v3 word error rates by audio condition (indicative ranges from secondary benchmark compilations; your own recordings will differ):</p>
@@ -183,8 +183,8 @@
         </tr>
         <tr>
           <td>Real-world mixed audio</td>
-          <td><strong>~8&ndash;12%</strong></td>
-          <td>Requires review; ~1 error per 8&ndash;12 words</td>
+          <td><strong>~8&ndash;15%</strong> (GigaSpeech: ~8.4%; AMI: ~14.9%)</td>
+          <td>Requires review; errors include substitutions, deletions and insertions</td>
         </tr>
         <tr>
           <td>Meeting audio</td>
@@ -236,7 +236,7 @@
 
   <div class="info-box">
     <h4>&#128204; When Hallucination Is Most Likely</h4>
-    <p>Low-quality audio, background noise, or cross-talk between speakers increases hallucination rates substantially. Unusual terminology (technical vocabulary, field-specific jargon, specialist terms not represented in training data), accented speech that differs significantly from training data, quiet or mumbled speech, and multiple overlapping speakers all increase risk. Research interviews, especially fieldwork recordings in non-studio conditions, routinely combine several of these risk factors at once.</p>
+    <p>Low-quality audio and background noise increase transcription hallucination rates. Unusual terminology (technical vocabulary, field-specific jargon, specialist terms not represented in training data), accented speech that differs significantly from training data, quiet or mumbled speech, and multiple overlapping speakers all increase risk. Research interviews, especially fieldwork recordings in non-studio conditions, routinely combine several of these risk factors at once.</p>
   </div>
 
   <div class="warning-box">
@@ -282,7 +282,7 @@
         </tr>
       </tbody>
     </table>
-    <p style="color:#555; line-height:1.8; margin-top:15px;">These figures are from Nahabwe et al. (2025, Deep Learning Indaba 2025), which benchmarks several architectures (Whisper, W2v-BERT, XLS-R, MMS) on African languages. Other models in the same study reach broadly comparable or better WER at 50 hours: Whisper Afrikaans at 50h is approximately 2.11%. The dramatic improvement from fine-tuning on 1&ndash;50 hours of target language data applies across architectures; the practical barrier is the requirement for labelled audio data in the target language, which remains scarce for many African languages. With only 1 hour of fine-tuning, a WER of ~28% on Zulu means roughly 1 in every 3.5 words is wrong, a level of error that makes automated analysis unreliable.</p>
+    <p style="color:#555; line-height:1.8; margin-top:15px;">These figures are from Nahabwe et al. (2025, Deep Learning Indaba 2025), which benchmarks several architectures (Whisper, W2v-BERT, XLS-R, MMS) on African languages. Other models in the same study reach broadly comparable or better WER at 50 hours: Whisper Afrikaans at 50h is approximately 2.11%. The dramatic improvement from fine-tuning on 1&ndash;50 hours of target language data applies across architectures; the practical barrier is the requirement for labelled audio data in the target language, which remains scarce for many African languages. With only 1 hour of fine-tuning, a WER of ~28% on Zulu means roughly one word-level error (substitution, deletion or insertion) per 3.6 reference words, a level of error that makes automated analysis unreliable.</p>
   </div>
 
   <div class="technical-detail">
@@ -290,7 +290,7 @@
     <p style="color:#555; line-height:1.8; margin-bottom:15px;">Several tools have been developed specifically to address the performance gap for African languages:</p>
     <ul class="styled-list">
       <li><strong>Intron Sahara v2 (2026):</strong> Covers 57 languages total (24 newly added in v2, including Zulu, Xhosa, and Afrikaans), with support for over 500 African English accent variants. Developed by Intron, a Nigerian (Lagos-based) AI company. Commercial API. <a href="https://intron.ai" style="color:#2a5298;">https://intron.ai</a></li>
-      <li><strong>Lelapa AI:</strong> South African language specialist. Focuses on Zulu, Xhosa, Sotho, and Afrikaans. Developed with African language experts and linguists. <a href="https://lelapa.ai" style="color:#2a5298;">https://lelapa.ai</a></li>
+      <li><strong>Lelapa AI:</strong> South African language specialist. Lists support for 17 African languages, including isiZulu, isiXhosa, Sesotho and Afrikaans. Developed with African language experts and linguists. <a href="https://lelapa.ai" style="color:#2a5298;">https://lelapa.ai</a></li>
       <li><strong>Microsoft PazaBench:</strong> The first independent leaderboard for low-resource African language ASR (Automatic Speech Recognition), covering 39 languages and 52 models. Use this to compare current model performance across languages before committing to a tool.</li>
       <li><strong>AfriSpeech-Dialog (NAACL 2025):</strong> Benchmark for spontaneous conversational speech in African-accented English. This matches the kind of accented English speech found in South African research interviews and focus groups, where participants code-switch or speak English as a second language.</li>
     </ul>
@@ -298,7 +298,7 @@
 
   <div class="info-box">
     <h4>&#128161; Practical Guidance for South African Research Contexts</h4>
-    <p>The <a href="https://arxiv.org/abs/2512.10968" target="_blank" rel="noopener">Nahabwe et al. (2025) benchmark</a> did not test standard Whisper on Afrikaans; if you use it, transcribe a sample of your own clean recordings and check the error rate first. For Zulu and Xhosa, especially in the naturalistic, spontaneous speech typical of qualitative interviews, fine-tuned variants or specialist tools (Intron Sahara v2, Lelapa AI) are strongly preferred over standard Whisper. For research that will be published or cited, budget for human verification of all transcripts regardless of the tool used. The performance gap between African languages and major European languages in standard tools is a data problem rather than a fixed property, and it is improving as more labeled audio data becomes available. Check current benchmark leaderboards before beginning a new research project.</p>
+    <p>The <a href="https://arxiv.org/abs/2512.10968" target="_blank" rel="noopener">Nahabwe et al. (2025) benchmark</a> did not test standard Whisper on Afrikaans; if you use it, transcribe a sample of your own clean recordings and check the error rate first. For Zulu and Xhosa, especially in the naturalistic, spontaneous speech typical of qualitative interviews, fine-tuned variants or specialist tools (Intron Sahara v2, Lelapa AI) are strongly preferred over standard Whisper. For research that will be published or cited, budget for human verification of all transcripts regardless of the tool used. The performance gap between African languages and major European languages in standard tools is largely a data problem rather than a fixed property, though pre-training coverage, architecture and domain alignment also matter, and it is improving as more labeled audio data becomes available. Check current benchmark leaderboards before beginning a new research project.</p>
   </div>
 
   <!-- SECTION 5: AI-ASSISTED QUALITATIVE ANALYSIS -->
@@ -319,7 +319,7 @@
     </div>
     <div class="card">
       <h3>&#128202; <a href="https://lumivero.com/products/nvivo/" target="_blank" rel="noopener">NVivo</a> 15.3 (Lumivero)</h3>
-      <p>AI-generated summaries, AI auto-coding, and integration with statistical analysis. The Lumivero acquisition of ATLAS.ti (September 2024) has brought both tools under the same corporate umbrella, with increasing feature convergence across the two products.</p>
+      <p>AI-generated summaries, AI auto-coding, and integration with statistical analysis. The Lumivero acquisition of ATLAS.ti (September 2024) has brought both tools under the same corporate umbrella, with the two still sold as separate products.</p>
       <ul class="styled-list">
         <li>AI auto-coding integrates with NVivo&rsquo;s node structure</li>
         <li>AI summaries work at document and node level</li>
@@ -387,14 +387,14 @@
 
   <div class="resource-placeholder">
     <h4>&#127908; Core Reading 1</h4>
-    <p>arXiv:2510.01145 (2025). &ldquo;Automatic Speech Recognition for African Low-Resource Languages: A Systematic Literature Review.&rdquo;<br>
+    <p>arXiv:2510.01145 (2025). &ldquo;Automatic Speech Recognition (ASR) for African Low-Resource Languages: A Systematic Literature Review.&rdquo;<br>
     <a href="https://arxiv.org/abs/2510.01145" style="color:#2a5298; font-weight:600;">https://arxiv.org/abs/2510.01145</a></p>
     <p style="margin-top:10px; color:#888; font-size:0.9em;">A thorough systematic review covering the current state of ASR for African languages, data availability, benchmark performance, and research gaps.</p>
   </div>
 
   <div class="resource-placeholder">
     <h4>&#127908; Core Reading 2</h4>
-    <p>Nahabwe et al. (2025). &ldquo;Benchmarking Automatic Speech Recognition Models for African Languages.&rdquo; Deep Learning Indaba 2025, <a href="https://proceedings.mlr.press/v302/nahabwe26a.html" target="_blank" rel="noopener">PMLR 302:1&ndash;19, 2026</a>.<br>
+    <p>Nahabwe et al. (2026). &ldquo;Benchmarking Automatic Speech Recognition Models for African Languages.&rdquo; Presented at Deep Learning Indaba 2025, <a href="https://proceedings.mlr.press/v302/nahabwe26a.html" target="_blank" rel="noopener">PMLR 302:1&ndash;19, 2026</a>.<br>
     <a href="https://arxiv.org/abs/2512.10968" style="color:#2a5298; font-weight:600;">https://arxiv.org/abs/2512.10968</a></p>
     <p style="margin-top:10px; color:#888; font-size:0.9em;">Systematic comparison of Whisper, W2v-BERT, XLS-R, and MMS across African languages with varying amounts of fine-tuning data. The source for the WER tables in this sub-lesson.</p>
   </div>
@@ -418,7 +418,7 @@
     <p><strong>Transcription hallucination:</strong> Documented across multiple studies. Informal testing found hallucinations in approximately 80% of public meeting transcriptions; Koenecke et al. (FAccT 2024) found that 38% of the hallucinations in transcriptions of AphasiaBank research interviews involved explicit harms. Invented sentences, fabricated proper nouns, and dropped content are all real failure modes. Every transcript used in research requires human verification against the original audio.</p>
     <p><strong>African language tools:</strong> In the Nahabwe et al. (2025) benchmark, a W2v-BERT speech model fine-tuned on one hour of audio had word error rates of 22.7% on Afrikaans, 28.0% on Zulu and 27.8% on Xhosa, falling to 3.2%, 7.9% and 7.1% with 50 hours of fine-tuning. Whisper (the small model) fine-tuned on the same data went from 26.4%, 33.6% and 33.6% at one hour to 2.1%, 8.2% and 5.9% at 50 hours. The study did not test Whisper without fine-tuning. Intron Sahara v2 and Lelapa AI are specialist tools developed for African language contexts and should be the first consideration for research involving these languages.</p>
     <p><strong>Qualitative analysis software:</strong> ATLAS.ti, NVivo, MAXQDA, and Insight7 all now offer AI coding and summarisation. AI finds passages; you determine what they mean.</p>
-    <p><strong>Privacy:</strong> Audio recordings of participants require explicit ethics approval and consent cover before cloud processing. Use local tools (Whisper, WhisperX) for sensitive data.</p>
+    <p><strong>Privacy:</strong> Before processing participants' audio recordings in the cloud, check that your ethics approval and consent cover it, including transfers to services outside South Africa. Use local tools (Whisper, WhisperX) for sensitive data.</p>
     <p><strong>Up next &mdash; Sub-Lesson 5:</strong> Video analysis and multimodal AI, combining audio, visual, and text modalities in research workflows.</p>
   </div>
 
