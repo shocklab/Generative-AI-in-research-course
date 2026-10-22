@@ -283,7 +283,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <h2 class="section-title" id="s1">Why Agents Need Their Own Failure Lesson</h2>
 
-  <p style=" margin-bottom: 20px">A chatbot produces one response and stops. If it is right 90% of the time, that is roughly your experience of it. An agent runs the model in a loop, dozens or hundreds of times for a single task, and three things change.</p>
+  <p style=" margin-bottom: 20px">A chatbot produces one response and stops. If it is right 90% of the time, that is roughly your experience of it. An agent runs the model in a loop, using tools and feedback as it works through a task, and three things change.</p>
 
   <ul class="styled-list">
     <li><strong>Errors compound.</strong> If each step is correct 95% of the time and the task takes twenty steps whose errors are independent, the probability that <em>every</em> step is correct is roughly 0.95<sup>20</sup>, about 36%. High per-step accuracy can still produce a task that usually fails. This is the agentic version of the Week 7 silent-error problem: each step looks plausible, the end result is wrong.</li>
@@ -302,7 +302,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
   <!-- CATEGORY A -->
   <h3 style=" margin: 30px 0 15px">(a) Patched / Largely Solved</h3>
 
-  <p style=" margin-bottom: 15px">Early agent demos (2023&ndash;24) failed in ways that have since been largely engineered away by the harness layer:</p>
+  <p style=" margin-bottom: 15px">Harness improvements, model training and API constraints on tool-call formats reduce particular failures seen in early agent demos (2023&ndash;24), though agent failures persist:</p>
 
   <ul class="styled-list">
     <li><strong>Malformed tool calls.</strong> Early agents frequently emitted tool requests that did not parse. Structured tool-calling APIs and constrained decoding have largely fixed this.</li>
@@ -317,24 +317,24 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <p style=" margin-bottom: 15px">These are mitigated but resurface, especially on longer tasks. They are the failure modes most relevant to real research workflows in 2026:</p>
 
-  <div class="card-grid"><div class="card"><h3>Loop instability</h3>
+  <div class="card-grid grid-wide"><div class="card"><h3>Loop instability</h3>
       <p>Agents get stuck repeating an edit, re-running a failing command, or oscillating between two states. Harnesses now ship explicit loop-detectors (again, see the LangChain recipe in 10.1), which tells you the problem is real enough to need a dedicated mitigation.</p>
     </div>
     <div class="card"><h3>Over-eager action</h3>
       <p>Given write permissions, agents delete more than asked, refactor confidently in the wrong direction, or &ldquo;fix&rdquo; things that were not broken. The Week 9 pattern of confidently-defended wrong reasoning becomes confidently-executed wrong action.</p>
     </div>
     <div class="card"><h3>Sycophancy over long sessions</h3>
-      <p>The Week 9 sycophancy finding (Sharma et al., 2023) intensifies in long agentic conversations: the longer the session and the more you push back, the more the agent drifts toward agreeing with you rather than the task.</p>
+      <p>Later multi-turn chat studies, including SPINE (2026), found that models more often abandoned correct positions under sustained user pushback as conversations grew longer. These studies extend the Week 9 discussion of sycophancy, but did not test tool-using agent sessions.</p>
     </div>
     <div class="card"><h3>Confidence miscalibration over horizons</h3>
-      <p>An agent&#39;s sense of &ldquo;I&#39;ve got this&rdquo; does not decay as a task gets longer and riskier, even though its actual success rate does. The confidence signal you might want to threshold on is least trustworthy exactly when you need it most.</p>
+      <p>In <em>Agentic Uncertainty Reveals Agentic Overconfidence</em>, agents&#39; confidence fell as execution progressed in most instances, but remained well above their actual success rate and did not distinguish eventual success from failure. In the studied deep-research tasks, confidence during execution predicted failure poorly; it was more predictive in coding tasks. Test it on your own task before using it to decide when to intervene.</p>
     </div>
   </div>
 
   <!-- CATEGORY C -->
   <h3 style=" margin: 30px 0 15px">(c) Structural and Likely Persistent</h3>
 
-  <p style=" margin-bottom: 15px">These follow from how agents work, not from fixable engineering gaps. They are the ones to design your workflow <em>around</em>, because the next model release will not remove them. Each gets its own section below: the reliability gap, long-horizon planning collapse, and prompt injection. Compositional brittleness sits here too: the compounding-error problem from the top of this lesson, and the same effect behind ProgramBench scoring 0% on whole-repository tasks in Week 9.</p>
+  <p style=" margin-bottom: 15px">Some failures follow from how an agent chooses its actions under particular assumptions. Design your workflow to <em>manage</em> these risks: engineering changes such as explicit lookahead can substantially reduce planning failures, even when those failures have a structural explanation. Each gets its own section below: the reliability gap, long-horizon planning collapse, and prompt injection. Compositional brittleness includes the compounding-error problem from the top of this lesson. In ProgramBench, discussed in Week 9, no model fully resolved a task; the study linked this shortfall to monolithic, single-file code.</p>
 
   <h2 class="section-title" id="s3">Reliability Is Not Accuracy: The Princeton Finding</h2>
 
@@ -361,7 +361,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <div class="case-study"><h3 class="lbl h4long">The counter-intuitive result: small + planning beats large + greedy</h3>
     <p>One demonstration stands out: with their lookahead method (FLARE), <em>&ldquo;LLaMA-8B with FLARE frequently outperforms GPT-4o with standard step-by-step reasoning&rdquo;</em> on long-horizon benchmarks. A small model that genuinely plans can beat a much larger model that reasons step by step.</p>
-    <p>The research lesson is about <em>reasoning not being planning</em>, not about using LLaMA-8B. When you see an agent handle each individual step competently and still walk the task into a wall, you are watching greedy step-wise reasoning fail at planning: a structural limitation, not a bug that more model scale will fix.</p>
+    <p>The research lesson is about <em>reasoning not being planning</em>, not about using LLaMA-8B. When an agent handles individual steps competently but fails the overall task, greedy step-wise reasoning may explain the failure. Wang et al. found that explicit lookahead improved planning across model sizes; they did not test whether increasing model size alone could fix the limitation.</p>
   </div>
 
   <h2 class="section-title" id="s5">Watching Agents Run Long: Two 2026 Benchmarks</h2>
@@ -370,11 +370,11 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <div class="card-grid"><div class="card"><h3>YC-Bench &mdash; run a startup for a (simulated) year</h3>
       <p>YC-Bench (arXiv:2604.01212) tasks an agent with running a simulated startup over a one-year horizon spanning hundreds of turns: managing employees, choosing contracts, and staying profitable while adversarial clients and rising payroll create compounding consequences. It is long-horizon planning made measurable.</p>
-      <p>Top result: Claude Opus 4.6 at $1.27M average final funds, with the much cheaper GLM-5 (from China&#39;s Zhipu AI) close behind at $1.21M for roughly 11&times; lower inference cost. A preview of the lower-cost and Chinese-model story we develop in 10.5.</p>
+      <p>Top result in the original YC-Bench paper: Claude Opus 4.6 at $1.27M average final funds, with the much cheaper GLM-5 (from China&#39;s Zhipu AI) close behind at $1.21M for roughly 11&times; lower inference cost. A preview of the lower-cost and Chinese-model story we develop in 10.5.</p>
     </div>
     <div class="card"><h3>The &ldquo;Meltdown Onset Point&rdquo;</h3>
       <p><em>Beyond pass@1: A Reliability Science Framework for Long-Horizon LLM Agents</em> (arXiv:2603.29231) evaluated 10 models across 23,392 episodes and introduced metrics for how agents fall apart over time, including a <strong>Meltdown Onset Point</strong> that detects behavioural collapse by watching the agent&#39;s tool-call patterns become erratic.</p>
-      <p>That a benchmark needs a dedicated &ldquo;meltdown&rdquo; metric tells you the phenomenon is common enough to formalise: past some task length, agents do not just get things wrong, they come apart.</p>
+      <p>In this benchmark, meltdown rates were up to 19% in two models at the longest tested duration and 0&ndash;4% in the others, with no consistent increase as tasks grew longer.</p>
     </div>
   </div>
 

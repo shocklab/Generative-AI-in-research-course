@@ -309,7 +309,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="info-box"><strong>Why does this work?</strong> LLMs respond to structure. When you give Claude a numbered list of tasks, it addresses each one. When you set explicit constraints ("do not generate citations"), it follows them far more reliably than if you hope it won't hallucinate. Think of prompting as giving instructions to a highly capable but very literal research assistant.</div>
 <!-- SECTION 2: CLAUDE PROJECTS -->
 <h2 class="section-title" id="s2">Level 2: Claude Projects for Ongoing Research</h2>
-<p>Individual prompts are powerful, but they're ephemeral: each new conversation starts from scratch. If you're working on a research project over weeks or months, you need something persistent. <strong>Claude Projects</strong> are built for this.</p>
+<p>Each new Claude conversation has a fresh context window, but memory can supply context from earlier chats. For research over weeks or months, <strong>Claude Projects</strong> let you organise documents and persistent instructions for a specific research topic.</p>
 <p style="margin-top: 15px">Claude Projects (free accounts can have up to five; paid plans add capacity) let you create a dedicated workspace for a research topic. You can upload your key papers, your methodology documents and your research proposal, then set custom instructions that persist across every conversation in that Project. Instead of re-explaining your context every time, Claude uses the instructions, knowledge and project memory you have supplied across the Project's chats.</p>
 <div class="technical-detail"><h3>Setting Up a Research Project</h3>
 <p style="margin-bottom: 15px">Here's how to structure an effective Claude Project for your research:</p>
@@ -329,7 +329,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <h2 class="section-title" id="s3">Level 3: Claude Code Skills (For the Adventurous)</h2>
 <p>This section is for those who want to go further. Most students won't need this right now, but understanding what's possible will help you decide how deep you want to go, and give you a sense of where these tools are heading.</p>
 <div class="technical-detail"><h3>What is Claude Code?</h3>
-<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer. It can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. It <a href="https://claude.com/pricing" target="_blank" rel="noopener">needs a paid Claude plan</a> (Pro or above); Advanced A.2 covers the cost.</p>
+<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer. It can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. Access options include a <a href="https://claude.com/pricing" target="_blank" rel="noopener">paid Claude plan</a>, an Anthropic Console account for usage-based billing, or supported third-party providers; Advanced A.2 covers the cost.</p>
 <p style="margin-top: 10px">You interact with it by typing commands in your terminal (the command line), and it responds by taking actions: reading your files, creating new ones, running searches, and reporting back what it found.</p>
 </div>
 <div class="technical-detail"><h3>What is CLAUDE.md?</h3>
@@ -383,7 +383,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Be cautious with unpublished data.</strong> If your research involves participant data, interview transcripts, or other sensitive material, check whether uploading it to a cloud service is compliant with your ethics approval</li>
 </ul>
 </div>
-<p style="margin-top: 15px">None of this is a reason to avoid these tools entirely. It is a reason to be thoughtful about <em>what</em> you upload and <em>where</em>. Published papers are generally safe to upload. Your own writing drafts are fine. Sensitive participant data or confidential manuscripts require more care.</p>
+<p style="margin-top: 15px">None of this is a reason to avoid these tools entirely. It is a reason to be thoughtful about <em>what</em> you upload and <em>where</em>. Before uploading a published paper, check that the licence for your copy permits its use with AI tools. Your own writing drafts are fine if you have the rights and permissions needed to upload everything they contain. Sensitive participant data or confidential manuscripts require more care.</p>
 <!-- SECTION 5: CHOOSING YOUR LEVEL -->
 <h2 class="section-title" id="s5">Choosing Your Level</h2>
 <p>There is no single right way to use AI in your research workflow. The best approach depends on how often you use these tools, what stage of research you're in, and how comfortable you are with technology. Here are the three levels summarised:</p>
@@ -401,7 +401,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <div class="card level-card"><div class="level-tag">Power Users</div>
 <h3>Claude Code + Skills</h3>
-<p><strong>Needs a paid Claude plan and comfort with the terminal.</strong></p>
+<p><strong>Needs paid access through a Claude plan, Anthropic Console or a supported provider, and comfort with the terminal.</strong></p>
 <p style="margin-top: 8px">Build automated, multi-step research workflows with CLAUDE.md and skills. Maximum flexibility and customisation. Your instructions live as files you control, and workflows can be shared with collaborators.</p>
 <p style="margin-top: 8px"><strong>Best for:</strong> Researchers who want maximum control and are comfortable (or willing to learn) working in the terminal.</p>
 </div>
@@ -412,7 +412,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>In this session, we moved from understanding AI tools to building with them. The three levels of customisation (better prompts, Claude Projects, and Claude Code skills) give you a pathway from simple improvements you can make right now to more involved workflows you can grow into over time.</p>
 <p style="margin-top: 12px"><strong>Key takeaways:</strong></p>
 <ul class="styled-list">
-<li><strong>Structure your prompts</strong> with numbered tasks, explicit constraints, and anti-hallucination safeguards, which on its own will improve your results</li>
+<li><strong>Structure your prompts</strong> with numbered tasks, explicit constraints, and anti-hallucination safeguards to help improve results, then check the outputs because errors can remain</li>
 <li><strong>Separate finding papers from analysing them:</strong> use Semantic Scholar, Elicit, or Google Scholar to discover papers, then upload verified PDFs to Claude for synthesis</li>
 <li><strong>Claude Projects</strong> give you persistent context: upload your key papers once and have Claude remember your research context across sessions</li>
 <li><strong>Claude Code and CLAUDE.md</strong> offer maximum customisation for those who want automated, repeatable research workflows</li>
