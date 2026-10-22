@@ -310,7 +310,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 2: CLAUDE PROJECTS -->
 <h2 class="section-title" id="s2">Level 2: Claude Projects for Ongoing Research</h2>
 <p>Individual prompts are powerful, but they're ephemeral: each new conversation starts from scratch. If you're working on a research project over weeks or months, you need something persistent. <strong>Claude Projects</strong> are built for this.</p>
-<p style="margin-top: 15px">Claude Projects (free accounts can have up to five; paid plans add capacity) let you create a dedicated workspace for a research topic. You can upload your key papers, your methodology documents and your research proposal, then set custom instructions that persist across every conversation in that Project. Instead of re-explaining your context every time, Claude already knows who you are, what you're working on, and how you want it to behave.</p>
+<p style="margin-top: 15px">Claude Projects (free accounts can have up to five; paid plans add capacity) let you create a dedicated workspace for a research topic. You can upload your key papers, your methodology documents and your research proposal, then set custom instructions that persist across every conversation in that Project. Instead of re-explaining your context every time, Claude uses the instructions, knowledge and project memory you have supplied across the Project's chats.</p>
 <div class="technical-detail"><h3>Setting Up a Research Project</h3>
 <p style="margin-bottom: 15px">Here's how to structure an effective Claude Project for your research:</p>
 <ul class="styled-list">
@@ -333,7 +333,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style="margin-top: 10px">You interact with it by typing commands in your terminal (the command line), and it responds by taking actions: reading your files, creating new ones, running searches, and reporting back what it found.</p>
 </div>
 <div class="technical-detail"><h3>What is CLAUDE.md?</h3>
-<p>A <code>CLAUDE.md</code> file is a special Markdown file that acts as <strong>persistent instructions</strong> for Claude Code. It's read automatically at the start of every session, like giving Claude a "constitution" for how to work with you. You place it in your project folder, and every time you start Claude Code in that folder, it reads the file and follows those instructions.</p>
+<p>A <code>CLAUDE.md</code> file is a special Markdown file that acts as <strong>persistent instructions</strong> for Claude Code. It's read automatically at the start of every session, like giving Claude a "constitution" for how to work with you. You place it in your project folder, and every time you start Claude Code in that folder, it loads the file as context, though it is not guaranteed to follow every instruction.</p>
 <p style="margin-top: 10px">Think of it as the equivalent of Project instructions (Level 2), but stored as a file on your computer rather than in Claude's web interface. That means you can version-control it, share it with collaborators, and customise it to a much greater degree.</p>
 </div>
 <p style="margin-top: 20px">Here is an example <code>CLAUDE.md</code> for a research project:</p>
@@ -390,7 +390,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="card-grid grid-wide"><div class="card level-card"><div class="level-tag">Everyone</div>
 <h3>Better Prompts</h3>
 <p><strong>Start today, no extra tools needed.</strong></p>
-<p style="margin-top: 8px">Works with Claude's free tier (or any LLM). Use the structured prompt templates from Section 1 to get much better results from every conversation. The key principles: be specific, set constraints, separate discovery from analysis.</p>
+<p style="margin-top: 8px">Works with Claude's free tier (or any LLM). Use the structured prompt templates from Section 1 to help you get better results from your conversations. The key principles: be specific, set constraints, separate discovery from analysis.</p>
 <p style="margin-top: 8px"><strong>Best for:</strong> Everyone, regardless of experience level.</p>
 </div>
 <div class="card level-card"><div class="level-tag">Regular Users</div>
