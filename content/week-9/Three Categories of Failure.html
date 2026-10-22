@@ -363,26 +363,26 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 <figure id="fig-w9-failure-taxonomy" class="diagram"><svg width="100%" viewBox="0 0 680 322" role="img" xmlns="http://www.w3.org/2000/svg"><title>The failure taxonomy and what each kind asks of you</title><desc>An observed AI failure sorts into one of three kinds: patched, reduced but persistent, or structural. Each leads to a different response, from using a current model to leaning on verification.</desc><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><rect x="1" y="1" width="678" height="320" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><rect x="250" y="46" width="180" height="44" rx="8" fill="#003A70"/><text x="340" y="73" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" font-weight="500" fill="#ffffff">An AI failure shows up</text><line x1="340" y1="90" x2="130" y2="148" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="90" x2="340" y2="148" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="90" x2="550" y2="148" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="30" y="150" width="200" height="56" rx="8" fill="#e7efe8" stroke="#8fb09a"/><text x="130" y="174" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="15.5" font-weight="500" fill="#2c6e3f">Patched</text><text x="130" y="192" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#6a6256">fixed in current models</text><line x1="130" y1="206" x2="130" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="30" y="250" width="200" height="46" rx="8" fill="#d6e3f2" stroke="#9fb8d6"/><text x="130" y="278" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="13" font-weight="500" fill="#003A70">Use a current model</text><rect x="240" y="150" width="200" height="56" rx="8" fill="#f7efe0" stroke="#cdab6a"/><text x="340" y="174" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="15.5" font-weight="500" fill="#7c5c12">Reduced</text><text x="340" y="192" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#6a6256">surfaces under conditions</text><line x1="340" y1="206" x2="340" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="240" y="250" width="200" height="46" rx="8" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340" y="278" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="13" font-weight="500" fill="#003A70">Add workflow mitigations</text><rect x="450" y="150" width="200" height="56" rx="8" fill="#f3e3df" stroke="#c08a82"/><text x="550" y="174" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="15.5" font-weight="500" fill="#9a2f2f">Structural</text><text x="550" y="192" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="12" fill="#6a6256">an architectural limit</text><line x1="550" y1="206" x2="550" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="450" y="250" width="200" height="46" rx="8" fill="#d6e3f2" stroke="#9fb8d6"/><text x="550" y="278" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="13" font-weight="500" fill="#003A70">Rely on verification</text></svg><figcaption>Three kinds of AI failure, and what each one asks of you, from switching models to leaning on verification.</figcaption></figure>
 <h2 class="section-title">&#9989; (a) Patched / Largely Solved</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These were widely-cited failure modes in 2023&ndash;24 that have been substantially mitigated by current training pipelines. The original papers documenting them remain valuable as historical landmarks, but they no longer describe current frontier behaviour. Citing them as if they did is a common error in the recent AI literature.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">Some widely-cited failure modes from 2023&ndash;24 have improved, but improvement needs to be demonstrated separately for each failure and model. The Reversal Curse remains a subject of current research. Read the original papers alongside current retests before deciding whether a failure belongs in this category.</p>
 
   <div class="card-grid">
 
     <div class="card">
       <h3>The Reversal Curse</h3>
       <p>In 2023, Berglund et al. showed that LLMs trained on facts of the form &ldquo;A is B&rdquo; failed to generalise to &ldquo;B is A&rdquo;, even when the inverse relationship was common in their training data. A model that knew &ldquo;Tom Cruise&#39;s mother is Mary Lee Pfeiffer&rdquo; would not reliably answer &ldquo;Who is Mary Lee Pfeiffer&#39;s son?&rdquo;</p>
-      <p>By 2026, this failure mode is no longer prominent in benchmark discussions. Training-data interventions and inference-time techniques have substantially mitigated it in frontier models. Still cited in the literature, but largely as a historical landmark.</p>
+      <p>Changes to training data and training objectives have reduced this failure in controlled research experiments. February 2026 research still describes it as a well-known failure mode of current LLMs. Test whether a model can answer a factual question in both directions.</p>
       <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2309.12288" target="_blank" rel="noopener">Berglund, L., Tong, M., Kaufmann, M., et al. (2023). The Reversal Curse. arXiv:2309.12288</a></p>
     </div>
 
     <div class="card">
       <h3>Basic Arithmetic and Short-Form Reasoning</h3>
-      <p>In 2023, Frieder et al. tested ChatGPT and GPT-4 on graduate-level mathematics and found them mostly inadequate. The paper became a touchstone for &ldquo;LLMs can&#39;t do real maths&rdquo; arguments. By May 2026 this is thoroughly superseded: GPT-5.5 Pro scores 52.4% on FrontierMath Tiers 1&ndash;3 (research-level problems set by Fields medallists), Gemini Deep Think scored 35/42 at IMO 2025, and several Erd&#337;s problems have been solved with frontier-model assistance (see 9.3).</p>
+      <p>In 2023, Frieder et al. tested ChatGPT and GPT-4 on graduate-level mathematics and found them mostly inadequate. The paper became a touchstone for &ldquo;LLMs can&#39;t do real maths&rdquo; arguments. By May 2026 this is thoroughly superseded: GPT-5.5 Pro scores 52.4% on FrontierMath Tiers 1&ndash;3 (problems written by mathematicians, ranging from olympiad and advanced undergraduate to harder graduate-level work), Gemini Deep Think scored 35/42 at IMO 2025, and several Erd&#337;s problems have been solved with frontier-model assistance (see 9.3).</p>
       <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Original: <a href="https://arxiv.org/abs/2301.13867" target="_blank" rel="noopener">Frieder, S., Pinchetti, L., et al. (2023). Mathematical Capabilities of ChatGPT. NeurIPS 2023</a></p>
     </div>
 
     <div class="card">
       <h3>Hallucinated Code on Common Tasks</h3>
-      <p>In 2023, asking a model for code would sometimes produce calls to functions that didn&#39;t exist, mostly for less commonly used APIs. By 2026, frontier models pass SWE-bench Verified above 87%, meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
+      <p>In 2023, asking a model for code would sometimes produce calls to functions that didn&#39;t exist, mostly for less commonly used APIs. By 2026, frontier models pass SWE-bench Verified above 87%, meaning they correctly resolve real GitHub issues. In CloudAPIBench tests of 2024 models, hallucinations were less frequent for commonly used APIs and more frequent for rarely used ones. Check function names and arguments against the documentation.</p>
     </div>
 
   </div>
@@ -407,9 +407,9 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Linardon et al. (2025).</strong> <em>JMIR Mental Health</em> 12: e80371. GPT-4o: 19.9% overall; <strong>28&ndash;29% on niche topics</strong>; 6% on well-studied. Citation hallucination correlates with how rare the topic is in training data.</li>
   </ul>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">In 2026 these rates have dropped further on common topics but the long-tail problem persists: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Citation hallucination rates did not consistently decline across model generations in a 2026 legal-citation benchmark. Topic rarity also matters: the rarer a topic is in training data, the more likely AI is to hallucinate when asked about it. For research that touches the long tail by definition, citation verification is non-negotiable.</p>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">A current data point: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, scores around 34 on Artificial Analysis&#39;s Intelligence Index but reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong> (<a href="https://artificialanalysis.ai/articles/aa-omniscience-knowledge-hallucination-benchmark" target="_blank" rel="noopener">Artificial Analysis</a>; methodology paper <a href="https://arxiv.org/abs/2511.13029" target="_blank" rel="noopener">arXiv:2511.13029</a>). The hallucination problem is unevenly addressed across the open-weights frontier; not every recent release inherits the mitigations from the leading labs.</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">An example: Ant Group&#39;s <strong>Ling 2.6 1T</strong> (April 2026), a 1-trillion-parameter open-weights model targeted at cost-efficient inference, is listed by Artificial Analysis as deprecated, with an estimated Intelligence Index v4.3.2 score of 17, and reports a <strong>92% hallucination rate on the AA-Omniscience benchmark</strong> (<a href="https://artificialanalysis.ai/articles/aa-omniscience-knowledge-hallucination-benchmark" target="_blank" rel="noopener">Artificial Analysis</a>; methodology paper <a href="https://arxiv.org/abs/2511.13029" target="_blank" rel="noopener">arXiv:2511.13029</a>). Hallucination rates vary widely across models, including open-weights releases, on benchmarks such as AA-Omniscience.</p>
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
 
@@ -417,11 +417,11 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <ul class="styled-list">
     <li><strong>Constitutional AI</strong> trains the model to evaluate its own outputs against principles including honesty and calibrated confidence (Week 2).</li>
-    <li><strong>DPO with sycophancy-labelled preference pairs</strong> directly penalises sycophantic responses while preserving instruction-following.</li>
+    <li><strong>DPO with sycophancy-labelled preference pairs</strong> directly penalises sycophantic responses; preserving instruction-following also needs to be tested.</li>
     <li><strong>Persona-vector interpretability methods</strong> extract activation patterns associated with traits like sycophancy and intervene at inference time.</li>
   </ul>
 
-  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models, but it reappears under specific conditions: long conversations, emotional framing, expert-claimed user identities, and pushback against initial AI outputs. If you want a frontier model to tell you it&#39;s wrong, you need to ask in a way that doesn&#39;t signal what answer you want.</p>
+  <p style="color: #555; line-height: 1.75; margin-top: 15px; margin-bottom: 15px;">Sycophancy is reduced in frontier 2026 models, but it reappears in long conversations, under emotional framing and after pushback against initial outputs; evidence about users claiming expertise is mixed. When asking a frontier model to check your work, avoid signalling the answer you want and check whether it identifies errors in your reasoning.</p>
 
   <div class="case-study" style="margin-top: 20px;">
     <h4>&#128221; A May 2026 anecdote: model overconfidence on a maths disagreement</h4>
@@ -438,7 +438,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <!-- CATEGORY C -->
   <h2 class="section-title">&#129518; (c) Structural and Likely Persistent</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These failures follow from how LLMs work, not from training-data quirks. They are unlikely to be solved by the next model release because they are properties of the architecture or the training paradigm. Verification protocols (Sub-Lesson 9.5) target these specifically.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">These failures can involve interactions between training data, training objectives, model capacity and limits during use. They are unlikely to be solved by the next model release because they are properties of the architecture or the training paradigm. Verification protocols (Sub-Lesson 9.5) target these specifically.</p>
 
   <div class="card-grid">
 
@@ -461,8 +461,8 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Compositional Brittleness</h3>
-      <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. Errors compound multiplicatively, so a long chain needs very high accuracy at every step, and an error that no step detects can still reach the result. Long agentic chains amplify the problem.</p>
-      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests multi-step agentic tasks in a simulated food-truck business. Even DeepSeek V4 Pro, competitive with the closed frontier on most single-step benchmarks, struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This failure mode gets worse as agentic systems get longer.</p>
+      <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. When every step must succeed, overall success is the product of the conditional step-success probabilities; detecting and correcting errors can improve the final result. Long agentic chains amplify the problem.</p>
+      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests multi-step agentic tasks in a simulated food-truck business. DeepSeek V4 Pro, assessed by NIST&#39;s CAISI as about eight months behind the frontier, survived all five FoodTruck Bench runs, with a median return on investment of +1,257%. This was in the same reported performance tier as Opus 4.6, GPT-5.2 and Grok 4.3 Latest. These results do not demonstrate failure on longer tasks.</p>
     </div>
 
     <div class="card">
@@ -472,7 +472,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Training Data Dependence</h3>
-      <p>Models can only know what was in their training data. They may confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural; it doesn&#39;t go away with more parameters or better RLHF.</p>
+      <p>Models learn from training data and can also use information supplied in prompts or retrieved by tools. They may confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural; it doesn&#39;t go away with more parameters or better RLHF.</p>
     </div>
 
   </div>
@@ -499,9 +499,9 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
       </thead>
       <tbody>
         <tr>
-          <td>Model fails on simple arithmetic in your prompt</td>
-          <td>Patched</td>
-          <td>You&#39;re using an old model. Switch to a current frontier (Opus 4.7, GPT-5.5, etc.) and try again.</td>
+          <td>Model fails on arithmetic in your prompt</td>
+          <td>Cannot classify from this error alone</td>
+          <td>An arithmetic error alone cannot tell you the model&#39;s age. Even frontier models can lose accuracy when adding integers with more digits. Check the calculation independently.</td>
         </tr>
         <tr>
           <td>Model produces a confident citation that doesn&#39;t exist on a niche topic</td>

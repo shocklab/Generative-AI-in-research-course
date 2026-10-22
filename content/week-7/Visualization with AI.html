@@ -430,7 +430,7 @@
 <li>Suggestions appear inline as you write comments or code</li>
 <li>Free tier available (with usage limits on AI features)</li>
 <li>Natural fit for researchers already using Colab for data analysis</li>
-<li>Less conversational than Claude or ChatGPT; more like autocomplete for code</li>
+<li>Offers Gemini chat and a Data Science Agent alongside inline code autocompletion</li>
 </ul>
 </div>
 </div>
@@ -444,7 +444,7 @@
 </div>
 <!-- SECTION 2: GOOD VISUALISATION PRINCIPLES AI OFTEN VIOLATES -->
 <h2 class="section-title">⚠️ Good Visualisation Principles AI Often Violates (unless you prompt it to look out for them)</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">AI tools are trained on code from the internet, which means they reproduce the most common plotting patterns rather than the best ones. The defaults in matplotlib and seaborn were designed for quick exploratory analysis, not for publication. When AI generates a chart, it almost always produces something that looks reasonable at first glance but violates one or more principles of effective data communication. Here are the six most common problems.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">In one chart-generation study, language models produced better chart designs when given explicit guidance on effective visualisation. Matplotlib was designed to produce publication-quality plots, though its defaults and seaborn's may need adjustment for a particular journal. When AI generates a chart, it almost always produces something that looks reasonable at first glance but violates one or more principles of effective data communication. Here are the six most common problems.</p>
 <div class="card-grid">
 <div class="card">
 <h3>Misleading Axes</h3>
@@ -488,7 +488,7 @@
 </div>
 <div class="card">
 <h3>Missing Context</h3>
-<p>A chart without proper labels, units, a clear title, and source attribution is a chart that cannot be interpreted. AI-generated plots routinely omit axis units, use generic titles like "Data Plot," leave out sample sizes, and provide no indication of statistical uncertainty. A figure in a paper must stand alone: a reader should understand it without reading the surrounding text.</p>
+<p>A chart needs clear labels, units where applicable, and enough information in its title or caption to explain what it shows and identify its source. AI-generated plots routinely omit axis units, use generic titles like "Data Plot," leave out sample sizes, and provide no indication of statistical uncertainty. A figure in a paper must stand alone: a reader should understand it without reading the surrounding text.</p>
 <ul class="styled-list">
 <li>Axis labels missing units (is that kilometres, miles, or arbitrary units?)</li>
 <li>No indication of sample size or data source</li>
@@ -509,7 +509,7 @@
 </div>
 <div class="warning-box">
 <h4>⚠️ The Core Problem</h4>
-<p>AI tools optimise for producing a chart that looks complete, not a chart that communicates accurately. A chart can be technically correct (the data points are in the right places) and still be misleading because of how it is framed. The visual choices (axis range, colour, chart type, annotations) are as important as the data itself, and these are the choices AI handles poorly by default.</p>
+<p>AI-generated charts can look complete while communicating inaccurately, even when tools evaluate and improve their own output. A chart can be technically correct (the data points are in the right places) and still be misleading because of how it is framed. The visual choices (axis range, colour, chart type, annotations) are as important as the data itself, and these are the choices AI handles poorly by default.</p>
 </div>
 <!-- SECTION 3: HELP VS MISLEAD -->
 <h2 class="section-title">⚖️ When AI Visualisation Helps vs. When It Misleads</h2>
@@ -545,7 +545,7 @@
 <h4>Colourblind-Safe Palettes</h4>
 <p>Switching from the default colour palette to a colourblind-safe alternative does more for any AI-generated chart than almost any other single change. Several well-tested palettes exist:</p>
 <ul class="styled-list">
-<li><strong>ColorBrewer palettes:</strong> Developed by cartographer Cynthia Brewer, these palettes have been rigorously tested for perceptual uniformity and colourblind safety. The <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer 2.0</a> tool lets you select palettes filtered by colourblind-safe options. In matplotlib, use <code>plt.get_cmap('Set2')</code> or the seaborn <code>colorblind</code> palette.</li>
+<li><strong>ColorBrewer palettes:</strong> Developed by cartographer Cynthia Brewer, these palettes include colourblind-safe options; use the tool's colourblind-safe filter to select them. The <a href="https://colorbrewer2.org/" target="_blank" rel="noopener">ColorBrewer 2.0</a> tool lets you select palettes filtered by colourblind-safe options. In matplotlib, use <code>plt.get_cmap('Set2')</code> or the seaborn <code>colorblind</code> palette.</li>
 <li><strong>Viridis family:</strong> The viridis, magma, inferno, and plasma colour maps in matplotlib were designed to be perceptually uniform, including in greyscale, and relatively friendly to common forms of colour blindness. They work well for continuous data and are readable in greyscale.</li>
 <li><strong>Okabe-Ito palette:</strong> An 8-colour categorical palette designed by Masataka Okabe and Kei Ito that is distinguishable under all common forms of colour vision deficiency.</li>
 </ul>
@@ -587,7 +587,7 @@
 <li><strong>Explore with AI: generate multiple views.</strong> Start by asking the AI to produce several different visualisations of your data. Do not commit to the first chart it gives you. Ask for a bar chart, a box plot, a scatter plot, and a small multiples display of the same data. Compare them. Which one reveals the pattern most honestly? Which one would mislead a reader? This exploratory phase is where AI speed is most valuable. Generate ten plots in ten minutes, then think carefully about which one to develop.</li>
 <li><strong>Audit the defaults: check every visual choice.</strong> Take the most promising chart and systematically check: Does the axis start at an appropriate value? Are the units labelled? Is the title informative (describing the finding, not just the data)? Is the chart type appropriate for the data? Are there error bars or uncertainty indicators where needed? Does the colour palette serve a purpose, or is it decorative? Would this chart make sense to someone who has not read the surrounding text? Fix every issue you find.</li>
 <li><strong>Fix accessibility: colours, encoding, and alt text.</strong> Switch to a colourblind-safe palette (ColorBrewer, viridis, or Okabe-Ito). Add redundant encoding: if colour distinguishes groups, also use different shapes or line styles. Check contrast. Write alt text that describes the chart type, the key finding, and the data range. Test with a colourblindness simulator. This step is non-negotiable for professional-quality work.</li>
-<li><strong>Polish for publication: fonts, formats, and consistency.</strong> Match fonts and sizes to your other figures and to the journal's requirements. Export in a vector format (PDF or SVG) for print, or high-resolution PNG (300+ DPI) for digital. Remove chartjunk: unnecessary gridlines, decorative elements, redundant legends. Ensure the figure caption is complete and accurate. Check that the figure works in greyscale if the journal prints in black and white.</li>
+<li><strong>Polish for publication: fonts, formats, and consistency.</strong> Match fonts and sizes to your other figures and to the journal's requirements. Use vector formats (PDF or SVG) where accepted, and choose raster pixel dimensions and resolution to meet the publication's requirements. Remove chartjunk: unnecessary gridlines, decorative elements, redundant legends. Ensure the figure caption is complete and accurate. Check that the figure works in greyscale if the journal prints in black and white.</li>
 <li><strong>Verify against the data: the final sanity check.</strong> Before submitting, verify that the figure accurately represents the underlying data. Check specific values: does the tallest bar correspond to the largest number in your data? Do the axis limits include all data points? Are any outliers hidden by the axis range? This step catches errors introduced during formatting and is especially important when AI has transformed or aggregated data during the plotting process.</li>
 </ol>
 </div>

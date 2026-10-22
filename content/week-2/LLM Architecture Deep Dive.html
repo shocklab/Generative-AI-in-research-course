@@ -340,7 +340,7 @@
 <!-- SECTION 1: TRANSFORMER FUNDAMENTALS -->
 <h2 class="section-title">🧩 Transformer Architecture Fundamentals</h2>
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Let's revisit the transformer architecture with more technical depth. While Week 1 gave us the intuition, here we'll understand the actual mechanisms.</p>
-<figure id="fig-w2-forward-pass" class="diagram"><svg width="100%" viewBox="0 0 680 403" role="img" xmlns="http://www.w3.org/2000/svg"><title>How a transformer turns text into the next token</title><desc>A seven-step vertical pipeline from tokenising text to sampling the next token.</desc><rect x="1" y="1" width="678" height="401" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="228" x2="340" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="283" x2="340" y2="305" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="338" x2="340" y2="360" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Tokenise — split text into subword token IDs</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Embed — each token becomes a vector</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Add positional encoding — mark word order</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Stack of transformer layers — attention + feed-forward</text><rect x="130" y="250" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="270" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Final layer norm</text><rect x="130" y="305" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="325" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Output projection: score every token in the vocabulary</text><rect x="130" y="360" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="380" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Sample the next token</text></svg><figcaption>A transformer's forward pass: text in, one next-token out, then the whole thing repeats to generate.</figcaption></figure>
+<figure id="fig-w2-forward-pass" class="diagram"><svg width="100%" viewBox="0 0 680 403" role="img" xmlns="http://www.w3.org/2000/svg"><title>How a transformer turns text into the next token</title><desc>A seven-step generation sequence ending with decoding after the forward pass produces token scores.</desc><rect x="1" y="1" width="678" height="401" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="228" x2="340" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="283" x2="340" y2="305" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="338" x2="340" y2="360" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Tokenise — split text into subword token IDs</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Embed — each token becomes a vector</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Add positional encoding — mark word order</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Stack of transformer layers — attention + feed-forward</text><rect x="130" y="250" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="270" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Final layer norm</text><rect x="130" y="305" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="325" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Output projection: score every token in the vocabulary</text><rect x="130" y="360" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="380" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Decode: greedy choice or sampling</text></svg><figcaption>Generation: the forward pass produces token scores; decoding then selects a token, and the process repeats.</figcaption></figure>
 
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">This video is in addition to the videos from last week and is also a little technical, but it does give a slightly different description of the 3blue1brown explanations.</p>
 <div class="resource-placeholder">
@@ -360,21 +360,21 @@
 </div>
 <div class="card">
 <h3>Decoder-Only Architecture</h3>
-<p>Modern LLMs (GPT, Claude, LLaMA) use <strong>decoder-only</strong> architectures rather than the original encoder-decoder design.</p>
+<p>Modern LLMs such as GPT and LLaMA use <strong>decoder-only</strong> architectures rather than the original encoder-decoder design.</p>
 <ul class="styled-list">
 <li><strong>Autoregressive generation:</strong> Predict one token at a time, left to right</li>
 <li><strong>Causal masking:</strong> Each token can attend only to itself and earlier tokens</li>
 <li><strong>Simpler architecture:</strong> No cross-attention needed</li>
-<li><strong>Unified pre-training:</strong> Single objective (next-token prediction) for all training</li>
+<li><strong>Training objectives:</strong> Next-token prediction for pre-training; post-training can add objectives such as maximising learned rewards from human feedback</li>
 </ul>
 <div class="info-box" style="margin-top: 15px;">
 <h4>💡 Why decoder-only?</h4>
-<p>Decoder-only models proved more scalable and effective for general-purpose language understanding and generation. The encoder-decoder design is still used for specific tasks like translation.</p>
+<p>In Wang et al.'s comparison, causal decoder-only models performed best on zero-shot tasks after pre-training alone; models with non-causal attention performed best after masked-language pre-training and multitask fine-tuning. The encoder-decoder design is still used for specific tasks like translation.</p>
 </div>
 </div>
 </div>
 <div class="technical-detail">
-<h4>📐 The Forward Pass: Input to Output</h4>
+<h4>📐 Generation: Input to Next Token</h4>
 <p style="margin-bottom: 15px;">Here's what happens when you send text to an LLM:</p>
 <ol style="margin-left: 25px; color: #555; line-height: 1.8;">
 <li><strong>Tokenization:</strong> Text → token IDs (e.g., "The cat" → [464, 3797])</li>
@@ -384,12 +384,12 @@
 <ul style="margin-left: 20px; margin-top: 8px;">
 <li>Multi-head self-attention: tokens attend to previous context</li>
 <li>Feed-forward network: process attended representations</li>
-<li>Residual connections + layer norm after each sub-layer</li>
+<li>Residual connections + normalisation after each sub-layer in the original Transformer, before each in GPT-2</li>
 </ul>
 </li>
 <li><strong>Final layer norm:</strong> Normalize output representations</li>
 <li><strong>Output projection:</strong> Map to vocabulary size (e.g., 50,000 tokens)</li>
-<li><strong>Sampling:</strong> Choose next token based on probability distribution</li>
+<li><strong>Decoding (after the forward pass):</strong> Select the next token by greedy choice or sampling</li>
 </ol>
 </div>
 <div class="resource-placeholder">
@@ -505,13 +505,13 @@
 </div>
 </div>
 <div class="info-box">
-<h4>💡 Why RoPE Dominates</h4>
-<p>RoPE (Rotary Position Embedding) has become the standard for new LLMs because it:</p>
+<h4>💡 RoPE: Benefits and Limits</h4>
+<p>RoPE (Rotary Position Embedding) is widely used. Its features and limits include:</p>
 <ul class="styled-list" style="margin-top: 10px;">
 <li>Encodes relative positions naturally through rotation in complex space</li>
 <li>Can be extended to longer contexts than seen in training, using position scaling (<a href="https://arxiv.org/abs/2306.15595" target="_blank" rel="noopener">interpolation</a>) and a short fine-tune</li>
 <li>Maintains computational efficiency (applied during Q/K computation)</li>
-<li>Empirically outperforms alternatives on long-context tasks</li>
+<li>In Kazemnejad et al.'s length-generalisation tests, models without positional encoding outperformed RoPE and other explicit methods</li>
 </ul>
 </div>
 <div class="resource-placeholder">
@@ -525,7 +525,7 @@
 
 <div class="highlight-box">
 <h3>💡 <span style="color: #ffffff;">The Efficiency Revolution</span></h3>
-<p>Modern LLM research focuses on <strong>parameter efficiency</strong>: getting better performance without proportionally increasing compute costs. Not every parameter needs to activate for every input.</p>
+<p>Modern LLM research focuses on <strong>compute efficiency</strong>: getting better performance without proportionally increasing compute costs. Not every parameter needs to activate for every input.</p>
 <p style="margin-top: 15px;">This shift, from "bigger is better" to "smarter is better", is driven in part by Mixture of Experts architectures, attention optimisations, and better training techniques.</p>
 </div>
 <div class="technical-detail">
@@ -555,7 +555,7 @@
 <h3>MoE Challenges</h3>
 <ul class="styled-list">
 <li><strong>Training complexity:</strong> Load balancing is tricky; some experts might be underutilized</li>
-<li><strong>Memory requirements:</strong> All experts must fit in GPU memory even if only few are active</li>
+<li><strong>Memory requirements:</strong> All expert weights need storage, but inactive experts can be offloaded to CPU memory</li>
 <li><strong>Communication overhead:</strong> Routing adds latency in distributed systems</li>
 <li><strong>Instability:</strong> Careful tuning needed to prevent expert collapse</li>
 </ul>
@@ -565,7 +565,7 @@
 <div class="info-box">
 <h4>📊 MoE in Production Models</h4>
 <p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">matches or beats Llama 2 70B on almost all reported benchmarks (except HellaSwag, WinoGrande and TriviaQA)</a> with the per-token compute of a 13B model (all 47B must still be held in memory)</p>
-<p style="margin-top: 8px;"><strong>DeepSeek-V3:</strong> 256 routed experts per MoE layer, 8 active per token, plus one always-active shared expert → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
+<p style="margin-top: 8px;"><strong>DeepSeek-V3:</strong> 256 routed experts per MoE layer, 8 active per token, plus one always-active shared expert → 671B total params, 37B active → competitive with GPT-4o on the report's benchmarks, with efficient inference as a design aim</p>
 <p style="margin-top: 8px;"><strong>GPT-4 (rumored):</strong> Speculated to use MoE with 8-16 experts, explaining its size vs. inference speed</p>
 </div>
 <div class="resource-placeholder">
@@ -584,7 +584,7 @@
 <p>Parameters are the values a neural network learns in training, its weights and biases. They're distributed across:</p>
 <ul class="styled-list">
 <li><strong>Embedding layers:</strong> Token table (vocab_size × embedding_dim), plus max_positions × embedding_dim for learned positions; sinusoidal encodings and RoPE add no parameters</li>
-<li><strong>Attention layers:</strong> Q, K, V, output projections for each head, each layer</li>
+<li><strong>Attention layers:</strong> Q, K and V projections, with K and V shared across heads in some variants; one output projection per layer</li>
 <li><strong>Feed-forward networks:</strong> Two linear layers with 4× inner width in the original transformer; gated SwiGLU networks with about 2/3 of that width in LLaMA</li>
 <li><strong>Layer norms:</strong> Small contribution (scale + shift per layer)</li>
 </ul>
@@ -608,7 +608,7 @@
 <ul class="styled-list">
 <li><strong>Dense models:</strong> All parameters active for every input (GPT-3, LLaMA 2)</li>
 <li><strong>Sparse models (MoE):</strong> Subset of parameters active per input (Mixtral, DeepSeek-V3, Switch Transformer)</li>
-<li><strong>Trade-off:</strong> Sparse models offer better parameter efficiency but increased training complexity</li>
+<li><strong>Trade-off:</strong> Sparse MoE models can add parameters at constant compute per token, with more weights to store and added routing and training complexity</li>
 <li><strong>Trend:</strong> Major labs moving toward sparse architectures for flagship models</li>
 </ul>
 </div>
@@ -647,13 +647,13 @@
 </tr>
 <tr>
 <td><strong>Rare/specialized knowledge</strong></td>
-<td>Likely to hallucinate</td>
-<td>✓ More knowledge encoded in parameters</td>
+<td>Lower rare-fact answer accuracy in Kandpal et al.'s study</td>
+<td>✓ Higher accuracy in that study, though even very large models performed poorly on rare facts</td>
 </tr>
 <tr>
 <td><strong>Few-shot learning</strong></td>
-<td>Requires more examples</td>
-<td>✓ Better in-context learning</td>
+<td>Less efficient use of examples in the GPT-3 study</td>
+<td>✓ More efficient use of examples in the GPT-3 study</td>
 </tr>
 </tbody>
 </table>

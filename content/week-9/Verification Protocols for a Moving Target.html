@@ -354,7 +354,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
-    <p>The previous sub-lessons established the trajectory (9.1), the failure taxonomy (9.2), the genuine capability cases (9.3), and the durable epistemic concerns (9.4). This sub-lesson is the practical pay-off: how do you actually verify AI output in your own research workflow, and how do you read claims about AI capability critically when the literature is always six to twelve months behind the artefact?</p>
+    <p>The previous sub-lessons established the trajectory (9.1), the failure taxonomy (9.2), the genuine capability cases (9.3), and the durable epistemic concerns (9.4). This sub-lesson is the practical pay-off: how do you actually verify AI output in your own research workflow, and how do you read claims about AI capability critically when the time between a model release and published research on it varies widely?</p>
     <p>Two layers. First, verification of specific AI outputs: techniques you apply to a particular analysis, citation, or proof. Second, verification of <em>capability claims</em>, the meta-skill of reading the AI literature without being fooled by dated examples or selection bias. Both are required.</p>
   </div>
 
@@ -369,7 +369,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Known-Answer Testing</h3>
-      <p>Run AI through tasks where you know the correct answer in advance: synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. The Week 7 silent-error problem, code that runs but is wrong, is detected here and nowhere else. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
+      <p>Run AI through tasks where you know the correct answer in advance: synthetic data with planted truths, problems from your field where the answer is published, edge cases you&#39;ve constructed. Check whether the output matches. Known-answer testing can detect the Week 7 silent-error problem, code that runs but is wrong. Code review and checks of how outputs should change when inputs change can also expose it. Build small known-answer sets in your own domain and re-run them whenever you change models.</p>
     </div>
 
     <div class="card">
@@ -384,7 +384,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>The &ldquo;Teach It Back&rdquo; Test</h3>
-      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it, and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are about the gap between feeling you understand and actually understanding. The teach-it-back test closes the gap.</p>
+      <p>If you cannot explain the AI&#39;s reasoning in your own words, you don&#39;t understand it, and you should not trust it. This applies whether the AI is doing your statistics, your code review, or your conceptual synthesis. The Messeri &amp; Crockett illusions (9.4) are about the gap between feeling you understand and actually understanding. The teach-it-back test can reveal gaps in understanding and reduce overconfidence.</p>
     </div>
 
     <div class="card">
@@ -404,7 +404,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Domain-Expert Spot-Checks</h3>
-      <p>For cross-disciplinary work, recruit a domain expert to check AI output in their field. The Dunning&ndash;Kruger trap from 9.4 means you cannot reliably assess AI output in fields you don&#39;t know well. The fix is not to try harder; it is to ask someone who can.</p>
+      <p>For cross-disciplinary work, recruit a domain expert to check AI output in their field. Limited expertise can make errors harder to recognise and your own understanding harder to assess, as discussed in 9.4. An expert check can help you assess AI output in an unfamiliar field.</p>
     </div>
 
   </div>
@@ -421,12 +421,12 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <p><strong>3. Has anyone retested with current frontier models?</strong> If yes, what did the retest find? If no, the claim is unproven on present systems, not falsified, just unproven. Treat with the same caution you would treat a 2010 claim about smartphone battery life applied to 2026 phones.</p>
   </div>
 
-  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By May 2026, the same questions answered by GPT-5.5 Pro, Gemini Deep Think, or AlphaEvolve give very different answers (see 9.3). Citing Frieder et al. as if it described current AI is now an error, though the citation persists in the literature because it was a good paper when published.</p>
+  <p style="color: #555; font-size: 1.05em; margin-top: 25px; margin-bottom: 20px; line-height: 1.8;">A specific case to keep in mind: the Frieder et al. (2023) paper on &ldquo;Mathematical Capabilities of ChatGPT&rdquo; found that GPT-4 was inadequate for graduate-level mathematics. This was a careful, well-cited study at the time. By 2026, frontier models showed stronger mathematical ability (see 9.3). Before applying Frieder et al.'s findings to a current model, check whether that model has been tested on the same questions and what the results show.</p>
 
   <div class="case-study">
     <h4>&#128221; A Concrete Example: The Reversal Curse</h4>
-    <p>Berglund et al. (2023) showed the reversal curse on the GPT-3.5/GPT-4 generation. The paper has been cited several thousand times. It was an important contribution at the time.</p>
-    <p>Whether 2026 frontier models still show it has not been retested with the original design, and <a href="https://proceedings.mlr.press/v306/ma26o.html" target="_blank" rel="noopener">2026 papers still study it</a> as an open problem in training. A 2026 paper that opens with &ldquo;LLMs famously suffer from the reversal curse (Berglund et al., 2023)&rdquo; has not retested the claim and is treating a historical finding as a current diagnosis.</p>
+    <p>Berglund et al. (2023) showed the reversal curse on the GPT-3.5/GPT-4 generation. The paper has been cited several hundred times. It was an important contribution at the time.</p>
+    <p>Whether 2026 frontier models still show it has not been retested with the original design, and <a href="https://proceedings.mlr.press/v306/ma26o.html" target="_blank" rel="noopener">2026 papers still study it</a> as an open problem in training. A 2026 paper that opens by citing the reversal curse (Berglund et al., 2023) may be treating a historical finding as a current diagnosis. Check whether it retests the claim before drawing that conclusion.</p>
     <p>The fix: cite Berglund et al. as the originating documentation of a failure mode whose current status needs a retest, not as evidence about current model behaviour. The same disciplinary move applies to most pre-2025 capability claims.</p>
   </div>
 
