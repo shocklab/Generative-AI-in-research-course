@@ -5,8 +5,8 @@ Post-creation quality check that verifies every external link, academic citation
 
 ## Usage
 ```
-/verify-references Week 5
-/verify-references "Week 5/The Hallucinated Citation Crisis.html"
+/verify-references content/week-5
+/verify-references "content/week-5/The Hallucinated Citation Crisis.html"
 ```
 
 If no argument is given, prompt the user for which week or file to verify.

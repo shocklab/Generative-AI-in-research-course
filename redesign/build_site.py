@@ -2,9 +2,9 @@
 """
 build_site.py — whole-site "Press" renderer for MAM5020F.
 
-Reads the CONTENT from the live docs/ tree (each page's .content body) plus the
-sitemap from docs/index.html and the term data from glossary.json, and writes a
-fully Press-styled mirror into redesign/site/. The live docs/ is never touched.
+Reads the source pages in content/ (each page's h1, deck paragraph and .content
+body), the sitemap content/index.html and the term data in glossary.json, and
+writes the published site into docs/, replacing what is there.
 
   python3 build_site.py            # render the whole site
   python3 build_site.py week-1     # render only pages whose href starts week-1/

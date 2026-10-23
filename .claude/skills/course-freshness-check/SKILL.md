@@ -15,20 +15,20 @@ Purpose: this course makes many fast-decaying claims — model versions, benchma
 SOTA numbers, the "Current Landscape" snapshot, the AI-policy landscape, dated
 statistics, and live URLs. This skill re-verifies them against current reality
 and produces a prioritised, source-cited findings report for the course owner to
-review. **It never edits content or opens PRs that change `docs/` — the human
+review. **It never edits content or opens PRs that change `content/` or `docs/` — the human
 decides what to apply, via the normal review→PR flow.**
 
 It is the scheduled-routine counterpart to a manual run: same procedure either way.
 
 ## Operating rules (read first)
 
-1. **Report, don't edit.** Do not modify any lesson HTML, `Week N/` source, or
-   `build_weekN.py`. The only file you may write is the report (see Output).
-   Reasoning: live student content is governed by "docs/ is canonical, changes
-   go through review" (see CLAUDE.md). A freshness bot proposes; the human disposes.
-2. **`docs/` is the source of truth.** Audit the published `docs/week-*/*.html`
-   (plus `docs/course-*` and `docs/index.html`). Amathuba is not reachable from a
-   headless run and is downstream of `docs/` anyway.
+1. **Report, don't edit.** Do not modify any lesson HTML in `content/` or `docs/`.
+   The only file you may write is the report (see Output). Reasoning: changes to
+   live student content go through review (see CLAUDE.md). A freshness bot
+   proposes; the human disposes.
+2. **`content/` is the source of truth.** Audit `content/week-*/*.html` (plus
+   `content/course-*` and `content/index.html`). `docs/` is generated from
+   `content/` by `redesign/build_site.py` and holds the same text.
 3. **It is `2026` and beyond — always anchor "current" to today's real date** (use
    web search; do not assume the training cutoff). The course is explicitly written
    as dated snapshots, so the job is "what has changed since this was written?",
@@ -87,7 +87,7 @@ G. **Regressions / new content.** If new pages or claims were added since the la
 
 1. **Establish "now".** Web-search the current date and a couple of "latest
    frontier model / latest benchmark leaderboard" queries to ground the run.
-2. **Inventory.** List `docs/week-*/*.html` + `docs/course-*`. Extract every
+2. **Inventory.** List `content/week-*/*.html` + `content/course-*`. Extract every
    verifiable claim (model/version, benchmark+score, dated stat, policy fact,
    citation, external URL). A scripted pass (grep for years, "%", "SWE-bench",
    model names, `href=`, DOIs/arXiv) plus reading the high-churn pages
@@ -114,8 +114,8 @@ G. **Regressions / new content.** If new pages or claims were added since the la
    bucket, then the per-finding list (page · current text · proposed fix · source ·
    confidence). End with an explicit "examined and still correct" section so the
    reader knows coverage was real, and a "needs human judgement / unverifiable"
-   section. Keep this file committed on a branch + PR (report only — no `docs/`
-   edits in that PR).
+   section. Keep this file committed on a branch + PR (report only — no `content/`
+   or `docs/` edits in that PR).
 2. **GitHub issue** (if `gh` is available and the run is the scheduled one, or the
    user asks): open an issue titled `Course freshness check — YYYY-MM` in
    `shocklab/Generative-AI-in-research-course`, body = the executive summary +
@@ -129,8 +129,5 @@ G. **Regressions / new content.** If new pages or claims were added since the la
 - This is intentionally **advisory**. Expect occasional false positives on
   deliberately-dated content; that's why every finding carries a source and a
   confidence flag, and why nothing auto-applies.
-- A headless/scheduled run cannot reach Amathuba (no browser session). It audits
-  the repo only; the human mirrors accepted fixes to the LMS per the usual flow.
-- Related: `.claude/skills/verify-references/SKILL.md` (citation existence checks),
-  `RECONCILE-NOTES.md`, `AMATHUBA-EDIT-CHECKLIST.md`, and the CLAUDE.md
-  "docs/ is canonical" rule.
+- Related: `.claude/skills/verify-references/SKILL.md` (citation existence checks)
+  and the CLAUDE.md "Source and build" section.
