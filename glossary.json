@@ -69,7 +69,7 @@
     },
     {
       "term": "AGI (artificial general intelligence)",
-      "definition": "A hypothetical AI able to perform any intellectual task a human can, at human level or above, across many domains, unlike today's systems that excel only at specific tasks.",
+      "definition": "A hypothetical AI able to perform any intellectual task a human can, at human level or above, across many domains, while today's general-purpose models perform many tasks with uneven capabilities.",
       "aliases": [
         "AGI (artificial general intelligence)"
       ]
@@ -1225,7 +1225,7 @@
     },
     {
       "term": "Deepfake",
-      "definition": "See <a href=\"#gt-digital-forgery\">digital forgery</a>, the term this course uses for AI-fabricated media of a real person.",
+      "definition": "AI-generated or manipulated images, audio or video resembling existing people, objects, places, entities or events and falsely appearing authentic. This course calls person-related examples <a href=\"#gt-digital-forgery\">digital forgery</a>.",
       "aliases": []
     }
   ],

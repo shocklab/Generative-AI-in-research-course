@@ -280,12 +280,12 @@
 <tbody>
 <tr>
 <td><strong>Run cloud workloads in a low-carbon region</strong></td>
-<td>Up to 80% (Dodge et al., 2022)</td>
-<td>Low: change a config parameter</td>
+<td>About 73% for the BERT workload compared across regions (Dodge et al., 2022)</td>
+<td>Low for new or portable jobs: change a config parameter; moving data may cost more than it saves</td>
 </tr>
 <tr>
-<td><strong>Schedule heavy compute during low-carbon grid hours</strong></td>
-<td>10–40%, depending on grid variability</td>
+<td><strong>Schedule flexible jobs during low-carbon grid hours</strong></td>
+<td>Job length matters: a 24-hour start window saved 0.5–26.8% on average across regions; under 1.5% for a long 6B-parameter run, up to 80% for very short jobs in one region (Dodge et al., 2022)</td>
 <td>Low-medium: requires grid carbon awareness</td>
 </tr>
 <tr>
@@ -310,7 +310,7 @@
 </tr>
 <tr>
 <td><strong>Use extended thinking / reasoning modes only when warranted</strong></td>
-<td>10–20× more tokens per query (hidden "scratchpad" tokens before responding)</td>
+<td>Around 8× as many output tokens on average for reasoning versus non-reasoning models (Epoch AI, April 2025); not a measured multiplier for enabling thinking</td>
 <td>Low: a usage decision</td>
 </tr>
 <tr>
@@ -325,14 +325,14 @@
 <h3>🌍 <span style="color: #ffffff;">The Cloud Region Choice</span></h3>
 <p>Research by Dodge et al. (2022, Allen Institute for AI, ACM FAccT) found that running the same BERT workload in a low-carbon rather than high-carbon region gave <a href="https://arxiv.org/abs/2206.05229" target="_blank" rel="noopener">about 73% lower emissions (7,000 versus 26,000 grams)</a>; their up-to-80% saving concerned delaying a short job by up to 24 hours.</p>
 <p style="margin-top: 15px;">Major cloud providers (AWS, Google Cloud, Azure) all allow you to specify the region where your compute runs. Choosing <em>us-west-2</em> (Oregon, with significant hydroelectric power) over <em>us-east-1</em> (Virginia, more coal/gas dependent) can make a substantial difference. The same applies to European regions: <em>eu-north-1</em> (Sweden) is among the cleanest, while <em>eu-central-1</em> (Frankfurt) is less so.</p>
-<p style="margin-top: 15px;">Tools like the <strong>Electricity Maps API</strong> and <strong>Google Cloud's Carbon Footprint tool</strong> can help you choose the lowest-carbon option in real time.</p>
+<p style="margin-top: 15px;">The <strong>Electricity Maps API</strong> provides current and forecast grid carbon intensity to inform your choice. <strong>Google Cloud's Carbon Footprint tool</strong> reports your account's past monthly emissions, with up to a 21-day delay.</p>
 </div>
 <div class="card-grid">
 <div class="card">
 <h3>Choosing the Right Model Size</h3>
 <p>One choice that gets overlooked: do you need a frontier model, or will a smaller one do?</p>
 <ul class="styled-list">
-<li>For many research tasks (data extraction, classification, summarisation, code generation) a 7B or 13B parameter model performs nearly as well as a 70B+ model</li>
+<li>A 7B or 13B parameter model may perform well enough for your research task, but differences from 70B+ models depend on the task; compare their results before choosing</li>
 <li>Smaller models are dramatically cheaper to run, both financially and energetically</li>
 <li>A useful habit: always benchmark the smallest model that could plausibly work before defaulting to the largest available</li>
 <li>Open-weight models (LLaMA 3, Mistral, Qwen) allow local deployment that avoids sending data to cloud providers, which may matter for sensitive research data as well as energy reasons</li>
@@ -342,7 +342,7 @@
 <h3>Prompting vs. Compute</h3>
 <p>Before investing in training or fine-tuning, it is worth asking whether better prompting could achieve the same result at a fraction of the compute cost.</p>
 <ul class="styled-list">
-<li>Well-crafted prompts can match or exceed the performance of a fine-tuned smaller model for many tasks</li>
+<li>Well-crafted prompts can match fine-tuned smaller models on some tasks; compare results on your own task before deciding whether fine-tuning is needed</li>
 <li>Iterating on prompts uses inference compute (relatively cheap); training uses training compute (more expensive)</li>
 <li>If a task truly requires fine-tuning, use parameter-efficient methods (LoRA) rather than full fine-tuning; the compute savings are substantial</li>
 <li>Cache and reuse results: if you are running the same analysis on many documents, caching intermediate outputs avoids redundant compute</li>
@@ -384,7 +384,7 @@
 <tr>
 <td><strong>Extended thinking / reasoning models</strong> (o1, o3, Claude with thinking enabled)</td>
 <td>Generates a few hundred to tens of thousands of reasoning tokens before responding; whether these are shown depends on the provider</td>
-<td>10–20× more tokens; 50–130× higher API cost <em>(Epoch AI, 2024; OpenAI pricing)</em></td>
+<td>Around 8× as many output tokens on average across reasoning versus non-reasoning models <em>(Epoch AI, April 2025)</em>; 50–130× higher API cost <em>(OpenAI pricing)</em></td>
 </tr>
 <tr>
 <td><strong>Deep Research mode</strong> (Gemini, Perplexity, ChatGPT; OpenAI publishes deep-research API token prices, but not compute or energy cost per ChatGPT query)</td>
@@ -394,7 +394,7 @@
 <tr>
 <td><strong>Multi-step agent workflows</strong></td>
 <td>Each tool call, web search, or sub-task triggers additional model calls; costs compound with workflow length</td>
-<td>10–50× more tokens than a single-shot query <em>(arXiv 2506.04301, 2025)</em></td>
+<td>In the tested workflows, agents averaged 9.2× as many model calls as chain-of-thought prompting; reported energy use increased 62–137× <em>(Kim et al., arXiv 2506.04301, 2025)</em></td>
 </tr>
 <tr>
 <td><strong>Large context (long documents)</strong></td>
@@ -421,7 +421,7 @@
 <h3>Energy Systems</h3>
 <ul class="styled-list">
 <li><strong>Grid optimisation:</strong> ML can predict demand and balance supply more efficiently, enabling higher penetrations of variable renewable energy</li>
-<li><strong>DeepMind + Google:</strong> A reinforcement learning system reduced cooling energy use in Google's data centres by ~40%, AI reducing its own infrastructure's footprint</li>
+<li><strong>DeepMind + Google:</strong> DeepMind reported that neural networks trained to predict power usage effectiveness, temperature and pressure reduced cooling energy use in Google's data centres by about 40%</li>
 <li><strong>Smart charging:</strong> AI-coordinated EV charging can avoid peak grid demand and shift load to renewable-rich periods</li>
 <li><strong>Demand forecasting:</strong> Better predictions of energy demand reduce the need for fossil fuel peaker plants</li>
 </ul>
@@ -486,7 +486,7 @@
 <li><strong>Water scarcity acknowledged:</strong> The strategy explicitly states that data centre cooling "poses a threat to regions already facing water scarcity", directly relevant to an African context</li>
 <li><strong>High-risk AI framework:</strong> "Environmental impact" is listed as a risk dimension for high-risk AI systems, in principle requiring impact assessments</li>
 <li><strong>General principle:</strong> AI development should not harm "the environment", stated without specific implementation mechanisms</li>
-<li><strong>AU Data Policy Framework (2022):</strong> The AU's data governance framework contains no meaningful environmental provisions</li>
+<li><strong>AU Data Policy Framework (2022):</strong> Contains brief environmental provisions: data infrastructure policy must consider environmental risks, and more sustainable electricity generation is recommended to reduce environmental impacts</li>
 </ul>
 <p style="margin-top: 12px;">A 2025 analysis by TechPolicy.Press examining 14 African AI strategies found that only three acknowledged environmental consequences at all, and that the AU's single mention of water scarcity "provides no concrete solutions or mitigation plans." The gap matters because Africa is among the world's most climate-vulnerable regions, and countries like South Africa run electricity grids that are among the world's most carbon-intensive (historically over 80% coal). AI workloads and data centres in the region inherit that carbon intensity, yet current continental AI governance does not address this.</p>
 <p style="margin-top: 8px;">UNESCO and the World Bank have run a Green AI workshop for ICT policymakers, regulators and industry leaders from across Africa, and the policy gap may narrow as the Continental Strategy moves through implementation (Phase 1: 2025–2026; Phase 2: 2028–2030). For now, it represents an area where researchers, particularly those based in Africa, can contribute to policy advocacy.</p>
@@ -534,9 +534,9 @@
 <li><strong>The data are uncertain:</strong> Corporate opacity limits sector-wide estimates; some figures use direct measurements, and uncertainty also depends on accounting boundaries and modelling assumptions; treat sector-wide figures as order-of-magnitude guides</li>
 <li><strong>AI hardware depends on critical minerals, including silicon in nearly all chips and cobalt, rare earth elements and lithium in some components:</strong> Silicon, cobalt, rare earth elements, and lithium are geographically concentrated, ethically contested, and environmentally costly to extract, a supply chain dimension often absent from mainstream AI debate</li>
 <li><strong>Text vs. video is not comparable:</strong> Video generation can use much more energy than text, with the ratio depending on models, output lengths and measurement boundaries; these are categorically different use cases</li>
-<li><strong>Location matters for compute jobs:</strong> if you choose where a job runs, the region can cut its emissions by up to 80%; for most chat users, the larger savings come from which features they use (video, reasoning modes, Deep Research)</li>
+<li><strong>Location matters for compute jobs:</strong> Dodge et al. found about 73% lower emissions for the same BERT workload in a lower-carbon region; chat users can also consider which features they use (video, reasoning modes, Deep Research)</li>
 <li><strong>Embodied carbon is missing from most analyses:</strong> Manufacturing hardware releases significant carbon before a single query is run</li>
-<li><strong>The Jevons paradox is real:</strong> Efficiency gains in AI have so far been outpaced by growth in deployment and model scale</li>
+<li><strong>Efficiency alone does not determine total consumption:</strong> AI's energy use per task is improving rapidly, while the IEA projects continued growth in total data-centre electricity use</li>
 <li><strong>AI can also help:</strong> Genuine applications in climate science, energy systems, and materials research, though these do not automatically offset AI's footprint</li>
 <li><strong>Researchers can act:</strong> Model choice, cloud region, reporting, and advocacy are all within your control</li>
 </ul>

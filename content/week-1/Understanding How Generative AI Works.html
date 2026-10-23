@@ -371,7 +371,7 @@
 <li><strong>Species identification:</strong> What plant species is in this photo?</li>
 <li><strong>Medical diagnosis:</strong> Will this patient develop complications?</li>
 <li><strong>Seismic analysis:</strong> Does this signal indicate an earthquake or background noise?</li>
-<li><strong>Image recognition:</strong> Which proteins are present in this microscopy image?</li>
+<li><strong>Image recognition:</strong> Where in the cell is the labelled protein in this fluorescence microscopy image?</li>
 </ul>
 </div>
 <div class="comparison-card generative"><span class="card-label" style="background: #2a5298;">Generative AI</span>
@@ -414,7 +414,7 @@
 <p style="margin-top: 12px;"><strong>2. Embedding:</strong> Each token is converted into a high-dimensional vector, a point in a space with hundreds or thousands of dimensions. Similar concepts end up close together in this space (e.g., "magma" and "lava" would be near each other).</p>
 <p style="margin-top: 12px;"><strong>3. Attention:</strong> In the decoder-only models discussed here, the model calculates how much each token should "attend to" itself and each earlier token. When processing "erupted," it pays strong attention to "volcano" but less to "The."</p>
 <p style="margin-top: 12px;"><strong>4. Attention again, and again:</strong> The attention step happens iteratively across many layers, with each pass building a more abstract (rather than symbolically word-by-word) representation of the content.</p>
-<p style="margin-top: 12px;"><strong>5. Prediction:</strong> Based on all these weighted relationships, the model gives a probability to every possible next token, and one token is chosen from those probabilities (the temperature setting below controls how often a less likely token is picked). It picks up patterns of how words relate rather than memorizing fixed phrases.</p>
+<p style="margin-top: 12px;"><strong>5. Prediction:</strong> Based on all these weighted relationships, the model gives a probability to every possible next token, and one token is chosen from those probabilities (the temperature setting below controls how often a less likely token is picked). It learns patterns of how tokens relate and can also memorise and reproduce passages from its training data.</p>
 <p style="margin-top: 12px;"><strong>6. Iteration:</strong> This happens recursively: predict one token, add it to the sequence, predict the next, and so on, until a complete response is generated.</p>
 </div>
 <div class="key-concepts">
@@ -455,7 +455,7 @@
 <p style="margin-left: 20px;">1. Start with pure random noise (every pixel random)</p>
 <p style="margin-left: 20px;">2. The trained network predicts what this should look like with slightly less noise</p>
 <p style="margin-left: 20px;">3. Make that change, creating a slightly less noisy image</p>
-<p style="margin-left: 20px;">4. Repeat 50-100 times: noise → vague shapes → rough features → refined details → final image</p>
+<p style="margin-left: 20px;">4. Repeat for the chosen number of denoising steps: noise → vague shapes → rough features → refined details → final image</p>
 <p style="margin-left: 20px;">5. Text prompts guide this process: they steer the denoising toward images matching the description</p>
 </div>
 <div class="key-concepts">
@@ -469,7 +469,7 @@
 </div>
 <div class="research-applications">
 <h4>Research Applications</h4>
-<p><strong>Scientific visualization:</strong> Creating diagrams of theoretical concepts, molecular structures, geological formations</p>
+<p><strong>Scientific visualization:</strong> Creating illustrative diagrams of theoretical concepts, molecular structures and geological formations, with expert checking for structural errors</p>
 <p style="margin-top: 8px;"><strong>Data augmentation:</strong> Generating synthetic training images for machine learning projects</p>
 <p style="margin-top: 8px;"><strong>Presentation graphics:</strong> Creating custom illustrations for papers, talks, and posters</p>
 <p style="margin-top: 8px;"><strong>Conceptual modeling:</strong> Visualizing "what if" scenarios such as extinct species, climate futures, and experimental setups</p>
@@ -480,7 +480,7 @@
 <div class="architecture-card" style="border-left-color: #8B0000;">
 <h3>3. GANs - Generative Adversarial Networks</h3>
 <div class="architecture-subtitle">"Creator versus Critic"</div>
-<p style="font-size: 1.05em; margin-bottom: 20px;">GANs use a competitive approach: two neural networks locked in a contest. One (the "generator") creates fake images. The other (the "discriminator") tries to detect which images are fake. As they compete, both improve: the generator gets better at creating convincing fakes, and the discriminator gets better at detection. In the ideal case, the generator becomes so good that its creations are indistinguishable from real data.</p>
+<p style="font-size: 1.05em; margin-bottom: 20px;">GANs use a competitive approach: two neural networks locked in a contest. One (the "generator") creates fake images. The other (the "discriminator") tries to detect which images are fake. Training aims to improve the generator's fakes and the discriminator's detection, but improvement is not guaranteed, and better fakes can reduce detection accuracy. In the ideal case, the generator becomes so good that its creations are indistinguishable from real data.</p>
 <div class="analogy-box">
 <h4>Scientific Analogy</h4>
 <p>Imagine training a paleontologist to identify genuine fossils versus forgeries. You have two researchers: one (the "forger") tries to create fake fossils, and one (the "expert") tries to distinguish real from fake.</p>
@@ -523,11 +523,11 @@
 <h3>🎓 Why Understanding Architecture Matters</h3>
 <p>Each architecture has strengths and weaknesses shaped by its design. Transformers handle sequential data such as text well but are computationally expensive. Diffusion models create high-quality images, but conventional multi-step sampling is slow; distilled variants can generate much faster. GANs can generate in real-time but are hard to train.</p>
 <p style="margin-top: 15px;">As a researcher, understanding these tradeoffs helps you choose the right tool for your task. Need to draft a methods section? Use a transformer. Need to visualize a theoretical concept? Try a diffusion model. Need to augment a small dataset? Consider a GAN.</p>
-<p style="margin-top: 15px;">Understanding how these systems work also helps you recognize their limitations: they are pattern matching engines rather than reasoning entities. They don't "understand" science; they have learned statistical patterns in how scientific language and images are structured. That helps you use them effectively and avoid the pitfalls.</p>
+<p style="margin-top: 15px;">Understanding how these systems work also helps you recognise their limitations: they learn statistical patterns, and whether they reason is contested. They have learned statistical patterns in how scientific language and images are structured; whether this amounts to understanding science is debated. That helps you use them effectively and avoid the pitfalls.</p>
 </div>
 <div class="intro-section" style="margin-top: 40px;">
 <h2>🔍 The Bottom Line for Researchers</h2>
-<p>All three architectures share a fundamental principle: they learn patterns from vast amounts of data, then use those patterns to generate new content. They are extraordinarily good at this, good enough to be useful research tools. They remain statistical pattern matchers rather than true reasoners.</p>
+<p>All three architectures share a fundamental principle: they learn patterns from vast amounts of data, then use those patterns to generate new content. They are extraordinarily good at this, good enough to be useful research tools. Whether these systems reason remains an open research question.</p>
 <p>Think of them as sophisticated instruments in your research toolkit. Just as you'd understand how a mass spectrometer works before trusting its output, understanding how generative AI works helps you use it effectively: knowing when to trust it, when to verify its outputs, and how to craft inputs that produce useful results.</p>
 <p>The goal is to become an informed user who can use these tools well while remaining appropriately skeptical and maintaining scientific rigor.</p>
 </div>

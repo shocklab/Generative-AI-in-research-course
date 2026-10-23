@@ -93,7 +93,7 @@
   <!-- SECTION 1: THE TRANSCRIPTION LANDSCAPE -->
   <h2 class="section-title">&#127908; The Transcription Landscape</h2>
 
-  <p style="color:#555; line-height:1.8; margin-bottom:20px;">The current transcription tool landscape is split between open-source models (primarily the Whisper family) that run locally, commercial cloud APIs that offer enhanced accuracy and features, and specialist providers focused on African language support.</p>
+  <p style="color:#555; line-height:1.8; margin-bottom:20px;">The current transcription tool landscape includes open models that run locally, such as Whisper and Mistral&rsquo;s Voxtral, commercial cloud APIs offering transcription features, and specialist providers focused on African language support.</p>
 
   <table class="comparison-table">
     <thead>
@@ -203,7 +203,7 @@
         </tr>
       </tbody>
     </table>
-    <p style="color:#555; line-height:1.8; margin-top:15px;">The &ldquo;clean read speech&rdquo; benchmark (LibriSpeech) represents near-ideal conditions: studio recordings of people reading prepared text aloud. Most research audio is far closer to the &ldquo;real-world mixed audio&rdquo; or &ldquo;meeting audio&rdquo; conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the <a href="https://huggingface.co/openai/whisper-large-v3" target="_blank" rel="noopener">Whisper large-v3 model card</a> does not give a single clean-audio figure; it reports a 10% to 20% reduction in errors compared with large-v2, and the <a href="https://huggingface.co/spaces/hf-audio/open_asr_leaderboard" target="_blank" rel="noopener">Open ASR Leaderboard</a> reports 1.6% for large-v3 on LibriSpeech test-clean. Neither figure is representative of typical research use.</p>
+    <p style="color:#555; line-height:1.8; margin-top:15px;">The &ldquo;clean read speech&rdquo; benchmark (LibriSpeech test-clean) uses a cleaner subset of LibriVox audiobooks recorded by volunteers on their own equipment. Most research audio is far closer to the &ldquo;real-world mixed audio&rdquo; or &ldquo;meeting audio&rdquo; conditions. A figure of approximately 2.7% is frequently quoted in secondary sources (typically referencing the earlier large-v2 model); the <a href="https://huggingface.co/openai/whisper-large-v3" target="_blank" rel="noopener">Whisper large-v3 model card</a> does not give a single clean-audio figure; it reports a 10% to 20% reduction in errors compared with large-v2, and the <a href="https://huggingface.co/spaces/hf-audio/open_asr_leaderboard" target="_blank" rel="noopener">Open ASR Leaderboard</a> reports 1.6% for large-v3 on LibriSpeech test-clean. Neither figure is representative of typical research use.</p>
   </div>
 
   <!-- SECTION 3: TRANSCRIPTION HALLUCINATION -->
@@ -211,7 +211,7 @@
 
   <div class="warning-box">
     <h4>&#9888;&#65039; Transcription Hallucination Is a Real and Documented Problem</h4>
-    <p>Investigative reporting in 2024 (Associated Press, TechCrunch) surfaced cases where Whisper hallucinated in approximately 80% of public meeting transcriptions tested by researchers. A separate peer-reviewed study, Koenecke et al. (FAccT 2024, &ldquo;Careless Whisper&rdquo;), transcribed AphasiaBank research interviews with people with aphasia and a control group; <a href="https://arxiv.org/abs/2402.08021" target="_blank" rel="noopener">about 1% of transcriptions contained hallucinated phrases or sentences, and 38% of those hallucinations included explicit harms</a>, such as perpetuating violence, inventing associations, or implying false authority. Together these findings confirm that transcription hallucination is a systematic feature of how language model-based transcription works, not an occasional glitch.</p>
+    <p>Investigative reporting in 2024 (Associated Press, TechCrunch) surfaced cases where Whisper hallucinated in approximately 80% of public meeting transcriptions tested by researchers. A separate peer-reviewed study, Koenecke et al. (FAccT 2024, &ldquo;Careless Whisper&rdquo;), transcribed AphasiaBank research interviews with people with aphasia and a control group; <a href="https://arxiv.org/abs/2402.08021" target="_blank" rel="noopener">about 1% of transcriptions contained hallucinated phrases or sentences, and 38% of those hallucinations included explicit harms</a>, such as perpetuating violence, inventing associations, or implying false authority. These findings document hallucination in Whisper. Koenecke et al. found no comparable hallucinations in the other five services tested; a language-model explanation remains a hypothesis.</p>
     <p style="margin-top:12px;"><strong>What transcription hallucination looks like:</strong></p>
   </div>
 
@@ -230,7 +230,7 @@
     </div>
     <div class="card">
       <h3>&#128683; Dropped Content</h3>
-      <p>Entire sentences are omitted silently with no indication in the transcript that anything was missed. Deletion errors are often harder to detect than substitution errors because there is no visible evidence of the omission unless you are following along with the audio.</p>
+      <p>Entire sentences are omitted silently with no indication in the transcript that anything was missed. An omission may leave no visible sign in the transcript alone. Follow along with the original audio to check for missing words and sentences as well as incorrect ones.</p>
     </div>
   </div>
 
@@ -249,7 +249,7 @@
 
   <div class="sa-highlight">
     <h4>&#127758; The South African Research Context</h4>
-    <p style="color:#555; line-height:1.8; margin-bottom:20px;">Standard transcription tools are trained predominantly on English and major European languages. Their performance on South African languages, and on South African English accents, is significantly lower than the headline accuracy figures suggest. This section gives you the performance picture, the tools designed to address this gap, and practical guidance for researchers working in multilingual South African contexts.</p>
+    <p style="color:#555; line-height:1.8; margin-bottom:20px;">Standard transcription tools are trained predominantly on English and major European languages. A study of isiXhosa and South African English found high, variable error rates for isiXhosa, while Whisper and Azure achieved low word error rates for South African English. This section gives you the performance picture, the tools designed to address this gap, and practical guidance for researchers working in multilingual South African contexts.</p>
 
     <p style="color:#555; line-height:1.8; margin-bottom:15px;"><strong>Representative ASR performance on South African languages, W2v-BERT model with 1 hour vs 50 hours of fine-tuning (Nahabwe et al., 2025, <a href="https://arxiv.org/abs/2512.10968" style="color:#2a5298;" target="_blank" rel="noopener">arXiv:2512.10968</a>):</strong></p>
     <table class="wer-table">
@@ -289,10 +289,10 @@
     <h4>&#127758; Dedicated African Language Tools</h4>
     <p style="color:#555; line-height:1.8; margin-bottom:15px;">Several tools have been developed specifically to address the performance gap for African languages:</p>
     <ul class="styled-list">
-      <li><strong>Intron Sahara v2 (2026):</strong> Covers 57 languages total (24 newly added in v2, including Zulu, Xhosa, and Afrikaans), with support for over 500 African English accent variants. Developed by Intron, a Nigerian (Lagos-based) AI company. Commercial API. <a href="https://intron.ai" style="color:#2a5298;">https://intron.ai</a></li>
+      <li><strong>Intron Sahara v2 (2026):</strong> Covers 57 languages total (24 newly added in v2, including Zulu, Xhosa, and Afrikaans), with support for over 500 African English accent variants. Developed by Intron, a Nigerian (Lagos-based) AI company. Commercial API. <a href="https://www.intron.io/" style="color:#2a5298;">https://www.intron.io/</a></li>
       <li><strong>Lelapa AI:</strong> South African language specialist. Lists support for 17 African languages, including isiZulu, isiXhosa, Sesotho and Afrikaans. Developed with African language experts and linguists. <a href="https://lelapa.ai" style="color:#2a5298;">https://lelapa.ai</a></li>
-      <li><strong>Microsoft PazaBench:</strong> The first independent leaderboard for low-resource African language ASR (Automatic Speech Recognition), covering 39 languages and 52 models. Use this to compare current model performance across languages before committing to a tool.</li>
-      <li><strong>AfriSpeech-Dialog (NAACL 2025):</strong> Benchmark for spontaneous conversational speech in African-accented English. This matches the kind of accented English speech found in South African research interviews and focus groups, where participants code-switch or speak English as a second language.</li>
+      <li><strong>Microsoft PazaBench:</strong> A Microsoft Research leaderboard for low-resource language ASR (Automatic Speech Recognition), launched with 39 African languages and 52 models, including Microsoft&rsquo;s own Paza models. Use it to compare results, taking account of who runs the benchmark.</li>
+      <li><strong>AfriSpeech-Dialog (NAACL 2025):</strong> Benchmark for spontaneous conversational speech in African-accented English. Its two-speaker dialogues cover 11 African accents, mostly Nigerian or Kenyan, with Sesotho the only South African accent; it is only a partial comparison for South African research interviews and focus groups.</li>
     </ul>
   </div>
 
@@ -312,7 +312,7 @@
       <p>A qualitative data analysis package with many built-in AI features (as of May 2026). Includes AI transcription, AI-suggested codes, AI-generated summaries, and conversational querying across your document corpus.</p>
       <ul class="styled-list">
         <li>AI coding suggestions are a starting point, not a final answer</li>
-        <li>They reflect statistical patterns in your documents, not your theoretical framework</li>
+        <li>Standard AI Coding suggests codes from document text; Intentional AI Coding also accepts your research questions or hypothesis</li>
         <li>Best used to generate initial codes that you then review, accept, modify, or reject</li>
         <li>Conversational querying is powerful for finding relevant passages quickly</li>
       </ul>
@@ -331,13 +331,13 @@
       <p>AI coding suggestions, document summarisation, and paraphrasing. Lower AI integration than ATLAS.ti but more affordable for individual researchers or small teams. Well-suited to projects where you want AI support without full dependency on AI-generated outputs.</p>
       <ul class="styled-list">
         <li>AI paraphrasing useful for memo writing</li>
-        <li>Coding suggestions require explicit human confirmation</li>
+        <li>AI Coding applies codes automatically; review the coded passages and delete unwanted coding</li>
         <li>Good export options for integration with other tools</li>
       </ul>
     </div>
     <div class="card">
       <h3>&#128172; <a href="https://insight7.io" target="_blank" rel="noopener">Insight7</a></h3>
-      <p>Specialised platform for analysing interview transcripts and focus groups at scale. Extracts themes, sentiment, and key insights from audio, video, or text. Designed primarily for UX research and market research, but applicable to academic qualitative work where you need to process many interviews quickly.</p>
+      <p>Specialised platform for analysing interview transcripts and focus groups at scale. Extracts themes, sentiment, and key insights from audio, video, or text. Currently marketed mainly for call analytics and AI coaching for customer teams; assess its suitability for your academic interview analysis before choosing it.</p>
       <ul class="styled-list">
         <li>Handles audio, video, and text input in a single workflow</li>
         <li>Automated theme extraction across large interview sets</li>
@@ -348,7 +348,7 @@
 
   <div class="info-box">
     <h4>&#9888;&#65039; What AI Auto-Coding Does and Does Not Do</h4>
-    <p>AI can identify passages related to themes you specify, flag sentiment, and suggest codes based on semantic similarity to your existing codes or to prompts you provide. It cannot apply your theoretical framework, distinguish between a participant citing a concept and genuinely expressing it, or make the interpretive judgments that are the core of qualitative research. AI coding finds passages efficiently; your own judgment determines what those passages mean within your analytical framework.</p>
+    <p>AI can identify passages related to themes you specify, flag sentiment, and suggest codes based on semantic similarity to your existing codes or to prompts you provide. It can attempt to apply a framework you supply, but you must check its coding against the data, including whether a participant is citing a concept or expressing it and whether the interpretation is justified. AI coding finds passages efficiently; your own judgment determines what those passages mean within your analytical framework.</p>
   </div>
 
   <!-- SECTION 6: THE CAAI WORKFLOW -->
@@ -358,7 +358,7 @@
 
   <ol class="step-list">
     <li><strong>Familiarisation via AI-generated summaries.</strong> Use AI to produce a structured summary of each interview before your first read. This orients you to the content (the key topics discussed, the approximate emotional register, the main positions taken) without replacing close reading. Treat it as a map for orientation.</li>
-    <li><strong>Develop your question set.</strong> Before querying AI, write out the specific analytical questions your research requires. The AI will answer whatever you ask; the quality of your questions determines the quality of the analysis. Vague questions produce vague answers. Questions grounded in your theoretical framework produce theoretically relevant responses.</li>
+    <li><strong>Develop your question set.</strong> Before querying AI, write out the specific analytical questions your research requires. Clear questions help guide the analysis, but you must still check whether the AI answers them correctly using evidence from your transcripts. Vague questions produce vague answers. Questions grounded in your theoretical framework produce theoretically relevant responses.</li>
     <li><strong>Focused AI dialogue.</strong> Work with 4&ndash;6 interviews at a time rather than your entire corpus at once. This keeps the analysis tractable, allows you to verify AI responses against transcripts you know well, and makes it easier to check consistency across batches. Large-corpus querying is useful for pattern-finding; small-batch dialogue is better for interpretive work.</li>
     <li><strong>Synthesis of insights.</strong> Compile AI-generated themes across batches, explicitly looking for convergence and contradiction. Where the AI surfaces the same theme repeatedly, investigate whether this reflects genuine salience in your data or a bias in how you formulated your prompts.</li>
     <li><strong>Human theoretical integration.</strong> Apply your disciplinary framework to the AI-surfaced themes. Situate findings in your conceptual literature. Interrogate the themes against your research questions. This step is not automatable and should not be delegated to AI. The analysis becomes yours through this step.</li>
@@ -402,7 +402,7 @@
   <div class="resource-placeholder">
     <h4>&#127760; Supplementary: Intron Sahara v2</h4>
     <p>Explore the language coverage and accuracy claims for this Nigerian-developed ASR system. Sahara v2 (2026) covers 57 languages total, with 500+ accent variants.<br>
-    <a href="https://intron.ai" style="color:#2a5298; font-weight:600;">https://intron.ai</a></p>
+    <a href="https://www.intron.io/" style="color:#2a5298; font-weight:600;">https://www.intron.io/</a></p>
   </div>
 
   <div class="resource-placeholder">

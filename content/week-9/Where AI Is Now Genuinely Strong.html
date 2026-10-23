@@ -355,7 +355,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="intro-text">
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>The trajectory frame from 9.1 cuts both ways. If you arrive thinking AI is more capable than it is, you over-rely on it. If you arrive thinking AI is less capable than it is, you miss things you could be doing. Both errors are common. This sub-lesson focuses on the second.</p>
-    <p>We look at concrete cases from 2025&ndash;26 where AI played a key role in research-grade work in mathematics, theoretical physics, and beyond. The examples are drawn from fields where, two years ago, the consensus was that AI couldn&#39;t contribute meaningfully. The point is not that AI replaces researchers in these fields. In every case, human collaboration was essential and human verification was mandatory. The point is that the ceiling has moved.</p>
+    <p>We look at concrete cases from 2025&ndash;26 where AI played a key role in research-grade work in mathematics, theoretical physics, and beyond. The examples are drawn from fields where, two years ago, the consensus was that AI couldn&#39;t contribute meaningfully. The point is not that AI replaces researchers in these fields. Human verification took place in every case discussed. Gemini Deep Think produced its IMO 2025 solutions end to end, with humans grading them afterwards. The point is that the ceiling has moved.</p>
     <p>One caveat up front: these are selection-biased examples. They are the cases where AI worked. The ratio of attempts-to-successes is unknown. The sub-lesson closes with the caveats; read them.</p>
   </div>
 
@@ -368,7 +368,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <h4>&#128221; Erd&#337;s Problems Solved with Frontier Models</h4>
     <p>By 14 January 2026, <strong>15 Erd&#337;s problems had moved from &ldquo;open&rdquo; to &ldquo;solved&rdquo;</strong> on the canonical Erd&#337;s problem database since Christmas 2025, with <strong>11 of those crediting AI models</strong> as part of the process. The contributions are tracked at <a href="https://github.com/teorth/erdosproblems/wiki/AI-contributions-to-Erd%C5%91s-problems" target="_blank" rel="noopener">github.com/teorth/erdosproblems</a>.</p>
     <p><strong>Erd&#337;s Problem #1196.</strong> A conjecture on primitive sets from Erd&#337;s, S&aacute;rk&ouml;zy and Szemer&eacute;di&rsquo;s work of the 1960s. Solved by GPT-5.4 Pro on 13 April 2026, with a solution that includes a Lean formalisation. A preprint follow-up extends the result substantially: <strong><a href="https://arxiv.org/abs/2605.00301" target="_blank" rel="noopener">Alexeev, B., Barreto, K., Li, Y., Lichtman, J. D., Price, L., Shah, J. I., Tang, Q., &amp; Tao, T. (1 May 2026). <em>Primitive sets and von Mangoldt chains: Erd&#337;s Problem #1196 and beyond.</em> arXiv:2605.00301</a></strong>.</p>
-    <p><strong>Erd&#337;s Problem #728.</strong> Solved by GPT-5.4 Pro in approximately 80 minutes from a single prompt. Tao’s comment about a previously undescribed connection between the anatomy of integers and Markov process theory concerned Problem #1196.</p>
+    <p><strong>Erd&#337;s Problem #728.</strong> Solved in January 2026 by Barreto with GPT-5.2 Pro and Aristotle, including a Lean proof. Tao’s comment about a previously undescribed connection between the anatomy of integers and Markov process theory concerned Problem #1196.</p>
   </div>
 
   <div class="case-study">
@@ -380,7 +380,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="case-study">
     <h4>&#128221; DeepMind&#39;s AI Co-Mathematician (May 2026)</h4>
     <p>Announced on 8 May 2026 by Pushmeet Kohli&#39;s team at Google DeepMind, the AI Co-Mathematician is a multi-agent system built on Gemini 3.1 Pro that actively collaborates with human mathematicians on open research problems.</p>
-    <p>On <strong>FrontierMath Tier 4</strong>, the hardest 50 problems in the benchmark, <a href="https://epochai.substack.com/p/frontiermath-tier-4-battle-royale" target="_blank" rel="noopener">which can take expert mathematicians weeks to solve</a>, the system <strong>solved 23 of the 48 non-public problems (of the 50 Tier-4 problems, 48 are non-public and 20 are withheld even from OpenAI), a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark; the entire jump came from agentic scaffolding with parallel agents reviewing each other&#39;s work.</p>
+    <p>On <strong>FrontierMath Tier 4</strong>, the benchmark's original set of 50 hardest problems, <a href="https://epochai.substack.com/p/frontiermath-tier-4-battle-royale" target="_blank" rel="noopener">which can take expert mathematicians weeks to solve</a>, the system <strong>solved 23 of the 48 non-public problems (of the original 50 Tier-4 problems, 48 were non-public and 20 were withheld from OpenAI), a 48% accuracy rate</strong>. The base model alone (Gemini 3.1 Pro) scored 19% on the same benchmark. The full system scored 48%, but the study did not separate the effects of its multi-agent design from extra computation and set no limit on model calls or generated tokens.</p>
     <p>And it has already been used to close a real open problem: topologist Marc Lackenby used the system to close <strong>problem 21.10 from the Kourovka Notebook</strong>, an open compendium of group theory problems maintained continuously since 1965 in Novosibirsk.</p>
     <p style="font-size: 0.9em; color: #003A70; font-weight: 600;">Source: <a href="https://arxiv.org/abs/2605.06651" target="_blank" rel="noopener">AI Co-Mathematician: Accelerating Mathematicians with Agentic AI (arXiv:2605.06651, 7 May 2026)</a></p>
   </div>
@@ -397,14 +397,14 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <!-- THEORETICAL PHYSICS -->
   <h2 class="section-title">&#9883; Theoretical Physics</h2>
 
-  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The gluon case involves named senior physicists, including Strominger and Skinner, collaborating with an OpenAI model on amplitudes; the cosmic-string radiation case concerns a different type of calculation. The work has appeared as preprints with credentialed authors rather than as AI-lab demonstrations.</p>
+  <p style="color: #555; font-size: 1.05em; margin-bottom: 20px; line-height: 1.8;">The gluon case involves named senior physicists, including Strominger and Skinner, collaborating with an OpenAI model on amplitudes; the cosmic-string radiation case concerns a different type of calculation. These examples include preprints and a journal article, with contributions from academic researchers and AI-lab teams.</p>
 
   <div class="case-study">
     <h4>&#128221; Single-Minus Gluon Amplitudes &mdash; OpenAI &times; Strominger Group</h4>
     <p><strong><a href="https://arxiv.org/abs/2602.12176" target="_blank" rel="noopener">Guevara, A., Lupsasca, A., Skinner, D., Strominger, A., &amp; Weil, K. (12 February 2026). <em>Single-minus gluon tree amplitudes are nonzero.</em> arXiv:2602.12176</a></strong></p>
     <p>The paper&#39;s introduction states the AI contribution:</p>
     <p style="font-style: italic; color: #444; margin: 15px 0; padding: 12px 18px; border-left: 3px solid #003A70; background: #f9f9f9;">&ldquo;The key formula (39) for the amplitude in this region was first conjectured by GPT-5.2 Pro and then proved by a new internal OpenAI model.&rdquo;</p>
-    <p>Human verification was mandatory: the proof was checked by hand using the Berends&ndash;Giele recursion and tested against multiple consistency conditions including Weinberg&#39;s soft theorem. The author list includes Andrew Strominger (Harvard), among the most distinguished living theoretical physicists, and Kevin Weil on behalf of OpenAI. It is a real preprint with a real result, not an AI-lab demonstration.</p>
+    <p>Human verification was mandatory: the proof was checked by hand using the Berends&ndash;Giele recursion and tested against multiple consistency conditions including Weinberg&#39;s soft theorem. The author list includes Andrew Strominger (Harvard), among the most distinguished living theoretical physicists, and Kevin Weil on behalf of OpenAI. It is a real preprint with a real result, with OpenAI staff among its authors.</p>
   </div>
 
   <div class="case-study">
@@ -433,7 +433,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>AI-Newton (Symbolic Discovery)</h3>
-      <p>Fang, Y.-L., Jian, D.-S., Li, X., &amp; Ma, Y.-Q. (April 2025). <em>AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge</em>. <a href="https://arxiv.org/abs/2504.01538" target="_blank" rel="noopener">arXiv:2504.01538</a>. From Peking University. Symbolic regression that, given experimental data, autonomously rediscovers Newton&#39;s second law, energy conservation, and the law of gravitation, with no prior physics knowledge built in.</p>
+      <p>Fang, Y.-L., Jian, D.-S., Li, X., &amp; Ma, Y.-Q. (April 2025). <em>AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge</em>. <a href="https://arxiv.org/abs/2504.01538" target="_blank" rel="noopener">arXiv:2504.01538</a>. From Peking University. A concept-driven discovery framework that, given data from simulated mechanics experiments, autonomously rediscovers Newton&#39;s second law, energy conservation, and universal gravitation, with no prior physics knowledge built in.</p>
     </div>
 
     <div class="card">
@@ -459,7 +459,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Code at the Frontier</h3>
-      <p><strong>Claude Opus 4.7</strong> at SWE-bench Verified 87.6%; <strong>DeepSeek V4 Pro</strong> at Codeforces 3206 (top of any model); <strong>Opus 4.7</strong> at MCP-Atlas 77.3%. Frontier models in 2026 are research-grade for many programming tasks. The Week 7 caveat applies: code that runs is not code that&#39;s correct. Verification and known-answer testing are still mandatory.</p>
+      <p><strong>Claude Opus 4.7</strong> at SWE-bench Verified 87.6%; <strong>DeepSeek V4-Pro Max</strong> at a reported Codeforces rating of 3206 (Google reported 3455 for Gemini 3 Deep Think); <strong>Opus 4.7</strong> at MCP-Atlas 77.3%. Frontier models in 2026 are research-grade for many programming tasks. The Week 7 caveat applies: code that runs is not code that&#39;s correct. Verification and known-answer testing are still mandatory.</p>
     </div>
 
     <div class="card">
@@ -485,8 +485,8 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   </div>
 
   <div class="warning-box">
-    <h4>2. Human Collaboration Was Essential in Every Single Case</h4>
-    <p>The gluon-amplitude paper required Strominger and colleagues to feed GPT-5.2 specific human-computed cases as a starting point. The Erdős #1196 solution received follow-up work that formalised it in Lean and extended the method. The IMO gold required problem-statements to be presented in their canonical form. The Gowers experiment required expert evaluation by Gowers and, for the later results, Isaac Rajagopal. These are all <em>collaborations</em>, not autonomous discovery. Reading them as &ldquo;AI did mathematics&rdquo; misses the structure.</p>
+    <h4>2. Human Roles Differed Between Cases</h4>
+    <p>The gluon-amplitude paper required Strominger and colleagues to feed GPT-5.2 specific human-computed cases as a starting point. The Erdős #1196 solution received follow-up work that formalised it in Lean and extended the method. For the IMO 2025 gold-medal result, Gemini Deep Think worked directly from the official problem statements in natural language. The Gowers experiment required expert evaluation by Gowers and, for the later results, Isaac Rajagopal. Humans selected problems and checked outputs, while their input during discovery varied. Gowers reports that, for one follow-up result, his mathematical input was zero.</p>
   </div>
 
   <div class="warning-box">

@@ -285,7 +285,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
         <p>As of May 2026, Gemini&#39;s Pro tier processes up to 1&nbsp;million tokens: roughly one hour of video at standard resolution, more at lower FPS settings, or around 8&ndash;9 hours of audio-only content. For mostly static content such as lectures with slides, setting a frame rate below <a href="https://ai.google.dev/gemini-api/docs/video-understanding" target="_blank" rel="noopener">the default of one frame per second</a> (for example 0.5) or using low media resolution allows longer recordings at lower cost; check that brief slide changes are still captured. Check current API documentation for precise media-duration equivalents, which vary by resolution and FPS settings.</p>
       </div>
       <div class="card"><h3>Simultaneous Audio + Visual Understanding</h3>
-        <p>Gemini's native multimodal architecture means the model jointly reasons over what is said and what is shown in the same pass. It can notice when a speaker's verbal claim conflicts with what is on the slide behind them, something a sequential pipeline (transcribe first, then analyse) would miss entirely.</p>
+        <p>Gemini's native multimodal architecture means the model jointly reasons over what is said and what is shown in the same pass. It can notice when a speaker's verbal claim conflicts with what is on the slide behind them, something a pipeline analysing only the speech transcript would miss.</p>
       </div>
       <div class="card"><h3>Temporal Reasoning</h3>
         <p>Asking questions about events in sequence: "What happened between minute 12 and minute 18?", identifying when a topic was first introduced, tracking how an argument develops across a long recording, or flagging the moment a methodology is described. These tasks require understanding the video as a time-ordered narrative, not a static document.</p>
@@ -298,7 +298,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     <!-- Section 2 -->
     <h2 class="section-title" id="s2">Research Use Cases</h2>
 
-    <p style=" margin-bottom: 20px">The table below maps common research video types to the most appropriate AI tools and flags the main caveat for each application. No row is caveat-free.</p>
+    <p style=" margin-bottom: 20px">The table below lists AI tools for common research video types and flags a caveat for each application. No row is caveat-free.</p>
 
     <div class="tscroll"><table class="comparison-table">
       <thead>
@@ -306,7 +306,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
           <th>Research Type</th>
           <th>Video Content</th>
           <th>AI Task</th>
-          <th>Best Tool</th>
+          <th>Tool Options</th>
           <th>Key Caveat</th>
         </tr>
       </thead>
@@ -315,8 +315,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
           <td>Education research</td>
           <td>Classroom recordings</td>
           <td>Instructional coding, teacher&ndash;student interaction analysis</td>
-          <td>Gemini (family) / ClassMind</td>
-          <td>Temporal reasoning errors; verify coded events</td>
+          <td>Gemini-based systems such as ClassMind</td>
+          <td>Unreliable timestamps; verify coded events. One classroom coding study found fine-tuned models outperformed prompted multimodal models.</td>
         </tr>
         <tr>
           <td>Qualitative research</td>
@@ -381,7 +381,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
     <ol class="step-list">
       <li><strong>Start with the most structured modality first.</strong> If your material has both a text document and audio, process the document first to establish context before analysing the audio. Priming the model with structured information improves its handling of less-structured input.</li>
-      <li><strong>Use transcription to bridge audio to text.</strong> Run audio through Whisper or OpenAI transcription, review the transcript for obvious errors, then use the verified transcript in your text analysis pipeline. A reviewed transcript gives you a stable, auditable record that the audio alone does not.</li>
+      <li><strong>Use transcription to bridge audio to text.</strong> Run audio through Whisper or OpenAI transcription, review the transcript for obvious errors, then use the verified transcript in your text analysis pipeline. A reviewed transcript gives you searchable text; preserve the original audio to check transcription accuracy and interpretations.</li>
       <li><strong>For native video analysis, provide explicit context.</strong> Tell the model what the video is, what you are looking for, and what background knowledge it needs. Do not assume the model has domain-specific context. A classroom recording means something different to an education researcher than to a model with no information about the study context.</li>
       <li><strong>Cross-check across modalities.</strong> If you have both a transcript and a video recording, spot-check the AI's video-based analysis against the transcript. Consistent findings across modalities increase confidence, though agreement can hide a shared error; contradictions signal a possible error requiring human review.</li>
       <li><strong>Verify temporal claims.</strong> Any AI statement about "when" something happens in a video should be verified by jumping to that timestamp. Temporal reasoning is one of the weakest points of current video AI; models often place events at the wrong point in a recording.</li>
@@ -391,7 +391,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     <h2 class="section-title" id="s5">Failure Modes Specific to Video</h2>
 
     <div class="warning-box"><h3 class="lbl">Compounding Errors</h3>
-      <p>Video analysis combines image understanding, audio understanding, and language reasoning. An error in one layer usually propagates to the final output. A misheard word in the transcription can change the model's interpretation of a visual element that would otherwise have been understood correctly. This compounding effect means the overall error rate for video analysis is higher than for any single modality, even when each individual component performs well.</p>
+      <p>Video analysis combines image understanding, audio understanding, and language reasoning. In sequential pipelines, an error at one stage can affect later analysis. A misheard word in the transcription can change the model's interpretation of a visual element that would otherwise have been understood correctly. Combining modalities can also improve accuracy: Video-MME found that adding subtitles or audio to video frames improved performance in its evaluations.</p>
     </div>
 
     <div class="warning-box"><h3 class="lbl">Temporal Hallucination</h3>
@@ -410,7 +410,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
     <h2 class="section-title" id="s6">Readings</h2>
 
     <div class="resource-placeholder"><h3 class="lbl">Supplementary Reading</h3>
-      <p>Gemini Pro tier documentation on video understanding. Covers token limits, FPS parameters, and best-practice prompting for video analysis.<br><a href="https://developers.googleblog.com/en/gemini-2-5-video-understanding/" target="_blank" rel="noopener">developers.googleblog.com/en/gemini-2-5-video-understanding/</a></p>
+      <p>Google's May 2025 announcement of Gemini 2.5's video capabilities. Includes example prompts and evaluation details.<br><a href="https://developers.googleblog.com/en/gemini-2-5-video-understanding/" target="_blank" rel="noopener">developers.googleblog.com/en/gemini-2-5-video-understanding/</a></p>
     </div>
 
     <div class="resource-placeholder"><h3 class="lbl">Supplementary Reading</h3>
