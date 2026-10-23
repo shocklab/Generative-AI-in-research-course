@@ -55,8 +55,6 @@ served from `docs/` on `main`. The course is not published on Amathuba.
   `content/`, change its script too, or a rerun restores the old text.
 - **Publishing:** commit the `content/` change and the rebuilt `docs/` (as separate commits) on a
   branch and open a PR. GitHub Pages deploys when it merges to `main`.
-- `add_page_nav.py` and `add_analytics.py` at the root, and `Papers/build_papers_site.py`, write
-  into `docs/` from before the builder existed. The builder now does their jobs; do not run them.
 
 ## Files
 
