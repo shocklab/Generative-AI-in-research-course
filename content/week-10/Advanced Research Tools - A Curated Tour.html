@@ -356,7 +356,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <h2>&#127919; What We&#39;ll Cover</h2>
     <p>This is the practical pay-off of the week: a tool-by-tool tour with a verdict on each. For each category we ask three questions: what does it actually do well, what is its specific failure mode, and <strong>what does the free tier deliver for a student who cannot put a foreign credit card into a sign-up form?</strong> That last question is not a footnote in this course; for many UCT students it decides whether a tool exists at all.</p>
     <p>The centrepiece is a comparison of <strong>Deep Research modes</strong> (the agentic-RAG tools from 10.4) because the Week 10 activity (10.6) hinges on them. We then cover the Chinese free-tier options (often <em>more</em> generous than the Western ones, with one serious catch), the MCP connectors worth wiring into a research workflow, what is expensive and skippable, and a free-tier research pipeline you can actually run.</p>
-    <p>A hard warning before any number appears: <strong>every quota in this sub-lesson is a May 2026 snapshot and several will be wrong by the time you read this.</strong> Free tiers are the most volatile thing in the entire field; they change monthly, sometimes weekly. Treat the specific figures as &ldquo;go and check&rdquo;, not gospel. The framework for choosing is the durable part.</p>
+    <p>A hard warning before any number appears: <strong>every quota in this sub-lesson is a May 2026 snapshot and several will be wrong by the time you read this.</strong> Free tiers are the most volatile thing in the entire field; their limits can change without notice. Treat the specific figures as &ldquo;go and check&rdquo;, not gospel. The framework for choosing is the durable part.</p>
   </div>
 
   <h2 class="section-title">&#127757; Why &ldquo;Free&rdquo; Is the Whole Game Here</h2>
@@ -427,7 +427,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <div class="card-grid">
     <div class="card">
       <h3>1. DeepSeek &mdash; chat.deepseek.com</h3>
-      <p>The most capable fully-free reasoning chat in May 2026: V4 plus a DeepThink toggle, web search, and file upload, with no message cap and no Chinese phone number required. English UI, email or Google sign-up. Throttles to &ldquo;Server Busy&rdquo; at peak times.</p>
+      <p>The most capable fully-free reasoning chat in May 2026: V4 in Expert and Instant modes, plus Deep-Think, web search, and file upload, with no published message cap and no Chinese phone number required. English UI, email or Google sign-up. Throttles to &ldquo;Server Busy&rdquo; at peak times.</p>
     </div>
     <div class="card">
       <h3>2. Kimi &mdash; kimi.com</h3>
@@ -435,11 +435,11 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     </div>
     <div class="card">
       <h3>3. Qwen &mdash; chat.qwen.ai</h3>
-      <p>Alibaba. The widest <em>modality</em> coverage on a free tier: hybrid thinking, web search, image/video understanding, image generation. Note: Qwen&#39;s free coding-agent CLI was discontinued on 15 April 2026; the chat surface stays free, the coding CLI now needs payment.</p>
+      <p>Alibaba. The widest <em>modality</em> coverage on a free tier: hybrid thinking, web search, image/video understanding, image generation. Note: Qwen&#39;s free hosted login for its coding-agent CLI was discontinued on 15 April 2026; the chat surface stays free; the coding CLI can still connect to a local server or another provider.</p>
     </div>
     <div class="card">
       <h3>4. Z.ai / Zhipu &mdash; chat.z.ai</h3>
-      <p>Zhipu AI. The most open-weights-aligned option: free chat on GLM-4.5/4.6 (MIT-licensed and self-hostable) with an agent mode and document generation. Free agent runs are slower and shorter than DeepSeek&#39;s or Kimi&#39;s.</p>
+      <p>Zhipu AI. An option with openly available model weights: free chat on GLM-5.3-Flash (GLM-4.5/4.6 weights are MIT-licensed and self-hostable) with an agent mode and document generation. Free agent runs are slower and shorter than DeepSeek&#39;s or Kimi&#39;s.</p>
     </div>
   </div>
 
@@ -455,7 +455,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <div class="warning-box">
     <h4>&#9888;&#65039; Every connector is two risks at once</h4>
-    <p>Each connector you add does two things beyond its convenience. First, it <strong>widens the prompt-injection surface</strong> (10.2): an agent that can read your Drive and browse the web can be steered by hostile text in a document or page. Second, it <strong>opens a POPIA-relevant data flow</strong>: connecting your inbox or institutional Drive sends that content to the model provider. Connect deliberately, one at a time, with the lowest permissions that do the job, and never connect a personal-data source to a tool whose servers you would not trust with that data.</p>
+    <p>Each connector you add does two things beyond its convenience. First, it <strong>widens the prompt-injection surface</strong> (10.2): an agent that can read your Drive and browse the web can be steered by hostile text in a document or page. Second, it <strong>opens a POPIA-relevant data flow</strong>: content retrieved from your inbox or institutional Drive is sent to the model provider. Connect deliberately, one at a time, with the lowest permissions that do the job, and never connect a personal-data source to a tool whose servers you would not trust with that data.</p>
   </div>
 
   <h2 class="section-title">&#128176; What&#39;s Expensive, and Probably Skippable</h2>
@@ -466,7 +466,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <li><strong>Enterprise agents</strong> (Sierra, Decagon, Cognition&#39;s Devin): priced for companies; not aimed at, or affordable for, an individual researcher.</li>
     <li><strong>Manus</strong>: the &ldquo;general agent&rdquo; from 10.3. Access is mixed and its capability claims are company-reported; not something to build a workflow on now.</li>
     <li><strong>Cursor Pro</strong>: genuinely good if you code every day; if you do not, the free coding tools cover it.</li>
-    <li><strong>Paid Deep Research tiers</strong>: faster and higher-quota, but the free tiers are enough to do real work and to complete this course. The activity is built to be done entirely free.</li>
+    <li><strong>Paid Deep Research tiers</strong>: higher quota, but the free tiers are enough to do real work and to complete this course. The activity is built to be done entirely free.</li>
   </ul>
 
   <div class="info-box">

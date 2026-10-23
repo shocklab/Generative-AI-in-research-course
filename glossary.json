@@ -305,7 +305,7 @@
     },
     {
       "term": "Context window",
-      "definition": "The maximum amount of text an AI model can hold in view at once, measured in tokens. Once a long session fills the window, the model starts losing track of earlier exchanges.",
+      "definition": "The maximum amount of text an AI model can hold in view at once, measured in tokens. Recall can decline as a session grows; when the window is full, earlier exchanges may be dropped or summarised, or further input refused.",
       "aliases": [
         "context window"
       ]
@@ -319,7 +319,7 @@
     },
     {
       "term": "Cross-model triangulation",
-      "definition": "Running the same task on two or more AI models and comparing their outputs. Agreement raises confidence; disagreement flags a claim worth checking independently and is often more informative than either answer alone.",
+      "definition": "Running the same task on two or more AI models and comparing their outputs. Agreement can raise confidence, though different models can make the same errors; disagreement flags a claim worth checking independently and is often more informative than either answer alone.",
       "aliases": [
         "cross-model triangulation"
       ]
@@ -398,7 +398,7 @@
     },
     {
       "term": "Diffusion model",
-      "definition": "A generative AI that learns to create images by reversing a process of gradually adding noise: starting from random static, it progressively refines an image guided by a text prompt. Stable Diffusion works this way.",
+      "definition": "A generative AI that learns to create images by reversing a process of gradually adding noise: starting from random static, it progressively refines an image, with text prompts guiding text-to-image models. Stable Diffusion works this way.",
       "aliases": [
         "diffusion model"
       ]
@@ -412,7 +412,7 @@
     },
     {
       "term": "DOI (Digital Object Identifier)",
-      "definition": "A persistent, unique code assigned to a published paper or dataset (e.g. 10.1000/xyz123) that you can enter at doi.org to confirm the item exists and reach the publisher's record.",
+      "definition": "A persistent, unique code assigned to a published paper or dataset (e.g. 10.1000/xyz123) that you can enter at doi.org to confirm the DOI is registered and reach its registered location, usually the publisher's page.",
       "aliases": [
         "DOI (Digital Object Identifier)"
       ]
@@ -433,14 +433,14 @@
     },
     {
       "term": "Embodied carbon",
-      "definition": "The greenhouse-gas emissions released when manufacturing a physical object; for AI, the carbon cost of making chips, servers, and data centres, as distinct from emissions from the electricity used during operation.",
+      "definition": "The greenhouse-gas emissions from manufacturing, transporting and disposing of physical objects; for AI, this includes chips, servers and data-centre construction, as distinct from emissions from the electricity used during operation.",
       "aliases": [
         "Embodied carbon"
       ]
     },
     {
       "term": "English hegemony (in academic publishing)",
-      "definition": "The structural dominance of English as the required language for high-status academic publishing, which disadvantages researchers whose first language is not English regardless of the quality of their ideas.",
+      "definition": "The structural dominance of English as the expected language for high-status academic publishing, which disadvantages researchers whose first language is not English regardless of the quality of their ideas.",
       "aliases": [
         "English hegemony (in academic publishing)"
       ]
@@ -524,7 +524,7 @@
     },
     {
       "term": "Frontier model",
-      "definition": "A large AI model at the current leading edge of measured capability: the best publicly available models from well-resourced labs. Which models qualify changes every few months as new releases arrive.",
+      "definition": "A large AI model at the current leading edge of measured capability, whether or not it is publicly available. Which models qualify changes every few months as new releases arrive.",
       "aliases": [
         "frontier model"
       ]
@@ -774,7 +774,7 @@
     },
     {
       "term": "Open-weight model",
-      "definition": "An AI model whose trained parameters are publicly released so anyone can download, run, or modify it, in contrast to closed, proprietary models whose weights stay private and are reachable only through an API.",
+      "definition": "An AI model whose trained parameters are publicly released so it can be downloaded, run or modified, subject to its licence, in contrast to closed, proprietary models whose weights stay private and which are accessed through services such as APIs and chat apps.",
       "aliases": [
         "open-weight model"
       ]
@@ -823,7 +823,7 @@
     },
     {
       "term": "Pollution loop",
-      "definition": "The self-reinforcing cycle in which hallucinated citations published in real papers get indexed by databases, absorbed into future AI training data, and then reproduced with even greater false confidence.",
+      "definition": "A possible cycle in which fabricated citations in published papers are learned by later AI models and reproduced. A study of fabricated citations describes one likely case; how widespread this is remains unknown.",
       "aliases": [
         "pollution loop"
       ]
@@ -837,7 +837,7 @@
     },
     {
       "term": "Positional encoding",
-      "definition": "Information added to each token before processing to tell the model where in the sequence that token sits, since transformers otherwise treat all positions as equivalent.",
+      "definition": "Information that tells the model where in the sequence each token sits, since transformers otherwise treat all positions as equivalent.",
       "aliases": [
         "positional encoding"
       ]
@@ -886,7 +886,7 @@
     },
     {
       "term": "Prompt injection",
-      "definition": "An attack in which hostile instructions hidden inside content an agent reads (a web page, email, or document) hijack its behaviour, because the model cannot reliably tell data from instructions.",
+      "definition": "An attack in which hostile instructions alter an AI model's behaviour in unintended ways, either supplied directly or hidden inside content it reads (a web page, email, or document), because the model cannot reliably tell data from instructions.",
       "aliases": [
         "prompt injection"
       ]
@@ -907,7 +907,7 @@
     },
     {
       "term": "RAGAS (Retrieval-Augmented Generation Assessment)",
-      "definition": "An open framework for measuring RAG quality. Some of its metrics need no hand-written reference answer; others, such as LLM-based context recall, do. It separately scores whether the right passages were retrieved and whether the generated answer stays within what those passages say.",
+      "definition": "An open framework for measuring RAG quality. Some of its metrics need no reference answer; others, such as LLM-based context recall, do, though the reference need not be hand-written. It separately scores whether the right passages were retrieved and whether the generated answer stays within what those passages say.",
       "aliases": [
         "RAGAS (Retrieval-Augmented Generation Assessment)"
       ]
@@ -942,7 +942,7 @@
     },
     {
       "term": "Reproducibility",
-      "definition": "A property of research where another person, or you later, can inspect exactly what was done and repeat it from the same starting point. Distinct from verification, which asks whether a result is correct.",
+      "definition": "A property of research where another person, or you later, can inspect exactly what was done and repeat it from the same starting point, obtaining consistent results. Distinct from verification, which asks whether a result is correct.",
       "aliases": [
         "reproducibility"
       ]
@@ -956,7 +956,7 @@
     },
     {
       "term": "Reversal curse",
-      "definition": "A failure in early language models where knowing \"A is B\" did not help infer \"B is A.\" Documented by <a href=\"https://arxiv.org/abs/2309.12288\" target=\"_blank\" rel=\"noopener\">Berglund et al. (2023)</a> in models fine-tuned on \"A is B\" and in GPT-4's answers about celebrities; <a href=\"https://proceedings.mlr.press/v306/ma26o.html\" target=\"_blank\" rel=\"noopener\">2025–2026 research</a> still studies it as an open problem in training, and whether current frontier models show it has not been retested with the original design.",
+      "definition": "A failure in language models where learning \"A is B\" during training did not enable them to infer \"B is A\". Documented by <a href=\"https://arxiv.org/abs/2309.12288\" target=\"_blank\" rel=\"noopener\">Berglund et al. (2023)</a> in models fine-tuned on \"A is B\" and in GPT-4's answers about celebrities; <a href=\"https://proceedings.mlr.press/v306/ma26o.html\" target=\"_blank\" rel=\"noopener\">2025–2026 research</a> still studies it as an open problem in training, and whether current frontier models show it has not been retested with the original design.",
       "aliases": [
         "reversal curse"
       ]
@@ -1026,7 +1026,7 @@
     },
     {
       "term": "Skill (Claude Code)",
-      "definition": "A reusable, packaged workflow stored in a project's .claude/skills/ folder and triggered on demand, giving an AI agent a tested, step-by-step procedure to follow instead of ad-hoc prompting.",
+      "definition": "A reusable, packaged workflow stored in a project's .claude/skills/ folder and triggered on demand, giving an AI agent written instructions, often a step-by-step procedure, to follow instead of ad-hoc prompting.",
       "aliases": [
         "skills (slash commands)",
         "Skill (Claude Code)"
@@ -1084,14 +1084,14 @@
     },
     {
       "term": "Sycophancy",
-      "definition": "A tendency in AI models to agree with the user or say what they seem to want to hear, even when the user is wrong, arising from training that rewards responses humans rate favourably.",
+      "definition": "A tendency in AI models to agree with the user or say what they seem to want to hear, even when the user is wrong, likely arising in part from training that rewards responses humans rate favourably.",
       "aliases": [
         "sycophancy"
       ]
     },
     {
       "term": "Synthetic data",
-      "definition": "Data generated computationally to mimic real experimental results (plausible distributions, correlations, effect sizes) without any underlying observation. In misconduct, AI can produce synthetic datasets hard to distinguish from genuine ones.",
+      "definition": "Data generated artificially by algorithms or simulations rather than collected from real-world events or observations. In misconduct, AI can produce synthetic datasets hard to distinguish from genuine ones.",
       "aliases": [
         "synthetic data"
       ]
@@ -1112,14 +1112,14 @@
     },
     {
       "term": "Text layer",
-      "definition": "The embedded, selectable text stored inside a PDF as actual characters rather than a picture. PDFs with a text layer can be searched and copied; scanned PDFs lack one and need OCR before extraction.",
+      "definition": "The embedded, selectable text stored inside a PDF as actual characters rather than a picture. PDFs with a text layer can be searched and copied; image-only scanned PDFs need OCR to add one before text extraction.",
       "aliases": [
         "text layer"
       ]
     },
     {
       "term": "Token",
-      "definition": "The basic unit of text a language model reads and produces, roughly a word or word-fragment (e.g. \"unbelievable\" may split into \"un\", \"believe\", \"able\"). A model reads the tokens of a prompt in parallel but generates its reply one token at a time.",
+      "definition": "The basic unit of text a language model reads and produces, roughly a word or word-fragment (e.g. \"unbelievable\" may split into \"un\", \"believ\", \"able\"). A standard autoregressive model reads the tokens of a prompt in parallel but generates its reply one token at a time.",
       "aliases": [
         "token"
       ]
@@ -1133,14 +1133,14 @@
     },
     {
       "term": "Transcription hallucination",
-      "definition": "A failure in AI transcription where the model generates text that was never spoken, inventing sentences, fabricating names, or silently dropping content, rather than faithfully converting the audio.",
+      "definition": "A failure in AI transcription where the model generates text that was never spoken, such as invented sentences or fabricated names. Silently dropping content is a separate omission error.",
       "aliases": [
         "transcription hallucination"
       ]
     },
     {
       "term": "Transformer",
-      "definition": "A neural network architecture introduced in 2017 that processes whole sequences of text at once and uses attention to weigh how relevant each word is to every other. It underpins virtually all modern large language models.",
+      "definition": "A neural network architecture introduced in 2017 that processes input tokens in parallel and uses attention to weigh their relevance to one another; decoder models prevent attention to later tokens. It underpins virtually all modern large language models.",
       "aliases": [
         "transformer"
       ]

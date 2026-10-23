@@ -57,7 +57,7 @@ FIGS = [
          cap="Classic RAG fetches once and answers; agentic RAG loops: planning, retrieving, reflecting, and retrieving again. That loop is what Deep Research modes do under the hood.",
          svg=D.columns([
              dict(title="Classic RAG", kind='alt', lines=["Retrieve once, then answer", "One pass, linear", "Fast and cheap", "Misses what it didn't fetch"]),
-             dict(title="Agentic RAG", kind='accent', lines=["Plan, retrieve, reflect, repeat", "A loop, not a pass", "What Deep Research does", "Finds what one query would miss"]),
+             dict(title="Agentic RAG", kind='accent', lines=["Plan, retrieve, reflect, repeat", "A loop, not a pass", "What Deep Research does", "Can find what one query would miss"]),
          ], "Classic RAG versus agentic RAG",
             "Two columns contrasting single-pass classic RAG with the plan-retrieve-reflect loop of agentic RAG.")),
 

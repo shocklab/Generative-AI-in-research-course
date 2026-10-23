@@ -294,7 +294,7 @@
 <h2>What We'll Cover</h2>
 <p>Last session, we dissected the transformer architecture, the <em>structure</em> of modern LLMs. But how do billions of parameters actually learn to generate coherent, knowledgeable text? This session covers the training process: how we go from random weights and massive text corpora to models that can write, reason, and assist with research.</p>
 <p>We'll explore the pre-training objective, the scale of data required, the optimization techniques that make training feasible, and the staggering computational costs involved. We'll also examine scaling laws that predict model performance and the parallelism strategies that enable training at unprecedented scales.</p>
-<p><strong>Key question:</strong> Why does training a frontier model cost tens of millions of dollars, and what are researchers buying with that money?</p>
+<p><strong>Key question:</strong> Why can training a frontier model cost hundreds of millions of dollars, and what are researchers buying with that money?</p>
 </div>
 <!-- SECTION 1: PRE-TRAINING OBJECTIVES -->
 <h2 class="section-title">🎯 Pre-Training Objectives</h2>
@@ -302,7 +302,7 @@
 <div class="highlight-box">
 <h3>🔑<span style="color: #ffffff;"> Next-Token Prediction</span></h3>
 <p>The dominant pre-training objective for modern decoder-only LLMs: given a sequence of tokens, predict the next token.</p>
-<p style="margin-top: 15px;">In many training pipelines this is the main loss, and it’s powerful: applied to massive corpora, it encourages the model to capture grammar, factual associations, and patterns of reasoning. Some training setups also add auxiliary losses or curriculum/mixing strategies (especially for multimodal or retrieval-augmented systems).</p>
+<p style="margin-top: 15px;">In many training pipelines this is the main loss, and it’s powerful: applied to massive corpora, it encourages the model to capture grammar, factual associations, and patterns of reasoning. Some training setups also add auxiliary losses or curriculum/mixing strategies.</p>
 </div>
 <div class="card-grid">
 <div class="card">
@@ -379,7 +379,7 @@
 <td><strong>GPT-4</strong></td>
 <td>2023</td>
 <td>~13 trillion (unreported, speculative)</td>
-<td>Undisclosed; multimodal data included in GPT-4V-style systems</td>
+<td>Publicly available and third-party licensed data; specific sources undisclosed; multimodal data included in GPT-4V-style systems</td>
 </tr>
 <tr>
 <td><a href="https://arxiv.org/abs/2307.09288" target="_blank" rel="noopener"><strong>LLaMA 2</strong></a></td>
@@ -404,7 +404,7 @@
 <li><strong>Web crawls:</strong> <a href="https://commoncrawl.org" target="_blank" rel="noopener">Common Crawl</a>, C4 (Colossal Clean Crawled Corpus)</li>
 <li><strong>Books:</strong> Project Gutenberg, other book corpora (often legally and ethically contentious)</li>
 <li><strong>Wikipedia:</strong> High-quality encyclopedic knowledge</li>
-<li><strong>Code repositories:</strong> GitHub, Stack Overflow (for coding + structured text patterns)</li>
+<li><strong>Programming data:</strong> GitHub code repositories, Stack Overflow questions and answers (for coding + structured text patterns)</li>
 <li><strong>Scientific papers:</strong> arXiv, PubMed, and academic corpora</li>
 <li><strong>Forums/conversations:</strong> Reddit and other forums (with heavy filtering)</li>
 </ul>
@@ -469,7 +469,7 @@
 <!-- SECTION 3: OPTIMIZATION -->
 <h2 class="section-title">⚙️ Optimization: Making Training Work</h2>
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Training a billion-parameter model requires sophisticated optimization techniques. You can't just run vanilla gradient descent and expect it to work!</p>
-<figure id="fig-w2-scaling" class="diagram"><svg width="100%" viewBox="0 0 680 204" role="img" xmlns="http://www.w3.org/2000/svg"><title>The scaling shift: Kaplan to Chinchilla</title><desc>Two scaling recipes compared: scale model size alone, versus scale tokens and parameters together.</desc><rect x="1" y="1" width="678" height="202" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><rect x="26" y="30" width="303" height="40" rx="9" fill="#2a5298"/><text x="177.5" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Kaplan (2020)</text><circle cx="38" cy="90" r="2.5" fill="#6a6256"/><text x="48.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Scale model size for fixed data</text><circle cx="38" cy="119" r="2.5" fill="#6a6256"/><text x="48.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Bigger models, same tokens</text><circle cx="38" cy="148" r="2.5" fill="#6a6256"/><text x="48.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">GPT-3: 175B params, 300B tokens</text><rect x="351" y="30" width="303" height="40" rx="9" fill="#003A70"/><text x="502.5" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Chinchilla (2022)</text><circle cx="363" cy="90" r="2.5" fill="#6a6256"/><text x="373.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Scale data and size together</text><circle cx="363" cy="119" r="2.5" fill="#6a6256"/><text x="373.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">About 20 tokens per parameter</text><circle cx="363" cy="148" r="2.5" fill="#6a6256"/><text x="373.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Same compute, better model</text></svg><figcaption>The correction that reshaped training: balance tokens with parameters (about 20 to 1), not just bigger models. GPT-3 was undertrained.</figcaption></figure>
+<figure id="fig-w2-scaling" class="diagram"><svg width="100%" viewBox="0 0 680 204" role="img" xmlns="http://www.w3.org/2000/svg"><title>The scaling shift: Kaplan to Chinchilla</title><desc>Two scaling recipes compared: scale model size alone, versus scale tokens and parameters together.</desc><rect x="1" y="1" width="678" height="202" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><rect x="26" y="30" width="303" height="40" rx="9" fill="#2a5298"/><text x="177.5" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Kaplan (2020)</text><circle cx="38" cy="90" r="2.5" fill="#6a6256"/><text x="48.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Scale model size faster than data</text><circle cx="38" cy="119" r="2.5" fill="#6a6256"/><text x="48.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Bigger models, same tokens</text><circle cx="38" cy="148" r="2.5" fill="#6a6256"/><text x="48.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">GPT-3: 175B params, 300B tokens</text><rect x="351" y="30" width="303" height="40" rx="9" fill="#003A70"/><text x="502.5" y="56" text-anchor="middle" font-family="'Fraunces',Georgia,serif" font-size="14" fill="#ffffff" font-weight="500">Chinchilla (2022)</text><circle cx="363" cy="90" r="2.5" fill="#6a6256"/><text x="373.0" y="94" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Scale data and size together</text><circle cx="363" cy="119" r="2.5" fill="#6a6256"/><text x="373.0" y="123" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">About 20 tokens per parameter</text><circle cx="363" cy="148" r="2.5" fill="#6a6256"/><text x="373.0" y="152" text-anchor="start" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Same compute, better model</text></svg><figcaption>The correction that reshaped training: balance tokens with parameters (about 20 to 1), not just bigger models. GPT-3 was undertrained.</figcaption></figure>
 
 <div class="highlight-box">
 <h3>🎯<span style="color: #ffffff;"> The Optimization Challenge</span></h3>
@@ -507,8 +507,8 @@
 <ul class="styled-list">
 <li><strong>Batch size:</strong> Number of sequences/tokens processed before updating parameters</li>
 <li><strong>Large global batches:</strong> In many large-scale runs the global batch corresponds to <em>millions</em> of tokens, but it varies by model and hardware</li>
-<li><strong>Why large?</strong> Stabilizes training and improves hardware utilization</li>
-<li><strong>Gradient accumulation:</strong> If you can't fit the batch, accumulate gradients over multiple forward passes</li>
+<li><strong>Why large?</strong> Reduces gradient noise and improves hardware utilisation; stable training can require learning-rate scaling and warmup</li>
+<li><strong>Gradient accumulation:</strong> If you can't fit the batch, accumulate gradients over smaller batches, each with a forward and backward pass, before one optimiser step</li>
 <li><strong>Trade-off:</strong> Extremely large batches can alter generalization dynamics; effects depend on regime</li>
 </ul>
 </div>
@@ -519,9 +519,9 @@
 <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
 <ol style="margin-left: 25px; color: #555; line-height: 1.8;">
 <li><strong>Gradient clipping:</strong> Cap gradient norm (often around 1.0, but not universal)</li>
-<li><strong>Mixed precision:</strong> Use lower precision for speed, with higher precision accumulation to reduce under/overflow</li>
+<li><strong>Mixed precision:</strong> Use lower precision for speed, higher precision accumulation to preserve accuracy, and loss scaling in FP16 training to preserve small gradients</li>
 <li><strong>Normalization:</strong> LayerNorm/RMSNorm stabilizes activations</li>
-<li><strong>Warmup:</strong> Gradual LR ramp prevents early divergence</li>
+<li><strong>Warmup:</strong> Gradual LR ramp reduces the risk of early divergence</li>
 <li><strong>Checkpointing:</strong> Reload from recent stable checkpoint after spikes/failures</li>
 </ol>
 </div>
@@ -587,13 +587,13 @@
 </tr>
 </tbody>
 </table>
-<p style="margin-top: 15px; color: #666;"><strong>Note:</strong> These are rough estimates. Modern frontier models may use Mixture-of-Experts (MoE), where “parameters” and “active compute per token” diverge. Costs also depend on utilization, restarts, networking overheads, and whether compute is rented or owned. GPU-days assume each A100 runs at its <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/" target="_blank" rel="noopener">312 TFLOPS peak</a> without stopping. Real runs are slower: <a href="https://huggingface.co/meta-llama/Llama-2-70b-hf" target="_blank" rel="noopener">Meta reports 1,720,320 A100 GPU-hours</a> (71,680 GPU-days) for LLaMA 2 70B, about 2.3 times the figure here.</p>
+<p style="margin-top: 15px; color: #666;"><strong>Note:</strong> These are rough estimates. Modern frontier models may use Mixture-of-Experts (MoE), where “parameters” and “active compute per token” diverge. Costs also depend on utilization, restarts, networking overheads, and whether compute is rented or owned. GPU-days assume each A100 runs at its <a href="https://docs.nvidia.com/deeplearning/performance/dl-performance-gpu-background/" target="_blank" rel="noopener">312 TFLOPS peak</a> for dense FP16/BF16 Tensor Core operations without stopping. Real runs are slower: <a href="https://huggingface.co/meta-llama/Llama-2-70b-hf" target="_blank" rel="noopener">Meta reports 1,720,320 A100 GPU-hours</a> (71,680 GPU-days) for LLaMA 2 70B, about 2.3 times the figure here.</p>
 </div>
 <div class="card-grid">
 <div class="card">
 <h3>Hardware Requirements</h3>
 <ul class="styled-list">
-<li><strong>GPUs:</strong> Thousands of A100/H100/H200 GPUs running in parallel</li>
+<li><strong>Accelerators:</strong> Thousands running in parallel, such as NVIDIA A100/H100/H200 GPUs or Google TPUs</li>
 <li><strong>Interconnect:</strong> High-bandwidth NVLink / InfiniBand for GPU communication</li>
 <li><strong>Storage:</strong> Large, fast storage for streaming training data</li>
 <li><strong>Clusters:</strong> Datacenters with substantial power and cooling constraints</li>
@@ -608,7 +608,7 @@
 <li><strong>Mid-size (70B):</strong> Weeks to months on large clusters</li>
 <li><strong>Frontier (1T+):</strong> Months on massive clusters (10K+ GPUs)</li>
 <li><strong>Bottleneck:</strong> Often GPU communication, not raw compute</li>
-<li><strong>Restarts:</strong> Training runs fail; checkpointing every few hours is critical</li>
+<li><strong>Restarts:</strong> Training runs fail; frequent, regular checkpointing is critical</li>
 </ul>
 </div>
 </div>
@@ -741,7 +741,7 @@
 <p>Split model into stages, each GPU handling specific layers.</p>
 <ul class="styled-list">
 <li><strong>Setup:</strong> Layers partitioned into pipeline stages</li>
-<li><strong>Microbatching:</strong> Keeps all stages busy</li>
+<li><strong>Microbatching:</strong> Reduces idle time across stages; some idle time remains at the start and end of each batch</li>
 <li><strong>Pros:</strong> Less intra-layer comms than tensor parallel</li>
 <li><strong>Cons:</strong> Pipeline “bubbles” (idle time), scheduling complexity</li>
 <li><strong>Used for:</strong> Very large models (often with tensor parallel)</li>
@@ -766,7 +766,7 @@
 <h4>🛠️ Frameworks &amp; Tools</h4>
 <p>Libraries that implement these parallelism strategies:</p>
 <ul class="styled-list" style="margin-top: 10px;">
-<li><strong><a href="https://github.com/deepspeedai/DeepSpeed" target="_blank" rel="noopener">DeepSpeed</a> (Microsoft):</strong> ZeRO optimizations and multi-parallel strategies</li>
+<li><strong><a href="https://github.com/deepspeedai/DeepSpeed" target="_blank" rel="noopener">DeepSpeed</a> (created by Microsoft, contributed to the Linux Foundation in January 2025):</strong> ZeRO optimisations and multi-parallel strategies</li>
 <li><strong><a href="https://github.com/NVIDIA/Megatron-LM" target="_blank" rel="noopener">Megatron-LM</a> (NVIDIA):</strong> Efficient tensor and pipeline parallelism for transformers</li>
 <li><strong><a href="https://docs.pytorch.org/tutorials/intermediate/FSDP1_tutorial.html" target="_blank" rel="noopener">FSDP </a>(PyTorch):</strong> Fully Sharded Data Parallel (sharding + data parallel concepts)</li>
 <li><strong><a href="https://docs.jax.dev/en/latest/" target="_blank" rel="noopener">JAX</a>/Flax:</strong> Flexible parallelism used in some large-scale research systems</li>

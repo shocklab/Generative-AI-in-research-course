@@ -288,7 +288,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
   <h2 class="section-title" id="s1">The Model Is the Smallest Part</h2>
 
-  <p style=" margin-bottom: 20px">Week&nbsp;10.1 argued that <strong>the harness is the product</strong>. The language model, Claude itself, is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness is thin and invisible. In Claude Code it is thick, and it is the part you are actually driving.</p>
+  <p style=" margin-bottom: 20px">Week&nbsp;10.1 argued that <strong>the harness is the product</strong>. The language model, Claude itself, is one component. What turns it into something useful is everything wrapped around it: the tools it can call, the files it can see, the commands it can run, the permissions it operates under, and the loop that lets it act, observe the result, and act again. In a chat window that harness includes code execution and file creation, with fewer tools than Claude Code's. In Claude Code it is thick, and it is the part you are actually driving.</p>
 
   <p style=" margin-bottom: 15px">When you ask Claude in a browser tab to help with an analysis, the model is most of what you get. It can reason about what you paste in and write text back. When you ask Claude Code the same thing, the model is the <em>smallest</em> part of what goes to work. The harness gives it your actual data files, a shell to run a script, the ability to read the error message that script produced, version control to record what changed, and standing instructions about how your project works. The intelligence is similar; the leverage is not.</p>
 
@@ -338,7 +338,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
       <p>You paste context in. The model answers. The useful output, the reasoning, the decisions you made along the way: all of it lives in a conversation thread. Next week the thread is buried; next month you cannot reconstruct what you actually did, or why. The work is real but the <em>record</em> evaporates.</p>
     </div>
     <div class="card"><h3>In Claude Code</h3>
-      <p>The work lives in your files. The script it wrote is in <code>scripts/</code>. The output is in <code>outputs/</code>. The decision it made is in a log you told it to keep. The change is in the Git history. Six months later, you (or a stranger) can open the folder and see what happened.</p>
+      <p>The work lives in your files. With the folders and log you told it to use, the script it wrote is in <code>scripts/</code>, the output is in <code>outputs/</code>, and the decision it made is in the log. The change is in the Git history if you asked it to commit. Six months later, you (or a stranger) can open the folder and see what happened.</p>
     </div>
   </div>
 
