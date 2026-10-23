@@ -52,7 +52,7 @@ FIGS = [
     dict(fid="fig-w2-scaling", page=TR, loc=r'Scaling Laws', mode="after_p",
          cap="The correction that reshaped training: balance tokens with parameters (about 20 to 1), not just bigger models. GPT-3 was undertrained.",
          svg=D.columns([
-             dict(title="Kaplan (2020)", kind='alt', lines=["Scale model size for fixed data", "Bigger models, same tokens", "GPT-3: 175B params, 300B tokens"]),
+             dict(title="Kaplan (2020)", kind='alt', lines=["Scale model size faster than data", "Bigger models, same tokens", "GPT-3: 175B params, 300B tokens"]),
              dict(title="Chinchilla (2022)", kind='accent', lines=["Scale data and size together", "About 20 tokens per parameter", "Same compute, better model"]),
          ], "The scaling shift: Kaplan to Chinchilla",
             "Two scaling recipes compared: scale model size alone, versus scale tokens and parameters together.")),

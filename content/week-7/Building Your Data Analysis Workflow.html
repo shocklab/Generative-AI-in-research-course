@@ -449,7 +449,7 @@
 </li>
 <li><strong>Verify everything</strong>
 <p style="margin-top: 8px;">This stage separates rigorous research from AI-generated output. Every result must be checked. Does the code run without errors? Do the results make sense given what you know about the data? Are the statistical assumptions met? Do sanity checks pass? For example, if you know the approximate mean of a variable, does the computed mean match?</p>
-<p style="margin-top: 8px;">Verification has several layers. <strong>Code verification:</strong> read the code AI generated and confirm it does what you intended. Watch for common errors such as wrong column names, incorrect grouping variables, or inappropriate handling of missing values. <strong>Statistical verification:</strong> check that the assumptions of the chosen test are reasonable for your data and design (independence first; distribution shape and equal variances where the test needs them). <strong>Result verification:</strong> compare key results against rough manual calculations or known benchmarks. If AI reports a correlation of 0.95 between two variables you would expect to be weakly related, something is wrong.</p>
+<p style="margin-top: 8px;">Verification has several layers. <strong>Code verification:</strong> read the code AI generated and confirm it does what you intended. Watch for common errors such as wrong column names, incorrect grouping variables, or inappropriate handling of missing values. <strong>Statistical verification:</strong> check that the assumptions of the chosen test are reasonable for your data and design (independence first; distribution shape and equal variances where the test needs them). <strong>Result verification:</strong> compare key results against rough manual calculations or known benchmarks. If AI reports a correlation of 0.95 between two variables you would expect to be weakly related, investigate before trusting the result.</p>
 <p style="margin-top: 8px;">One more check: run the same analysis using an established statistical package (R, Stata, SPSS) on a subset of your data. If the results differ from what AI produced, investigate why before trusting either.</p>
 </li>
 <li><strong>Interpret with your expertise</strong>
@@ -490,7 +490,7 @@
 </div>
 <div class="card">
 <h3>🔧 Code Translation</h3>
-<p>When you have working code in one language (e.g., R) and need it in another (e.g., Python), or when you need to convert between frameworks (e.g., from base R to tidyverse). AI handles syntax translation well, though you should always verify the output.</p>
+<p>When you have working code in one language (e.g., R) and need it in another (e.g., Python), or when you need to convert between frameworks (e.g., from base R to tidyverse). AI can help translate syntax, though reliability depends on the languages and features involved; always test the translated code against the original.</p>
 </div>
 <div class="card">
 <h3>📚 Learning New Methods</h3>
@@ -498,7 +498,7 @@
 </div>
 <div class="card">
 <h3>🔎 Debugging and Error Resolution</h3>
-<p>When your code throws an error you cannot decipher, or when results are unexpected. Pasting error messages or anomalous output into an AI tool often yields faster diagnosis than searching forums, especially for obscure library-specific issues.</p>
+<p>When your code throws an error you cannot decipher, or when results are unexpected. Pasting error messages or unexpected output into an AI tool can help you investigate the problem; check its suggestions against the code and relevant documentation.</p>
 </div>
 </div>
 </div>
@@ -507,7 +507,7 @@
 <div class="card-grid">
 <div class="card">
 <h3>🔐 Publication-Ready Analysis</h3>
-<p>For analyses that will appear in a paper, use established packages with known, validated implementations. R packages like <code>lme4</code>, <code>survival</code>, or <code>lavaan</code>, or Stata's built-in commands, have been tested by thousands of researchers. You can cite them. Reviewers trust them. AI-generated code has no such pedigree.</p>
+<p>For analyses that will appear in a paper, use established packages with known, validated implementations. R packages like <code>lme4</code>, <code>survival</code>, or <code>lavaan</code>, or Stata's built-in commands, have been tested by thousands of researchers. Established packages such as <code>lme4</code> have peer-reviewed descriptions you can cite. Newly generated code has no testing record of its own, even when it uses established packages.</p>
 </div>
 <div class="card">
 <h3>📈 Complex Model Fitting</h3>
@@ -515,11 +515,11 @@
 </div>
 <div class="card">
 <h3>📋 Reproducibility Requirements</h3>
-<p>When your analysis must be exactly reproducible (e.g., for preregistered studies or regulatory submissions), established packages with version-locked dependencies are essential. AI-generated code may use deprecated functions, assume specific package versions, or produce non-deterministic results.</p>
+<p>When your analysis must be exactly reproducible (e.g., for preregistered studies or regulatory submissions), capturing the computational environment, including fixed versions of dependencies, is essential. AI-generated code may use deprecated functions, assume specific package versions, or produce non-deterministic results.</p>
 </div>
 <div class="card">
 <h3>✅ Validated Pipelines</h3>
-<p>Clinical trials, regulatory analyses, and any context with legal or safety implications require validated statistical software. AI-generated analysis code has not been validated and cannot be used where validation is required.</p>
+<p>Clinical trials, regulatory analyses, and any context with legal or safety implications require validated statistical software. AI-generated analysis code must undergo documented validation before it is used where validation is required.</p>
 </div>
 </div>
 </div>
@@ -599,7 +599,7 @@
 <div class="highlight-box"><strong>The practical hybrid approach:</strong> For most research analyses, the optimal workflow uses AI for the exploratory and prototyping phases (Stages 2&ndash;3 of the workflow), then moves to established statistical packages for the final, publication-ready analysis. AI writes the first draft of your code. You verify it, refine it, and then reimplement the critical analyses using validated tools. This gives you the speed of AI and the reliability of established packages.</div>
 <!-- SECTION 4: CLAUDE CODE / JUPYTER WORKFLOW -->
 <h2 class="section-title">💻 The Claude Code and Jupyter Workflow</h2>
-<p>A powerful way to use AI for data analysis is through Claude Code, Anthropic's command-line tool that allows Claude to read, write, and execute code directly in your working environment. When combined with Jupyter notebooks, this creates an interactive analysis workflow where AI can see your data, run code, inspect outputs, and iterate on analyses, all within a documented, reproducible environment.</p>
+<p>A powerful way to use AI for data analysis is through Claude Code, Anthropic's command-line tool that allows Claude to read, write, and execute code directly in your working environment. When combined with Jupyter notebooks, this creates an interactive analysis workflow where AI can see your data, run code, inspect outputs, and iterate on analyses. Check reproducibility by rerunning the notebook from a clean session.</p>
 <div class="info-box"><strong>What is Claude Code?</strong> Claude Code is a command-line tool that gives Claude direct access to your filesystem and terminal. Unlike a chatbot conversation where you copy and paste code back and forth, Claude Code can read your data files, write scripts, execute them, see the results, and fix errors, all in a continuous workflow. Think of it as pair-programming with an AI that can also run the code it writes.</div>
 <div class="technical-detail">
 <h3>Setting Up the Workflow</h3>
@@ -620,7 +620,7 @@ my-analysis/
   requirements.txt</div>
 </li>
 <li><strong>Write a CLAUDE.md file for your project</strong>
-<p style="margin-top: 8px;">This file provides persistent context that Claude reads at the start of every interaction. It should describe your data, your research questions, and any conventions you want Claude to follow.</p>
+<p style="margin-top: 8px;">This file provides persistent context that Claude reads at the start of every session. It should describe your data, your research questions, and any conventions you want Claude to follow.</p>
 <div class="code-block"><span class="comment"># CLAUDE.md example</span>
 <span class="comment"># Project: Survey Analysis for Health Outcomes Study</span>
 
@@ -659,7 +659,7 @@ claude
 <div class="info-box"><strong>Why Jupyter + Claude Code?</strong> The combination provides three advantages over a standard chatbot conversation: (1) Claude can see and work with your actual data files, catching issues that would be invisible in copy-pasted snippets. (2) The notebook preserves a complete, executable record of your analysis, with every step documented and reproducible. (3) The iterative workflow mirrors how real data analysis works: explore, discover something unexpected, investigate further, refine your approach.</div>
 <div class="resource-placeholder">
 <h4>📖 Key Reference: Claude Code for Scientists</h4>
-<p>Patrick Mineault (2026) provides a detailed guide to using Claude Code for scientific data analysis, including setup instructions, best practices for CLAUDE.md files, and worked examples from neuroscience research.</p>
+<p>Patrick Mineault (2026) provides practical tips for scientists using Claude Code, covering project structure, package managers, notebook choices, and context management, with a brief mention of CLAUDE.md.</p>
 <p style="margin-top: 8px;"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener">Mineault, P. (2026). Claude Code for Scientists. NeuroAI.</a></p>
 </div>
 <div class="warning-box"><strong>⚠️ Important limitations of Claude Code for data analysis:</strong>
@@ -693,7 +693,7 @@ claude
 </div>
 <div class="card">
 <h3>🎲 Use Synthetic Data for Prototyping</h3>
-<p>Create a synthetic dataset with the same structure and statistical properties as your real data. Develop and test your analysis pipeline on the synthetic data using AI, then run the finalised pipeline on the real data locally.</p>
+<p>Create a synthetic dataset with the same structure as your real data and similar values for selected statistical properties. Develop and test your analysis pipeline on the synthetic data using AI, then run the finalised pipeline on the real data locally.</p>
 </div>
 <div class="card">
 <h3>💻 Prefer Local Execution</h3>
@@ -708,7 +708,7 @@ claude
 <div class="info-box"><strong>The South African context:</strong> South Africa's Protection of Personal Information Act (POPIA) applies to the processing of personal information, which includes sending data to AI services. If your research data contains personal information as defined by POPIA, using cloud-based AI tools for analysis may constitute cross-border transfer of personal information, which requires specific legal grounds. Consult your institution's POPIA compliance officer if you are working with personal data.</div>
 <!-- SECTION 6: READINGS -->
 <h2 class="section-title">📚 Readings and Resources</h2>
-<p>The following resources provide deeper guidance on using AI for data analysis in research contexts. Both are practically oriented and written for researchers who are not software engineers.</p>
+<p>The following resources provide deeper guidance on using AI for data analysis in research contexts. Both are practically oriented and written for researchers who are not software engineers but already have some coding experience.</p>
 <div class="resource-placeholder">
 <h4>📖 Core Reading</h4>
 <p><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener">Mineault, P. (2026). Claude Code for Scientists. NeuroAI.</a></p>

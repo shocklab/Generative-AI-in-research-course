@@ -64,7 +64,7 @@ FIGS = [
          cap="The generative-AI landscape by output type: the leading model families in each, and what each is best suited to.",
          svg=D.matrix(["Leading families (May 2026)", "Best suited to"], [
              ("Text / LLMs", ["GPT-5.5, Claude, Gemini, DeepSeek", "writing, reasoning, agents, code"]),
-             ("Images", ["DALL·E 3, Midjourney, Imagen, FLUX", "figures, illustration, design"]),
+             ("Images", ["GPT Image, Midjourney, Imagen, FLUX", "figures, illustration, design"]),
              ("Video", ["Veo 3, Runway, Kling", "clips, animation, demonstrations"]),
              ("Code / agents", ["Codex, Claude Code, Cursor, Copilot", "writing and running code"]),
          ], "The generative-AI modality map",
