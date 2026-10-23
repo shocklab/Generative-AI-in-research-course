@@ -25,7 +25,7 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 | 5 | AI-Assisted Literature Review | Built |
 | 6 | AI for Writing, Communication & Research Ideation | Built |
 | 7 | AI for Data, Code & Computation | Built |
-| 8 | Multimodal AI for Research | Built; uploaded to Amathuba; Assignment 4 live |
+| 8 | Multimodal AI for Research | Built |
 | 9 | Critical Evaluation & Limitations of AI | Built |
 | 10 | Agentic AI, RAG & Advanced Research Tools | Built |
 | 11 | Future of AI in Research & Africa's Sovereign AI Capacity | Built (6 sub-lessons) |
@@ -33,187 +33,76 @@ Each week follows a three-phase structure: **Pre-Class** (readings/videos), **In
 
 **Note on restructured schedule (Weeks 7-12):** The original Weeks 7 (Data Analysis) and 8 (Coding/Computational Research) were merged into Week 7 because they overlap heavily — data analysis IS coding for most researchers. Original Week 9 (Domain-Specific Applications) content is woven into other weeks as case studies. Original Week 10 (Critical Evaluation/Limitations) was moved to Week 9. This freed a slot for a Multimodal AI week (Week 8) and a Flexible/TBD week. See the plan file at `.claude/plans/goofy-whistling-journal.md` for full rationale.
 
-## File Structure
+## Source and build
+
+The repository is where the course is written and published. The public site is GitHub Pages,
+served from `docs/` on `main`. The course is not published on Amathuba.
+
+- **`content/` is the source.** One HTML file per page, in `week-1/` to `week-12/`,
+  `course-introduction/`, `course-orientation/`, `advanced/` (the Claude Code track) and
+  `papers/`, plus `about.html`. `content/index.html` is the sitemap: the order of weeks and
+  lessons, the left-hand navigation and the previous/next links all come from it.
+- **`redesign/build_site.py` builds `docs/`** from `content/` and `glossary.json`, including the
+  glossary page, the papers pages and the About page. From each lesson it takes the `<h1>`, the
+  paragraph after it and the `.content` body; nothing outside `.content` reaches the site. The
+  builder adds the navigation, the AI-authorship footer and the GoatCounter analytics snippet.
+- **Edit `content/` or `build_site.py`, never `docs/`**: the next build overwrites it.
+- **Checks after every build:** `redesign/verify_content.py` (every rendered page carries the same
+  words as its source; one expected flag on Week 2 "LLM Architecture Deep Dive") and
+  `redesign/check_links.py` (internal links).
+- **Diagrams** are inline SVG inside `content/` pages, drawn by `redesign/gen_week*.py`,
+  `gen_extras.py` and `gen_advanced.py` with `genlib.py`. When a diagram's text changes in
+  `content/`, change its script too, or a rerun restores the old text.
+- **Publishing:** commit the `content/` change and the rebuilt `docs/` (as separate commits) on a
+  branch and open a PR. GitHub Pages deploys when it merges to `main`.
+
+## Files
 
 ```
-Course introduction/
-  Introduction to the course.html
-  Table of Contents.html
-
-Week 1/          (Foundations of Generative AI)
-  Table of Contents.html
-  Course Caveats.html
-  Class introductions.html
-  A lightning tour of AI - video.html
-  But what is a neural network.html
-  An introduction to Transformers - from 3Brown1Blue.html
-  Import - 1770828860589/    (additional imported content)
-
-Week 2/          (LLM Deep Dive)
-  Table of Contents.html
-  LLM Architecture Deep Dive.html
-  Fine-Tuning, RLHF and Alignment.html
-  Untitled.html
-
-week 3/          (Environmental Implications of AI)
-  Table of Contents.html
-  The Cost of Every Prompt.html
-  Infrastructure, Scale and the Rebound Problem.html
-  Critical Minerals and AI.html
-  Sustainable AI - Practices and Possibilities.html
-  Environmental Impacts of AI.docx    (supplementary reference doc)
-
-Week 4/          (Ethical Frameworks for AI in Research)
-  Table of Contents.html
-  Ethical Frameworks and Four Lenses.html
-  Ubuntu Relational Ethics and the Just AI Framework.html
-  Transparency Authorship and Integrity.html
-  Applying Ethics Case Studies and Your Framework.html
-  The Broader Landscape of AI Ethics.html    (supplementary — topics not fully covered)
-
-Week 5/          (AI-Assisted Literature Reviews)
-  Table of Contents.html
-  The AI Literature Review Landscape.html
-  Free Tools Deep Dive.html
-  Paid Tools and When They Are Worth It.html
-  The Hallucinated Citation Crisis.html
-  Building Your Research Workflow with Claude.html
-  Hands-On Activities and Assessment.html
-
-Week 6/          (AI for Writing, Communication & Research Ideation)
-  Table of Contents.html
-  Writing as Thinking.html
-  Research Ideation with AI.html
-  AI Writing Tools - Landscape and Assessment.html
-  Scientific Integrity and the Writing Pipeline.html
-  Building Your AI Writing Workflow.html
-  Hands-On Activities and Assessment.html
-  Using AI to Review Your Own Work.html    (supplementary — based on paper-review skill)
-
-Week 7/          (AI for Data, Code & Computation)
-  Table of Contents.html
-  Natural Language to Code.html
-  AI-Assisted Data Analysis in Practice.html
-  Visualization with AI.html
-  Verification of AI-Generated Code.html
-  Building Your Data Analysis Workflow.html
-  Hands-On Activities and Assessment.html
-
-Week 8/          (Multimodal AI for Research)
-  Table of Contents.html
-  What Multimodal AI Can See Hear and Read.html
-  AI and Scientific Images.html
-  Document Intelligence.html
-  Transcription and Audio Analysis.html
-  Video and Multimodal Workflows.html
-  Hands-On Activities and Assessment.html
-
-Week 9/          (Critical Evaluation & Limitations of AI)
-  Table of Contents.html
-  The Trajectory of LLM Capabilities.html
-  Three Categories of Failure.html
-  Where AI Is Now Genuinely Strong.html
-  Illusions of Understanding.html
-  Verification Protocols for a Moving Target.html
-  Hands-On Activities and Assessment.html
-  build_week9.py    (Python generator — style in <head>, pretty-printed CSS)
-
-Week 10/         (Agentic AI, RAG & Advanced Research Tools)
-  Table of Contents.html
-  What Agents Are and Whats New in 2026.html
-  Failure Modes for Long-Horizon Tasks.html
-  The Current Tool Landscape and MCP.html
-  RAG in 2026.html
-  Advanced Research Tools - A Curated Tour.html
-  Hands-On Activities and Assessment.html
-  build_week10.py    (Python generator, mirrors build_week9.py)
-  OUTLINE.md         (research/discovery outline used to draft the week)
-
-Week 11/         (Future of AI in Research & Africa's Sovereign AI Capacity)
-  Table of Contents.html
-  What the Future of AI in Research Might Look Like.html
-  Speculative Futures - A Reading Guide.html
-  The Shifting Research Landscape.html
-  Sovereign AI Capacity and Why Compute Is the Floor.html
-  Data Languages and African Model-Building.html
-  Policy Institutions and Talent.html
-  build_week11.py    (Python generator, mirrors build_week9/10.py)
-  OUTLINE.md         (research/discovery outline used to draft the week)
-
-Week 12/         (Integrative Capstone)
-  Table of Contents.html
-  Synthesis and the Integrative Capstone.html    (contains the full capstone brief)
-  build_week12.py    (Python generator, mirrors build_week11.py)
-
-From Amathuba/           (Amathuba/Brightspace export — the live/edited versions of all lessons)
-
-docs/                    (GitHub Pages site — served at shocklab.github.io)
-  index.html             (Landing page with full course navigation)
-  course-orientation/    (Overview, Meet the Course Team)
-  course-introduction/   (Introduction, Course Caveats, AI Content Disclaimer)
-  week-1/ through week-8/  (All lesson pages from Amathuba export, organised by week)
+content/                         source pages
+docs/                            generated site, served by GitHub Pages
+redesign/                        site builder, checks and diagram scripts
+glossary.json                    glossary terms and definitions, read by the builder
+STYLE.md                         course-specific writing rules
+WEEK-BUILD-NOTES.md              per-week content notes, key sources and build history
+Papers/                          per-week manifests of the papers the course cites
+Lesson plans.docx                the original 12-week lesson plans
+RIA_JustAI_Framework_Summary.md  summary of the RIA Just AI framework, used in Week 4
+.claude/skills/                  verify-references, course-freshness-check
 ```
 
-Lesson plans.docx        (full 12-week lesson plans with readings/activities)
-Style guide.rtf          (HTML/CSS design system for Brightspace pages)
-RIA_JustAI_Framework_Summary.md   (summary of RIA Just AI Framework, used in Week 4)
+## Page structure
 
-## Design System
-
-All sub-lesson pages use **inline CSS** following UCT branding (no external stylesheets beyond Brightspace CDN). Key design tokens:
-
-- **Primary colour:** `#003A70` (UCT blue)
-- **Secondary colour:** `#2a5298` (lighter blue for headings)
-- **Font:** Lato via Brightspace CDN (`https://s.brightspace.com/lib/fonts/0.6.1/fonts.css`)
-- **Brightspace CSS:** `https://templates.lcs.brightspace.com/lib/assets/css/styles.min.css`
-- **Responsive breakpoint:** 768px
-
-### CSS Components
+Lesson pages in `content/` keep the skeleton they were first written in (an inline `<style>`
+block, a header with the week badge and `<h1>`, then the `.content` body). Only the `<h1>`, the
+paragraph after it and `.content` reach the site, and the styling comes from the CSS in
+`build_site.py`, so the inline `<style>` has no effect. Write new pages in the same shape. Inside
+`.content`, use these component classes; the builder styles them:
 
 | Class | Purpose |
 |-------|---------|
-| `.ai-notice` | Blue banner noting Claude enhancement |
-| `header` + `.week-badge` | Dark blue header with "Week X • Sub-Lesson Y" badge |
-| `.content` | Main content wrapper (padding: 50px 40px) |
-| `.intro-text` | Gray box with left blue border — always first section ("What We'll Cover") |
-| `.section-title` | Large blue h2 with bottom border and emoji prefix |
-| `.card-grid` + `.card` | Responsive grid of hoverable cards (min 300px, border-left) |
-| `.styled-list` | Custom triangle (▸) bullet points |
-| `.highlight-box` | Dark blue (#003A70) background call-out for key insights |
-| `.warning-box` | Yellow (#fff8e1) box with orange border for cautions |
-| `.info-box` | Light gray box with blue left border for notes/tips |
-| `.resource-placeholder` | Dashed border box for readings/resources |
-| `.technical-detail` | White box with blue border for detailed content |
-| `.comparison-table` | Styled table with dark blue header row |
-| `.case-study` | Gradient background with blue border for scenarios |
-| `.decision-framework` | Gradient background with solid border for frameworks |
-| `.tool-card` | Top-bordered card for tool listings |
-| `.step-list` | Numbered steps with blue circle counters. **Important:** uses `> li` direct child selectors so nested lists inside step items are not affected by the counter or blue circle styling |
-
-### Page Template Structure
-
-Every sub-lesson follows this skeleton:
-1. `<!DOCTYPE html>` with charset, viewport, title (`Week X.Y - Title`)
-2. Brightspace fonts CDN link
-3. Full inline `<style>` block (duplicated per page)
-4. Brightspace CSS link at end of `<head>`
-5. `.container` > `.ai-notice` > `<header>` > `.content`
-6. `.intro-text` ("What We'll Cover") — always first
-7. Multiple `h2.section-title` sections with content components
-8. Final `.intro-text` summary with forward pointer to next session
-
-### Table of Contents Template
-
-ToC pages use a simpler Brightspace/D2L format: a `<table>` with `<font class="title">` for the week title and `<p class='d2l'>` entries linking to sub-lesson files.
+| `.intro-text` | Box with left border, always the first section ("What We'll Cover") |
+| `.section-title` | `h2` section heading; the builder lists these in the page's contents |
+| `.card-grid` + `.card` | Grid of cards |
+| `.styled-list` | List with custom bullets |
+| `.highlight-box` | Call-out for a key point |
+| `.warning-box` | Call-out for a caution |
+| `.info-box` | Note or tip |
+| `.resource-placeholder` | Box for readings and resources |
+| `.technical-detail` | Box for detailed content |
+| `.comparison-table` | Table with a header row |
+| `.case-study` | Scenario box |
+| `.decision-framework` | Framework box |
+| `.tool-card` | Card for a tool listing |
+| `.step-list` | Numbered steps. Uses `> li` direct-child selectors so nested lists inside a step are not numbered |
 
 ## Conventions
 
 - All links use `target="_blank" rel="noopener"`
-- Emojis appear inside h2 section titles (before text) and in h1 headers
-- Header h1 text wrapped in `<span style="color: #ffffff;">`
+- The builder removes emoji from headings and body text, so pages need none
 - Sub-lesson intro paragraphs are conversational, not bullet-point
-- Each page has an AI transparency notice at the top: "This page's design, presentation and content have been created and enhanced using Claude (Anthropic's AI assistant) to improve visual quality and educational experience."
-- Summary sections use `.intro-text` with `margin-top: 50px`
+- The AI-authorship notice is a footer the builder adds to every lesson; a page carries none of its own
+- Summary sections use `.intro-text`
 - The final sub-lesson of each week provides a full-week summary and "Next week" pointer
 - Supplementary pages use `Week X • Supplementary` in the week-badge (not a numbered sub-lesson)
 
@@ -221,38 +110,21 @@ ToC pages use a simpler Brightspace/D2L format: a `<table>` with `<font class="t
 
 When building a new week's content, follow these steps in order:
 
-1. **Research & plan** — Read the lesson plan, research the topic with web searches, propose structure to user for approval
-2. **Build sub-lesson HTML pages** — Follow the design system, CSS conventions, and page template structure documented above
-3. **Build Table of Contents page** — Link to all sub-lesson files
-4. **🔴 MANDATORY: Run `/verify-references`** — Before considering a week complete, run the reference verification skill against all new HTML files. This checks every URL, academic citation, and statistical claim against primary sources. Do NOT skip this step. Experience from Week 5 showed that web search summaries and AI-generated content frequently contain incorrect statistics, hallucinated citation details, and broken URLs.
-5. **Fix any issues** — Present the verification report to the user, get approval, then correct any problems found
-6. **Update docs/ site** — Copy the Amathuba-exported versions of new lesson pages into the appropriate `docs/week-N/` folder, add back-nav links, and update `docs/index.html` with new lesson links
-7. **Push to GitHub** — Commit and push all changes (source files, docs/, CLAUDE.md). GitHub Pages auto-deploys from `/docs` on `main`
-8. **Upload to Amathuba** — Use Claude in Chrome to automate page creation (Create Module → Create Page → paste HTML via source code editor). **🔴 IMPORTANT: Before pasting into Amathuba's source code editor, sanitise the HTML** to convert emojis to the correct format: CSS `content` properties need unicode escapes (`\1F3AF`), HTML body content needs HTML entities (`&#127919;`). Use this script to prepare the clipboard:
-   ```bash
-   python3 -c "
-   import sys, re
-   with open(sys.argv[1], 'r') as f: content = f.read()
-   def css_fix(m):
-       r = []
-       for ch in m.group(0):
-           r.append('\\\\\\\\' + format(ord(ch), 'X') if ord(ch) > 127 else ch)
-       return ''.join(r)
-   content = re.sub(r\"content:\s*'[^']*'\", css_fix, content)
-   sys.stdout.write(''.join(f'&#{ord(c)};' if ord(c) > 127 else c for c in content))
-   " FILENAME.html | pbcopy
-   ```
-   Without this step, Brightspace's editor corrupts UTF-8 emojis into garbled characters (lesson learned from Week 6).
-9. **Update CLAUDE.md** — Mark the week as Built, add file structure, content details, and any new CSS components or notes
+1. **Research & plan**: read the lesson plan, research the topic with web searches, propose the structure to the user for approval.
+2. **Write the sub-lesson pages** in `content/week-N/`, following "Page structure" above.
+3. **Add the week and its lessons to `content/index.html`**, the sitemap the builder reads.
+4. **🔴 MANDATORY: run `/verify-references`** on every new page before considering the week complete. It checks every URL, academic citation and statistical claim against primary sources. Experience from Week 5 showed that web search summaries and AI-generated content frequently contain incorrect statistics, hallucinated citation details and broken URLs.
+5. **Fix any issues**: present the verification report to the user, get approval, then correct the problems found.
+6. **Build and check**: run `redesign/build_site.py`, then `redesign/verify_content.py` and `redesign/check_links.py`.
+7. **Open a PR** with the `content/` changes and the rebuilt `docs/`; the site deploys when it merges to `main`.
+8. **Update CLAUDE.md and WEEK-BUILD-NOTES.md**: mark the week as Built and add its content notes.
 
 ## Key References for Building New Weeks
 
-- **CSS template source:** `week 3/Sustainable AI - Practices and Possibilities.html` (widest component set)
-- **Week 4 CSS template:** `Week 4/The Broader Landscape of AI Ethics.html` (full component set including case-study, comparison-table)
-- **Case study styling:** `week 3/Critical Minerals and AI.html`
-- **Full page structure:** `week 3/The Cost of Every Prompt.html`
+- **Full page structure:** `content/week-3/What Does AI Actually Consume.html`
+- **Case study styling:** `content/week-3/Critical Minerals and AI.html`
+- **Wide component set (case studies, comparison tables):** `content/week-4/The Broader Landscape of AI Ethics.html`
 - **Lesson plans for all 12 weeks:** `Lesson plans.docx`
-- **Design system details:** `Style guide.rtf`
 - **Reference verification skill:** `.claude/skills/verify-references/SKILL.md`
 
 ## Per-Week Content Details
@@ -261,42 +133,11 @@ Detailed content descriptions, key sources, build notes, verification logs, and 
 
 Key conventions that apply across weeks:
 - **Model-version genericisation (from Week 8 onward):** capability discussions use family names — `Claude (family)`, `GPT (family)`, `Gemini (family)`. Specific model names kept ONLY in historical citations. Open-source models named for their version (Whisper large-v3) keep it.
-- **Week 9 build pattern:** Python generator script (`Week 9/build_week9.py`) — faster for content-heavy weeks. Replicated successfully for Week 10 and Week 11.
+- **Weeks 9 to 12** were first generated by `build_weekN.py` scripts, which are no longer in the repository. Edit those weeks in `content/` like the others.
 - **Week 11 strong African emphasis:** the four sub-lessons 11.4–11.7 treat the African intellectual tradition as the analytical home base, with Northern voices treated as foils. African voices include Mhlambi, Effoduh, Esethu Framework, Mutung'u et al., CARE Principles (Gaborone 2018), Pelonomi Moiloa (Lelapa), Vukosi Marivate (UP/Lelapa/Indaba/Masakhane), Anri Lombard (UCT, MzansiLM lead).
 - **Week 12 is a 3-hour solo capstone** with the brief living entirely inside the Week 12 page (six-prompt structured pitch + solo self-critique = 600 words). No separate document, no live session.
 
-## 🔴 Source of truth: `docs/` is canonical — never edit Amathuba directly
-
-The repository (`docs/` + the `Week N/` source + the `build_weekN.py` generators) is the **single source of truth** for all lesson content. Amathuba (the live LMS) is a **publish target**, not a place to author.
-
-**The rule:** make every content/wording change in the repo first, then re-upload the affected page(s) to Amathuba. **Do NOT edit lesson text directly in the Brightspace editor.** Doing so created a fork (2026): Lessons 1–9 on Amathuba drifted from `docs/` (different page titles, H1s, section headings, AI-notice wording) while `docs/` accumulated the fact-checks — leaving no single correct copy and making later corrections risky.
-
-If a quick fix is ever made directly on Amathuba (e.g. by a co-teacher), **mirror it straight back into `docs/`** in the same sitting, or it becomes fork debt.
-
-Reconciliation status (2026): a full reconcile is in progress — see `AMATHUBA-EDIT-CHECKLIST.md` (the pending Lesson 1–9 fixes) and the reconciliation plan. The `From Amathuba/` folder is a **dated export snapshot** (March 2026, now stale); a fresh Brightspace export is needed to diff current live content against `docs/`.
-
-## GitHub Pages Site
-
-The public course website is served from the `docs/` folder on the `main` branch via GitHub Pages.
-
-- **URL:** https://shocklab.github.io/Generative-AI-in-research-course/
-- **Source:** `docs/` folder — contains Amathuba-exported (live/edited) versions of all lesson pages, organised into week subfolders
-- **index.html** — Landing page with UCT styling, links to all built weeks, "coming soon" placeholders for future weeks
-- **AI Content Disclaimer** — `docs/course-introduction/AI Content Disclaimer.html` — explains AI-assisted creation, known risks, contact for corrections
-- **Back navigation** — Every lesson page has a "Back to Contents" bar at the top linking to `index.html`
-- **Course Orientation pages** use Brightspace/Bootstrap templates (different from Week 1-5 inline CSS pages). Their `/shared/HTML-Template-Library/` CSS references won't resolve on GitHub Pages — the content is still readable but styling is limited
-- **When adding new weeks:** copy Amathuba-exported files to `docs/week-N/`, add back-nav, update `docs/index.html` links, and change the "coming soon" placeholder to active links
-
-### Prev/Next page navigation (`add_page_nav.py`)
-
-Every lesson page in `docs/` carries a bottom **"← Previous / Next →"** nav bar (each cell shows the arrow + destination lesson title). It is injected by `add_page_nav.py`, which reads the lesson ORDER directly from `docs/index.html` (the curated landing page is the single source of truth), so reordering lessons there and re-running keeps nav correct.
-
-- **docs/ only.** Source `Week N/` pages are deliberately left without it — those feed Amathuba, where relative links wouldn't resolve and the LMS has its own next/prev controls.
-- **Idempotent:** the block is wrapped in `<!-- PAGE-NAV-START/END -->` markers; re-running replaces rather than duplicates.
-- **🔴 RE-RUN after any week rebuild.** `build_week9/10/11/12.py` overwrite their `docs/` copies and will WIPE the nav from those pages. After running any `build_weekN.py`, run `python3 add_page_nav.py` again to restore it. Use `python3 add_page_nav.py --check` for a dry run (reports the sequence, writes nothing).
-
 ## Notes
 
-- Week 3 folder is lowercase (`week 3`); other weeks use title case
 - The course has a strong emphasis on African context (ubuntu ethics, AU AI strategy, South African grid, RIA Just AI Framework, Esethu Framework)
 - **CSS lesson (Week 5+):** `.step-list` must use `> li` direct child selectors to prevent nested lists from inheriting counter/circle styling
