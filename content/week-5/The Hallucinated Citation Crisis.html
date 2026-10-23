@@ -455,10 +455,9 @@
 <ul class="styled-list">
 <li>Author names that are very common (Smith, Zhang, Lee) combined with generic-sounding titles</li>
 <li>Papers supposedly published in very prestigious journals that you cannot find online</li>
-<li>Very round publication years (2020, 2023) for niche topics</li>
 <li>Multiple citations with suspiciously similar formatting patterns or phrasing</li>
 <li>Papers whose conclusions perfectly match what you asked the AI to support; real research is messier than that</li>
-<li>DOIs that do not resolve when you enter them at doi.org</li>
+<li>DOIs that do not resolve when you enter them at doi.org, which warrant further checks before judging a citation fabricated</li>
 </ul>
 </div>
 <div class="card">
@@ -467,7 +466,7 @@
 <li><strong>Never include a citation you have not verified.</strong> No exceptions.</li>
 <li><strong>Keep a verification log.</strong> Document your checking process. This protects you if questions arise later.</li>
 <li><strong>Use the right tool for the right job.</strong> Use retrieval-based tools (Elicit, Semantic Scholar, Consensus) for <em>finding</em> papers. Use generative tools (ChatGPT, Claude) for <em>analysis and synthesis</em> of papers you have already verified.</li>
-<li><strong>When in doubt, search for the DOI.</strong> The Digital Object Identifier is the most reliable way to verify a citation. If a paper has a real DOI that resolves, it almost certainly exists.</li>
+<li><strong>When in doubt, search for the DOI.</strong> A Digital Object Identifier is useful for verification when you resolve it and check that the title, authors and year match the citation. A DOI that resolves may identify a different work, so check that the resolved record's title, authors and year match the citation.</li>
 <li><strong>Be sceptical of convenience.</strong> If the AI gives you a perfectly formatted reference list that says exactly what you hoped, slow down and verify harder.</li>
 </ul>
 </div>
@@ -494,7 +493,7 @@
 <li><strong>Hallucinated citations are common, not rare.</strong> General-purpose LLMs fabricate references at rates between 15% and 40% or higher. The citations look real, with correct formatting, plausible authors, and real-sounding journals, but the papers do not exist.</li>
 <li><strong>This happens because LLMs are pattern generators, not databases.</strong> They produce text that looks like a citation because they have learned what citations look like. Without web search there is no lookup step and no connection to any database of papers; with search on, the model can still misreport what it found.</li>
 <li><strong>The NeurIPS 2025 scandal proved this is not hypothetical.</strong> Over 100 hallucinated citations made it through peer review at one of the world's top conferences, from teams at leading institutions. If it can happen there, it can happen anywhere.</li>
-<li><strong>The pollution loop makes the problem worse over time.</strong> Hallucinated citations that are published get absorbed into databases and training data, making future hallucinations more confident and harder to detect.</li>
+<li><strong>Published hallucinated citations can spread.</strong> They can enter bibliographic databases and later reference lists. Their inclusion in training data and effects on later hallucinations are plausible risks, but have not been demonstrated.</li>
 <li><strong>This is a solvable problem if you build good habits.</strong> The Five-Point Citation Check, the right verification tools, and a commitment to never including an unverified citation will protect your work and contribute to the integrity of the scholarly record.</li>
 <li><strong>Use retrieval tools for finding, generative tools for thinking.</strong> Semantic Scholar, Elicit, and Consensus search real databases. ChatGPT and Claude generate text. Use each where it is strong, and do not ask a generative tool to do a retrieval tool's job.</li>
 </ul>

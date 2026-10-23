@@ -342,7 +342,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>When you have working code in one language (e.g., R) and need it in another (e.g., Python), or when you need to convert between frameworks (e.g., from base R to tidyverse). AI can help translate syntax, though reliability depends on the languages and features involved; always test the translated code against the original.</p>
 </div>
 <div class="card"><h3>Learning New Methods</h3>
-<p>When you want to implement a method you have read about but never coded. AI can generate annotated example code that serves as a learning scaffold, much faster than piecing together documentation and Stack Overflow answers.</p>
+<p>When you want to implement a method you have read about but never coded. AI can generate annotated example code to help you learn, but check your understanding: one randomised trial of developers learning a Python library found no significant speed advantage and lower comprehension with AI assistance.</p>
 </div>
 <div class="card"><h3>Debugging and Error Resolution</h3>
 <p>When your code throws an error you cannot decipher, or when results are unexpected. Pasting error messages or unexpected output into an AI tool can help you investigate the problem; check its suggestions against the code and relevant documentation.</p>
@@ -443,7 +443,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>A powerful way to use AI for data analysis is through Claude Code, Anthropic's command-line tool that allows Claude to read, write, and execute code directly in your working environment. When combined with Jupyter notebooks, this creates an interactive analysis workflow where AI can see your data, run code, inspect outputs, and iterate on analyses. Check reproducibility by rerunning the notebook from a clean session.</p>
 <div class="info-box"><strong>What is Claude Code?</strong> Claude Code is a command-line tool that gives Claude direct access to your filesystem and terminal. Unlike a chatbot conversation where you copy and paste code back and forth, Claude Code can read your data files, write scripts, execute them, see the results, and fix errors, all in a continuous workflow. Think of it as pair-programming with an AI that can also run the code it writes.</div>
 <div class="technical-detail"><h3>Setting Up the Workflow</h3>
-<p>The following workflow is adapted from Patrick Mineault's guide for scientists using Claude Code (Mineault, 2026). The core idea is to use a Jupyter notebook as your analysis document and Claude Code as your coding assistant, creating a tight feedback loop between you and the AI.</p>
+<p>The project structure and CLAUDE.md advice below draw on Patrick Mineault's guide for scientists using Claude Code (Mineault, 2026). He recommends scripts or text-based notebooks such as marimo over plain Jupyter notebooks. The core idea is to use a Jupyter notebook as your analysis document and Claude Code as your coding assistant, creating a tight feedback loop between you and the AI.</p>
 <ol class="step-list">
 <li><strong>Set up your project structure</strong>
 <p style="margin-top: 8px">Create a clean project directory with your data, a Jupyter notebook, and a <code>CLAUDE.md</code> file that describes your project context. The <code>CLAUDE.md</code> file tells Claude about your research question, your data structure, and your analytical conventions, so you do not have to repeat this context in every prompt.</p>
