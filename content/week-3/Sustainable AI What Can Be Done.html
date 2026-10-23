@@ -281,21 +281,21 @@
 <tr>
 <td><strong>Run cloud workloads in a low-carbon region</strong></td>
 <td>Up to 80% (Dodge et al., 2022)</td>
-<td>Low — change a config parameter</td>
+<td>Low: change a config parameter</td>
 </tr>
 <tr>
 <td><strong>Schedule heavy compute during low-carbon grid hours</strong></td>
 <td>10–40%, depending on grid variability</td>
-<td>Low-medium — requires grid carbon awareness</td>
+<td>Low-medium: requires grid carbon awareness</td>
 </tr>
 <tr>
 <td><strong>Use a smaller, fit-for-purpose model</strong></td>
-<td>Significant — scales with model size difference</td>
-<td>Low — requires benchmarking smaller models first</td>
+<td>Significant: scales with model size difference</td>
+<td>Low: requires benchmarking smaller models first</td>
 </tr>
 <tr>
 <td><strong>Use API calls rather than self-hosted large models</strong></td>
-<td>Variable — hyperscaler efficiency may offset model size</td>
+<td>Variable: hyperscaler efficiency may offset model size</td>
 <td>Low</td>
 </tr>
 <tr>
@@ -306,23 +306,23 @@
 <tr>
 <td><strong>Avoid video generation unless necessary</strong></td>
 <td>~1,000× per task replaced with text</td>
-<td>Low — a usage decision</td>
+<td>Low: a usage decision</td>
 </tr>
 <tr>
 <td><strong>Use extended thinking / reasoning modes only when warranted</strong></td>
-<td>10–50× per query (hidden "scratchpad" tokens before responding)</td>
-<td>Low — a usage decision</td>
+<td>10–20× more tokens per query (hidden "scratchpad" tokens before responding)</td>
+<td>Low: a usage decision</td>
 </tr>
 <tr>
 <td><strong>Avoid Deep Research mode for straightforward questions</strong></td>
-<td>Equivalent to 100–1,000 standard queries (20–100+ web searches + synthesis)</td>
-<td>Low — a usage decision</td>
+<td>Equivalent to 100–1,000 standard queries (80–160+ web searches + synthesis)</td>
+<td>Low: a usage decision</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="highlight-box">
-<h3>🌍 <span style="color: #ffffff;">The Cloud Region Choice: The Most Impactful Lever</span></h3>
+<h3>🌍 <span style="color: #ffffff;">The Cloud Region Choice</span></h3>
 <p>Research by Dodge et al. (2022, Allen Institute for AI, ACM FAccT) found that running identical AI workloads in a low-carbon electricity region vs. a high-carbon region can reduce carbon emissions by up to 80%, with zero change to the model, code, or performance.</p>
 <p style="margin-top: 15px;">Major cloud providers (AWS, Google Cloud, Azure) all allow you to specify the region where your compute runs. Choosing <em>us-west-2</em> (Oregon, with significant hydroelectric power) over <em>us-east-1</em> (Virginia, more coal/gas dependent) can make a substantial difference. The same applies to European regions: <em>eu-north-1</em> (Sweden) is among the cleanest, while <em>eu-central-1</em> (Frankfurt) is less so.</p>
 <p style="margin-top: 15px;">Tools like the <strong>Electricity Maps API</strong> and <strong>Google Cloud's Carbon Footprint tool</strong> can help you choose the lowest-carbon option in real time.</p>
@@ -458,7 +458,7 @@
 </div>
 <!-- SECTION 4: POLICY -->
 <h2 class="section-title">🏛️ The Policy Landscape</h2>
-<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Individual choices by researchers matter, but the scale of AI's environmental impact requires systemic responses. Here is where policy is currently heading.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Individual choices by researchers matter, but the scale of AI's environmental impact requires systemic responses. Here is where policy was heading as of May 2026.</p>
 <div class="card-grid">
 <div class="card">
 <h3>Disclosure Requirements</h3>
@@ -500,7 +500,7 @@
 <!-- SECTION 5: DECISION FRAMEWORK -->
 <h2 class="section-title">🧭 A Framework for Your Own Decisions</h2>
 <p style="font-size: 1.1em; color: #555; margin-bottom: 30px;">Rather than a set of rules, here is a set of questions you can ask yourself when deciding how to use AI in your research.</p>
-<figure id="fig-w3-decision" class="diagram"><svg width="100%" viewBox="0 0 680 238" role="img" xmlns="http://www.w3.org/2000/svg"><title>Questions before running compute-heavy AI</title><desc>A short decision flow that pushes toward simpler, smaller, or no AI before a frontier model.</desc><rect x="1" y="1" width="678" height="236" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Do I actually need AI for this task?</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Would a simpler method or smaller model do?</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Can I run locally, or batch and reuse results?</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Only then: use a frontier model</text></svg><figcaption>A few questions before reaching for a frontier model — most research compute can be made smaller, simpler, or skipped.</figcaption></figure>
+<figure id="fig-w3-decision" class="diagram"><svg width="100%" viewBox="0 0 680 238" role="img" xmlns="http://www.w3.org/2000/svg"><title>Questions before running compute-heavy AI</title><desc>A short decision flow that pushes toward simpler, smaller, or no AI before a frontier model.</desc><rect x="1" y="1" width="678" height="236" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Do I actually need AI for this task?</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Would a simpler method or smaller model do?</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Can I run locally, or batch and reuse results?</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Only then: use a frontier model</text></svg><figcaption>A few questions before reaching for a frontier model: most research compute can be made smaller, simpler, or skipped.</figcaption></figure>
 
 <div class="decision-framework">
 <h4>Questions to Ask Before Running Compute-Intensive AI Work</h4>
@@ -534,7 +534,7 @@
 <li><strong>The data are uncertain:</strong> Corporate opacity means all figures are estimates; treat them as order-of-magnitude guides</li>
 <li><strong>Critical minerals underpin all AI hardware:</strong> Silicon, cobalt, rare earth elements, and lithium are geographically concentrated, ethically contested, and environmentally costly to extract, a supply chain dimension often absent from mainstream AI debate</li>
 <li><strong>Text vs. video is not comparable:</strong> Video generation uses ~1,000× more energy than text; these are categorically different use cases</li>
-<li><strong>Location is the biggest lever:</strong> Where your compute runs determines up to 80% of its carbon footprint</li>
+<li><strong>Location matters for compute jobs:</strong> if you choose where a job runs, the region can cut its emissions by up to 80%; for most chat users, the larger savings come from which features they use (video, reasoning modes, Deep Research)</li>
 <li><strong>Embodied carbon is missing from most analyses:</strong> Manufacturing hardware releases significant carbon before a single query is run</li>
 <li><strong>The Jevons paradox is real:</strong> Efficiency gains in AI have so far been outpaced by growth in deployment and model scale</li>
 <li><strong>AI can also help:</strong> Genuine applications in climate science, energy systems, and materials research, though these do not automatically offset AI's footprint</li>

@@ -266,7 +266,7 @@ def hubspoke(center, spokes, title, desc):
         seg.append(_txt(x + 85, y + 24, sp['title'], 14.5, t, FT, 'middle', 500))
         seg.append(_txt(x + 85, y + 42, sp['sub'], 12, '#45556b', FB, 'middle'))
     seg.append('<rect x="265" y="178" width="150" height="64" rx="10" fill="#003A70"/>')
-    seg.append(_txt(340, 205, center['title'], 15.5, '#ffffff', FT, 'middle', 500))
+    seg.append(_txt(340, 205, center['title'], 14, '#ffffff', FT, 'middle', 500))
     seg.append(_txt(340, 225, center['sub'], 12, '#c9d9ec', FB, 'middle'))
     return _svg(680, 398, title, desc, ''.join(seg))
 

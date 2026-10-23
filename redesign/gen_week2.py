@@ -9,7 +9,7 @@ FT = "content/week-2/Fine-Tuning RLHF and Alignment.html"
 
 FIGS = [
     dict(fid="fig-w2-forward-pass", page=LA, loc=r'Transformer Architecture Fundamentals', mode="after_p",
-         cap="A transformer's forward pass: text in, one next-token out — then the whole thing repeats to generate.",
+         cap="A transformer's forward pass: text in, one next-token out, then the whole thing repeats to generate.",
          svg=D.vflow([
              ("Tokenise — split text into subword token IDs", 'neutral'),
              ("Embed — each token becomes a vector", 'accent'),
@@ -22,7 +22,7 @@ FIGS = [
             "A seven-step vertical pipeline from tokenising text to sampling the next token.")),
 
     dict(fid="fig-w2-attention-variants", page=LA, loc=r'Attention Mechanisms in Detail', mode="after_p",
-         cap="From multi-head to grouped-query attention — trading memory for a little quality, with GQA the modern compromise.",
+         cap="From multi-head to grouped-query attention: trading memory for a little quality, with GQA the modern compromise.",
          svg=D.columns([
              dict(title="Multi-head (MHA)", kind='alt', lines=["Each head has its own Q, K, V", "Most expressive", "Heaviest on memory"]),
              dict(title="Multi-query (MQA)", kind='neutral', lines=["Heads share one K and V", "Much lighter memory", "Small quality cost"]),
@@ -31,7 +31,7 @@ FIGS = [
             "Multi-head, multi-query, and grouped-query attention compared by how they share keys and values.")),
 
     dict(fid="fig-w2-dense-vs-moe", page=LA, loc=r'Modern Architectural Innovations', mode="after_p",
-         cap="Mixture-of-Experts models hold huge parameter counts but fire only a fraction per token — far more capacity per unit of compute.",
+         cap="Mixture-of-Experts models hold huge parameter counts but fire only a fraction per token, far more capacity per unit of compute.",
          svg=D.columns([
              dict(title="Dense", kind='alt', lines=["Every parameter runs for every token", "Simple and predictable", "All compute, all the time"]),
              dict(title="Mixture-of-Experts", kind='accent', lines=["A router picks a few experts per token", "Mixtral: 47B total, 13B active", "DeepSeek-V3: 671B total, 37B active"]),
@@ -58,7 +58,7 @@ FIGS = [
             "Two scaling recipes compared: scale model size alone, versus scale tokens and parameters together.")),
 
     dict(fid="fig-w2-parallelism", page=TR, loc=r'Parallelism: Training at Scale', mode="after_p",
-         cap="Data, tensor, and pipeline parallelism combine — 16 × 8 × 8 = 1024 GPUs training one model.",
+         cap="Data, tensor, and pipeline parallelism combine: 16 × 8 × 8 = 1024 GPUs training one model.",
          svg=D.columns([
              dict(title="Data parallel", kind='alt', lines=["Split the batch across GPUs", "Each GPU holds a full copy", "16 ways in the example"]),
              dict(title="Tensor parallel", kind='accent', lines=["Split each layer's maths", "Across GPUs in a node", "8 ways"]),
@@ -67,7 +67,7 @@ FIGS = [
             "Data, tensor, and pipeline parallelism, the three axes that distribute a model across many GPUs.")),
 
     dict(fid="fig-w2-rlhf", page=FT, loc=r'Reinforcement Learning from Human Feedback', mode="after_p",
-         cap="RLHF in three stages — imitate good answers, learn what people prefer, then optimise toward it without drifting too far.",
+         cap="RLHF in three stages: imitate good answers, learn what people prefer, then optimise toward it without drifting too far.",
          svg=D.vflow([
              ("Supervised fine-tuning on example answers", 'accent'),
              ("Train a reward model from human preferences", 'accent'),
@@ -76,7 +76,7 @@ FIGS = [
             "Three stages: supervised fine-tuning, a reward model from human preferences, and reinforcement learning with a KL penalty.")),
 
     dict(fid="fig-w2-finetune-tree", page=FT, loc=r'Fine-Tuning for Researchers', mode="after_p",
-         cap="Most research needs only prompting or a light LoRA — full fine-tuning is rarely worth the compute.",
+         cap="Most research needs only prompting or a light LoRA: full fine-tuning is rarely worth the compute.",
          svg=D.tree("Adapting a model to your task", [
              dict(title="Prompt it", sub="few-shot examples", kind='good', action="Start here — no training"),
              dict(title="LoRA / PEFT", sub="some task data", kind='accent', action="Fine-tune a small model"),

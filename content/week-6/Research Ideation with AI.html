@@ -358,12 +358,12 @@
             <div class="card-grid">
                 <div class="card">
                     <h3>&#9939;&#65039; Chain-of-Thought Prompting</h3>
-                    <p><strong>Purpose:</strong> Forces structured, step-by-step reasoning instead of jumping to conclusions. The model must show its working, which exposes gaps and assumptions.</p>
+                    <p><strong>Purpose:</strong> Forces structured, step-by-step reasoning instead of jumping to conclusions. The model writes out its steps, which lets you inspect the argument for gaps and assumptions.</p>
                     <div class="prompt-example">
                         <div class="prompt-label">Example Prompt</div>
-                        Think step by step about what gaps exist in current research on [your topic]. For each gap, explain: (1) why the gap exists, (2) what methods could address it, and (3) what would change in the field if it were filled.
+                        List the gaps in current research on [your topic]. For each gap, explain: (1) why the gap exists, (2) what methods could address it, and (3) what would change in the field if it were filled.
                     </div>
-                    <p style="margin-top: 10px;">This strategy works because it prevents the model from pattern-matching to the most obvious answer. By requiring reasoning at each step, you get more considered output and can see where the model's logic is weak.</p>
+                    <p style="margin-top: 10px;">Current reasoning models already work through a problem before answering, so <a href="https://developers.openai.com/api/docs/guides/reasoning-best-practices" target="_blank" rel="noopener">the words "think step by step" add little</a>. What helps is the structure you ask for, here three questions per gap, which puts the model's working where you can check it. By requiring reasoning at each step, you get more considered output and can see where the model's logic is weak, though the written steps may leave out what actually drove the answer (<a href="https://arxiv.org/abs/2305.04388" target="_blank" rel="noopener">Turpin et al., 2023</a>), so check each one.</p>
                 </div>
                 <div class="card">
                     <h3>&#127917; Role-Playing Prompting</h3>
@@ -404,7 +404,7 @@
             </div>
 
             <div class="info-box">
-                <strong>&#128161; A note on combining strategies:</strong> These strategies are most powerful when combined. Start with chain-of-thought to map the area, then use adversarial prompting to find gaps, then apply cross-disciplinary prompting to generate unexpected approaches to those gaps, and finally use constraint-based prompting to push beyond the first wave of obvious ideas. Run the same question through multiple strategies and compare the results. The differences will tell you which ideas are solid and which were artefacts of a particular framing.
+                <strong>&#128161; A note on combining strategies:</strong> These strategies are most powerful when combined. Start with chain-of-thought (structured reasoning) to map the area, then use adversarial prompting to find gaps, then apply cross-disciplinary prompting to generate unexpected approaches to those gaps, and finally use constraint-based prompting to push beyond the first wave of obvious ideas. Run the same question through multiple strategies and compare the results. The differences will tell you which ideas are solid and which were artefacts of a particular framing.
             </div>
 
             <!-- SECTION 2: THE EVIDENCE -->
@@ -416,8 +416,8 @@
                 <h3>&#128218; Key Study: Si et al. (2024) &mdash; "Can LLMs Generate Novel Research Ideas?"</h3>
                 <p>This is the most rigorous study to date on AI ideation quality. Over 100 NLP researchers participated in a large-scale evaluation. Human experts and an LLM (using Claude 3.5 Sonnet as the backbone) each generated research ideas, which were then blind-reviewed by other experts on dimensions including novelty, feasibility, and excitement.</p>
                 <p style="margin-top: 12px;"><strong>The headline finding:</strong> LLM-generated ideas were rated as significantly more novel than those produced by human experts. This surprised many in the research community: the AI was better at generating surprising, unexpected combinations of existing concepts.</p>
-                <p style="margin-top: 12px;"><strong>The caveats:</strong> While novelty scores were higher, AI ideas were rated as weaker on feasibility. The AI generated ideas that sounded exciting but were harder to actually execute. The AI-generated ideas were also significantly less diverse than human ideas: they clustered around similar themes and approaches, even when prompted to be diverse.</p>
-                <p style="margin-top: 12px;"><strong>What this means for you:</strong> AI is good at producing surprising combinations of concepts, the kind of "What if we applied X to Y?" thinking that can spark genuine insight. But it is poor at judging whether those combinations will actually work in practice. The diversity problem matters here: if you rely on AI for brainstorming, you may be exploring a narrower space than you think.</p>
+                <p style="margin-top: 12px;"><strong>The caveats:</strong> Feasibility was rated slightly lower for AI ideas, but the difference was not statistically significant. The AI also repeated itself: of 4,000 seed ideas it generated for each topic, only about 200 were not duplicates.</p>
+                <p style="margin-top: 12px;"><strong>What this means for you:</strong> AI is good at producing surprising combinations of concepts, the kind of "What if we applied X to Y?" thinking that can spark genuine insight. Whether those combinations will work in practice is a question the study did not settle, so judge feasibility yourself. The diversity problem matters here: if you rely on AI for brainstorming, you may be exploring a narrower space than you think.</p>
                 <p style="margin-top: 12px;"><a href="https://arxiv.org/abs/2409.04109" target="_blank" rel="noopener">Read the full paper: arXiv:2409.04109</a></p>
             </div>
 
@@ -526,7 +526,7 @@
             <p>We have spent most of this session discussing how to use AI well for ideation. But there are times when the best thing you can do for your research is to not use AI at all.</p>
 
             <div class="highlight-box">
-                <strong>The value of boredom, long walks, and unstructured time:</strong> Cognitive science research consistently shows that some of the most creative thinking happens during periods of low stimulation: when your mind is wandering, when you are bored, when you are not actively trying to solve a problem. This is when the brain makes unexpected connections between apparently unrelated ideas. AI usage occupies the cognitive space that daydreaming needs. Every minute you spend prompting an AI is a minute you are not letting your own subconscious do its work.
+                <strong>The value of boredom, long walks, and unstructured time:</strong> Research on mind-wandering suggests that some creative thinking happens during periods of low stimulation: when your mind is wandering, when you are bored, when you are not actively trying to solve a problem. This is when the brain makes unexpected connections between apparently unrelated ideas. AI usage occupies the cognitive space that daydreaming needs. Every minute you spend prompting an AI is a minute you are not letting your own subconscious do its work.
             </div>
 
             <ul class="styled-list">
@@ -548,7 +548,7 @@
 
             <div class="resource-placeholder">
                 <h4>&#128196; Si, C., et al. (2024). "Can LLMs Generate Novel Research Ideas? A Large-Scale Human Study with 100+ NLP Researchers."</h4>
-                <p>The most rigorous study to date on AI-generated research ideas. Over 100 NLP researchers participated in blind evaluation. Key finding: LLM-generated ideas were rated more novel but less feasible and less diverse than human expert ideas. Essential reading for understanding both the promise and limits of AI ideation.</p>
+                <p>The most rigorous study to date on AI-generated research ideas. Over 100 NLP researchers participated in blind evaluation. Key finding: LLM-generated ideas were rated more novel than human expert ideas and comparable on feasibility; generated at scale, the model's ideas were highly repetitive. Essential reading for understanding both the promise and limits of AI ideation.</p>
                 <p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2409.04109" target="_blank" rel="noopener">arXiv:2409.04109</a></p>
             </div>
 
@@ -560,7 +560,7 @@
 
             <div class="resource-placeholder">
                 <h4>&#128196; Communications Psychology (2026). "AI is turning research into a scientific monoculture."</h4>
-                <p>An important recent paper arguing that AI adoption in research is driving convergence in both topics and methods. Directly relevant to the idea monoculture problem discussed in this session. Provides evidence for the homogenisation thesis at the institutional level.</p>
+                <p>An important recent paper arguing that AI adoption in research is driving convergence in both topics and methods. Directly relevant to the idea monoculture problem discussed in this session. Cites evidence for the homogenisation thesis at the institutional level.</p>
                 <p style="margin-top: 8px;"><a href="https://www.nature.com/articles/s44271-026-00428-5" target="_blank" rel="noopener">Communications Psychology</a></p>
             </div>
 
@@ -569,7 +569,7 @@
             <div class="resource-placeholder">
                 <h4>White, J., et al. (2023). "A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT."</h4>
                 <p>A systematic catalogue of prompt patterns, organised by purpose. Useful reference for the prompting strategies discussed in Section 1. Provides a framework for thinking about prompts as reusable patterns rather than one-off queries.</p>
-                <p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">arXiv:2302.11382</a></p>
+                <p style="margin-top: 8px;"><a href="https://doi.org/10.64346/PLoP2023p05" target="_blank" rel="noopener">PLoP 2023 (DOI:10.64346/PLoP2023p05)</a> | Preprint: <a href="https://arxiv.org/abs/2302.11382" target="_blank" rel="noopener">arXiv:2302.11382</a></p>
             </div>
 
             <div class="resource-placeholder">
@@ -585,15 +585,15 @@
             </div>
 
             <div class="resource-placeholder">
-                <h4>Sourati, Z. &amp; Evans, J.A. (2023). "Accelerating science with human-aware artificial intelligence." <em>Nature Human Behaviour</em>.</h4>
-                <p>Explores how AI can complement rather than replace human scientific reasoning. Argues for "human-aware" AI systems that account for human cognitive strengths and weaknesses, rather than simply maximising AI output.</p>
+                <h4>Sourati, J. &amp; Evans, J.A. (2023). "Accelerating science with human-aware artificial intelligence." <em>Nature Human Behaviour</em> 7, 1682–1696.</h4>
+                <p>Models which scientists are likely to make which discoveries, and finds this improves AI prediction of future discoveries by up to 400%. The same models can be set to propose hypotheses outside the areas most experts are working on.</p>
                 <p style="margin-top: 8px;"><a href="https://arxiv.org/abs/2306.01495" target="_blank" rel="noopener">arXiv:2306.01495</a></p>
             </div>
 
             <div class="resource-placeholder">
                 <h4>Sakana AI (2026). "Towards end-to-end automation of AI research." <em>Nature</em>.</h4>
                 <p>The AI Scientist: a system that generates research ideas, writes code, runs experiments, drafts papers in LaTeX, and performs its own peer review. One AI-generated paper passed peer review at the ICLR 2025 workshop, scoring higher than 55% of human papers, though none passed the main conference bar. A landmark demonstration of end-to-end automated research, raising hard questions about what "doing research" means.</p>
-                <p style="margin-top: 8px;"><a href="https://www.nature.com/articles/s41586-026-10265-5" target="_blank" rel="noopener">Nature (2026)</a> | <a href="https://arxiv.org/abs/2408.06292" target="_blank" rel="noopener">arXiv:2408.06292</a></p>
+                <p style="margin-top: 8px;"><a href="https://www.nature.com/articles/s41586-026-10265-5" target="_blank" rel="noopener">Nature (2026)</a> | Preprints: <a href="https://arxiv.org/abs/2408.06292" target="_blank" rel="noopener">arXiv:2408.06292</a> (first version, 2024), <a href="https://arxiv.org/abs/2504.08066" target="_blank" rel="noopener">arXiv:2504.08066</a> (second version, 2025)</p>
             </div>
 
             <div class="resource-placeholder">
@@ -607,7 +607,7 @@
                 <h2>Key Takeaways</h2>
                 <ul class="styled-list">
                     <li><strong>Prompting strategy matters.</strong> Generic prompts produce generic ideas. Chain-of-thought, role-playing, constraint-based, adversarial, and cross-disciplinary prompting each serve different purposes and produce different kinds of output. Use them deliberately and in combination.</li>
-                    <li><strong>AI-generated ideas can be surprisingly novel, but feasibility is a weakness.</strong> The Si et al. (2024) study showed that LLM ideas score higher on novelty than human expert ideas, but lower on feasibility and diversity. AI is better at "What if?" than "Will this actually work?"</li>
+                    <li><strong>AI-generated ideas can be rated as more novel; feasibility is less clear.</strong> In Si et al. (2024), reviewers rated LLM ideas more novel than human experts' ideas and slightly lower on feasibility, a difference the study could not establish statistically. The LLM's ideas also repeated each other as more were generated.</li>
                     <li><strong>Idea monoculture is a real and growing problem.</strong> When everyone uses the same AI tools, everyone converges on the same ideas. Research on the homogenising effect of LLMs suggests that widespread AI adoption is narrowing rather than broadening the diversity of ideas in circulation.</li>
                     <li><strong>The cognitive risks are specific and manageable.</strong> Anchoring, confirmation bias, premature convergence, novelty illusion, and loss of serendipity are all real dangers. But each can be mitigated with deliberate practices: brainstorming alone first, using adversarial prompts, running multiple separate conversations, verifying novelty against the literature, and preserving unstructured time.</li>
                     <li><strong>Sometimes the best tool is no tool at all.</strong> Long walks, boredom, conversations with colleagues, and reading outside your field have produced more important research ideas than any brainstorming method. Do not optimise away the unstructured thinking time that makes genuine creativity possible.</li>

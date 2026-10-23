@@ -120,7 +120,7 @@
     },
     {
       "term": "Artisanal and small-scale mining (ASM)",
-      "definition": "Informal, often hand-tool-based mineral extraction by individuals or small groups outside regulated industrial operations, common in cobalt mining in the Democratic Republic of Congo.",
+      "definition": "<a href=\"https://www.oecd.org/content/dam/oecd/en/publications/reports/2016/04/oecd-due-diligence-guidance-for-responsible-supply-chains-of-minerals-from-conflict-affected-and-high-risk-areas_g1g65996/9789264252479-en.pdf\" target=\"_blank\" rel=\"noopener\">Formal or informal mineral extraction</a> by individuals, families or small groups, using simple, labour-intensive methods and little capital; much of it is informal, and it is common in cobalt mining in the Democratic Republic of Congo.",
       "aliases": [
         "artisanal and small-scale mining (ASM)"
       ]
@@ -199,7 +199,7 @@
     },
     {
       "term": "Chain-of-thought prompting",
-      "definition": "A technique that asks an AI to reason through a problem step by step before giving its final answer, which typically produces more considered and better-structured outputs than a direct question.",
+      "definition": "A technique that asks an AI to reason through a problem step by step before giving its final answer. It improved older models; reasoning models do this without being asked, and OpenAI's guidance for them is to leave the instruction out.",
       "aliases": [
         "chain-of-thought prompting"
       ]
@@ -277,7 +277,7 @@
     },
     {
       "term": "Confabulation",
-      "definition": "When an AI gives a fluent, confident explanation that sounds plausible but does not match what is actually in the image or source — fabricating a justification rather than reasoning from the evidence.",
+      "definition": "When an AI gives a fluent, confident explanation that sounds plausible but does not match what is actually in the image or source, fabricating a justification rather than reasoning from the evidence.",
       "aliases": [
         "confabulation"
       ]
@@ -377,7 +377,7 @@
     },
     {
       "term": "Deontology",
-      "definition": "An ethical framework holding that some actions are inherently right or wrong regardless of consequences, because they involve fundamental duties or rights — a duty of honesty holds even when lying would help.",
+      "definition": "An ethical framework holding that some actions are inherently right or wrong regardless of consequences, because they involve fundamental duties or rights: a duty of honesty holds even when lying would help.",
       "aliases": [
         "deontology"
       ]
@@ -391,7 +391,7 @@
     },
     {
       "term": "Diff",
-      "definition": "A display of the exact lines removed and added between two versions of a file — what changed, not a description of it. Asking an AI to show the diff is a standard way to verify its work.",
+      "definition": "A display of the exact lines removed and added between two versions of a file: what changed, not a description of it. Asking an AI to show the diff is a standard way to verify its work.",
       "aliases": [
         "diff"
       ]
@@ -454,14 +454,14 @@
     },
     {
       "term": "Epistemic injustice",
-      "definition": "A wrong done to someone specifically as a knower or knowledge-producer — for example, when a researcher imposes external interpretive categories onto a community's experience, distorting what participants actually meant.",
+      "definition": "A wrong done to someone specifically as a knower or knowledge-producer, for example, when a researcher imposes external interpretive categories onto a community's experience, distorting what participants actually meant.",
       "aliases": [
         "epistemic injustice"
       ]
     },
     {
       "term": "Epistemic sovereignty",
-      "definition": "The capacity of a community or region to generate, govern, and apply knowledge on its own terms — in AI, to shape research from its own intellectual traditions rather than only adopting frameworks made elsewhere.",
+      "definition": "The capacity of a community or region to generate, govern, and apply knowledge on its own terms: in AI, to shape research from its own intellectual traditions rather than only adopting frameworks made elsewhere.",
       "aliases": [
         "epistemic sovereignty"
       ]
@@ -524,7 +524,7 @@
     },
     {
       "term": "Frontier model",
-      "definition": "A large AI model at the current leading edge of measured capability — the best publicly available models from well-resourced labs. Which models qualify changes every few months as new releases arrive.",
+      "definition": "A large AI model at the current leading edge of measured capability: the best publicly available models from well-resourced labs. Which models qualify changes every few months as new releases arrive.",
       "aliases": [
         "frontier model"
       ]
@@ -566,7 +566,7 @@
     },
     {
       "term": "Hallucinated citation",
-      "definition": "A bibliographic reference generated by an AI that does not correspond to any real published work, or that misattributes authors, venue, or DOI — plausible-sounding but unverifiable in any database.",
+      "definition": "A bibliographic reference generated by an AI that does not correspond to any real published work, or that gives a real work the wrong authors, venue or DOI. It looks plausible, but a database search either finds nothing or finds different details.",
       "aliases": [
         "hallucinated citation"
       ]
@@ -651,7 +651,7 @@
     },
     {
       "term": "Long context",
-      "definition": "A model's ability to take in very large amounts of text in a single prompt — up to a million words or more on 2026 frontier models. A long input does not guarantee the model attends carefully to all of it.",
+      "definition": "A model's ability to take in very large amounts of text in a single prompt: up to about a million tokens (<a href=\"https://platform.claude.com/docs/en/about-claude/models/overview\" target=\"_blank\" rel=\"noopener\">roughly 550,000 to 750,000 English words, depending on the model</a>) on 2026 frontier models. A long input does not guarantee the model attends carefully to all of it.",
       "aliases": [
         "long context"
       ]
@@ -709,14 +709,14 @@
     },
     {
       "term": "Mixture of experts (MoE)",
-      "definition": "An architecture where a large model is split into many specialised sub-networks (experts), but each input is routed through only a small subset, keeping computation per query low despite a very large total parameter count.",
+      "definition": "An architecture where a large model is split into many sub-networks (experts), and a router sends each token through only a small subset, keeping computation per token low despite a very large total parameter count.",
       "aliases": [
         "mixture of experts (MoE)"
       ]
     },
     {
       "term": "Modality",
-      "definition": "A category of input type — image, audio, video, or document text. Different AI models support different combinations of modalities, each with its own reliability profile for research use.",
+      "definition": "A category of input type: image, audio, video, or document text. Different AI models support different combinations of modalities, each with its own reliability profile for research use.",
       "aliases": [
         "modality"
       ]
@@ -746,7 +746,7 @@
     },
     {
       "term": "Native multimodal architecture",
-      "definition": "A model design that processes audio, visual, and text content together in a single pass, letting it reason across modalities — such as noticing when a speaker's words contradict what is shown on screen.",
+      "definition": "A model design that processes audio, visual, and text content together in a single pass, letting it reason across modalities, such as noticing when a speaker's words contradict what is shown on screen.",
       "aliases": [
         "native multimodal architecture"
       ]
@@ -760,7 +760,7 @@
     },
     {
       "term": "Next-token prediction",
-      "definition": "The main learning objective in pre-training: given a sequence of words or word-pieces, the model is trained to predict the most probable next item, using each prediction's error to update its parameters.",
+      "definition": "The main learning objective in pre-training: given a sequence of words or word-pieces, the model is trained to give a probability to every possible next item, and the error against the item that actually came next is used to update its parameters.",
       "aliases": [
         "next-token prediction"
       ]
@@ -816,7 +816,7 @@
     },
     {
       "term": "Plan mode",
-      "definition": "A read-only setting in Claude Code where the AI can inspect files and propose actions but is prevented from making any changes — the safest way to let an agent examine data you cannot afford to have altered.",
+      "definition": "A read-only setting in Claude Code where the AI can inspect files and propose actions but is prevented from making any changes, the safest way to let an agent examine data you cannot afford to have altered.",
       "aliases": [
         "plan mode"
       ]
@@ -935,7 +935,7 @@
     },
     {
       "term": "Reliability (vs accuracy)",
-      "definition": "In agentic AI, accuracy measures whether individual actions are correct, while reliability measures whether the agent consistently completes whole multi-step tasks and recovers from its own errors. One can improve while the other stays flat.",
+      "definition": "In agent evaluations, accuracy usually means <a href=\"https://arxiv.org/abs/2602.16666\" target=\"_blank\" rel=\"noopener\">the share of whole tasks an agent completes correctly</a>; reliability asks whether it does so consistently across runs, copes with changed conditions, signals when it is likely to be wrong, and fails without serious harm. One can improve while the other stays flat.",
       "aliases": [
         "reliability (vs accuracy)"
       ]
@@ -949,14 +949,14 @@
     },
     {
       "term": "Retrieval-based tool",
-      "definition": "A search tool such as Semantic Scholar, Elicit, or Consensus that looks up records in a real database of published papers, so every result it returns actually exists — unlike a generative AI producing text from patterns.",
+      "definition": "A search tool such as Semantic Scholar, Elicit, or Consensus that looks up records in a real database of published papers, so every paper it lists exists. Summaries that tools such as Elicit or Consensus write about those papers are generated text and still need checking.",
       "aliases": [
         "retrieval-based tool"
       ]
     },
     {
       "term": "Reversal curse",
-      "definition": "A failure in early language models where knowing \"A is B\" did not help infer \"B is A.\" Documented in GPT-3.5/4-era systems but largely absent in 2025–2026 frontier models, it is a superseded finding still cited as current.",
+      "definition": "A failure in early language models where knowing \"A is B\" did not help infer \"B is A.\" Documented by <a href=\"https://arxiv.org/abs/2309.12288\" target=\"_blank\" rel=\"noopener\">Berglund et al. (2023)</a> in models fine-tuned on \"A is B\" and in GPT-4's answers about celebrities; <a href=\"https://proceedings.mlr.press/v306/ma26o.html\" target=\"_blank\" rel=\"noopener\">2025–2026 research</a> still studies it as an open problem in training, and whether current frontier models show it has not been retested with the original design.",
       "aliases": [
         "reversal curse"
       ]
@@ -977,7 +977,7 @@
     },
     {
       "term": "RLHF (Reinforcement Learning from Human Feedback)",
-      "definition": "A training technique where human raters compare or score model responses, and those preferences train the model toward outputs humans prefer — embedding the raters' values, assumptions, and blind spots into its behaviour.",
+      "definition": "A training technique where human raters compare or score model responses, and those preferences train the model toward outputs humans prefer, embedding the raters' values, assumptions, and blind spots into its behaviour.",
       "aliases": [
         "RLHF (Reinforcement Learning from Human Feedback)"
       ]
@@ -1012,7 +1012,7 @@
     },
     {
       "term": "Silent error",
-      "definition": "An error in AI-generated code that produces no crash or warning but yields wrong results — for example using the wrong variable. Because the output looks clean, the mistake can go undetected.",
+      "definition": "An error in AI-generated code that produces no crash or warning but yields wrong results, for example using the wrong variable. Because the output looks clean, the mistake can go undetected.",
       "aliases": [
         "silent error"
       ]
@@ -1041,7 +1041,7 @@
     },
     {
       "term": "Sovereign AI",
-      "definition": "A nation's or community's capacity to develop, govern, and control AI on its own terms — who owns the infrastructure, whose data is used, whose rights the systems protect. Definitions vary from hardware ownership to community rights.",
+      "definition": "A nation's or community's capacity to develop, govern, and control AI on its own terms: who owns the infrastructure, whose data is used, whose rights the systems protect. Definitions vary from hardware ownership to community rights.",
       "aliases": [
         "sovereign AI"
       ]
@@ -1056,7 +1056,7 @@
     },
     {
       "term": "Stationarity",
-      "definition": "A property of a time series whose mean, variance, and other statistics stay roughly constant over time. Many standard time-series models require it; a series with a rising trend or changing volatility must be transformed first.",
+      "definition": "A property of a time series whose mean, variance, and other statistics stay roughly constant over time. Some time-series models require stationarity. A trend or changing volatility may require a transformation or a model that represents those changes explicitly.",
       "aliases": [
         "stationarity"
       ]
@@ -1077,7 +1077,7 @@
     },
     {
       "term": "Surveillance capitalism",
-      "definition": "A term coined by Shoshana Zuboff for a business model that harvests behavioural data from users, analyses it to predict behaviour, and sells those predictions — treating human experience itself as raw material for profit.",
+      "definition": "A term coined by Shoshana Zuboff for a business model that harvests behavioural data from users, analyses it to predict behaviour, and sells those predictions, treating human experience itself as raw material for profit.",
       "aliases": [
         "surveillance capitalism"
       ]
@@ -1105,7 +1105,7 @@
     },
     {
       "term": "Temporal reasoning",
-      "definition": "The ability to understand events in time order within a recording — when something was first mentioned, what happened between two timestamps, how an argument developed. Current AI does this unreliably and should be checked against timestamps.",
+      "definition": "The ability to understand events in time order within a recording: when something was first mentioned, what happened between two timestamps, how an argument developed. Current AI does this unreliably and should be checked against timestamps.",
       "aliases": [
         "temporal reasoning"
       ]
@@ -1169,7 +1169,7 @@
     },
     {
       "term": "Version control",
-      "definition": "A system for saving successive named snapshots of a document so you can trace what changed, when, and why — from manually dated file copies to tools such as Google Docs version history or Git.",
+      "definition": "A system for saving successive named snapshots of a document so you can trace what changed, when, and why: from manually dated file copies to tools such as Google Docs version history or Git.",
       "aliases": [
         "version control"
       ]
@@ -1183,7 +1183,7 @@
     },
     {
       "term": "Virtue ethics",
-      "definition": "An ethical framework concerned with the character of the person acting rather than rules or outcomes, asking what habits and qualities to cultivate — applied to AI, the long-term effect of repeated choices on a researcher's intellectual character.",
+      "definition": "An ethical framework concerned with the character of the person acting rather than rules or outcomes, asking what habits and qualities to cultivate. Applied to AI, the long-term effect of repeated choices on a researcher's intellectual character.",
       "aliases": [
         "virtue ethics"
       ]

@@ -27,7 +27,7 @@ FIGS = [
             "Two columns separating work fair to delegate to an agent from work that must remain the researcher's.")),
 
     dict(fid="fig-adv-permissions", page=FC, loc=r'Permissions and Plan Mode', mode="after_p",
-         cap="Four controls keep you in charge of an agent working on your data — from the everyday permission prompt to the sandbox around what it can reach.",
+         cap="Four controls keep you in charge of an agent working on your data, from the everyday permission prompt to the sandbox around what it can reach.",
          svg=D.vflow([
              ("Permission prompts — it asks before acting", 'neutral'),
              ("Plan mode — look without touching", 'accent'),
@@ -37,7 +37,7 @@ FIGS = [
             "Four layered controls from permission prompts through plan mode and allowlists to the sandbox boundary.")),
 
     dict(fid="fig-adv-folder", page=RP, loc=r'Project Folder as the Unit', mode="after_p",
-         cap="The reproducible project folder — each part answers a question a future replicator (or you) will ask: what did you measure, what did you do, and why.",
+         cap="The reproducible project folder: each part answers a question a future replicator (or you) will ask: what did you measure, what did you do, and why.",
          svg=D.filetree([
              ("CLAUDE.md", "the standing instructions", 0),
              ("data/raw/", "original data — never edited", 0),
@@ -51,7 +51,7 @@ FIGS = [
             note_x=250)),
 
     dict(fid="fig-adv-prereg", page=EN, loc=r'Pre-registration: Decide', mode="after_p",
-         cap="Pre-registration in one gate: write the prediction and the decision rule before you run anything, then let the pre-set bar — not hope — decide whether to continue.",
+         cap="Pre-registration in one gate: write the prediction and the decision rule before you run anything, then let the pre-set bar, not hope, decide whether to continue.",
          svg=D.tree("Pre-registration gate", [
              dict(title="Interesting", sub="clears the bar", kind='good', action="Spend more compute"),
              dict(title="Worth knowing", sub="boring but real", kind='neutral', action="Report it briefly"),

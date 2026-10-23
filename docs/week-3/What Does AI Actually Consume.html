@@ -12,9 +12,8 @@ img{max-width:100%}
 .mobnav{display:none}
 /* ---- three-column shell ---- */
 .shell{max-width:1880px;margin:0 auto;padding:0 44px;display:grid;grid-template-columns:218px minmax(0,58rem) 248px;justify-content:center;column-gap:64px;align-items:start}
-.maincol{min-width:0;max-width:1340px;margin-left:auto;margin-right:auto}
-.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto}
-.leftnav::-webkit-scrollbar,.rightrail::-webkit-scrollbar{width:0}
+.maincol{min-width:0;max-width:1340px;margin-left:0;margin-right:0}
+.leftnav,.rightrail{position:sticky;top:30px;align-self:start;padding-top:46px;max-height:calc(100vh - 40px);overflow-y:auto;scrollbar-width:thin}
 .leftnav .back,.mobnav .back{font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-decoration:none;display:block;margin-bottom:26px}
 .leftnav .back:hover,.mobnav .back:hover{color:var(--blue2)}
 .leftnav .navwk,.mobnav .navwk{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.18em;text-transform:uppercase;color:var(--lbl);margin-bottom:7px;line-height:1.5}
@@ -43,16 +42,16 @@ img{max-width:100%}
 .abody p{font-size:var(--fs-body);line-height:1.64;color:var(--ink);margin:0 0 27px;text-wrap:pretty}
 .abody p.drop::first-letter{font-family:'Fraunces';font-weight:500;font-size:3.9rem;line-height:.8;float:left;margin:.32rem .7rem 0 0;color:var(--blue)}
 .abody strong{font-weight:600}.abody em{font-style:italic}
-.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--rule2)}.abody a:hover{border-color:var(--blue)}
+.abody a{color:var(--blue);text-decoration:none;border-bottom:1px solid var(--blue2)}.abody a:hover{border-color:var(--blue)}
 .abody h2.section-title{font-family:'Fraunces';font-weight:400;font-size:1.9rem;line-height:1.1;color:var(--blue);border-top:1px solid var(--rule);padding-top:34px;margin:44px 0 16px;scroll-margin-top:24px}
-.abody h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--ink);margin:26px 0 10px}
+.abody h3:not(.lbl){font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--ink);margin:26px 0 10px}
 .abody h1{font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:0 0 10px;max-width:48rem}
 .abody h2:not(.section-title){font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:30px 0 12px;max-width:48rem}
 .abody .highlight-box h2{color:#fff;margin-top:0}
 .abody .info-box h2,.abody .warning-box h2,.abody .resource-placeholder h2,.abody .technical-detail h2,.abody .case-study h2{margin-top:0}
 .abody h5,.abody h6{font-family:'Fraunces';font-weight:500;font-size:var(--fs-body);color:var(--ink);margin:18px 0 8px}
-.abody h4{font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
-.abody h4.h4long{font-size:var(--fs-body);letter-spacing:0;text-transform:none;line-height:1.35}
+.abody :is(h4,h3.lbl){font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 9px}
+.abody :is(h4,h3.lbl).h4long{font-size:var(--fs-body);letter-spacing:0;text-transform:none;line-height:1.35}
 .abody ul,.abody ol{margin:0 0 22px;padding:0;list-style:none}
 .abody li{font-size:var(--fs-body);line-height:1.56;color:var(--ink2);margin-bottom:11px;padding-left:24px;position:relative}
 .abody ul>li::before{content:'';position:absolute;left:0;top:.7em;width:9px;height:1px;background:var(--blue)}
@@ -79,10 +78,10 @@ img{max-width:100%}
 .afoot .alic{color:var(--mut)}
 .afoot a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
 .abody .card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:22px 24px}
-.abody .card h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:0 0 8px}
+.abody .card h3:not(.lbl){font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:0 0 8px}
 .abody .card p{font-size:var(--fs-boxtext);line-height:1.5;color:var(--ink2);margin:0}
 .abody .highlight-box{background:var(--blue);color:#fbf7ee;padding:30px 32px;margin:34px 0}
-.abody .highlight-box h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:#fff;margin:0 0 12px}
+.abody .highlight-box h3:not(.lbl){font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:#fff;margin:0 0 12px}
 .abody .highlight-box p,.abody .highlight-box li{font-family:'Newsreader';font-size:var(--fs-boxtext);line-height:1.58;color:#e9e2d2;margin:0 0 8px}
 .abody .highlight-box strong{color:#fff}.abody .highlight-box a{color:#fff;border-bottom-color:rgba(255,255,255,.5)}
 .abody .highlight-box ul li::before{background:#bcd0e6}
@@ -91,13 +90,14 @@ img{max-width:100%}
 .abody :is(.info-box,.technical-detail,.case-study,.decision-framework,.warning-box,.resource-placeholder,.highlight-box,.verdict):has(table,.card-grid,.category-grid,figure,pre,.video-container,iframe,svg){max-width:none}
 .abody .info-box p,.abody .info-box li,.abody .technical-detail p,.abody .technical-detail li,.abody .case-study p,.abody .case-study li,.abody .decision-framework p,.abody .decision-framework li,.abody .resource-placeholder p,.abody .resource-placeholder li{font-family:'Newsreader';font-size:var(--fs-boxtext);line-height:1.58;color:var(--ink2);margin:0 0 8px}
 .abody .technical-detail{border-left-color:var(--mut)}
-.abody .technical-detail h4{color:var(--mut)}
+.abody .technical-detail :is(h4,h3.lbl){color:var(--mut)}
 .abody .case-study{border-left-color:#b07a1e}
-.abody .case-study>h3:first-child::before{content:'Case study';display:block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
-.abody .case-study h3,.abody .decision-framework h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:0 0 8px}
+.abody .case-study>h3:not(.lbl):first-child::before{content:'Case study';display:block;font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:7px}
+.abody .case-study h3:not(.lbl),.abody .decision-framework h3:not(.lbl){font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:0 0 8px}
 .abody .warning-box{background:#f6eedb;border-left:3px solid var(--amber);padding:22px 26px;margin:28px 0}
-.abody .warning-box h4{color:var(--amber)}
+.abody .warning-box :is(h4,h3.lbl){color:var(--amber)}
 .abody .warning-box p,.abody .warning-box li{font-family:'Newsreader';font-size:var(--fs-boxtext);line-height:1.6;color:#574d33;margin:0 0 8px}
+.abody .tscroll{overflow-x:auto;margin:26px 0}.abody .tscroll>table{margin:0}
 .abody table{width:100%;border-collapse:collapse;margin:26px 0;font-family:'Newsreader';font-size:var(--fs-boxtext)}
 .abody th{font-family:'Fraunces';font-weight:500;font-size:var(--fs-tag);letter-spacing:.1em;text-transform:uppercase;color:var(--blue);text-align:left;padding:10px 14px 10px 0;border-bottom:1.5px solid var(--blue)}
 .abody td{padding:11px 14px 11px 0;border-bottom:1px solid var(--rule);color:var(--ink2);line-height:1.5;vertical-align:top}
@@ -107,7 +107,7 @@ img{max-width:100%}
 .abody .step-list>li::after{content:none}
 .abody .code-block,.abody pre{background:#04233f;color:#e9e3d6;font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-mono);line-height:1.6;padding:18px 22px;margin:26px 0;overflow-x:auto;border-left:3px solid var(--blue2);white-space:pre-wrap}
 .abody .code-block *{font-family:inherit}
-.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#eef1f5;padding:1px 5px;color:#7a4a12}
+.abody code{font-family:'SF Mono',Menlo,Consolas,monospace;font-size:var(--fs-code);background:#eef1f5;padding:1px 5px;color:#7a4a12;overflow-wrap:anywhere}
 /* In a heading or a table cell, code takes the container's step: the prose step would dwarf an
    11.2px header, and an em multiplier lands off-scale (.85em of a 12.8px h4 = 10.88px). */
 .abody :is(h1,h2,h3,h4,h5,h6,th,td) code{font-size:1em}
@@ -116,7 +116,7 @@ img{max-width:100%}
 .abody :is(th,td) small{font-size:1em}
 .abody .code-block code,.abody pre code{background:none;color:inherit;padding:0}
 .abody .resource-placeholder{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--blue);padding:22px 26px;margin:26px 0}
-.abody .resource-placeholder h4{color:var(--blue)}
+.abody .resource-placeholder :is(h4,h3.lbl){color:var(--blue)}
 /* ===== baseline + bespoke long-tail components ===== */
 .abody{font-size:var(--fs-body);line-height:1.62}
 .abody .intro-section p{font-size:var(--fs-body)}
@@ -124,9 +124,10 @@ img{max-width:100%}
 /* explanatory SVG diagrams (figure.diagram) */
 .abody figure.diagram{margin:46px 0}
 .abody figure.diagram>svg{display:block;width:100%;height:auto;border-radius:3px}
+@media(max-width:600px){.abody figure.diagram{overflow-x:auto}.abody figure.diagram>svg{min-width:560px}}
 .abody figure.diagram figcaption{font-family:'Fraunces';font-style:italic;font-size:var(--fs-meta);line-height:1.45;color:var(--lbl);text-align:center;margin-top:16px}
 .abody .section{margin:0 0 8px}
-.abody .part-title,.abody .intro-section h3{font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:26px 0 10px}
+.abody .part-title,.abody .intro-section h3:not(.lbl){font-family:'Fraunces';font-weight:500;font-size:var(--fs-subhead);color:var(--blue);margin:26px 0 10px}
 /* callout boxes */
 .abody .analogy-box,.abody .how-it-works,.abody .key-concepts,.abody .research-applications,.abody .instructor-box,.abody .prompt-example,.abody .empty-note,.abody .caveat-item,.abody .architecture-examples,.abody .model-details,.abody .paywalled-section,.abody .video-section,.abody .intro-section{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--blue);padding:20px 24px;margin:24px 0;border-radius:3px}
 .abody .cm,.abody .comment{color:#9fb0c7;background:none;border:0;padding:0;margin:0;font-family:inherit;font-style:normal}
@@ -198,7 +199,10 @@ img{max-width:100%}
 .prevnext .d{font-family:'Fraunces';font-size:var(--fs-tag);letter-spacing:.14em;text-transform:uppercase;color:var(--lbl)}
 .prevnext .pt{font-family:'Fraunces';font-size:var(--fs-meta);color:var(--blue)}
 .prevnext .next{text-align:right;margin-left:auto}
-@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.maincol{width:100%;margin:0}.abody{overflow-wrap:break-word}.abody table{display:block;overflow-x:auto}.leftnav,.rightrail{display:none}.mobnav{display:block;margin:20px 0 2px}.mobnav details{background:var(--card);border:1px solid var(--rule);border-radius:3px;margin-bottom:10px}.mobnav summary{padding:12px 16px;font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);cursor:pointer}.mobnav .mnbody{padding:4px 16px 14px}.mobnav .back{margin-bottom:14px}.mobnav .snote{margin-top:16px}}
+@media(max-width:980px){.shell{grid-template-columns:1fr;column-gap:0}.maincol{width:100%;margin:0}.abody{overflow-wrap:break-word}.abody table{display:block;overflow-x:auto}.leftnav,.rightrail{display:none}.mobnav{display:block;margin:20px 0 2px}}
+.mobnav details{background:var(--card);border:1px solid var(--rule);border-radius:3px;margin-bottom:10px}.mobnav summary{padding:12px 16px;font-family:'Fraunces';font-weight:500;font-size:var(--fs-lbl);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);cursor:pointer}.mobnav .mnbody{padding:4px 16px 14px}.mobnav .back{margin-bottom:14px}.mobnav .snote{margin-top:16px}
+/* 981-1240px: two columns; key terms move into the in-column panel, contents stay in the left sidebar */
+@media(min-width:981px) and (max-width:1240px){.shell{grid-template-columns:218px minmax(0,1fr)}.rightrail{display:none}.mobnav{display:block;margin:20px 0 2px}.mobnav>details:first-child{display:none}.mobnav:not(:has(>details+details)){display:none}}
 /* ---- INDEX / landing ---- */
 .iwrap{max-width:1400px;margin:0 auto;padding:0 36px}
 .icover{display:grid;grid-template-columns:1.5fr 1fr;gap:64px;align-items:end;padding:52px 0 38px;border-bottom:1px solid var(--rule)}
@@ -247,13 +251,14 @@ img{max-width:100%}
 .tsize button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .rightrail .tsize{position:static;display:inline-flex;box-shadow:none;margin:0 0 22px}
 @media print{.tsize,.rightrail .tsize{display:none}}
-@media(min-width:981px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
+@media(min-width:1241px){body:has(.rightrail)>.tsize{display:none}html.hr .rightrail .tsize{visibility:visible}}
 @media(max-width:600px){.tsize{right:10px;bottom:10px;padding:2px 3px}.tsize button{padding:3px 6px}.tsize button:nth-child(1){font-size:11px}.tsize button:nth-child(2){font-size:13px}.tsize button:nth-child(3){font-size:16px}.shell{padding:0 22px}}
 /* ---- hideable margins: a labelled toggle at the top of each margin ---- */
 .navtoggle{display:flex;align-items:center;font-family:'Fraunces';font-size:var(--fs-lbl);letter-spacing:.04em;color:var(--mut);background:none;border:0;cursor:pointer;padding:0;margin:0 0 18px;text-align:left}
 .navtoggle:hover{color:var(--blue)}
 .navtoggle:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:3px}
 .navtoggle .ls{display:none}
+.skip{position:absolute;left:-9999px;top:8px;z-index:400;background:var(--blue);color:#fff;padding:8px 14px;font-family:'Fraunces';font-size:var(--fs-lbl);text-decoration:none}.skip:focus{left:8px}
 html.hl .navtoggle[data-m="l"] .lh{display:none}
 html.hl .navtoggle[data-m="l"] .ls{display:inline}
 html.hr .navtoggle[data-m="r"] .lh{display:none}
@@ -267,19 +272,20 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 }
 @media(max-width:980px){.navtoggle{display:none}}
 @media print{.navtoggle{display:none}}
-</style><script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");if(s)d.style.fontSize=(["85%","95%","106%"][s]||"85%");if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script></head><body><div class="brandrule"></div><div class="shell"><div class="leftnav"><button class="navtoggle" type="button" data-m="l"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson cur" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><div class="subs"><a href="#s1">The Transparency Problem</a><a href="#s2">Energy per Interaction</a><a href="#s3">The Agentic Multiplier: Tools Like Claude Code</a><a href="#s4">A Worked Example: The Flight Comparison</a><a href="#s5">Zooming Out: AI’s Share of Global Emissions</a><a href="#s6">The Water Footprint</a><a href="#s7">Putting It at Scale</a></div><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><div class="maincol"><script>document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}document.documentElement.classList.toggle(c,!on);});</script><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>The Cost of Every Prompt</h1><div class="deck">Energy, water, and the environmental footprint of AI at the level of individual interactions</div></div><div class="mobnav"><details><summary>Contents</summary><div class="mnbody"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson cur" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><div class="subs"><a href="#s1">The Transparency Problem</a><a href="#s2">Energy per Interaction</a><a href="#s3">The Agentic Multiplier: Tools Like Claude Code</a><a href="#s4">A Worked Example: The Flight Comparison</a><a href="#s5">Zooming Out: AI’s Share of Global Emissions</a><a href="#s6">The Water Footprint</a><a href="#s7">Putting It at Scale</a></div><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div></details><details><summary>Key terms</summary><div class="mnbody"><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></details></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
+@media print{.abody .highlight-box,.abody .highlight-box :not(code){background:none!important;color:var(--ink)!important}.abody .highlight-box{border:1px solid var(--blue)}.abody :is(.code-block,pre){background:none;color:var(--ink);border:1px solid var(--rule2)}.abody .cm,.abody .comment{color:var(--mut)}.mobnav,.prevnext{display:none}}
+</style><script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");if(s)d.style.fontSize=(["85%","95%","106%"][s]||"85%");if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script></head><body><a class="skip" href="#main">Skip to main content</a><div class="brandrule"></div><div class="shell"><div class="leftnav"><button class="navtoggle" type="button" data-m="l" aria-expanded="true"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson cur" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><div class="subs"><a href="#s1">The Transparency Problem</a><a href="#s2">Energy per Interaction</a><a href="#s3">The Agentic Multiplier: Tools Like Claude Code</a><a href="#s4">A Worked Example: The Flight Comparison</a><a href="#s5">Zooming Out: AI’s Share of Global Emissions</a><a href="#s6">The Water Footprint</a><a href="#s7">Putting It at Scale</a></div><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><main class="maincol" id="main"><script>document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}document.documentElement.classList.toggle(c,!on);t.setAttribute("aria-expanded",on?"true":"false");});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".navtoggle").forEach(function(b){var c=b.getAttribute("data-m")=="l"?"hl":"hr";b.setAttribute("aria-expanded",document.documentElement.classList.contains(c)?"false":"true");});});</script><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>The Cost of Every Prompt</h1><div class="deck">Energy, water, and the environmental footprint of AI at the level of individual interactions</div></div><div class="mobnav"><details><summary>Contents</summary><div class="mnbody"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson cur" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><div class="subs"><a href="#s1">The Transparency Problem</a><a href="#s2">Energy per Interaction</a><a href="#s3">The Agentic Multiplier: Tools Like Claude Code</a><a href="#s4">A Worked Example: The Flight Comparison</a><a href="#s5">Zooming Out: AI’s Share of Global Emissions</a><a href="#s6">The Water Footprint</a><a href="#s7">Putting It at Scale</a></div><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div></details><details><summary>Key terms</summary><div class="mnbody"><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></details></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
 <p class="drop">Every time you send a message to an AI assistant, something physical happens: electricity flows through data-centre hardware on the other side of the world. This session puts numbers on that, so you can think clearly about its environmental implications as a researcher and as a citizen rather than feel guilty about using AI.</p>
 <p>We will look at energy consumption from the level of a single query up to the scale of global AI usage, at water (an environmental cost that receives less attention than carbon), and at why the numbers you read in the media should always be treated with careful scepticism.</p>
 <p>This is a topic where the data are genuinely uncertain and where companies have strong incentives to present their products in the best possible light. Part of our job here is to understand <em>why</em> the numbers are uncertain, not just what they are.</p>
 </div>
-<div class="warning-box"><h4>A Note on Numbers Throughout This Week</h4>
+<div class="warning-box"><h3 class="lbl">A Note on Numbers Throughout This Week</h3>
 <p>Almost all figures in this area come from one of three sources: company self-reports, independent academic estimates, or media extrapolations from those estimates. These often disagree substantially. Throughout these lessons we will flag where figures come from and what assumptions they rest on. Treat any specific number as an order-of-magnitude guide rather than a precise measurement.</p>
 </div>
 <!-- SECTION 1: THE TRANSPARENCY PROBLEM -->
 <h2 class="section-title" id="s1">The Transparency Problem</h2>
 <p style=" margin-bottom: 30px">Before we look at any numbers, it is worth understanding why getting accurate figures is so difficult, because the answer shapes how we interpret everything that follows.</p>
 <div class="card-grid"><div class="card"><h3>What Companies Don't Disclose</h3>
-<p>Major AI developers — OpenAI, Google, Meta, Microsoft, Anthropic — do not publish detailed energy or emissions data for individual models. What is typically missing:</p>
+<p>Major AI developers (OpenAI, Google, Meta, Microsoft, Anthropic) do not publish detailed energy or emissions data for individual models. What is typically missing:</p>
 <ul class="styled-list">
 <li>Energy consumed per query (by model type or size)</li>
 <li>Data centre locations and their grid carbon intensity</li>
@@ -306,9 +312,9 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 2: ENERGY PER INTERACTION -->
 <h2 class="section-title" id="s2">Energy per Interaction</h2>
 <p style=" margin-bottom: 30px">Let's start at the level of a single query. How much electricity does it take to generate one response?</p>
-<div class="technical-detail"><h4>Energy Consumption by Task Type</h4>
+<div class="technical-detail"><h3 class="lbl">Energy Consumption by Task Type</h3>
 <p style="margin-bottom: 15px">The table below combines company-reported figures and independent measurements from MIT Technology Review (2025). Note the wide ranges. They reflect genuine differences in model size, hardware, and methodology, well beyond simple uncertainty.</p>
-<table class="comparison-table">
+<div class="tscroll"><table class="comparison-table">
 <thead>
 <tr>
 <th>Task</th>
@@ -352,26 +358,26 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td><strong>AI video generation (5 seconds)</strong></td>
 <td>~3.4 MJ (~944 Wh)</td>
 <td>About 1 hour of microwave use</td>
-<td>MIT Technology Review, 2025; ~700× image cost</td>
+<td>MIT Technology Review, 2025; about 200–500× the image figure above</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p style="margin-top: 12px">Microwave comparisons assume a 1,000 W microwave.</p>
 <p style="margin-top: 12px"><strong>Key observation:</strong> Text generation and video generation differ by roughly three orders of magnitude. Company-reported figures for text prompts sit at the lower end of independent measurements, likely reflecting optimised infrastructure not available to all deployments.</p>
 </div>
-<div class="info-box"><h4>Video Generation: A Different Category</h4>
-<p>The energy cost of generating a 5-second AI video (~944 Wh, per MIT Technology Review 2025) is not a typing error. High-resolution video generation involves running a very large diffusion model many times over — the equivalent of generating hundreds or thousands of images sequentially and combining them. This figure comes from measuring open-source video generation models; proprietary models like Sora may differ.</p>
+<div class="info-box"><h3 class="lbl">Video Generation: A Different Category</h3>
+<p>The energy cost of generating a 5-second AI video (~944 Wh, per MIT Technology Review 2025) is not a typing error. High-resolution video generation involves running a very large diffusion model many times over, the equivalent of generating hundreds or thousands of images sequentially and combining them. This figure comes from measuring open-source video generation models; proprietary models like Sora may differ.</p>
 <p style="margin-top: 8px">For context: 944 Wh is roughly one-seventh of what an average South African household uses in a day (around 6&ndash;7 kWh). That is a meaningful amount for a few seconds of video, though still a fraction of daily household use.</p>
 </div>
 <!-- SECTION 2b: THE AGENTIC MULTIPLIER -->
 <h2 class="section-title" id="s3">The Agentic Multiplier: Tools Like Claude Code</h2>
 <p style=" margin-bottom: 30px">The figures above describe a single prompt: you ask, the model answers once. But the way many researchers now use AI is very different. Agentic tools (Claude Code, Codex, Cursor's agent mode, Gemini CLI) do not answer once. They run a <em>loop</em>: read files, call tools, run code, read the output, reason about it, and call the model again, often dozens of times to complete one task. Energy use scales roughly with the total number of tokens the model processes, so an agentic task can cost many times more than a single chat prompt. This section tries to put bounds on "how much more". As with everything in this lesson, the answer is a wide range.</p>
-<div class="warning-box"><h4 class="h4long">This is an estimate built on other estimates</h4>
+<div class="warning-box"><h3 class="lbl h4long">This is an estimate built on other estimates</h3>
 <p>Every figure in this section is derived by chaining together numbers from earlier in the lesson with practitioner reports and vendor documentation. None of it is a direct measurement of a research workflow. We present each input with its source and give a <strong>central estimate with lower and upper bounds</strong> so you can see where the uncertainty enters. Treat the final numbers as order-of-magnitude guides, not precise figures.</p>
 </div>
-<div class="technical-detail"><h4>What "effort" Means in Claude Code</h4>
-<p style="margin-bottom: 15px">Claude's API exposes an <strong>effort</strong> setting that controls how many tokens the model is willing to spend on a task. Anthropic's documentation describes it as <em>"a behavioral signal, not a strict token budget"</em> — so it does not map onto a fixed energy figure, but it does directly change token use, and therefore energy. Effort affects <strong>all tokens</strong> in a response, including tool calls: lower effort means the model makes fewer tool calls and writes less; higher effort means more exploration, more tool calls, and deeper reasoning.</p>
-<table class="comparison-table">
+<div class="technical-detail"><h3 class="lbl">What "effort" Means in Claude Code</h3>
+<p style="margin-bottom: 15px">Claude's API exposes an <strong>effort</strong> setting that controls how many tokens the model is willing to spend on a task. Anthropic's documentation describes it as <em>"a behavioral signal, not a strict token budget"</em>, so it does not map onto a fixed energy figure, but it does directly change token use, and therefore energy. Effort affects <strong>all tokens</strong> in a response, including tool calls: lower effort means the model makes fewer tool calls and writes less; higher effort means more exploration, more tool calls, and deeper reasoning.</p>
+<div class="tscroll"><table class="comparison-table">
 <thead>
 <tr>
 <th>Effort level</th>
@@ -402,16 +408,16 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </tr>
 <tr>
 <td><strong>max</strong></td>
-<td>"No constraints on token spending"; reserve for frontier problems — "significant cost for relatively small quality gains" and can "overthink"</td>
+<td>"No constraints on token spending"; reserve for frontier problems, "significant cost for relatively small quality gains" and can "overthink"</td>
 <td>~3–10×</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p style="margin-top: 12px"><strong>Important:</strong> The "multiplier" column is <strong>our own illustrative estimate</strong>, inferred from the qualitative descriptions in Anthropic's documentation. Anthropic does <em>not</em> publish numeric energy or token multipliers for the effort levels. The short quoted phrases describing each level come directly from <a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener">Anthropic's Effort documentation</a>; the numbers attached to them do not. We include the multipliers only to make the rest of the calculation concrete; they could easily be off by a factor of two or more.</p>
 </div>
-<div class="technical-detail"><h4 class="h4long">The Calculation Ledger: Every Input and Its Source</h4>
-<p style="margin-bottom: 15px">To estimate the footprint of a working day with an agentic tool, we need three quantities, each with a central value, a range, and a source. (How many calls make up a working day is a separate scenario assumption, stated below the table.)</p>
-<table class="comparison-table">
+<div class="technical-detail"><h3 class="lbl h4long">The Calculation Ledger: Every Input and Its Source</h3>
+<p style="margin-bottom: 15px">To estimate the footprint of a working day with an agentic tool, we need three quantities, each with a central value, a range, and a source. (How many tasks make up a working day is a separate scenario assumption, stated below the table.)</p>
+<div class="tscroll"><table class="comparison-table">
 <thead>
 <tr>
 <th>Input</th>
@@ -423,11 +429,11 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </thead>
 <tbody>
 <tr>
-<td><strong>A. Energy per model call</strong></td>
-<td>~1 Wh</td>
-<td>~3 Wh</td>
+<td><strong>A. Energy per ordinary prompt</strong></td>
+<td>~0.24 Wh</td>
+<td>~0.34 Wh</td>
 <td>~8 Wh</td>
-<td>This lesson's table: 0.34 Wh (OpenAI CEO's stated average) up to 8 Wh (MIT Tech Review 2025, large open-weight model). Agentic calls carry long contexts (file contents, tool outputs, accumulated reasoning), so they sit toward the upper end, and we centre on ~3 Wh.</td>
+<td>This lesson's table: 0.24 Wh (Google's measured median Gemini prompt) and 0.34 Wh (OpenAI CEO's stated average), up to 8 Wh (MIT Tech Review 2025, large open-weight model). We centre on the reported 0.34 Wh. B already counts the extra tokens of long contexts and repeated calls, so A is the energy of one ordinary prompt, not of one long agent call.</td>
 </tr>
 <tr>
 <td><strong>B. Compute per task</strong><br><small>(simple-prompt-equivalents)</small></td>
@@ -439,14 +445,14 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <tr>
 <td><strong>C. Grid carbon intensity</strong></td>
 <td colspan="3">0.386 kg CO₂/kWh (US grid average) &nbsp;|&nbsp; ~0.9 kg CO₂/kWh (South Africa)</td>
-<td>US figure as used elsewhere in this lesson; SA figure from the <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">2022 Grid Emission Factors Report</a> (~0.87–1.01 kg/kWh depending on methodology — SA's grid is ~80% coal).</td>
+<td>US figure as used elsewhere in this lesson; SA figure from the <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">2022 Grid Emission Factors Report</a> (~0.87–1.01 kg/kWh depending on methodology, SA's grid is ~80% coal).</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 </div>
-<div class="technical-detail"><h4 class="h4long">Putting the Inputs Together: A Day on <code>high</code> Effort</h4>
-<p style="margin-bottom: 15px">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive calls</strong> rather than quick one-shot lookups, which cost far less. We hold the per-call energy (A) near its ~3 Wh midpoint and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 1–8 Wh band as well would widen these numbers further in both directions.)</p>
-<table class="comparison-table">
+<div class="technical-detail"><h3 class="lbl h4long">Putting the Inputs Together: A Day on <code>high</code> Effort</h3>
+<p style="margin-bottom: 15px">Multiplying A × B gives the energy of one task. For a working day we assume <strong>~50 substantial, compute- and loop-intensive tasks</strong> rather than quick one-shot lookups, which cost far less. We hold the per-prompt energy (A) at its ~0.34 Wh central value and let the per-task multiplier (B) drive the range; applying the grid carbon intensity (C) then converts energy to CO₂. (Letting A vary across its full 0.24–8 Wh band as well would widen these numbers further in both directions.)</p>
+<div class="tscroll"><table class="comparison-table">
 <thead>
 <tr>
 <th>Quantity</th>
@@ -458,42 +464,42 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <tbody>
 <tr>
 <td><strong>Energy per agentic task</strong> (A × B)</td>
-<td>~30 Wh</td>
-<td><strong>~100 Wh</strong></td>
-<td>~300 Wh</td>
+<td>~3.4 Wh</td>
+<td><strong>~10 Wh</strong></td>
+<td>~34 Wh</td>
 </tr>
 <tr>
 <td><strong>Energy for a 50-task day</strong> (× 50)</td>
-<td>~1.5 kWh</td>
-<td><strong>~5 kWh</strong></td>
-<td>~15 kWh</td>
+<td>~0.17 kWh</td>
+<td><strong>~0.5 kWh</strong></td>
+<td>~1.7 kWh</td>
 </tr>
 <tr>
 <td><strong>CO₂ — US grid</strong> (× 0.386)</td>
-<td>~0.6 kg</td>
-<td><strong>~1.9 kg</strong></td>
-<td>~5.8 kg</td>
+<td>~0.07 kg</td>
+<td><strong>~0.2 kg</strong></td>
+<td>~0.66 kg</td>
 </tr>
 <tr>
 <td><strong>CO₂ — South African grid</strong> (× 0.9)</td>
-<td>~1.4 kg</td>
-<td><strong>~4.5 kg</strong></td>
-<td>~13.5 kg</td>
+<td>~0.15 kg</td>
+<td><strong>~0.46 kg</strong></td>
+<td>~1.5 kg</td>
 </tr>
 </tbody>
-</table>
-<p style="margin-top: 12px">For perspective, the central ~5 kWh for a full day of agentic coding is roughly five times the 944 Wh of a single 5-second AI video, and more than ten thousand times a single reported text prompt. Against the 6–7 kWh a day used above for a South African household, it is roughly 70–85% of a household's daily electricity use. The footprint of <em>this kind</em> of AI use comes from the <strong>loop</strong> of many calls rather than from any one prompt.</p>
+</table></div>
+<p style="margin-top: 12px">For perspective, the central ~0.5 kWh for a full day of agentic coding is about half the 944 Wh of a single 5-second AI video, and about 1,500 times a single reported text prompt. Against the 6–7 kWh a day used above for a South African household, it is roughly 7–9% of a household's daily electricity use. The footprint of <em>this kind</em> of AI use comes from the <strong>loop</strong> of many calls rather than from any one prompt.</p>
 </div>
-<div class="info-box"><h4 class="h4long">How Does This Compare to Driving a Car?</h4>
+<div class="info-box"><h3 class="lbl h4long">How Does This Compare to Driving a Car?</h3>
 <p>A "typical passenger vehicle" emits about <strong>400 g CO₂ per mile ≈ 0.25 kg CO₂ per km</strong> (<a href="https://www.epa.gov/greenvehicles/greenhouse-gas-emissions-typical-passenger-vehicle" target="_blank" rel="noopener">US EPA</a>). Dividing the day's emissions by that figure gives an equivalent driving distance:</p>
 <ul class="styled-list" style="margin-top: 12px">
-<li><strong>On the US grid:</strong> a full day ≈ <strong>~8 km</strong> of driving (range ~2–23 km)</li>
-<li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~18 km</strong> of driving (range ~5–54 km)</li>
+<li><strong>On the US grid:</strong> a full day ≈ <strong>~0.8 km</strong> of driving (range ~0.3–2.6 km)</li>
+<li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~1.8 km</strong> of driving (range ~0.6–6 km)</li>
 </ul>
-<p style="margin-top: 12px">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a short commute. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances; the car comparison is itself a range.)</p>
+<p style="margin-top: 12px">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a drive of one or two kilometres. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances; the car comparison is itself a range.)</p>
 </div>
-<div class="warning-box"><h4>The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h4>
-<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~5 kWh day, that puts a heavy max-effort day in the region of <strong>15–50 kWh</strong>, or roughly <strong>tens to over 150 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive calls; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
+<div class="warning-box"><h3 class="lbl">The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h3>
+<p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~0.5 kWh day, that puts a heavy max-effort day in the region of <strong>1.5–5 kWh</strong>, or roughly <strong>5–18 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive tasks; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
 </div>
 <div class="highlight-box"><h3><span>What This Means for You as a Researcher</span></h3>
 <p>The per-prompt footprint of AI is genuinely small. The footprint of <em>agentic</em> AI is larger because each task involves so many steps, even though no single step is expensive. The same property that makes these tools powerful for research (they keep working autonomously) is what drives their energy use.</p>
@@ -502,16 +508,16 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 3: THE FLIGHT COMPARISON -->
 <h2 class="section-title" id="s4">A Worked Example: The Flight Comparison</h2>
 <p style=" margin-bottom: 30px">A common comparison in media coverage: how does using AI compare to taking a transatlantic flight? How you do the calculation changes the answer a great deal, so it is worth working through with care.</p>
-<div class="technical-detail"><h4>Step-by-Step Calculation</h4>
+<div class="technical-detail"><h3 class="lbl">Step-by-Step Calculation</h3>
 <p style="margin-bottom: 15px"><strong>Reference point: one economy-class transatlantic flight (London → New York, ~5,540 km)</strong></p>
 <ul style="margin-left: 25px">
 <li>CO₂ per passenger (direct emissions only): ~0.5 tonnes</li>
 <li>Adding non-CO₂ effects at altitude (contrails, nitrogen oxides): many calculators roughly double the figure, but the multiplier depends on the climate metric used</li>
 <li><strong>Commonly used estimate: ~1 tonne CO₂e per passenger</strong></li>
-<li>Note: figures from different calculators range from 0.5 to 1.5 tonnes — this is itself uncertain</li>
+<li>Note: figures from different calculators range from 0.5 to 1.5 tonnes. This is itself uncertain</li>
 </ul>
 <p style="margin-top: 20px; margin-bottom: 10px"><strong>Carbon per ChatGPT text prompt:</strong></p>
-<table class="comparison-table">
+<div class="tscroll"><table class="comparison-table">
 <thead>
 <tr>
 <th>Energy assumption</th>
@@ -540,7 +546,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td><strong>~323,000</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p style="margin-top: 15px"><strong>What this tells us:</strong> Depending entirely on which figures you use, one transatlantic flight equals somewhere between 300,000 and 7.6 million ChatGPT text queries. That spread reflects the difference between company-optimised infrastructure and real-world large-model deployments, as well as genuine uncertainty about what "a ChatGPT query" even means in terms of model size and compute.</p>
 </div>
 <div class="highlight-box"><h3><span>Why the Range Is the Lesson</span></h3>
@@ -554,24 +560,24 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 3b: MACRO SHARE -->
 <h2 class="section-title" id="s5">Zooming Out: AI&rsquo;s Share of Global Emissions</h2>
 <p style=" margin-bottom: 30px">The per-query comparison above is useful for personal calibration, but it can&rsquo;t tell you what share of <em>global</em> emissions AI actually represents. For that, you have to layer estimates from primary sources and be honest about what is measured versus modelled.</p>
-<div class="technical-detail"><h4>A back-of-envelope: AI vs aviation, with sources</h4>
+<div class="technical-detail"><h3 class="lbl">A back-of-envelope: AI vs aviation, with sources</h3>
 <p><strong>Step 1 &mdash; Inputs (primary sources):</strong></p>
 <ul>
-<li><strong>Data centres &asymp; 1.5% of global electricity</strong> (&asymp; 415 TWh in 2024) &mdash; IEA, <em><a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">Energy and AI</a></em> (2025).</li>
-<li><strong>AI-focused share &asymp; 0.5% of global electricity</strong> (2025) &mdash; Hannah Ritchie&rsquo;s estimate from the IEA inputs, <em><a href="https://www.sustainabilitybynumbers.com/p/ai-energy-demand" target="_blank" rel="noopener">Sustainability by Numbers</a></em> (2026).</li>
-<li>Electricity &amp; heat &asymp; 40% of energy-related CO<sub>2</sub>; energy-related CO<sub>2</sub> &asymp; 85&ndash;90% of total CO<sub>2</sub> &mdash; IEA / <a href="https://ourworldindata.org/emissions-by-sector" target="_blank" rel="noopener">Our World in Data</a> sectoral breakdown.</li>
+<li><strong>Data centres &asymp; 1.5% of global electricity</strong> (&asymp; 415 TWh in 2024), IEA, <em><a href="https://www.iea.org/reports/energy-and-ai" target="_blank" rel="noopener">Energy and AI</a></em> (2025).</li>
+<li><strong>AI-focused share &asymp; 0.5% of global electricity</strong> (2025), Hannah Ritchie&rsquo;s estimate from the IEA inputs, <em><a href="https://www.sustainabilitybynumbers.com/p/ai-energy-demand" target="_blank" rel="noopener">Sustainability by Numbers</a></em> (2026).</li>
+<li>Electricity &amp; heat &asymp; 40% of energy-related CO<sub>2</sub>; energy-related CO<sub>2</sub> &asymp; 85&ndash;90% of total CO<sub>2</sub>, IEA / <a href="https://ourworldindata.org/emissions-by-sector" target="_blank" rel="noopener">Our World in Data</a> sectoral breakdown.</li>
 </ul>
 <p style="margin-top: 12px"><strong>Step 2 &mdash; Calculation:</strong> If AI&rsquo;s electricity were at average grid carbon intensity, AI&rsquo;s share of energy-related CO<sub>2</sub> &asymp; 0.5% &times; 40% &asymp; <strong>0.2%</strong>. AI loads are concentrated in the US (gas-heavy) and China (coal-heavy), pushing intensity above average; the largest operators&rsquo; renewable and nuclear procurement pulls below it (though annual matching overstates hourly cleanliness). Net plausible range: <strong>0.2&ndash;0.4% of energy-related CO<sub>2</sub></strong>, or roughly <strong>0.15&ndash;0.35% of total CO<sub>2</sub> / GHG</strong> depending on denominator.</p>
-<p style="margin-top: 12px"><strong>Step 3 &mdash; The aviation benchmark.</strong> Aviation accounted for <strong>2.5% of global energy-related CO<sub>2</sub> in 2023 (&asymp; 950 Mt)</strong> &mdash; IEA, <em><a href="https://www.iea.org/energy-system/transport/aviation" target="_blank" rel="noopener">Aviation</a></em>. Passenger flights are &asymp; 81% of that and freight &asymp; 19%, so passenger aviation &asymp; <strong>2% of global CO<sub>2</sub></strong>.</p>
-<p style="margin-top: 12px"><strong>Headline:</strong> Passenger air travel emits roughly <strong>6&ndash;10&times; what AI does operationally</strong> right now. AI is around a tenth to a fifth of aviation&rsquo;s footprint at the system level.</p>
+<p style="margin-top: 12px"><strong>Step 3 &mdash; The aviation benchmark.</strong> Aviation accounted for <strong>2.5% of global energy-related CO<sub>2</sub> in 2023 (&asymp; 950 Mt)</strong>, IEA, <em><a href="https://www.iea.org/energy-system/transport/aviation" target="_blank" rel="noopener">Aviation</a></em>. Passenger flights are &asymp; 81% of that and freight &asymp; 19%, so passenger aviation &asymp; <strong>2% of global CO<sub>2</sub></strong>.</p>
+<p style="margin-top: 12px"><strong>Headline:</strong> Passenger air travel emits roughly <strong>5&ndash;10&times; what AI does operationally</strong> right now. AI is around a tenth to a fifth of aviation&rsquo;s footprint at the system level.</p>
 </div>
 <p style=" margin-top: 25px">Two caveats sharpen the comparison further:</p>
 <ul style=" margin-left: 25px">
-<li style="margin-bottom: 12px"><strong>Aviation&rsquo;s real impact is larger than the CO<sub>2</sub> alone.</strong> Non-CO<sub>2</sub> effects &mdash; contrails and NO<sub>x</sub> at altitude &mdash; push aviation&rsquo;s share of anthropogenic warming closer to <strong>3.5&ndash;4%</strong> (Lee et al. 2021, <em><a href="https://doi.org/10.1016/j.atmosenv.2020.117834" target="_blank" rel="noopener">Atmospheric Environment</a></em>). The gap on a warming basis is wider than the gap on a CO<sub>2</sub> basis.</li>
+<li style="margin-bottom: 12px"><strong>Aviation&rsquo;s real impact is larger than the CO<sub>2</sub> alone.</strong> Non-CO<sub>2</sub> effects (contrails and NO<sub>x</sub> at altitude) push aviation&rsquo;s share of anthropogenic warming closer to <strong>3.5&ndash;4%</strong> (Lee et al. 2021, <em><a href="https://doi.org/10.1016/j.atmosenv.2020.117834" target="_blank" rel="noopener">Atmospheric Environment</a></em>). The gap on a warming basis is wider than the gap on a CO<sub>2</sub> basis.</li>
 <li style="margin-bottom: 12px"><strong>Aviation is concentrated; AI use is broadly distributed.</strong> Only &asymp; 11% of the world&rsquo;s population flew in 2018, and the most frequent &asymp; 1% account for more than half of passenger-flight emissions (G&ouml;ssling &amp; Humpe 2020, <em><a href="https://doi.org/10.1016/j.gloenvcha.2020.102194" target="_blank" rel="noopener">Global Environmental Change</a></em>). AI use is becoming more broadly distributed, which makes the per-person picture genuinely different from the per-person flight picture even when the system-level numbers sit in the same neighbourhood.</li>
 </ul>
 <p style=" margin-top: 20px">And the ratio is narrowing. The IEA's April 2026 update (<em>Key Questions on Energy and AI</em>) projects data-centre electricity roughly doubling from <strong>&asymp; 485 TWh (2025) to &asymp; 950 TWh (2030, &asymp; 3% of global electricity)</strong>, with the AI-focused slice tripling, moving AI from &asymp; one-third toward &asymp; half of data-centre load. AI would need several-fold growth relative to aviation to close the gap.</p>
-<div class="warning-box"><h4>How to read these numbers</h4>
+<div class="warning-box"><h3 class="lbl">How to read these numbers</h3>
 <p>These are <strong>layered estimates, not audited measurements</strong>. The 0.2&ndash;0.4% calculation rests on three assumptions, each with its own uncertainty: (a) the IEA&rsquo;s 1.5% data-centre figure, (b) Hannah Ritchie&rsquo;s one-third allocation to AI specifically, and (c) average grid intensity. Treat the headline as a well-reasoned estimate from primary sources rather than a measurement. The same scepticism the rest of this lesson asks you to apply to vendor claims applies to careful third-party estimates too.</p>
 <p style="margin-top: 12px">The figures also <strong>exclude embodied emissions</strong>: chip fabrication, server manufacture, data-centre construction (concrete, steel). 3.3 returns to those in detail, because lifecycle accounting can raise the operational number materially. And the definition of &ldquo;AI&rdquo; versus general accelerated compute is itself fuzzy: not every workload on a GPU is what most people mean by AI.</p>
 </div>
@@ -579,10 +585,10 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <h2 class="section-title" id="s6">The Water Footprint</h2>
 <p style=" margin-bottom: 30px">Energy gets most of the attention, but water is the environmental cost of AI that is least reported and least understood. Data centres are thirsty in two distinct ways.</p>
 <div class="card-grid"><div class="card"><h3>Direct Water Use: Cooling</h3>
-<p>Modern data centres generate enormous amounts of heat. The most common solution is evaporative cooling — running water over heat exchangers where it evaporates, carrying heat away.</p>
+<p>Modern data centres generate enormous amounts of heat. The most common solution is evaporative cooling: running water over heat exchangers where it evaporates, carrying heat away.</p>
 <ul class="styled-list">
 <li><strong>Why water, not air?</strong> Evaporative cooling is far more energy-efficient than air cooling for the temperatures involved</li>
-<li><strong>Why filtered municipal water?</strong> Minerals in unfiltered water would corrode and clog sensitive hardware — most large data centres use high-quality drinking water</li>
+<li><strong>Why filtered municipal water?</strong> Minerals in unfiltered water would corrode and clog sensitive hardware, most large data centres use high-quality drinking water</li>
 <li><strong>Estimate:</strong> A 100 MW data centre may consume the equivalent of ~2,600 households' daily water use (IEA estimate)</li>
 <li><strong>US total:</strong> Data centres directly consumed roughly 66 billion litres (about 17.4 billion US gallons) of water in 2023, not counting the water used to generate their electricity (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">Lawrence Berkeley National Laboratory, 2024</a>)</li>
 </ul>
@@ -591,7 +597,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Generating electricity also consumes water, at the power plant rather than the data centre. This "indirect" water use is often larger than the direct cooling water.</p>
 <ul class="styled-list">
 <li>Thermal power plants (coal, gas, nuclear) use water for steam generation and cooling</li>
-<li>This water is often not returned to its source — it is evaporated or discharged at a different temperature</li>
+<li>This water is often not returned to its source: it is evaporated or discharged at a different temperature</li>
 <li>A commonly cited estimate (Shaolei Ren, UC Riverside): a ~30-turn ChatGPT conversation = roughly 500 ml of water, of which only 12–13% is direct cooling water; the rest is from electricity generation</li>
 <li><strong>Geographic sensitivity:</strong> Water extracted in arid regions has very different consequences from the same volume extracted in water-abundant areas</li>
 </ul>
@@ -601,13 +607,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>The "500 ml per 30-turn conversation" figure (from Li et al., 2023 / Shaolei Ren) became widely cited in media coverage, often without key caveats: it is an estimate based on assumed data centre locations (US-average), a specific model generation (GPT-3 era), and indirect water attribution methods that are contested. Modern data centres vary widely in water efficiency, and some use closed-loop systems that recirculate water rather than evaporating it. Treat this as an order-of-magnitude estimate, not a precise measurement. The original paper acknowledges significant uncertainty.</p>
 </div>
 <div class="resource-placeholder"><h4>Key Reading: AI Water Footprint</h4>
-<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2304.03271" target="_blank" rel="noopener"><strong>Li, Yang, Islam, Ren (2023): "Making AI Less Thirsty"</strong></a> — the most-cited quantitative analysis of AI water consumption. Read the paper, not just the media coverage of it.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://doi.org/10.1145/3724499" target="_blank" rel="noopener"><strong>Li, Yang, Islam, Ren (2025): "Making AI Less Thirsty"</strong></a> (<em>Communications of the ACM</em> 68(7); <a href="https://arxiv.org/abs/2304.03271" target="_blank" rel="noopener">preprint, 2023</a>) — the most-cited quantitative analysis of AI water consumption. Read the paper, not just the media coverage of it.</p>
 </div>
 <!-- SECTION 5: SCALE -->
 <h2 class="section-title" id="s7">Putting It at Scale</h2>
 <p style=" margin-bottom: 30px">Individual query costs only matter if we multiply them by usage. Let's consider what the aggregate picture looks like.</p>
-<div class="technical-detail"><h4>AI Usage at Global Scale (2025)</h4>
-<table class="comparison-table">
+<div class="technical-detail"><h3 class="lbl">AI Usage at Global Scale (2025)</h3>
+<div class="tscroll"><table class="comparison-table">
 <thead>
 <tr>
 <th>Metric</th>
@@ -642,19 +648,19 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td>US Energy Information Administration (residential retail sales, preliminary); for comparison purposes</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p style="margin-top: 12px">If US data centres reach 325–580 TWh by 2028, that would be roughly a fifth to two-fifths of US household electricity use (about 1,510 TWh in 2025, US Energy Information Administration). These projections carry very high uncertainty: they depend on assumptions about AI adoption rates, hardware efficiency improvements, and grid composition.</p>
 </div>
-<div class="info-box"><h4>Training vs. Inference: Where the Energy Goes</h4>
-<p>Much early coverage of AI's environmental cost focused on the energy required to <em>train</em> a model — the one-time compute cost of creating GPT-4 or Claude. But for widely-deployed models, <em>inference</em> (running the model to answer queries) can easily exceed training energy over the model's lifetime.</p>
+<div class="info-box"><h3 class="lbl">Training vs. Inference: Where the Energy Goes</h3>
+<p>Much early coverage of AI's environmental cost focused on the energy required to <em>train</em> a model, the one-time compute cost of creating GPT-4 or Claude. But for widely-deployed models, <em>inference</em> (running the model to answer queries) can easily exceed training energy over the model's lifetime.</p>
 <p style="margin-top: 8px">With 2.5 billion queries per day, the cumulative inference cost of ChatGPT dwarfs the one-time training cost within months of deployment. This is why statements like "training GPT-3 emitted X tonnes of CO₂" need to be placed in the context of ongoing inference costs.</p>
 </div>
 <!-- TRY THIS YOURSELF -->
-<div style=" border-left: 5px solid #2f8f5b; border-radius: 12px; margin: 40px 0"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
+<div class="info-box"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
 <p style=" margin-bottom: 12px">This page argues for calibrated numbers over both panic and dismissal. Here is a quick way to feel both the estimate <em>and</em> the opacity for yourself, in two short steps.</p>
 <ul style=" margin: 0 0 12px">
-<li style="position: relative; margin-bottom: 11px"><span style="position: absolute; left: 0">&#9656;</span><strong>Put a number on something real.</strong> Take one computation or AI task you actually ran recently and estimate its footprint, either with this lesson&#39;s per-interaction figures, or with a free calculator such as <a href="https://www.green-algorithms.org/" target="_blank" rel="noopener">Green Algorithms</a> (we return to these tools in 3.4). Notice how much the answer depends on assumptions you had to choose.</li>
-<li style="position: relative; margin-bottom: 0"><span style="position: absolute; left: 0">&#9656;</span><strong>Now hit the transparency wall.</strong> Pick one AI assistant you use and try to find its <em>official</em> per-query energy or water figure, a number from the company you could actually cite. Spend five minutes and then stop. The difficulty you just experienced <em>is</em> the &ldquo;transparency problem&rdquo; this page opened with: the figures you can cite are mostly third-party estimates, not disclosed measurements.</li>
+<li><strong>Put a number on something real.</strong> Take one computation or AI task you actually ran recently and estimate its footprint, either with this lesson&#39;s per-interaction figures, or with a free calculator such as <a href="https://www.green-algorithms.org/" target="_blank" rel="noopener">Green Algorithms</a> (we return to these tools in 3.4). Notice how much the answer depends on assumptions you had to choose.</li>
+<li><strong>Now hit the transparency wall.</strong> Pick one AI assistant you use and try to find its <em>official</em> per-query energy or water figure, a number from the company you could actually cite. Spend five minutes and then stop. The difficulty you just experienced <em>is</em> the &ldquo;transparency problem&rdquo; this page opened with: the figures you can cite are mostly third-party estimates, not disclosed measurements.</li>
 </ul>
 <p style=" margin-bottom: 0">The goal is to come away holding a defensible order-of-magnitude <em>and</em> an honest sense of how much the vendors are not telling you, rather than a precise total.</p>
 </div>
@@ -669,7 +675,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Water is underreported:</strong> Both direct cooling and indirect electricity generation consume significant water, with geographic implications</li>
 <li><strong>Scale is what matters:</strong> Individual query costs are small; billions of queries per day is not</li>
 <li><strong>Inference, not just training:</strong> The ongoing cost of running models at scale quickly exceeds one-time training costs</li>
-<li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~5 kWh: central estimate ~1.9 kg CO₂ (US grid) / ~4.5 kg (SA grid), comparable to driving ~8–18 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
+<li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~0.5 kWh: central estimate ~0.2 kg CO₂ (US grid) / ~0.46 kg (SA grid), comparable to driving ~1–2 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
 </ul>
 <p style="margin-top: 20px"><strong>Next session (Week 3.2):</strong> We zoom out from individual queries to the infrastructure level: where does the electricity come from, how does manufacturing hardware fit in, and why do efficiency gains so often fail to reduce total energy use?</p>
-</div></div><div class="prevnext"><a href="../week-2/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html"><span class="d">Next &rarr;</span><span class="pt">Infrastructure, Scale, and the Rebound Problem</span></a></div><div class="afoot"><p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock before publication. AI-generated errors are possible &mdash; if you spot one, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. Full detail: <a href="../course-introduction/AI%20Content%20Disclaimer.html">AI Content Disclaimer</a>.</p><p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></p></div></div><div class="rightrail"><button class="navtoggle" type="button" data-m="r"><span class="lh">Hide key terms &raquo;</span><span class="ls">&laquo; Show key terms</span></button><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><div class="rmeta">Week 3<br>Lesson 1<br>21 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["85%","95%","106%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
+</div></div><div class="prevnext"><a href="../week-2/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html"><span class="d">Next &rarr;</span><span class="pt">Infrastructure, Scale, and the Rebound Problem</span></a></div><div class="afoot"><p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock before publication. AI-generated errors are possible &mdash; if you spot one, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. Full detail: <a href="../course-introduction/AI%20Content%20Disclaimer.html">AI Content Disclaimer</a>.</p><p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></p></div></main><div class="rightrail"><button class="navtoggle" type="button" data-m="r" aria-expanded="true"><span class="lh">Hide key terms &raquo;</span><span class="ls">&laquo; Show key terms</span></button><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><div class="rmeta">Week 3<br>Lesson 1<br>21 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["85%","95%","106%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

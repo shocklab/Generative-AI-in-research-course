@@ -48,7 +48,7 @@ FIGS = [
 
     dict(fid="fig-w1-three-architectures", page=UNDR, mode="after_p",
          loc=r'Three main architectures power today',
-         cap="Three engines behind generative AI — transformers for language, diffusion for images and video, and the older GAN approach.",
+         cap="Three engines behind generative AI: transformers for language, diffusion for images and video, and the older GAN approach.",
          svg=D.columns([
              dict(title="Transformers", kind='accent',
                   lines=["Weighs every word at once", "ChatGPT, Claude, Gemini", "Best for text and code"]),
@@ -61,7 +61,7 @@ FIGS = [
 
     dict(fid="fig-w1-modality-map", page=LAND, mode="before",
          loc=r'<h2 class="section-title">[^<]*Large Language Models',
-         cap="The generative-AI landscape by output type — the leading model families in each, and what each is best suited to.",
+         cap="The generative-AI landscape by output type: the leading model families in each, and what each is best suited to.",
          svg=D.matrix(["Leading families (May 2026)", "Best suited to"], [
              ("Text / LLMs", ["GPT-5.5, Claude, Gemini, DeepSeek", "writing, reasoning, agents, code"]),
              ("Images", ["DALL·E 3, Midjourney, Imagen, FLUX", "figures, illustration, design"]),

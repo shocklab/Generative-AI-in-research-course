@@ -385,7 +385,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
         <tr>
           <td><strong>2020</strong></td>
           <td>GPT-3 (175B)</td>
-          <td>Few-shot in-context learning &mdash; the system could do tasks it had never been trained on if given examples in the prompt.</td>
+          <td>Few-shot in-context learning: the system could do tasks it had never been trained on if given examples in the prompt.</td>
           <td>Confidently fabricated facts; couldn&#39;t reliably do basic arithmetic; no instruction-following beyond pattern matching.</td>
         </tr>
         <tr>
@@ -410,7 +410,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
           <td><strong>May 2026</strong></td>
           <td>Claude Mythos, Opus 4.7, GPT-5.5 Pro, Gemini 3.1 Pro, DeepSeek V4 Pro&hellip;</td>
           <td>Research-grade contributions in mathematics (Erd&#337;s problems) and theoretical physics (gluon and graviton amplitudes). Open-weights frontier (DeepSeek) competitive with closed.</td>
-          <td>The structural failures &mdash; long-tail brittleness, compositional errors, illusions of understanding &mdash; persist (see 9.2 and 9.4).</td>
+          <td>The structural failures (long-tail brittleness, compositional errors, illusions of understanding) persist (see 9.2 and 9.4).</td>
         </tr>
       </tbody>
     </table>
@@ -474,7 +474,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Kimi K2.6 (Moonshot AI)</h3>
-      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 85.4 %</strong>, effectively tying GPT-5.5 (85.1%) at roughly 80% lower cost per token. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue). It is the second open-weights model to match closed-frontier coding capability.</p>
+      <p>Released 20 April 2026 by the Beijing-based startup Moonshot. Mixture-of-experts: <strong>1 trillion total parameters with 32 billion active</strong>. 256K context window. <strong>SWE-Bench Verified 80.2%</strong> (<a href="https://huggingface.co/moonshotai/Kimi-K2.6" target="_blank" rel="noopener">Moonshot&#39;s figure</a>), against 87.6% for Opus 4.7, at roughly 80% lower cost per token than GPT-5.5. Modified MIT license (display requirement only kicks in above 100M monthly active users or $20M monthly revenue).</p>
     </div>
 
     <div class="card">
@@ -525,7 +525,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
           <td><strong>GPQA Diamond</strong></td>
           <td>Graduate-level physics, biology and chemistry reasoning. Designed to be Google-proof.</td>
           <td>Claude Mythos 94.6%</td>
-          <td>Frontier reasoning benchmark; widely used to discriminate among frontier models.</td>
+          <td>Frontier reasoning benchmark; close to saturation at the top.</td>
         </tr>
         <tr>
           <td><strong>SWE-bench Verified</strong></td>
@@ -535,7 +535,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
         </tr>
         <tr>
           <td><strong>AIME 2026</strong></td>
-          <td>American Invitational Mathematics Examination &mdash; high-school olympiad level.</td>
+          <td>American Invitational Mathematics Examination: high-school olympiad level.</td>
           <td>Qwen3.5-plus 91.3%</td>
           <td>Closing in on saturation; useful but no longer discriminating at the top.</td>
         </tr>
@@ -547,7 +547,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
         </tr>
         <tr>
           <td><strong>HLE</strong></td>
-          <td>Humanity's Last Exam &mdash; ~2,500 extremely difficult expert-authored questions spanning 100+ disciplines, designed to resist saturation.</td>
+          <td>Humanity's Last Exam: ~2,500 extremely difficult expert-authored questions spanning 100+ disciplines, designed to resist saturation.</td>
           <td>Claude Mythos 64.7% (<a href="https://www.anthropic.com/glasswing" target="_blank" rel="noopener">with tools</a>; 56.8% without)</td>
           <td>Single hard benchmark; CAIS + Scale AI, 2025 (arXiv:2501.14249).</td>
         </tr>
@@ -565,7 +565,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
     <h4>&#128270; Reading Benchmark Scores Critically</h4>
     <p>Three pitfalls to watch for in announcements:</p>
     <p>(1) <strong>Benchmark mismatch.</strong> A 90% on AIME 2024 does not predict a 90% on FrontierMath. The benchmarks measure different things at different levels of difficulty.</p>
-    <p>(2) <strong>Saturation.</strong> When the SOTA on a benchmark exceeds about 90%, the benchmark has stopped discriminating and the remaining gap is largely noise.</p>
+    <p>(2) <strong>Saturation.</strong> When the best score on a benchmark passes about 90%, differences between the top models are often within noise, so check the error bars before reading a ranking from them.</p>
     <p>(3) <strong>Selection.</strong> Labs cherry-pick benchmarks favourable to their model. Always check whether the announcement reports performance on benchmarks where competitors lead.</p>
   </div>
 
@@ -592,8 +592,8 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">This is why Sub-Lesson 9.6 asks you to test current frontier models on tasks from your own field, rather than rely on published benchmark scores. The benchmarks tell you what the labs have optimised for. They tell you very little about whether the model will work for what <em>you</em> need.</p>
 
   <div class="case-study">
-    <h4>&#128221; A Concrete Goodhart Illustration: SWE-Bench &rarr; ProgramBench</h4>
-    <p>Frontier models score 87.6% on SWE-bench Verified (Opus 4.7, reported by Anthropic) and 80.2% (<a href="https://huggingface.co/moonshotai/Kimi-K2.6" target="_blank" rel="noopener">Kimi K2.6, reported by Moonshot</a>); OpenAI <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/" target="_blank" rel="noopener">stopped reporting the benchmark in February 2026</a>, citing contamination. The benchmark is approaching saturation. If you read those scores as a measure of &ldquo;the model is now good at software engineering,&rdquo; you would be making the Goodhart error.</p>
+    <h4>&#128221; Benchmark Mismatch in Practice: SWE-Bench and ProgramBench</h4>
+    <p>Frontier models score 87.6% on SWE-bench Verified (Opus 4.7, reported by Anthropic) and 80.2% (<a href="https://huggingface.co/moonshotai/Kimi-K2.6" target="_blank" rel="noopener">Kimi K2.6, reported by Moonshot</a>); OpenAI <a href="https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/" target="_blank" rel="noopener">stopped reporting the benchmark in February 2026</a>, citing contamination. The benchmark is approaching saturation. If you read those scores as a measure of &ldquo;the model is now good at software engineering,&rdquo; you would be reading a narrow benchmark as a general capability.</p>
     <p>ProgramBench (May 2026) tests something different: given <em>only</em> a program and its documentation, can the model architect and implement a codebase from scratch that matches the reference behaviour? No method signatures to fill in, no class skeletons, no natural-language descriptions of file layout. 200 tasks sourced from real-world open-source GitHub repositories, with more than 248,000 behavioural tests.</p>
     <p>The result on the same frontier models that nearly saturate SWE-bench: <strong>0% pass rate on fully resolving any task</strong>. Across all nine frontier models tested, including Opus 4.7, GPT-5.4 and Gemini 3.1 Pro, not one fully resolved task. Even partial credit was sparse (Opus 4.7 reaches 95% test-pass rate on only 3% of tasks).</p>
     <p>The same models, the same general task family (software engineering), wildly different scores. SWE-bench measures &ldquo;can the model solve well-scoped patches to existing code given the issue description.&rdquo; It does not measure &ldquo;can the model architect and build a real piece of software.&rdquo; The benchmark you cite determines the capability claim you can make.</p>

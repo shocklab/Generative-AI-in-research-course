@@ -8,7 +8,7 @@ SUS = "content/week-3/Sustainable AI What Can Be Done.html"
 
 FIGS = [
     dict(fid="fig-w3-supply-chain", page=MIN, loc=r'From Mine to Data Centre', mode="after_p",
-         cap="From mine to data centre — the material chain behind AI hardware, with the heaviest human and environmental costs at the extraction end.",
+         cap="From mine to data centre: the material chain behind AI hardware, with the heaviest human and environmental costs at the extraction end.",
          svg=D.vflow([
              ("Mining — silicon, cobalt, copper, rare earths", 'neutral'),
              ("Refining — purify into usable materials", 'accent'),
@@ -28,7 +28,7 @@ FIGS = [
             "Three subsystems of a data centre — compute, cooling, and power delivery — and what each costs.")),
 
     dict(fid="fig-w3-jevons", page=INF, loc=r'Rebound Problem', mode="after_p",
-         cap="The rebound problem: efficiency gains lower the cost of AI, which drives more total use — so the overall footprint can grow rather than shrink.",
+         cap="The rebound problem: efficiency gains lower the cost of AI, which drives more total use, so the overall footprint can grow rather than shrink.",
          svg=D.cycle([
              dict(title="AI gets more efficient", sub="cost per query falls"),
              dict(title="Using AI gets cheaper", sub="so we use much more"),
@@ -40,7 +40,7 @@ FIGS = [
             center_kind='warn', arrow='#b07a1e')),
 
     dict(fid="fig-w3-decision", page=SUS, loc=r'Framework for Your Own', mode="after_p",
-         cap="A few questions before reaching for a frontier model — most research compute can be made smaller, simpler, or skipped.",
+         cap="A few questions before reaching for a frontier model: most research compute can be made smaller, simpler, or skipped.",
          svg=D.vflow([
              ("Do I actually need AI for this task?", 'accent'),
              ("Would a simpler method or smaller model do?", 'accent'),

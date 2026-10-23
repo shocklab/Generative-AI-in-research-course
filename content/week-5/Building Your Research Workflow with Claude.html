@@ -380,17 +380,17 @@
 <div class="card">
 <h3>📑 The Structured Literature Prompt</h3>
 <p>Use this when you're starting research in a new area and need to understand the lay of the land.</p>
-<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I am researching <strong>[topic]</strong> for my <strong>[thesis/paper/review]</strong> in <strong>[discipline]</strong>. I need help understanding the current state of the literature. Please help me by: 1. Identifying the key themes and debates in this area 2. Suggesting search terms I should use (including terms I might not have considered) 3. Describing the major methodological approaches used in this field 4. Noting any recent shifts or emerging trends IMPORTANT: Do NOT generate specific paper citations. Instead, describe the landscape so I can search for papers myself using Semantic Scholar and Google Scholar. If you do mention specific researchers or papers, flag them clearly so I can verify they exist.</div>
+<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I am researching <strong>[topic]</strong> for my <strong>[thesis/paper/review]</strong> in <strong>[discipline]</strong>. I need help understanding the current state of the literature. Please help me by:<br>1. Identifying the key themes and debates in this area<br>2. Suggesting search terms I should use (including terms I might not have considered)<br>3. Describing the major methodological approaches used in this field<br>4. Noting any recent shifts or emerging trends<br>IMPORTANT: Do NOT generate specific paper citations. Instead, describe the landscape so I can search for papers myself using Semantic Scholar and Google Scholar. If you do mention specific researchers or papers, flag them clearly so I can verify they exist.</div>
 </div>
 <div class="card">
 <h3>📊 The Synthesis Prompt</h3>
 <p>Use this after you've collected verified papers and uploaded them to Claude. Claude works well with documents you've provided.</p>
-<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I have uploaded <strong>[N]</strong> papers on <strong>[topic]</strong>. Please: 1. Identify the key points of agreement across these papers 2. Identify the key points of disagreement or tension 3. Note any methodological differences that might explain different findings 4. Identify gaps — what questions do these papers not address? 5. For every claim you make, cite the specific paper(s) from my uploaded documents using [Author, Year] format</div>
+<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> I have uploaded <strong>[N]</strong> papers on <strong>[topic]</strong>. Please:<br>1. Identify the key points of agreement across these papers<br>2. Identify the key points of disagreement or tension<br>3. Note any methodological differences that might explain different findings<br>4. Identify gaps: what questions do these papers not address?<br>5. For every claim you make, cite the specific paper(s) from my uploaded documents using [Author, Year] format</div>
 </div>
 <div class="card">
 <h3>🔎 The Critical Reading Prompt</h3>
 <p>Use this when you need to deeply engage with a single paper, especially one that's central to your research.</p>
-<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> Please read the attached paper and help me evaluate it critically: 1. What is the central argument or finding? 2. What methodology did the authors use, and what are its strengths and limitations? 3. What assumptions does the paper make (stated or unstated)? 4. How does this paper relate to <strong>[my specific research question]</strong>? 5. What questions would you ask the authors if you were a peer reviewer?</div>
+<div class="prompt-example"><span class="prompt-label">PROMPT TEMPLATE</span> Please read the attached paper and help me evaluate it critically:<br>1. What is the central argument or finding?<br>2. What methodology did the authors use, and what are its strengths and limitations?<br>3. What assumptions does the paper make (stated or unstated)?<br>4. How does this paper relate to <strong>[my specific research question]</strong>?<br>5. What questions would you ask the authors if you were a peer reviewer?</div>
 </div>
 <div class="card">
 <h3>🛡️ Anti-Hallucination Prompt Strategies</h3>
@@ -422,7 +422,7 @@
 <p style="margin-top: 20px;">It is worth spending time on the custom instructions. Here is an example you can adapt:</p>
 <div class="technical-detail">
 <h3>Example Project Instructions</h3>
-<div class="prompt-example"><span class="prompt-label">CUSTOM INSTRUCTIONS</span> You are my research assistant for my PhD on <strong>[topic]</strong> in <strong>[department]</strong> at <strong>[university]</strong>. My research question is: <strong>[question]</strong> My methodology is: <strong>[approach]</strong> When helping me: - Always ground your responses in the papers I've uploaded to this project - When I ask about the literature, cite specific papers from my project using [Author, Year] - Never generate citations from memory — if I need new papers, direct me to search Semantic Scholar or Google Scholar - When I ask you to summarise, always note what a paper's methodology was, not just its findings - Flag when my uploaded papers disagree with each other - Be direct about limitations and gaps - If I ask something that my uploaded papers don't address, say so clearly</div>
+<div class="prompt-example"><span class="prompt-label">CUSTOM INSTRUCTIONS</span> You are my research assistant for my PhD on <strong>[topic]</strong> in <strong>[department]</strong> at <strong>[university]</strong>.<br>My research question is: <strong>[question]</strong><br>My methodology is: <strong>[approach]</strong><br>When helping me:<br>- Always ground your responses in the papers I've uploaded to this project<br>- When I ask about the literature, cite specific papers from my project using [Author, Year]<br>- Never generate citations from memory. If I need new papers, direct me to search Semantic Scholar or Google Scholar<br>- When I ask you to summarise, always note what a paper's methodology was, not just its findings<br>- Flag when my uploaded papers disagree with each other<br>- Be direct about limitations and gaps<br>- If I ask something that my uploaded papers don't address, say so clearly</div>
 </div>
 <div class="info-box"><strong>Practical tip:</strong> Start small. Upload your 5 most important papers and your research proposal. As you find more relevant papers through your searches, add them to the Project over time. This creates a growing, curated knowledge base that Claude can draw on, and because every paper in it was found and verified by <em>you</em>, the citation problem is greatly reduced.</div>
 <!-- SECTION 3: CLAUDE CODE SKILLS -->
@@ -430,7 +430,7 @@
 <p>This section is for those who want to go further. Most students won't need this right now, but understanding what's possible will help you decide how deep you want to go, and give you a sense of where these tools are heading.</p>
 <div class="technical-detail">
 <h3>What is Claude Code?</h3>
-<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer. It can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. It's free to try with a Claude account.</p>
+<p>Claude Code is a terminal-based tool (or desktop app based) that runs Claude as an&nbsp;<strong>agent</strong> with access to your computer. It can read files, search the web, write code, and execute multi-step workflows. Unlike the web interface where you type one message at a time, Claude Code can take a complex request and break it into steps, executing each one and adapting as it goes. It <a href="https://claude.com/pricing" target="_blank" rel="noopener">needs a paid Claude plan</a> (Pro or above); Advanced A.2 covers the cost.</p>
 <p style="margin-top: 10px;">You interact with it by typing commands in your terminal (the command line), and it responds by taking actions: reading your files, creating new ones, running searches, and reporting back what it found.</p>
 </div>
 <div class="technical-detail">
@@ -439,7 +439,27 @@
 <p style="margin-top: 10px;">Think of it as the equivalent of Project instructions (Level 2), but stored as a file on your computer rather than in Claude's web interface. That means you can version-control it, share it with collaborators, and customise it to a much greater degree.</p>
 </div>
 <p style="margin-top: 20px;">Here is an example <code>CLAUDE.md</code> for a research project:</p>
-<div class="code-block"><span class="comment"># Research Project: [Your Topic]</span> <span class="comment">## My Research Context</span> - PhD student in [Department], UCT - Research question: [Your question] - Methodology: [Your approach] - Stage: Literature review phase <span class="comment">## Rules for Literature Work</span> - NEVER generate citations from memory - Always verify claims against uploaded sources - When I ask for papers, search Semantic Scholar API instead of guessing - Flag uncertainty with [UNVERIFIED] tags - Maintain my bibliography in Zotero-compatible format <span class="comment">## My Preferred Workflow</span> 1. I provide a research question or theme 2. You help me formulate search queries 3. I run the searches in Semantic Scholar/Elicit 4. I upload the papers I find 5. You help me synthesise and critically evaluate them</div>
+<div class="code-block"><span class="comment"># Research Project: [Your Topic]</span>
+
+<span class="comment">## My Research Context</span>
+- PhD student in [Department], UCT
+- Research question: [Your question]
+- Methodology: [Your approach]
+- Stage: Literature review phase
+
+<span class="comment">## Rules for Literature Work</span>
+- NEVER generate citations from memory
+- Always verify claims against uploaded sources
+- When I ask for papers, search Semantic Scholar API instead of guessing
+- Flag uncertainty with [UNVERIFIED] tags
+- Maintain my bibliography in Zotero-compatible format
+
+<span class="comment">## My Preferred Workflow</span>
+1. I provide a research question or theme
+2. You help me formulate search queries
+3. I run the searches in Semantic Scholar/Elicit
+4. I upload the papers I find
+5. You help me synthesise and critically evaluate them</div>
 <div class="technical-detail">
 <h3>What are Skills?</h3>
 <p>Skills are reusable, multi-step workflows you can trigger with a <strong>slash command</strong> (e.g., <code>/lit-review</code>). They live in a <code>.claude/skills/</code> folder inside your project and can orchestrate complex research tasks that would otherwise require multiple separate prompts.</p>
@@ -455,7 +475,7 @@
 </div>
 <div class="info-box"><strong><a href="https://www.chatprd.ai/how-i-ai/teresa-torres-claude-code-obsdian-task-management" target="_blank" rel="noopener">The Teresa Torres Approach</a>:</strong> Researcher Teresa Torres uses Claude Code with modular context files, separate files for different aspects of her research context, loaded as needed. Her daily workflow includes an automated research digest that surfaces new papers relevant to her predefined topics. This kind of setup takes time to build, but once in place it means new relevant research comes to you rather than you having to go looking for it.</div>
 <!-- SECTION 4: PRIVACY AND DATA -->
-<p>One Level-3 pattern worth knowing by name: Karpathy's "LLM wiki" &mdash; keep your notes as plain markdown files and let Claude Code build and maintain a cross-referenced wiki over them. The Advanced Track lesson <a href="../advanced/Claude Code as a Research Environment.html">Claude Code as a Research Environment</a> describes it properly.</p>
+<p>One Level-3 pattern worth knowing by name: Karpathy's "LLM wiki": keep your notes as plain markdown files and let Claude Code build and maintain a cross-referenced wiki over them. The Advanced Track lesson <a href="../advanced/Claude Code as a Research Environment.html">Claude Code as a Research Environment</a> describes it properly.</p>
 <h2 class="section-title">🔒 A Note on Privacy and Data</h2>
 <div class="warning-box"><strong>⚠️ Important:</strong> When you upload papers to Claude (or any AI tool), those papers are processed on external servers. Before uploading anything, consider the following:
 <ul style="margin-top: 12px; padding-left: 20px; line-height: 1.9;">
@@ -488,7 +508,7 @@
 <div class="card level-card">
 <div class="level-tag">Power Users</div>
 <h3>⚡ Claude Code + Skills</h3>
-<p><strong>Free to try; requires comfort with the terminal.</strong></p>
+<p><strong>Needs a paid Claude plan and comfort with the terminal.</strong></p>
 <p style="margin-top: 8px;">Build automated, multi-step research workflows with CLAUDE.md and skills. Maximum flexibility and customisation. Your instructions live as files you control, and workflows can be shared with collaborators.</p>
 <p style="margin-top: 8px;"><strong>Best for:</strong> Researchers who want maximum control and are comfortable (or willing to learn) working in the terminal.</p>
 </div>
