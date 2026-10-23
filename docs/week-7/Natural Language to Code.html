@@ -293,12 +293,12 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="case-study"><h4>A Concrete Example</h4>
 <p>Imagine you have a CSV file with survey data from 500 respondents. You want to know whether responses differ significantly between two groups. Here is what you might type into an AI coding tool:</p>
 <p style="margin-top: 15px">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
-<p style="margin-top: 15px">A modern AI coding tool will generate working Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation. The entire process takes less than a minute.</p>
+<p style="margin-top: 15px">A modern AI coding tool can generate Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation, though the code needs checking. The entire process takes less than a minute.</p>
 <p style="margin-top: 15px">You described <em>what</em> you wanted rather than <em>how</em> to implement it. The AI translated your intent into specific technical instructions. This is what we mean by natural language as an interface to code.</p>
 </div>
 <div class="highlight-box"><h3><span>The Critical Caveat</span></h3>
 <p>Modern agentic tools like Claude Code are excellent at catching their own programming errors. They iterate autonomously, fix syntax issues, and can even inspect their own visualisation outputs. This is a capability leap from earlier AI coding tools. But there is a category of error these tools do not reliably catch: code that runs perfectly but uses the wrong statistical test, the wrong variable, or the wrong analytical logic for your research question.</p>
-<p style="margin-top: 12px">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may not answer your question. No amount of autonomous iteration catches this, because from the code's perspective, nothing failed. You do not need to write code, but you do need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
+<p style="margin-top: 12px">A t-test applied to ordinal Likert data will run without errors and give you a p-value. That p-value may not answer your question. No amount of iteration driven only by execution errors catches a wrong-test error, because from the code's perspective nothing failed. You do not need to write code, but you do need the scientific understanding to judge whether the code is doing the right analysis. We will return to this in Section 5.</p>
 </div>
 <!-- SECTION 2: THE TOOLS LANDSCAPE -->
 <h2 class="section-title" id="s2">The Tools Landscape</h2>
@@ -317,19 +317,19 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <div class="card"><h3>GitHub Copilot</h3>
 <p><strong>What it is:</strong> An AI coding assistant that integrates directly into code editors like VS Code and JetBrains. As you type code, it suggests completions, from single lines to entire functions, based on the context of what you are writing. It also has a chat panel and an agent mode.</p>
-<p><strong>Key strengths:</strong> Smooth integration into the coding workflow. Excellent for writing code faster if you already know how to code. Supports virtually every programming language. The inline suggestion model feels natural once you get used to it.</p>
-<p><strong>Limitations:</strong> Requires a code editor and some coding knowledge to use effectively. Its <a href="https://docs.github.com/en/copilot/get-started/about-github-copilot" target="_blank" rel="noopener">chat and agent modes</a> can discuss your analysis goals and edit files, but they work inside a code editor. Less useful for complete beginners.</p>
+<p><strong>Key strengths:</strong> Smooth integration into the coding workflow. Excellent for writing code faster if you already know how to code. Provides suggestions for numerous programming languages and frameworks. The inline suggestion model feels natural once you get used to it.</p>
+<p><strong>Limitations:</strong> Requires a code editor and some coding knowledge to use effectively. Its <a href="https://docs.github.com/en/copilot/get-started/about-github-copilot" target="_blank" rel="noopener">chat and agent modes</a> can discuss your analysis goals and edit files, mainly inside a code editor, though chat is also on GitHub’s website and mobile app and agents can run from the website and CLI. Less useful for complete beginners.</p>
 <p><strong>Pricing:</strong> Free tier for students and educators. Pro $10/month.</p>
 </div>
 <div class="card"><h3>Cursor</h3>
 <p><strong>What it is:</strong> An AI-first code editor built on VS Code. It combines the familiar editing experience with deep AI integration: you can chat with your codebase, make multi-file edits through natural language, and run up to eight parallel AI agents on different tasks.</p>
 <p><strong>Key strengths:</strong> AI built into every part of the editor. Multi-file awareness means it understands your entire project. Natural language commands for editing and refactoring. Parallel agents for complex tasks.</p>
 <p><strong>Limitations:</strong> Still a code editor. More approachable than a raw terminal, but still oriented toward people who work with code regularly. The free tier is quite limited.</p>
-<p><strong>Pricing:</strong> Free tier limited. Pro $20/month.</p>
+<p><strong>Pricing:</strong> Free tier limited. Pro ($20/month) is a legacy plan unavailable to new customers; <a href="https://cursor.com/help/account-and-billing/pricing" target="_blank" rel="noopener">new plans include Plus ($8/month) and Premium ($30/month)</a>.</p>
 </div>
 <div class="card"><h3>Google Colab AI</h3>
 <p><strong>What it is:</strong> AI assistance built directly into Google Colaboratory, a free cloud-based Jupyter notebook environment. You can write natural language prompts in code cells and get AI-generated code suggestions.</p>
-<p><strong>Key strengths:</strong> Free with any Google account. Runs in the browser, with no installation needed. Access to free GPU/TPU resources for machine learning tasks. Familiar notebook interface for iterative analysis. Easy to share and collaborate.</p>
+<p><strong>Key strengths:</strong> Free subject to account eligibility and administrator restrictions; AI features also require an account aged 18 or over in a supported locale. Runs in the browser, with no installation needed. Access to free GPU/TPU resources for machine learning tasks. Familiar notebook interface for iterative analysis. Easy to share and collaborate.</p>
 <p><strong>Limitations:</strong> AI features are less sophisticated than dedicated tools. Python-only. Session timeouts can lose your work. The free tier has limited compute resources.</p>
 <p><strong>Pricing:</strong> Free with Google account. Colab Pro from $10/month for more resources.</p>
 </div>
@@ -341,7 +341,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 </div>
 <div class="info-box"><h4>Which Tool Should You Start With?</h4>
-<p><strong>If you have never written code before:</strong> Start with ChatGPT Code Interpreter or Google Colab AI. Both let you upload data and start asking questions immediately, with zero setup. You will hit limitations eventually, but they are the gentlest way in.</p>
+<p><strong>If you have never written code before:</strong> Start with ChatGPT Code Interpreter or Google Colab AI. Eligible users can upload data and ask questions without installing a local analysis environment, subject to account and service restrictions. You will hit limitations eventually, but they are the gentlest way in.</p>
 <p><strong>If you have some coding experience:</strong> Try Cursor or GitHub Copilot. Both integrate into the coding workflow you already know and will accelerate it significantly.</p>
 <p><strong>If you want maximum power and are willing to learn:</strong> Claude Code offers the strongest reasoning and most autonomous capabilities, but requires comfort with command-line tools.</p>
 </div>
@@ -388,7 +388,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </ul>
 </div>
 <div class="warning-box"><h4>The Assessment</h4>
-<p>The quality gap between free and paid AI coding tools is larger than in any other category we have covered in this course. If your research depends heavily on computational analysis, a paid tier may be one of the most cost-effective investments you can make: a single month's subscription costs less than a textbook and can save dozens of hours. But you should know what you are paying for and what the free alternatives can still do. Do not let marketing convince you that free tools are useless, and do not let optimism convince you that they are equivalent to paid ones. The truth sits in between, and where you fall depends on the complexity of your work.</p>
+<p>The quality gap between free and paid AI coding tools is larger than in any other category we have covered in this course. If your research depends heavily on computational analysis, a paid tier may be one of the most cost-effective investments you can make: a single month's entry-level subscription costs less than a textbook and can save dozens of hours. But you should know what you are paying for and what the free alternatives can still do. Do not let marketing convince you that free tools are useless, and do not let optimism convince you that they are equivalent to paid ones. The truth sits in between, and where you fall depends on the complexity of your work.</p>
 </div>
 <div class="tscroll"><table class="comparison-table">
 <thead>
@@ -402,8 +402,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <tbody>
 <tr>
 <td><strong>Claude Code</strong></td>
-<td>None (subscription only)</td>
-<td>Subscription tiers (Pro and up)</td>
+<td>None</td>
+<td><a href="https://code.claude.com/docs/en/setup" target="_blank" rel="noopener">Pro and higher subscriptions, pay-as-you-go Console, or third-party API providers such as Amazon Bedrock</a></td>
 <td>Complex reasoning, multi-file projects, agentic workflows</td>
 </tr>
 <tr>
@@ -449,7 +449,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="technical-detail"><h3 class="lbl">What Is Vibe Coding?</h3>
 <p>The term "vibe coding" was coined in 2025 to describe a style of programming where you guide AI through natural language descriptions, accepting or modifying what it produces based on whether the output "feels right" rather than verifying every line. You describe the vibe of what you want, and the AI fills in the technical details.</p>
 <p style="margin-top: 15px">At its best, vibe coding is a powerful rapid prototyping technique. At its worst, it produces code that <em>appears</em> to work but answers the wrong question. The distinction between these outcomes depends almost entirely on whether you verify the scientific correctness of the analysis, beyond checking that the code runs.</p>
-<p style="margin-top: 15px">One caveat for 2026: modern agentic tools have largely eliminated the old "paste error message back and forth" problem. Claude Code, Codex, and similar tools run code autonomously, read the error, fix it, and iterate, often without any human intervention. They can also view their own plot outputs and critique them. This is a real improvement over earlier tools. But this capability addresses <em>programming errors</em> . It does not address <em>scientific errors</em> , and those are the ones that matter most for research.</p>
+<p style="margin-top: 15px">One caveat for 2026: modern agentic tools have largely eliminated the old "paste error message back and forth" problem. Claude Code, Codex, and similar tools run code autonomously, read the error, fix it, and iterate, often without any human intervention. They can also view their own plot outputs and critique them. This is a real improvement over earlier tools. But this capability addresses <em>programming errors</em> . It does not reliably catch <em>scientific errors</em> , and those are the ones that matter most for research.</p>
 </div>
 <div class="card-grid"><div class="card"><h3>When Vibe Coding Works Well</h3>
 <p>There are legitimate, productive uses of the vibe coding approach in research:</p>
@@ -466,7 +466,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Analysis for publication:</strong> Code that produces results you will report in a paper must be verified, not vibed. A wrong statistical test or a subtle data filtering error can invalidate your findings</li>
 <li><strong>Anything where errors have consequences:</strong> If your analysis informs policy decisions, clinical recommendations, or resource allocation, "it looks about right" is not an acceptable standard</li>
 <li><strong>Complex data pipelines:</strong> When data passes through multiple transformation steps, errors can compound. Each step might look reasonable in isolation while the pipeline as a whole produces garbage</li>
-<li><strong>Reproducibility-critical work:</strong> If other researchers need to reproduce your analysis, vibe-coded scripts with unclear logic and no documentation will fail the reproducibility test</li>
+<li><strong>Reproducibility-critical work:</strong> If other researchers need to reproduce your analysis, vibe-coded scripts with unclear logic and no documentation are at serious risk of failing the reproducibility test</li>
 </ul>
 </div>
 </div>
@@ -494,7 +494,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <div class="card"><h3>Reading Error Messages</h3>
 <p>When code fails, it produces an error message. These messages are not written for beginners, but they contain valuable information. A typical Python error tells you: which line failed, what type of error occurred, and often a description of the problem.</p>
-<p>The most practical skill you can develop is learning to <strong>copy the error message into an AI tool and ask for an explanation</strong> . This is one area where even free-tier AI tools excel, translating cryptic error messages into plain English and suggesting fixes. You do not need to memorise error types. You need to know that the error message is the starting point for fixing the problem, not a reason to give up.</p>
+<p>The most practical skill you can develop is learning to <strong>copy the error message into an AI tool and ask for an explanation</strong> . Even free-tier AI tools are useful for translating cryptic error messages into plain English and suggesting fixes, though their explanations need checking. You do not need to memorise error types. You need to know that the error message is the starting point for fixing the problem, not a reason to give up.</p>
 </div>
 </div>
 <div class="case-study"><h4>The Difference Between "Runs" and "Correct"</h4>
@@ -514,13 +514,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <h2 class="section-title" id="s6">Readings</h2>
 <p style=" margin-bottom: 30px">Three core readings for this sub-lesson. The first two are practical guides aimed at researchers using AI coding tools. The third is an empirical evaluation of how well AI performs as a data analyst.</p>
 <div class="resource-placeholder"><h3 class="lbl">Core Reading 1</h3>
-<p style="font-style: normal; margin-top: 8px"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener"> <strong>Mineault, P. (2026). "Claude Code for Scientists."</strong> </a>. A practical guide by a neuroscientist on how Claude Code fits into a scientific workflow. Covers setup, common use cases, and the balance between AI assistance and scientific rigour. Particularly relevant for researchers who want to understand the agentic approach to AI-assisted coding.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.neuroai.science/p/claude-code-for-scientists" target="_blank" rel="noopener"> <strong>Mineault, P. (2026). "Claude Code for Scientists."</strong> </a>. A practical guide by a neuroscientist on how Claude Code fits into a scientific workflow. Covers project configuration, scientific data analysis and visualisation, and why validation and reproducibility matter. Particularly relevant for researchers who want to understand the agentic approach to AI-assisted coding.</p>
 </div>
 <div class="resource-placeholder"><h3 class="lbl">Core Reading 2</h3>
 <p style="font-style: normal; margin-top: 8px"><a href="https://www.dataquest.io/blog/getting-started-with-claude-code-for-data-scientists/" target="_blank" rel="noopener"> <strong>Dataquest (2025). "Getting Started with Claude Code for Data Scientists."</strong> </a>. A step-by-step introduction to using Claude Code for data analysis tasks. Good for understanding the practical workflow: how you interact with the tool, what kinds of tasks it handles well, and where it needs guidance.</p>
 </div>
 <div class="resource-placeholder"><h3 class="lbl">Core Reading 3</h3>
-<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener"> <strong>Cheng, L., Li, X., &amp; Bing, L. (2023). "Is GPT-4 a Good Data Analyst?" arXiv:2305.15038</strong> </a>; published in <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.637" target="_blank" rel="noopener"><em>Findings of EMNLP 2023</em></a>, 9496&ndash;9514. An empirical evaluation of GPT-4's capabilities as a data analyst, testing it on real-world data analysis tasks. The findings are mixed: strong on standard tasks, weaker on edge cases and domain-specific judgment. Essential reading for understanding both the capabilities and limitations of AI-assisted data analysis.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://arxiv.org/abs/2305.15038" target="_blank" rel="noopener"> <strong>Cheng, L., Li, X., &amp; Bing, L. (2023). "Is GPT-4 a Good Data Analyst?" arXiv:2305.15038</strong> </a>; published in <a href="https://doi.org/10.18653/v1/2023.findings-emnlp.637" target="_blank" rel="noopener"><em>Findings of EMNLP 2023</em></a>, 9496&ndash;9514. An empirical evaluation of GPT-4 as a data analyst, testing it on benchmark analysis tasks and five practical questions and comparing it with professional analysts. The findings are mixed: strong on standard tasks, weaker on edge cases and domain-specific judgment. Essential reading for understanding both the capabilities and limitations of AI-assisted data analysis.</p>
 </div>
 <p style=" margin-top: 40px; margin-bottom: 20px"><strong>Supplementary readings</strong> for those who want to go deeper:</p>
 <div class="resource-placeholder"><h3 class="lbl">Supplementary Reading 1</h3>

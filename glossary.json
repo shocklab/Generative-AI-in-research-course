@@ -149,14 +149,14 @@
     },
     {
       "term": "Benchmark",
-      "definition": "A standardised test used to measure and compare AI models, made of problems with known answers. A high benchmark score can overstate real-world ability if the test is easier than actual tasks.",
+      "definition": "A standardised test used to measure and compare AI models, usually a fixed set of problems with a scoring method. A high benchmark score can overstate real-world ability if the test is easier than actual tasks.",
       "aliases": [
         "benchmark"
       ]
     },
     {
       "term": "Benchmark contamination",
-      "definition": "Inflated benchmark scores caused by a model having seen the test questions and answers during training. The test is no longer unseen, so high scores may reflect memorisation rather than genuine reasoning.",
+      "definition": "Benchmark material getting into a model's training data, which can inflate its scores and make evaluation results misleading. The test is no longer unseen, so high scores may reflect memorisation rather than genuine reasoning.",
       "aliases": [
         "benchmark contamination"
       ]
@@ -192,7 +192,7 @@
     },
     {
       "term": "CARE Principles",
-      "definition": "A 2018 framework for Indigenous data governance (Collective Benefit, Authority to Control, Responsibility, Ethics) asserting that communities must control data about them and that its use serve their interests.",
+      "definition": "An Indigenous data-governance framework first drafted in November 2018 and formally adopted and published by the Global Indigenous Data Alliance in September 2019 (Collective Benefit, Authority to Control, Responsibility, Ethics) asserting that communities must control data about them and that its use serve their interests.",
       "aliases": [
         "CARE Principles"
       ]
@@ -242,7 +242,7 @@
     },
     {
       "term": "CO₂ equivalent (CO₂e)",
-      "definition": "A standardised unit that converts all greenhouse gases into the amount of carbon dioxide that would cause the same warming, letting different emission sources be compared on a single scale.",
+      "definition": "A standardised unit that expresses a greenhouse gas as the amount of carbon dioxide that would cause the same warming over a given time horizon, usually 100 years, letting different emission sources be compared on a single scale.",
       "aliases": [
         "CO₂ equivalent (CO₂e)"
       ]
@@ -256,21 +256,21 @@
     },
     {
       "term": "Colourblind-safe palette",
-      "definition": "A set of colours chosen so the distinctions stay visible under common colour-vision deficiencies, which affect roughly 8% of men. Examples include the Okabe-Ito palette and the viridis colour map.",
+      "definition": "A set of colours chosen so the distinctions stay visible under common colour-vision deficiencies, including red-green deficiencies, which affect roughly 8% of men of Northern European ancestry and fewer in most other populations. Examples include the Okabe-Ito palette and the viridis colour map.",
       "aliases": [
         "colourblind-safe palette"
       ]
     },
     {
       "term": "Compositional brittleness",
-      "definition": "The way small per-step error rates multiply across a multi-step AI task: each step may look plausible, but combined mistakes can make the final result substantially wrong.",
+      "definition": "The way small per-step errors compound across a multi-step AI task: per-step success probabilities multiply, so combined mistakes can make the final result substantially wrong.",
       "aliases": [
         "compositional brittleness"
       ]
     },
     {
       "term": "Computer-use agent",
-      "definition": "An AI agent that controls a computer graphically, reading the screen as an image and then clicking and typing, rather than calling software directly, so it can operate any application, even ones with no API.",
+      "definition": "An AI agent that controls a computer graphically, reading the screen as an image and then clicking and typing, rather than calling software directly, so it can operate applications with no API, though reliability is lower with niche applications or several applications at once.",
       "aliases": [
         "computer-use agent"
       ]
@@ -291,7 +291,7 @@
     },
     {
       "term": "Consensus Meter",
-      "definition": "A visual indicator in the Consensus search engine that aggregates how peer-reviewed papers answer a specific research question, showing whether the literature broadly agrees, disagrees, or is divided.",
+      "definition": "A visual indicator in the Consensus search engine that uses language models to classify top results for yes/no research questions as yes, no or possibly and aggregates them, giving a snapshot of those results.",
       "aliases": [
         "Consensus Meter"
       ]
@@ -1197,7 +1197,7 @@
     },
     {
       "term": "WER (word error rate)",
-      "definition": "The standard measure of transcription accuracy: the percentage of words that are wrong (substituted, deleted, or inserted) against the correct reference text. A 10% WER means about one word in ten is incorrect.",
+      "definition": "The standard measure of transcription accuracy: the percentage of words that are wrong (substituted, deleted, or inserted) against the correct reference text. A 10% WER means about one word error (a substitution, deletion or insertion) per ten words of the reference transcript.",
       "aliases": [
         "WER (word error rate)"
       ]
@@ -1218,7 +1218,7 @@
     },
     {
       "term": "Writing homogenisation",
-      "definition": "The tendency of AI writing tools to push authors toward a single dominant style, typically Western native-English prose, reducing the stylistic and cultural diversity that naturally exists across writers and linguistic communities.",
+      "definition": "The tendency of AI writing tools to make writers' styles converge; one study found Western-centric tools pushing Indian writers towards American styles.",
       "aliases": [
         "writing homogenisation"
       ]

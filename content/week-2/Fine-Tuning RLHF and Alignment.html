@@ -314,7 +314,7 @@
 <div class="intro-text">
 <h2>What We'll Cover</h2>
 <p>In the last two sessions we covered <em>how</em> transformers are built and <em>how</em> they are pre-trained on massive text corpora. But a freshly pre-trained model is a strange thing: it has absorbed an enormous amount of human knowledge, yet it would complete your carefully written prompt with something entirely unhelpful, or worse.</p>
-<p>This session covers what happens <em>after</em> pre-training: the techniques that turn a raw language model into Claude, ChatGPT, or Gemini. This is also the stage that AI labs are most secretive about, so there is a lot of speculation and partial information in the public record.</p>
+<p>This session covers what happens <em>after</em> pre-training: the techniques that turn a raw language model into Claude, ChatGPT, or Gemini. This is also a stage that AI labs disclose little about, so there is a lot of speculation and partial information in the public record.</p>
 <p>We will look at Supervised Fine-Tuning, Reinforcement Learning from Human Feedback (RLHF), Constitutional AI, Direct Preference Optimisation, and finally the practical question every researcher eventually asks: <em>can I fine-tune a model for my own domain?</em></p>
 <figure id="fig-w2-rlhf" class="diagram"><svg width="100%" viewBox="0 0 680 183" role="img" xmlns="http://www.w3.org/2000/svg"><title>The three steps of RLHF</title><desc>Three stages: supervised fine-tuning, a reward model from human preferences, and reinforcement learning with a KL penalty.</desc><rect x="1" y="1" width="678" height="181" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Supervised fine-tuning on example answers</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Train a reward model from human preferences</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Optimise with RL (PPO), held close by a KL penalty</text></svg><figcaption>RLHF in three stages: imitate good answers, learn what people prefer, then optimise toward it without drifting too far.</figcaption></figure>
 
@@ -357,7 +357,7 @@
 <h3>How SFT Works</h3>
 <p>Supervised Fine-Tuning takes a pre-trained model and continues training it, now on a much smaller, carefully curated dataset of (prompt, ideal response) pairs.</p>
 <ul class="styled-list">
-<li><strong>Dataset size:</strong> Typically thousands to tens of thousands of examples, tiny compared to pre-training</li>
+<li><strong>Dataset size:</strong> Well-known datasets range from about a thousand to tens of thousands of examples; some reach millions, still tiny compared to pre-training data</li>
 <li><strong>Data source:</strong> Written by human contractors or researchers who demonstrate ideal responses</li>
 <li><strong>Training objective:</strong> Same as pre-training (next-token prediction), but on high-quality instruction data</li>
 <li><strong>Result:</strong> Model learns to "act like an assistant": it begins producing structured, helpful responses rather than raw text continuations</li>
@@ -420,7 +420,7 @@
 <h3>Limitations &amp; Failure Modes</h3>
 <ul class="styled-list">
 <li><strong>Reward hacking:</strong> The model can find ways to score highly on the reward model without being genuinely better, like a student who learns to game a marking rubric</li>
-<li><strong>Sycophancy:</strong> Models often learn to tell users what they want to hear, since agreeable responses tend to receive higher ratings from annotators</li>
+<li><strong>Sycophancy:</strong> Models often learn to tell users what they want to hear, likely in part because agreeable responses tend to receive higher ratings from annotators</li>
 <li><strong>Annotation disagreement:</strong> Different human annotators have different values and preferences; the reward model averages over these, possibly poorly</li>
 <li><strong>Expensive:</strong> High-quality human preference data from domain experts is costly to collect</li>
 <li><strong>Alignment tax:</strong> RLHF can reduce raw capability on some benchmarks while improving behaviour</li>
@@ -453,14 +453,14 @@
 </tr>
 <tr>
 <td><strong>Constitutional AI (CAI)</strong></td>
-<td>Model critiques its own outputs against a written "constitution"; uses AI feedback (RLAIF) instead of human feedback</td>
+<td>Model critiques its own outputs against a written "constitution"; uses AI feedback (RLAIF) for harmlessness and human labels for helpfulness</td>
 <td>Scalable; reduces expensive human annotation; makes values explicit</td>
 <td>Claude models (Anthropic)</td>
 </tr>
 <tr>
 <td><strong>DPO (Direct Preference Optimisation)</strong></td>
 <td>Reformulates preference learning as a classification problem on the language model itself; no separate reward model or RL loop needed</td>
-<td>Much simpler training; stable; similar performance to RLHF</td>
+<td>Much simpler training; stable; matched or beat PPO-based RLHF in the original experiments, though later work found well-tuned PPO can beat DPO</td>
 <td>Zephyr, Llama-3-Instruct, many open models</td>
 </tr>
 <tr>
@@ -483,7 +483,7 @@
 <p>Constitutional AI (CAI), developed by Anthropic, is the approach used to train Claude, the AI that helped design these course pages. It works in two stages:</p>
 <ul class="styled-list" style="margin-top: 10px;">
 <li><strong>Supervised stage:</strong> The model is shown its own potentially harmful response and asked to critique it against a list of principles (the "constitution"), then revise the response. This generates supervised training data without human annotation of every example.</li>
-<li><strong>RL stage:</strong> A separate AI model (rather than humans) scores responses against the constitution. This "AI feedback" (RLAIF) replaces the expensive human preference collection step.</li>
+<li><strong>RL stage:</strong> A separate AI model (rather than humans) scores responses against the constitution. This <a href="https://arxiv.org/abs/2212.08073" target="_blank" rel="noopener">"AI feedback" (RLAIF)</a> replaces human preference labels for harmlessness; human labels for helpfulness are still collected.</li>
 </ul>
 <p style="margin-top: 10px;">The key advantage is that the values guiding alignment are made <em>explicit</em> in the constitution, rather than being implicitly encoded in annotator preferences. This also makes the process more auditable.</p>
 </div>
@@ -508,16 +508,16 @@
 <p>Update all parameters of the pre-trained model on your domain data.</p>
 <ul class="styled-list">
 <li><strong>Best performance:</strong> Can maximally adapt the model to new domain</li>
-<li><strong>Expensive:</strong> Requires the same GPU memory as pre-training a model of that size</li>
+<li><strong>Expensive:</strong> Needs roughly the same GPU memory as pre-training a model of that size, with the same weights, gradients and optimiser states; activation memory varies with batch size and sequence length</li>
 <li><strong>Catastrophic forgetting:</strong> Model can lose general capabilities if training data is narrow</li>
 <li><strong>Practical:</strong> Only realistic for models up to a few billion parameters on consumer hardware; larger models require significant cloud compute</li>
 </ul>
 </div>
 <div class="card">
 <h3>LoRA (Low-Rank Adaptation)</h3>
-<p>The dominant approach for researcher-scale fine-tuning. Instead of updating all weights, inject small trainable matrices alongside the existing attention weights.</p>
+<p>LoRA, with QLoRA, is among the most widely used approaches for researcher-scale fine-tuning. Instead of updating all weights, inject small trainable matrices alongside the existing attention weights.</p>
 <ul class="styled-list">
-<li><strong>Only ~0.1–1% of parameters updated:</strong> Dramatically lower memory and compute</li>
+<li><strong>Typically ~0.1–1% of parameters updated, sometimes ~0.01% for GPT-3:</strong> Dramatically lower memory and compute</li>
 <li><strong>Near-equivalent performance:</strong> For most domain adaptation tasks, LoRA matches full fine-tuning</li>
 <li><strong>Composable:</strong> LoRA adapters can be merged, swapped, or shared, enabling collaborative fine-tuning</li>
 <li><strong>Practical:</strong> A 7B model can be LoRA fine-tuned on a single consumer GPU in hours</li>

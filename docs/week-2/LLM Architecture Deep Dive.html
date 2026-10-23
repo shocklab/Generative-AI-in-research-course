@@ -281,7 +281,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <!-- SECTION 1: TRANSFORMER FUNDAMENTALS -->
 <h2 class="section-title" id="s1">Transformer Architecture Fundamentals</h2>
 <p style=" margin-bottom: 30px">Let's revisit the transformer architecture with more technical depth. While Week 1 gave us the intuition, here we'll understand the actual mechanisms.</p>
-<figure id="fig-w2-forward-pass" class="diagram"><svg width="100%" viewBox="0 0 680 403" role="img" xmlns="http://www.w3.org/2000/svg"><title>How a transformer turns text into the next token</title><desc>A seven-step vertical pipeline from tokenising text to sampling the next token. Labels: Tokenise — split text into subword token IDs; Embed — each token becomes a vector; Add positional encoding — mark word order; Stack of transformer layers — attention + feed-forward; Final layer norm; Output projection — score every word in the vocabulary; Sample the next token.</desc><rect x="1" y="1" width="678" height="401" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="228" x2="340" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="283" x2="340" y2="305" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="338" x2="340" y2="360" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Tokenise — split text into subword token IDs</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Embed — each token becomes a vector</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Add positional encoding — mark word order</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Stack of transformer layers — attention + feed-forward</text><rect x="130" y="250" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="270" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Final layer norm</text><rect x="130" y="305" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="325" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Output projection — score every word in the vocabulary</text><rect x="130" y="360" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="380" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Sample the next token</text></svg><figcaption>A transformer's forward pass: text in, one next-token out, then the whole thing repeats to generate.</figcaption></figure>
+<figure id="fig-w2-forward-pass" class="diagram"><svg width="100%" viewBox="0 0 680 403" role="img" xmlns="http://www.w3.org/2000/svg"><title>How a transformer turns text into the next token</title><desc>A seven-step vertical pipeline from tokenising text to sampling the next token. Labels: Tokenise — split text into subword token IDs; Embed — each token becomes a vector; Add positional encoding — mark word order; Stack of transformer layers — attention + feed-forward; Final layer norm; Output projection: score every token in the vocabulary; Sample the next token.</desc><rect x="1" y="1" width="678" height="401" rx="3" fill="#f5f7f9" stroke="#d3d9e0"/><defs><marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs><line x1="340" y1="63" x2="340" y2="85" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="118" x2="340" y2="140" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="173" x2="340" y2="195" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="228" x2="340" y2="250" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="283" x2="340" y2="305" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><line x1="340" y1="338" x2="340" y2="360" stroke="#6a6256" stroke-width="2" marker-end="url(#arrow)"/><rect x="130" y="30" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="50" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Tokenise — split text into subword token IDs</text><rect x="130" y="85" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="105" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Embed — each token becomes a vector</text><rect x="130" y="140" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="160" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Add positional encoding — mark word order</text><rect x="130" y="195" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="215" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Stack of transformer layers — attention + feed-forward</text><rect x="130" y="250" width="420" height="33" rx="9" fill="#ffffff" stroke="#d3d9e0"/><text x="340.0" y="270" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#3f3a32">Final layer norm</text><rect x="130" y="305" width="420" height="33" rx="9" fill="#d6e3f2" stroke="#9fb8d6"/><text x="340.0" y="325" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#003A70">Output projection: score every token in the vocabulary</text><rect x="130" y="360" width="420" height="33" rx="9" fill="#e7efe8" stroke="#8fb09a"/><text x="340.0" y="380" text-anchor="middle" font-family="'Newsreader',Georgia,serif" font-size="13" fill="#2c6e3f">Sample the next token</text></svg><figcaption>A transformer's forward pass: text in, one next-token out, then the whole thing repeats to generate.</figcaption></figure>
 
 <p style=" margin-bottom: 30px">This video is in addition to the videos from last week and is also a little technical, but it does give a slightly different description of the 3blue1brown explanations.</p>
 <div class="resource-placeholder"><h3 class="lbl h4long">Take a look at the 3Blue1Brown videos before this one, but here is a lecture series on the transformer architecture.</h3>
@@ -300,7 +300,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Modern LLMs (GPT, Claude, LLaMA) use <strong>decoder-only</strong> architectures rather than the original encoder-decoder design.</p>
 <ul class="styled-list">
 <li><strong>Autoregressive generation:</strong> Predict one token at a time, left to right</li>
-<li><strong>Causal masking:</strong> Each token can only attend to previous tokens</li>
+<li><strong>Causal masking:</strong> Each token can attend only to itself and earlier tokens</li>
 <li><strong>Simpler architecture:</strong> No cross-attention needed</li>
 <li><strong>Unified pre-training:</strong> Single objective (next-token prediction) for all training</li>
 </ul>
@@ -314,7 +314,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <ol style="margin-left: 25px">
 <li><strong>Tokenization:</strong> Text → token IDs (e.g., "The cat" → [464, 3797])</li>
 <li><strong>Embedding lookup:</strong> Each token ID → dense vector (e.g., 4096 dimensions)</li>
-<li><strong>Positional encoding:</strong> Add position information to each token vector</li>
+<li><strong>Positional encoding:</strong> Add position information to token vectors in absolute-position models; RoPE models such as Llama rotate queries and keys inside attention</li>
 <li><strong>Transformer layers (repeated N times):</strong>
 <ul style="margin-left: 20px; margin-top: 8px">
 <li>Multi-head self-attention: tokens attend to previous context</li>
@@ -339,7 +339,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style="margin-top: 15px">Self-attention mechanisms let transformers do the same thing: for each token, learn which other tokens in the context are relevant, and weight them accordingly when building representations.</p>
 </div>
 <div class="card-grid grid-wide"><div class="card"><h3>Self-Attention</h3>
-<p>The core mechanism: each token computes attention scores with every other token in the sequence.</p>
+<p>The core mechanism: each token computes attention scores with all tokens it can see, meaning all tokens in unmasked attention, or itself and earlier tokens under a causal mask.</p>
 <ul class="styled-list">
 <li><strong>Query, Key, Value:</strong> Each token produces three vectors through learned projections</li>
 <li><strong>Attention scores:</strong> Dot product of Query with all Keys (how relevant is each token?)</li>
@@ -347,13 +347,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Weighted sum:</strong> Combine Values using attention weights</li>
 </ul>
 <div class="info-box" style="margin-top: 15px"><h4>Scaled Dot-Product</h4>
-<p>Attention scores are scaled by √d_k (square root of key dimension) to prevent extremely small gradients in softmax for large embedding sizes.</p>
+<p>Attention scores are divided by √d_k (square root of key dimension), since for large d_k the dot products grow large and give extremely small softmax gradients.</p>
 </div>
 </div>
 <div class="card"><h3>Multi-Head Attention</h3>
 <p>Instead of one attention mechanism, use many in parallel, each learning different patterns.</p>
 <ul class="styled-list">
-<li><strong>Multiple heads:</strong> 32-96 attention heads in modern LLMs</li>
+<li><strong>Multiple heads:</strong> Typically a few dozen heads; examples range from 14 in Qwen2.5-0.5B to 128 in DeepSeek-V3</li>
 <li><strong>Specialized patterns:</strong> Each head might learn syntax, semantics, or other relationships</li>
 <li><strong>Concatenation:</strong> Outputs from all heads combined and projected</li>
 <li><strong>Richer representations:</strong> Capture multiple types of dependencies simultaneously</li>
@@ -393,13 +393,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td><strong>Multi-Query Attention (MQA)</strong></td>
 <td>Share K, V across heads; unique Q per head</td>
 <td>Faster inference, less memory</td>
-<td>PaLM, some Llama variants</td>
+<td>PaLM</td>
 </tr>
 <tr>
 <td><strong>Grouped-Query Attention (GQA)</strong></td>
 <td>Multiple heads share K, V in groups</td>
 <td>Balance between MHA and MQA</td>
-<td>Llama 2, Mistral, GPT-4 (rumored)</td>
+<td>Llama 2 (34B and 70B), Mistral 7B, GPT-4 (rumoured)</td>
 </tr>
 </tbody>
 </table></div>
@@ -407,13 +407,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <!-- SECTION 3: POSITIONAL ENCODING -->
 <h2 class="section-title" id="s3">Positional Encoding: Teaching Position</h2>
-<p style=" margin-bottom: 30px">Transformers process all tokens in parallel (unlike RNNs which are sequential). But word order matters! Positional encoding solves this problem.</p>
+<p style=" margin-bottom: 30px">Transformers process available tokens in parallel during training and prompt processing (unlike sequential RNNs), but generate output one token at a time. But word order matters! Positional encoding solves this problem.</p>
 <div class="card-grid"><div class="card"><h3>Absolute Positional Encoding</h3>
 <p>Original approach: add a position-specific vector to each token embedding.</p>
 <ul class="styled-list">
 <li><strong>Sinusoidal encoding:</strong> Original transformer used sin/cos functions of different frequencies</li>
 <li><strong>Learned positions:</strong> Some models learn position embeddings during training (like GPT)</li>
-<li><strong>Fixed context:</strong> Limited to maximum sequence length seen during training</li>
+<li><strong>Fixed context:</strong> Learned absolute embeddings are limited to the training length; sinusoidal encodings can be computed beyond it but generalise poorly</li>
 <li><strong>Issue:</strong> Doesn't extrapolate well to longer sequences</li>
 </ul>
 </div>
@@ -423,7 +423,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>RoPE (Rotary Position Embedding):</strong> Rotate Q and K vectors based on position; used in LLaMA, Mistral, GPT-NeoX</li>
 <li><strong>ALiBi (Attention with Linear Biases):</strong> Add bias to attention scores based on distance; used in BLOOM, MPT</li>
 <li><strong>Length extrapolation:</strong> Can be extended to sequences longer than the training context, though RoPE models usually need extra methods such as position interpolation</li>
-<li><strong>Better generalization:</strong> Understands "distance" concept rather than memorizing positions</li>
+<li><strong>Better generalization:</strong> Represents distances between tokens rather than absolute positions; extrapolation depends on the method</li>
 </ul>
 </div>
 </div>
@@ -446,16 +446,16 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
 <div class="highlight-box"><h3><span>The Efficiency Revolution</span></h3>
 <p>Modern LLM research focuses on <strong>parameter efficiency</strong>: getting better performance without proportionally increasing compute costs. Not every parameter needs to activate for every input.</p>
-<p style="margin-top: 15px">This shift, from "bigger is better" to "smarter is better", is driven by Mixture of Experts architectures, attention optimizations, and clever training techniques.</p>
+<p style="margin-top: 15px">This shift, from "bigger is better" to "smarter is better", is driven in part by Mixture of Experts architectures, attention optimisations, and better training techniques.</p>
 </div>
 <div class="technical-detail"><h4>Mixture of Experts (MoE)</h4>
 <p style="margin-bottom: 15px">MoE is one of the architectural changes shaping modern LLMs. Instead of using all parameters for every token, route each token to a <em>subset</em> of specialized "expert" networks.</p>
 <div style=" margin: 20px 0"><h5 style=" margin-bottom: 10px">How MoE Works:</h5>
 <ol style="margin-left: 25px">
-<li><strong>Expert networks:</strong> Instead of one feed-forward network per layer, have 8-64 expert FFNs</li>
+<li><strong>Expert networks:</strong> Instead of one feed-forward network per layer, have many expert FFNs: <a href="https://huggingface.co/Qwen/Qwen3-30B-A3B/raw/main/config.json" target="_blank" rel="noopener">128 in Qwen3 MoE</a> and <a href="https://arxiv.org/abs/2412.19437" target="_blank" rel="noopener">256 routed plus one shared expert in DeepSeek-V3</a></li>
 <li><strong>Router network:</strong> Small learned network decides which experts process each token</li>
-<li><strong>Sparse activation:</strong> Only top-K experts (typically 2-8) activate per token</li>
-<li><strong>Load balancing:</strong> Ensure tokens distribute roughly evenly across experts</li>
+<li><strong>Sparse activation:</strong> Top-K routed experts activate per token, with K varying by model; some models also activate shared experts</li>
+<li><strong>Load balancing:</strong> Encourages tokens to distribute roughly evenly across experts</li>
 <li><strong>Combination:</strong> Outputs from active experts weighted and summed</li>
 </ol>
 </div>
@@ -463,7 +463,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <ul class="styled-list">
 <li><strong>Massive parameter count:</strong> 100B+ total parameters with only 10-20B active per token</li>
 <li><strong>Inference efficiency:</strong> Computational cost based on active parameters, not total</li>
-<li><strong>Specialisation:</strong> experts tend to divide up token-level patterns such as syntax rather than subjects; <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">in Mixtral</a>, biology, philosophy and arXiv text used much the same experts</li>
+<li><strong>Specialisation:</strong> <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">in Mixtral</a>, routing aligned more with syntax than subjects, and biology, philosophy and arXiv text used much the same experts; other MoE models can have domain-specific experts</li>
 <li><strong>Scaling:</strong> Add more experts without proportional compute increase</li>
 </ul>
 </div>
@@ -478,8 +478,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 </div>
 <div class="info-box"><h4>MoE in Production Models</h4>
-<p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">matches or beats Llama 2 70B on the reported benchmarks</a> with the per-token compute of a 13B model (all 47B must still be held in memory)</p>
-<p style="margin-top: 8px"><strong>DeepSeek-V3:</strong> 256 experts, 8 active per token → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
+<p><strong>Mixtral 8x7B:</strong> 8 experts, 2 active per token → 47B total params, 13B active → <a href="https://arxiv.org/abs/2401.04088" target="_blank" rel="noopener">matches or beats Llama 2 70B on almost all reported benchmarks (except HellaSwag, WinoGrande and TriviaQA)</a> with the per-token compute of a 13B model (all 47B must still be held in memory)</p>
+<p style="margin-top: 8px"><strong>DeepSeek-V3:</strong> 256 routed experts per MoE layer, 8 active per token, plus one always-active shared expert → 671B total params, 37B active → competitive with GPT-4 at fraction of inference cost</p>
 <p style="margin-top: 8px"><strong>GPT-4 (rumored):</strong> Speculated to use MoE with 8-16 experts, explaining its size vs. inference speed</p>
 </div>
 <div class="resource-placeholder"><h4>Mixture of Experts explanation</h4>
@@ -491,11 +491,11 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <h2 class="section-title" id="s5">Understanding Model Scale</h2>
 <p style=" margin-bottom: 30px">When we say "GPT-4 has 1.76 trillion parameters" (a widely-circulated but unconfirmed third-party estimate, never officially disclosed by OpenAI) or "LLaMA 3 70B," what do these numbers actually mean? And is bigger always better?</p>
 <div class="card-grid grid-wide"><div class="card"><h3>Parameter Count Breakdown</h3>
-<p>Parameters are the learned weights in the neural network. They're distributed across:</p>
+<p>Parameters are the values a neural network learns in training, its weights and biases. They're distributed across:</p>
 <ul class="styled-list">
-<li><strong>Embedding layers:</strong> Token + position embeddings (vocab_size × embedding_dim)</li>
+<li><strong>Embedding layers:</strong> Token table (vocab_size × embedding_dim), plus max_positions × embedding_dim for learned positions; sinusoidal encodings and RoPE add no parameters</li>
 <li><strong>Attention layers:</strong> Q, K, V, output projections for each head, each layer</li>
-<li><strong>Feed-forward networks:</strong> Two linear layers per transformer layer (typically 4× hidden size)</li>
+<li><strong>Feed-forward networks:</strong> Two linear layers with 4× inner width in the original transformer; gated SwiGLU networks with about 2/3 of that width in LLaMA</li>
 <li><strong>Layer norms:</strong> Small contribution (scale + shift per layer)</li>
 </ul>
 <div class="info-box" style="margin-top: 15px"><h4>Quick Math</h4>
@@ -505,8 +505,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="card"><h3>Parameters vs. Active Parameters</h3>
 <p>For MoE models, these are different concepts:</p>
 <ul class="styled-list">
-<li><strong>Total parameters:</strong> All weights in all experts (what's reported as "model size")</li>
-<li><strong>Active parameters:</strong> Weights used for any single forward pass</li>
+<li><strong>Total parameters:</strong> All expert weights plus shared attention, embedding and router weights (what's reported as "model size")</li>
+<li><strong>Active parameters:</strong> Weights used to process any single token</li>
 <li><strong>Example:</strong> Mixtral 8x7B has 47B total params but only 13B active per token</li>
 <li><strong>Inference cost:</strong> Determined by active parameters, not total</li>
 </ul>
@@ -543,13 +543,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </tr>
 <tr>
 <td><strong>Narrow domain tasks</strong></td>
-<td> Can be fine-tuned effectively</td>
+<td> Can be fine-tuned effectively for narrow domain tasks, where larger models sometimes add little</td>
 <td>Diminishing returns</td>
 </tr>
 <tr>
 <td><strong>Complex reasoning</strong></td>
 <td>Limited capability</td>
-<td> Better at multi-step problems</td>
+<td> Usually better at multi-step reasoning within a model family; distilled and reasoning-trained small models can also reason well</td>
 </tr>
 <tr>
 <td><strong>Rare/specialized knowledge</strong></td>
@@ -572,7 +572,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style="margin-top: 15px"><strong>GPT-4 (reported ~1.8T, MoE):</strong> Per an unofficial industry report by <a href="https://semianalysis.com/2023/07/10/gpt-4-architecture-infrastructure/" target="_blank" rel="noopener">SemiAnalysis (Patel &amp; Wong, July 2023)</a>, GPT-4 is ~1.8 trillion parameters using 16 experts, a <a href="https://the-decoder.com/gpt-4-architecture-datasets-costs-and-more-leaked/" target="_blank" rel="noopener">leak, not an OpenAI disclosure</a>.</p>
 <p style="margin-top: 15px"><strong>GPT-4o (estimated ~200B):</strong> Third-party estimates put GPT-4o roughly an order of magnitude smaller than GPT-4. A Microsoft / Univ. of Washington benchmark paper lists GPT-4o at <a href="https://arxiv.org/abs/2412.19260" target="_blank" rel="noopener">~200B and GPT-4 at ~1.76T</a> (Ben Abacha et al., 2025), explicitly noting these are mined from public articles and unverified; <a href="https://epoch.ai/gradient-updates/frontier-language-models-have-become-much-smaller" target="_blank" rel="noopener">Epoch AI independently estimates ~200B</a> (and warns it &ldquo;could easily be off by a factor of 2&rdquo;).</p>
 <p style="margin-top: 15px"><strong>Small models:</strong> Open models in the 7B&ndash;13B range (e.g. Llama, Mistral) are genuinely disclosed and run on modest hardware: the figures here are real, not estimated.</p>
-<p style="margin-top: 15px"><strong>The trend:</strong> The frontier has shifted from chasing raw parameter count toward architectural efficiency: sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
+<p style="margin-top: 15px"><strong>The trend:</strong> Since 2023 the frontier has partly shifted from chasing raw parameter count toward architectural efficiency: sparse MoE routing, distillation into smaller models, and test-time (reasoning) compute. Bigger is no longer automatically better, and the most reliable numbers are the ones the makers actually publish.</p>
 </div>
 <div class="resource-placeholder"><h4><a href="https://cameronrwolfe.substack.com/p/llm-scaling-laws" target="_blank" rel="noopener"> Scaling Laws for LLMS</a></h4>
 <h3 dir="auto">Understanding the current state of LLM scaling and the future of AI research</h3>
@@ -600,4 +600,4 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Scale considerations:</strong> Bigger isn't always better; match model to task, consider active vs. total parameters</li>
 </ul>
 <p style="margin-top: 20px"><strong>Next session (Week 2.2):</strong> We'll explore how these architectures are <em>trained</em>: the pre-training process, optimization techniques, and the computational resources required to create LLMs from scratch.</p>
-</div></div><div class="prevnext"><a href="../week-1/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Training%20Large%20Language%20Models.html"><span class="d">Next &rarr;</span><span class="pt">Training Large Language Models</span></a></div><div class="afoot"><p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock before publication. AI-generated errors are possible &mdash; if you spot one, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. Full detail: <a href="../course-introduction/AI%20Content%20Disclaimer.html">AI Content Disclaimer</a>.</p><p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></p></div></main><div class="rightrail"><button class="navtoggle" type="button" data-m="r" aria-expanded="true"><span class="lh">Hide key terms &raquo;</span><span class="ls">&laquo; Show key terms</span></button><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><div class="rmeta">Week 2<br>Lesson 1<br>14 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-token">Token</a></div>The basic unit of text a language model reads and produces, roughly a word or word-fragment (e.g. "unbelievable" may split into "un", "believe", "able"). A model reads the tokens of a prompt in parallel but generates its reply one token at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-attention-mechanism">Attention mechanism</a></div>A component of transformer models that lets the system weigh, for each word it processes, which other words in the text are most relevant, rather than treating all context as equally important.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-positional-encoding">Positional encoding</a></div>Information added to each token before processing to tell the model where in the sequence that token sits, since transformers otherwise treat all positions as equivalent.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-mixture-of-experts-moe">Mixture of experts (MoE)</a></div>An architecture where a large model is split into many sub-networks (experts), and a router sends each token through only a small subset, keeping computation per token low despite a very large total parameter count.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["85%","95%","106%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
+</div></div><div class="prevnext"><a href="../week-1/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Training%20Large%20Language%20Models.html"><span class="d">Next &rarr;</span><span class="pt">Training Large Language Models</span></a></div><div class="afoot"><p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock before publication. AI-generated errors are possible &mdash; if you spot one, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. Full detail: <a href="../course-introduction/AI%20Content%20Disclaimer.html">AI Content Disclaimer</a>.</p><p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></p></div></main><div class="rightrail"><button class="navtoggle" type="button" data-m="r" aria-expanded="true"><span class="lh">Hide key terms &raquo;</span><span class="ls">&laquo; Show key terms</span></button><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><div class="rmeta">Week 2<br>Lesson 1<br>15 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-token">Token</a></div>The basic unit of text a language model reads and produces, roughly a word or word-fragment (e.g. "unbelievable" may split into "un", "believe", "able"). A model reads the tokens of a prompt in parallel but generates its reply one token at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-attention-mechanism">Attention mechanism</a></div>A component of transformer models that lets the system weigh, for each word it processes, which other words in the text are most relevant, rather than treating all context as equally important.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-positional-encoding">Positional encoding</a></div>Information added to each token before processing to tell the model where in the sequence that token sits, since transformers otherwise treat all positions as equivalent.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-mixture-of-experts-moe">Mixture of experts (MoE)</a></div>An architecture where a large model is split into many sub-networks (experts), and a router sends each token through only a small subset, keeping computation per token low despite a very large total parameter count.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["85%","95%","106%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

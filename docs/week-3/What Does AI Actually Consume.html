@@ -274,7 +274,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 @media print{.navtoggle{display:none}}
 @media print{.abody .highlight-box,.abody .highlight-box :not(code){background:none!important;color:var(--ink)!important}.abody .highlight-box{border:1px solid var(--blue)}.abody :is(.code-block,pre){background:none;color:var(--ink);border:1px solid var(--rule2)}.abody .cm,.abody .comment{color:var(--mut)}.mobnav,.prevnext{display:none}}
 </style><script>try{var d=document.documentElement,s=localStorage.getItem("mam-textsize");if(s)d.style.fontSize=(["85%","95%","106%"][s]||"85%");if(localStorage.getItem("mam-hide-left")=="1")d.classList.add("hl");if(localStorage.getItem("mam-hide-right")=="1")d.classList.add("hr");}catch(e){}</script></head><body><a class="skip" href="#main">Skip to main content</a><div class="brandrule"></div><div class="shell"><div class="leftnav"><button class="navtoggle" type="button" data-m="l" aria-expanded="true"><span class="lh">&laquo; Hide left sidebar</span><span class="ls">&raquo; Show left sidebar</span></button><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson cur" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><div class="subs"><a href="#s1">The Transparency Problem</a><a href="#s2">Energy per Interaction</a><a href="#s3">The Agentic Multiplier: Tools Like Claude Code</a><a href="#s4">A Worked Example: The Flight Comparison</a><a href="#s5">Zooming Out: AI’s Share of Global Emissions</a><a href="#s6">The Water Footprint</a><a href="#s7">Putting It at Scale</a></div><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div><main class="maincol" id="main"><script>document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest("[data-m]"):null;if(!t)return;var m=t.getAttribute("data-m"),k=m=="l"?"mam-hide-left":"mam-hide-right",c=m=="l"?"hl":"hr";var on=localStorage.getItem(k)=="1";try{localStorage.setItem(k,on?"0":"1");}catch(e){}document.documentElement.classList.toggle(c,!on);t.setAttribute("aria-expanded",on?"true":"false");});document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".navtoggle").forEach(function(b){var c=b.getAttribute("data-m")=="l"?"hl":"hr";b.setAttribute("aria-expanded",document.documentElement.classList.contains(c)?"false":"true");});});</script><div class="ahead"><div class="eyebrow">MAM5020F &mdash; Generative AI for Research</div><h1>The Cost of Every Prompt</h1><div class="deck">Energy, water, and the environmental footprint of AI at the level of individual interactions</div></div><div class="mobnav"><details><summary>Contents</summary><div class="mnbody"><a class="back" href="../index.html">&larr; All lessons</a><div class="navwk">Week 3 &middot; Environmental Implications of AI</div><nav class="toc"><a class="lesson cur" href="What%20Does%20AI%20Actually%20Consume.html">What Does AI Actually Consume?</a><div class="subs"><a href="#s1">The Transparency Problem</a><a href="#s2">Energy per Interaction</a><a href="#s3">The Agentic Multiplier: Tools Like Claude Code</a><a href="#s4">A Worked Example: The Flight Comparison</a><a href="#s5">Zooming Out: AI’s Share of Global Emissions</a><a href="#s6">The Water Footprint</a><a href="#s7">Putting It at Scale</a></div><a class="lesson" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html">Infrastructure, Scale, and the Rebound Problem</a><a class="lesson" href="Critical%20Minerals%20and%20AI.html">Critical Minerals and AI</a><a class="lesson" href="Sustainable%20AI%20What%20Can%20Be%20Done.html">Sustainable AI: What Can Be Done?</a><a class="lesson" href="Discussion%20Questions.html">Discussion Questions (to prepare before class)</a></nav></div></details><details><summary>Key terms</summary><div class="mnbody"><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></details></div><div class="abody"><div class="intro-text"><h2>What We'll Cover</h2>
-<p class="drop">Every time you send a message to an AI assistant, something physical happens: electricity flows through data-centre hardware on the other side of the world. This session puts numbers on that, so you can think clearly about its environmental implications as a researcher and as a citizen rather than feel guilty about using AI.</p>
+<p class="drop">Every time you send a message to an AI assistant, something physical happens: computing hardware consumes electricity, either on your device or in a data centre whose location need not be across the world. This session puts numbers on that, so you can think clearly about its environmental implications as a researcher and as a citizen rather than feel guilty about using AI.</p>
 <p>We will look at energy consumption from the level of a single query up to the scale of global AI usage, at water (an environmental cost that receives less attention than carbon), and at why the numbers you read in the media should always be treated with careful scepticism.</p>
 <p>This is a topic where the data are genuinely uncertain and where companies have strong incentives to present their products in the best possible light. Part of our job here is to understand <em>why</em> the numbers are uncertain, not just what they are.</p>
 </div>
@@ -288,7 +288,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Major AI developers (OpenAI, Google, Meta, Microsoft, Anthropic) do not publish detailed energy or emissions data for individual models. What is typically missing:</p>
 <ul class="styled-list">
 <li>Energy consumed per query (by model type or size)</li>
-<li>Data centre locations and their grid carbon intensity</li>
+<li>Where each request runs: most AI developers do not publish model locations, none identifies the site serving a request, and Google publishes its cloud regions and their grid carbon intensity</li>
 <li>Water consumption at specific facilities</li>
 <li>Hardware lifecycle data (manufacturing emissions)</li>
 <li>Total annual compute for model training</li>
@@ -307,7 +307,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 </div>
 <div class="resource-placeholder"><h4>Key Reading: The Hidden Costs of AI</h4>
-<p style="font-style: normal; margin-top: 8px"><a href="https://www.nature.com/articles/d41586-024-00478-x" target="_blank" rel="noopener"><strong>Nature (2024): "Generative AI&rsquo;s environmental costs are soaring &mdash; and mostly secret"</strong></a> — Nature's news team interviews researchers and industry figures on the difficulty of getting accurate data from companies. A good starting point for understanding the transparency problem.</p>
+<p style="font-style: normal; margin-top: 8px"><a href="https://www.nature.com/articles/d41586-024-00478-x" target="_blank" rel="noopener"><strong>Nature (2024): "Generative AI&rsquo;s environmental costs are soaring &mdash; and mostly secret"</strong></a> — Kate Crawford’s World View opinion column argues that generative AI’s environmental costs are soaring and mostly kept secret. A good starting point for understanding the transparency problem.</p>
 </div>
 <!-- SECTION 2: ENERGY PER INTERACTION -->
 <h2 class="section-title" id="s2">Energy per Interaction</h2>
@@ -328,7 +328,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td><strong>Google Search query</strong></td>
 <td>~0.3 Wh</td>
 <td>~2 minutes of an LED bulb (10 W)</td>
-<td>Google; moderate confidence</td>
+<td>Google, 2009 estimate; moderate confidence</td>
 </tr>
 <tr>
 <td><strong>ChatGPT text prompt (reported)</strong></td>
@@ -367,7 +367,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <div class="info-box"><h3 class="lbl">Video Generation: A Different Category</h3>
 <p>The energy cost of generating a 5-second AI video (~944 Wh, per MIT Technology Review 2025) is not a typing error. High-resolution video generation involves running a very large diffusion model many times over, the equivalent of generating hundreds or thousands of images sequentially and combining them. This figure comes from measuring open-source video generation models; proprietary models like Sora may differ.</p>
-<p style="margin-top: 8px">For context: 944 Wh is roughly one-seventh of what an average South African household uses in a day (around 6&ndash;7 kWh). That is a meaningful amount for a few seconds of video, though still a fraction of daily household use.</p>
+<p style="margin-top: 8px">For context: 944 Wh is roughly one-seventh of the estimated daily electricity use of an average South African household with mains electricity (around 6&ndash;7 kWh, based on Eskom’s 2024 residential demand and Stats SA’s 2023 household survey). That is a meaningful amount for a few seconds of video, though still a fraction of daily household use.</p>
 </div>
 <!-- SECTION 2b: THE AGENTIC MULTIPLIER -->
 <h2 class="section-title" id="s3">The Agentic Multiplier: Tools Like Claude Code</h2>
@@ -397,8 +397,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td>~0.6–0.8×</td>
 </tr>
 <tr>
-<td><strong>high</strong> (API default)</td>
-<td>Complex reasoning and agentic tasks; the "sweet spot" balancing quality and tokens</td>
+<td><strong>high</strong> (<a href="https://platform.claude.com/docs/en/build-with-claude/effort" target="_blank" rel="noopener">API default on most models</a>; Opus 5.5 and Haiku 5.5 default to medium)</td>
+<td>Complex reasoning, difficult coding and agentic tasks; often the best balance of quality and token efficiency for Opus 4.7</td>
 <td>1× (reference)</td>
 </tr>
 <tr>
@@ -444,8 +444,8 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </tr>
 <tr>
 <td><strong>C. Grid carbon intensity</strong></td>
-<td colspan="3">0.386 kg CO₂/kWh (US grid average) &nbsp;|&nbsp; ~0.9 kg CO₂/kWh (South Africa)</td>
-<td>US figure as used elsewhere in this lesson; SA figure from the <a href="https://www.gov.za/sites/default/files/gcis_document/202411/51495gon5498.pdf" target="_blank" rel="noopener">2022 Grid Emission Factors Report</a> (~0.87–1.01 kg/kWh depending on methodology, SA's grid is ~80% coal).</td>
+<td colspan="3">~0.348 kg CO₂/kWh (US grid average, <a href="https://www.epa.gov/egrid/summary-data" target="_blank" rel="noopener">eGRID2023</a>) &nbsp;|&nbsp; 0.960 kg CO₂e/kWh (South Africa, 2024 national generation factor, published September 2026)</td>
+<td>US figure as used elsewhere in this lesson; SA figure from the <a href="https://www.gov.za/sites/default/files/gcis_document/202609/55353gon7891.pdf" target="_blank" rel="noopener">2024 Grid Emission Factors Report</a> (0.960 kg CO₂e/kWh for national generation and 0.994 for domestic generation, with separate loss factors; SA's grid is ~80% coal).</td>
 </tr>
 </tbody>
 </table></div>
@@ -475,16 +475,16 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <td>~1.7 kWh</td>
 </tr>
 <tr>
-<td><strong>CO₂ — US grid</strong> (× 0.386)</td>
-<td>~0.07 kg</td>
-<td><strong>~0.2 kg</strong></td>
-<td>~0.66 kg</td>
+<td><strong>CO₂: US grid</strong> (× 0.348, eGRID2023)</td>
+<td>~0.06 kg</td>
+<td><strong>~0.18 kg</strong></td>
+<td>~0.59 kg</td>
 </tr>
 <tr>
-<td><strong>CO₂ — South African grid</strong> (× 0.9)</td>
-<td>~0.15 kg</td>
-<td><strong>~0.46 kg</strong></td>
-<td>~1.5 kg</td>
+<td><strong>CO₂e: South African grid</strong> (× 0.96, 2024 national factor)</td>
+<td>~0.16 kg</td>
+<td><strong>~0.49 kg</strong></td>
+<td>~1.6 kg</td>
 </tr>
 </tbody>
 </table></div>
@@ -496,7 +496,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>On the US grid:</strong> a full day ≈ <strong>~0.8 km</strong> of driving (range ~0.3–2.6 km)</li>
 <li><strong>On South Africa's coal-heavy grid:</strong> a full day ≈ <strong>~1.8 km</strong> of driving (range ~0.6–6 km)</li>
 </ul>
-<p style="margin-top: 12px">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a drive of one or two kilometres. (Newer petrol cars emit closer to 0.12–0.17 kg/km, which would roughly <em>double</em> these equivalent distances; the car comparison is itself a range.)</p>
+<p style="margin-top: 12px">In other words, a researcher's central-estimate day on <code>high</code> effort is comparable to a drive of one or two kilometres. (Some recent petrol-car fleet averages fall within 0.12–0.17 kg CO₂/km in laboratory tests, though real-world rates may differ, which would raise these equivalent distances by about <em>1.5 to 2 times</em>; the car comparison is itself a range.)</p>
 </div>
 <div class="warning-box"><h3 class="lbl">The Ceiling: <code>xhigh</code> and <code>max</code> Effort</h3>
 <p>The day above assumes <code>high</code> effort. Pushing every task to <code>xhigh</code> or <code>max</code> (which Anthropic reserves for "genuinely frontier problems" and warns adds "significant cost for relatively small quality gains") could multiply token use a further ~3–10× (our illustrative figure). Applied to the central ~0.5 kWh day, that puts a heavy max-effort day in the region of <strong>1.5–5 kWh</strong>, or roughly <strong>5–18 km</strong> of equivalent driving on the SA grid. But note that effort is a ceiling, not a floor: even on <code>max</code>, a simple request still resolves cheaply, because the model spends tokens roughly in proportion to a task's difficulty. These figures assume 50 genuinely compute- and loop-intensive tasks; a day padded with quick lookups would land well below them. The practical lesson is the same one Anthropic's own guidance gives: do not run at maximum effort by default. Match the effort to the task, both for cost and for footprint.</p>
@@ -522,7 +522,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <tr>
 <th>Energy assumption</th>
 <th>Source</th>
-<th>CO₂ per prompt<br><small>(US grid avg: 0.386 kg/kWh)</small></th>
+<th>CO₂ per prompt<br><small>(assumed grid factor: 0.386 kg/kWh)</small></th>
 <th>Calls to match 1-tonne flight</th>
 </tr>
 </thead>
@@ -536,18 +536,18 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <tr>
 <td>2 Wh</td>
 <td>Mid-range independent estimate</td>
-<td>0.77 g CO₂</td>
+<td>0.772 g CO₂</td>
 <td><strong>~1.3 million</strong></td>
 </tr>
 <tr>
 <td>8 Wh</td>
 <td>Large model, independent measurement</td>
-<td>3.1 g CO₂</td>
-<td><strong>~323,000</strong></td>
+<td>3.088 g CO₂</td>
+<td><strong>~324,000</strong></td>
 </tr>
 </tbody>
 </table></div>
-<p style="margin-top: 15px"><strong>What this tells us:</strong> Depending entirely on which figures you use, one transatlantic flight equals somewhere between 300,000 and 7.6 million ChatGPT text queries. That spread reflects the difference between company-optimised infrastructure and real-world large-model deployments, as well as genuine uncertainty about what "a ChatGPT query" even means in terms of model size and compute.</p>
+<p style="margin-top: 15px"><strong>What this tells us:</strong> Depending entirely on which figures you use, one transatlantic flight equals somewhere between about 300,000 and 7.6 million AI text queries; only the 0.34 Wh figure behind the upper end is a ChatGPT figure. That spread reflects the difference between company-optimised infrastructure and real-world large-model deployments, as well as genuine uncertainty about what "a ChatGPT query" even means in terms of model size and compute.</p>
 </div>
 <div class="highlight-box"><h3><span>Why the Range Is the Lesson</span></h3>
 <p>This calculation produces answers spanning two orders of magnitude, and that spread is itself what to take away from it. Glib comparisons ("ChatGPT = X flights per day") depend almost entirely on unstated assumptions, and the opacity of AI companies makes it impossible to pin down a single honest answer.</p>
@@ -568,13 +568,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li>Electricity &amp; heat &asymp; 40% of energy-related CO<sub>2</sub>; energy-related CO<sub>2</sub> &asymp; 85&ndash;90% of total CO<sub>2</sub>, IEA / <a href="https://ourworldindata.org/emissions-by-sector" target="_blank" rel="noopener">Our World in Data</a> sectoral breakdown.</li>
 </ul>
 <p style="margin-top: 12px"><strong>Step 2 &mdash; Calculation:</strong> If AI&rsquo;s electricity were at average grid carbon intensity, AI&rsquo;s share of energy-related CO<sub>2</sub> &asymp; 0.5% &times; 40% &asymp; <strong>0.2%</strong>. AI loads are concentrated in the US (gas-heavy) and China (coal-heavy), pushing intensity above average; the largest operators&rsquo; renewable and nuclear procurement pulls below it (though annual matching overstates hourly cleanliness). Net plausible range: <strong>0.2&ndash;0.4% of energy-related CO<sub>2</sub></strong>, or roughly <strong>0.15&ndash;0.35% of total CO<sub>2</sub> / GHG</strong> depending on denominator.</p>
-<p style="margin-top: 12px"><strong>Step 3 &mdash; The aviation benchmark.</strong> Aviation accounted for <strong>2.5% of global energy-related CO<sub>2</sub> in 2023 (&asymp; 950 Mt)</strong>, IEA, <em><a href="https://www.iea.org/energy-system/transport/aviation" target="_blank" rel="noopener">Aviation</a></em>. Passenger flights are &asymp; 81% of that and freight &asymp; 19%, so passenger aviation &asymp; <strong>2% of global CO<sub>2</sub></strong>.</p>
+<p style="margin-top: 12px"><strong>Step 3 &mdash; The aviation benchmark.</strong> Aviation accounted for <strong>2.5% of global energy-related CO<sub>2</sub> in 2023 (&asymp; 950 Mt)</strong>, IEA, <em><a href="https://www.iea.org/energy-system/transport/aviation" target="_blank" rel="noopener">Aviation</a></em>. In 2018, passenger flights accounted for &asymp; 81% of commercial aviation CO<sub>2</sub> and freight &asymp; 19%; applying those shares to 2023 gives passenger aviation &asymp; <strong>2% of global CO<sub>2</sub></strong>.</p>
 <p style="margin-top: 12px"><strong>Headline:</strong> Passenger air travel emits roughly <strong>5&ndash;10&times; what AI does operationally</strong> right now. AI is around a tenth to a fifth of aviation&rsquo;s footprint at the system level.</p>
 </div>
 <p style=" margin-top: 25px">Two caveats sharpen the comparison further:</p>
 <ul style=" margin-left: 25px">
 <li style="margin-bottom: 12px"><strong>Aviation&rsquo;s real impact is larger than the CO<sub>2</sub> alone.</strong> Non-CO<sub>2</sub> effects (contrails and NO<sub>x</sub> at altitude) push aviation&rsquo;s share of anthropogenic warming closer to <strong>3.5&ndash;4%</strong> (Lee et al. 2021, <em><a href="https://doi.org/10.1016/j.atmosenv.2020.117834" target="_blank" rel="noopener">Atmospheric Environment</a></em>). The gap on a warming basis is wider than the gap on a CO<sub>2</sub> basis.</li>
-<li style="margin-bottom: 12px"><strong>Aviation is concentrated; AI use is broadly distributed.</strong> Only &asymp; 11% of the world&rsquo;s population flew in 2018, and the most frequent &asymp; 1% account for more than half of passenger-flight emissions (G&ouml;ssling &amp; Humpe 2020, <em><a href="https://doi.org/10.1016/j.gloenvcha.2020.102194" target="_blank" rel="noopener">Global Environmental Change</a></em>). AI use is becoming more broadly distributed, which makes the per-person picture genuinely different from the per-person flight picture even when the system-level numbers sit in the same neighbourhood.</li>
+<li style="margin-bottom: 12px"><strong>Aviation is concentrated; AI use is broadly distributed.</strong> Only &asymp; 11% of the world&rsquo;s population flew in 2018, and the most frequent flyers, at most 1% of the world’s population, likely account for more than half of passenger-flight emissions (G&ouml;ssling &amp; Humpe 2020, <em><a href="https://doi.org/10.1016/j.gloenvcha.2020.102194" target="_blank" rel="noopener">Global Environmental Change</a></em>). AI use is becoming more broadly distributed, which makes the per-person picture genuinely different from the per-person flight picture even when the system-level numbers sit in the same neighbourhood.</li>
 </ul>
 <p style=" margin-top: 20px">And the ratio is narrowing. The IEA's April 2026 update (<em>Key Questions on Energy and AI</em>) projects data-centre electricity roughly doubling from <strong>&asymp; 485 TWh (2025) to &asymp; 950 TWh (2030, &asymp; 3% of global electricity)</strong>, with the AI-focused slice tripling, moving AI from &asymp; one-third toward &asymp; half of data-centre load. AI would need several-fold growth relative to aviation to close the gap.</p>
 <div class="warning-box"><h3 class="lbl">How to read these numbers</h3>
@@ -583,13 +583,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <!-- SECTION 4: WATER -->
 <h2 class="section-title" id="s6">The Water Footprint</h2>
-<p style=" margin-bottom: 30px">Energy gets most of the attention, but water is the environmental cost of AI that is least reported and least understood. Data centres are thirsty in two distinct ways.</p>
+<p style=" margin-bottom: 30px">Energy gets most of the attention, but water is among the least reported and least understood environmental costs of AI. Data centres are thirsty in two distinct ways.</p>
 <div class="card-grid"><div class="card"><h3>Direct Water Use: Cooling</h3>
-<p>Modern data centres generate enormous amounts of heat. The most common solution is evaporative cooling: running water over heat exchangers where it evaporates, carrying heat away.</p>
+<p>Modern data centres generate enormous amounts of heat. Evaporative cooling is common in large data centres: water evaporates in cooling towers or wetted media to remove heat, with technologies varying by facility and climate.</p>
 <ul class="styled-list">
 <li><strong>Why water, not air?</strong> Evaporative cooling is far more energy-efficient than air cooling for the temperatures involved</li>
-<li><strong>Why filtered municipal water?</strong> Minerals in unfiltered water would corrode and clog sensitive hardware, most large data centres use high-quality drinking water</li>
-<li><strong>Estimate:</strong> A 100 MW data centre may consume the equivalent of ~2,600 households' daily water use (IEA estimate)</li>
+<li><strong>Why filtered municipal water?</strong> Minerals in untreated water would scale, corrode and clog sensitive data-centre hardware, most large data centres use high-quality drinking water</li>
+<li><strong>Estimate:</strong> A 100 MW hyperscale data centre in the US consumes about 2 million litres of water a day, equivalent to about 6,500 households, with over 60% indirect (<a href="https://iea.blob.core.windows.net/assets/34eac603-ecf1-464f-b813-2ecceb8f81c2/EnergyandAI.pdf" target="_blank" rel="noopener">IEA estimate</a>)</li>
 <li><strong>US total:</strong> Data centres directly consumed roughly 66 billion litres (about 17.4 billion US gallons) of water in 2023, not counting the water used to generate their electricity (<a href="https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf" target="_blank" rel="noopener">Lawrence Berkeley National Laboratory, 2024</a>)</li>
 </ul>
 </div>
@@ -598,7 +598,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <ul class="styled-list">
 <li>Thermal power plants (coal, gas, nuclear) use water for steam generation and cooling</li>
 <li>This water is often not returned to its source: it is evaporated or discharged at a different temperature</li>
-<li>A commonly cited estimate (Shaolei Ren, UC Riverside): a ~30-turn ChatGPT conversation = roughly 500 ml of water, of which only 12–13% is direct cooling water; the rest is from electricity generation</li>
+<li>A commonly cited estimate (Shaolei Ren, UC Riverside): a ~30-turn ChatGPT conversation = roughly 500 ml of water, of which about 13% is direct cooling in Li et al.’s US-average GPT-3 estimate; the rest comes from electricity generation, with the share varying by location</li>
 <li><strong>Geographic sensitivity:</strong> Water extracted in arid regions has very different consequences from the same volume extracted in water-abundant areas</li>
 </ul>
 </div>
@@ -653,7 +653,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <div class="info-box"><h3 class="lbl">Training vs. Inference: Where the Energy Goes</h3>
 <p>Much early coverage of AI's environmental cost focused on the energy required to <em>train</em> a model, the one-time compute cost of creating GPT-4 or Claude. But for widely-deployed models, <em>inference</em> (running the model to answer queries) can easily exceed training energy over the model's lifetime.</p>
-<p style="margin-top: 8px">With 2.5 billion queries per day, the cumulative inference cost of ChatGPT dwarfs the one-time training cost within months of deployment. This is why statements like "training GPT-3 emitted X tonnes of CO₂" need to be placed in the context of ongoing inference costs.</p>
+<p style="margin-top: 8px">With 2.5 billion queries per day, the cumulative energy cost of inference surpasses the one-time training cost within a few weeks or months of deployment. This is why statements like "training GPT-3 emitted X tonnes of CO₂" need to be placed in the context of ongoing inference costs.</p>
 </div>
 <!-- TRY THIS YOURSELF -->
 <div class="info-box"><h3 style=" margin-bottom: 12px">Try this yourself (about 10 minutes)</h3>
@@ -678,4 +678,4 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <li><strong>Agentic tools cost more than single prompts:</strong> A day of work with a tool like Claude Code (~50 tasks on <code>high</code> effort) is on the order of ~0.5 kWh: central estimate ~0.2 kg CO₂ (US grid) / ~0.46 kg (SA grid), comparable to driving ~1–2 km. The cost comes from the loop of many calls, not any one prompt, and pushing to <code>max</code> effort can multiply it several-fold</li>
 </ul>
 <p style="margin-top: 20px"><strong>Next session (Week 3.2):</strong> We zoom out from individual queries to the infrastructure level: where does the electricity come from, how does manufacturing hardware fit in, and why do efficiency gains so often fail to reduce total energy use?</p>
-</div></div><div class="prevnext"><a href="../week-2/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html"><span class="d">Next &rarr;</span><span class="pt">Infrastructure, Scale, and the Rebound Problem</span></a></div><div class="afoot"><p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock before publication. AI-generated errors are possible &mdash; if you spot one, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. Full detail: <a href="../course-introduction/AI%20Content%20Disclaimer.html">AI Content Disclaimer</a>.</p><p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></p></div></main><div class="rightrail"><button class="navtoggle" type="button" data-m="r" aria-expanded="true"><span class="lh">Hide key terms &raquo;</span><span class="ls">&laquo; Show key terms</span></button><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><div class="rmeta">Week 3<br>Lesson 1<br>21 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["85%","95%","106%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
+</div></div><div class="prevnext"><a href="../week-2/Discussion%20Questions.html"><span class="d">&larr; Previous</span><span class="pt">Discussion Questions (to prepare before class)</span></a><a class="next" href="Infrastructure%20Scale%20and%20the%20Rebound%20Problem.html"><span class="d">Next &rarr;</span><span class="pt">Infrastructure, Scale, and the Rebound Problem</span></a></div><div class="afoot"><p class="aidisc">Drafted with Claude (Anthropic) and reviewed by Jonathan Shock before publication. AI-generated errors are possible &mdash; if you spot one, please email <a href="mailto:jonathan.shock@uct.ac.za">jonathan.shock@uct.ac.za</a>. Full detail: <a href="../course-introduction/AI%20Content%20Disclaimer.html">AI Content Disclaimer</a>.</p><p class="alic">&copy; 2026 Jonathan Shock &middot; MAM5020F: Generative AI for Research &middot; <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a></p></div></main><div class="rightrail"><button class="navtoggle" type="button" data-m="r" aria-expanded="true"><span class="lh">Hide key terms &raquo;</span><span class="ls">&laquo; Show key terms</span></button><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><div class="rmeta">Week 3<br>Lesson 1<br>22 min read</div><div class="rhd">Key terms</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-inference">Inference</a></div>Running an already-trained AI model to generate a response. Distinct from training, inference is the repeated ongoing cost; across billions of queries, cumulative inference energy quickly exceeds the one-time training cost.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-agentic-ai">Agentic AI</a></div>AI that plans and carries out multi-step tasks on its own, reading files, running code, checking results, and correcting errors, rather than answering a single prompt at a time.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-carbon-intensity">Carbon intensity</a></div>The amount of carbon dioxide emitted per unit of electricity generated. It varies widely by location, so the same AI workload produces very different emissions on a coal grid versus a renewable one.</div><div class="snote"><div class="sk"><a href="../glossary.html#gt-radiative-forcing">Radiative forcing</a></div>A change in the balance between energy entering and leaving the climate system, caused by something such as greenhouse-gas concentrations, aerosols or sunlight. Positive forcing warms the climate and negative forcing cools it. Aviation adds CO₂ forcing and further forcing from contrails and nitrogen oxides at altitude, so its warming effect is larger than its carbon emissions alone suggest.</div></div></div><script>const L=[...document.querySelectorAll('.toc .subs a')],S=L.map(a=>document.querySelector(a.getAttribute('href')));const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){L.forEach(l=>l.classList.remove('on'));const i=S.indexOf(e.target);if(i>=0)L[i].classList.add('on')}})},{rootMargin:'-8% 0px -82% 0px'});S.forEach(s=>s&&o.observe(s));</script><div class="tsize" role="group" aria-label="Text size"><button type="button" data-ts="0" aria-label="Default text size">A</button><button type="button" data-ts="1" aria-label="Larger text size">A</button><button type="button" data-ts="2" aria-label="Largest text size">A</button></div><script>(function(){var S=["85%","95%","106%"],K="mam-textsize";function ap(i){document.documentElement.style.fontSize=S[i]||S[0];var b=document.querySelectorAll(".tsize button");for(var k=0;k<b.length;k++)b[k].setAttribute("aria-pressed",b[k].getAttribute("data-ts")==i?"true":"false");}var v=0;try{v=parseInt(localStorage.getItem(K))||0;}catch(e){}ap(v);document.addEventListener("click",function(e){var t=e.target.closest?e.target.closest(".tsize button"):null;if(!t)return;var i=parseInt(t.getAttribute("data-ts"))||0;ap(i);try{localStorage.setItem(K,i);}catch(e){}});})();</script><script data-goatcounter="https://mam5020f.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

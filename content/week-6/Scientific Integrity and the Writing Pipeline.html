@@ -417,7 +417,7 @@
 <li><strong>Instructed fabrication:</strong> If you prompt "Write a results section showing that mindfulness reduced stress," the AI will comply. It does what you ask. The fabrication is in the prompt, not the model.</li>
 <li><strong>Over-claiming:</strong> When given real data, AI may present a weak trend as a strong finding, or describe a non-significant result in language that implies significance.</li>
 <li><strong>Silent gap-filling:</strong> AI may have partial information and fill in gaps without flagging that it is doing so. This is harder to catch than outright invention.</li>
-<li><strong>Missing what matters:</strong> AI describes what is statistically obvious in the data, not what a domain expert would recognise as scientifically interesting or problematic.</li>
+<li><strong>Missing what matters:</strong> AI often describes what is statistically obvious in the data rather than what a domain expert would recognise as scientifically interesting or problematic.</li>
 </ul>
 <p style="margin-top: 15px;"><strong>With full data access</strong> (e.g. through Claude Code, a Jupyter notebook, or uploading files), AI can produce genuinely useful draft descriptions. The quality improves with the amount of context you provide: experimental setup, research questions, field conventions, known confounders. But even with perfect context, your judgment as the domain expert still does the work no tool can.</p>
 </div>
@@ -427,7 +427,7 @@
 <h4>&#x26A0;&#xFE0F; When AI Knows More Than You</h4>
 <p>There is another dimension to consider: AI may genuinely know more than you about certain aspects of your subject. It has been trained on more papers than any human can read. This cuts both ways:</p>
 <p><strong>The positive side:</strong> AI can spot connections to literature you haven't encountered, suggest interpretations from adjacent fields, and fill gaps in your training. For early-career researchers, these can be genuinely valuable moments of learning.</p>
-<p><strong>The dangerous side:</strong> AI states everything with equal confidence, whether it's well-established consensus or something it's confabulating. If it "knows more than you," you are in the worst position to evaluate whether what it's telling you is correct. It can construct compelling narratives that sound authoritative but are subtly wrong, and if you lack the expertise to spot the error, you'll build on a flawed foundation.</p>
+<p><strong>The dangerous side:</strong> AI often states false content with the same confident tone as well-established consensus, though it also sometimes hedges or declines to answer. If it "knows more than you," you are in the worst position to evaluate whether what it's telling you is correct. It can construct compelling narratives that sound authoritative but are subtly wrong, and if you lack the expertise to spot the error, you'll build on a flawed foundation.</p>
 <p><strong>The lesson:</strong> When AI teaches you something new, treat it as a <em>starting point for verification</em>. The more you learn from AI, the more you need to verify independently, because you're operating in the zone where you cannot easily distinguish correct from plausible. This connects directly to Week 4's virtue ethics: are you using AI to genuinely develop your understanding, or to create the <em>appearance</em> of understanding?</p>
 </div>
 
@@ -480,7 +480,7 @@
 <td>Disclosure-focused</td>
 <td>No</td>
 <td>Yes</td>
-<td>Requires disclosure of AI tool use. Prohibits listing AI as an author. Authors remain fully responsible for all content, including any AI-assisted portions. Applies across all IEEE publications.</td>
+<td>Requires disclosure of AI-generated content; disclosure of AI used only for editing or grammar is recommended, not required. Prohibits listing AI as an author. Authors remain fully responsible for all content, including any AI-assisted portions. Applies across all IEEE publications.</td>
 </tr>
 <tr>
 <td><strong><a href="https://www.acm.org/publications/policies/new-acm-policy-on-authorship" target="_blank" rel="noopener">ACM</a></strong></td>
@@ -506,7 +506,7 @@
 
 <div class="warning-box">
 <h4>&#x26A0;&#xFE0F; Policies Are Moving Targets</h4>
-<p>The policies summarised above reflect the state of play in early 2026. They will continue to evolve. Before submitting to any journal, check its <em>current</em> AI policy directly. Many publishers update their guidelines without issuing prominent announcements. The cost of non-compliance (retraction, investigation, reputational damage) vastly exceeds the cost of checking.</p>
+<p>The policies summarised above reflect the state of play as of at least June 2026, when <a href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" target="_blank" rel="noopener">Elsevier updated its generative AI policy</a>. They will continue to evolve. Before submitting to any journal, check its <em>current</em> AI policy directly. Many publishers update their guidelines without issuing prominent announcements. The cost of non-compliance (retraction, investigation, reputational damage) vastly exceeds the cost of checking.</p>
 </div>
 
 <!-- SECTION 3: AI DETECTION -->
@@ -531,7 +531,7 @@
 <div class="card-grid">
 <div class="card">
 <h3>False Positives</h3>
-<p>Detection tools flag human-written text as AI-generated more often than most people realise. Formal academic writing, in particular, shares many statistical features with AI output: measured tone, structured argumentation, standard disciplinary phrasing. Non-native English speakers are disproportionately affected because their writing sometimes uses simpler, more predictable sentence structures, the same patterns detection tools associate with AI.</p>
+<p>Detection tools flag human-written text as AI-generated more often than most people realise. Formal academic writing, in particular, shares many statistical features with AI output: measured tone, structured argumentation, standard disciplinary phrasing. Non-native English speakers are disproportionately affected; one proposed explanation is that their more predictable sentence structures match patterns detectors associate with AI.</p>
 <p>The consequence: students and researchers can be wrongly accused of AI use, with serious academic consequences, based on unreliable tools.</p>
 </div>
 
@@ -543,7 +543,7 @@
 
 <div class="card">
 <h3>Bias Against Non-Native Speakers</h3>
-<p>Multiple studies have shown that AI detection tools have higher false positive rates for text written by non-native English speakers. This creates a structural equity problem: researchers from non-Anglophone backgrounds are more likely to be wrongly flagged, investigated, and penalised. In a global academic community, a detection system that disproportionately punishes people based on their first language is a biased one.</p>
+<p>Multiple studies have shown that AI detection tools have higher false positive rates for text written by non-native English speakers. This creates a structural equity problem: researchers from non-Anglophone backgrounds are more likely to be wrongly flagged, which can expose them to investigation and penalties. In a global academic community, a detection system that disproportionately punishes people based on their first language is a biased one.</p>
 </div>
 </div>
 
@@ -585,7 +585,7 @@
 <div class="card">
 <h3>Internal Consistency Check</h3>
 <p><strong>Method:</strong> Verify that all sections of your paper agree with each other.</p>
-<p>When different sections are written or revised at different times, especially with AI assistance, internal inconsistencies can creep in. Does your methods section describe the same procedure your results section reports? Does your introduction promise what your conclusion delivers? Do the limitations you acknowledge actually correspond to the methods you used? AI does not maintain awareness across your entire manuscript. You must.</p>
+<p>When different sections are written or revised at different times, especially with AI assistance, internal inconsistencies can creep in. Does your methods section describe the same procedure your results section reports? Does your introduction promise what your conclusion delivers? Do the limitations you acknowledge actually correspond to the methods you used? AI does not reliably use everything across your entire manuscript, even when the whole text fits in its context. You must.</p>
 </div>
 
 <div class="card">
@@ -606,7 +606,7 @@
 
 <div class="resource-placeholder">
 <h4>&#x1F4C4; Key Reading on AI and Scientific Integrity</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> &mdash; An overview of how AI is being used both to commit and to detect scientific misconduct, covering synthetic data generation, image manipulation, statistical fabrication, and emerging detection methods.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Pellegrina and Helmy (2025), Frontiers in Artificial Intelligence: "AI for scientific integrity: detecting ethical breaches, errors, and misconduct in manuscripts"</strong></a> &mdash; A review of AI-text detectors, statistical verification, citation validation, image-manipulation detection and publishers’ work against papermills.</p>
 </div>
 
 <div class="technical-detail">
@@ -697,7 +697,7 @@
 
 <div class="resource-placeholder">
 <h4>&#x1F4C4; Core Reading 3</h4>
-<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Frontiers in AI (2025): "AI for scientific integrity: detecting ethical breaches, errors, and misconduct"</strong></a> &mdash; An overview of the dual role AI plays in scientific integrity, both as a source of new risks and as a tool for detecting misconduct. Useful for understanding the broader field of AI and research integrity.</p>
+<p style="font-style: normal; margin-top: 8px;"><a href="https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2025.1644098/full" target="_blank" rel="noopener"><strong>Pellegrina and Helmy (2025), Frontiers in Artificial Intelligence: "AI for scientific integrity: detecting ethical breaches, errors, and misconduct in manuscripts"</strong></a> &mdash; A review of AI-text detectors, statistical verification, citation validation, image-manipulation detection and publishers’ work against papermills. Useful for understanding the broader field of AI and research integrity.</p>
 </div>
 
 <!-- SUMMARY -->
@@ -706,7 +706,7 @@
 <p>This session mapped the territory where AI writing assistance intersects with scientific integrity, from the low-risk terrain of grammar fixes to the high-risk zone of data fabrication.</p>
 <ul class="styled-list" style="margin-top: 15px;">
 <li><strong>The integrity spectrum is real:</strong> Not all AI writing assistance carries the same ethical weight. Understanding where your use falls on the spectrum, from surface-level corrections to substantive content generation, is the first step toward honest practice</li>
-<li><strong>Journal policies are converging:</strong> No major publisher accepts AI as an author. Most require disclosure. All hold human authors responsible for every word. Know your target journal's specific policy before you submit</li>
+<li><strong>Journal policies are converging:</strong> No major publisher accepts AI as an author. Most publishers that have an AI policy require disclosure of AI use. All hold human authors responsible for every word. Know your target journal's specific policy before you submit</li>
 <li><strong>Detection tools are unreliable:</strong> AI detection is too inaccurate, too biased, and too easily circumvented to serve as the primary defence against misuse. Do not build your integrity practice around avoiding detection</li>
 <li><strong>Personal auditing is essential:</strong> The read-aloud test, the explain-it test, source verification, internal consistency checks, and the defend-it test are your real safeguards. Build them into your workflow</li>
 <li><strong>Data integrity requires vigilance:</strong> AI can fabricate plausible-sounding data, results, and statistical analyses. Never use AI to describe data it has not seen</li>

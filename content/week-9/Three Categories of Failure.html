@@ -382,7 +382,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>Hallucinated Code on Common Tasks</h3>
-      <p>In 2023, asking a model for code in a popular library would frequently produce calls to functions that didn&#39;t exist. By 2026, frontier models pass SWE-bench Verified above 87%, meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
+      <p>In 2023, asking a model for code would sometimes produce calls to functions that didn&#39;t exist, mostly for less commonly used APIs. By 2026, frontier models pass SWE-bench Verified above 87%, meaning they correctly resolve real GitHub issues. The hallucination of function signatures has been largely mitigated for well-documented libraries; it persists for niche or proprietary APIs (which moves it into category b).</p>
     </div>
 
   </div>
@@ -402,7 +402,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
   <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Even frontier models in 2026 hallucinate citations on niche topics. The Week 5 evidence remains directly relevant:</p>
 
   <ul class="styled-list">
-    <li><strong>Magesh et al. (2025).</strong> <em>Hallucination-Free?</em> <em>Journal of Empirical Legal Studies</em> 22(2), 216&ndash;242, <a href="https://doi.org/10.1111/jels.12413" target="_blank" rel="noopener">DOI:10.1111/jels.12413</a>; preprint arXiv:2405.20362 (2024), Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17&ndash;33%</strong> hallucination on benchmarking queries, despite vendor marketing as &ldquo;hallucination-free&rdquo;.</li>
+    <li><strong>Magesh et al. (2025).</strong> <em>Hallucination-Free?</em> <em>Journal of Empirical Legal Studies</em> 22(2), 216&ndash;242, <a href="https://doi.org/10.1111/jels.12413" target="_blank" rel="noopener">DOI:10.1111/jels.12413</a>; preprint arXiv:2405.20362 (2024), Stanford HAI. Lexis+ AI, Westlaw, and Ask Practical Law: <strong>17&ndash;33%</strong> hallucination on benchmarking queries, despite vendor marketing that RAG would avoid hallucinations (Thomson Reuters) or guarantee hallucination-free legal citations (LexisNexis).</li>
     <li><strong>Chelli et al. (2024).</strong> <em>JMIR</em> 26: e53164. GPT-3.5 39.6%, GPT-4 28.6%, Bard 91.4%.</li>
     <li><strong>Linardon et al. (2025).</strong> <em>JMIR Mental Health</em> 12: e80371. GPT-4o: 19.9% overall; <strong>28&ndash;29% on niche topics</strong>; 6% on well-studied. Citation hallucination correlates with how rare the topic is in training data.</li>
   </ul>
@@ -413,7 +413,7 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
   <h3 style="color: #2a5298; font-size: 1.4em; margin: 30px 0 15px;">Sycophancy</h3>
 
-  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong, a behaviour driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
+  <p style="color: #555; line-height: 1.75; margin-bottom: 15px;">Sharma et al. (2023) documented that RLHF-trained models tend to agree with users even when the user is wrong, a behaviour likely driven in part by human preference judgements favouring agreement. Anthropic and other labs have invested heavily in mitigations:</p>
 
   <ul class="styled-list">
     <li><strong>Constitutional AI</strong> trains the model to evaluate its own outputs against principles including honesty and calibrated confidence (Week 2).</li>
@@ -456,23 +456,23 @@ header, header h1, header h2, header h3, header h4, header p, header span, heade
 
     <div class="card">
       <h3>The Long-Tail Problem</h3>
-      <p>Performance degrades on rare topics regardless of model scale. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones, which is where novel research happens. Niimi (2025), cited in Week 5, found that the accuracy of GPT-4.1's bibliographic output rose with a paper's citation count, which the study used as a stand-in for how often the paper appears in training data. This effect compounds at the frontier of any field.</p>
+      <p>Performance degrades on rare topics at every model scale tested; larger models do better, but scaling alone would need many orders of magnitude to remove the gap. Frontier models in 2026 are excellent on widely-discussed topics and worse on niche ones, which is where novel research happens. Niimi (2025), cited in Week 5, found that the accuracy of GPT-4.1's bibliographic output rose with a paper's citation count, which the study used as a stand-in for how often the paper appears in training data. This effect compounds at the frontier of any field.</p>
     </div>
 
     <div class="card">
       <h3>Compositional Brittleness</h3>
-      <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. Errors compound multiplicatively, so a long chain needs very high accuracy at every step, and an error that no step detects still reaches the result. Long agentic chains amplify the problem.</p>
-      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests real-world multi-step agentic tasks. Even DeepSeek V4 Pro, competitive with the closed frontier on most single-step benchmarks, struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This failure mode scales worst as agentic systems get longer.</p>
+      <p>The &ldquo;silent error&rdquo; theme from Week 7. Each step of an AI-generated analysis can be plausible while the end result is wrong. Errors compound multiplicatively, so a long chain needs very high accuracy at every step, and an error that no step detects can still reach the result. Long agentic chains amplify the problem.</p>
+      <p style="margin-top: 10px;">Concrete current example: <strong>FoodTruck Bench (2026)</strong> tests multi-step agentic tasks in a simulated food-truck business. Even DeepSeek V4 Pro, competitive with the closed frontier on most single-step benchmarks, struggles substantially. Individual capabilities (writing code, calling tools, parsing documents) keep improving; chaining them reliably remains hard. This failure mode gets worse as agentic systems get longer.</p>
     </div>
 
     <div class="card">
       <h3>Domain-Specific Failure Modes</h3>
-      <p>Even frontier models fail differently in different fields, regardless of overall benchmark score. A model excellent at theoretical physics may be brittle on Renaissance history. Aggregate benchmarks don&#39;t predict performance in your specific domain. This is why the hands-on activities (9.6) ask you to test capability in your own field rather than rely on published numbers.</p>
+      <p>Even frontier models fail differently in different fields, regardless of overall benchmark score. A model excellent at theoretical physics may be brittle on Renaissance history. Aggregate benchmarks are an imperfect and often insufficient guide to performance in your specific domain. This is why the hands-on activities (9.6) ask you to test capability in your own field rather than rely on published numbers.</p>
     </div>
 
     <div class="card">
       <h3>Training Data Dependence</h3>
-      <p>Models can only know what was in their training data. They will confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural; it doesn&#39;t go away with more parameters or better RLHF.</p>
+      <p>Models can only know what was in their training data. They may confidently answer questions about events after their training cutoff using outdated information. They may have been trained on a biased sample of the literature in your field. This dependence is structural; it doesn&#39;t go away with more parameters or better RLHF.</p>
     </div>
 
   </div>
