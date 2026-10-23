@@ -291,7 +291,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 
 
 <div class="card-grid"><div class="card"><h3>Conversational AI (What You've Used So Far)</h3>
-<p>You are the one who runs code, checks results, and decides what to ask next. The AI responds to each message in isolation, without access to your actual files or the ability to act on its own suggestions.</p>
+<p>In this copy-and-paste pattern, you run code, check results, and decide what to ask next. The AI responds to each message in isolation, without access to your actual files or the ability to act on its own suggestions.</p>
 <ul class="styled-list">
 <li>You paste data samples or error messages into the chat</li>
 <li>AI generates a code snippet you copy and run yourself</li>
@@ -314,7 +314,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 
 <div class="highlight-box"><h3><span>The USB-C Analogy</span></h3>
-<p>The key enabling technology here is the <strong>Model Context Protocol (MCP)</strong>, announced by Anthropic in November 2024 and now an open industry standard supported by Anthropic, OpenAI, and Google. MCP has been described as "USB-C for AI": a single universal protocol that lets AI models connect to any external system, including databases, file systems, APIs, web browsers, and version control systems.</p>
+<p>The key enabling technology here is the <strong>Model Context Protocol (MCP)</strong>, announced by Anthropic in November 2024 and now an open industry standard supported by Anthropic, OpenAI, and Google. MCP has been described as "USB-C for AI": an open standard that lets AI applications connect to external systems, including databases, file systems, APIs, web browsers, and version control systems, provided a suitable MCP server exists.</p>
 <p>Before MCP, connecting an AI to an external data source required bespoke integration work for every combination of AI and data system. Now, with a standard protocol and over 8,600 available MCP servers, you can give an AI direct, secure access to a PostgreSQL database, a file system, or a cloud storage bucket using off-the-shelf components. This is what makes agentic research workflows practical rather than theoretical.</p>
 </div>
 
@@ -327,7 +327,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>As of May 2026, Claude Code was among the most capable agentic coding tools for research use. In practical terms, it can:</p>
 <ul class="styled-list">
 <li><strong>Read entire project structures:</strong> It understands multi-file dependencies. You can point it at a project directory and it will orient itself before writing a single line.</li>
-<li><strong>Execute and iterate autonomously:</strong> It runs code, sees the results, fixes errors, and continues, without you prompting it after each step. As of early 2026, median task durations have reached over 45 minutes, with some sessions running autonomously for hours.</li>
+<li><strong>Execute and iterate autonomously:</strong> It runs code, sees the results, fixes errors, and continues, without you prompting it after each step. As of early 2026, the median Claude Code turn lasted about 45 seconds, while the longest 0.1% of turns ran over 45 minutes.</li>
 <li><strong>Spawn parallel sub-agents:</strong> For complex multi-step analyses, it can launch independent agents to work on different tasks simultaneously, with one cleaning data while another generates exploratory plots.</li>
 <li><strong>View its own visual outputs:</strong> As discussed in Sub-Lesson 3, it can inspect plots it generates and critique them for quality and accessibility issues.</li>
 <li><strong>Connect to external data sources via MCP:</strong> With the right MCP server configured, it can query a database, read cloud storage, or call an API directly, without you manually exporting data first.</li>
@@ -353,7 +353,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="technical-detail"><h3 class="lbl">What MCP Actually Connects</h3>
 <p>MCP servers expose three types of capability to an AI agent:</p>
 <ul class="styled-list">
-<li><strong>Resources:</strong> structured data injected directly into the model's context, such as file contents, database records, and API responses</li>
+<li><strong>Resources:</strong> data exposed by a server, such as file contents, database records, and API responses; the host application decides how to include it in the model's context</li>
 <li><strong>Tools:</strong> functions the agent can call to retrieve or act on data, such as running a SQL query, writing a file, or searching a codebase</li>
 <li><strong>Prompts:</strong> reusable templates for structured interactions with specific data systems</li>
 </ul>
@@ -368,13 +368,13 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <tr><td><strong>Databases</strong></td><td>Community-maintained servers for most databases; check who maintains one before connecting it</td><td>Agent queries your research database, runs analysis directly on stored data</td></tr>
 <tr><td><strong>Cloud storage</strong></td><td>Google Cloud (BigQuery, Cloud SQL)</td><td>Large datasets in cloud infrastructure; agent runs queries without downloading</td></tr>
 <tr><td><strong>Version control</strong></td><td>Git server</td><td>Agent reads code history, understands project evolution, makes commits</td></tr>
-<tr><td><strong>Semantic search</strong></td><td>Chroma MCP</td><td>Vector database for finding relevant documents or past analyses</td></tr>
+<tr><td><strong>Semantic search</strong></td><td>Chroma MCP</td><td>MCP server providing access to a Chroma vector database for finding relevant documents or past analyses</td></tr>
 </tbody>
 </table></div>
 </div>
 
 <div class="info-box"><h3 class="lbl h4long">You Do Not Need to Understand MCP Deeply to Use It</h3>
-<p>Claude Code already reads and writes the files in your project folder, so it needs no MCP server for that. MCP is for reaching systems outside the folder, such as a database or a reference manager. You add a server with the <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener"><code>claude mcp add</code> command</a>, or with an entry in a <code>.mcp.json</code> file in the project folder. The repository at <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">github.com/modelcontextprotocol/servers</a> keeps a small set of reference servers and links to servers maintained by companies and the community. You do not need to build or maintain anything; you are connecting to existing infrastructure.</p>
+<p>Claude Code already reads and writes the files in your project folder, so it needs no MCP server for that. MCP is for reaching systems outside the folder, such as a database or a reference manager. You add a server with the <a href="https://code.claude.com/docs/en/mcp" target="_blank" rel="noopener"><code>claude mcp add</code> command</a>, or with an entry in a <code>.mcp.json</code> file in the project folder. The repository at <a href="https://github.com/modelcontextprotocol/servers" target="_blank" rel="noopener">github.com/modelcontextprotocol/servers</a> keeps a small set of reference servers and links to servers maintained by companies and the community. For common systems, you can use existing servers without writing code. You still need to configure access and keep local servers updated; a system with no suitable server requires one to be built.</p>
 </div>
 
 <!-- SECTION 4: CLAUDE.md -->
@@ -475,9 +475,9 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="card"><h3>What Goes Wrong Without It</h3>
 <ul class="styled-list">
 <li><strong>Silent scope creep:</strong> Agents given broad access sometimes take actions beyond their intended task, such as modifying files you expected to be read-only, or running analyses you did not ask for</li>
-<li><strong>Compounding errors:</strong> An error in step 2 that goes unchecked propagates through every subsequent step. The final output looks complete but is built on a flawed foundation</li>
+<li><strong>Compounding errors:</strong> An error in step 2 that goes unchecked affects every later step that depends on its faulty output. The final output looks complete but is built on a flawed foundation</li>
 <li><strong>Reproducibility loss:</strong> Long agentic sessions can be non-deterministic. If you cannot reconstruct exactly what the agent did and why, you cannot defend your methodology in a paper or reproduce your own results</li>
-<li><strong>Autonomous hypothesis-chasing:</strong> A <em>Nature</em> editorial raised the concern that agentic systems that iterate analysis until they find significant results could automate p-hacking at a scale that "overloads publishing peer-review systems without shifting the needle on discovery"</li>
+<li><strong>Autonomous hypothesis-chasing:</strong> A <em>Nature</em> editorial warned that systems that iterate analysis until they find significant results risk generating noise that would "overload conference, publishing and funding peer-review systems, without shifting the needle on discovery". It noted that this has been described as automated P hacking</li>
 </ul>
 </div>
 </div>
@@ -504,7 +504,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </tr>
 <tr>
 <td><strong>Domain judgment</strong></td>
-<td>The required judgments are ones you can specify in advance (e.g., "use Mann-Whitney for Likert data")</td>
+<td>The required judgments are ones you can specify in advance (e.g., "use Mann-Whitney to compare Likert data from two independent samples")</td>
 <td>Substantial domain judgment is required at each step that you cannot specify in advance</td>
 </tr>
 <tr>
@@ -546,7 +546,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 
 <div class="resource-placeholder"><h3 class="lbl">Supplementary: Practical Guides</h3>
-<p style="font-style: normal; margin-top: 8px"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener"><strong>Claude Code Documentation</strong></a>. The official guide to Claude Code, including sub-agents, CLAUDE.md best practices, MCP configuration, and multi-agent workflows. The <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">best practices section</a> is particularly relevant.<br><br><a href="https://arxiv.org/abs/2503.08979" target="_blank" rel="noopener"><strong>Agentic AI for Scientific Discovery: A Survey (arXiv:2503.08979, 2025)</strong></a>. A full survey of where agentic AI is currently deployed in scientific research, what works, and where the gaps remain. Good context for understanding which research domains are furthest ahead.
+<p style="font-style: normal; margin-top: 8px"><a href="https://code.claude.com/docs/en/overview" target="_blank" rel="noopener"><strong>Claude Code Documentation</strong></a>. The official guide to Claude Code, including sub-agents, CLAUDE.md best practices, MCP configuration, and multi-agent workflows. The <a href="https://code.claude.com/docs/en/best-practices" target="_blank" rel="noopener">best practices section</a> is particularly relevant.<br><br><a href="https://arxiv.org/abs/2503.08979" target="_blank" rel="noopener"><strong>Agentic AI for Scientific Discovery: A Survey of Progress, Challenges, and Future Directions (arXiv:2503.08979, 2025)</strong></a>. A full survey of where agentic AI is currently deployed in scientific research, what works, and where the gaps remain. Good context for understanding which research domains are furthest ahead.
 </p>
 </div>
 
