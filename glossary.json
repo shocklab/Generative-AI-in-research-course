@@ -419,7 +419,7 @@
     },
     {
       "term": "Domain-trained model",
-      "definition": "An AI model trained on data from one field, such as medical scans or satellite imagery, rather than general internet data. Such models typically outperform general-purpose AI on precise tasks within that field.",
+      "definition": "An AI model trained on data from one field, such as medical scans or satellite imagery, rather than general internet data. Whether such models outperform general-purpose AI needs to be checked for each task.",
       "aliases": [
         "domain-trained model"
       ]
@@ -816,7 +816,7 @@
     },
     {
       "term": "Plan mode",
-      "definition": "A read-only setting in Claude Code where the AI can inspect files and propose actions but is prevented from making any changes, the safest way to let an agent examine data you cannot afford to have altered.",
+      "definition": "A setting in Claude Code for inspecting files and proposing actions without editing source files; exploratory shell commands can still run, and its blocks are not enforced in interactive terminal sessions where bypass permissions are available. For data you cannot afford to have altered, Anthropic recommends deny rules that block specified actions in every mode, together with operating-system sandboxing to restrict access.",
       "aliases": [
         "plan mode"
       ]

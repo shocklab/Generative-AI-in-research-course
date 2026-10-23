@@ -331,7 +331,7 @@
 <div class="highlight-box">
 <h3>&#128161; <span style="color: #ffffff;">The USB-C Analogy</span></h3>
 <p>The key enabling technology here is the <strong>Model Context Protocol (MCP)</strong>, announced by Anthropic in November 2024 and now an open industry standard supported by Anthropic, OpenAI, and Google. MCP has been described as "USB-C for AI": an open standard that lets AI applications connect to external systems, including databases, file systems, APIs, web browsers, and version control systems, provided a suitable MCP server exists.</p>
-<p>Before MCP, connecting an AI to an external data source required bespoke integration work for every combination of AI and data system. Now, with a standard protocol and over 8,600 available MCP servers, you can give an AI direct, secure access to a PostgreSQL database, a file system, or a cloud storage bucket using off-the-shelf components. This is what makes agentic research workflows practical rather than theoretical.</p>
+<p>Before MCP, connecting an AI to an external data source required bespoke integration work for every combination of AI and data system. Now, with a standard protocol and over 8,600 available MCP servers, you can give an AI direct access to a PostgreSQL database, a file system, or a cloud storage bucket using existing servers. Security depends on the server and its configuration; the official reference servers are educational examples, and the PostgreSQL reference server is archived. This is what makes agentic research workflows practical rather than theoretical.</p>
 </div>
 
 <!-- SECTION 2: WHAT AGENTS CAN DO -->
@@ -343,7 +343,7 @@
 <h4>Claude Code: The Current Capability Ceiling</h4>
 <p>As of May 2026, Claude Code was among the most capable agentic coding tools for research use. In practical terms, it can:</p>
 <ul class="styled-list">
-<li><strong>Read entire project structures:</strong> It understands multi-file dependencies. You can point it at a project directory and it will orient itself before writing a single line.</li>
+<li><strong>Read entire project structures:</strong> It understands multi-file dependencies. You can point it at a project directory and ask it to explore before editing. Use plan mode to separate exploration from execution, since it may otherwise start coding straight away.</li>
 <li><strong>Execute and iterate autonomously:</strong> It runs code, sees the results, fixes errors, and continues, without you prompting it after each step. As of early 2026, the median Claude Code turn lasted about 45 seconds, while the longest 0.1% of turns ran over 45 minutes.</li>
 <li><strong>Spawn parallel sub-agents:</strong> For complex multi-step analyses, it can launch independent agents to work on different tasks simultaneously, with one cleaning data while another generates exploratory plots.</li>
 <li><strong>View its own visual outputs:</strong> As discussed in Sub-Lesson 3, it can inspect plots it generates and critique them for quality and accessibility issues.</li>
@@ -403,7 +403,7 @@
 <p>MCP returns in Week 10, where <a href="../week-10/The Current Tool Landscape and MCP.html">The Current Tool Landscape and MCP</a> covers the connector ecosystem properly.</p>
 <h2 class="section-title">&#128196; CLAUDE.md: Onboarding the Agent to Your Project</h2>
 
-<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">When you start a new Claude Code session, the agent knows nothing about your project. <strong>CLAUDE.md</strong> is how you fix that. It is a plain Markdown file in your project root that Claude Code reads automatically at the start of every session. Think of it as the onboarding document you would give a new research assistant joining your project on their first day.</p>
+<p style="font-size: 1.1em; color: #555; margin-bottom: 25px;">A new Claude Code session starts with a fresh context window, but it can read project files and loads any available CLAUDE.md instructions and auto-memory notes. <strong>CLAUDE.md</strong> provides your written project guidance. It is a plain Markdown file in your project root that Claude Code reads automatically at the start of every session. Think of it as the onboarding document you would give a new research assistant joining your project on their first day.</p>
 
 <div class="case-study">
 <h4>&#128203; What Goes in a Research CLAUDE.md</h4>
