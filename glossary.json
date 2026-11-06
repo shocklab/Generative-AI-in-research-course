@@ -956,7 +956,7 @@
     },
     {
       "term": "Reversal curse",
-      "definition": "A failure in language models where learning \"A is B\" during training did not enable them to infer \"B is A\". Documented by <a href=\"https://arxiv.org/abs/2309.12288\" target=\"_blank\" rel=\"noopener\">Berglund et al. (2023)</a> in models fine-tuned on \"A is B\" and in GPT-4's answers about celebrities; <a href=\"https://proceedings.mlr.press/v306/ma26o.html\" target=\"_blank\" rel=\"noopener\">2025–2026 research</a> still studies it as an open problem in training, and whether current frontier models show it has not been retested with the original design.",
+      "definition": "A failure in language models where learning \"A is B\" during training did not enable them to infer \"B is A\". Documented by <a href=\"https://arxiv.org/abs/2309.12288\" target=\"_blank\" rel=\"noopener\">Berglund et al. (2023)</a> in models fine-tuned on \"A is B\" and in GPT-4's answers about celebrities; <a href=\"https://proceedings.mlr.press/v306/ma26o.html\" target=\"_blank\" rel=\"noopener\">2025–2026 research</a> still studies it as an open problem in training, and a <a href=\"https://zou-group.github.io/llm-claims-shelf-life/\" target=\"_blank\" rel=\"noopener\">2026 retest</a> on recent models found it weaker but still measurable.",
       "aliases": [
         "reversal curse"
       ]

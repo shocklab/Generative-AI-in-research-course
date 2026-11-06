@@ -127,7 +127,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
 
     <div class="card">
       <h3>&#128221; Accessibility and Documentation</h3>
-      <p>Generating alt text and descriptive figure captions is one of the most reliable uses of multimodal AI. The model produces fluent natural-language descriptions of visual content, which is where its language-side strength applies.</p>
+      <p>Multimodal AI can help draft alt text and descriptive figure captions, but check them against the image, underlying data, and research context. The model produces fluent natural-language descriptions of visual content, which is where its language-side strength applies.</p>
       <ul class="styled-list">
         <li>Alt text generation for journal figures</li>
         <li>Figure captions from a visual description</li>
@@ -269,7 +269,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
   <div class="technical-detail">
     <h4>Why Fluency Is Not a Signal of Accuracy</h4>
     <p>Multimodal language models generate text using the image and its context. Training to predict text does not guarantee that a description matches visual details. Further training can improve factual accuracy, as the GPT-4 technical report describes, but researchers still need to check descriptions against the image.</p>
-    <p style="margin-top: 12px;">This means the most fluent, confident-sounding description of a figure is not necessarily the most accurate one. In practice, models are often most confidently wrong when they are in familiar territory: a bar chart that looks like the many bar charts in their training data, where the pattern-matching is strong and the reasoning is not needed.</p>
+    <p style="margin-top: 12px;">This means the most fluent, confident-sounding description of a figure is not necessarily the most accurate one. Models can confidently describe chart features that are not present, so check their descriptions against the figure and underlying data.</p>
     <p style="margin-top: 12px;">Check a model&rsquo;s reading against the image or underlying data, whether its wording sounds confident or uncertain. Before relying on its expressions of uncertainty, test whether they help you identify incorrect answers.</p>
   </div>
 
@@ -294,7 +294,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
     <div class="card" style="border-left-color: #2e7d32;">
       <h3>&#127759; Satellite and Geospatial Imagery</h3>
       <p>This is one of the most active areas of AI for science, with a layered ecosystem worth understanding before picking a tool.</p>
-      <p style="margin-top: 12px;"><strong>Pretrained foundation models for Earth observation:</strong> weights trained on satellite data, used as backbones for downstream tasks. <strong>Prithvi / Prithvi-EO-2.0</strong> (IBM/NASA, on Harmonized Landsat Sentinel data) is the most established and the most widely used in research; <strong>Clay</strong> (ClayFM, 2024) is a generalist Earth-observation foundation model with growing adoption; <strong>SatMAE</strong> (Stanford, NeurIPS 2022) and <strong>Scale-MAE</strong> (2023) are masked-autoencoder approaches; <strong>SatCLIP</strong> (Microsoft Research, University of Colorado Boulder and Wageningen University &amp; Research; AAAI 2025) learns embeddings of geographic locations by matching satellite images with their coordinates, in CLIP style. These are <em>backbones</em>: you load the weights through a framework rather than running them directly.</p>
+      <p style="margin-top: 12px;"><strong>Pretrained foundation models for Earth observation:</strong> weights trained on satellite data, used as backbones for downstream tasks. <strong>Prithvi / Prithvi-EO-2.0</strong> (IBM/NASA, on Harmonized Landsat Sentinel data) is an established open Earth-observation foundation model used in research; <strong>Clay</strong> (ClayFM, 2024) is a generalist Earth-observation foundation model with growing adoption; <strong>SatMAE</strong> (Stanford, NeurIPS 2022) and <strong>Scale-MAE</strong> (2023) are masked-autoencoder approaches; <strong>SatCLIP</strong> (Microsoft Research, University of Colorado Boulder and Wageningen University &amp; Research; AAAI 2025) learns embeddings of geographic locations by matching satellite images with their coordinates, in CLIP style. These are <em>backbones</em>: you load the weights through a framework rather than running them directly.</p>
       <p style="margin-top: 12px;"><strong>Frameworks to run them:</strong> the Python libraries that handle data loading, fine-tuning, and inference. <strong>TerraTorch</strong> (IBM) is purpose-built for Prithvi and other geospatial foundation models and is the closest thing to a research-ready default. <strong>TorchGeo</strong> (founded at Microsoft AI for Good, now an independent OSGeo project) is the established PyTorch library for geospatial datasets and models. <strong>geoai-py</strong> (Wu, JOSS 2026) is a broader Python toolkit aimed at lowering the barrier to entry.</p>
       <p style="margin-top: 12px;"><strong>Cloud APIs:</strong> Google&#39;s Geospatial Reasoning with Gemini applies a general-purpose multimodal model to geospatial data. Useful for description, qualitative reasoning, and rapid prototyping; compare classification accuracy with specialist models on your intended task.</p>
       <ul class="styled-list">
@@ -361,7 +361,7 @@ header p { font-size: 1.1em; opacity: 0.95; max-width: 800px; margin: 10px auto 
       <strong>Compare tools for precision tasks.</strong> If your field has specialist image AI (clinical imaging tools, satellite analysis platforms, microscopy classification systems), include those tools in your comparison. For research, choose a system for measurement, classification, or detection using results on representative images with known answers; for clinical practice, use validated diagnostic systems.
     </li>
     <li>
-      <strong>Test on images where you know the answer before scaling up.</strong> Before applying AI image analysis to your full dataset, run it on a subset where you have ground truth, whether from prior labelling, independent expert review, or the underlying data. Measure accuracy on that subsample. Only scale up if accuracy on the subsample is acceptable for your research context. This step will catch most CharXiv-style failures before they become research errors.
+      <strong>Test on images where you know the answer before scaling up.</strong> Before applying AI image analysis to your full dataset, run it on a subset where you have ground truth, whether from prior labelling, independent expert review, or the underlying data. Measure accuracy on that subsample. Only scale up if accuracy on the subsample is acceptable for your research context. This step can reveal CharXiv-style failures, but acceptable accuracy on the subsample does not guarantee accuracy on the remaining images.
     </li>
   </ol>
 
