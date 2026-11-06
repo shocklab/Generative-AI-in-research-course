@@ -308,7 +308,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style="margin-top: 20px">This does not mean you need to understand every syntax detail. You do not need to memorise function signatures or know every argument by heart. But you do need to understand the <em>logic</em> of what the code is doing at each step. Here is a practical approach:</p>
 <ol class="step-list">
 <li><strong>Read the code from top to bottom and annotate it.</strong> Add comments in your own words describing what each block does. "This section loads the data." "This filters out participants under 18." "This computes the correlation between variables X and Y." If you cannot write these annotations, you have found a gap in your understanding.</li>
-<li><strong>Identify the key decision points.</strong> Where does the code make choices that affect the results? Filtering conditions, grouping variables, statistical tests, and handling of missing values are the places where errors are most likely and most consequential. Pay extra attention here.</li>
+<li><strong>Identify the key decision points.</strong> Where does the code make choices that affect the results? Filtering conditions, grouping variables, statistical tests, and handling of missing values are important places to check for errors that can change your results. Pay extra attention here.</li>
 <li><strong>Ask the AI to explain its choices.</strong> "Why did you use a t-test instead of a Mann-Whitney U test?" "Why are you dropping rows with missing values instead of imputing them?" "What does the <code>axis=0</code> argument do here?" The AI's explanation may misrepresent why it made a choice. Check the choice against your research design and the test's assumptions.</li>
 <li><strong>Check the explanation against your research design.</strong> Does the code implement what your methodology section describes? If your methods say "we used a two-tailed test" but the code uses a one-tailed test, that is a discrepancy that needs to be resolved before you proceed.</li>
 <li><strong>Trace the data flow.</strong> Follow a single data point from the raw input through every transformation to the final output. Does it go where you expect? Does it get modified in ways you intended? This is tedious but extremely effective at catching errors in data wrangling pipelines.</li>
@@ -425,7 +425,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 </div>
 <div class="resource-placeholder"><h3 class="lbl h4long">Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. — R for Data Science (2nd edition)</h3>
 <p><a href="https://r4ds.hadley.nz/" target="_blank" rel="noopener">https://r4ds.hadley.nz/</a></p>
-<p style="margin-top: 8px">The standard reference for data analysis in R, freely available online. Even if you primarily use Python, the principles of tidy data, reproducible workflows, and systematic data transformation are universal. The chapters on data import, transformation, and communication are especially relevant to verification practices.</p>
+<p style="margin-top: 8px">A practical reference for data analysis in R, freely available online. Even if you primarily use Python, the principles of tidy data, reproducible workflows, and systematic data transformation are universal. The chapters on data import, transformation, and communication are especially relevant to verification practices.</p>
 </div>
 <div class="resource-placeholder"><h3 class="lbl">Good Research Code Handbook</h3>
 <p><a href="https://goodresearch.dev/" target="_blank" rel="noopener">https://goodresearch.dev/</a></p>

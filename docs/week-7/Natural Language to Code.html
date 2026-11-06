@@ -283,7 +283,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p style=" margin-bottom: 30px">For decades, <em>programming skill</em> has been a barrier to custom computational analyses, while spreadsheets and graphical statistical tools have enabled analysis without programming. That barrier has not disappeared, but it has been dramatically lowered.</p>
 <div class="card-grid"><div class="card"><h3>What Has Changed</h3>
 <p>Until recently, if you wanted to analyse a dataset, you had two options: learn to program, or find someone who could program to do it for you. Both options introduced delays, dependencies, and friction. Many valuable research questions went unanswered because the researcher asking them did not have the technical skills to answer them.</p>
-<p>Large language models have created a third option: describe what you want in natural language, and let the AI generate the code. This works because modern LLMs have been trained on millions of code repositories and documentation pages. They have seen almost every common programming pattern, library call, and data analysis workflow that exists.</p>
+<p>Large language models have created a third option: describe what you want in natural language, and let the AI generate the code. This works because modern LLMs have been trained on millions of code repositories and documentation pages. They have seen many common programming patterns, library calls, and data analysis workflows during training.</p>
 </div>
 <div class="card"><h3>What This Means for You</h3>
 <p><strong>If you have no coding background:</strong> This is genuinely democratising. Tasks that were previously impossible for you (loading datasets, running statistical tests, creating visualisations, cleaning messy data) are now accessible through conversation. You are not pretending to be a programmer. You are using a new kind of interface to achieve the same results.</p>
@@ -293,7 +293,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="case-study"><h4>A Concrete Example</h4>
 <p>Imagine you have a CSV file with survey data from 500 respondents. You want to know whether responses differ significantly between two groups. Here is what you might type into an AI coding tool:</p>
 <p style="margin-top: 15px">"Load the file survey_results.csv. Compare the mean scores in the 'satisfaction' column between participants where the 'group' column equals 'control' and where it equals 'intervention'. Run an independent samples t-test and report the t-statistic, p-value, and effect size. Then create a box plot comparing the two groups."</p>
-<p style="margin-top: 15px">A modern AI coding tool can generate Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation, though the code needs checking. The entire process takes less than a minute.</p>
+<p style="margin-top: 15px">A modern AI coding tool can generate Python or R code that does this, including loading the library dependencies, handling the file import, running the statistical test, and producing the visualisation, though the code needs checking. Generating an initial script can be quick; running and checking the analysis may take longer.</p>
 <p style="margin-top: 15px">You described <em>what</em> you wanted rather than <em>how</em> to implement it. The AI translated your intent into specific technical instructions. This is what we mean by natural language as an interface to code.</p>
 </div>
 <div class="highlight-box"><h3><span>The Critical Caveat</span></h3>
@@ -330,7 +330,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="card"><h3>Google Colab AI</h3>
 <p><strong>What it is:</strong> AI assistance built directly into Google Colaboratory, a free cloud-based Jupyter notebook environment. You can write natural language prompts in code cells and get AI-generated code suggestions.</p>
 <p><strong>Key strengths:</strong> Free subject to account eligibility and administrator restrictions; AI features also require an account aged 18 or over in a supported locale. Runs in the browser, with no installation needed. Access to free GPU/TPU resources for machine learning tasks. Familiar notebook interface for iterative analysis. Easy to share and collaborate.</p>
-<p><strong>Limitations:</strong> AI features are less sophisticated than dedicated tools. Primarily Python; Gemini also works with Julia notebooks. Session timeouts can lose your work. The free tier has limited compute resources.</p>
+<p><strong>Limitations:</strong> AI assistance is centred on notebook workflows; suitability depends on the task and the tools being compared. Primarily Python; Gemini also works with Julia notebooks. Session timeouts can lose your work. The free tier has limited compute resources.</p>
 <p><strong>Pricing:</strong> Free with Google account. Colab Pro from $10/month for more resources.</p>
 </div>
 <div class="card"><h3>Gemini Code Assist</h3>
@@ -370,7 +370,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <div class="card"><h3>Where Paid Makes a Real Difference</h3>
 <p>The gap becomes apparent in more demanding scenarios, particularly those common in research:</p>
 <ul class="styled-list">
-<li><strong>Complex multi-step analysis:</strong> When your analysis requires loading data, cleaning it, merging datasets, running statistical models, and generating publication-quality figures as a single coherent workflow, paid tools handle this dramatically better</li>
+<li><strong>Complex multi-step analysis:</strong> When your analysis requires loading data, cleaning it, merging datasets, running statistical models, and generating publication-quality figures as a single coherent workflow, paid tools may offer higher usage limits or more capable models, but performance depends on the tool and task</li>
 <li><strong>Debugging subtle errors:</strong> When code runs but produces wrong results, identifying the problem requires deep reasoning about data flow and logic. Better models are substantially more capable here</li>
 <li><strong>Working with large datasets:</strong> Larger context windows mean the AI can consider more of your data structure, variable names, and relationships simultaneously</li>
 <li><strong>Iterative refinement:</strong> Research analysis is rarely one-shot. You refine, adjust, and explore. Paid tiers support the sustained back-and-forth conversation this requires</li>
@@ -501,7 +501,7 @@ html.hr .navtoggle[data-m="r"] .ls{display:inline}
 <p>Consider this scenario: you ask AI to compare satisfaction scores between two groups. The AI generates code that runs perfectly and produces a p-value of 0.03. You conclude the groups are significantly different.</p>
 <p style="margin-top: 15px">But look closer at the code. The AI used a standard t-test, which compares group means and works best when the scores are roughly symmetric or the groups are large. Your satisfaction scores are a single 1–5 Likert item, so they are ordinal with many tied values. A rank-based test such as Mann-Whitney U, or an ordinal model, may fit the question better, but it tests a slightly different hypothesis, so choose the test from your research question before you see the result. The alternative analysis might give a p-value of 0.08, which is not significant.</p>
 <p style="margin-top: 15px">The code ran. It produced a result. That result may not answer your question. The AI made no programming error; it picked a test by default instead of from your research question and your data, and a defensible alternative gives a different answer. This is the kind of error that vibe coding will miss and that a basic understanding of your analysis can catch.</p>
-<p style="margin-top: 15px">Always ask yourself whether the code is doing the right analysis, or just <em>an</em> analysis. If you are unsure, describe your data and the test the AI chose to a second AI tool and ask whether the choice is appropriate. Cross-checking between tools is one of the most effective strategies available to non-programmers.</p>
+<p style="margin-top: 15px">Always ask yourself whether the code is doing the right analysis, or just <em>an</em> analysis. If you are unsure, describe your data and the test the AI chose to a second AI tool and ask whether the choice is appropriate. Cross-checking between tools can help identify mistakes, but agreement does not establish correctness; also check against known results or seek statistical advice.</p>
 </div>
 <ol class="step-list">
 <li><strong>Describe your goal clearly.</strong> Be specific about your data (types, size, structure), what question you are trying to answer, and what you expect the output to look like. Vague prompts produce vague code.</li>
